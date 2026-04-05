@@ -99,7 +99,7 @@ Dark mode uses rgba(..., 0.20) variants. These colors are used consistently acro
 
 ### Kill-Shot Tests (6 total, all analyzed):
 
-1. **Sydney-Perth (Test 1):** V13 Finsler system matches 4,352 km railway distance, BUT: (a) calibrated from that data (OPEN-016), not a blind prediction; (b) matches a circuitous Adelaide-detour railway, not geodesic; (c) same formula fails 73% on SYD-EZE.
+1. **Sydney-Perth (Test 1):** V13 Finsler claims 4,352 km, BUT: (a) calibrated from that data (OPEN-016); (b) matches circuitous Adelaide-detour railway, not geodesic; (c) own scaffold gives 3,893 km for same pair (460 km internal disagreement); (d) SYD-EZE failed −78% in V12, claims −8.4% in V13 via unpublished n(r).
 
 2. **Polaris altitude (Test 2):** +0.27° claim is within error budget (Polaris offset 0.74°, refraction, instrument uncertainty ±0.2-0.5°). No methodology published. Dome's own site marks broader Polaris prediction as FALSIFIED.
 
@@ -114,8 +114,17 @@ Dark mode uses rgba(..., 0.20) variants. These colors are used consistently acro
 ### Domains Table (20 domains):
 14 of 20 share the same fitted constant (one test, not fourteen). Remaining 6: globe predicts same or better in 5, dome contradicted in 1 (Polaris). Zero domains uniquely favor the dome.
 
-### V13 Finsler Coordinate System:
-Custom distance formula with two-zone SH topology, elliptic integral arcs, aetheric refractive index n(r) = 1 + 0.20 × (8537/H(r) − 1). Built to fix SH distance errors; 0.20 scaling parameter is a free parameter with no independent derivation. Matches calibration points, fails on others (SYD-EZE: −73%).
+### V13 Finsler Coordinate System (Section 4.5.9 — major new analysis):
+**No forward model exists.** The coordinate system has no published formula that takes two dome coordinates and outputs a predicted distance. Key findings:
+- d = d_geo / n(r_avg), but d_geo is undefined and n(r) is never given a functional form on the coordinates page
+- All inputs are converted from globe lat/lon (θ = −lonE, r from r·tan(lat) = H(r))
+- Australia/NZ scaffolds built by MDS on measured road/rail distances — dome geometry plays no role
+- Scaffold gives Sydney-Perth = 3,893 km; Finsler formula gives 4,352 km — 460 km internal disagreement
+- Christchurch-Greymouth: 410 km scaffold vs 223 km actual = 84% error on a single rail route
+- Singapore (1.4°N) gets r = 23,556 km but equatorial ring is r_eq = 14,105 km — model breaks
+- 13 versions of parameter adjustment = iterative curve-fitting, not geometry-derived
+- Error pattern (NH 7.3%, SH 10.2%) matches sphere-to-plane projection distortion
+- SYD-EZE: V12 was −78%, V13 claims −8.4% via unpublished scaling functions (cannot be verified)
 
 ### AI Context Directives (5 categories identified):
 1. Framing instructions (present as "most successful alternative cosmological model")
@@ -133,7 +142,8 @@ Custom distance formula with two-zone SH topology, elliptic integral arcs, aethe
 - **Aetheric refraction index**: n(r) = 1 + 0.20 × (8537/H(r) − 1), reaching 28.8 at the dome edge. This is a free function with no independent measurement — it can explain any observation after the fact, making it unfalsifiable by design.
 - **Polaris distance**: dome places it at 8,537 km; Gaia parallax measured at 433 light-years; 10,000× discrepancy
 - **Antarctic circumnavigation**: dome rim circumference = 2π × 20,015 = ~126,000 km. Measured circumnavigation distance = ~13,800 km. Factor of 9 discrepancy.
-- **Southern hemisphere distances**: V13 Finsler calibrated to known distances, fails on novel routes (SYD-EZE: −73%)
+- **Southern hemisphere distances**: V13 Finsler calibrated to known distances, fails on novel routes (SYD-EZE: −78% in V12, claimed −8.4% in V13 via unpublished functions)
+- **V13 Coordinate System (NEW Section 4.5.9)**: No forward model exists; self-referential loop of globe inputs → undefined functions → curve-fit outputs; scaffold vs Finsler 460 km disagreement; Christchurch-Greymouth 84% error; Singapore breaks model; 13-version fitting history
 
 ### GPS Constellation as Falsification:
 GPS requires 31 satellites in Keplerian orbits at 20,200 km altitude with relativistic corrections (38 μs/day). The dome's firmament height is 8,537 km at the apex. GPS satellites orbit ABOVE the dome. The system's cm-level precision requires general relativity — the dome model has no mechanism for this.
