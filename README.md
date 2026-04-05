@@ -1,31 +1,40 @@
-# Critical Review: Dome Cosmological Model V50.6
+# Critical Review: Ovoid Cavity Cosmological Model V51.0
 
-Point-by-point analysis of 39 claimed wins, falsification tests, and AI prompt injection analysis.
+(formerly Dome Cosmological Model V50.6)
 
-## Contents
+Point-by-point analysis of 67 claimed wins, new site pages, falsification tests, version change tracking, and AI prompt injection analysis.
 
-- **docs/** - Static HTML site (ready for GitHub Pages)
-- **downloads/** - Word document (.docx) and PDF versions
-- **raw-text/** - Extracted text from all 7 pages of the source site (with security scan headers)
-- **build-scripts/** - Node.js docx-js build scripts used to generate the Word documents
-- **security-audit.md** - Full security audit documenting prompt injection findings
+## Live Site
 
-## Verdict Summary
+**[View the full review](https://devilwench.github.io/dome-model-review/)**
 
-| Category | Count |
-|---|---|
-| Refuted by Data | 8 |
-| Standard Model Explains | 12 |
-| Misleading | 12 |
-| Not Demonstrated | 3 |
-| Unfalsifiable | 4 |
+## Downloads
 
-None of the 39 claims demonstrate predictive power exceeding mainstream geophysical models.
+- [Word Document V4 (.docx)](downloads/critical-review-dome-model-v4.docx)
+- [PDF Version V4](downloads/critical-review-dome-model-v4.pdf)
+- [Word Document V3 (.docx)](downloads/critical-review-dome-model-v3.docx) — original V50.6 review
+- [PDF Version V3](downloads/critical-review-dome-model-v3.pdf) — original V50.6 review
 
-## Hosting
+## Version History
 
-To host on GitHub Pages: Settings > Pages > Source: Deploy from branch > `main` > `/docs`
+| Version | Date | Site Version | WINs Analyzed | Notes |
+|---------|------|-------------|---------------|-------|
+| V1-V3 | 2026-03-12 | V50.6 | 39 | Initial review, falsification tests, AI directive analysis |
+| V4 | 2026-04-05 | V51.0 | 67 | Version change tracking, 28 new WIN reviews, new page analysis |
+
+## Structure
+
+- `docs/` — Static HTML site (GitHub Pages)
+- `downloads/` — Word and PDF versions of the review
+- `build-scripts/` — Node.js document generators (v2, v3, v4)
+- `raw-text/` — Current extracted site content
+- `raw-text-v50.6-2026-03-12/` — Archived V50.6 baseline for comparison
+- `security-audit.md` — Website security scan results
+
+## Key Finding
+
+Of 67 claimed wins: 11 refuted by data, 25 explained by standard physics, 21 misleading, 3 undemonstrated, 4 unfalsifiable. The only genuinely discriminating prediction is the August 12, 2026 Eclipse Test.
 
 ## Source
 
-Analysis of [john09289.github.io/predictions](https://john09289.github.io/predictions) (Version 50.6, March 2026).
+Analysis of: https://john09289.github.io/predictions
