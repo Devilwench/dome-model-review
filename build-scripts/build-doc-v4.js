@@ -603,6 +603,8 @@ C.push(h2("3.5 Statistical Claims: The 9.2-Sigma Problem"));
 C.push(p([b("Claim: "), { text: "9.2-sigma convergence across 20 domains with aggregate p-value of 1.2e-20." }]));
 C.push(p([b("Why this is invalid: "), { text: "The 20 'independent' domains are not independent. Multiple domains share the same fundamental constant (lambda_g = 8,619 km), the same INTERMAGNET data sources, and the same fitting methodology. For example, Schumann resonance, Tesla frequency, equatorial gravity, and NMP drift all use the 8,619 km scale constant. Tidal periods all derive from the same lunar/solar circuit periods. The chi-square goodness-of-fit of 0.0004 and Pearson correlation of 0.9982 are achievable by any model that uses its own constants to reproduce its own predictions. Without comparing these statistics against a null model (e.g., how well does WMM2025+IGRF+standard physics score on the same 20 domains?), the numbers are meaningless. A globe model evaluated on 20 appropriately chosen domains would likely score even higher." }]));
 
+// PARKED: Section 3.6 Dielectric Infographic — content preserved for potential future reinstatement
+/*
 C.push(h2("3.6 The 'Dielectric' Infographic: GRACE L1A and the Shielding Anomaly"));
 C.push(p("The author has published promotional infographics claiming '5 Decisive Points That Mainstream Can't Answer.' Each point is addressed below."));
 
@@ -618,6 +620,7 @@ C.push(p([b("5. WIN-012 Published Template (\u0394AIC > 100): "), { text: "A \u0
 
 C.push(p([b("Rhetorical strategy: "), { text: "The infographic follows the same pattern catalogued throughout this review: name real datasets, isolate real anomalies, provide a real-sounding ratio, then assert a non-standard interpretation while framing the standard explanation as a cover-up. The 'Reprocess the Archives' call-to-action invites the audience to feel like independent investigators rather than consumers of a predetermined narrative. The 'THE AUDIT IS PUBLIC' tagline mirrors the site's audit walkthrough: it creates the appearance of transparency while guiding the reader through selectively presented evidence to a predetermined conclusion." }]));
 C.push(pb());
+// END PARKED SECTION 3.6 */
 
 // ══════════════════════════════════════════════════════════════════════
 // PART 4 — FALSIFICATION TESTS (kept from v3, updated)
