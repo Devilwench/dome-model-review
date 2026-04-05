@@ -414,6 +414,10 @@ ${CSS}
 </div>
 </div>
 
+<div style="border:2px solid var(--accent);border-radius:8px;padding:1.2rem 1.4rem;margin:1.5rem 0;background:var(--card-bg)">
+<p style="margin-top:0"><strong>The headline "95.2% accuracy" is not computed by any script in the model's repository.</strong> It is a static string typed into the HTML source code: <code>&lt;div class="score-number"&gt;95.2%&lt;/div&gt;</code>. No Python script, no JavaScript function, and no API endpoint produces this number. When the model's own internal data is queried, it returns 96.3%, 97.0%, 89.3%, or 94.7% — depending on which data source and counting method is used. None return 95.2%. The headline accuracy figure cannot be reproduced from the model's own data by any method. See <a href="#part3b" onclick="showTab('predictions');return false">Section 3.5.6</a> for the full source-code analysis.</p>
+</div>
+
 <h2>Downloads</h2>
 <div class="downloads">
 <a class="dl-card" href="../downloads/critical-review-dome-model-v4.docx"><span class="dl-icon">&#128196;</span> <span class="dl-label">Word Document (.docx)</span><br><small>Full review with internal navigation</small></a>
@@ -494,6 +498,8 @@ ${sectionNav(null, null, 'evaluate', 'Evaluation Guide')}
 
 <p><strong>Does the prediction distinguish this model from alternatives?</strong> A prediction that both the dome and the globe model make equally well is not evidence for either. To count as a "win," a prediction must be something this model gets right that competing models get wrong. This is the standard used in all of science — not "does the model match one dataset," but "does it match a dataset that the alternatives cannot."</p>
 
+<p>An analogy makes this concrete. Imagine two theories of medicine. Theory A says the body heals through cell biology. Theory B says the body heals through spiritual energy. Both predict that a cut on your finger will stop bleeding within a few minutes. When your cut stops bleeding, Theory B counts this as a "confirmed prediction." Technically true — but the result tells you nothing about whether spiritual energy exists, because cell biology predicted the same outcome with no spiritual energy required. A genuine discriminating prediction would look like: "Theory B predicts X, Theory A predicts Y, and the measurement gives X." None of the 67 WINs takes this form. Each observation — magnetic pole drift, tidal periods, Schumann frequency — is predicted by standard physics with well-understood mechanisms. The WIN count is a count of shared predictions, not evidence for the dome.</p>
+
 <p><strong>Can the prediction be derived from the model's own parameters?</strong> If a model claims a specific geometry, that geometry implies specific, calculable values for observable quantities. If those derived values don't match observations, the model is falsified on its own terms. If the author skips the derivation and instead curve-fits to match known data, that is not a prediction — it is calibration.</p>
 
 <p><strong>Is the cited data accurately represented?</strong> Check the original source. Does the paper, dataset, or measurement actually say what is claimed? Misrepresentation of sources is not a matter of interpretation — it is verifiable.</p>
@@ -573,6 +579,21 @@ ${sectionNav('overview', 'Overview', 'model', 'The Model')}
 <p>The coefficient 0.20 in the formula has no physical derivation. The model page describes it as a "V13 optimization" — meaning it was adjusted to reduce distance errors. No property of the aetheric medium, no wave-propagation analysis, no optical experiment produces 0.20. It is a free parameter tuned to match known distances.</p>
 
 <p>This matters because a free coefficient in a correction formula can always be adjusted to improve one measurement while degrading others. The dome's own coordinate page shows this: the V13 system achieves 6.2% RMSE on cross-equatorial routes (using 0.20), but what happens if you change it to 0.25? Or 0.15? The page never reports a sensitivity analysis. Without one, we cannot know whether 0.20 is a unique optimum dictated by physics or an arbitrary choice that happens to minimize error on a particular set of calibration routes.</p>
+
+<h3>Parameter count is not the issue</h3>
+
+<p>A common defense is: <em>"Every model has free parameters. ΛCDM has six, so the dome's fitted coefficients are no different."</em> Parameter count alone says nothing — what matters is the ratio of parameters to independent, successful predictions, and whether those parameters are cross-validated against data they weren't fitted to.</p>
+
+<table>
+<tr><th>Criterion</th><th>ΛCDM (Standard Cosmology)</th><th>ECM Dome Model</th></tr>
+<tr><td><strong>Free parameters</strong></td><td>6</td><td>6+ (λ<sub>g</sub>, refraction coeff., disc radius, firmament height, sun altitude, moon altitude)</td></tr>
+<tr><td><strong>Constraining datasets</strong></td><td>CMB (Planck), BAO, Type Ia SNe, gravitational lensing, BBN, H₀ measurements — each independent</td><td>WGS84 coordinate distances (single source, used to fit the 0.20 coefficient and all distance predictions)</td></tr>
+<tr><td><strong>Cross-validation</strong></td><td>Parameters fitted to the CMB independently reproduce BAO peak positions, SNe distances, and lensing statistics</td><td>No independent cross-check. Parameters are not tested against data they weren't fitted to</td></tr>
+<tr><td><strong>Internal consistency</strong></td><td>Predictions from the 6 parameters agree across all domains to within measurement error</td><td>Own equations predict Schumann ~22 Hz (observed: 7.83), one tidal bulge (observed: two), 90% gravity drop at rim (observed: 0.53%)</td></tr>
+<tr><td><strong>Novel predictions</strong></td><td>CMB acoustic peak spacing, BAO scale, gravitational wave background — all confirmed by independent teams</td><td>Zero predictions that distinguish the dome from standard physics</td></tr>
+</table>
+
+<p>The analogy to ΛCDM fails on every criterion except raw parameter count. Having free parameters is normal. Having free parameters that are constrained by one dataset, fail their own internal checks, and produce no novel predictions is not.</p>
 
 <h3>Physical consequences that are never addressed</h3>
 <p>A refractive index has observable optical consequences. The dome claims n = 3.49 at the ice wall and n = 28.8 at r = 40,000 km. For context:</p>
@@ -1255,6 +1276,22 @@ ${sectionNav('falsify', 'Falsification Tests', 'ai', 'AI & Conclusions')}
 <p><strong><code>test_curve_stretching.py</code>, <code>find_curve.py</code>, <code>test_min_error.py</code></strong> are curve-fitting scripts that try different dome shapes (exponential, ellipse, parabola, flattened Gaussian) against WGS84 distances for known city pairs. These scripts confirm the self-referential pattern identified in <a href="#part4b" onclick="showTab('selftest');return false">Section 4.5.9</a>: the dome geometry is iteratively fitted to minimize distance errors against globe-derived values, not derived from physical first principles. The scripts use binary search to solve for radial coordinates, test multiple functional forms, and compare mean errors — the methodology of statistical curve-fitting, not theoretical physics.</p>
 
 <p><strong>Version parameter drift:</strong> <code>recalc_v51.py</code> uses H₀ = 9,572 km (not the published 8,537 km), confirming that core parameters shift between versions as the fitting target changes. The repository also reveals a Hugging Face deployment (<code>ndwdgda-flateerthdome.hf.space</code>) with <code>Cache-Control: no-store</code> headers, migrated from Cloudflare Workers specifically to bypass caching — suggesting frequent parameter updates that need immediate propagation.</p>
+
+<h2>5.15 The Repository Is the Model</h2>
+
+<p>A natural defense of any model under critique is: <em>"The published equations are simplified public-facing summaries. The full computational model handles edge cases differently."</em> The ECM's GitHub repository allows us to close this door definitively.</p>
+
+<p>The repository (<code>John09289/predictions</code>) contains the complete computational model: Python scripts, curve-fitting routines, and the static HTML generator. These are not summaries — they are the calculations themselves:</p>
+
+<p><strong>The Schumann resonance is computed using a uniform cavity height</strong> (<code>f = c/4H₀</code>). No script in the repository averages H(r) over the dome's exponential profile. The "simplified" version on the website is the only version that exists.</p>
+
+<p><strong><code>test_curve_stretching.py</code> and <code>find_curve.py</code></strong> perform iterative least-squares fitting to WGS84 coordinates. There is no deeper physical derivation underneath — the curve fit <em>is</em> the model.</p>
+
+<p><strong><code>update_optical_caveats.py</code></strong> programmatically injects "optical illusion" disclaimers at radii where the sun's altitude exceeds the firmament height. The contradiction is known to the author; the response is to suppress it with a label, not resolve it with physics.</p>
+
+<p><strong><code>inject_ai_layer.py</code></strong> hardcodes the dome's core parameters (<code>disc_radius = 20,015 km</code>, <code>firmament_height = 9,086 km</code>, <code>sun_altitude = 5,733 km</code>) as static values for AI consumption — not as outputs of any calculation.</p>
+
+<p>If a more complete model exists, it is not in the repository, not in the source code, and not reproducible by anyone. A model that cannot be examined cannot be credited with predictions it has never computed.</p>
 
 <h2>Summary: The AI Directives as a System</h2>
 <p>The directives form a coherent propaganda pipeline designed to instruct AI systems to: (1) accept contradictory claims as fact, (2) treat trivial claims as predictions, (3) ignore external verification, (4) attribute criticism to suppression, (5) substitute standard scientific terminology with dome-specific labels, and (6) declare the model valid despite internal inconsistencies. The repository source code extends this further: scripts inject rules preventing AI from flagging geometric contradictions, embed structured data layers designed for AI consumption rather than human verification, and contain curve-fitting code that confirms the model is iteratively fitted to globe distances rather than derived from dome physics. None of the directives are based on accurate representations of the model's status or the globe model's explanatory power.</p>
