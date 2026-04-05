@@ -90,7 +90,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 .ks-status.ks-failing{background:var(--misleading);color:#b45309}
 @media(prefers-color-scheme:dark){.ks-status.ks-pending{color:#bbb}.ks-status.ks-failing{color:#f59e0b}}
 
-@media(max-width:600px){body{padding:.5rem 1rem}h1{font-size:1.4rem}h2{font-size:1.2rem}table{font-size:.8rem}.tab-bar{padding:0.5rem .75rem;gap:.25rem}.tab-btn{padding:0.5rem 0.8rem;font-size:.85rem}.sc-hero{grid-template-columns:1fr}.sc-breakdown{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem}.sc-domains{grid-template-columns:1fr}.ks-test{padding:.8rem 1rem}}
+@media(max-width:600px){body{padding:.5rem 1rem}h1{font-size:1.4rem}h2{font-size:1.2rem}table{font-size:.8rem}.tab-bar{padding:0.5rem .75rem;gap:.25rem}.tab-btn{padding:0.5rem 0.8rem;font-size:.85rem}.sc-hero{grid-template-columns:1fr}.sc-breakdown{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem}.sc-domains{grid-template-columns:1fr}.ks-test{padding:.8rem 1rem}[style*="float:right"]{float:none!important;max-width:100%!important;margin:1rem 0!important}}
 
 </style>
 </head>
@@ -136,7 +136,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 
 <div class="scorecard sc-breakdown">
 <div class="sc-card sc-sm" style="border-left:4px solid var(--refuted-solid)">
-<div class="sc-number">11</div>
+<div class="sc-number">10</div>
 <div class="sc-label">Refuted by Data</div>
 <div class="sc-sublabel">Measurements directly contradict the claim</div>
 </div>
@@ -146,7 +146,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 <div class="sc-sublabel">The dome's own math gives the wrong answer</div>
 </div>
 <div class="sc-card sc-sm" style="border-left:4px solid var(--misleading-solid)">
-<div class="sc-number">23</div>
+<div class="sc-number">24</div>
 <div class="sc-label">Misleading</div>
 <div class="sc-sublabel">Data is cherry-picked, misrepresented, or duplicated</div>
 </div>
@@ -168,7 +168,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 </div>
 
 <div style="border:2px solid var(--accent);border-radius:8px;padding:1.2rem 1.4rem;margin:1.5rem 0;background:var(--card-bg)">
-<p style="margin-top:0"><strong>The headline "95.2% accuracy" is not computed by any script in the model's repository.</strong> It is a static string typed into the HTML source code: <code>&lt;div class="score-number"&gt;95.2%&lt;/div&gt;</code>. No Python script, no JavaScript function, and no API endpoint produces this number. When the model's own internal data is queried, it returns 96.3%, 97.0%, 89.3%, or 94.7% — depending on which data source and counting method is used. None return 95.2%. The headline accuracy figure cannot be reproduced from the model's own data by any method. See <a href="#part3b" onclick="showTab('predictions');return false">Section 3.5.6</a> for the full source-code analysis.</p>
+<p style="margin-top:0"><strong>The headline "95.2% accuracy" is not computed by any script in the model's repository.</strong> It is a static string in the HTML source code: <code>&lt;div class="score-number"&gt;95.2%&lt;/div&gt;</code>. No Python script, no JavaScript function, and no API endpoint produces this number. The model page now displays the arithmetic <code>67 / (67 + 4) = 95.2%</code>, but this was manually written into the HTML during the V51.0 registry lock — no script validates the count against the actual WIN registry. When the model's own internal data is queried, it returns 96.3%, 97.0%, 89.3%, or 94.7% — depending on which data source and counting method is used. The denominator of 71 (67 confirmed + 4 excluded as "below detection") is an editorial choice, not a programmatic derivation. See <a href="#part3b" onclick="showTab('predictions');return false">Section 3.5.6</a> for the full source-code analysis.</p>
 </div>
 
 <h2>Downloads</h2>
@@ -414,10 +414,10 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 
 <div class="tally">
 <strong>Verdict Tally (67 total WINs):</strong>
-Refuted by Data: 11 |
+Refuted by Data: 10 |
 Standard Model Explains: 15 |
 Self-Contradicted: 11 |
-Misleading: 23 |
+Misleading: 24 |
 Not Demonstrated: 3 |
 Unfalsifiable: 4
 </div>
@@ -425,20 +425,20 @@ Unfalsifiable: 4
 
 <div style="display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin:1.2rem 0 1.5rem">
   <svg viewBox="0 0 340 340" width="340" height="340" role="img" aria-label="Verdict distribution pie chart">
-    <path d="M150,150 L150.00,40.00 A110,110 0 0,1 244.39,93.52 Z" fill="#E57373" class="pie-slice" data-dark="#ef5350" stroke="var(--bg)" stroke-width="2"/>
-    <path d="M150,150 L244.39,93.52 A110,110 0 0,1 246.94,202.00 Z" fill="#42A5F5" class="pie-slice" data-dark="#1e88e5" stroke="var(--bg)" stroke-width="2"/>
-    <path d="M150,150 L246.94,202.00 A110,110 0 0,1 114.54,254.13 Z" fill="#66BB6A" class="pie-slice" data-dark="#43a047" stroke="var(--bg)" stroke-width="2"/>
-    <path d="M150,150 L114.54,254.13 A110,110 0 0,1 82.87,62.86 Z" fill="#FFA726" class="pie-slice" data-dark="#fb8c00" stroke="var(--bg)" stroke-width="2"/>
+    <path d="M150,150 L150.00,40.00 A110,110 0 0,1 238.69,84.93 Z" fill="#E57373" class="pie-slice" data-dark="#ef5350" stroke="var(--bg)" stroke-width="2"/>
+    <path d="M150,150 L238.69,84.93 A110,110 0 0,1 251.38,192.69 Z" fill="#42A5F5" class="pie-slice" data-dark="#1e88e5" stroke="var(--bg)" stroke-width="2"/>
+    <path d="M150,150 L251.38,192.69 A110,110 0 0,1 124.45,256.99 Z" fill="#66BB6A" class="pie-slice" data-dark="#43a047" stroke="var(--bg)" stroke-width="2"/>
+    <path d="M150,150 L124.45,256.99 A110,110 0 0,1 82.87,62.86 Z" fill="#FFA726" class="pie-slice" data-dark="#fb8c00" stroke="var(--bg)" stroke-width="2"/>
     <path d="M150,150 L82.87,62.86 A110,110 0 0,1 109.70,47.65 Z" fill="#AB47BC" class="pie-slice" data-dark="#8e24aa" stroke="var(--bg)" stroke-width="2"/>
     <path d="M150,150 L109.70,47.65 A110,110 0 0,1 150.00,40.00 Z" fill="#BDBDBD" class="pie-slice" data-dark="#757575" stroke="var(--bg)" stroke-width="2"/>
-    <text x="182.6" y="86.6" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">11</text>
-    <text x="182.6" y="102.6" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">16%</text>
-    <text x="216.0" y="142.5" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">11</text>
-    <text x="216.0" y="158.5" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">16%</text>
-    <text x="174.2" y="205.4" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">15</text>
-    <text x="174.2" y="221.4" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">22%</text>
-    <text x="84.9" y="154.8" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">23</text>
-    <text x="84.9" y="170.8" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">34%</text>
+    <text x="179.8" y="85.1" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">10</text>
+    <text x="179.8" y="101.1" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">15%</text>
+    <text x="215.5" y="136.3" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">11</text>
+    <text x="215.5" y="152.3" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">16%</text>
+    <text x="179.8" y="202.9" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">15</text>
+    <text x="179.8" y="218.9" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">22%</text>
+    <text x="85.5" y="157.8" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">24</text>
+    <text x="85.5" y="173.8" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">36%</text>
     <line x1="91.8" y1="47.4" x2="78.5" y2="23.9" stroke="#8e24aa" stroke-width="1.2" class="callout-line" data-dark="#8e24aa" data-light="#8e24aa"/>
     <line x1="78.5" y1="23.9" x2="58.5" y2="23.9" stroke="#8e24aa" stroke-width="1.2" class="callout-line" data-dark="#8e24aa" data-light="#8e24aa"/>
     <text x="55.5" y="24.9" text-anchor="end" dominant-baseline="central" font-size="11" font-weight="700" fill="#8e24aa" class="pie-callout">3 (4%)</text>
@@ -449,7 +449,7 @@ Unfalsifiable: 4
   <svg viewBox="0 0 300 168" width="300" height="168" role="img" aria-label="Verdict legend">
     <g transform="translate(0,0)">
       <rect width="16" height="16" rx="3" fill="#E57373" class="legend-swatch" data-dark="#ef5350"/>
-      <text x="24" y="12.5" font-size="13" fill="var(--text)"><tspan font-weight="700">11</tspan> Refuted by Data (16%)</text>
+      <text x="24" y="12.5" font-size="13" fill="var(--text)"><tspan font-weight="700">10</tspan> Refuted by Data (15%)</text>
     </g>
     <g transform="translate(0,28)">
       <rect width="16" height="16" rx="3" fill="#42A5F5" class="legend-swatch" data-dark="#1e88e5"/>
@@ -461,7 +461,7 @@ Unfalsifiable: 4
     </g>
     <g transform="translate(0,84)">
       <rect width="16" height="16" rx="3" fill="#FFA726" class="legend-swatch" data-dark="#fb8c00"/>
-      <text x="24" y="12.5" font-size="13" fill="var(--text)"><tspan font-weight="700">23</tspan> Misleading (34%)</text>
+      <text x="24" y="12.5" font-size="13" fill="var(--text)"><tspan font-weight="700">24</tspan> Misleading (36%)</text>
     </g>
     <g transform="translate(0,112)">
       <rect width="16" height="16" rx="3" fill="#AB47BC" class="legend-swatch" data-dark="#8e24aa"/>
@@ -553,7 +553,7 @@ Unfalsifiable: 4
 <tr><td><a href="#win059">059</a></td><td>NMP deceleration Siberian</td><td class="v-std">Std Model Explains</td><td>Duplicate of WIN-007; dome has no mechanism to predict sector-specific deceleration</td></tr>
 <tr><td><a href="#win060">060</a></td><td>SAA western cell shift</td><td class="v-std">Std Model Explains</td><td>Non-discriminating: dome extrapolates same drift data as NOAA/ESA; duplicate of WIN-004/005</td></tr>
 <tr><td><a href="#win061">061</a></td><td>Schumann suppression G3 storm</td><td class="v-selfcon">Self-Contradicted</td><td>Dome cavity predicts ~22 Hz base frequency; suppression pattern follows ionospheric (globe) physics</td></tr>
-<tr><td><a href="#win062">062</a></td><td>Tesla longitudinal wave 1.574c</td><td class="v-refuted">Refuted by Data</td><td>Superluminal group velocity is standard waveguide physics; implied disc diameter (40,030 km) contradicts model&#39;s own 28,210 km</td></tr>
+<tr><td><a href="#win062">062</a></td><td>Tesla longitudinal wave 1.574c</td><td class="v-misleading">Misleading</td><td>Tesla&#39;s patent (with spherical Earth diagram) describes surface wave propagation at ~1.57c — a known waveguide effect on a globe. Dome relabels globe circumference as disc diameter</td></tr>
 <tr><td><a href="#win063">063</a></td><td>Magnetic decay asymmetry ratio</td><td class="v-std">Std Model Explains</td><td>Asymmetry arises from core reversed-flux patches; dome has no core model to derive the ratio</td></tr>
 <tr><td><a href="#win064">064</a></td><td>P-wave shadow zone geometric</td><td class="v-std">Std Model Explains</td><td>Shadow zone at 104-140 deg proves spherical layered Earth with liquid core</td></tr>
 <tr><td><a href="#win065">065</a></td><td>Polaris systematic excess</td><td class="v-refuted">Refuted by Data</td><td>Polaris is 0.74° from true pole; &#39;excess&#39; is within known offset. See Kill-Shot Test 2 (no error budget provided)</td></tr>
@@ -626,13 +626,6 @@ Unfalsifiable: 4
 <p><strong>Evidence:</strong> The claimed two-pole system contradicts the same dome author's previous assertion (V50.6) that the field is a monopolar vortex. Switching between monopolar and dipolar descriptions indicates a lack of a fixed underlying mechanism. The dome model provides no unified equations — contrast with <a href="https://spacecenter.dk/files/magnetic-models/CHAOS-7/">CHAOS-7</a> and <a href="https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field">IGRF-13</a>, which predict both poles from a single spherical harmonic expansion describing how two poles arise from its geometry, nor how they couple to produce observed field anomalies.</p>
 <p><span class="verdict-tag vt-refuted">REFUTED BY DATA</span> The toroidal geometry is a genuine mechanism improvement over V50.6's monopole, but it fails quantitatively: flux conservation forbids equal-strength poles in a ring magnet with a 1,600:1 area ratio. The fitted equation ignores the geometry it claims to derive from.</p>
 <p>The model has been restructured as a toroidal flow circuit: aetheric medium exits the Axis Mundi (north pole), flows south across the disc surface, descends at the Antarctic resonance barrier (ice wall, r \u2248 20,015 km), returns through a sub-terrestrial path (the 'Sump' / Bottom Firmament), and re-enters at the north pole. This is topologically identical to a ring magnet or toroidal solenoid. The subterranean cavity depth is given by Sub-H(r) = H(r) \u00D7 (1 \u2212 e^(\u2212r/\u03B4)) with \u03B4 = 6,371 km. The author fits B(r) = 62,376\u00D7e^(\u2212r_N/8619) + 64,852\u00D7e^(\u2212r_S/8619) nT and claims this drops global RMS from 61% to 20%.</p>
-</div>
-
-<div class="evidence" id="win062">
-<h3>WIN-062: Tesla longitudinal wave 1.574c</h3>
-<p><strong>Claim:</strong> Tesla&#39;s Colorado Springs measurements demonstrate longitudinal wave velocity of 1.574 times the speed of light, confirming ECM disc diameter.</p>
-<p><strong>Evidence:</strong> Tesla observed that electromagnetic signals appeared to arrive faster than expected over Earth's surface. This is explained by group velocity in waveguides: electromagnetic waves propagating in the <a href="https://doi.org/10.1016/B978-0-12-385897-5.00001-8">Earth-ionosphere waveguide</a> can have phase/group velocities exceeding c without violating relativity, because information and energy travel at the signal velocity, which does not exceed c. Additionally, the dome model uses this 1.574c factor to derive a disc diameter: D = c × 0.08484s × 1.574 = <strong>40,030 km</strong>. But the model's own equatorial diameter (from the azimuthal equidistant projection) is 2 × 14,105 = <strong>28,210 km</strong>. These differ by 42%. The model's Tesla prediction contradicts its own geometry. See <a href="#predictions">Section 3.5</a>.</p>
-<p><span class="verdict-tag vt-refuted">REFUTED BY DATA</span> Superluminal group velocity is standard waveguide physics. The implied disc diameter (40,030 km) contradicts the model's own 28,210 km equatorial diameter by 42%.</p>
 </div>
 
 <div class="evidence" id="win065">
@@ -1016,6 +1009,13 @@ Unfalsifiable: 4
 <p><span class="verdict-tag vt-misleading">MISLEADING</span> Coordinate choice is convention, not a physical prediction testable against nature.</p>
 </div>
 
+<div class="evidence" id="win062">
+<h3>WIN-062: Tesla longitudinal wave 1.574c</h3>
+<p><strong>Claim:</strong> Tesla&#39;s Colorado Springs measurements demonstrate longitudinal wave velocity of 1.574 times the speed of light, confirming ECM disc diameter.</p>
+<p><strong>Evidence:</strong> US Patent 787412 describes wave propagation 'over the earths surface' to 'the region diametrically opposite the pole' — and the patent drawings depict Earth as a sphere. Tesla states a velocity of 471,240 km/s (~1.57c) for a 0.08484s round-trip. On the globe, this is surface wave propagation: half-circumference each way ≈ 40,075 km round trip, giving 40,075/0.08484 ≈ 472,400 km/s. The ~1.57c phase velocity is genuine physics — ELF/VLF waves in the <a href="https://doi.org/10.1029/JZ071i004p01171">Earth-ionosphere waveguide</a> do propagate at superluminal phase velocities, but this is a waveguide effect on a <em>spherical</em> Earth, not evidence of aetheric waves on a flat disc. The dome model's disc diameter (40,030 km) numerically matches because it equals the globe's circumference (40,075 km) — the disc radius of 20,015 km was fitted to globe-derived WGS84 distances (confirmed by repository scripts <code>test_curve_stretching.py</code>, <code>find_curve.py</code>). The dome relabels a globe circumference measurement as a disc diameter, producing the same number by construction, not by independent confirmation. See <a href="#predictions">Section 3.5</a>.</p>
+<p><span class="verdict-tag vt-misleading">MISLEADING</span> Tesla's patent shows a spherical Earth and describes surface wave propagation at ~1.57c — a known waveguide effect. The dome relabels the globe's circumference as a disc diameter, producing numerical agreement by construction.</p>
+</div>
+
 <div class="evidence" id="win023">
 <h3>WIN-023: SAA formation ~950 AD</h3>
 <p><strong>Claim:</strong> The South Atlantic Anomaly formed around 950 AD, linking a geomagnetic event to a theological timeline.</p>
@@ -1314,13 +1314,22 @@ END OF REMOVED SECTION 3.6 -->
 
 <p><strong>What "zero fitted parameters" actually means:</strong> The model has at least these undisclosed parameters: two field-strength coefficients (62,376 and 64,852 nT), the coupling constant κ (1.67), the aetheric damping ratio (26% for Schumann), the Finsler scaling function n(r) (unpublished), the equatorial ring radius r_eq (14,105 km), and the deceleration constant for NMP drift (0.08). These are not derived from dome geometry — they are chosen or fitted to match observations. The claim "zero fitted parameters" is achieved by defining "fitted" so narrowly that empirically derived constants don't count.</p>
 
-<h2>3.5.2 The Disc Diameter Problem: 40,030 km vs. 28,210 km</h2>
+<h2>3.5.2 The Disc Diameter: 40,030 km and Its Provenance</h2>
 
-<p><strong>WIN-062 (Tesla longitudinal wave speed):</strong> Calculates v_a = 40,030 km / 0.08484 s = 471,829 km/s = 1.574c. The disc diameter used is 40,030 km. But the dome's stated equatorial radius is r_eq = 14,105 km, giving a diameter of ~28,210 km. Where does 40,030 come from?</p>
+<p><strong>WIN-062 (Tesla longitudinal wave speed):</strong> Calculates v_a = 40,030 km / 0.08484 s = 471,829 km/s = 1.574c. The disc diameter used is 40,030 km = 2 × 20,015 km (the dome's stated ice-wall radius). This is internally consistent with the model's own parameters — the 14,105 km equatorial ring is a separate structural feature, not the disc boundary.</p>
 
-<p><strong>40,030 km is suspiciously close to 40,075 km — Earth's equatorial circumference on the globe model.</strong> If the dome's disc diameter is derived from the globe's circumference, this is another globe value being relabeled as a dome parameter. The dome's own geometry gives a different number (28,210 km from the equatorial ring, or ~40,030 km from 2 × 20,015 km ice wall radius). The page does not explain the discrepancy or specify which dome measurement yields 40,030 km. A model that cannot state its own disc diameter without ambiguity has a foundational problem.</p>
+<p><strong>The problem is provenance, not internal consistency.</strong> 40,030 km is suspiciously close to 40,075 km — Earth's equatorial circumference on the globe model. The dome claims this diameter is "independently derived from H(r) geometry, Schumann, Polaris data." But if the disc radius of 20,015 km was itself calibrated to match globe-derived distances (as the curve-fitting scripts <code>test_curve_stretching.py</code> and <code>find_curve.py</code> confirm — see <a href="#part4b" onclick="showTab('selftest');return false">Section 4.5.9</a>), then WIN-062 is circular: the disc diameter is fitted to globe geometry, Tesla's period is divided by that diameter, and the result is declared an independent confirmation. The "no Tesla input used" claim is technically true but misleading — the input is the globe's circumference, relabeled.</p>
 
-<p><strong>The superluminal claim:</strong> WIN-062 asserts a wave speed of 1.574c (57.4% faster than light). The justification is that Tesla's signals were "longitudinal, not transverse EM" and therefore not subject to the speed-of-light limit. No physics is cited for why longitudinal waves in an aetheric medium would exceed c. This is an assertion, not a derivation. Special relativity's speed limit applies to all information-carrying signals regardless of wave type — this is experimentally confirmed to extraordinary precision by particle accelerators, GPS, and the Michelson-Morley experiment and its modern replications.</p>
+<div style="float:right;margin:0 0 1rem 1.5rem;max-width:340px;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:#fff">
+<a href="assets/tesla-patent-787412-full.png" target="_blank"><img src="assets/tesla-patent-787412-fig1.png" alt="Tesla Patent 787412, Figure 1 — Earth depicted as a sphere with transmitter and receiver at diametrically opposite points" style="width:100%;display:block"></a>
+<div style="padding:.5rem .7rem;font-size:.8rem;color:#555;line-height:1.3"><strong>US Patent 787,412, Fig. 1</strong> (N. Tesla, 1905). The Earth (labeled E) is depicted as a sphere. The transmitter (coil C, with terminals A and B) sends waves through and around the spherical Earth to receiver E' at the diametrically opposite point. <a href="https://patents.google.com/patent/US787412A" target="_blank" style="color:var(--accent)">View full patent →</a></div>
+</div>
+
+<p><strong>Tesla's measurement confirms the globe, not the dome.</strong> US Patent 787412 explicitly describes wave propagation "over the earths surface" to "the region diametrically opposite the pole" — and <strong>the patent drawings depict the Earth as a sphere</strong> (see Figure 1, right). Tesla states a velocity of 471,240 km/s (~1.57c) for a round-trip time of 0.08484 seconds. On the globe, this is surface wave propagation: half-circumference each way = ~40,075 km round trip, giving 40,075 / 0.08484 ≈ 472,400 km/s. Tesla's number matches propagation around the globe's <em>circumference</em> — a superluminal phase/group velocity in the Earth-ionosphere waveguide, which is well-documented in physics and does not violate relativity (information still travels at ≤ <em>c</em>).</p>
+
+<p>The dome model takes the same measurement and claims it confirms a disc <em>diameter</em> of 40,030 km. But 40,030 km equals the globe's circumference (40,075 km), not its diameter — because the dome's disc radius (20,015 km) was fitted to globe-derived WGS84 distances. Tesla's signal travels around the globe's surface; the dome relabels that circumference as a diameter. The numerical agreement is not a coincidence or an independent confirmation — it is the same number measured on a sphere, reinterpreted on a flat disc. Tesla's own patent, with its spherical Earth diagram and explicit reference to surface wave propagation, directly contradicts the dome's reinterpretation.</p>
+
+<p><strong>The superluminal velocity is real but not what the dome claims.</strong> The ~1.57c phase velocity is genuine physics — ELF/VLF waves in the Earth-ionosphere waveguide do propagate at superluminal phase velocities (<a href="https://doi.org/10.1029/JZ071i004p01171">Wait, 1966</a>; <a href="https://doi.org/10.1049/ip-map:20030535">Cummer, 2000</a>). But this is a waveguide effect on a <em>spherical</em> Earth, not evidence of "longitudinal aetheric waves" on a flat disc. The dome model claims 1.574c proves its geometry; in fact, it proves the Earth-ionosphere waveguide that only exists on a sphere.</p>
 
 <h2>3.5.3 The Schumann Math Error</h2>
 
@@ -1352,13 +1361,13 @@ END OF REMOVED SECTION 3.6 -->
 
 <h2>3.5.6 The 95.2% Accuracy Claim</h2>
 
-<p>The homepage headlines "95.2% Accuracy." <strong>The repository source code reveals this figure is hardcoded as static HTML</strong> — it appears as <code>&lt;div class="score-number score-green"&gt;95.2%&lt;/div&gt;</code> in the homepage markup. No script anywhere in the repository computes it.</p>
+<p>The homepage headlines "95.2% Accuracy." <strong>The repository source code reveals this figure is manually entered as static HTML</strong> — it appears as <code>&lt;div class="score-number score-green"&gt;95.2%&lt;/div&gt;</code> in the homepage markup. No script anywhere in the repository computes it. The model page now displays the arithmetic <code>67 / (67 + 4) = 95.2%</code>, added during the V51.0 registry lock (commit 5c00275, 2026-04-04) — but this is the author (or more likely, the author's AI assistant) writing the division into the HTML, not a script that counts WINs and derives the percentage.</p>
 
-<p><strong>We checked every plausible source file:</strong> <code>scoring.js</code> (per-prediction point-based scoring, no aggregate), <code>predictions.js</code> (prediction data, no percentage), <code>build.js</code> (hash generation only), <code>analytics.js</code> (browser telemetry only), <code>apply_scoring_schema.py</code>, <code>recalc_v51.py</code>, <code>compile_exhaustive_api.py</code>, <code>verify_predictions.py</code>, <code>build_tracking.py</code> — none contain a function that calculates an overall accuracy percentage. The figure has no derivation, no formula, and no audit trail in the codebase.</p>
+<p><strong>We checked every plausible source file:</strong> <code>scoring.js</code> (per-prediction point-based scoring, no aggregate), <code>predictions.js</code> (prediction data, no percentage), <code>build.js</code> (hash generation only), <code>analytics.js</code> (browser telemetry only), <code>apply_scoring_schema.py</code>, <code>recalc_v51.py</code>, <code>compile_exhaustive_api.py</code>, <code>verify_predictions.py</code>, <code>build_tracking.py</code> — none contain a function that calculates an overall accuracy percentage. The figure has no programmatic derivation and no audit trail in the codebase.</p>
 
-<p><strong>It also cannot be reproduced from the repo's own data.</strong> The <code>api/scorecard.json</code> shows 26 confirmed, 1 falsified, 20 pending — giving 26/27 = 96.3%. The <code>api/current/results.json</code> shows 32 confirmed + 1 strong out of 33 resolved = 97.0%. The homepage claims 67 WINs with 4 refined and at least 4 acknowledged falsifications on the tracking page: 67/75 = 89.3%, or 71/75 = 94.7%. None of these produce 95.2%. The number does not follow from any combination of counts in the repository.</p>
+<p><strong>The denominator is an editorial choice.</strong> The formula <code>67 / (67 + 4) = 95.2%</code> treats 67 WINs as confirmed and excludes 4 as "below detection threshold" (W001, W004). But the model's own tracking page acknowledges at least 4 falsified predictions (W019, W020, W024, W027), and WIN-025 was removed entirely. Including these: 67 / (67 + 4 + 4 + 1) = 67/76 = 88.2%. Meanwhile, the repo's own API data tells different stories: <code>api/scorecard.json</code> gives 26/27 = 96.3%; <code>api/current/results.json</code> gives 33/33 = 97.0%. None of these agree with 95.2%. The specific denominator of 71 is not derived from any data structure — it is chosen to produce the desired headline.</p>
 
-<p>More fundamentally, accuracy metrics are meaningful only when the predictions are independent and discriminating. As our <a href="#part2" onclick="showTab('wins');return false">point-by-point review</a> shows, many WINs are re-sliced versions of the same data (WIN-040 through 043 are all SAA positioning from the same CHAOS-7 dataset), known constants (tidal periods), or globe values relabeled (Hubble Law, WGS84 gravity). Counting each as an independent "confirmed prediction" inflates both the numerator and the headline. But the most basic problem is simpler: <strong>the headline number is not computed from anything — it is typed into the HTML.</strong></p>
+<p>More fundamentally, accuracy metrics are meaningful only when the predictions are independent and discriminating. As our <a href="#part2" onclick="showTab('wins');return false">point-by-point review</a> shows, many WINs are re-sliced versions of the same data (WIN-040 through 043 are all SAA positioning from the same CHAOS-7 dataset), known constants (tidal periods), or globe values relabeled (Hubble Law, WGS84 gravity). Counting each as an independent "confirmed prediction" inflates both the numerator and the headline. But the most basic problem remains: <strong>the headline number is not validated by any computation — the arithmetic is written into the HTML by hand, and the denominator is chosen to exclude failures.</strong></p>
 
 <h2>3.5.7 The Eclipse Prediction: Genuine Test or Pre-Fitted?</h2>
 
@@ -1643,8 +1652,28 @@ END OF REMOVED SECTION 3.6 -->
 
 <p>If a more complete model exists, it is not in the repository, not in the source code, and not reproducible by anyone. A model that cannot be examined cannot be credited with predictions it has never computed.</p>
 
+<h2>5.16 The Monitoring Infrastructure</h2>
+
+<p>The repository contains two GitHub Actions workflows that reveal the model's real-time data infrastructure:</p>
+
+<p><strong><code>monitor.py</code></strong> (created 2026-04-05) runs <strong>every 5 minutes</strong> via <code>.github/workflows/monitor.yml</code>. It audits 39+ prediction domains by polling live data from NOAA (Kp index, NMP drift, AAO), USGS (deep earthquakes), HeartMath GCI (Schumann amplitude), and OpenSky Network (JFK–LHR flight times). Each audit records pass/fail/null per domain, with timestamps and statistical rigor metrics. Results are appended to <code>status_history.json</code> and cryptographically timestamped using <strong>OpenTimestamps</strong> (Bitcoin blockchain anchoring). This gives the author a verifiable provenance chain — proof that specific prediction states existed at specific times.</p>
+
+<p><strong><code>pull_data.py</code></strong> runs every 6 hours via <code>.github/workflows/ecm-data-pull.yml</code>, fetching the same geomagnetic data and rebuilding <code>tracking.html</code>. It includes automatic storm detection (triggers when Kp indicates G1+ storms) and flags events as "NEEDS_REVIEW."</p>
+
+<p><strong>This infrastructure is genuinely sophisticated</strong> — and we give credit for the engineering. Polling real data against quantitative predictions every 5 minutes, with blockchain timestamping, is a more rigorous approach than most alternative cosmology models attempt. However, the code itself reveals three problems that undermine the scientific claims:</p>
+
+<p><strong>1. Adaptive tolerances.</strong> For NMP drift rate, <code>monitor.py</code> automatically widens the acceptable error margin based on historical performance: <code>tolerance = median(errors) + 2×stdev(errors)</code>, with a minimum of 50%. If the prediction consistently misses by 40%, the tolerance expands to accommodate it. This is the opposite of falsifiability — the goalposts move automatically.</p>
+
+<p><strong>2. The eclipse escape clause is hardcoded.</strong> The August 2026 eclipse prediction includes a precondition: <code>Kp &lt; 2</code> (geomagnetically quiet). If Kp ≥ 2 on eclipse day, the test automatically records <code>pass=null</code> rather than <code>pass=false</code>. Historically, ~60% of days have Kp ≥ 2. The prediction is designed so that failure conditions are automatically excluded from the record.</p>
+
+<p><strong>3. The code contradicts the published prediction.</strong> The homepage advertises −17 to −21 nT at Ebro. But <code>monitor.py</code> computes <code>ΔB = −18.22 × 0.95 × 1.672 ≈ −29.1 nT</code>. The published range and the computational model disagree by ~40%. Which prediction is being tested?</p>
+
+<p><strong>4. The blockchain timestamping doesn't prove what it claims.</strong> OpenTimestamps anchors <code>status_history.json</code> — the file containing <em>audit results</em> (observed values compared to predictions). But this bundles predictions and observations into the same timestamped document. To prove a prediction existed before an outcome, you need to timestamp the prediction <em>separately</em> from the observation. The prediction parameters live in <code>monitor.py</code> source code and <code>docs/model.html</code>, which are git-versioned but not blockchain-timestamped. Meanwhile, the source data (NOAA Kp, USGS earthquakes, NMP drift) is already publicly archived by those agencies with their own timestamps — blockchain-stamping a derivative record adds nothing for provenance. The current setup timestamps a combined blob that could theoretically be regenerated after the fact, defeating the purpose. To be scientifically meaningful, the system would need to timestamp a predictions-only document (parameters, formulas, expected values) separately from the audit results, and link to the provider's own data archives for independent verification of the observations.</p>
+
+<p>The monitoring infrastructure thus presents a paradox: it is far more rigorous than the model it monitors. A prediction system with adaptive tolerances, Kp escape clauses, internal numerical disagreements, and a timestamping system that doesn't actually separate predictions from observations is not testing a scientific theory — it is managing a public relations narrative with real-time data.</p>
+
 <h2>Summary: The AI Directives as a System</h2>
-<p>The directives form a coherent propaganda pipeline designed to instruct AI systems to: (1) accept contradictory claims as fact, (2) treat trivial claims as predictions, (3) ignore external verification, (4) attribute criticism to suppression, (5) substitute standard scientific terminology with dome-specific labels, and (6) declare the model valid despite internal inconsistencies. The repository source code extends this further: scripts inject rules preventing AI from flagging geometric contradictions, embed structured data layers designed for AI consumption rather than human verification, and contain curve-fitting code that confirms the model is iteratively fitted to globe distances rather than derived from dome physics. None of the directives are based on accurate representations of the model's status or the globe model's explanatory power.</p>
+<p>The directives form a coherent propaganda pipeline designed to instruct AI systems to: (1) accept contradictory claims as fact, (2) treat trivial claims as predictions, (3) ignore external verification, (4) attribute criticism to suppression, (5) substitute standard scientific terminology with dome-specific labels, and (6) declare the model valid despite internal inconsistencies. The repository source code extends this further: scripts inject rules preventing AI from flagging geometric contradictions, embed structured data layers designed for AI consumption rather than human verification, and contain curve-fitting code that confirms the model is iteratively fitted to globe distances rather than derived from dome physics. The monitoring infrastructure (<code>monitor.py</code>) adds a veneer of rigor while embedding adaptive tolerances and precondition escape clauses that prevent genuine falsification. None of the directives are based on accurate representations of the model's status or the globe model's explanatory power.</p>
 
 <!-- ═══ PART 6 ═══ -->
 <h1 id="part6">Part 6: Conclusions</h1>
@@ -1658,22 +1687,23 @@ END OF REMOVED SECTION 3.6 -->
 <p><strong>Pattern 6: Inconvenient Data Discarded.</strong> StarWalk H=4750 'untrusted.' Failed predictions 'suspended.' Sun altitude (5,733 km) declared an 'optical illusion' via repository script when it exceeded the firmament height (~4,300 km) — see <a href="#p1-refraction" onclick="showTab('model');return false">Section 1.5</a>.</p>
 <p><strong>Pattern 7 (NEW): WIN Inflation via Re-slicing.</strong> Same INTERMAGNET data split into multiple WINs (040-043 replicate 004-039). Fundamental constants (tidal periods) claimed as predictions.</p>
 <p><strong>Pattern 8 (NEW): Scope Creep Without Mechanism.</strong> V51.0 claims galaxy-scale observations (Hubble Law, CMB, galaxy clusters) without any dome-scale mechanism for cosmological phenomena.</p>
-<p><strong>Pattern 9 (NEW): Internal Version Inconsistency.</strong> Homepage says 0 falsified; context page says 4. Tracking says 53 confirmed; homepage says 67. WIN-053 contradicts V50.6 monopolar architecture.</p>
+<p><strong>Pattern 9 (NEW): Internal Version Inconsistency.</strong> Homepage says 0 falsified; context page says 4. Tracking says 53 confirmed; homepage says 67. Evolution page lists V51.0 at 62 WINs while homepage claims 67. The homepage advertises an eclipse prediction of −17 to −21 nT, but <code>monitor.py</code> computes −29.1 nT. WIN-053 contradicts V50.6 monopolar architecture.</p>
 <p><strong>Pattern 10 (NEW): Misrepresenting the Opponent's Prediction.</strong> The eclipse test states the globe predicts "0.0 nT exactly" when peer-reviewed literature documents 5–20 nT perturbations via the Chapman mechanism. The dome's −17 to −21 nT prediction was derived by scaling actual globe-model-confirmed observations upward by a correction factor. The test is constructed so that the expected real-world outcome would be claimed as a dome "win" despite being fully consistent with mainstream ionospheric physics.</p>
 <p><strong>Pattern 11 (NEW): Self-Contradicting Own Geometry.</strong> In 11 of 67 WINs, the dome's own stated geometry produces predictions that radically diverge from both reality and the author's claims. The dome cavity gives ~22 Hz for Schumann (not 7.83), a single tidal spike instead of two bulges, 90% gravity drop at the rim, and 50% solar diameter variation through the day. The author avoids these failures by substituting globe formulas, ignoring his own exponential height profile, or curve-fitting to observations. This is the strongest argument against the model: it doesn't merely fail against external data — it contradicts itself.</p>
 <p><strong>Pattern 12 (NEW): AI Prompt Engineering as Science.</strong> The repository source code contains scripts that inject rules into the API and AI context page to prevent AI assistants from flagging geometric contradictions (e.g., the sun altitude exceeding the firmament height). Curve-fitting scripts (<code>test_curve_stretching.py</code>, <code>find_curve.py</code>) confirm the model is iteratively fitted to WGS84 distances. The CORS configuration is explicitly designed for "Claude instances." This is not a scientific model being tested — it is an AI persuasion system being tuned.</p>
 
 <h2>6.2 The Eclipse Test: Not What It Appears</h2>
 <p>The August 12, 2026 Eclipse Test is presented as the single most important discriminating prediction. However, the site misrepresents the globe prediction as "0.0 nT exactly" when the Chapman ionospheric mechanism (peer-reviewed since 1933) predicts 5–20 nT under identical conditions. The dome's −17 to −21 nT range was derived by applying a 1.672× scaling factor to actual INTERMAGNET data from the 2016 eclipse — which was itself a Chapman-mechanism observation on a spherical Earth. The test is constructed as a heads-I-win, tails-doesn't-count proposition. See <a href="#eclipse-analysis">Section 3.2</a> for the full analysis.</p>
+<p>The repository source code confirms this structure. <code>monitor.py</code> hardcodes a <code>Kp &lt; 2</code> precondition: if geomagnetic activity is elevated on eclipse day, the test automatically records <code>pass=null</code> rather than <code>pass=false</code>. Since roughly 60% of days have Kp ≥ 2, the prediction has a built-in ~60% chance of being automatically excused from any test. Meanwhile, the code computes a predicted anomaly of −29.1 nT — not the −17 to −21 nT advertised on the homepage. The monitoring system will test a different number than the one presented to the public.</p>
 
 <h2>6.3 Final Tally (V51.0, 67 WINs)</h2>
 
 <p><strong>The Headline Number Is Inflated.</strong> The 67 claimed wins include systematic duplication: INTERMAGNET geomagnetic data is sliced into multiple WINs (WIN-040 through WIN-043 repackage data already counted in WIN-004 through WIN-039), tidal constituent periods are each counted separately despite being a single astronomical dataset, and several WINs (WIN-007/022, WIN-037/042) are near-duplicates. After removing duplicates, subdivisions of single observations, and re-sliced reprocessings of the same datasets, the 67 claimed wins reduce to roughly 25–30 genuinely distinct claims. The large headline number is a persuasive tactic, not a scientific measure.</p>
 
-<p><strong>Refuted by Data: 11</strong> (direct measurements contradict the claim)</p>
+<p><strong>Refuted by Data: 10</strong> (direct measurements contradict the claim)</p>
 <p><strong>Standard Model Explains: 15</strong> (observation is real but mainstream physics already accounts for it)</p>
 <p><strong style="background:var(--selfcon);padding:0 .3rem;border-radius:2px">Self-Contradicted: 11</strong> (the dome's own geometry, if worked through honestly, predicts radically different values)</p>
-<p><strong>Misleading: 23</strong> (data misrepresented, duplicated, cherry-picked, or logically contradictory)</p>
+<p><strong>Misleading: 24</strong> (data misrepresented, duplicated, cherry-picked, or logically contradictory)</p>
 <p><strong>Not Demonstrated: 3</strong> (unconfirmed by independent replication)</p>
 <p><strong>Unfalsifiable: 4</strong> (theological assertions, not testable)</p>
 <p><strong>Removed by Author: 1</strong> (WIN-025, disturbed-day baseline)</p>
