@@ -186,8 +186,9 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 <li><a href="#p1-flatearth" onclick="showTab('model');return false">1.2 How It Differs from Classic Flat Earth</a></li>
 <li><a href="#p1-globe" onclick="showTab('model');return false">1.3 How It Differs from the Globe Model</a></li>
 <li><a href="#p1-method" onclick="showTab('model');return false">1.4 Methodology Assessment</a></li>
+<li><a href="#p1-refraction" onclick="showTab('model');return false">1.5 Aetheric Refraction: The Model's Universal Correction Factor</a></li>
 </ul></li>
-<li><a href="#part1b" onclick="showTab('model');return false">Part 1.5: Version Change Analysis (V50.6 → V51.0)</a></li>
+<li><a href="#part1b" onclick="showTab('model');return false">Part 1.5b: Version Change Analysis (V50.6 → V51.0)</a></li>
 <li><a href="#part2" onclick="showTab('wins');return false">Part 2: Point-by-Point Review of Claimed Wins</a>
 <ul>
 <li><a href="#summary-table" onclick="showTab('wins');return false">2.1 Verdict Summary Table</a></li>
@@ -273,6 +274,54 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 
 <h2 id="p1-method">1.4 Methodology Assessment</h2>
 <p>The model uses git commit timestamps and Bitcoin blockchain anchoring (OpenTimestamps) to prove predictions existed before confirming data arrived. This timestamping mechanism is cryptographically sound, and prospective prediction is the gold standard in science — credit is due for implementing it. However, the timestamped predictions themselves have low discriminating power (the ability to distinguish the dome from the globe): "field will decay by ≥28 nT" when secular decay has been ongoing for centuries; "Schumann resonance will remain at 7.83 Hz" when it has been stable for decades; "SAA will continue westward drift" when NOAA has published the same trend for years. These are predictions of continuity, not novel phenomena. A prediction that "tomorrow the sun will rise in the east" is prospective and timestamped, but it does not validate a new solar model. Scientific validation also requires: (a) comparison to a null hypothesis (would mainstream models predict the same outcome?), (b) accounting for all predictions including failures, and (c) independent replication. The model does not compare its prediction accuracy against the predictions that WMM2025, CHAOS-7, and IGRF already make for the same quantities.</p>
+
+<h2 id="p1-refraction">1.5 Aetheric Refraction: The Model's Universal Correction Factor</h2>
+
+<p>Understanding aetheric refraction is essential to evaluating the dome model, because it is the mechanism invoked whenever the dome's geometry produces a prediction that disagrees with observation. It appears in distance calculations, stellar observations, solar mechanics, and light propagation. If aetheric refraction is sound physics, many of the dome's claims become plausible. If it is not, the model loses its primary means of reconciling flat geometry with a spherical-looking world.</p>
+
+<h3>The formula</h3>
+<p>The aetheric refractive index is defined as:</p>
+<p style="text-align:center; font-family:monospace;">n(r) = 1 + 0.20 × (8537 / H(r) − 1)</p>
+<p>where H(r) = 8,537 × e<sup>−r/8619</sup> km is the firmament height function and r is radial distance from the north pole in kilometers. At the north pole (r ≈ 0), n ≈ 1.0 (no refraction). As you move south, H(r) decreases and n(r) increases: at the equatorial ring (r = 14,105 km), n ≈ 1.40. At the ice wall (r = 20,015 km), n ≈ 3.49. At r = 40,000 km, n ≈ 28.8.</p>
+
+<h3>What it does</h3>
+<p>Aetheric refraction is used to explain why distances, light paths, and observations on the flat disc appear to match those predicted by a spherical Earth. It bends light, compresses apparent distances, and alters angular measurements in exactly the ways needed to make flat geometry look curved. The dome's distance formula uses it directly: d_measured = d_geometric / n(r_avg), meaning measured distances are shorter than the geometric distances on the disc by the refractive factor. For southern hemisphere routes (high r, high n), the compression is large — which is exactly what is needed, because a flat disc has much larger distances between southern cities than a globe does.</p>
+
+<h3>The core problem: curvature without curvature</h3>
+<p><strong>This is the most important point to understand about the dome model.</strong> On a globe, the reason Sydney-to-Perth is shorter than you'd expect on a flat map is <em>curvature</em> — the surface curves, and the shortest path (geodesic) follows that curve. On the dome's flat disc, there is no curvature. Instead, the model introduces a variable that increases with radial distance and compresses distances in exactly the pattern that curvature would produce. Aetheric refraction is, mathematically, an attempt to replicate the effects of curvature on a surface that has none.</p>
+
+<p>This is not a coincidence. The formula n(r) = 1 + 0.20 × (8537/H(r) − 1) increases monotonically with r, growing fastest at the disc edge — which is exactly where a flat projection of a sphere has the most distance distortion. The dome's error pattern (7.3% NH, 10.2% SH, growing toward the edge) is the residual distortion that n(r) has not fully corrected. A perfect n(r) function would reduce all errors to zero — and it would be mathematically equivalent to projecting a sphere onto a disc and then undoing the projection. At that point, the "flat disc + aetheric refraction" is just a globe described in unusual coordinates.</p>
+
+<h3>The 0.20 coefficient: fitted, not derived</h3>
+<p>The coefficient 0.20 in the formula has no physical derivation. The model page describes it as a "V13 optimization" — meaning it was adjusted to reduce distance errors. No property of the aetheric medium, no wave-propagation analysis, no optical experiment produces 0.20. It is a free parameter tuned to match known distances.</p>
+
+<p>This matters because a free coefficient in a correction formula can always be adjusted to improve one measurement while degrading others. The dome's own coordinate page shows this: the V13 system achieves 6.2% RMSE on cross-equatorial routes (using 0.20), but what happens if you change it to 0.25? Or 0.15? The page never reports a sensitivity analysis. Without one, we cannot know whether 0.20 is a unique optimum dictated by physics or an arbitrary choice that happens to minimize error on a particular set of calibration routes.</p>
+
+<h3>Physical consequences that are never addressed</h3>
+<p>A refractive index has observable optical consequences. The dome claims n = 3.49 at the ice wall and n = 28.8 at r = 40,000 km. For context:</p>
+
+<p><strong>Diamond</strong> has n = 2.42 and produces dramatic rainbow dispersion (the "fire" in gemstones). <strong>Water</strong> has n = 1.33 and bends light by ~25° at grazing incidence. <strong>No known material</strong> has n > 4 for visible light.</p>
+
+<p>An aetheric medium with n = 3.49 should produce:</p>
+<p>1. <strong>Severe chromatic dispersion.</strong> Different wavelengths refract differently (this is how prisms work). Stars viewed through a medium with n = 3.49 should show extreme rainbow smearing — red and blue light arriving from noticeably different directions. This is not observed. Stars near the southern horizon appear as sharp points, identical to northern stars.</p>
+<p>2. <strong>Large angular position shifts.</strong> Light passing through a gradient from n = 1.0 to n = 3.49 would bend by many degrees. Star positions near the southern horizon should be displaced from their true geometric positions by measurable amounts, varying with altitude. Precision astrometry (Gaia, Hipparcos) shows no such systematic displacement pattern.</p>
+<p>3. <strong>Total internal reflection.</strong> At a critical angle determined by the refractive index ratio, light reflects entirely rather than passing through. For n = 3.49, the critical angle is arcsin(1/3.49) ≈ 16.7°. Any light hitting the aetheric gradient at less than 16.7° from horizontal should be totally reflected — creating a visible "mirage wall" around the disc edge. No such wall is observed.</p>
+<p>4. <strong>Wavelength-dependent distance measurements.</strong> If n(r) compresses distances, and different wavelengths experience different n values (as all refractive media do), then distance measurements using different wavelengths of light should disagree. Radio ranging, optical measurements, and laser ranging should give different distances for the same route. They agree to centimeter precision.</p>
+
+<p>The model page does not address any of these consequences. The refractive index is applied selectively to distance calculations but its optical implications — which are physically inseparable from the same phenomenon — are ignored.</p>
+
+<h3>No independent measurement</h3>
+<p>In the globe model, atmospheric refraction is independently measurable: laser ranging gives the geometric distance, optical observation gives the refracted apparent distance, and the difference is the refraction. You can measure it directly with a refractometer, predict it from temperature and pressure profiles, and verify it against GPS data. The result is a refraction profile that is consistent across all measurement methods.</p>
+
+<p>The dome's aetheric refraction has <em>zero</em> independent measurements. It is never measured directly — it is only inferred from the gap between dome geometry and real-world distances. This is circular: the refractive index is defined by the discrepancy it is supposed to explain. If you measure the Sydney-Perth distance and it disagrees with the dome's geometric prediction, you adjust n(r) until it agrees — then cite the agreement as confirmation of n(r). This is the same calibration-as-prediction pattern we identify in the <a href="#part3b" onclick="showTab('predictions');return false">coordinate system analysis (Section 3.5.1)</a> and the <a href="#part4b" onclick="showTab('selftest');return false">V13 structural analysis (Section 4.5.9)</a>.</p>
+
+<h3>The unfalsifiability problem</h3>
+<p>Because n(r) has a free coefficient (0.20), an unpublished functional form for d_geo, and no independent measurement, it can accommodate any distance measurement after the fact. If a new route disagrees with the dome's prediction, the coefficient or the H(r) function can be adjusted — as has happened 13 times across versions V1–V13. A correction factor that can always be tuned to match the data, but is never tested against data it hasn't seen, is not a physical theory. It is a fitting function.</p>
+
+<p>The dome's model page implicitly acknowledges this. OPEN-004 admits the Polaris visibility cutoff formula is "not derived." OPEN-006 documents a systematic Polaris altitude excess of +0.32° to +1.29° that n(r) cannot currently explain. OPEN-012 notes the V13 Finsler parameter lock is "incomplete." These are admissions that the refraction mechanism does not yet make consistent predictions across its own claimed domain of applicability.</p>
+
+<h3>What aetheric refraction really is</h3>
+<p>Aetheric refraction is a position-dependent scaling function applied to a flat surface to make its distance relationships approximate those of a curved surface. It is not a physical medium with measurable optical properties — it is a mathematical correction for the absence of curvature. Every phenomenon it "explains" (compressed southern distances, constant solar diameter, star positions) has a simpler explanation: the surface is curved. The dome model replaces one variable (curvature) with a more complex variable (position-dependent refractive index in an undetectable medium) that produces the same results but has no independent evidence, no derivation, and unaddressed physical consequences. Occam's razor strongly favors the simpler explanation.</p>
 
 <!-- ═══ PART 1.5 ═══ -->
 <h1 id="part1b">Part 1.5: Version Change Analysis (V50.6 → V51.0)</h1>
@@ -1318,7 +1367,7 @@ Unfalsifiable: 4
 
 <h2>4.9 Aetheric Refraction: The Universal Escape Hatch</h2>
 
-<p><strong>Unfalsifiability by Design.</strong> Whenever the dome geometry produces a prediction that contradicts observations or the author's own claims, the author invokes "aetheric refraction" — a magical correction factor that can bend light by up to 29× at the disc edge.</p>
+<p><strong>Unfalsifiability by Design.</strong> Whenever the dome geometry produces a prediction that contradicts observations or the author's own claims, the author invokes "aetheric refraction" — a position-dependent scaling function that can bend light by up to 29× at the disc edge. For a full analysis of what aetheric refraction is, why it has no physical derivation, and the observable consequences it ignores, see <a href="#p1-refraction" onclick="showTab('model');return false">Section 1.5</a>. Below we focus on which specific WINs depend on it and why this makes them unfalsifiable.</p>
 
 <p><strong>Which WINs depend on it:</strong> At least six WINs rely on aetheric refraction to avoid falsification: WIN-016 (annual aberration), WIN-017 (stellar parallax), WIN-026 (crepuscular rays), WIN-033 (Sigma Octantis dimness), WIN-056 (solar elevation), WIN-065 (Polaris excess). Each of these observations is explained only by invoking the refraction index — a free function with no independent measurement.</p>
 
