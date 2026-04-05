@@ -341,6 +341,7 @@ ${CSS}
   <button class="tab-btn" onclick="showTab('model')">The Model</button>
   <button class="tab-btn" onclick="showTab('wins')">67 Wins Reviewed</button>
   <button class="tab-btn" onclick="showTab('pages')">Live Power Analysis</button>
+  <button class="tab-btn" onclick="showTab('predictions')">Predictions Analysis</button>
   <button class="tab-btn" onclick="showTab('falsify')">Falsification Tests</button>
   <button class="tab-btn" onclick="showTab('selftest')">Internal Contradictions</button>
   <button class="tab-btn" onclick="showTab('ai')">AI & Conclusions</button>
@@ -444,6 +445,7 @@ ${CSS}
 <li><a href="#misleading" onclick="showTab('wins');return false">2.6 Detailed: Misleading and Unfalsifiable</a></li>
 </ul></li>
 <li><a href="#part3" onclick="showTab('pages');return false">Part 3: Live Power Dashboard &amp; Site Page Analysis</a></li>
+<li><a href="#part3b" onclick="showTab('predictions');return false">Part 3.5: Predictions Page — Structural Analysis</a></li>
 <li><a href="#part4" onclick="showTab('falsify');return false">Part 4: Falsification Tests</a></li>
 <li><a href="#part4b" onclick="showTab('selftest');return false">Part 4.5: Internal Contradictions — Does the Dome's Geometry Produce Its Claimed Predictions?</a></li>
 <li><a href="#part5" onclick="showTab('ai');return false">Part 5: Analysis of AI Context Directives</a></li>
@@ -802,7 +804,110 @@ ${sectionNav('model', 'The Model', 'pages', 'Live Power Analysis')}
 <h3>The Infographic's Rhetorical Strategy</h3>
 <p>Each of these five points follows the same pattern: name a real dataset, isolate a real anomaly, provide a real-sounding ratio, then assert a non-standard interpretation while framing the standard explanation as a cover-up. The "Reprocess the Archives" call-to-action invites the audience to feel like independent investigators rather than consumers of a predetermined narrative. The actual data, in every case, has a published mainstream explanation that the infographic omits.</p>
 
-${sectionNav('wins', '67 Wins Reviewed', 'falsify', 'Falsification Tests')}
+${sectionNav('wins', '67 Wins Reviewed', 'predictions', 'Predictions Analysis')}
+
+</div>
+
+<div class="tab-content" id="predictions">
+
+<!-- ═══ PART 3.5 ═══ -->
+<h1 id="part3b">Part 3.5: Predictions Page — Structural Analysis</h1>
+
+<p>The dome's predictions/wins page (V51.0, updated 2026-04-05) presents 67 "confirmed" predictions, 9 prospective predictions, and headlines "95.2% Accuracy" with "zero fitted parameters" across "10 domains." Below we examine whether these claims survive scrutiny, applying the same standards we use in our <a href="#evaluation-guide" onclick="showTab('evaluate');return false">Evaluation Guide</a>.</p>
+
+<h2>3.5.1 "Zero Fitted Parameters" — The Hidden Parameters</h2>
+
+<p>The headline claim is that the scale length λ_g = 8,619 km appears across six independent phenomena (geomagnetic field, gravity, Schumann resonance, SAA, NMP drift, solar elevation) "without parameter fitting." This would be remarkable if true — a single constant derived from geometry that independently matches six different physical measurements. But examining each WIN reveals parameters that are fitted but not counted.</p>
+
+<p><strong>WIN-012 (Geomagnetic field):</strong> The formula is B(r) = 62,376 × e<sup>−r/8619</sup> + 64,852 × e<sup>−r/8619</sup>. This is presented as a "two-pole" model, but both terms use the <em>same</em> exponential decay e<sup>−r/8619</sup>. Mathematically, this simplifies to B(r) = 127,228 × e<sup>−r/8619</sup> — a single-pole model, not two poles. The coefficients 62,376 and 64,852 nT have no stated derivation. They are not derived from dome geometry, cavity dimensions, or aetheric properties. They are chosen to match observed field strengths. <strong>These are fitted parameters</strong> — the page simply doesn't label them as such.</p>
+
+<p><strong>WIN-013 (Gravity profile):</strong> Claims to match the WGS84 gravity formula to 0.05% accuracy with "zero free parameters." But WGS84 <em>is</em> the globe's gravity model — it describes gravity on an oblate rotating spheroid. If the dome's formula reproduces WGS84, one of two things is true: either the dome independently derived the same result from different physics (no derivation is shown), or the dome's formula was fitted to WGS84 values. The page shows no step-by-step derivation connecting dome geometry to gravitational acceleration. Without that derivation, matching WGS84 to 0.05% is evidence of fitting to the globe model, not independent confirmation.</p>
+
+<p><strong>WIN-056 (Solar elevation):</strong> Claims "zero free parameters" but the formula uses the globe's 23.45° axial tilt (solar declination). The dome does not have axial tilt — it has a local sun traveling in circuits within a cavity. The 23.45° value is a globe-model input being relabeled as a dome derivation.</p>
+
+<p><strong>The coupling constant κ = 1.67 nT/μGal:</strong> Presented as "derived from aetheric physics," but no derivation is shown. The value comes from dividing two measurements (10.9 nT magnetic anomaly by 6.5 μGal gravity anomaly during the 2003 Halloween storm and 1997 Mohe eclipse). A ratio of two observed numbers is an empirical constant — it requires a theoretical derivation to count as a "prediction." The page provides none.</p>
+
+<p><strong>What "zero fitted parameters" actually means:</strong> The model has at least these undisclosed parameters: two field-strength coefficients (62,376 and 64,852 nT), the coupling constant κ (1.67), the aetheric damping ratio (26% for Schumann), the Finsler scaling function n(r) (unpublished), the equatorial ring radius r_eq (14,105 km), and the deceleration constant for NMP drift (0.08). These are not derived from dome geometry — they are chosen or fitted to match observations. The claim "zero fitted parameters" is achieved by defining "fitted" so narrowly that empirically derived constants don't count.</p>
+
+<h2>3.5.2 The Disc Diameter Problem: 40,030 km vs. 28,210 km</h2>
+
+<p><strong>WIN-062 (Tesla longitudinal wave speed):</strong> Calculates v_a = 40,030 km / 0.08484 s = 471,829 km/s = 1.574c. The disc diameter used is 40,030 km. But the dome's stated equatorial radius is r_eq = 14,105 km, giving a diameter of ~28,210 km. Where does 40,030 come from?</p>
+
+<p><strong>40,030 km is suspiciously close to 40,075 km — Earth's equatorial circumference on the globe model.</strong> If the dome's disc diameter is derived from the globe's circumference, this is another globe value being relabeled as a dome parameter. The dome's own geometry gives a different number (28,210 km from the equatorial ring, or ~40,030 km from 2 × 20,015 km ice wall radius). The page does not explain the discrepancy or specify which dome measurement yields 40,030 km. A model that cannot state its own disc diameter without ambiguity has a foundational problem.</p>
+
+<p><strong>The superluminal claim:</strong> WIN-062 asserts a wave speed of 1.574c (57.4% faster than light). The justification is that Tesla's signals were "longitudinal, not transverse EM" and therefore not subject to the speed-of-light limit. No physics is cited for why longitudinal waves in an aetheric medium would exceed c. This is an assertion, not a derivation. Special relativity's speed limit applies to all information-carrying signals regardless of wave type — this is experimentally confirmed to extraordinary precision by particle accelerators, GPS, and the Michelson-Morley experiment and its modern replications.</p>
+
+<h2>3.5.3 The Schumann Math Error</h2>
+
+<p><strong>WIN-029 (Schumann resonance):</strong> Claims the dome's cavity height matches the Schumann-derived height to "5.3% error." The numbers given: H_Schumann = c / (4 × 7.83 Hz) = 9,572 km. Model H(r=0) = 8,537 km. The actual discrepancy: (9,572 − 8,537) / 9,572 = 10.8%. Or from the model side: (9,572 − 8,537) / 8,537 = 12.1%.</p>
+
+<p>Neither calculation gives 5.3%. The page's own numbers contradict its stated error. This appears to be a computational error that has persisted uncorrected — or the 5.3% refers to a different comparison that is not shown. In either case, the published claim does not match the published numbers.</p>
+
+<p><strong>Additionally:</strong> As shown in <a href="#part4b" onclick="showTab('selftest');return false">Section 4.5.1</a>, the dome's parallel-plate cavity geometry actually predicts Schumann frequencies around 22 Hz using quarter-wave resonance, not 7.83 Hz. The author obtains 7.83 Hz by silently switching to the globe's Schumann formula (f = c / 2πR), which assumes a spherical cavity.</p>
+
+<h2>3.5.4 Globe Values Relabeled as Dome Predictions</h2>
+
+<p>Multiple WINs claim observations that are well-established in standard physics, presenting them as dome predictions by renaming the mechanism:</p>
+
+<p><strong>Tidal periods (WIN-045, 046, 049, 050, 051):</strong> These five WINs claim the M2 (12.42 hr), S2 (12.00 hr), K1 (23.93 hr), O1 (25.82 hr), and N2 (12.66 hr) tidal constituent periods. These are astronomical constants known since Laplace (1775) and George Darwin (1883). They follow from the periods of the Moon's orbit and Earth's rotation — any model that includes a moon and a rotating reference frame reproduces them automatically. Claiming them as dome "predictions" is equivalent to predicting the length of a day.</p>
+
+<p><strong>Hubble Law (WIN-047):</strong> Uses z = D/λ_A where λ_A = c/H₀ = 4,283 Mpc. This is literally Hubble's Law with the standard globe-cosmology value H₀ = 70 km/s/Mpc. The dome model has no galactic-scale mechanism — it describes a local cavity ~20,000 km across. Claiming a cosmological distance-redshift relation from a dome model that cannot see past its own firmament is a category error. The formula is borrowed, not derived.</p>
+
+<p><strong>P-wave shadow zone (WIN-064):</strong> Claims a "Sub-Terrestrial Wall" at the dome's bottom boundary creates the seismic shadow zone at 104°–140°. The problem: the P-wave shadow zone is observed at <em>all azimuths</em> from any earthquake — it forms a perfect ring around the epicenter regardless of direction. A wall at a fixed geographic location (the dome's bottom plate) would cast a shadow in specific directions, not a symmetric ring. The globe explanation (refraction through a spherical liquid core) naturally produces the observed azimuthal symmetry. The dome's proposed mechanism is geometrically incompatible with the observation it claims to explain.</p>
+
+<p><strong>Roaring 40s (WIN-024):</strong> Claims the 40–50°S wind belt is the "SAA southern boundary." The Roaring 40s are caused by the temperature gradient between the equator and south pole driving westerly winds with minimal continental friction — a straightforward consequence of atmospheric circulation on a rotating body. Renaming them as an "SAA boundary" adds no predictive content.</p>
+
+<h2>3.5.5 The "4 Refined" Predictions — Hidden Falsifications?</h2>
+
+<p>The page reports "4 Refined" predictions but <strong>never identifies which four</strong>. The only explanation: "Short test windows were too narrow. The underlying long-term model predictions remain confirmed. Test design refined."</p>
+
+<p>This language is noteworthy. In standard scientific practice, a prediction with a specific test window that fails within that window is <em>falsified</em>. The scientist may then make a new prediction with a different window — but the original prediction remains a failure. "Refined" as a category allows failed predictions to be reclassified without counting against the model. This is why the headline claims "0 falsified" while the tracking page reports "4 falsified" — the predictions were falsified, then reclassified as "refined."</p>
+
+<p>Without knowing which predictions were refined, independent reviewers cannot assess whether the "refinement" was legitimate (genuine methodological improvement) or cosmetic (moving the goalposts after a miss). The lack of transparency is itself a red flag.</p>
+
+<h2>3.5.6 The 95.2% Accuracy Claim</h2>
+
+<p>The page headlines "95.2% Accuracy" but <strong>never defines the calculation</strong>. With 67 confirmed, 4 refined, and at least 4 acknowledged falsifications on the tracking page, the denominator is unclear. If accuracy = confirmed / (confirmed + falsified + refined) = 67/75 = 89.3%. If accuracy = (confirmed + refined) / total = 71/75 = 94.7%. Neither gives 95.2%.</p>
+
+<p>More fundamentally, accuracy metrics are meaningful only when the predictions are independent and discriminating. As our <a href="#part2" onclick="showTab('wins');return false">point-by-point review</a> shows, many WINs are re-sliced versions of the same data (WIN-040 through 043 are all SAA positioning from the same CHAOS-7 dataset), known constants (tidal periods), or globe values relabeled (Hubble Law, WGS84 gravity). Counting each as an independent "confirmed prediction" inflates both the numerator and the headline.</p>
+
+<h2>3.5.7 The Eclipse Prediction: Genuine Test or Pre-Fitted?</h2>
+
+<p><strong>WIN-010 / PRED-R002:</strong> The dome predicts the August 12, 2026 solar eclipse will produce a magnetic anomaly of −17 to −21 nT at Ebro Observatory (Spain), with scaled predictions for seven stations based on eclipse coverage percentage. The prediction is registered with a git SHA timestamp (2026-03-22). This is presented as the dome's strongest prospective test.</p>
+
+<p><strong>Credit where due:</strong> This is a specific, quantitative, timestamped prediction with a clear pass/fail threshold at multiple stations. It is the most falsifiable prediction the dome model has made. If the eclipse produces no magnetic anomaly (or one outside the predicted range), the model has a clear failure.</p>
+
+<p><strong>However, the prediction has structural problems:</strong></p>
+<p>1. <strong>No mechanism shown.</strong> The page does not explain why dome geometry produces −17 to −21 nT during an eclipse. What property of the ovoid cavity, the aetheric medium, or the conductive firmament generates this specific magnetic signature? Without a derivation, the prediction is a number — not a consequence of the model.</p>
+<p>2. <strong>The globe also predicts eclipse magnetic effects.</strong> Solar eclipses produce measurable ionospheric conductivity changes, which alter Sq (solar quiet) magnetic variation by 5–30 nT depending on coverage and local time. This is well-documented in peer-reviewed literature (Curto et al., 2006; Malin et al., 2000). A −17 to −21 nT prediction is within the range standard ionospheric models already predict. If both models predict the same result, the test is non-discriminating.</p>
+<p>3. <strong>Previous eclipse magnetic claims failed.</strong> WIN-025 (2024 eclipse) was <strong>REMOVED</strong> because the data was storm-contaminated (Kp 5–6) and timing showed Z-component minima leading/lagging by 34–104 minutes — not correlated with eclipse geometry. PROS-003 (eclipse geometry prediction) was <strong>SUSPENDED</strong> because timing analysis showed "uncorrelated Z minima (scatter −180 to +111 min)." Two prior eclipse tests failed; this is the third attempt with the same underlying claim.</p>
+<p>4. <strong>The prediction window is wide.</strong> −17 to −21 nT is a 4 nT range (±10.5%). Across seven stations with different coverage percentages, the model has multiple chances to claim partial success even if results are mixed.</p>
+
+<h2>3.5.8 The WIN-012 Single-Pole Collapse</h2>
+
+<p>WIN-012 is presented as the model's core achievement: a "two-pole geomagnetic model" that explains Earth's magnetic field from dome geometry. The formula:</p>
+<p style="text-align:center; font-family:monospace;">B(r<sub>N</sub>, r<sub>S</sub>) = 62,376 × e<sup>−r<sub>N</sub>/8619</sup> + 64,852 × e<sup>−r<sub>S</sub>/8619</sup></p>
+
+<p>The claim is that this represents two independent magnetic poles with the same scale length λ_g = 8,619 km. But there is a mathematical problem: if both terms use the same exponential decay constant, and r_N and r_S are not independent variables (since on a flat disc, r_S = 2r_eq − r_N), then the formula is a single exponential with position-dependent amplitude — not two independent poles.</p>
+
+<p>For a genuine two-pole model, the poles need different scale lengths, different positions, or different decay profiles. Earth's actual magnetic field is modeled by the International Geomagnetic Reference Field (IGRF), which requires 168 spherical harmonic coefficients (degree 13) to capture the field's complexity. A single-exponential model with two fitted amplitudes cannot reproduce the multipolar structure of the real field — it can only match the gross dipole moment by construction.</p>
+
+<p>The coefficients 62,376 and 64,852 nT have no published derivation from dome geometry, aetheric physics, or cavity dimensions. They appear to be chosen to match observed field strengths at reference locations — which makes them fitted parameters, contradicting the "zero fitted parameters" claim.</p>
+
+<h2>3.5.9 Structural Pattern: The Predictions Page as a Whole</h2>
+
+<p>Across the 67 claimed WINs, a consistent structural pattern emerges:</p>
+
+<p><strong>Step 1: Name a real phenomenon.</strong> Schumann resonance, tidal periods, geomagnetic decay, P-wave shadows, Hubble expansion — all genuine, well-measured physical observations.</p>
+<p><strong>Step 2: Cite real data sources.</strong> INTERMAGNET, NOAA, CHAOS-7, WMM2025, Tesla's patents — all legitimate, publicly accessible data.</p>
+<p><strong>Step 3: Present a dome-flavored formula</strong> that reproduces the observation, using the dome's notation (aetheric medium, firmament height, disc radius) but with parameters fitted to the known answer.</p>
+<p><strong>Step 4: Declare "confirmed"</strong> without comparing to the globe's prediction for the same quantity, without testing against novel (un-calibrated) data, and without showing the derivation from dome geometry.</p>
+
+<p>This is the same self-referential pattern identified in the <a href="#part4b" onclick="showTab('selftest');return false">coordinate system analysis (Section 4.5.9)</a>: known answers go in, dome-labeled formulas come out, and the match is called a prediction. The pattern works because the predictions are tested against the same data used to build them, not against novel measurements the model hasn't seen.</p>
+
+<p><strong>A discriminating test of the predictions page would require:</strong> (a) a dome prediction that differs numerically from the globe prediction for the same quantity, (b) tested against data that was not used in building the dome's formula, (c) with the globe's prediction and the dome's prediction both stated in advance. Of the 67 WINs, zero meet all three criteria.</p>
+
+${sectionNav('pages', 'Live Power Analysis', 'falsify', 'Falsification Tests')}
 
 </div>
 
@@ -873,7 +978,7 @@ ${sectionNav('wins', '67 Wins Reviewed', 'falsify', 'Falsification Tests')}
 
 <p><strong>Conclusion:</strong> This single mechanism — aetheric refraction as an undefined correction factor — undercuts at least 6 WINs and arguably more. It allows the model to claim compatibility with any optical observation by post-hoc fitting. A scientific model must make predictions before observations are made. The dome model instead invents new correction factors after each falsification, which is not science but curve-fitting without constraint.</p>
 
-${sectionNav('pages', 'Live Power Analysis', 'selftest', 'Internal Contradictions')}
+${sectionNav('predictions', 'Predictions Analysis', 'selftest', 'Internal Contradictions')}
 
 </div>
 
