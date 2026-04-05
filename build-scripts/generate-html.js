@@ -627,7 +627,7 @@ ${sectionNav('model', 'The Model', 'pages', 'Live Power Analysis')}
 <thead><tr><th>#</th><th>Domain</th><th>Shared Constant</th><th>Globe Predicts Same?</th><th>Problem</th></tr></thead>
 <tbody>
 <tr><td>1</td><td>Schumann Resonance</td><td>λ<sub>g</sub>, H₀</td><td>YES (f = c/2πR)</td><td>Both models predict 7.83 Hz — non-discriminating.</td></tr>
-<tr><td>2</td><td>Tesla Longitudinal Freq</td><td>λ<sub>g</sub>, v<sub>a</sub></td><td>N/A</td><td>Patent 787412 does not contain the cited formula.</td></tr>
+<tr><td>2</td><td>Tesla Longitudinal Freq</td><td>λ<sub>g</sub>, v<sub>a</sub></td><td>YES (spherical propagation)</td><td>Tesla's 0.08484 s measurement was a round-trip time through a spherical Earth — reinterpreted here as flat-disc resonance.</td></tr>
 <tr><td>3</td><td>NMP Drift Rate</td><td>λ<sub>g</sub></td><td>YES (WMM2025)</td><td>Both models track the pole. Divergence testable ~2028+.</td></tr>
 <tr><td>4</td><td>Equatorial Gravity</td><td>λ<sub>g</sub></td><td>YES (WGS84 — the mathematical model of Earth's shape used by GPS)</td><td>Uses the observed value 9.7803 m/s² as input — circular.</td></tr>
 <tr><td>5</td><td>EM-Gravity Coupling (κ)</td><td>κ, λ<sub>g</sub></td><td>YES (predicts 0.0)</td><td>Membach SG (the Membach superconducting gravimeter, one of the world's most sensitive gravity instruments) measured 0.0 μGal. Data favors globe.</td></tr>
