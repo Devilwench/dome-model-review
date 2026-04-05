@@ -1,5 +1,7 @@
 # Project Context: Dome Model Critical Review
 
+> **START HERE**: Read `SESSION-CONTEXT.md` for full project context including analytical findings, design decisions, build pitfalls, and work history across all context windows. This CLAUDE.md is a quick-reference subset.
+
 ## What This Is
 
 A scientific critical review of the "Ovoid Cavity Cosmological Model" (ECM V51.0) published at john09289.github.io/predictions. The model claims 67 confirmed predictions ("WINs") for a flat-earth dome cosmology. This review evaluates every claim against published data and the model's own internal consistency.

@@ -49,6 +49,10 @@ All WIN data lives in `data/wins.json` (single source of truth). See `CLAUDE.md`
 
 Of 67 claimed wins: 11 refuted by data, 11 self-contradicted by the dome's own geometry, 15 explained by standard physics, 23 misleading, 3 not demonstrated, 4 unfalsifiable. Zero survive scrutiny.
 
+## AI Continuity
+
+If continuing this project in a new AI session, read `SESSION-CONTEXT.md` first — it contains the full analytical context, design decisions, build pitfalls, and work history across all sessions.
+
 ## Source
 
 Analysis of: https://john09289.github.io/predictions
