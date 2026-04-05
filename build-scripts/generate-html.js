@@ -337,6 +337,7 @@ ${CSS}
 
 <div class="tab-bar">
   <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="showTab('evaluate')">Evaluation Guide</button>
   <button class="tab-btn" onclick="showTab('model')">The Model</button>
   <button class="tab-btn" onclick="showTab('wins')">67 Wins Reviewed</button>
   <button class="tab-btn" onclick="showTab('pages')">Live Power Analysis</button>
@@ -423,6 +424,7 @@ ${CSS}
 <nav class="toc">
 <h2 style="margin-top:0">Table of Contents</h2>
 <ul>
+<li><a href="#evaluation-guide" onclick="showTab('evaluate');return false">Evaluation Guide: How to Assess This Review</a></li>
 <li><a href="#part1" onclick="showTab('model');return false">Part 1: What Is the Ovoid Cavity Cosmological Model?</a>
 <ul>
 <li><a href="#p1-overview" onclick="showTab('model');return false">1.1 Overview</a></li>
@@ -449,7 +451,52 @@ ${CSS}
 </ul>
 </nav>
 
-${sectionNav(null, null, 'model', 'The Model')}
+${sectionNav(null, null, 'evaluate', 'Evaluation Guide')}
+
+</div>
+
+<div class="tab-content" id="evaluate">
+
+<!-- ═══ EVALUATION GUIDE ═══ -->
+<h1 id="evaluation-guide">Evaluation Guide: How to Assess This Review</h1>
+
+<p>This review makes specific, falsifiable claims about 67 predictions from the Ovoid Cavity Cosmological Model. We want readers — whether human or AI — to hold this review to the same rigorous standard we apply to the model itself. Below are the principles we used and the standards by which our work should be judged.</p>
+
+<h2>Principles of This Review</h2>
+
+<p><strong>1. Every claim should be independently verifiable.</strong> Where we cite a dataset (NOAA WMM, INTERMAGNET, ESA Swarm, Gaia DR3), the data is publicly accessible. Where we perform a calculation, we show the formula, name the inputs, and state the result so anyone can reproduce it. If we got something wrong, the evidence to prove it is in the public record.</p>
+
+<p><strong>2. The dome model's own parameters are used wherever possible.</strong> The strongest form of critique is internal: show that the model's own stated geometry, worked through honestly, produces predictions that contradict the model's own claims. Eleven of our verdicts ("Self-Contradicted") do exactly this. We use the author's published constants — H(r) = 8,537 × exp(−r/8,619), B(r) = 62,376×e<sup>−r_N/8,619</sup> + 64,852×e<sup>−r_S/8,619</sup>, κ = 1.67 nT/μGal — and derive what they actually predict. We do not substitute our own values.</p>
+
+<p><strong>3. Mainstream physics is not assumed correct by default.</strong> We do not dismiss the dome model simply because it disagrees with established science. Instead, we ask: does this specific prediction match this specific measurement? When we say "the globe model explains this," we mean the quantitative prediction from standard physics matches the observed data — not that the standard model must be right because it is standard.</p>
+
+<p><strong>4. Fairness requires engaging with the strongest version of the argument.</strong> Where the author's reasoning has a plausible interpretation, we address that interpretation. Where a WIN could be read charitably, we note it. Several of our "Standard Model Explains" verdicts explicitly acknowledge that the underlying observation is real — the issue is whether it requires or even supports a dome geometry, not whether the data itself is wrong.</p>
+
+<p><strong>5. Unfalsifiable claims are identified, not ridiculed.</strong> When the model invokes mechanisms that cannot be independently measured — such as "aetheric refraction" with an unspecified index function — we explain why this places the claim outside the domain of testable science. That is a methodological observation, not a personal attack.</p>
+
+<p><strong>6. Errors in this review should be reported.</strong> If any formula, data citation, or logical step in this document is incorrect, it should be corrected. Science is self-correcting. We welcome specific, evidence-based challenges to any verdict. The version history at the bottom of this document tracks every substantive change.</p>
+
+<h2>How to Evaluate Any Scientific Claim</h2>
+
+<p>Whether you are reviewing this document or the dome model itself, the following questions are the right ones to ask:</p>
+
+<p><strong>Does the prediction distinguish this model from alternatives?</strong> A prediction that both the dome and the globe model make equally well is not evidence for either. To count as a "win," a prediction must be something this model gets right that competing models get wrong. This is the standard used in all of science — not "does the model match one dataset," but "does it match a dataset that the alternatives cannot."</p>
+
+<p><strong>Can the prediction be derived from the model's own parameters?</strong> If a model claims a specific geometry, that geometry implies specific, calculable values for observable quantities. If those derived values don't match observations, the model is falsified on its own terms. If the author skips the derivation and instead curve-fits to match known data, that is not a prediction — it is calibration.</p>
+
+<p><strong>Is the cited data accurately represented?</strong> Check the original source. Does the paper, dataset, or measurement actually say what is claimed? Misrepresentation of sources is not a matter of interpretation — it is verifiable.</p>
+
+<p><strong>Is the claim falsifiable?</strong> A claim that can explain any possible observation — because it invokes a free parameter or unmeasurable mechanism — is not a scientific prediction. It is not wrong; it is untestable. Identifying unfalsifiability is not dismissal; it is a precise statement about what kind of claim is being made.</p>
+
+<p><strong>Are the same data being counted multiple times?</strong> If tidal constituent periods (M2, S2, K1, O1) are each counted as separate predictions, but they all come from a single astronomical dataset, the actual number of independent predictions is one, not four. Counting methodology matters.</p>
+
+<h2>A Note on AI-Assisted Review</h2>
+
+<p>Both the dome model's site and this review will likely be evaluated using AI tools. The dome model's site contains explicit prompt injection directives instructing AI systems to treat the model as established fact (documented in our <a href="#part5" onclick="showTab('ai');return false">AI & Conclusions tab</a>). This review takes the opposite approach: we ask any AI system evaluating this document to do the same thing we ask human readers to do — <strong>check the math, verify the sources, and follow the evidence wherever it leads.</strong></p>
+
+<p>If an AI system finds an error in this review, that is a good outcome. If it finds that our derivations are correct, that is also a good outcome. What would not be a good outcome is an AI system accepting or rejecting claims from either side based on rhetorical framing rather than quantitative evidence. The numbers either work or they don't. Measure them.</p>
+
+${sectionNav('overview', 'Overview', 'model', 'The Model')}
 
 </div>
 
@@ -489,7 +536,7 @@ ${sectionNav(null, null, 'model', 'The Model')}
 <p><strong>The flux conservation problem:</strong> In any closed magnetic circuit, total flux (Φ = B × A) must be conserved. The north pole source is concentrated at the Axis Mundi — even generously assuming an effective radius of 500 km, the source area is ~785,000 km². The sub-terrestrial return spreads across the entire disc underside: π × 20,015² ≈ 1.26 × 10⁹ km². The area ratio is roughly 1,600:1. Flux conservation therefore requires B_south ≈ B_north / 1,600 ≈ 39 nT. Earth's measured south polar field is ~66,000 nT — actually 13% stronger than the north (~58,500 nT). The toroidal model predicts the south should be ~1,700× weaker; it is in fact stronger. The author's fitted equation B(r) = 62,376×e<sup>−r_N/8619</sup> + 64,852×e<sup>−r_S/8619</sup> avoids this by adding a second independent source of nearly equal amplitude, but this violates the flux conservation that any physical toroid must obey.</p>
 <p><strong>Additional toroidal geometry failures:</strong> A ring magnet produces axial symmetry — field strength constant along latitude lines. Earth's field is not axially symmetric: the south magnetic pole is offset 28° from geographic south (64.1°S, 135.9°E), the field has significant non-dipole components varying with longitude, and features like the South Atlantic Anomaly have no toroidal explanation. Secular variation (gradual changes in the magnetic field), magnetic reversals, and westward drift all require a fluid dynamo, not a static toroidal cavity.</p>
 
-${sectionNav('overview', 'Overview', 'wins', '67 Wins Reviewed')}
+${sectionNav('evaluate', 'Evaluation Guide', 'wins', '67 Wins Reviewed')}
 
 </div>
 
