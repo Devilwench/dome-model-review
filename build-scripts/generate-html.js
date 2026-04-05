@@ -669,7 +669,7 @@ ${sectionNav('model', 'The Model', 'pages', 'Live Power Analysis')}
 
 <h2>3.5 Tracking Page: Internal Contradictions</h2>
 
-<p>The Tracking page reports <strong>"4 falsified predictions"</strong> and <strong>"53 confirmed."</strong> The homepage claims <strong>"67 confirmed, 0 falsified."</strong> These statements are mutually exclusive. Either 4 predictions were falsified or none were. Either 53 were confirmed or 67 were. The discrepancy suggests the homepage is not updated from the internal tracking data.</p>
+<p>The Tracking page reports <strong>"4 falsified predictions"</strong> and <strong>"53 confirmed"</strong> (V50.9 data). The homepage claims <strong>"67 confirmed, 0 falsified"</strong> (V51.0). The most charitable reading is that the tracking page simply hasn't been updated to V51.0 — but even so, the 4 falsified predictions acknowledged at V50.9 never appear in the V51.0 homepage count. If those 4 were resolved, the resolution isn't documented. If they weren't resolved, the homepage falsification count of zero is incorrect. Either way, the headline "0 falsified" cannot be verified from the site's own internal data.</p>
 
 <h2 id="dielectric">3.6 The "Dielectric" Infographic: GRACE L1A and the EM-Gravity Claim</h2>
 
@@ -716,6 +716,8 @@ ${sectionNav('wins', '67 Wins Reviewed', 'falsify', 'Falsification Tests')}
 <p><strong>The dome model:</strong> Gravitational and EM coupling constant κ = 1.67 nT/μGal; no relativistic corrections necessary.</p>
 <p><strong>The test:</strong> GPS requires two relativistic corrections based on special and general relativity: (1) atomic clocks in orbit run faster than ground clocks by 45.9 microseconds per day due to weaker gravity (general relativistic effect), and (2) clocks run faster due to orbital motion at 14 km/s (special relativistic effect), partly offsetting to a net +38.3 μs/day. Without these corrections, GPS position error accumulates at ~10 km/day. Every continuously operating GPS system (surveying, geodesy, aviation) confirms relativity. The dome model predicts GPS drifts; every practical test falsifies it.</p>
 
+<p><strong>Anticipated objection:</strong> Some argue GPS works because it uses a mathematical coordinate model (WGS84), not because Earth is actually spherical — the software works regardless of the 'real' shape. This misunderstands what GPS measures. The relativistic clock corrections (+38.3 μs/day net) are physical adjustments to atomic clock tick rates caused by actual gravitational time dilation and velocity time dilation. If Earth's physical geometry were different, the clocks would drift at different rates, and the corrections would fail. The fact that GPS atomic clocks drift at exactly the rate predicted by general relativity on a spherical Earth is a direct physical measurement, not a software convention.</p>
+
 <h2>Gaia Astrometry: Parallax and the Distance to Stars</h2>
 <p><strong>The dome model:</strong> A local sun within the cavity ~20,000 km altitude; stars painted on the firmament or at variable distance.</p>
 <p><strong>The test:</strong> The Gaia space telescope has measured precise parallax (apparent shift in star position due to Earth's orbital motion around the Sun) for 1.8 billion stars. Parallax directly implies star distance via elementary trigonometry: distance (parsecs) = 1 / parallax (arcseconds). Gaia has confirmed that Proxima Centauri is 1.3 pc = 4.24 light-years = 4.0 × 10^13 km away. A local sun 20,000 km away cannot produce the observed parallactic shifts. The Gaia catalog is consistent with a spherical Earth orbiting the Sun 150 million km away; it is flatly incompatible with any dome model.</p>
@@ -744,6 +746,28 @@ ${sectionNav('wins', '67 Wins Reviewed', 'falsify', 'Falsification Tests')}
 <p><strong>The dome model:</strong> Sun orbits locally within the cavity; Earth is stationary.</p>
 <p><strong>The test:</strong> The SOHO spacecraft orbits the L1 Lagrange point, 1.5 million km from Earth on the Earth-Sun line. At this point, solar gravity equals Earth's gravity, allowing the spacecraft to remain stationary relative to both bodies. DSCOVR (Deep Space Climate Observatory) orbits the same point, continuously observing the Earth-facing hemisphere. The existence and operation of L1 spacecraft requires a Sun 150 million km away. No dome model with a local sun can explain how spacecraft maintain stable orbits 1.5 million km away. Lagrange points are a practical falsification of all flat-earth and dome models.</p>
 
+<h2>4.8 Solar Angular Diameter</h2>
+
+<p><strong>This may be the simplest test anyone can perform.</strong></p>
+
+<p><strong>The dome model:</strong> A local sun at fixed height H ≈ 5,733 km, traveling in a circular orbit as it moves through different latitudes during the year.</p>
+
+<p><strong>The test:</strong> If the sun were only 5,733 km away (as the dome claims), it would appear about 50% larger at noon than at sunset — a change visible to the naked eye. In reality, the sun's apparent size barely changes at all (±1.7%, matching Earth's slightly elliptical orbit). Anyone with a camera and a solar filter can verify this.</p>
+
+<p><strong>Plain numbers:</strong> Angular diameter θ = D_sun / d (the sun's actual width divided by its distance). As the dome sun moves in its circuit, its distance to an observer varies significantly through the day. A 30% distance variation produces a 30% angular size variation. The dome predicts visibly obvious changes in solar diameter through the day; measured changes are less than 2%. The dome model is falsified by direct observation using simple equipment.</p>
+
+<h2>4.9 Aetheric Refraction: The Universal Escape Hatch</h2>
+
+<p><strong>Unfalsifiability by Design.</strong> Whenever the dome geometry produces a prediction that contradicts observations or the author's own claims, the author invokes "aetheric refraction" — a magical correction factor that can bend light by up to 29× at the disc edge.</p>
+
+<p><strong>Which WINs depend on it:</strong> At least six WINs rely on aetheric refraction to avoid falsification: WIN-016 (annual aberration), WIN-017 (stellar parallax), WIN-026 (crepuscular rays), WIN-033 (Sigma Octantis dimness), WIN-056 (solar elevation), WIN-065 (Polaris excess). Each of these observations is explained only by invoking the refraction index — a free function with no independent measurement.</p>
+
+<p><strong>The core problem:</strong> If a model has a free function that can bend light by any amount needed, it can accommodate any optical observation, making those predictions unfalsifiable. The dome's stated geometry predicts that Polaris should be only 8,537 km away, producing a parallax 10^12 times larger than observed. The author resolves this by adding "aetheric refraction" without specifying its form, magnitude, or physical mechanism. This is not a prediction; it is a placeholder for "whatever correction makes the data fit."</p>
+
+<p><strong>No independent measurement:</strong> The refraction medium has no independent measurement — you cannot measure the "aether" separately from the observations it is designed to explain. Every observation that contradicts the dome geometry is "explained" by invoking refraction. There is no way to test whether refraction is real, because the only evidence for it is the data it was invented to accommodate. This is the definition of an unfalsifiable claim.</p>
+
+<p><strong>Conclusion:</strong> This single mechanism — aetheric refraction as an undefined correction factor — undercuts at least 6 WINs and arguably more. It allows the model to claim compatibility with any optical observation by post-hoc fitting. A scientific model must make predictions before observations are made. The dome model instead invents new correction factors after each falsification, which is not science but curve-fitting without constraint.</p>
+
 <!-- ═══ PART 4.5 ═══ -->
 <h1 id="part4b">Part 4.5: Self-Consistency — Does the Dome's Geometry Produce Its Claimed Predictions?</h1>
 
@@ -758,6 +782,8 @@ ${sectionNav('wins', '67 Wins Reviewed', 'falsify', 'Falsification Tests')}
 <p><strong>The dome's geometry:</strong> A local moon traveling in a circuit at height ~5,000 km above the disc surface.</p>
 <p><strong>Tidal force calculation:</strong> F_tidal = 2GMm × (d R / r³) where M is the moon's mass, m is the ocean water mass, d = R (Earth's radius ≈ 20,000 km for the dome), and r is the distance from moon to water. This formula says: tidal force depends on how close the moon is. The closer it is, the stronger the pull. The key factor is (distance to Earth's center / distance to moon)³. On the globe, that ratio is tiny because the moon is far away. On the dome, with the moon only 5,733 km up, that ratio is enormous.</p>
 <p><strong>The problem:</strong> Earth's actual tides (M2 constituent: 0.56 m amplitude) require a moon 384,400 km away with mass 7.35 × 10^22 kg. A local moon at 5,000 km altitude with any physically plausible mass would produce tides 300,000× larger, submerging all continents twice daily. The author's model predicts catastrophic tides; observed tides are mild. He resolves this by not calculating tidal forces from his geometry and instead using the measured lunar orbit — which contradicts his model.</p>
+
+<p><strong>Anticipated objection:</strong> The ECM could argue that its tidal mechanism is "aetheric downforce," not Newtonian gravity, so the inverse-cube calculation doesn't apply. But this creates a worse problem: if the moon's tidal influence isn't gravitational, the model must specify what the mechanism <em>is</em> and derive tidal amplitudes from it. The ECM only cites tidal <em>periods</em> (which are timing — when tides happen) but never derives tidal <em>amplitudes</em> (how high the water rises). A model that explains why tides happen twice a day but cannot explain why they rise 1 meter instead of 300 kilometers has explained the clock but not the physics.</p>
 
 <h2>4.5.3 Gravity at the Rim: 90% Drop</h2>
 <p><strong>The dome's geometry:</strong> Aetheric circulation in a toroidal loop, with "circulating aether" providing local gravity.</p>
@@ -870,6 +896,9 @@ ${sectionNav('pages', 'Live Power Analysis', 'ai', 'AI & Conclusions')}
 <p>The August 12, 2026 Eclipse Test is presented as the single most important discriminating prediction. However, the site misrepresents the globe prediction as "0.0 nT exactly" when the Chapman ionospheric mechanism (peer-reviewed since 1933) predicts 5–20 nT under identical conditions. The dome's −17 to −21 nT range was derived by applying a 1.672× scaling factor to actual INTERMAGNET data from the 2016 eclipse — which was itself a Chapman-mechanism observation on a spherical Earth. The test is constructed as a heads-I-win, tails-doesn't-count proposition. See <a href="#eclipse-analysis">Section 3.2</a> for the full analysis.</p>
 
 <h2>6.3 Final Tally (V51.0, 67 WINs)</h2>
+
+<p><strong>The Headline Number Is Inflated.</strong> The 67 claimed wins include systematic duplication: INTERMAGNET geomagnetic data is sliced into multiple WINs (WIN-040 through WIN-043 repackage data already counted in WIN-004 through WIN-039), tidal constituent periods are each counted separately despite being a single astronomical dataset, and several WINs (WIN-007/022, WIN-037/042) are near-duplicates. After removing duplicates, subdivisions of single observations, and re-sliced reprocessings of the same datasets, the 67 claimed wins reduce to roughly 25–30 genuinely distinct claims. The large headline number is a persuasive tactic, not a scientific measure.</p>
+
 <p><strong>Refuted by Data: ${tally['Refuted by Data'] || 0}</strong> (direct measurements contradict the claim)</p>
 <p><strong>Standard Model Explains: ${tally['Std Model Explains'] || 0}</strong> (observation is real but mainstream physics already accounts for it)</p>
 <p><strong style="background:var(--selfcon);padding:0 .3rem;border-radius:2px">Self-Contradicted: ${tally['Self-Contradicted'] || 0}</strong> (the dome's own geometry, if worked through honestly, predicts radically different values)</p>
