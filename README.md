@@ -6,7 +6,7 @@ Point-by-point analysis of 67 claimed wins, new site pages, falsification tests,
 
 ## Live Site
 
-**[View the full review](https://devilwench.github.io/dome-model-review/)**
+**[View the full review](https://funwithscience-org.github.io/dome-model-review/)**
 
 ## Downloads
 
@@ -20,20 +20,34 @@ Point-by-point analysis of 67 claimed wins, new site pages, falsification tests,
 | Version | Date | Site Version | WINs Analyzed | Notes |
 |---------|------|-------------|---------------|-------|
 | V1-V3 | 2026-03-12 | V50.6 | 39 | Initial review, falsification tests, AI directive analysis |
-| V4 | 2026-04-05 | V51.0 | 67 | Version change tracking, 28 new WIN reviews, new page analysis |
+| V4.0–4.8 | 2026-04-05 | V51.0 | 67 | Version change tracking, self-consistency analysis, Self-Contradicted category, independent adversarial review, unified build pipeline |
+
+## Build
+
+```bash
+npm install
+node build.js          # Rebuild HTML + DOCX + PDF
+node build.js html     # HTML only (fast)
+node build.js publish  # Build all + git commit + push
+```
+
+All WIN data lives in `data/wins.json` (single source of truth). See `CLAUDE.md` for full architecture docs.
 
 ## Structure
 
-- `docs/` — Static HTML site (GitHub Pages)
-- `downloads/` — Word and PDF versions of the review
-- `build-scripts/` — Node.js document generators (v2, v3, v4)
-- `raw-text/` — Current extracted site content
-- `raw-text-v50.6-2026-03-12/` — Archived V50.6 baseline for comparison
-- `security-audit.md` — Website security scan results
+- `data/wins.json` — All 67 WINs: claims, verdicts, findings, detailed analyses
+- `build.js` — Unified build pipeline
+- `build-scripts/generate-html.js` — Generates HTML from wins.json
+- `build-scripts/build-doc-v4.js` — Generates DOCX from wins.json
+- `build-scripts/add-references.js` — Injects clickable source links
+- `docs/` — Generated HTML site (GitHub Pages) — do not edit directly
+- `downloads/` — Generated Word and PDF versions
+- `raw-text/` — Extracted ECM site content
+- `raw-text-v50.6-2026-03-12/` — Archived V50.6 baseline for version comparison
 
 ## Key Finding
 
-Of 67 claimed wins: 11 refuted by data, 25 explained by standard physics, 21 misleading, 3 undemonstrated, 4 unfalsifiable. The only genuinely discriminating prediction is the August 12, 2026 Eclipse Test.
+Of 67 claimed wins: 11 refuted by data, 11 self-contradicted by the dome's own geometry, 15 explained by standard physics, 23 misleading, 3 not demonstrated, 4 unfalsifiable. Zero survive scrutiny.
 
 ## Source
 
