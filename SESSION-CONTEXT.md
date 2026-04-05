@@ -218,10 +218,37 @@ The ECM site was clearly built with AI assistance. The user observed that the au
 - **CLAUDE.md**: Added project-level context file (complements this SESSION-CONTEXT.md)
 - **README.md**: Fixed GitHub Pages URL (was devilwench, now funwithscience-org), updated tally, documented build pipeline
 
-### Known issues:
-- DOCX and PDF have NOT been regenerated since the detail block and reference additions. They still reflect V4.8 content. Run `node build.js` to regenerate all three outputs.
-- **Tab structure discrepancy**: Section 3 of this file describes a 9-tab structure, but the current committed HTML uses a single-page scrolling layout (no tabs). The tab UI may have been designed in a previous context window but not committed, or may have been overwritten when generate-html.js was created. If reimplementing tabs, the tab IDs and navigation chain in Section 3 are the intended design.
-- **Color system discrepancy**: Section 4 describes Material Design 400-level rgba colors, but the current CSS uses simpler solid hex colors (#FFCCCC, #C8E6C9, #B3E5FC, etc.). The Material Design palette is the intended target if a redesign is undertaken.
+### Known issues (from CW6 — most now RESOLVED):
+- ~~DOCX and PDF have NOT been regenerated~~ **RESOLVED in CW7**: build.js now regenerates all three outputs (HTML, DOCX, PDF) in every build.
+- ~~**Tab structure discrepancy**~~ **RESOLVED in CW7**: 9-tab structure fully implemented with correct navigation chain (overview → evaluate → model → wins → pages → falsify → selftest → ai → refs).
+- ~~**Color system discrepancy**~~ **RESOLVED in CW7**: Material Design 400-level rgba colors implemented as CSS custom properties with dark mode variants.
+
+## 8b. Work Done in Context Window 7 (2026-04-05, sessions 5+6+this)
+
+### CW7 Part 1 (earlier today, summarized in compaction):
+- **Unified color system**: Material Design 400-level rgba colors as CSS custom properties
+- **Evaluation Guide tab**: 6 methodology principles, transparent (not hidden) AI instructions
+- **WIN-001 Tesla correction**: Acknowledged 0.08484s measurement; dome reinterprets as disc resonance
+- **Domains table rewrite**: Every Problem column now explains WHY not just "we knew this"
+- **Internal Contradictions split**: Separated into own tab (selftest) from Falsification Tests
+- **Kill-Shot Tests 1-4 expanded**: Sydney-Perth (Finsler circularity), JFK-LHR (3 discriminating tests + Rule 15), SAA (straw-man + non-discriminating), Polaris (error budget)
+- **Rule 15 documentation**: Terminology substitution pattern as evidence category
+
+### CW7 Part 2 (this continuation):
+- **Kill-Shot Test 2 (Polaris) expanded**: Error budget analysis (0.74° offset > 0.27° claim), no methodology, dome's own site marks broader Polaris prediction as FALSIFIED
+- **Kill-Shot Test 5 (Eclipse)**: Cross-reference to Section 3.2
+- **Kill-Shot Test 6 (NMP drift) expanded**: Dome failing at 39.9% error > own 30% threshold, prediction is curve-fit extrapolation not geometry
+- **Section 4.5.9 (NEW — V13 Coordinate System)**: Major new analysis documenting self-referential structure:
+  - No forward model exists (no published formula from dome coords → distance)
+  - All inputs converted from globe lat/lon
+  - Scaffolds built by MDS on measured distances (dome geometry plays no role)
+  - Scaffold vs Finsler disagree by 460 km on Sydney-Perth
+  - Christchurch-Greymouth: 84% error on 223 km route
+  - Singapore breaks model (r=23,556 km vs r_eq=14,105 km)
+  - 13 versions = iterative curve-fitting
+  - Error pattern (NH 7.3%, SH 10.2%) = sphere-to-plane projection signature
+- **SYD-EZE figures corrected**: −73% was V12; V13 claims −8.4% via unpublished n(r). All references updated throughout.
+- **SESSION-CONTEXT.md updates**: Comprehensive context for future sessions
 
 ## 9. Potential Future Work
 
