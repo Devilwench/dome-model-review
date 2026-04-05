@@ -31,21 +31,21 @@ const VERDICT_CLASSES = {
 // ════ PIE CHART COLORS (match CSS verdict colors) ════
 
 const VERDICT_COLORS_LIGHT = {
-  'Refuted by Data': '#FFCCCC',
-  'Std Model Explains': '#C8E6C9',
-  'Self-Contradicted': '#B3E5FC',
-  'Misleading': '#FFE0B2',
-  'Not Demonstrated': '#D1C4E9',
-  'Unfalsifiable': '#E0E0E0'
+  'Refuted by Data': '#E57373',
+  'Std Model Explains': '#66BB6A',
+  'Self-Contradicted': '#42A5F5',
+  'Misleading': '#FFA726',
+  'Not Demonstrated': '#AB47BC',
+  'Unfalsifiable': '#BDBDBD'
 };
 
 const VERDICT_COLORS_DARK = {
-  'Refuted by Data': '#c45050',
-  'Std Model Explains': '#4a8c4a',
-  'Self-Contradicted': '#2d8abf',
-  'Misleading': '#c48a30',
-  'Not Demonstrated': '#7b5eae',
-  'Unfalsifiable': '#888888'
+  'Refuted by Data': '#ef5350',
+  'Std Model Explains': '#43a047',
+  'Self-Contradicted': '#1e88e5',
+  'Misleading': '#fb8c00',
+  'Not Demonstrated': '#8e24aa',
+  'Unfalsifiable': '#757575'
 };
 
 const VERDICT_ORDER = [
@@ -54,10 +54,12 @@ const VERDICT_ORDER = [
 ];
 
 function generatePieChart(tally, total) {
-  const cx = 120, cy = 120, r = 100;
+  // Larger canvas to accommodate callout lines
+  const cx = 150, cy = 150, r = 110;
   let angle = -Math.PI / 2; // start at top
   const slices = [];
-  const labels = [];
+  const callouts = [];
+  const SMALL_THRESHOLD = 0.08; // slices < 8% get callout lines
 
   for (const verdict of VERDICT_ORDER) {
     const count = tally[verdict] || 0;
@@ -71,37 +73,77 @@ function generatePieChart(tally, total) {
     const lightColor = VERDICT_COLORS_LIGHT[verdict];
     const darkColor = VERDICT_COLORS_DARK[verdict];
 
-    slices.push(`<path d="M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${r},${r} 0 ${largeArc},1 ${x2.toFixed(2)},${y2.toFixed(2)} Z" fill="${lightColor}" class="pie-slice" data-dark="${darkColor}" stroke="var(--bg)" stroke-width="1.5"/>`);
+    slices.push(`<path d="M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${r},${r} 0 ${largeArc},1 ${x2.toFixed(2)},${y2.toFixed(2)} Z" fill="${lightColor}" class="pie-slice" data-dark="${darkColor}" stroke="var(--bg)" stroke-width="2"/>`);
 
-    // Label at midpoint of arc
     const midAngle = angle + sweep / 2;
-    const labelR = r * 0.62;
-    const lx = cx + labelR * Math.cos(midAngle);
-    const ly = cy + labelR * Math.sin(midAngle);
     const pct = ((count / total) * 100).toFixed(0);
-    labels.push(`<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#333" class="pie-label">${count}</text>`);
+    const fraction = count / total;
+
+    if (fraction < SMALL_THRESHOLD) {
+      // Small slice: callout line from edge to outside label
+      const innerR = r + 8;
+      const outerR = r + 35;
+      const ix = cx + innerR * Math.cos(midAngle);
+      const iy = cy + innerR * Math.sin(midAngle);
+      const ox = cx + outerR * Math.cos(midAngle);
+      const oy = cy + outerR * Math.sin(midAngle);
+      // Horizontal tail
+      const tailDir = Math.cos(midAngle) >= 0 ? 1 : -1;
+      const tx = ox + tailDir * 20;
+      const anchor = tailDir > 0 ? 'start' : 'end';
+      callouts.push(`<line x1="${ix.toFixed(1)}" y1="${iy.toFixed(1)}" x2="${ox.toFixed(1)}" y2="${oy.toFixed(1)}" stroke="${darkColor}" stroke-width="1.2" class="callout-line" data-dark="${darkColor}" data-light="${darkColor}"/>`);
+      callouts.push(`<line x1="${ox.toFixed(1)}" y1="${oy.toFixed(1)}" x2="${tx.toFixed(1)}" y2="${oy.toFixed(1)}" stroke="${darkColor}" stroke-width="1.2" class="callout-line" data-dark="${darkColor}" data-light="${darkColor}"/>`);
+      callouts.push(`<text x="${(tx + tailDir * 3).toFixed(1)}" y="${(oy + 1).toFixed(1)}" text-anchor="${anchor}" dominant-baseline="central" font-size="11" font-weight="700" fill="${darkColor}" class="pie-callout">${count} (${pct}%)</text>`);
+    } else {
+      // Large slice: label inside
+      const labelR = r * 0.6;
+      const lx = cx + labelR * Math.cos(midAngle);
+      const ly = cy + labelR * Math.sin(midAngle);
+      callouts.push(`<text x="${lx.toFixed(1)}" y="${(ly - 6).toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">${count}</text>`);
+      callouts.push(`<text x="${lx.toFixed(1)}" y="${(ly + 10).toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="600" fill="#fff" class="pie-label" style="text-shadow:0 1px 3px rgba(0,0,0,.4)">${pct}%</text>`);
+    }
 
     angle += sweep;
   }
 
-  // Legend items
+  // Legend items — wide enough viewBox so text isn't clipped
   const legendItems = VERDICT_ORDER.filter(v => (tally[v] || 0) > 0).map((verdict, i) => {
     const count = tally[verdict] || 0;
     const pct = ((count / total) * 100).toFixed(0);
-    const y = i * 24;
+    const y = i * 28;
     return `<g transform="translate(0,${y})">
-      <rect width="14" height="14" rx="2" fill="${VERDICT_COLORS_LIGHT[verdict]}" class="legend-swatch" data-dark="${VERDICT_COLORS_DARK[verdict]}"/>
-      <text x="20" y="11.5" font-size="12.5" fill="var(--text)">${verdict} (${count}, ${pct}%)</text>
+      <rect width="16" height="16" rx="3" fill="${VERDICT_COLORS_LIGHT[verdict]}" class="legend-swatch" data-dark="${VERDICT_COLORS_DARK[verdict]}"/>
+      <text x="24" y="12.5" font-size="13" fill="var(--text)"><tspan font-weight="700">${count}</tspan> ${verdict} (${pct}%)</text>
     </g>`;
   });
 
+  const legendH = VERDICT_ORDER.filter(v => (tally[v] || 0) > 0).length * 28;
+  const svgW = 340, svgH = 340;
+
   return `
-<div style="display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;margin:1.2rem 0 1.5rem">
-  <svg viewBox="0 0 240 240" width="220" height="220" role="img" aria-label="Verdict distribution pie chart">
-    ${slices.join('\n    ')}</svg>
-  <svg viewBox="0 0 80 ${legendItems.length * 24 + 10}" width="200" height="${legendItems.length * 24 + 10}" role="img" aria-label="Verdict legend">
-    ${legendItems.join('\n    ')}</svg>
+<div style="display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin:1.2rem 0 1.5rem">
+  <svg viewBox="0 0 ${svgW} ${svgH}" width="${svgW}" height="${svgH}" role="img" aria-label="Verdict distribution pie chart">
+    ${slices.join('\n    ')}
+    ${callouts.join('\n    ')}
+  </svg>
+  <svg viewBox="0 0 300 ${legendH}" width="300" height="${legendH}" role="img" aria-label="Verdict legend">
+    ${legendItems.join('\n    ')}
+  </svg>
 </div>
+<script>
+(function(){
+  const mq = window.matchMedia('(prefers-color-scheme:dark)');
+  document.querySelectorAll('.pie-slice').forEach(el => el.dataset.light = el.getAttribute('fill'));
+  document.querySelectorAll('.legend-swatch').forEach(el => el.dataset.light = el.getAttribute('fill'));
+  function apply(dark) {
+    document.querySelectorAll('.pie-slice').forEach(el => el.setAttribute('fill', dark ? el.dataset.dark : el.dataset.light));
+    document.querySelectorAll('.legend-swatch').forEach(el => el.setAttribute('fill', dark ? el.dataset.dark : el.dataset.light));
+    document.querySelectorAll('.pie-label').forEach(el => el.setAttribute('fill', '#fff'));
+  }
+  apply(mq.matches);
+  mq.addEventListener('change', e => apply(e.matches));
+})();
+</script>
 `;
 }
 
