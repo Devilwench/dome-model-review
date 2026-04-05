@@ -1,6 +1,6 @@
 # Dome Model Review — Session Context for AI Continuity
 
-**Last updated:** 2026-04-05 (context windows 5+6)
+**Last updated:** 2026-04-05 (context windows 5–8)
 **Repository:** https://github.com/funwithscience-org/dome-model-review
 **Live site:** https://funwithscience-org.github.io/dome-model-review
 **Version reviewed:** Ovoid Cavity Cosmological Model V51.0 (April 2026)
@@ -190,6 +190,9 @@ The ECM site was clearly built with AI assistance. The user observed that the au
 | Used standard AE projection (~8,300 km) as dome prediction | Dome uses V13 Finsler system that actually derives 4,352 km |
 | Domains table said "this is known behavior" | Rewritten to explain WHY each observation doesn't distinguish models |
 | Cape Town-Sydney distances confused | Replaced with dome's own SYD-EZE 73% error admission |
+| 300,000× tidal force assumed same mass as real moon | Replaced with geometric tidal pattern argument (one spike vs two bulges) |
+| Moon altitude 5,733 km (sun's altitude) in tidal WINs | Corrected to 2,534 km (moon altitude from inject_ai_layer.py) |
+| 95.2% accuracy claim said "never defines the calculation" | Traced to hardcoded HTML — no script in repo computes it |
 
 ---
 
@@ -250,9 +253,25 @@ The ECM site was clearly built with AI assistance. The user observed that the au
 - **SYD-EZE figures corrected**: −73% was V12; V13 claims −8.4% via unpublished n(r). All references updated throughout.
 - **SESSION-CONTEXT.md updates**: Comprehensive context for future sessions
 
+## 8c. Work Done in Context Window 8 (2026-04-05, continued session)
+
+### Completed:
+- **Tidal argument replaced across all files**: The old "300,000× excess tidal force" argument was fundamentally flawed (assumed dome's moon has same mass as real moon). Replaced with irrefutable geometric pattern argument: at d/R ≈ 0.13, tidal force is a sharp localized spike producing one pulse per lunar pass, not the observed two-bulge semidiurnal pattern. This is purely geometric and cannot be fixed by mass adjustment. Moon altitude corrected from 5,733 km (sun) to 2,534 km (moon, from inject_ai_layer.py core_parameters). Updated: wins.json (5 tidal WINs), generate-html.js (Section 4.5.2 + summary + patterns + version history), build-doc-v4.js (Section 4.5.4 + summary + patterns + version history), CLAUDE.md, SESSION-CONTEXT.md.
+- **Kill-Shot test card layout**: Section 3.3 now wraps each of the 6 tests in a bordered card with accent left border and colored status badge: "CLAIMED CONFIRMED" (red, Tests 1-2), "PENDING" (grey, Tests 3-5), "FAILING (39.9% ERROR)" (amber, Test 6). CSS classes: `.ks-test`, `.ks-status`, `.ks-claimed`, `.ks-pending`, `.ks-failing`. Dark mode support included.
+- **95.2% accuracy traced to source code**: Examined every script in the dome repo (scoring.js, predictions.js, build.js, analytics.js, apply_scoring_schema.py, recalc_v51.py, compile_exhaustive_api.py, verify_predictions.py, build_tracking.py). Finding: 95.2% is hardcoded as static HTML (`<div class="score-number score-green">95.2%</div>`), no script computes it, and it cannot be reproduced from the repo's own data (api/scorecard.json: 96.3%, results.json: 97.0%, homepage counts: 89.3% or 94.7%). Section 3.5.6 updated with definitive source-code evidence.
+- **Dielectric infographic section parked**: Section 3.6 (GRACE L1A / EM-gravity / 5 Decisive Points analysis) commented out in both generate-html.js (HTML comment) and build-doc-v4.js (JS block comment). Content preserved in source for future reinstatement. WIN-012 detail still references GRACE L1A as part of individual evidence rebuttal. "Dielectric infographic" removed from V51.0 intro paragraph.
+- **Hydrostatic equilibrium argument**: Searched for and confirmed no committed references exist. The "23 km moon can't be round" argument stayed in conversation only.
+
+### Key corrections from this session:
+| What was wrong | What we fixed |
+|---|---|
+| 300,000× tidal force argument assumed same mass as real moon | Replaced with geometric pattern argument (one spike vs two bulges) — irrefutable |
+| Moon altitude was 5,733 km (sun's value) in all tidal WINs | Corrected to 2,534 km (from inject_ai_layer.py core_parameters) |
+| Section 3.5.6 said "never defines the calculation" for 95.2% | Now definitively shows 95.2% is hardcoded HTML with no computation anywhere in repo |
+| Kill-Shot tests ran together visually | Each test now in a bordered card with status badge |
+
 ## 9. Potential Future Work
 
-- Regenerate DOCX/PDF with complete detail blocks and references
 - Monitor dome site for V51.x updates (WIN count changes, new falsifications)
 - If Eclipse 2026 (Aug 12) produces any dome-specific predictions that differ from Besselian elements, analyze
 - NMP drift rate: check back in 2027-2028 for actual vs. predicted
@@ -260,6 +279,8 @@ The ECM site was clearly built with AI assistance. The user observed that the au
 - Consider adding interactive elements (sortable table, filter by verdict)
 - The DOCX/PDF outputs could use formatting improvements (the build-doc-v4.js is functional but basic)
 - Extract prose sections into `data/sections.json` so narrative text has a single source too
+- Revisit Dielectric infographic section (currently parked) — may reinstate with stronger analysis
+- Consider expanding repository source code analysis section (Section 5.14) with more script findings
 
 ---
 

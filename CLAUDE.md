@@ -91,6 +91,14 @@ Each entry has:
 - GPS requires Keplerian orbits at 20,200 km + relativistic corrections
 - Model's own "Open Problems" (OPEN-001, 003, 007) concede it can't function without WGS84
 
+### Repository Source Code Findings
+- **Sun/firmament collision**: Sun at 5,733 km exceeds firmament H(r) ≈ 4,200 km at that radius; author's `update_optical_caveats.py` injects "optical illusion" rule
+- **AI-steering scripts**: `inject_ai_layer.py` (CORS for Claude, HuggingFace deployment), `update_optical_caveats.py` (suppress geometric contradictions)
+- **Curve-fitting confirmation**: `test_curve_stretching.py`, `find_curve.py` confirm iterative fitting to WGS84
+- **95.2% accuracy is hardcoded**: Static HTML string with no computation — no script in the repo calculates it; cannot be reproduced from the repo's own data (API gives 96.3%, 97.0%, or 89.3%/94.7% depending on source)
+- **Author**: Nick Hughes (GitHub Nhughes09, HuggingFace ndwdgda), no online presence promoting the model
+- **Dome core parameters** (from inject_ai_layer.py): disc_radius=20,015 km, firmament_height=9,086 km, sun_altitude=5,733 km, moon_altitude=2,534 km
+
 ## Known Technical Issues
 
 ### docx-js Bookmark Bug
@@ -133,3 +141,12 @@ Parts 1, 1.5, 3, 4, 4.5, 5, 6, 7 are hardcoded HTML strings in `generate-html.js
 | V4.7 | 0be5bfa | Self-Contradicted verdict category (11 WINs) |
 | V4.8 | 1e15195 | Independent adversarial review findings |
 | V4.8.1 | 5cbb8ff | Unified build pipeline, wins.json source of truth |
+| V4.9 | d108833 | Replaced 300,000× tidal force with geometric pattern argument |
+| V4.9.1 | a0a9dc6 | Kill-Shot test card layout with status badges |
+| V4.9.2 | afaf462 | 95.2% accuracy traced to hardcoded HTML (no computation) |
+| V4.9.3 | 991c9ae | Parked Dielectric infographic section (preserved in source) |
+
+## Parked Content
+
+### Section 3.6: Dielectric Infographic (GRACE L1A / EM-Gravity)
+Commented out in both `generate-html.js` (HTML comment) and `build-doc-v4.js` (JS block comment). Content preserved for potential reinstatement. The WIN-012 detail still references GRACE L1A as part of its individual evidence rebuttal.
