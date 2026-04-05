@@ -888,5 +888,5 @@ const doc = new Document({
   }]
 });
 
-const out = "/sessions/intelligent-tender-mccarthy/critical-review-dome-model-v4.docx";
+const out = require('path').join(__dirname, '..', 'downloads', 'critical-review-dome-model-v4.docx');
 Packer.toBuffer(doc).then(buf => { fs.writeFileSync(out, buf); console.log("Written: " + out + " (" + buf.length + " bytes)"); }).catch(e => console.error(e));
