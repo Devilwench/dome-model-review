@@ -98,7 +98,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 <li><a href="#notdemo">2.4 Detailed: Not Demonstrated</a></li>
 <li><a href="#misleading">2.5 Detailed: Misleading and Unfalsifiable</a></li>
 </ul></li>
-<li><a href="#part3">Part 3: Analysis of New Site Pages (Live Power, Kill-Shot, Audit, Tracking)</a></li>
+<li><a href="#part3">Part 3: Analysis of New Site Pages (Live Power, Kill-Shot, Audit, Tracking, Infographics)</a></li>
 <li><a href="#part4">Part 4: Falsification Tests</a></li>
 <li><a href="#part5">Part 5: Analysis of AI Context Directives</a></li>
 <li><a href="#part6">Part 6: Conclusions</a></li>
@@ -350,7 +350,8 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 <h3>WIN-011/012: Mohe Gravity Anomaly and Coupling Constant</h3>
 <p><strong>Claim:</strong> A 1997 gravimeter reading at Mohe (Tibet) shows a gravity anomaly of +15.7 μGal, indicating a dome-specific gravitational structure.</p>
 <p><strong>Evidence:</strong> The Mohe measurement is reported in a single, non-peer-reviewed source. Subsequent measurements by the Membach Superconducting Gravimeter (a superior instrument with lower noise floor and higher stability) found 0.0 μGal at the same location. The Membach instrument is operated as part of the International Geodynamics and Earthquakes Research (IGET) network and its data are publicly available. If Mohe showed +15.7 μGal, Membach should have detected it. The null result from a superior instrument contradicts the Mohe claim. The dome model's magnetic-gravity coupling constant (WIN-012) is derived from the Mohe anomaly; if Mohe is unconfirmed, so is the coupling constant.</p>
-<p><span class="verdict-tag vt-notdemo">NOT DEMONSTRATED</span> Membach SG found 0.0 μGal; result unconfirmed.</p>
+<p><strong>GRACE L1A claim (V51.0 infographic):</strong> The author now claims GRACE satellite ACC1A raw binary data from the October 30, 2003 Halloween storm shows a "perfect 1.67 nT/μGal coupling," and that NASA "masked" this by low-pass filtering in the L1B product. This misrepresents the GRACE data pipeline. GRACE ACC1A is raw accelerometer telemetry. During the Halloween storm, GRACE experienced massive perturbations because the thermosphere expanded dramatically (neutral density increases 5–10× at ~500 km altitude), causing large drag spikes. The L1A → L1B processing (documented in JPL D-22027) removes known non-gravitational accelerations: atmospheric drag, solar radiation pressure, and thruster firings. The "spikes" in L1A that align with magnetic flux are drag perturbations from thermospheric heating, not gravity responding to magnetism. The L1A data is publicly available at <a href="https://podaac.jpl.nasa.gov">podaac.jpl.nasa.gov</a>; it is in raw binary format because it is raw telemetry, not because it was hidden.</p>
+<p><span class="verdict-tag vt-notdemo">NOT DEMONSTRATED</span> The 1.67 nT/μGal coupling is built on unconfirmed Mohe data. The GRACE L1A claim conflates atmospheric drag with gravitational signal.</p>
 </div>
 
 <div class="evidence" id="win015">
@@ -428,6 +429,21 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 
 <h2>3.5 Tracking Page Internal Contradictions</h2>
 <p>The Tracking page reports "4 falsified predictions" and "53 confirmed" while the homepage claims "67 confirmed, 0 falsified." These are mutually exclusive.</p>
+
+<h2 id="dielectric">3.6 The "Dielectric" Infographic: GRACE L1A and the Shielding Anomaly</h2>
+<p>The author has published promotional infographics claiming "5 Decisive Points That Mainstream Can't Answer" under the heading "THE G MODEL: PROOF IT'S ALL DIELECTRIC." Each point is addressed below.</p>
+
+<p><strong>1. The Shielding Anomaly (Strasbourg 2003):</strong> Superconducting gravimeters do show residuals during extreme geomagnetic storms. This is well-documented. However, the explanation is twofold: (a) no magnetic shielding is perfect — even multi-layer Mumetal + copper cannot fully attenuate a >500 nT storm at the SQUID's femtotesla sensitivity, and (b) real mass redistributions occur during storms (atmospheric pressure changes, ocean loading) that produce genuine μGal-level gravity signals. The Global Geodynamics Project network accounts for both effects. This does not "falsify instrument noise" — it is a known instrumental limitation during extreme events, which is precisely why those periods are flagged in the data.</p>
+
+<p><strong>2. The Kappa (κ) Ratio (GRACE ACC1A, Oct 2003):</strong> GRACE's L1A accelerometer data does show spikes during the Halloween storm. But GRACE measures non-gravitational forces acting on the satellite — primarily atmospheric drag. During a major geomagnetic storm, the thermosphere heats and expands dramatically (neutral density can increase 5–10× at GRACE altitude ~500 km). The "1.67 nT/μGal coupling" is the ratio between storm magnetic intensity and the drag perturbation: bigger storm → more thermospheric heating → more drag → bigger accelerometer spike. This is the atmosphere responding to magnetism, not gravity responding to magnetism.</p>
+
+<p><strong>3. "Curve-Fit Deception" (L1A vs L1B):</strong> The L1A → L1B processing pipeline for GRACE is fully documented in <a href="https://podaac.jpl.nasa.gov">JPL D-22027 (GRACE Data Product Handbook)</a>. L1B applies calibration factors, removes known non-gravitational accelerations (solar radiation pressure, thruster firings, atmospheric drag), and applies instrument-specific corrections. The author frames this as "NASA masking the raw truth." In reality, it is standard signal processing: removing known noise sources to isolate the gravitational signal. The L1A "spikes" during a Halloween-class storm are expected instrument perturbations, not gravitational signals. NASA did not make L1A "computationally expensive to find" — it is in raw binary format because it is raw satellite telemetry, publicly available at podaac.jpl.nasa.gov.</p>
+
+<p><strong>4. The Void Mechanism:</strong> The claim that cosmic voids are "low-pressure Aetheric cells" pushing galaxies toward walls is pure assertion with no mathematical framework. Cosmic voids and the galaxy filament structure are well-modeled by N-body ΛCDM simulations (Millennium, IllustrisTNG, EAGLE). The aetheric pressure concept has no equation of state, no coupling constant, and no prediction that differs from standard structure formation.</p>
+
+<p><strong>5. WIN-012 Published Template (ΔAIC > 100):</strong> A ΔAIC > 100 means one model fits the data better than another by a large margin. But AIC penalizes by number of parameters — it does not validate the physical interpretation. If you fit a model with a free coupling parameter to data that contains correlated electromagnetic interference (which the Halloween 2003 storm data does), the fit will be excellent. The question is whether the coupling is physical (gravity responds to magnetism) or instrumental (the accelerometer responds to electromagnetic drag). Every independent test (Membach SG: 0.0 μGal, China SG network: 0.0 μGal, CUORE Faraday attenuation: as expected) points to the instrumental explanation.</p>
+
+<p><strong>Rhetorical strategy:</strong> The infographic follows the same pattern catalogued throughout this review: name real datasets, isolate real anomalies, provide a real-sounding ratio, then assert a non-standard interpretation while framing the standard explanation as a cover-up. The "Reprocess the Archives" call-to-action invites the audience to feel like independent investigators rather than consumers of a predetermined narrative.</p>
 
 <!-- ═══ PART 4 ═══ -->
 <h1 id="part4">Part 4: Falsification Tests</h1>
