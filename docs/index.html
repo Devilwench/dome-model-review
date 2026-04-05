@@ -20,7 +20,9 @@ a:hover{text-decoration:none}
 .title-block h1{border:none;font-size:2.4rem;margin:.3rem 0}
 .title-block .subtitle{font-size:1.1rem;color:#666;margin:.2rem 0}
 .title-block .meta{font-size:.95rem;color:#999;margin-top:1rem}
-.scorecard{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:2rem 0;max-width:none}
+.scorecard{display:grid;gap:1.5rem;margin:2rem 0;max-width:none}
+.sc-hero{grid-template-columns:repeat(2,1fr)}
+.sc-breakdown{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:.5rem}
 .scorecard .sc-card{background:var(--card-bg);border:2px solid var(--border);border-radius:8px;padding:1.5rem 1.2rem;text-align:center;transition:all .2s}
 .scorecard .sc-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1);border-color:var(--accent)}
 .scorecard .sc-card .sc-number{font-size:2.8rem;font-weight:700;color:var(--heading);margin:.5rem 0}
@@ -28,6 +30,11 @@ a:hover{text-decoration:none}
 .scorecard .sc-card .sc-sublabel{font-size:.85rem;color:#888;line-height:1.4}
 .scorecard .sc-card.accent{border-color:var(--accent);background:rgba(74,111,165,0.05)}
 .scorecard .sc-card.accent .sc-number{color:var(--accent)}
+.scorecard .sc-card.sc-sm{padding:1rem .8rem}
+.scorecard .sc-card.sc-sm .sc-number{font-size:2rem;margin:.3rem 0}
+.scorecard .sc-card.sc-sm .sc-label{font-size:.85rem;margin:.4rem 0 .2rem}
+.scorecard .sc-card.sc-sm .sc-sublabel{font-size:.78rem}
+.sc-domains{grid-template-columns:repeat(3,1fr)}
 .verdict-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.5rem;margin:1rem 0}
 .verdict-legend .vl{padding:.5rem .8rem;border-radius:4px;font-size:.9rem}
 .vl-refuted{background:var(--refuted)}.vl-std{background:var(--stdmodel)}.vl-selfcon{background:var(--selfcon)}.vl-misleading{background:var(--misleading)}.vl-unfalsifiable{background:var(--unfalsifiable)}.vl-notdemo{background:var(--notdemo)}
@@ -75,7 +82,7 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 .nav-next{color:var(--link);background:var(--card-bg)}
 .nav-next:hover{background:var(--border)}
 
-@media(max-width:600px){body{padding:.5rem 1rem}h1{font-size:1.4rem}h2{font-size:1.2rem}table{font-size:.8rem}.tab-bar{padding:0.5rem .75rem;gap:.25rem}.tab-btn{padding:0.5rem 0.8rem;font-size:.85rem}.scorecard{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}}
+@media(max-width:600px){body{padding:.5rem 1rem}h1{font-size:1.4rem}h2{font-size:1.2rem}table{font-size:.8rem}.tab-bar{padding:0.5rem .75rem;gap:.25rem}.tab-btn{padding:0.5rem 0.8rem;font-size:.85rem}.sc-hero{grid-template-columns:1fr}.sc-breakdown{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem}.sc-domains{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -101,26 +108,51 @@ footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-
 <p class="meta">April 5, 2026 &nbsp;|&nbsp; Version 4<br>Source: <a href="https://john09289.github.io/predictions">john09289.github.io/predictions</a></p>
 </div>
 
-<div class="scorecard">
+<div class="scorecard sc-hero">
 <div class="sc-card">
 <div class="sc-number">67</div>
-<div class="sc-label">Claims Analyzed</div>
-<div class="sc-sublabel">Every claimed 'win' reviewed against source data</div>
+<div class="sc-label">Claimed "Wins"</div>
+<div class="sc-sublabel">The author claims 67 confirmed predictions and zero falsifications</div>
 </div>
 <div class="sc-card accent">
 <div class="sc-number">0</div>
-<div class="sc-label">Unique to Dome</div>
-<div class="sc-sublabel">No claim produces a result the globe model disagrees with that the dome uniquely explains</div>
+<div class="sc-label">Actual Wins</div>
+<div class="sc-sublabel">Not one claim produces a result that the globe model can't explain and the dome uniquely can</div>
 </div>
-<div class="sc-card">
+</div>
+
+<p style="text-align:center;font-size:.95rem;color:#888;margin:0 0 .5rem">Where the 67 claims actually land:</p>
+
+<div class="scorecard sc-breakdown">
+<div class="sc-card sc-sm" style="border-left:4px solid var(--refuted-border,#c45050)">
+<div class="sc-number">11</div>
+<div class="sc-label">Refuted by Data</div>
+<div class="sc-sublabel">Measurements directly contradict the claim</div>
+</div>
+<div class="sc-card sc-sm" style="border-left:4px solid var(--selfcon-border,#2d8abf)">
 <div class="sc-number">11</div>
 <div class="sc-label">Self-Contradicted</div>
-<div class="sc-sublabel">The dome's own math produces results that contradict the author's claims</div>
+<div class="sc-sublabel">The dome's own math gives the wrong answer</div>
 </div>
-<div class="sc-card">
-<div class="sc-number">14/20</div>
-<div class="sc-label">Share One Constant</div>
-<div class="sc-sublabel">The '9.2-sigma' dashboard reuses a single fitted number</div>
+<div class="sc-card sc-sm" style="border-left:4px solid var(--misleading-border,#c48a30)">
+<div class="sc-number">23</div>
+<div class="sc-label">Misleading</div>
+<div class="sc-sublabel">Data is cherry-picked, misrepresented, or duplicated</div>
+</div>
+<div class="sc-card sc-sm" style="border-left:4px solid var(--std-border,#4a8c4a)">
+<div class="sc-number">15</div>
+<div class="sc-label">Std Model Explains</div>
+<div class="sc-sublabel">Real observation, but mainstream physics already explains it</div>
+</div>
+<div class="sc-card sc-sm" style="border-left:4px solid var(--notdemo-border,#7b5eae)">
+<div class="sc-number">3</div>
+<div class="sc-label">Not Demonstrated</div>
+<div class="sc-sublabel">Based on unverified or unreplicated data</div>
+</div>
+<div class="sc-card sc-sm" style="border-left:4px solid var(--unfals-border,#888)">
+<div class="sc-number">4</div>
+<div class="sc-label">Unfalsifiable</div>
+<div class="sc-sublabel">Cannot be tested — typically theological claims</div>
 </div>
 </div>
 
@@ -836,6 +868,24 @@ Unfalsifiable: 4
 <h1 id="part3">Part 3: Live Power Dashboard &amp; Site Page Analysis</h1>
 
 <p>V51.0 introduces several new site pages: a "Live Power" convergence dashboard, a "Kill-Shot" binary test page, an "Audit Walkthrough" for AI models, a "Tracking" page, and a "Dielectric" infographic. The core claim across all of them is that 20 independent domains converge at 9.2σ significance. The core problem: <strong>14 of those 20 domains share the same fitted constant</strong>, making them one test repeated fourteen times, not fourteen independent confirmations.</p>
+
+<div class="scorecard sc-domains">
+<div class="sc-card">
+<div class="sc-number">20</div>
+<div class="sc-label">Domains Claimed</div>
+<div class="sc-sublabel">The dashboard presents 20 "independent" physical domains</div>
+</div>
+<div class="sc-card" style="border-left:4px solid #c45050">
+<div class="sc-number">14</div>
+<div class="sc-label">Share One Fitted Constant</div>
+<div class="sc-sublabel">All use λ<sub>g</sub> = 8,619 km — one curve fit, not fourteen tests</div>
+</div>
+<div class="sc-card accent">
+<div class="sc-number">0</div>
+<div class="sc-label">Distinguish Dome from Globe</div>
+<div class="sc-sublabel">In every domain, the globe predicts the same or better result</div>
+</div>
+</div>
 
 <h2>3.1 The "9.2-Sigma" Dashboard: One Constant, Not Twenty Tests</h2>
 
