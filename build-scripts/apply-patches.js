@@ -56,7 +56,14 @@ for (let i = 0; i < patches.length; i++) {
       skipped++;
       continue;
     }
-    const sectionId = p.section_id || p.target;
+    // Accept section_id, target, or parse from field (e.g., "part4.html" → section "part4", sub-field "html")
+    let sectionId = p.section_id || p.target;
+    let sectionField = field; // may be overridden below
+    if (!sectionId && p.field && p.field.includes('.')) {
+      const parts = p.field.split('.');
+      sectionId = parts[0];
+      sectionField = parts[1] || 'html';
+    }
     if (!sectionId) {
       console.log(`⏭  Patch ${num}: sections.json patch with no section_id, skipping`);
       skipped++;
@@ -70,7 +77,7 @@ for (let i = 0; i < patches.length; i++) {
     }
     // Search the html field (primary) and title field
     const sectionFields = ['html', 'title'];
-    const targetField = field && sectionFields.includes(field) ? field : 'html';
+    const targetField = sectionField && sectionFields.includes(sectionField) ? sectionField : 'html';
     const fieldsToSearch = [targetField, ...sectionFields.filter(f => f !== targetField)];
 
     let matched = false;
