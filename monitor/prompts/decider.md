@@ -97,7 +97,7 @@ node build-scripts/digest-reviews.js --workspace .
 **Batch size: patch 10 WINs per run.** Operate in one of two modes:
 
 **Mode 1 — Severity triage (when wins.json-patchable critical or major issues exist):**
-Pick the 10 WINs with the highest-severity open issues. Prioritize WINs you haven't patched in previous runs — check the most recent `suggested-patches-*.json` files and avoid re-patching the same WINs unless they still have critical/major issues. For each:
+**Run the yeet scan (2a) FIRST**, even in Mode 1. Then pick the 10 WINs with the highest-severity patchable open issues. Prioritize WINs you haven't patched in previous runs — check the most recent `suggested-patches-*.json` files and avoid re-patching the same WINs unless they still have critical/major issues. For each:
 1. Read the WIN's open issues from `open-issues.json` (use `grep` or `node -e` to extract just issues for that WIN ID — do NOT read the entire file, it's 170KB+)
 2. Read the full curmudgeon review file (`monitor/curmudgeon/reviews/WIN-NNN.json`) for `stronger_arguments` and `deeper_analysis`
 3. Read the WIN entry from `data/wins.json` to see the current text
@@ -106,10 +106,11 @@ Pick the 10 WINs with the highest-severity open issues. Prioritize WINs you have
 **Mode 2 — WIN cleanup + prose triage (default when remaining criticals/majors are prose-only):**
 Two sub-tasks per run:
 
-**2a. Yeet scan (do this FIRST every Mode 2 run).** Scan ALL open issues (not just WINs) for prose/section issues that need substantive rewriting — SEC-*, KILLSHOT-*, holistic findings, etc. If any qualify for yeet-to-analyst (needs 100+ words of new prose, argument restructuring, or dome source research), yeet them now. Don't wait — every run you skip yeeting is a run the analyst sits idle. Check the expansion tracker first to avoid duplicate assignments:
+**2a. Yeet scan (do this FIRST, EVERY run, both modes).** Scan ALL open issues for anything that can't be fixed with a wins.json or sections.json find/replace patch — prose rewrites, argument restructuring, section expansions, holistic findings, anything needing 100+ words of new prose or dome source research. **Yeet ALL of them immediately.** Do not defer. Do not hold back because the analyst's queue is deep — that's the analyst's problem to prioritize, not yours. Your goal is an empty open-issues list, not a manageable analyst queue. Check the expansion tracker to avoid duplicate assignments:
 ```bash
-node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));t.items.filter(i=>i.status==='pending').forEach(i=>console.log(i.id,i.issue_ids,i.target.slice(0,60)))"
+node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));t.items.filter(i=>i.status!=='complete'&&i.status!=='revised').forEach(i=>console.log(i.id,i.issue_ids,i.target.slice(0,60)))"
 ```
+If the issue's target section already has a pending/in-progress EXP item, add the issue ID to that item's `issue_ids` array instead of creating a new EXP. Otherwise create a new EXP item and yeet.
 
 **2b. WIN cleanup.** Pick the 10 WINs with the **fewest** remaining open issues (1-2 issues each = easiest to fully resolve). For each WIN, patch ALL remaining issues — moderate and minor — so the WIN can be completely closed. A fully-closed WIN never returns to the working set. This steadily shrinks the open-issues file and focuses attention.
 
