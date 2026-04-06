@@ -197,6 +197,16 @@ td.v-notdemo{background:var(--notdemo);font-weight:700}
 .evidence p{margin:.4rem 0}
 .verdict-tag{display:inline-block;padding:.15rem .5rem;border-radius:3px;font-weight:700;font-size:.85rem;margin:.3rem 0;border-left:3px solid transparent}
 .vt-refuted{background:var(--refuted);border-left-color:var(--refuted-solid)}.vt-std{background:var(--stdmodel);border-left-color:var(--stdmodel-solid)}.vt-selfcon{background:var(--selfcon);border-left-color:var(--selfcon-solid)}.vt-misleading{background:var(--misleading);border-left-color:var(--misleading-solid)}.vt-unfalsifiable{background:var(--unfalsifiable);border-left-color:var(--unfalsifiable-solid)}.vt-notdemo{background:var(--notdemo);border-left-color:var(--notdemo-solid)}
+.ca-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0 .2rem;padding:.5rem 0 0;border-top:1px solid var(--border)}
+.ca-tag{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:600;padding:.2rem .5rem;border-radius:3px;background:#f0f0f0;color:#555;border:1px solid #ddd}
+.ca-tag.tag-true{background:#FFF3E0;color:#BF360C;border-color:#FFCC80}
+.ca-tag.tag-false{background:#E8F5E9;color:#2E7D32;border-color:#A5D6A7}
+.ca-tag.tag-monitoring-hardcoded{background:#FFEBEE;color:#B71C1C;border-color:#EF9A9A}
+.ca-tag.tag-monitoring-live{background:#E8F5E9;color:#1B5E20;border-color:#A5D6A7}
+.ca-tag.tag-monitoring-none{background:#FFF8E1;color:#F57F17;border-color:#FFE082}
+.ca-tag .ca-icon{font-size:.8rem}
+.ca-label{font-size:.7rem;color:#888;font-weight:400;margin-right:.3rem}
+.ca-tag.tag-pending{background:#f5f5f5;color:#999;border-color:#e0e0e0}
 nav.toc{background:var(--card-bg);border:1px solid var(--border);border-radius:6px;padding:1.2rem 1.5rem;margin:1.5rem 0}
 nav.toc ul{list-style:none;padding-left:1.2rem}
 nav.toc>ul{padding-left:0}
@@ -293,9 +303,57 @@ function formatWinDetail(win) {
     html += `<p>${win.detail_extra}</p>\n`;
   }
 
+  // Code analysis tags
+  html += formatCodeAnalysisTags(win);
+
   html += `</div>
 `;
   return html;
+}
+
+function formatCodeAnalysisTags(win) {
+  const ca = win.code_analysis;
+  if (!ca) {
+    return `<div class="ca-tags"><span class="ca-label">Code analysis:</span><span class="ca-tag tag-pending"><span class="ca-icon">\u2026</span> Pending review</span></div>\n`;
+  }
+  if (!ca.reviewed) {
+    return `<div class="ca-tags"><span class="ca-label">Code analysis:</span><span class="ca-tag tag-pending"><span class="ca-icon">\u2026</span> Pending review</span></div>\n`;
+  }
+
+  let tags = '<div class="ca-tags"><span class="ca-label">Code analysis:</span>';
+
+  // Monitoring
+  if (ca.monitoring === 'hardcoded') {
+    tags += '<span class="ca-tag tag-monitoring-hardcoded"><span class="ca-icon">\u26A0</span> Hardcoded check</span>';
+  } else if (ca.monitoring === 'live_fetch') {
+    tags += '<span class="ca-tag tag-monitoring-live"><span class="ca-icon">\u25C9</span> Live monitoring</span>';
+  } else {
+    tags += '<span class="ca-tag tag-monitoring-none"><span class="ca-icon">\u2298</span> No monitoring</span>';
+  }
+
+  // Relabels standard
+  if (ca.relabels_standard) {
+    tags += '<span class="ca-tag tag-true"><span class="ca-icon">\u21BB</span> Relabels standard physics</span>';
+  } else {
+    tags += '<span class="ca-tag tag-false"><span class="ca-icon">\u2713</span> Original to dome</span>';
+  }
+
+  // Post-hoc
+  if (ca.post_hoc) {
+    tags += '<span class="ca-tag tag-true"><span class="ca-icon">\u25F7</span> Post-hoc</span>';
+  } else {
+    tags += '<span class="ca-tag tag-false"><span class="ca-icon">\u2713</span> Prospective</span>';
+  }
+
+  // Derives from dome
+  if (ca.derives_from_dome) {
+    tags += '<span class="ca-tag tag-false"><span class="ca-icon">\u2713</span> Derived from dome</span>';
+  } else {
+    tags += '<span class="ca-tag tag-true"><span class="ca-icon">\u2717</span> Not derived from dome</span>';
+  }
+
+  tags += '</div>\n';
+  return tags;
 }
 
 function sectionNav(prevTab, prevLabel, nextTab, nextLabel) {
