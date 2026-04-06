@@ -1,0 +1,38 @@
+{
+  "description": "Queue of section expansion tasks for the analyst. Each item references a curmudgeon review that found major weaknesses. The analyst writes complete replacement text, one item per run.",
+  "items": [
+    {
+      "id": "EXP-001",
+      "target": "KILLSHOT-GAIA section (Part 4.3 in generate-html.js, or sections.json after extraction)",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA.json",
+      "priority": "high",
+      "status": "pending",
+      "notes": "Current section is ~100 words, should be 500+. Curmudgeon found 7 holes including 2 majors: (1) we strawman the dome — they claim firmament wobble, not local sun producing parallax; (2) drastically underdeveloped vs other kill-shots. Also missing: refraction escape hatch, 4.7B firmament-heights ratio, New Horizons experiment.",
+      "created_at": "2026-04-06T19:50:00Z",
+      "completed_at": null,
+      "output_file": null
+    },
+    {
+      "id": "EXP-002",
+      "target": "KILLSHOT-GPS section (Part 4.2 in generate-html.js, or sections.json after extraction)",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/KILLSHOT-GPS.json",
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Curmudgeon review pending or just completed. Check review file for holes before expanding.",
+      "created_at": "2026-04-06T19:50:00Z",
+      "completed_at": null,
+      "output_file": null
+    },
+    {
+      "id": "EXP-003",
+      "target": "Section 4.5.9 (V13 coordinate system) — d_geo rewrite",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-4.5.9.json",
+      "priority": "high",
+      "status": "pending",
+      "notes": "ISS-415 CRITICAL: our section falsely claims d_geo is undefined. V13 defines it explicitly. Rewrite must use the π×R critique: a=20,015 km is a spherical surface distance with no flat-disc derivation. Full rewrite spec in monitor/prompts/prose-extraction-task.md item 5. Dome source: monitor/baseline/04-coordinates.txt lines 29-34.",
+      "created_at": "2026-04-06T19:50:00Z",
+      "completed_at": null,
+      "output_file": null
+    }
+  ]
+}
