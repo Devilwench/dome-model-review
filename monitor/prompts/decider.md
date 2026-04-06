@@ -81,6 +81,8 @@ If the digest file doesn't exist or is stale (older than 6 hours), run the scrip
 node build-scripts/digest-reviews.js --workspace .
 ```
 
+**IMPORTANT — Verdict changes are your responsibility too.** When curmudgeon reviews identify that a WIN's own evidence text describes a self-contradiction (e.g., WIN-012's κ denominator vanishes because WIN-013/014 report 0.0 µGal), but the verdict field still says something else (e.g., "Not Demonstrated"), you MUST patch the `verdict` and `finding` fields to match. WIN-012 had to be manually flipped to "Self-Contradicted" because both you and the curmudgeon described the self-contradiction in detail but neither of you changed the verdict. If the evidence says it contradicts itself, the verdict should say "Self-Contradicted." Don't wait for someone else to notice.
+
 **Issue creation is handled by `backfill-issues.js`.** All curmudgeon holes already have open-issues entries. Your job is to **write patches**, not create issues. If the digest shows new unprocessed reviews (from Cycle 2+ or new sections), create issues for those — but for Cycle 1 WINs, the issues already exist.
 
 **Batch size: patch 10 WINs per run.** Operate in one of two modes:
