@@ -315,24 +315,153 @@ for (const win of wins) {
 
 // sections.json validation (if it exists)
 if (fs.existsSync(SECTIONS_PATH)) {
-  console.log('\n── 6. sections.json ──');
+  console.log('\n── 6. sections.json Schema ──');
   try {
     const sections = JSON.parse(fs.readFileSync(SECTIONS_PATH, 'utf8'));
     assert(typeof sections === 'object' && !Array.isArray(sections),
       'sections.json is an object');
 
-    // Each section should have required fields
-    for (const [key, section] of Object.entries(sections)) {
+    // Expected sections (all must be present)
+    const EXPECTED_SECTIONS = [
+      'part1', 'part1b', 'part2', 'part3', 'part3b',
+      'part4', 'part4b', 'part4c', 'part5', 'part6', 'part7'
+    ];
+
+    const VALID_TABS = [
+      'overview', 'evaluate', 'wins', 'pages', 'predictions',
+      'falsify', 'selftest', 'code', 'ai', 'refs'
+    ];
+
+    // _meta is optional but skip it in section checks
+    const sectionKeys = Object.keys(sections).filter(k => k !== '_meta');
+
+    for (const expected of EXPECTED_SECTIONS) {
+      assert(sectionKeys.includes(expected),
+        `sections.json contains expected section '${expected}'`);
+    }
+
+    // Each section should have required fields and valid values
+    for (const key of sectionKeys) {
+      const section = sections[key];
+
       assert(typeof section.title === 'string' && section.title.length > 0,
-        `Section '${key}' has a title`);
+        `Section '${key}' has a non-empty title`);
       assert(typeof section.html === 'string' && section.html.length > 0,
-        `Section '${key}' has html content`);
-      assert(typeof section.tab === 'string',
-        `Section '${key}' has a tab assignment`);
+        `Section '${key}' has non-empty html content`);
+      assert(typeof section.tab === 'string' && VALID_TABS.includes(section.tab),
+        `Section '${key}' tab '${section.tab}' is a valid tab ID`);
+      assert(typeof section.id === 'string' && section.id === key,
+        `Section '${key}' id matches its key`);
+
+      // Minimum content length sanity check (catch truncated extractions)
+      assert(section.html.length > 100,
+        `Section '${key}' has substantial content (${section.html.length} chars, min 100)`);
+
+      // Placeholder tokens should be well-formed (no broken/partial tokens)
+      const brokenPlaceholders = section.html.match(/\{\{[^}]*$/gm) || [];
+      assert(brokenPlaceholders.length === 0,
+        `Section '${key}' has no broken placeholder tokens`);
+
+      // All placeholder tokens should match the expected pattern
+      const placeholders = section.html.match(/\{\{[A-Z_]+\}\}/g) || [];
+      for (const ph of placeholders) {
+        assert(/^\{\{[A-Z][A-Z0-9_]+\}\}$/.test(ph),
+          `Section '${key}' placeholder '${ph}' is well-formed`);
+      }
+
+      // No raw template literal interpolations should remain
+      const rawInterps = section.html.match(/\$\{[^}]+\}/g) || [];
+      assert(rawInterps.length === 0,
+        `Section '${key}' has no raw \${...} interpolations (found ${rawInterps.length}: ${rawInterps.slice(0,3).join(', ')})`);
+
+      // HTML should not contain script tags (those belong in the generator, not the data)
+      const scriptTags = section.html.match(/<script[\s>]/gi) || [];
+      assert(scriptTags.length === 0,
+        `Section '${key}' has no <script> tags (scripts belong in generator)`);
     }
   } catch (e) {
     assert(false, `sections.json is valid JSON: ${e.message}`);
   }
+}
+
+// ════════════════════════════════════════════
+// 7. Prose content integrity (structural checks independent of sections.json)
+// ════════════════════════════════════════════
+
+if (html) {
+  console.log('\n── 7. Prose Content Integrity ──');
+
+  // Every expected Part heading should appear in the HTML
+  const EXPECTED_PARTS = [
+    { id: 'part1', pattern: 'Part 1' },
+    { id: 'part1b', pattern: 'Part 1.5' },
+    { id: 'part2', pattern: 'Part 2' },
+    { id: 'part3', pattern: 'Part 3' },
+    { id: 'part3b', pattern: 'Part 3.5' },
+    { id: 'part4', pattern: 'Part 4' },
+    { id: 'part4b', pattern: 'Part 4.5' },
+    { id: 'part4c', pattern: 'Part 4.6' },
+    { id: 'part5', pattern: 'Part 5' },
+    { id: 'part6', pattern: 'Part 6' },
+    { id: 'part7', pattern: 'Part 7' },
+  ];
+
+  for (const part of EXPECTED_PARTS) {
+    assert(html.includes(`id="${part.id}"`),
+      `HTML contains heading with id="${part.id}"`);
+    assert(html.includes(part.pattern),
+      `HTML contains "${part.pattern}" text`);
+  }
+
+  // Re-extract tab IDs for this scope
+  const tabContentRegex2 = /class="tab-content[^"]*"\s+id="([^"]+)"/g;
+  const definedTabs2 = new Set();
+  let m2;
+  while ((m2 = tabContentRegex2.exec(html)) !== null) {
+    definedTabs2.add(m2[1]);
+  }
+
+  // Each tab-content div should have non-trivial content
+  for (const tab of definedTabs2) {
+    const tabRegex = new RegExp(`id="${tab}"[^>]*>([\\s\\S]*?)(?=<div[^>]*class="tab-content"|$)`);
+    const tabMatch = html.match(tabRegex);
+    if (tabMatch) {
+      // Strip HTML tags to get text content length
+      const textContent = tabMatch[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+      assert(textContent.length > 50,
+        `Tab '${tab}' has substantial text content (${textContent.length} chars)`);
+    }
+  }
+
+  // Key scientific phrases that MUST appear in the HTML (canary content)
+  // If any of these disappear, prose was likely truncated or dropped
+  const CANARY_PHRASES = [
+    'Schumann resonance',           // Part 1 / WIN-002
+    'H(r)',                         // firmament height function (Part 4.5)
+    'monitor.py',                   // code analysis (Part 4.6)
+    'inject_ai_layer',              // AI steering (Part 5)
+    'falsification',                 // methodology (Part 4)
+    'kill-shot',                    // Part 4 kill shots
+    '95.2%',                        // accuracy claim discussion
+    'aetheric',                     // dome model terminology
+    'self-contradict',              // key verdict category discussion
+  ];
+
+  for (const phrase of CANARY_PHRASES) {
+    const found = html.toLowerCase().includes(phrase.toLowerCase());
+    assert(found, `HTML contains canary phrase "${phrase}" (content integrity check)`);
+  }
+
+  // No unresolved placeholder tokens should appear in final HTML
+  const unresolvedPlaceholders = html.match(/\{\{[A-Z_]+\}\}/g) || [];
+  assert(unresolvedPlaceholders.length === 0,
+    `HTML has no unresolved {{PLACEHOLDER}} tokens (found ${unresolvedPlaceholders.length}: ${unresolvedPlaceholders.slice(0,5).join(', ')})`);
+
+  // No raw template literal syntax should appear in final HTML
+  // (would indicate a build error where interpolation wasn't resolved)
+  const rawTemplateLeaks = html.match(/\$\{(?:counts|wins|tally|total|newInV51)/g) || [];
+  assert(rawTemplateLeaks.length === 0,
+    `HTML has no leaked template literals (found ${rawTemplateLeaks.length}: ${rawTemplateLeaks.slice(0,3).join(', ')})`);
 }
 
 // ════════════════════════════════════════════
