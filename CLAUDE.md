@@ -29,8 +29,8 @@ Requires: Node.js, LibreOffice (for PDF conversion via headless mode)
 ### File Map
 
 ```
-data/wins.json                    # 67 WINs: claims, verdicts, findings, detail writeups
-build-scripts/generate-html.js    # Generates docs/index.html from wins.json
+data/wins.json                    # 67 WINs: claims, verdicts, findings, detail writeups, code_analysis tags
+build-scripts/generate-html.js    # Generates docs/index.html from wins.json (all counts computed at build time)
 build-scripts/build-doc-v4.js     # Generates DOCX from wins.json (uses docx-js)
 build-scripts/add-references.js   # Injects clickable hyperlinks into wins.json
 build.js                          # Unified pipeline orchestrator
@@ -38,6 +38,12 @@ docs/index.html                   # Generated HTML (GitHub Pages) — DO NOT EDI
 downloads/*.docx, *.pdf           # Generated document outputs
 raw-text/                         # Extracted ECM site content (current version)
 raw-text-v50.6-2026-03-12/        # Archived V50.6 baseline for version comparison
+monitor/prompts/                  # Agent prompt files (editable markdown — see Monitoring Pipeline)
+monitor/curmudgeon/tracker.json   # Curmudgeon progress tracker with lifecycle phases
+monitor/decisions/open-issues.json # Persistent issue tracker across sessions
+monitor/integrity/                # Structure & integrity check reports
+monitor/external-reports/         # Permanent log of all external problem reports (GitHub Issues)
+.github/ISSUE_TEMPLATE/           # "Report a Problem" structured issue template
 security-audit.md                 # Website security scan results
 ```
 
@@ -46,13 +52,56 @@ security-audit.md                 # Website security scan results
 - `docx` (^9.6.1) — Word document generation
 - `adm-zip` (^0.5.17) — DOCX bookmark ID post-processing fix
 
+## Monitoring Pipeline
+
+Five scheduled agents run continuously. All prompts live in `monitor/prompts/*.md` — edit the markdown to change agent behavior. The scheduled tasks are thin wrappers that just read the prompt file.
+
+| Agent | Schedule | Model | Prompt File | Purpose |
+|-------|----------|-------|-------------|---------|
+| dome-poller | Every 4h | Sonnet | `monitor/prompts/poller.md` | Detect changes on the dome site |
+| dome-analyst | Every 8h | Opus | `monitor/prompts/analyst.md` | Deep scientific analysis of changes |
+| dome-curmudgeon | Every 15min | Opus | `monitor/prompts/curmudgeon.md` | Adversarial self-review of our arguments |
+| dome-decider | Daily 6:30 AM | Opus | `monitor/prompts/decider.md` | Triage, morning briefing, suggested patches |
+| dome-integrity | Daily 9:00 AM | Haiku | `monitor/prompts/structure-integrity.md` | Site health: links, tabs, build drift, data-prose consistency |
+
+### Data Flow
+
+```
+Poller → changes/ → Analyst → analysis/ ─┐
+Curmudgeon → reviews/ + alerts.txt ──────┤
+Integrity → integrity/report-*.json ─────┤
+                                          └→ Decider → morning-briefing.txt + suggested-patches.json + open-issues.json
+```
+
+### Curmudgeon Lifecycle
+
+The curmudgeon operates in three phases, tracked in `monitor/curmudgeon/tracker.json`:
+
+- **Phase 1** (current): Per-item review — 67 WINs, then sections (SEC-*), prose items, kill-shots. Produces `code_analysis_tags` for each WIN (monitoring, relabels_standard, post_hoc, derives_from_dome).
+- **Phase 2**: Holistic review — 9 document-level checks (narrative arc, verdict taxonomy, cross-references, counter-narrative stress test, etc.)
+- **Phase 3**: Repaint — cycle increments, all items reset to pending, start over. The bridge never stops being painted.
+
+### Issue Tracking
+
+`monitor/decisions/open-issues.json` is the persistent issue tracker. The decider maintains it daily — adding new issues from curmudgeon/integrity, marking fixed issues, producing suggested-patches.json with exact find/replace text for batch application. Every open issue must have a rationale for why it isn't fixed yet.
+
+### External Problem Reporting
+
+Anyone (human or AI) can report errors via GitHub Issues using the structured "Report a Problem" template (`.github/ISSUE_TEMPLATE/report-a-problem.yml`). Reports auto-label as `external-report` and flow through the pipeline:
+
+1. **Analyst** checks for new `external-report` issues each run, applies kernel-of-truth analysis, logs permanently to `monitor/external-reports/report-{issue-number}.json`
+2. **Decider** reads external report logs, creates open issues, comments on the GitHub issue with the decision
+3. **All reports are logged permanently** in `monitor/external-reports/` regardless of outcome — accepted, rejected, or duplicate
+
+Links to the report form appear in the Evaluation Guide (Principle 6), the AI Review section, and the site footer.
+
 ## Verdict Categories
 
 | Verdict | Count | Color (light) | Description |
 |---------|-------|---------------|-------------|
-| Refuted by Data | 11 | #FFCCCC | External measurements directly contradict the claim |
+| Refuted by Data | 10 | #FFCCCC | External measurements directly contradict the claim |
 | Self-Contradicted | 11 | #B3E5FC | Dome's own geometry/equations contradict the claimed values |
-| Std Model Explains | 15 | #C8E6C9 | Standard physics already predicts the same observation |
+| Std Model Explains | 16 | #C8E6C9 | Standard physics already predicts the same observation |
 | Misleading | 23 | #FFE0B2 | Cherry-picked, duplicated, circular, or non-discriminating |
 | Not Demonstrated | 3 | #D1C4E9 | Built on unconfirmed data or circular derivations |
 | Unfalsifiable | 4 | #E0E0E0 | Theological assertions with no testable physical content |
@@ -70,6 +119,16 @@ Each entry has:
 - `detail_verdict_text`: Verdict reasoning (HTML allowed)
 - `detail_extra`: Optional additional analysis (HTML allowed, can be null)
 - `detail_group`: Optional grouping key for related WINs (e.g., "WIN-045/046/049/050/051")
+- `code_analysis`: Structural tags populated by curmudgeon review (null if not yet reviewed):
+  - `monitoring`: "hardcoded" | "live_fetch" | "none" — what monitor.py actually does for this WIN
+  - `relabels_standard`: boolean — does this WIN just rename a standard physics explanation?
+  - `post_hoc`: boolean — was the observation known before the dome "predicted" it?
+  - `derives_from_dome`: boolean — is the prediction derived from dome geometry or just adopted?
+  - `reviewed`: boolean — has the curmudgeon validated these tags?
+
+### Computed Counts (never hardcode)
+
+All numerical counts in the HTML prose are computed from wins.json at build time in `generate-html.js`. This includes verdict tallies, total WINs, new-in-V51 count, and code_analysis statistics (reviewed, pending, hardcoded, live_fetch, none, relabels_standard, post_hoc, derives_from_dome). Never hardcode a number that can be derived from the data — we criticize the dome model for doing exactly that.
 
 ## Key Scientific Arguments
 
@@ -91,12 +150,13 @@ Each entry has:
 - GPS requires Keplerian orbits at 20,200 km + relativistic corrections
 - Model's own "Open Problems" (OPEN-001, 003, 007) concede it can't function without WGS84
 
-### Repository Source Code Findings
-- **Sun/firmament collision**: Sun at 5,733 km exceeds firmament H(r) ≈ 4,200 km at that radius; author's `update_optical_caveats.py` injects "optical illusion" rule
-- **AI-steering scripts**: `inject_ai_layer.py` (CORS for Claude, HuggingFace deployment), `update_optical_caveats.py` (suppress geometric contradictions)
-- **Curve-fitting confirmation**: `test_curve_stretching.py`, `find_curve.py` confirm iterative fitting to WGS84
-- **95.2% accuracy is hardcoded**: Static HTML string with no computation — no script in the repo calculates it; cannot be reproduced from the repo's own data (API gives 96.3%, 97.0%, or 89.3%/94.7% depending on source)
-- **Author**: Nick Hughes (GitHub Nhughes09, HuggingFace ndwdgda), no online presence promoting the model
+### Repository Source Code Findings (Part 4.6)
+- **Monitoring illusion**: 20/31 reviewed WINs use hardcoded pred=obs checks, 5 have no validation at all, only 6 fetch live data
+- **Relabeling standard physics**: 14/31 reviewed WINs rename standard physics mechanisms as "aetheric" without changing any numerical prediction
+- **Post-hoc retrodiction**: 21/31 reviewed WINs adopt published observations as "predictions" after the fact; only 1 derives from dome geometry
+- **95.2% accuracy is hardcoded**: Static HTML string with no computation — no script in the repo calculates it
+- **Sun/firmament collision**: Sun at 5,733 km exceeds firmament H(r) ≈ 4,200 km at that radius
+- **AI-steering scripts**: `inject_ai_layer.py`, `update_optical_caveats.py` suppress geometric contradictions
 - **Dome core parameters** (from inject_ai_layer.py): disc_radius=20,015 km, firmament_height=9,086 km, sun_altitude=5,733 km, moon_altitude=2,534 km
 
 ## Known Technical Issues
@@ -105,7 +165,7 @@ Each entry has:
 The `docx` npm package generates duplicate bookmark IDs (all set to 0), which makes the DOCX invalid in some readers. `build.js` post-processes the DOCX using `adm-zip` to assign sequential unique IDs.
 
 ### Prose Sections
-Parts 1, 1.5, 3, 4, 4.5, 5, 6, 7 are hardcoded HTML strings in `generate-html.js` and hardcoded paragraph builders in `build-doc-v4.js`. Updating prose requires editing both files. A future improvement would be extracting prose into a `data/sections.json`.
+Parts 1, 1.5, 3, 4, 4.5, 4.6, 5, 6, 7 are hardcoded HTML strings in `generate-html.js` and hardcoded paragraph builders in `build-doc-v4.js`. Updating prose requires editing both files. A future improvement would be extracting prose into a `data/sections.json`.
 
 ## How to Make Changes
 
@@ -127,6 +187,10 @@ Parts 1, 1.5, 3, 4, 4.5, 5, 6, 7 are hardcoded HTML strings in `generate-html.js
 2. Edit the corresponding section in `build-scripts/build-doc-v4.js`
 3. Run `node build.js`
 
+### Change agent behavior
+1. Edit the relevant prompt file in `monitor/prompts/`
+2. Changes take effect on the agent's next scheduled run — no task reconfiguration needed
+
 ## Version History
 
 | Version | Commit | Key Changes |
@@ -145,6 +209,8 @@ Parts 1, 1.5, 3, 4, 4.5, 5, 6, 7 are hardcoded HTML strings in `generate-html.js
 | V4.9.1 | a0a9dc6 | Kill-Shot test card layout with status badges |
 | V4.9.2 | afaf462 | 95.2% accuracy traced to hardcoded HTML (no computation) |
 | V4.9.3 | 991c9ae | Parked Dielectric infographic section (preserved in source) |
+| V4.9.4 | 3ff6282 | Part 4.6 (code analysis), computed counts, WIN-025/033/034 fixes, code_analysis tags |
+| V4.9.5 | 5a608f7 | "Report a Problem" external reporting via GitHub Issues, permanent logging pipeline |
 
 ## Parked Content
 

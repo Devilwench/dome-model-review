@@ -1,6 +1,6 @@
 # Dome Model Review — Session Context for AI Continuity
 
-**Last updated:** 2026-04-05 (context windows 5–8)
+**Last updated:** 2026-04-06 (context windows 5–9)
 **Repository:** https://github.com/funwithscience-org/dome-model-review
 **Live site:** https://funwithscience-org.github.io/dome-model-review
 **Version reviewed:** Ovoid Cavity Cosmological Model V51.0 (April 2026)
@@ -10,7 +10,7 @@
 
 ## 1. Project Overview
 
-This is a comprehensive, data-driven critical review of a flat-earth dome model that claims 67 confirmed predictions and zero falsifications. Our review finds: 11 refuted by data, 11 self-contradicted, 23 misleading, 15 explained by standard model, 3 not demonstrated, 4 unfalsifiable. Zero of 67 are uniquely explained by the dome.
+This is a comprehensive, data-driven critical review of a flat-earth dome model that claims 67 confirmed predictions and zero falsifications. Our review finds: 10 refuted by data, 11 self-contradicted, 23 misleading, 16 explained by standard model, 3 not demonstrated, 4 unfalsifiable. Zero of 67 are uniquely explained by the dome.
 
 The review is built to be transparent, fair, and scientifically rigorous — we acknowledge where the dome model shows genuine sophistication (V13 Finsler coordinates, cryptographic timestamping, toroidal architecture) while documenting where claims fail.
 
@@ -303,9 +303,88 @@ dome-model-review/
 ├── raw-text/                         # Extracted ECM V51.0 site content
 ├── raw-text-v50.6-2026-03-12/        # Archived V50.6 baseline for version comparison
 ├── security-audit.md                 # Website security scan results
+├── monitor/
+│   ├── prompts/                      # Agent prompt files (editable markdown)
+│   │   ├── poller.md                 # Poller: change detection
+│   │   ├── analyst.md                # Analyst: deep scientific analysis
+│   │   ├── curmudgeon.md             # Curmudgeon: adversarial self-review + code_analysis tags
+│   │   ├── decider.md                # Decider: triage, patches, morning briefing
+│   │   └── structure-integrity.md    # Integrity: site health checks
+│   ├── curmudgeon/
+│   │   ├── tracker.json              # Review progress + lifecycle phases
+│   │   ├── reviews/WIN-NNN.json      # Per-WIN review output (34 complete)
+│   │   └── alerts.txt                # Critical/major issues
+│   ├── decisions/
+│   │   ├── open-issues.json          # Persistent issue tracker
+│   │   ├── suggested-patches.json    # Find/replace patches for batch application
+│   │   └── morning-briefing.txt      # Daily briefing for human review
+│   ├── integrity/
+│   │   └── report-YYYY-MM-DD.json    # Daily site health report
+│   ├── changes/                      # Poller change records
+│   ├── analysis/                     # Analyst output
+│   ├── baseline/                     # Baseline hashes for change detection
+│   ├── status.json                   # Pipeline state
+│   ├── review-state.json             # Review version, canary traps, known discrepancies
+│   └── config.json                   # Monitor configuration
 ├── CLAUDE.md                         # Project context (shorter, overlaps this file)
 ├── README.md                         # Public-facing repo documentation
 ├── SESSION-CONTEXT.md                # This file — full session continuity context
 ├── package.json                      # Dependencies: docx ^9.6.1, adm-zip ^0.5.17
 └── .gitignore                        # Excludes node_modules/, package-lock.json
 ```
+
+---
+
+## 11. Context Window 9 — Monitoring Pipeline & Code Analysis (2026-04-06)
+
+### Major additions this session
+
+**Part 4.6: Repository Code Analysis** — Three new structural argument sections added to the selftest tab in generate-html.js, using computed counts from code_analysis tags in wins.json:
+- 4.6.1 The Monitoring Illusion: 20/31 hardcoded, 5/31 no validation, only 6/31 fetch live data
+- 4.6.2 Relabeling Standard Physics: 14/31 rename standard mechanisms as "aetheric"
+- 4.6.3 Post-Hoc Retrodiction: 21/31 adopt known observations as "predictions"; only 1 derives from dome geometry
+
+**Computed counts**: ALL numerical values in HTML prose are now computed from wins.json at build time (verdict tallies, total WINs, new-in-V51 count, code_analysis statistics). No hardcoded numbers remain in prose. This was done to avoid the same antipattern we criticize the dome model for (hardcoding "95.2%").
+
+**code_analysis schema** added to wins.json: `{monitoring: "hardcoded"|"live_fetch"|"none", relabels_standard: bool, post_hoc: bool, derives_from_dome: bool, reviewed: bool}`. 31 WINs have tags from the initial batch review; the curmudgeon now validates and populates tags as it reviews WIN-032+.
+
+**Five-agent monitoring pipeline** with externalized prompts in `monitor/prompts/*.md`:
+- Poller (Sonnet/4h): Change detection on dome site
+- Analyst (Opus/8h): Deep scientific analysis with kernel-of-truth methodology
+- Curmudgeon (Opus/15min): Adversarial per-WIN review with code_analysis tag validation
+- Decider (Opus/daily 6:30 AM): Triage, suggested patches, morning briefing, persistent issue tracking
+- Structure & Integrity (Haiku/daily 9 AM): Site health — internal anchors, tab navigation, external links (no DOIs), data-prose consistency, build reproducibility
+
+**Curmudgeon lifecycle**: Phase 1 (per-item: 67 WINs + sections + prose) → Phase 2 (9 holistic checks: narrative arc, taxonomy, cross-refs, stress test, etc.) → Phase 3 (repaint: cycle increments, start over). Currently at WIN-034 in Phase 1.
+
+**Persistent issue tracker** (`monitor/decisions/open-issues.json`): 32 issues tracked, 11 fixed, 21 open. Decider required to acknowledge every open issue with rationale for deferral.
+
+### Specific fixes applied (V4.9.4)
+
+- **WIN-025**: False "Removed by Author" claim corrected. Dome site lists it as CONFIRMED. Verdict changed Misleading→Std Model Explains. Added Sq current mechanism (Chapman 1933).
+- **WIN-007/022**: NMP acceleration rewrite — acknowledge abruptness, add Livermore 2020 flux lobe mechanism, post-hoc argument, "phase transition" category error.
+- **WIN-008/009**: Wrong DOI (Bardzokas elasticity) replaced with Chave & Jones 2012. Added 14.3 Hz harmonic falsification.
+- **WIN-011**: Tibet→Heilongjiang, +15.7→−6.5 μGal.
+- **WIN-013**: Van Camp citation fix. **WIN-014**: Wrong DOI removed. **WIN-018**: RMS 6.9→8.8. **WIN-021**: rad/s²→rad/s. **WIN-023**: CHAOS-7→Campuzano 2019.
+- **WIN-033**: Removed false "~130 ly" distances, fixed luminosity 30→40 L☉, replaced unsourced six-star claim with Gaia DR3 1.8B-star photometric evidence.
+- **WIN-034**: Replaced vulnerable radar argument with radio astronomy impossibility (copper skin depth), satellite transit evidence, Schumann self-contradiction cross-reference.
+
+### Design decisions
+
+- **Agent prompts externalized to markdown** rather than embedded in scheduled task config. Rationale: version-controlled, diffable, reviewable, editable without touching task infrastructure.
+- **Integrity agent excludes DOI checking** — DOI resolver rate-limits automated requests, producing false 404s daily. Citation verification is the curmudgeon's territory. Integrity focuses on structural health (build drift, anchors, tabs, data-prose consistency).
+- **Decider must cover every open issue** with either a concrete patch, a deferral rationale, or a wontfix recommendation. No silent skips.
+- **Integrity runs after decider** (9 AM vs 6:30 AM) — today's integrity findings feed into tomorrow's decider report. Catches breakage from morning work sessions.
+
+### Known open issues (top priority)
+
+- ISS-012: WIN-029 Schumann formula simplified; two firmament heights inconsistency
+- ISS-013: WIN-004 MHD prediction scope unclear
+- ISS-022: WIN-010 Chapman 1933 overstatement
+- ISS-023: WIN-015 CUORE citation tangential
+- ISS-032: 3 external data source links broken (NASA GRACE, GFZ CHAMP, CHIME-FRB)
+- 12 additional moderate issues tracked in open-issues.json
+
+### External Problem Reporting (V4.9.5)
+
+Public error reporting via GitHub Issues using structured template (`.github/ISSUE_TEMPLATE/report-a-problem.yml`). Pipeline: GitHub Issue (auto-labeled `external-report`) → Analyst assessment (kernel-of-truth analysis, primary source check) → Permanent log (`monitor/external-reports/report-{issue-number}.json`) → Decider triage (creates open issue, comments on GitHub with decision). All reports logged permanently regardless of outcome. Links added to Evaluation Guide (Principle 6), AI Review section, and site footer. Published as commits 269cec3 (HTML) and 5a608f7 (issue template).
