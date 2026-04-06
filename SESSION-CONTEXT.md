@@ -1,6 +1,6 @@
 # Dome Model Review — Session Context for AI Continuity
 
-**Last updated:** 2026-04-06 (context windows 5–9)
+**Last updated:** 2026-04-06 (context windows 5–10)
 **Repository:** https://github.com/funwithscience-org/dome-model-review
 **Live site:** https://funwithscience-org.github.io/dome-model-review
 **Version reviewed:** Ovoid Cavity Cosmological Model V51.0 (April 2026)
@@ -10,7 +10,7 @@
 
 ## 1. Project Overview
 
-This is a comprehensive, data-driven critical review of a flat-earth dome model that claims 67 confirmed predictions and zero falsifications. Our review finds: 10 refuted by data, 11 self-contradicted, 23 misleading, 16 explained by standard model, 3 not demonstrated, 4 unfalsifiable. Zero of 67 are uniquely explained by the dome.
+This is a comprehensive, data-driven critical review of a flat-earth dome model that claims 67 confirmed predictions and zero falsifications. Our review finds: 9 refuted by data, 12 self-contradicted, 23 misleading, 16 explained by standard model, 3 not demonstrated, 4 unfalsifiable. Zero of 67 are uniquely explained by the dome.
 
 The review is built to be transparent, fair, and scientifically rigorous — we acknowledge where the dome model shows genuine sophistication (V13 Finsler coordinates, cryptographic timestamping, toroidal architecture) while documenting where claims fail.
 
@@ -292,7 +292,11 @@ dome-model-review/
 ├── build-scripts/
 │   ├── generate-html.js              # PRIMARY file — all HTML generation + narrative
 │   ├── build-doc-v4.js               # DOCX generation (reads wins.json)
-│   └── add-references.js             # Injects clickable hyperlinks into wins.json
+│   ├── add-references.js             # Injects clickable hyperlinks into wins.json
+│   ├── digest-reviews.js             # Preprocesses curmudgeon reviews → pending-digest.json
+│   ├── backfill-issues.js            # Bulk issue creation from digest (fuzzy dedup)
+│   ├── apply-patches.js              # Applies decider patches against parsed JSON fields
+│   └── sync-code-analysis.js         # Syncs code_analysis tags from reviews to wins.json
 ├── data/
 │   └── wins.json                     # 67 WINs — single source of truth
 ├── docs/
@@ -312,14 +316,19 @@ dome-model-review/
 │   │   └── structure-integrity.md    # Integrity: site health checks
 │   ├── curmudgeon/
 │   │   ├── tracker.json              # Review progress + lifecycle phases
-│   │   ├── reviews/WIN-NNN.json      # Per-WIN review output (34 complete)
+│   │   ├── pending-digest.json       # Compact digest of unprocessed reviews (generated)
+│   │   ├── reviews/WIN-NNN.json      # Per-WIN review output (Cycle 1)
+│   │   ├── reviews/WIN-NNN.c2.json   # Per-WIN review output (Cycle 2+)
 │   │   └── alerts.txt                # Critical/major issues
 │   ├── decisions/
-│   │   ├── open-issues.json          # Persistent issue tracker
-│   │   ├── suggested-patches.json    # Find/replace patches for batch application
+│   │   ├── open-issues.json          # Active issues (query for count, don't hardcode)
+│   │   ├── closed-issues.json        # Archive of fixed/wontfix issues
+│   │   ├── processed-reviews.json    # Ledger of fully-processed review filenames
+│   │   ├── suggested-patches-*.json  # Timestamped patch files from decider runs
+│   │   ├── daily-report-*.json       # Timestamped daily reports
 │   │   └── morning-briefing.txt      # Daily briefing for human review
 │   ├── integrity/
-│   │   └── report-YYYY-MM-DD.json    # Daily site health report
+│   │   └── report-YYYY-MM-DDTHH-MM.json # Site health reports (timestamped, multiple per day OK)
 │   ├── changes/                      # Poller change records
 │   ├── analysis/                     # Analyst output
 │   ├── baseline/                     # Baseline hashes for change detection
@@ -357,7 +366,7 @@ dome-model-review/
 
 **Curmudgeon lifecycle**: Phase 1 (per-item: 67 WINs + sections + prose) → Phase 2 (9 holistic checks: narrative arc, taxonomy, cross-refs, stress test, etc.) → Phase 3 (repaint: cycle increments, start over). Currently at WIN-034 in Phase 1.
 
-**Persistent issue tracker** (`monitor/decisions/open-issues.json`): 32 issues tracked, 11 fixed, 21 open. Decider required to acknowledge every open issue with rationale for deferral.
+**Persistent issue tracker** (`monitor/decisions/open-issues.json` + `closed-issues.json`). Check live counts with commands in Section 12. Decider required to acknowledge every open issue with rationale for deferral.
 
 ### Specific fixes applied (V4.9.4)
 
@@ -376,15 +385,79 @@ dome-model-review/
 - **Decider must cover every open issue** with either a concrete patch, a deferral rationale, or a wontfix recommendation. No silent skips.
 - **Integrity runs after decider** (9 AM vs 6:30 AM) — today's integrity findings feed into tomorrow's decider report. Catches breakage from morning work sessions.
 
-### Known open issues (top priority)
-
-- ISS-012: WIN-029 Schumann formula simplified; two firmament heights inconsistency
-- ISS-013: WIN-004 MHD prediction scope unclear
-- ISS-022: WIN-010 Chapman 1933 overstatement
-- ISS-023: WIN-015 CUORE citation tangential
-- ISS-032: 3 external data source links broken (NASA GRACE, GFZ CHAMP, CHIME-FRB)
-- 12 additional moderate issues tracked in open-issues.json
+### Known open issues
+Check `open-issues.json` for current list. Top issues by severity can be found with:
+```bash
+node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));o.issues.filter(i=>i.severity==='critical'||i.severity==='major').forEach(i=>console.log(i.issue_id,i.win_id,i.severity,i.summary||i.description?.slice(0,80)))"
+```
 
 ### External Problem Reporting (V4.9.5)
 
 Public error reporting via GitHub Issues using structured template (`.github/ISSUE_TEMPLATE/report-a-problem.yml`). Pipeline: GitHub Issue (auto-labeled `external-report`) → Analyst assessment (kernel-of-truth analysis, primary source check) → Permanent log (`monitor/external-reports/report-{issue-number}.json`) → Decider triage (creates open issue, comments on GitHub with decision). All reports logged permanently regardless of outcome. Links added to Evaluation Guide (Principle 6), AI Review section, and site footer. Published as commits 269cec3 (HTML) and 5a608f7 (issue template).
+
+---
+
+## 12. Context Window 10 — Decider Pipeline Overhaul & Batch Patching (2026-04-06)
+
+### Problem solved: Decider context overflow
+
+The decider was running out of context trying to read 40+ individual curmudgeon review files. Solution: mechanical preprocessing.
+
+**New scripts:**
+- **`build-scripts/digest-reviews.js`** — Reads all review JSONs + processed-reviews ledger, outputs `monitor/curmudgeon/pending-digest.json`. Each entry has: win_id, topic, verdict_holds, holes[] (severity, 300-char summary, 300-char recommendation, affects_summary_table), worst_severity, needs_full_read, code_analysis_tags. Cross-references processed reviews against open-issues to detect under-covered reviews. Cycle-aware (picks latest cycle per WIN). Run with: `node build-scripts/digest-reviews.js --workspace .`
+- **`build-scripts/backfill-issues.js`** — One-time bulk issue creation from digest. Fuzzy dedup via keyword overlap. Created 171 issues across 56 reviews in one shot. Run with: `node build-scripts/backfill-issues.js --workspace . [--dry-run]`
+- **`build-scripts/apply-patches.js`** — Applies decider patches against parsed JSON field values (not raw JSON). Handles HTML quotes and unicode correctly. Searches specified field first, then all text fields as fallback. Run with: `node build-scripts/apply-patches.js <patches-file> [--dry-run]`
+
+### Architecture changes
+
+- **Open/closed issue split**: `open-issues.json` (active, ~178 issues) + `closed-issues.json` (archive). Decider uses grep-per-WIN instead of reading full file.
+- **Timestamped outputs**: All agent reports and patches use `YYYY-MM-DDTHH-MM` in filename to prevent multi-run overwrites. Applies to: suggested-patches, daily-reports, integrity reports, tinker reports.
+- **Cycle-aware curmudgeon filenames**: Cycle 1 writes `WIN-001.json`, Cycle 2+ writes `WIN-001.c2.json`. Prevents overwriting unprocessed reviews when curmudgeon starts next cycle.
+- **Processed-reviews ledger**: Migrated from bare WIN IDs to filenames (`WIN-001.json` not `WIN-001`). Supports cycle-aware deduplication.
+- **Decider mode shift**: From "create issues from reviews" to "write patches for existing issues." Batch size: 10 WINs per run (increased from 5 after testing). Picks highest-severity open issues without patches.
+- **Integrity agent fixes**: Must `grep` to verify before reporting broken anchors. Must not duplicate test suite checks. Fixed persistent `#part4c` false positive loop.
+
+### WINs patched (5 decider runs, ~25 WINs total)
+
+Key substantive changes:
+- **WIN-053**: Verdict changed Refuted by Data → Self-Contradicted. Added flux conservation argument (B_south ≈ 39 nT vs fitted 64,852 nT = 1,660:1 contradiction), toroidal 1/r vs exponential incompatibility.
+- **WIN-054**: Replaced false "ΛCDM accommodates El Gordo" with honest 6.2σ tension (Asencio 2023), noting dome has no spatial framework.
+- **WIN-059**: Added Kill-Shot Test 6 failure (39.9% error), axial symmetry impossibility, Livermore 2020.
+- **WIN-065**: Expanded Polaris rebuttal with diurnal circle time-dependence, dome's own refraction formula test (~0.04° predicted vs multi-degree needed).
+- **WIN-066**: Fixed wrong DOI, corrected "asymmetry" → "remarkably symmetric", +0.34 W/m² as trend not static.
+- **WIN-052**: Fixed broken DOI, rewrote RAR rebuttal to engage actual argument.
+- **WIN-058**: Rewrote to address dome's actual claim (0.9941 scale factor fitted post-hoc to WGS84).
+- **WIN-057**: Updated to address cross-equatorial improvement claim with free parameter argument.
+- **WIN-055**: Fixed "geometric" → "standard candle" error, added Gaia cross-validation.
+- **WIN-048**: Major expansion of ΛCDM counter-prediction rebuttal.
+- **WIN-037**: Added dome's global→regional conflation in SAA drift claim.
+- **WIN-064**: Added S-wave shadow zone, removed unverified Gutenberg DOI.
+- Plus refinements to WIN-008, 014, 030, 033, 034, 042, 044, 047, 056, 063, 067.
+
+### Live counts (don't hardcode — query at startup)
+```bash
+# Verdict counts
+node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const c={};w.forEach(x=>c[x.verdict]=(c[x.verdict]||0)+1);console.log(c)"
+
+# Issue counts
+node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const c=JSON.parse(require('fs').readFileSync('monitor/decisions/closed-issues.json','utf8'));console.log('Open:',o.issues.length,'Closed:',c.issues.length)"
+
+# Curmudgeon progress
+cat monitor/curmudgeon/tracker.json | python3 -c "import json,sys;t=json.load(sys.stdin);print(f'Phase {t.get(\"phase\",\"?\")}, reviewed {t.get(\"items_reviewed\",\"?\")}/{t.get(\"total_items\",\"?\")}')"
+
+# Test suite
+node test.js 2>&1 | tail -3
+```
+
+### Bug fixes discovered
+- **JavaScript falsy zero**: `severityOrder["critical"]` = 0, and `0 || 4` = `4`. Critical reviews sorted last. Fixed with `?? 4`.
+- **Coverage gap**: Decider processed 22 reviews wide-but-shallow (1 issue per WIN, missing 53 holes). Fixed by resetting ledger + adding coverage audit to digest script.
+- **Double-escaped unicode**: Some WIN entries have literal `\u00b0` (6 chars) instead of `°`. Tracked as ISS-308.
+- **Patch encoding mismatch**: Decider wrote find strings with literal quotes; raw JSON has `\"`. Fixed by apply-patches.js operating on parsed values, and decider prompt updated with encoding guidance.
+
+### Open items
+- Open issues remaining (mostly moderate/minor) — check live count above. Decider processing 10 WINs per run.
+- Curmudgeon progressing through Phase 1 — check tracker above for current position.
+- Prose extraction task scheduled for 8 PM (migrates hardcoded prose to data/sections.json)
+- CI workflow needs manual push (token lacks workflow scope)
+- ISS-308: Double-escaped unicode in some WIN entries (cosmetic but causes patch failures)
