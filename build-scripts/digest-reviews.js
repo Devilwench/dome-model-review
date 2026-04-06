@@ -139,9 +139,13 @@ function run() {
       needs_full_read: needsFullRead(review)
     };
 
-    // Check processed status by filename first, then fall back to legacy WIN ID
-    const isProcessed = processedSet.has(file) || processedSet.has(entry.win_id) ||
-      processedWinIds.has(entry.win_id);
+    // Check processed status by filename first, then fall back to legacy WIN ID.
+    // Cycle 2+ files (e.g., WIN-001.c2.json) must be checked by FILENAME only —
+    // do NOT match against the base WIN ID, or every Cycle 2 review gets silently
+    // marked as processed because Cycle 1's WIN-001.json is in the ledger.
+    const isCycle2Plus = /\.c\d+\.json$/.test(file);
+    const isProcessed = processedSet.has(file) ||
+      (!isCycle2Plus && (processedSet.has(entry.win_id) || processedWinIds.has(entry.win_id)));
     if (isProcessed) {
       alreadyProcessed.push(entry);
     } else {
