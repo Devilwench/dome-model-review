@@ -97,7 +97,7 @@ Switch to closing out WINs entirely. Pick the 10 WINs with the **fewest** remain
 
 To check which mode to use:
 ```bash
-node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const cm=o.issues.filter(i=>i.severity==='critical'||i.severity==='major');const patchable=cm.filter(i=>i.win_id&&/^\d{3}$/.test(String(i.win_id).replace('WIN-','')));console.log(patchable.length?'MODE 1: '+patchable.length+' patchable critical/major remain':'MODE 2: cleanup mode ('+cm.length+' critical/major are prose-only, not patchable)')"
+node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const cm=o.issues.filter(i=>(i.severity==='critical'||i.severity==='major')&&i.status!=='assigned-analyst');const patchable=cm.filter(i=>i.win_id&&/^\d{3}$/.test(String(i.win_id).replace('WIN-','')));console.log(patchable.length?'MODE 1: '+patchable.length+' patchable critical/major remain':'MODE 2: cleanup mode ('+cm.length+' critical/major are prose-only or assigned to analyst)')"
 ```
 
 **Reading open-issues.json efficiently.** The file is too large to read in full. Instead, extract just the issues you need:
@@ -111,6 +111,28 @@ node -e "const oi=require('./monitor/decisions/open-issues.json'); oi.issues.fil
 - The `backfill-issues.js` script can also be run to batch-create issues: `node build-scripts/backfill-issues.js --workspace .`
 
 **Moving fixed issues to archive.** When you produce a patch for an issue, mark it `status: "patched"`. When a human applies the patch, they'll move it to `closed-issues.json`. Do NOT modify the issue status to "fixed" yourself — only the person applying patches can confirm they work.
+
+**Assigning issues to the analyst ("yeet to analyst").** Some issues need substantive rewriting — expanding a 100-word section to 500+ words, reframing an argument that strawmans the dome, adding evidence from primary sources. You can't do this with find/replace patches. When you encounter an issue like this:
+
+1. Add an expansion item to `monitor/analyst/expansion-tracker.json`:
+```json
+{
+  "id": "EXP-NNN",
+  "target": "section or WIN being rewritten",
+  "curmudgeon_review": "path to the curmudgeon review file",
+  "issue_ids": ["ISS-412", "ISS-413"],
+  "priority": "high|medium|low",
+  "status": "pending",
+  "notes": "Brief description of what needs expanding and why you can't patch it",
+  "created_at": "ISO timestamp",
+  "completed_at": null,
+  "output_file": null
+}
+```
+2. Set the issue status to `"assigned-analyst"` in open-issues.json. This takes it off your plate — you will not see it again. The analyst picks it up on its next run.
+3. Use the next available EXP-NNN number: `node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));console.log('EXP-'+String(t.items.length+1).padStart(3,'0'))"`.
+
+Use this for: prose section rewrites, major argument restructuring, sections the curmudgeon rated as "drastically underdeveloped", issues requiring dome source material research, anything that needs more than a sentence-level edit. Don't be shy — if you can't fix it with a patch, yeet it.
 
 ### 3. Cross-Reference Against Open Issues
 Read `monitor/decisions/open-issues.json`. This file contains ONLY open/new issues — fixed and wontfix issues are archived to `monitor/decisions/closed-issues.json` (you do NOT need to read that file).
