@@ -106,13 +106,26 @@ node build-scripts/digest-reviews.js --workspace .
 **Mode 2 — WIN cleanup + prose triage (default when remaining criticals/majors are prose-only):**
 Two sub-tasks per run:
 
-**2a. Yeet scan (do this FIRST, EVERY run, both modes).** Scan ALL open issues for anything that can't be fixed with a wins.json or sections.json find/replace patch — prose rewrites, argument restructuring, section expansions, holistic findings, anything needing 100+ words of new prose or dome source research. **Yeet ALL of them immediately.** Do not defer. Do not hold back because the analyst's queue is deep — that's the analyst's problem to prioritize, not yours. Your goal is an empty open-issues list, not a manageable analyst queue. Check the expansion tracker to avoid duplicate assignments:
+**2a. Integrate completed analyst expansions (do this FIRST, EVERY run, both modes).** Check the expansion tracker for completed or revised items that haven't been integrated into sections.json yet:
+```bash
+node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));const s=require('fs').existsSync('data/sections.json');t.items.filter(i=>(i.status==='complete'||i.status==='revised')&&!i.integrated).forEach(i=>console.log(i.id,i.status,i.target.slice(0,60)));if(!s)console.log('WARNING: sections.json does not exist yet')"
+```
+For each completed/revised expansion that hasn't been integrated:
+1. Read the expansion output file (e.g., `monitor/analyst/expansions/EXP-001.json`) — get the `replacement_html` field
+2. Identify which section in `data/sections.json` it targets (the expansion tracker's `target` field tells you — e.g., "Part 4.3" = `part4`, "Section 4.5.9" = `part4b`)
+3. Write a find/replace patch that swaps the old section text for the analyst's replacement. For full section replacements, find a unique opening string (e.g., the `<h2>` heading) and the closing string, and replace everything between them.
+4. Mark the expansion as `"integrated": true` with an `integrated_at` timestamp in the tracker
+5. Close any issues listed in the expansion's `issue_ids` array
+
+This is how the analyst's work gets into production. Don't skip it — a completed expansion sitting in a JSON file helps nobody.
+
+**2b. Yeet scan (EVERY run, both modes).** Scan ALL open issues for anything that can't be fixed with a wins.json or sections.json find/replace patch — prose rewrites, argument restructuring, section expansions, holistic findings, anything needing 100+ words of new prose or dome source research. **Yeet ALL of them immediately.** Do not defer. Do not hold back because the analyst's queue is deep — that's the analyst's problem to prioritize, not yours. Your goal is an empty open-issues list, not a manageable analyst queue. Check the expansion tracker to avoid duplicate assignments:
 ```bash
 node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));t.items.filter(i=>i.status!=='complete'&&i.status!=='revised').forEach(i=>console.log(i.id,i.issue_ids,i.target.slice(0,60)))"
 ```
 If the issue's target section already has a pending/in-progress EXP item, add the issue ID to that item's `issue_ids` array instead of creating a new EXP. Otherwise create a new EXP item and yeet.
 
-**2b. WIN cleanup.** Pick the 10 WINs with the **fewest** remaining open issues (1-2 issues each = easiest to fully resolve). For each WIN, patch ALL remaining issues — moderate and minor — so the WIN can be completely closed. A fully-closed WIN never returns to the working set. This steadily shrinks the open-issues file and focuses attention.
+**2c. WIN cleanup.** Pick the 10 WINs with the **fewest** remaining open issues (1-2 issues each = easiest to fully resolve). For each WIN, patch ALL remaining issues — moderate and minor — so the WIN can be completely closed. A fully-closed WIN never returns to the working set. This steadily shrinks the open-issues file and focuses attention.
 
 To check which mode to use:
 ```bash
