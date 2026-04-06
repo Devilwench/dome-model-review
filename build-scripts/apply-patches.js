@@ -56,14 +56,22 @@ for (let i = 0; i < patches.length; i++) {
       skipped++;
       continue;
     }
-    // Accept section_id, target, or parse from field (e.g., "part4.html" → section "part4", sub-field "html")
+    // Accept section_id, target, or parse from field.
+    // Formats: section_id="part4", field="part4.html", field="part4", target="part4"
     let sectionId = p.section_id || p.target;
-    let sectionField = field; // may be overridden below
-    if (!sectionId && p.field && p.field.includes('.')) {
-      const parts = p.field.split('.');
-      sectionId = parts[0];
-      sectionField = parts[1] || 'html';
+    let sectionField = null;
+    if (!sectionId && p.field) {
+      if (p.field.includes('.')) {
+        const parts = p.field.split('.');
+        sectionId = parts[0];
+        sectionField = parts[1] || 'html';
+      } else if (sectionsData && sectionsData[p.field]) {
+        // field is the section ID itself (e.g., "part4")
+        sectionId = p.field;
+        sectionField = 'html';
+      }
     }
+    if (!sectionField) sectionField = 'html';
     if (!sectionId) {
       console.log(`⏭  Patch ${num}: sections.json patch with no section_id, skipping`);
       skipped++;
