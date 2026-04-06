@@ -21,17 +21,30 @@ const dryRun = args.includes('--dry-run');
 
 const DIGEST_PATH = path.join(workspace, 'monitor/curmudgeon/pending-digest.json');
 const OPEN_ISSUES_PATH = path.join(workspace, 'monitor/decisions/open-issues.json');
+const CLOSED_ISSUES_PATH = path.join(workspace, 'monitor/decisions/closed-issues.json');
 
 const digest = JSON.parse(fs.readFileSync(DIGEST_PATH, 'utf8'));
 const oi = JSON.parse(fs.readFileSync(OPEN_ISSUES_PATH, 'utf8'));
 
-// Find highest ISS number
-const maxIss = Math.max(...oi.issues.map(i => parseInt(i.id.replace('ISS-', ''))), 0);
+// Load closed issues for wontfix dedup — prevents re-raising issues that were
+// deliberately rejected. Fixed issues are also included since re-raising a fixed
+// issue would just create duplicate work.
+let closedIssues = [];
+try {
+  const ci = JSON.parse(fs.readFileSync(CLOSED_ISSUES_PATH, 'utf8'));
+  closedIssues = ci.issues || [];
+} catch (e) {
+  // No closed issues file yet — that's fine
+}
+
+// Find highest ISS number across both open and closed
+const allIssues = [...oi.issues, ...closedIssues];
+const maxIss = Math.max(...allIssues.map(i => parseInt(((i.issue_id || i.id || 'ISS-0').match(/\d+/) || ['0'])[0])), 0);
 let nextIss = maxIss + 1;
 
-// Build index of existing issues per WIN for dedup
+// Build index of existing issues per WIN for dedup (includes closed/wontfix)
 const existingByWin = {};
-for (const issue of oi.issues) {
+for (const issue of allIssues) {
   const w = String(issue.win_id || '');
   const norm = w.startsWith('WIN-') ? w : 'WIN-' + w.padStart(3, '0');
   if (!existingByWin[norm]) existingByWin[norm] = [];

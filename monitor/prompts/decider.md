@@ -83,11 +83,22 @@ node build-scripts/digest-reviews.js --workspace .
 
 **Issue creation is handled by `backfill-issues.js`.** All curmudgeon holes already have open-issues entries. Your job is to **write patches**, not create issues. If the digest shows new unprocessed reviews (from Cycle 2+ or new sections), create issues for those — but for Cycle 1 WINs, the issues already exist.
 
-**Batch size: patch 5 WINs per run.** Pick the 5 WINs with the highest-severity open issues that don't yet have patches. For each:
+**Batch size: patch 10 WINs per run.** Operate in one of two modes:
+
+**Mode 1 — Severity triage (default while critical or major issues exist):**
+Pick the 10 WINs with the highest-severity open issues. Prioritize WINs you haven't patched in previous runs — check the most recent `suggested-patches-*.json` files and avoid re-patching the same WINs unless they still have critical/major issues. For each:
 1. Read the WIN's open issues from `open-issues.json` (use `grep` or `node -e` to extract just issues for that WIN ID — do NOT read the entire file, it's 170KB+)
 2. Read the full curmudgeon review file (`monitor/curmudgeon/reviews/WIN-NNN.json`) for `stronger_arguments` and `deeper_analysis`
 3. Read the WIN entry from `data/wins.json` to see the current text
 4. Craft exact find/replace patches for every open issue
+
+**Mode 2 — WIN cleanup (when no critical or major issues remain):**
+Switch to closing out WINs entirely. Pick the 10 WINs with the **fewest** remaining open issues (1-2 issues each = easiest to fully resolve). For each WIN, patch ALL remaining issues — moderate and minor — so the WIN can be completely closed. A fully-closed WIN never returns to the working set. This steadily shrinks the open-issues file and focuses attention.
+
+To check which mode to use:
+```bash
+node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const cm=o.issues.filter(i=>i.severity==='critical'||i.severity==='major');console.log(cm.length?'MODE 1: '+cm.length+' critical/major remain':'MODE 2: cleanup mode')"
+```
 
 **Reading open-issues.json efficiently.** The file is too large to read in full. Instead, extract just the issues you need:
 ```bash
@@ -106,7 +117,8 @@ Read `monitor/decisions/open-issues.json`. This file contains ONLY open/new issu
 
 For each new finding:
 - Is it already tracked in open-issues? If so, update the existing issue with new information.
-- Is it new? Create a new issue entry.
+- **Was it previously closed as wontfix?** Before creating a new issue, check: `node -e "const c=JSON.parse(require('fs').readFileSync('monitor/decisions/closed-issues.json','utf8'));c.issues.filter(i=>i.status==='wontfix').forEach(i=>console.log(i.issue_id,i.win_id,i.description.slice(0,80)))"` — if a matching wontfix entry exists, do NOT re-raise the issue. The wontfix decision was deliberate.
+- Is it genuinely new (not in open-issues AND not in closed wontfix)? Create a new issue entry.
 
 When an issue is fixed (patch applied and verified), move it out of open-issues.json entirely — append it to closed-issues.json with `status: "fixed"` and `fixed_at` timestamp, then remove it from open-issues.json. This keeps open-issues.json small and focused.
 
@@ -194,13 +206,9 @@ Update `monitor/decisions/open-issues.json` with any new issues discovered and a
 If `open-issues.json` contains more than 50 entries with status "fixed" or "wontfix" that are older than 7 days, move them to `monitor/decisions/closed-issues-archive.json` (append, don't overwrite). Keep only open issues and recently-closed (last 7 days) in the active file. This prevents the file from growing indefinitely and wasting context on irrelevant history.
 
 ### 6. Generate Suggested Patches
-Write to `monitor/decisions/suggested-patches-YYYY-MM-DDTHH-MM.json` (timestamped, same as daily reports — never overwrite a previous run's patches). Patches can target any of these files:
-- `data/wins.json` — for WIN claim/finding/detail/verdict/code_analysis fields
-- `data/sections.json` — for prose sections (Parts 1–7), kill-shot cards, domain headings. If this file exists, it is the single source of truth for all prose and both HTML and DOCX generators read from it. Patch prose here.
-- `build-scripts/generate-html.js` — **ONLY if `data/sections.json` does NOT exist.** Legacy fallback: prose is hardcoded inline. Search for `<h1 id="part` or the section title to locate the right block.
-- `build-scripts/build-doc-v4.js` — **ONLY if `data/sections.json` does NOT exist.** DOCX version of the same prose sections (must stay in sync with generate-html.js). When sections.json exists, this file reads from it automatically.
+Write to `monitor/decisions/suggested-patches-YYYY-MM-DDTHH-MM.json` (timestamped, same as daily reports — never overwrite a previous run's patches). Patches MUST target `data/wins.json` — the only file the automated apply script handles. If you find prose issues in the HTML sections, create open issues describing them but do NOT write patches for `generate-html.js` or `build-doc-v4.js`.
 
-When patching prose in generate-html.js/build-doc-v4.js, provide enough surrounding context in the `find` field to be unique — these are large files.
+Future: once `data/sections.json` exists (prose extraction refactor), prose patches can target that file instead.
 
 ```json
 {
@@ -209,8 +217,8 @@ When patching prose in generate-html.js/build-doc-v4.js, provide enough surround
     {
       "issue_id": "ISS-NNN",
       "win_id": "WIN-NNN",
-      "file": "data/wins.json|data/sections.json|build-scripts/generate-html.js|build-scripts/build-doc-v4.js",
-      "field": "claim|finding|detail_evidence|detail_verdict_text|detail_extra|verdict|code_analysis|prose_section",
+      "file": "data/wins.json",
+      "field": "claim|finding|detail_evidence|detail_verdict_text|detail_extra|verdict|code_analysis",
       "find": "exact current text to find (from the PARSED field value, not raw JSON — no escaped quotes)",
       "replace": "exact replacement text (same encoding as find — plain text with literal HTML tags)",
       "rationale": "Why this change"
@@ -220,6 +228,14 @@ When patching prose in generate-html.js/build-doc-v4.js, provide enough surround
 ```
 
 **CRITICAL: Patch encoding.** The `find` and `replace` strings must match the *parsed* field value in wins.json, NOT the raw JSON with escape sequences. For example, if the field contains an HTML link like `<a href="https://...">text</a>`, write the find string with literal quotes, not `\"`. The apply script will parse the JSON, do the replacement on the parsed value, and re-serialize. Unicode characters should be literal (e.g., `–` not `\u2013`). If your find string contains `\"` or `\\u`, you're doing it wrong.
+
+**CRITICAL: JSON validity.** Your output files MUST be valid JSON. Common mistakes that break parsing:
+- Unescaped double quotes inside string values — if your text contains a word in "quotes", you MUST escape them as `\"quotes\"` in the JSON output
+- Unescaped newlines inside string values — use `\n` not literal newlines
+- Trailing commas after the last item in an array or object
+Before writing any JSON file, mentally verify that all string values have their internal quotes escaped.
+
+**CRITICAL: Focus patches on `data/wins.json` only.** The automated `apply-patches.js` script handles wins.json patches. Prose section patches targeting `generate-html.js` or `build-doc-v4.js` cannot be auto-applied and will be skipped. If you find prose issues, log them as open issues with clear descriptions — do NOT write find/replace patches for generate-html.js. The prose extraction refactor will migrate prose to `data/sections.json`, at which point prose patches become auto-applicable. Until then, only patch wins.json fields.
 
 ### 7. Write Morning Briefing
 Write a human-readable summary to `monitor/decisions/morning-briefing.txt`. Start with a timestamp header. This should be scannable in 30 seconds:
