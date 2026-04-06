@@ -31,6 +31,29 @@ The following errors exist in the current `generate-html.js` prose. Fix them AS 
 
 6. **DOCX gap — Sections 5.14, 5.15, 5.16 missing from Word document.** These three sections (Repository Infrastructure: Steering AI, The Repository Is the Model, The Monitoring Infrastructure) exist in `generate-html.js` but have no corresponding builder in `build-doc-v4.js`. After extraction into sections.json, verify that the DOCX builder picks them up. This is the whole point of the refactor — one source, both outputs.
 
+## Analyst Expansions — Integrate During Extraction
+
+Three analyst expansion rewrites are complete and should be integrated into sections.json INSTEAD of copying the old text from generate-html.js. For these sections, use the analyst's `replacement_html` as the sections.json content:
+
+1. **EXP-001 → Part 4.3 (Kill-Shot: Gaia Astrometry)**
+   - File: `monitor/analyst/expansions/EXP-001.json` → read `replacement_html` field
+   - Replaces the current ~97-word Kill-Shot #3 section with a ~680-word expansion
+   - Fixes strawman (local sun → firmament wobble), adds New Horizons, 4.7B ratio, adjacent-star argument
+
+2. **EXP-002 → Part 4.2 (Kill-Shot: GPS Accuracy and Relativity)**
+   - File: `monitor/analyst/expansions/EXP-002.json` → read `replacement_html` field
+   - Replaces the current ~254-word section with ~780 words
+   - Fixes SR direction error, adds 3-leg structure (altitude, clocks, visibility), Ashby (2003) citation
+
+3. **EXP-003 → Section 4.5.9 (V13 Coordinate System)**
+   - File: `monitor/analyst/expansions/EXP-003.json` → read `replacement_html` field
+   - Replaces the current ~1,480-word section with ~1,650 words
+   - Fixes the CRITICAL ISS-415 error (d_geo IS defined). This replaces known error #5 above — the analyst's version is the complete rewrite.
+
+**Important:** When integrating EXP-003, use the analyst's full replacement_html instead of the ISS-415 manual rewrite in known error #5 above. The analyst's version is more comprehensive and has been verified against the dome's actual formulas.
+
+**For EXP-004 (Section 4.8 Solar Angular Diameter):** This expansion is still pending. Use the CURRENT text from generate-html.js for Section 4.8 — it will be swapped in later when the analyst completes it.
+
 ## Working Environment
 
 - **Clean clone (for git):** `/sessions/peaceful-gallant-rubin/dome-review-clean/`

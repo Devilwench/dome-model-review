@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
- * apply-patches.js — Apply suggested patches from decider to wins.json
+ * apply-patches.js — Apply suggested patches from decider to wins.json and sections.json
  *
  * Usage:
  *   node build-scripts/apply-patches.js <patches-file> [--dry-run]
  *
  * Patches target parsed field values (not raw JSON), so this script:
- * 1. Parses wins.json into objects
- * 2. Finds the WIN by id and the field by name
+ * 1. Parses wins.json (and sections.json if it exists) into objects
+ * 2. Finds the WIN by id and the field by name, or the section by id
  * 3. Does string replacement on the parsed value
  * 4. Re-serializes to JSON
  */
@@ -27,9 +27,17 @@ if (!patchFile) {
 const patchData = JSON.parse(fs.readFileSync(patchFile, 'utf8'));
 const patches = patchData.patches || patchData;
 
-// Find wins.json relative to script location
+// Find data files relative to script location
 const winsPath = path.resolve(__dirname, '..', 'data', 'wins.json');
+const sectionsPath = path.resolve(__dirname, '..', 'data', 'sections.json');
+
 const winsData = JSON.parse(fs.readFileSync(winsPath, 'utf8'));
+
+let sectionsData = null;
+let sectionsModified = false;
+if (fs.existsSync(sectionsPath)) {
+  sectionsData = JSON.parse(fs.readFileSync(sectionsPath, 'utf8'));
+}
 
 let applied = 0, failed = 0, skipped = 0;
 
@@ -41,8 +49,54 @@ for (let i = 0; i < patches.length; i++) {
   const find = p.find || p.old_string || '';
   const replace = p.replace || p.new_string || '';
 
-  // Only handle wins.json patches
-  if (p.file && !p.file.includes('wins.json')) {
+  // Route to sections.json if specified
+  if (p.file && p.file.includes('sections.json')) {
+    if (!sectionsData) {
+      console.log(`⏭  Patch ${num}: ${p.section_id || p.target || 'sections.json'} — sections.json doesn't exist yet, skipping`);
+      skipped++;
+      continue;
+    }
+    const sectionId = p.section_id || p.target;
+    if (!sectionId) {
+      console.log(`⏭  Patch ${num}: sections.json patch with no section_id, skipping`);
+      skipped++;
+      continue;
+    }
+    const section = sectionsData[sectionId];
+    if (!section) {
+      console.log(`❌ Patch ${num}: Section "${sectionId}" not found in sections.json`);
+      failed++;
+      continue;
+    }
+    // Search the html field (primary) and title field
+    const sectionFields = ['html', 'title'];
+    const targetField = field && sectionFields.includes(field) ? field : 'html';
+    const fieldsToSearch = [targetField, ...sectionFields.filter(f => f !== targetField)];
+
+    let matched = false;
+    for (const f of fieldsToSearch) {
+      if (section[f] && typeof section[f] === 'string' && section[f].includes(find)) {
+        if (!dryRun) {
+          section[f] = section[f].replace(find, replace);
+          sectionsModified = true;
+        }
+        const fieldNote = f !== targetField ? ` (found in ${f}, not ${targetField})` : '';
+        console.log(`✅ Patch ${num}: ${sectionId} .${f}${fieldNote}`);
+        applied++;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) {
+      console.log(`❌ Patch ${num}: ${sectionId} .${targetField} — find string not found`);
+      console.log(`   Find starts: "${find.slice(0, 80)}..."`);
+      failed++;
+    }
+    continue;
+  }
+
+  // Skip non-wins.json, non-sections.json patches
+  if (p.file && !p.file.includes('wins.json') && !p.file.includes('sections.json')) {
     console.log(`⏭  Patch ${num}: ${p.win_id || p.target} — targets ${p.file}, skipping (manual apply needed)`);
     skipped++;
     continue;
@@ -102,6 +156,9 @@ for (let i = 0; i < patches.length; i++) {
 
 if (!dryRun) {
   fs.writeFileSync(winsPath, JSON.stringify(winsData, null, 2));
+  if (sectionsModified && sectionsData) {
+    fs.writeFileSync(sectionsPath, JSON.stringify(sectionsData, null, 2));
+  }
 }
 
 console.log(`\n${dryRun ? '[DRY RUN] ' : ''}Applied: ${applied}, Failed: ${failed}, Skipped: ${skipped}`);

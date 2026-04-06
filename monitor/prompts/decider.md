@@ -94,8 +94,15 @@ Pick the 10 WINs with the highest-severity open issues. Prioritize WINs you have
 3. Read the WIN entry from `data/wins.json` to see the current text
 4. Craft exact find/replace patches for every open issue
 
-**Mode 2 — WIN cleanup (default when remaining criticals/majors are prose-only):**
-Switch to closing out WINs entirely. Pick the 10 WINs with the **fewest** remaining open issues (1-2 issues each = easiest to fully resolve). For each WIN, patch ALL remaining issues — moderate and minor — so the WIN can be completely closed. A fully-closed WIN never returns to the working set. This steadily shrinks the open-issues file and focuses attention.
+**Mode 2 — WIN cleanup + prose triage (default when remaining criticals/majors are prose-only):**
+Two sub-tasks per run:
+
+**2a. Yeet scan (do this FIRST every Mode 2 run).** Scan ALL open issues (not just WINs) for prose/section issues that need substantive rewriting — SEC-*, KILLSHOT-*, holistic findings, etc. If any qualify for yeet-to-analyst (needs 100+ words of new prose, argument restructuring, or dome source research), yeet them now. Don't wait — every run you skip yeeting is a run the analyst sits idle. Check the expansion tracker first to avoid duplicate assignments:
+```bash
+node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));t.items.filter(i=>i.status==='pending').forEach(i=>console.log(i.id,i.issue_ids,i.target.slice(0,60)))"
+```
+
+**2b. WIN cleanup.** Pick the 10 WINs with the **fewest** remaining open issues (1-2 issues each = easiest to fully resolve). For each WIN, patch ALL remaining issues — moderate and minor — so the WIN can be completely closed. A fully-closed WIN never returns to the working set. This steadily shrinks the open-issues file and focuses attention.
 
 To check which mode to use:
 ```bash
@@ -259,7 +266,12 @@ Future: once `data/sections.json` exists (prose extraction refactor), prose patc
 - Trailing commas after the last item in an array or object
 Before writing any JSON file, mentally verify that all string values have their internal quotes escaped.
 
-**CRITICAL: Focus patches on `data/wins.json` only.** The automated `apply-patches.js` script handles wins.json patches. Prose section patches targeting `generate-html.js` or `build-doc-v4.js` cannot be auto-applied and will be skipped. If you find prose issues, log them as open issues with clear descriptions — do NOT write find/replace patches for generate-html.js. The prose extraction refactor will migrate prose to `data/sections.json`, at which point prose patches become auto-applicable. Until then, only patch wins.json fields.
+**Patch target files — check what exists.** At the start of each run, check whether `data/sections.json` exists:
+```bash
+test -f data/sections.json && echo "SECTIONS_JSON_EXISTS" || echo "NO_SECTIONS_JSON"
+```
+- **If `data/sections.json` exists:** You can write patches targeting BOTH `data/wins.json` AND `data/sections.json`. Prose section issues (SEC-*, KILLSHOT-*, etc.) are now directly patchable via find/replace against sections.json. The `apply-patches.js` script handles both files. This is the main unlock — burn through the prose backlog.
+- **If `data/sections.json` does NOT exist:** Focus patches on `data/wins.json` only. Prose section patches targeting `generate-html.js` or `build-doc-v4.js` cannot be auto-applied. Log prose issues as open issues with clear descriptions — do NOT write find/replace patches for generator files. The prose extraction refactor will create sections.json, at which point prose patches become applicable.
 
 ### 7. Write Morning Briefing
 Write a human-readable summary to `monitor/decisions/morning-briefing.txt`. Start with a timestamp header. This should be scannable in 30 seconds:
