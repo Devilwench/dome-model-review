@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-07T15:10:36Z",
+  "last_updated": "2026-04-07T15:36:38.656Z",
   "issues": [
     {
       "id": "ISS-370",
@@ -39,66 +39,6 @@
       "fix_date": null
     },
     {
-      "id": "ISS-415",
-      "win_id": null,
-      "severity": "critical",
-      "category": "factual_error",
-      "description": "SEC-4.5.9 CRITICAL FACTUAL ERROR: Section claims \"d_geo is undefined\" as the first technical argument. This is FALSE for V13. The dome's V13 coordinates page explicitly defines d_geo: EW_arc = 4×a×E(e²)×(Δlon/360)×(r_avg/a), NS = |r₁−r₂|, d_geo = √(NS²+EW_arc²), where a=20,015 km, e=0.66. A dome defender can immediately show we didn't read their page. This is the lead argument in the section — failing it damages the entire section's credibility.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-07",
-      "status": "assigned-analyst",
-      "fix_details": "Rewrite: d_geo IS defined but (1) parameters a=20,015 km and e=0.66 are fitted to WGS84 data, (2) inputs (lat/lon) are WGS84-derived, (3) n(r) remains undefined. The real critique is circular derivation, not undefined formula. Prose section issue — cannot auto-patch; requires editing generate-html.js Section 4.5.9.",
-      "fix_date": null
-    },
-    {
-      "id": "ISS-416",
-      "win_id": null,
-      "severity": "major",
-      "category": "factual_error",
-      "description": "SEC-4.5.9 MAJOR CATEGORY ERROR: Comparing scaffold Euclidean distance (410 km) between Christchurch and Greymouth to TranzAlpine rail distance (223 km) is comparing straight-line distance to a winding mountain route. Correct comparison is to great-circle distance (~160 km), which shows 156% overshoot — even worse for our argument.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-07",
-      "status": "assigned-analyst",
-      "fix_details": "Replace rail distance (223 km) with great-circle distance (~160 km) as the correct comparison. 410/160 = 256% of great-circle distance. This actually makes the argument stronger. Prose section — requires editing generate-html.js Section 4.5.9.",
-      "fix_date": null
-    },
-    {
-      "id": "ISS-417",
-      "win_id": null,
-      "severity": "major",
-      "category": "missing_argument",
-      "description": "SEC-4.5.9 MAJOR OVERSTATEMENT: Claiming a genuine model would have \"one version\" is easily refuted (Newton, Einstein, Bohr all iterated their models). Dome defender can use this to make us look unreasonable.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-07",
-      "status": "assigned-analyst",
-      "fix_details": "Replace \"one version\" argument with the correct critique: overfitting known data vs. predicting new data. Scientific models iterate, but they iterate because predictions fail — the dome's V13 coordinate system was not motivated by a failed prediction. Prose section — requires editing generate-html.js Section 4.5.9.",
-      "fix_date": null
-    },
-    {
-      "id": "ISS-418",
-      "win_id": null,
-      "severity": "major",
-      "category": "factual_error",
-      "description": "SEC-4.8 MAJOR SELF-CONTRADICTION: Section claims sun appears \"50% larger at noon\" AND \"30% distance variation = 30% size variation\" — these are mathematically inconsistent. If the sun is 30% closer at noon than at horizon, angular size increases by 1/0.70 = 43%, not 50%. The actual dome geometry gives a 48% reduction at 90° hour angle (sun at horizon vs. overhead in flat-earth geometry). Our text contains a numerical inconsistency in a section critiquing numerical inconsistencies.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-07",
-      "status": "assigned-analyst",
-      "fix_details": "Queued as EXP-004 for analyst: full rewrite of Section 4.8 solar angular diameter kill-shot",
-      "fix_date": null
-    },
-    {
-      "id": "ISS-419",
-      "win_id": null,
-      "severity": "major",
-      "category": "missing_argument",
-      "description": "SEC-4.8 MAJOR MISSING DEFENSE: Section never addresses the dome's pre-built aetheric refraction defense (AI Context Rule 11). A kill-shot that ignores the target's known escape route is ineffective. Dome can claim aetheric refraction corrects the observed size variation.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-07",
-      "status": "assigned-analyst",
-      "fix_details": "Queued as EXP-004 for analyst: full rewrite of Section 4.8 solar angular diameter kill-shot",
-      "fix_date": null
-    },
-    {
       "id": "ISS-422",
       "win_id": null,
       "severity": "major",
@@ -133,42 +73,6 @@
       "status": "pending-human",
       "fix_details": "DOCX infrastructure issue. Requires changes to build-doc-v4.js which cannot be auto-patched. Human must manually update the DOCX build script.",
       "fix_date": null
-    },
-    {
-      "id": "ISS-435",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "missing_argument",
-      "description": "KILLSHOT-GAIA missing aetheric refraction defense: Section does not mention aetheric refraction, even though Section 4.9 explicitly lists WIN-017 (parallax) as depending on it. Should cross-reference Section 4.9 and explain why position-dependent refraction cannot rescue the parallax argument (refraction depends on observer position, not star distance).",
-      "source": "curmudgeon",
-      "found_date": "2026-04-06",
-      "status": "assigned-analyst",
-      "fix_details": "Assigned to analyst as EXP-006 (KILLSHOT-GAIA section strengthening). See monitor/analyst/expansion-tracker.json.",
-      "fix_date": "2026-04-06"
-    },
-    {
-      "id": "ISS-436",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "missing_argument",
-      "description": "KILLSHOT-GAIA missing New Horizons parallax experiment (April 2020): NASA measured stellar parallax from 7-billion-km baseline (Proxima Cen: 32.4 arcsec, Wolf 359: 15.7 arcsec). Physically impossible if stars are on a dome 9,086 km high. Baseline (7B km) is ~800,000 times the firmament height; measurement made from beyond any hypothetical dome, eliminating aetheric refraction as escape hatch.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-06",
-      "status": "assigned-analyst",
-      "fix_details": "Assigned to analyst as EXP-006 (KILLSHOT-GAIA section strengthening). See monitor/analyst/expansion-tracker.json.",
-      "fix_date": "2026-04-06"
-    },
-    {
-      "id": "ISS-437",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "missing_argument",
-      "description": "KILLSHOT-GAIA missing differential-parallax argument: In any small patch of sky, Gaia measures stars with parallaxes differing by 100-1000x. Any dome motion (rigid wobble, flexible undulation, or refraction) would affect all objects in the same direction similarly. Per-star parallax variation perfectly correlated with independently determined distance is impossible under any dome mechanism.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-06",
-      "status": "assigned-analyst",
-      "fix_details": "Assigned to analyst as EXP-006 (KILLSHOT-GAIA section strengthening). See monitor/analyst/expansion-tracker.json.",
-      "fix_date": "2026-04-06"
     },
     {
       "id": "ISS-440",
@@ -222,18 +126,6 @@
       "fix_date": null
     },
     {
-      "id": "ISS-593",
-      "win_id": "WIN-054",
-      "severity": "critical",
-      "category": "factual_error",
-      "description": "WIN-054 El Gordo galaxy cluster needs major research: (1) verify if ΛCDM simulations accommodate El Gordo — if so, change verdict to Std Model Explains; (2) verify Kim et al. 2022 citation relevance; (3) establish measured velocity dispersion. Current evidence may strawman ΛCDM.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-08",
-      "status": "assigned-analyst",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
       "id": "ISS-597",
       "win_id": "WIN-058",
       "severity": "critical",
@@ -242,6 +134,42 @@
       "source": "curmudgeon",
       "found_date": "2026-04-08",
       "status": "assigned-analyst",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-603",
+      "win_id": "WIN-053",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "WIN-053 c2: Pole aperture radius (500 km) stated without source. Curmudgeon notes this is arbitrary — the dome never specifies the Axis Mundi opening radius. Should cite inject_ai_layer.py or note it is estimated from model geometry, with a sensitivity note that even 2× larger aperture still gives 400:1 ratio (still vastly contradictory).",
+      "source": "curmudgeon-c2",
+      "found_date": "2026-04-07",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-605",
+      "win_id": "WIN-053",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "WIN-053 c2: V50.6→V51.0 transition argument still weak. Current text says change was not motivated by failed prediction. Should strengthen: the toroidal architecture introduced in V51.0 was an ad hoc modification that created new self-contradictions (flux conservation failure was not present in V50.6 single-pole model) — the refinement made things quantitatively worse.",
+      "source": "curmudgeon-c2",
+      "found_date": "2026-04-07",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-611",
+      "win_id": "WIN-055",
+      "severity": "minor",
+      "category": "missing_argument",
+      "description": "WIN-055 c2: Optional improvement — adding TRGB (Tip of the Red Giant Branch) as a third independent distance method would strengthen the convergence argument. TRGB from CCHP (Freedman et al. 2019) gives H0=69.8±1.9 via different stellar physics. Not urgent.",
+      "source": "curmudgeon-c2",
+      "found_date": "2026-04-07",
+      "status": "open",
       "fix_details": null,
       "fix_date": null
     }

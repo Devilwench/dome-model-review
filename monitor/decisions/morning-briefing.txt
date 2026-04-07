@@ -1,114 +1,60 @@
 MORNING BRIEFING — 2026-04-07
-Generated: 2026-04-07T15:10:00Z
-Decider run: 2026-04-07T15:10:00Z
-Previous decider run: Unknown (new session — clean clone created for this run)
+Generated: 2026-04-07T16:00:00Z
+Curmudgeon reviews processed this run: 3 (WIN-053.c2, WIN-054.c2, WIN-055.c2)
+Previous decider run: 2026-04-07T15:11:06Z
 
-═══════════════════════════════════════════════════════════
-SITE HEALTH
-═══════════════════════════════════════════════════════════
-Integrity check: PASS (last: 2026-04-07T08:11Z)
-  ✅ 2028 tests passed, 0 failed
-  ✅ All 75 internal anchors resolve
-  ✅ Tab chain valid (9 tabs)
-  ✅ Build reproducibility: byte-identical rebuild
-  ✅ Data-prose consistency: all computed counts match
-  ⚠  2 ScienceDirect 403s (bot-blocking, not broken links)
+SITE HEALTH ✅
+  Integrity: PASS — 2033 tests, 0 failed (up from 2028 pre-patch)
+  All anchors, tabs, and nav chain intact
+  Build reproducibility: confirmed byte-identical
+  ⚠ NOTE: sections.json content still NOT injected into HTML (ISS-454 critical bug, one-line fix needed in generate-html.js)
 
-⚠️  CRITICAL INFRASTRUCTURE BUG (ISS-454, PENDING HUMAN):
-  sections.json content is NEVER injected into the published HTML.
-  generate-html.js has a circular dependency: SECTIONS_AVAILABLE is false
-  at the point it checks `if (SECTIONS_AVAILABLE)` before calling
-  loadSectionsCache(). All prose improvements from EXP-001 through EXP-015
-  are silently present in sections.json but absent from the live site.
-  ONE-LINE FIX in build-scripts/generate-html.js (~line 1777):
-    CURRENT:  if (SECTIONS_AVAILABLE) { const sections = loadSectionsCache();
-    REPLACE:  const sections = loadSectionsCache(); if (sections) {
-
-═══════════════════════════════════════════════════════════
 EXTERNAL STATUS
-═══════════════════════════════════════════════════════════
-Dome site changes: NONE — 12th consecutive quiet poll.
-  Last meaningful change: 2026-04-04 (architecture update).
-  All recent commits are automated "Auto-update ECM status" data refreshes.
-  V51.0 parameters unchanged. Eclipse test still featured (Aug 12, 2026).
-Threat level: NONE
+  Dome site: QUIET — 13 consecutive quiet polls, no changes since 2026-04-04
+  Threat level: NONE
+  April 5-9 reset window expires April 9 — no action needed yet
 
-═══════════════════════════════════════════════════════════
 INTERNAL STATUS
-═══════════════════════════════════════════════════════════
-Issues this run: 3 CLOSED (ISS-587, ISS-590, ISS-591 via expansion integration)
-Open issues: 20 (was 23)
-  Critical:    4  (1 infrastructure, 3 assigned-analyst)
-  Major:      12  (4 pending-human DOCX, 1 taxonomy, 7 assigned-analyst)
-  Moderate:    3  (1 pending-human DOCX, 2 assigned-analyst)
-  Minor:       1  (1 pending-human DOCX)
+  Open issues: 17 (was 20 at start of run)
+  New issues created: 9 (from WIN-053/054/055 Cycle 2 reviews)
+  Zombie issues closed: 8 (ISS-415/416/417/418/419/435/436/437 — expansions complete but never closed)
+  Patches self-applied: 4/4 all applied successfully (published commit db0618e)
+  Issues closed by self-apply: 4 (ISS-604, ISS-606, ISS-609, ISS-610)
 
-By status:
-  pending-human:    9  (DOCX infrastructure backlog + ISS-454 critical bug)
-  assigned-analyst: 11 (EXP-001, EXP-003, EXP-010, EXP-011, EXP-022, EXP-023)
+  Severity breakdown (17 open):
+    Critical: 3 (ISS-454 pending-human, ISS-593 analyst, ISS-597 analyst)
+    Major: 6 (ISS-422/427/440/442 pending-human, ISS-453/607 analyst)
+    Moderate: 5 (ISS-383/414 pending-human, ISS-603/605 open-patchable, ISS-383 DOCX)
+    Minor: 3 (ISS-370/432 pending-human, ISS-608 analyst, ISS-611 open/optional)
 
-═══════════════════════════════════════════════════════════
-EXPANSIONS THIS RUN
-═══════════════════════════════════════════════════════════
-✅ EXP-020 integrated (WIN-052 — RAR Lensing Extension):
-   Full rewrite of 5 fields (finding, detail_claim, detail_evidence,
-   detail_verdict_text, detail_extra). 838→3754 chars in detail_evidence.
-   Key additions: ontology crisis (10^6 scale ratio), MOND priority
-   (Milgrom 1983, 40-year validation), false dilemma identified, cross-WIN
-   structural incoherence section (cosmological WINs 047/048/052/054/055),
-   scatter corrected (0.057 dex, not zero), 4 anticipated objections.
-   Closes ISS-587.
-
-✅ EXP-021 integrated (WIN-053 — Toroidal Magnetic Field):
-   Full rewrite of 5 fields. 1907→3283 chars in detail_evidence.
-   Key additions: flux conservation derivation (B_south ≈ 39 nT vs fitted
-   64,852 nT, 1,660:1 self-contradiction), 1/r vs exponential form mismatch
-   (Griffiths §5.3.3), coefficient provenance (fitted to WMM2025 pole
-   strengths, not derived), globe fingerprint (δ=6,371 km = Earth's radius),
-   PRED-TOROID-002 retrodiction flagged, V50.6→V51.0 improvement acknowledged.
-   Closes ISS-590 and ISS-591.
-
-═══════════════════════════════════════════════════════════
 TOP 3 PRIORITY ACTIONS
-═══════════════════════════════════════════════════════════
-1. 🚨 FIX ISS-454 (HUMAN, ~2 minutes): One-line fix in generate-html.js.
-   Without it, ALL sections.json prose improvements never appear in the
-   published HTML. This has been broken since the V4.9.7 prose extraction.
 
-2. 📝 DOCX BACKLOG (HUMAN, ~1 hour): 8 pending-human DOCX issues
-   (ISS-370, 383, 414, 422, 427, 432, 440, 442). Most require adding
-   new content to build-doc-v4.js. A focused session would clear the backlog.
+1. 🔴 HUMAN REQUIRED — ISS-454 critical: Apply ONE-LINE fix in generate-html.js line ~1777
+   Change: if (SECTIONS_AVAILABLE) { const sections = loadSectionsCache();
+   To:     const sections = loadSectionsCache(); if (sections) {
+   This unlocks ALL sections.json prose improvements (EXP-001 through EXP-018) which are
+   currently silently dropped from the HTML output.
 
-3. 🤖 ANALYST QUEUE: EXP-022 (WIN-054 El Gordo research) and EXP-023
-   (WIN-058 angular coordinates) are pending. EXP-003 (SEC-4.5.9 rewrite)
-   output should be ready for decider integration next run.
+2. 🟠 HUMAN REQUIRED — EXP-011 tab reorder: Apply 6 changes in generate-html.js to swap
+   selftest and falsify tabs (spec in monitor/analyst/expansions/EXP-011-tab-ordering.json).
+   The sections.json prose ALREADY assumes this ordering — current mismatch creates "above/below"
+   text inconsistency that will become visible once ISS-454 is fixed.
 
-═══════════════════════════════════════════════════════════
+3. 🟡 HUMAN DECISION — ISS-442 verdict taxonomy: Is "Misleading" appropriate for all 23 WINs
+   or should non-discriminating observations get their own subcategory?
+
 CURMUDGEON PROGRESS
-═══════════════════════════════════════════════════════════
-Cycle 2, Phase 1: 54/67 WINs reviewed (~80% complete)
-Last review: WIN-054 (verdict Not Demonstrated, holds; cites Cycle 1 gap
-on Kim et al. 2022 citation still unresolved — routed to EXP-022)
-Estimated completion: 13 WINs remaining in Cycle 2
+  Phase 1, Cycle 2: 55/67 WINs reviewed
+  Latest: WIN-055.c2 (verdict holds, minor_edit)
+  12 WINs remaining in Cycle 2: WIN-056 through WIN-067
+  EXP-024 created: cosmological WIN cluster cross-analysis (WIN-054 through WIN-058)
 
-═══════════════════════════════════════════════════════════
-GLOBE FINGERPRINT HUNT (MODE 3)
-═══════════════════════════════════════════════════════════
-47/67 WIN fingerprints reviewed. Latest: WIN-047 (Hubble Law — λ_A = c/H₀
-IS the Hubble radius; Hubble's Law algebraically identical to dome formula).
-Notable new finding this run: WIN-053 δ=6,371 km = Earth's mean radius
-(used in sub-terrestrial cavity depth formula, no derivation from dome).
+CODE ANALYSIS TAG STATUS
+  All 67 WINs have code_analysis tags (curmudgeon validated)
+  Cycle 2 re-review ongoing — no tag changes this run
 
-═══════════════════════════════════════════════════════════
-PIPELINE HEALTH NOTES
-═══════════════════════════════════════════════════════════
-• Note: apply-patches.js has a bug with empty-string find on null fields
-  (empty find "" matches any string via includes()). Direct Python patching
-  used this run to safely apply EXP-020 detail_extra (was null/empty).
-  Recommend fixing apply-patches.js to handle field=null as a special case.
-• Orphan detection script in analyst prompt uses i.issue_id instead of i.id
-  — causes false positives. Field mismatch, not a real problem.
-• Previous clean clone (peaceful-gallant-rubin) no longer exists. New clone
-  created at /sessions/quirky-amazing-cray/dome-review-clean.
-• Curmudgeon alerts.txt mentions WIN-005 CHAOS-7 DOI mismatch — RESOLVED.
-  Current wins.json has correct DOI (10.1186/s40623-020-01252-9). Alert is stale.
+PATCHES APPLIED THIS RUN (commit db0618e)
+  ISS-606: WIN-053 detail_claim — clarified λ governs H(r) and B(r) not "both poles"
+  ISS-604: WIN-053 detail_evidence — added cross-ref to Section 3.5.8 shared-λ pattern
+  ISS-609: WIN-055 detail_evidence — "geometric tracers" → "standard candles anchored to geometric parallax"
+  ISS-610: WIN-055 detail_evidence — Gaia sentence scoped to Milky Way Cepheids specifically
