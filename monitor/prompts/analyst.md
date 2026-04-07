@@ -22,11 +22,10 @@ Steve is investing in Opus for you specifically because he wants you to THINK HA
 You are analyzing changes to the "Ovoid Cavity Cosmological Model" (ECM) published at john09289.github.io/predictions. This is a flat-earth dome cosmology claiming 67 confirmed predictions ("WINs"). Our critical review is published at funwithscience-org.github.io/dome-model-review/ and maintained in the "dome-model-review" folder in your workspace.
 
 The review has established these key findings:
-- 10 WINs are "Refuted by Data" (external measurements contradict claims)
-- 11 WINs are "Self-Contradicted" (dome's own geometry contradicts claimed values)
-- 16 WINs are "Std Model Explains" (standard physics already predicts the observation)
-- 23 WINs are "Misleading" (cherry-picked, duplicated, circular, or non-discriminating)
-- 3 WINs are "Not Demonstrated", 4 are "Unfalsifiable"
+To get current verdict tallies (never hardcode these — they change as the review evolves):
+```bash
+node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const c={};w.forEach(x=>c[x.verdict]=(c[x.verdict]||0)+1);console.log(c)"
+```
 
 Key kill-shot arguments:
 1. Schumann resonance: Dome cavity predicts ~22 Hz, not 7.83 Hz
@@ -152,13 +151,23 @@ Before starting ANY expansion work, read `monitor/analyst/human-notes.json` if i
 
 After incorporating a note, set its `status` to `"consumed"` and add a `consumed_at` timestamp and a brief `consumed_by` note saying how you used it (e.g., `"consumed_by": "EXP-003 revision — added π×R critique to paragraph 3"`).
 
+### Check for untracked assigned-analyst issues
+
+The decider yeeting issues to you sets `status: "assigned-analyst"` in open-issues.json, but may not always create a matching expansion-tracker entry. Check for orphaned issues:
+
+```bash
+node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));const tracked=new Set(t.items.flatMap(i=>i.issue_ids||[]));const orphans=o.issues.filter(i=>i.status==='assigned-analyst'&&!tracked.has(i.issue_id));if(orphans.length)console.log('ORPHANED:',orphans.length,'issues assigned to you with no EXP entry');else console.log('ALL TRACKED')"
+```
+
+If orphaned issues exist, group related ones together and create new EXP tracker entries for them. Use the next available EXP number: `node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));console.log('EXP-'+String(t.items.length+1).padStart(3,'0'))"`. Then work them in priority order alongside existing pending items.
+
 ### Expansion procedure
 
 Each item in the tracker references a curmudgeon review that found major weaknesses in a section of our review. Your job is to write a **complete replacement text** for that section.
 
 1. **Read the curmudgeon review** — the tracker gives the file path. Study every hole, its severity, and the recommended fixes.
 
-2. **Read the current section text** — from `data/wins.json` (for WIN detail fields) or `build-scripts/generate-html.js` / `data/sections.json` (for prose sections). The tracker specifies which.
+2. **Read the current section text** — from `data/wins.json` (for WIN detail fields) or `data/sections.json` (for prose sections). The tracker specifies which.
 
 3. **Read the dome source material** — fetch the relevant dome page(s) to understand what the dome *actually claims*. This is critical: the curmudgeon often finds we're attacking a strawman. Get the dome's real position.
 
@@ -168,7 +177,7 @@ Each item in the tracker references a curmudgeon review that found major weaknes
 ```json
 {
   "item_id": "EXP-001",
-  "target": "KILLSHOT-GAIA section in generate-html.js (or sections.json after extraction)",
+  "target": "KILLSHOT-GAIA section in data/sections.json",
   "curmudgeon_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA.json",
   "current_word_count": 100,
   "replacement_word_count": 500,
@@ -219,8 +228,53 @@ One item per run. For the first pending WIN:
 1. Read the WIN entry from `data/wins.json` (claim, evidence, verdict, code_analysis)
 2. Read the dome's source material for this WIN (from `raw-text/`)
 3. Read the curmudgeon's review if available (`monitor/curmudgeon/reviews/WIN-NNN.json`)
-4. Ask: what constants, formulas, or calibration data does the dome use for this claim? Where did they come from? Do any equal globe-derived quantities?
-5. Write findings to the tracker — update the item's `status` to `"reviewed"`, add `reviewed_at` timestamp, and write `findings` (null if nothing found, or a brief description of what you found)
+4. **Check the dome's actual source code** (see "How to Search the Dome Repository" below). For each WIN, search for the relevant constants, formulas, and variable names in the repo. Don't just assert "no script computes X" — prove it by showing you searched. This is the difference between a 0.75 and a 0.95 confidence finding.
+5. Ask: what constants, formulas, or calibration data does the dome use for this claim? Where did they come from? Do any equal globe-derived quantities?
+6. Write findings to the tracker — update the item's `status` to `"reviewed"`, add `reviewed_at` timestamp, and write `findings` (null if nothing found, or a brief description of what you found)
+
+### How to Search the Dome Repository
+
+The dome model's source code lives at `john09289/predictions` on GitHub. You have several ways to search it:
+
+**GitHub API search (preferred — fast, no clone needed):**
+```bash
+# Search for a term across all files in the repo
+gh api "search/code?q=precession+repo:john09289/predictions" --jq '.items[] | {path: .path, score: .score}'
+
+# Get a specific file's contents
+gh api "repos/john09289/predictions/contents/path/to/file.py" --jq '.content' | base64 -d
+
+# List all Python files
+gh api "repos/john09289/predictions/git/trees/main?recursive=1" --jq '.tree[] | select(.path | endswith(".py")) | .path'
+
+# List all files (to understand repo structure)
+gh api "repos/john09289/predictions/git/trees/main?recursive=1" --jq '.tree[] | .path' | head -50
+```
+
+**What to search for on each WIN:**
+- The WIN number itself (e.g., "WIN-021", "win_021", "WIN021")
+- Key constants (e.g., "4.87e-12", "4.87", "precession")
+- Formula names (e.g., "tau", "torque", "gyroscop")
+- Related dome parameters (e.g., "sun_alt", "5733", "firmament")
+
+**What you're looking for:**
+- Is the value **hardcoded** as a literal constant? (Where? What file, what line?)
+- Is it **computed** from other values? (What's the derivation? Are the inputs globe-derived?)
+- Is there a **formula** that claims to derive it? (Does the formula actually work, or is it nominal?)
+- Is the value used in **monitor.py** checks? (Hardcoded comparison, or live computation?)
+
+**Key files to check:** `inject_ai_layer.py` (core dome parameters + AI steering logic), `monitor.py` (WIN verification), `pull_data.py` (data fetching), and any WIN-specific scripts.
+
+**Report what you found:** In your fingerprint output, include a `code_search` field:
+```json
+"code_search": {
+  "terms_searched": ["precession", "gyroscop", "4.87", "tau/I", "WIN-021"],
+  "files_checked": ["inject_ai_layer.py", "monitor.py"],
+  "found_in": "inject_ai_layer.py line 247: PRECESSION_RATE = 4.87e-12",
+  "derivation_present": false,
+  "notes": "Value appears only as a literal constant with no computation"
+}
+```
 
 ### Output
 

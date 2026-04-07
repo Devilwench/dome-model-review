@@ -6268,6 +6268,20 @@
       "fix_date": null,
       "fixed_at": "2026-04-07T15:36:38.656Z",
       "fixed_by": "expansion-integration-EXP-022"
+    },
+    {
+      "id": "ISS-454",
+      "win_id": null,
+      "severity": "critical",
+      "category": "factual_error",
+      "description": "SECTIONS.JSON NOT INJECTED INTO HTML: generate-html.js checks SECTIONS_AVAILABLE before calling loadSectionsCache(), but SECTIONS_AVAILABLE starts as false and is only set to true INSIDE loadSectionsCache(). Circular dependency means sections.json content is NEVER injected into the HTML. All sections.json patches (EXP-001 through EXP-012, all prose improvements) are silently ignored. Fix: change line 1777 from \"if (SECTIONS_AVAILABLE) { const sections = loadSectionsCache();\" to \"const sections = loadSectionsCache(); if (sections) {\"",
+      "source": "decider",
+      "found_date": "2026-04-07",
+      "status": "fixed",
+      "fix_details": "One-line fix in build-scripts/generate-html.js line 1777: change \"if (SECTIONS_AVAILABLE) { const sections = loadSectionsCache();\" to \"const sections = loadSectionsCache(); if (sections) {\". Cannot self-apply: infrastructure file.",
+      "fix_date": null,
+      "fixed_at": "2026-04-07T15:48:07.220Z",
+      "fixed_by": "V5.0 refactor — sections.json now primary source"
     }
   ]
 }

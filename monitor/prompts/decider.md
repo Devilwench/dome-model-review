@@ -115,9 +115,9 @@ For each completed/revised expansion that hasn't been integrated:
 2. Identify which section in `data/sections.json` it targets (the expansion tracker's `target` field tells you — e.g., "Part 4.3" = `part4`, "Section 4.5.9" = `part4b`)
 3. Write a find/replace patch that swaps the old section text for the analyst's replacement. For full section replacements, find a unique opening string (e.g., the `<h2>` heading) and the closing string, and replace everything between them.
 4. Mark the expansion as `"integrated": true` with an `integrated_at` timestamp in the tracker
-5. Close any issues listed in the expansion's `issue_ids` array
+5. **Close the related issues — do NOT skip this.** For each issue ID in the expansion's `issue_ids` array, move it from `open-issues.json` to `closed-issues.json` with `status: "fixed"`, `fixed_at` timestamp, and `fixed_by: "expansion-integration"`. The issue field name is `id` (not `issue_id`). Verify each issue was actually removed from open-issues.json after writing. If you integrated an expansion but didn't close its issues, those issues become zombies — still "assigned-analyst" but already fixed.
 
-This is how the analyst's work gets into production. Don't skip it — a completed expansion sitting in a JSON file helps nobody.
+This is how the analyst's work gets into production. Don't skip any step — a completed expansion sitting in a JSON file helps nobody, and unclosed issues pollute the tracker.
 
 **2b. Yeet scan (EVERY run, both modes).** Scan ALL open issues for anything that can't be fixed with a wins.json or sections.json find/replace patch — prose rewrites, argument restructuring, section expansions, holistic findings, anything needing 100+ words of new prose or dome source research. **Yeet ALL of them immediately.** Do not defer. Do not hold back because the analyst's queue is deep — that's the analyst's problem to prioritize, not yours. Your goal is an empty open-issues list, not a manageable analyst queue. Check the expansion tracker to avoid duplicate assignments:
 ```bash
@@ -142,7 +142,7 @@ node -e "const oi=require('./monitor/decisions/open-issues.json'); oi.issues.fil
 - Create issues for ALL holes, then update the processed ledger with the review filename
 - The `backfill-issues.js` script can also be run to batch-create issues: `node build-scripts/backfill-issues.js --workspace .`
 
-**Moving fixed issues to archive.** When you produce a patch for an issue, mark it `status: "patched"`. When a human applies the patch, they'll move it to `closed-issues.json`. Do NOT modify the issue status to "fixed" yourself — only the person applying patches can confirm they work.
+**Moving fixed issues to archive.** When you self-apply patches (Step 6b) and they pass tests + publish, close those issues yourself — move them from `open-issues.json` to `closed-issues.json` with `status: "fixed"` and `fixed_by: "decider-self-apply"`. For verdict-change patches you can't self-apply, mark those issues `status: "pending-human"` so they're clearly flagged for manual review.
 
 **Assigning issues to the analyst ("yeet to analyst").** Some issues need substantive rewriting — expanding a 100-word section to 500+ words, reframing an argument that strawmans the dome, adding evidence from primary sources. You can't do this with find/replace patches. When you encounter an issue like this:
 
@@ -260,9 +260,7 @@ Update `monitor/decisions/open-issues.json` with any new issues discovered and a
 If `open-issues.json` contains more than 50 entries with status "fixed" or "wontfix" that are older than 7 days, move them to `monitor/decisions/closed-issues-archive.json` (append, don't overwrite). Keep only open issues and recently-closed (last 7 days) in the active file. This prevents the file from growing indefinitely and wasting context on irrelevant history.
 
 ### 6. Generate Suggested Patches
-Write to `monitor/decisions/suggested-patches-YYYY-MM-DDTHH-MM.json` (timestamped, same as daily reports — never overwrite a previous run's patches). Patches MUST target `data/wins.json` — the only file the automated apply script handles. If you find prose issues in the HTML sections, create open issues describing them but do NOT write patches for `generate-html.js` or `build-doc-v4.js`.
-
-Future: once `data/sections.json` exists (prose extraction refactor), prose patches can target that file instead.
+Write to `monitor/decisions/suggested-patches-YYYY-MM-DDTHH-MM.json` (timestamped, same as daily reports — never overwrite a previous run's patches). Patches can target `data/wins.json` or `data/sections.json`. Do NOT write patches for `generate-html.js` or `build-doc-v4.js` — those are infrastructure files.
 
 ```json
 {
@@ -283,18 +281,99 @@ Future: once `data/sections.json` exists (prose extraction refactor), prose patc
 
 **CRITICAL: Patch encoding.** The `find` and `replace` strings must match the *parsed* field value in wins.json, NOT the raw JSON with escape sequences. For example, if the field contains an HTML link like `<a href="https://...">text</a>`, write the find string with literal quotes, not `\"`. The apply script will parse the JSON, do the replacement on the parsed value, and re-serialize. Unicode characters should be literal (e.g., `–` not `\u2013`). If your find string contains `\"` or `\\u`, you're doing it wrong.
 
+**CRITICAL: Verify find strings before writing patches.** The most common patch failure is a find string that doesn't match the actual file content — because the text was changed by a prior patch, or you composed the string from memory instead of reading it. Before finalizing your patches JSON, verify EVERY find string actually exists in the target file. For wins.json patches, run:
+```bash
+node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const win=w.find(x=>x.id==='NNN');console.log(win.FIELD.includes('FIRST 60 CHARS OF FIND STRING'))"
+```
+For sections.json patches, run:
+```bash
+node -e "const s=JSON.parse(require('fs').readFileSync('data/sections.json','utf8'));console.log(s.SECTION_ID.html.includes('FIRST 60 CHARS OF FIND STRING'))"
+```
+If the result is `false`, your find string is stale. Re-read the field and compose a new find string from the CURRENT text. Do not write a patch you haven't verified — a 100% apply rate is better than a high patch count with failures.
+
 **CRITICAL: JSON validity.** Your output files MUST be valid JSON. Common mistakes that break parsing:
 - Unescaped double quotes inside string values — if your text contains a word in "quotes", you MUST escape them as `\"quotes\"` in the JSON output
 - Unescaped newlines inside string values — use `\n` not literal newlines
 - Trailing commas after the last item in an array or object
 Before writing any JSON file, mentally verify that all string values have their internal quotes escaped.
 
-**Patch target files — check what exists.** At the start of each run, check whether `data/sections.json` exists:
+**Patch target files.** Patches can target `data/wins.json` (WIN fields) or `data/sections.json` (prose sections). Both are required — the build fails without them. The `apply-patches.js` script handles both files. Prose section issues (SEC-*, KILLSHOT-*, etc.) are directly patchable via find/replace against sections.json. Do NOT write patches for `generate-html.js` or `build-doc-v4.js` — those are infrastructure files that read from the JSON data sources.
+
+### 6b. Self-Apply Easy Patches
+
+After writing your patches file, you can **apply simple patches yourself** instead of waiting for a human. This eliminates staleness (the #1 cause of patch failure) and keeps the review continuously up to date.
+
+**What you CAN self-apply:**
+- Text edits to wins.json fields: `detail_evidence`, `detail_verdict_text`, `detail_extra`, `detail_claim`, `finding`, `claim`
+- `code_analysis` tag updates/merges
+- Text edits to `sections.json` prose (the `html` field)
+
+**What you MUST NOT self-apply (leave for human):**
+- `verdict` changes — these shift the review's narrative and need human judgment
+- Any patch targeting infrastructure files (`generate-html.js`, `build-doc-v4.js`, `build.js`)
+- Structural HTML changes (new sections, tab reordering, layout changes)
+
+**Self-apply procedure:**
+
 ```bash
-test -f data/sections.json && echo "SECTIONS_JSON_EXISTS" || echo "NO_SECTIONS_JSON"
+# 1. Pull latest into clean clone (in case human or another agent pushed)
+cd /sessions/peaceful-gallant-rubin/dome-review-clean && git stash && git pull --rebase origin main && git stash pop
+
+# 2. Apply your patches (note the output — track which applied and which failed)
+node build-scripts/apply-patches.js /path/to/your/suggested-patches-YYYY-MM-DDTHH-MM.json
+
+# 3. Build and test
+node build.js html 2>&1 | tail -5
+node test.js 2>&1 | tail -5
+
+# 4a. If ALL tests pass → publish
+node build.js publish 2>&1 | tail -15
+
+# 4b. If ANY test fails → roll back and leave for human
+git checkout -- data/ docs/ downloads/
+echo "SELF-APPLY FAILED: tests did not pass. Patch file left for human review."
+# Do NOT archive the patch file — leave it in monitor/decisions/ for human to review
+# Do NOT close any issues — the patches weren't applied
 ```
-- **If `data/sections.json` exists:** You can write patches targeting BOTH `data/wins.json` AND `data/sections.json`. Prose section issues (SEC-*, KILLSHOT-*, etc.) are now directly patchable via find/replace against sections.json. The `apply-patches.js` script handles both files. This is the main unlock — burn through the prose backlog.
-- **If `data/sections.json` does NOT exist:** Focus patches on `data/wins.json` only. Prose section patches targeting `generate-html.js` or `build-doc-v4.js` cannot be auto-applied. Log prose issues as open issues with clear descriptions — do NOT write find/replace patches for generator files. The prose extraction refactor will create sections.json, at which point prose patches become applicable.
+
+**After successful publish — close issues and clean up:**
+
+This is critical. You own the full lifecycle now. Don't leave zombie issues or stale patch files.
+
+1. **Close issues that were successfully patched.** For each patch that applied (the `✅` lines from apply-patches.js output), move its issue from `open-issues.json` to `closed-issues.json`:
+```bash
+node -e "
+const fs=require('fs');
+const o=JSON.parse(fs.readFileSync('monitor/decisions/open-issues.json','utf8'));
+const c=JSON.parse(fs.readFileSync('monitor/decisions/closed-issues.json','utf8'));
+const toClose=['ISS-NNN','ISS-NNN']; // list the issue IDs that were successfully patched
+const now=new Date().toISOString();
+toClose.forEach(id=>{
+  const idx=o.issues.findIndex(i=>i.id===id);
+  if(idx>=0){const issue=o.issues.splice(idx,1)[0];issue.status='fixed';issue.fixed_at=now;issue.fixed_by='decider-self-apply';c.issues.push(issue)}
+});
+o.last_updated=now;
+fs.writeFileSync('monitor/decisions/open-issues.json',JSON.stringify(o,null,2));
+fs.writeFileSync('monitor/decisions/closed-issues.json',JSON.stringify(c,null,2));
+console.log('Closed',toClose.length,'issues. Open:',o.issues.length,'Closed:',c.issues.length);
+"
+```
+Do NOT mark issues as `"patched"` and leave them — that's the old human-will-flush model. You applied and published, so they're `"fixed"`.
+
+2. **Archive the patch file** to keep the decisions/ directory clean:
+```bash
+mv /path/to/suggested-patches-YYYY-MM-DDTHH-MM.json monitor/decisions/applied-patches/
+```
+
+3. **For patches that FAILED to apply** (the `❌` lines): leave those issues open with their current status. They'll get fresh patches on your next run when you read the updated text.
+
+4. **For verdict-change patches you couldn't self-apply**: leave the patch file in `monitor/decisions/` (don't archive it) and note in your briefing that it needs human review. Mark those issues as `status: "pending-human"` so they're clearly distinguished from regular open issues.
+
+5. **Note in your daily report**: how many patches self-applied, how many failed, how many issues closed, and whether any verdict changes are queued for human review.
+
+**Safety net:** The test suite (2000+ tests) validates schema, HTML consistency, links, tabs, and data-prose cross-references. If tests pass, the patch is safe to publish. If you're ever unsure whether a patch is "easy" or consequential, err on the side of leaving it for human review.
+
+**Important:** Always `git pull --rebase` before applying. Another agent or human may have pushed since your last run. Applying against stale data is the exact problem we're solving.
 
 ### 7. Write Morning Briefing
 Write a human-readable summary to `monitor/decisions/morning-briefing.txt`. Start with a timestamp header. This should be scannable in 30 seconds:
@@ -322,7 +401,7 @@ Update `monitor/status.json` and `monitor/review-state.json` if needed.
 - **Produce suggested patches for ALL issues, not just highlights.** The human reviewer needs exact find/replace text to batch-apply fixes efficiently.
 - **Check for already-fixed issues.** Read the current `data/wins.json` to verify whether issues flagged by curmudgeon have already been addressed in a previous session.
 - **Track code_analysis tags.** When curmudgeon reviews include `code_analysis_tags`, note the count of unsynced tags in the report. Tags are applied to wins.json via `node build-scripts/sync-code-analysis.js --apply --workspace` — recommend running this in the morning briefing if the curmudgeon has reviewed WINs since the last sync. You can check the gap by comparing the count of reviewed curmudgeon review JSONs against the `code_analysis.reviewed` count in the latest build output.
-- **Never modify wins.json directly.** You produce suggestions; the human applies them.
+- **Self-apply easy patches; gate verdict changes for human review.** See Step 6b. You can apply text edits and code_analysis tags yourself via the clean clone. Verdict changes and infrastructure patches still need human approval.
 - **Prioritize by severity.** Critical issues that could discredit the review come first.
 - **Be specific.** "Fix WIN-011" is not actionable. "In WIN-011 detail_evidence, replace 'Tibet' with 'Heilongjiang' and '+15.7 uGal' with '-6.5 uGal'" is actionable.
 - **Cover EVERY open issue.** The daily report must mention every issue in open-issues.json with status "open" — not just new ones. For each open issue, either: (a) provide a concrete find/replace patch in suggested-patches.json, (b) explicitly defer it with a rationale explaining what information is needed to craft the patch, or (c) recommend closing it as wontfix with justification. No open issue should go unacknowledged. If the list is long, group by severity and provide patches for critical/major first, then at minimum a status line for each moderate/minor. Every status line must include the rationale for why it isn't being fixed this cycle — e.g., "DEFERRED: needs manual verification of analemma area ratio against published data" or "BLOCKED: waiting for curmudgeon to review WIN-039 which may supersede this issue." A bare "open" status with no explanation is not acceptable.
