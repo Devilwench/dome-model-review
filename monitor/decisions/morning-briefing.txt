@@ -1,60 +1,90 @@
 MORNING BRIEFING — 2026-04-07
-Generated: 2026-04-07T16:00:00Z
-Curmudgeon reviews processed this run: 3 (WIN-053.c2, WIN-054.c2, WIN-055.c2)
-Previous decider run: 2026-04-07T15:11:06Z
+Generated: 2026-04-07T23:00:00Z
+Curmudgeon reviews processed this run: 0 (no new unprocessed reviews in digest)
+Previous decider run: 2026-04-07T16:30:00Z
 
-SITE HEALTH ✅
-  Integrity: PASS — 2033 tests, 0 failed (up from 2028 pre-patch)
-  All anchors, tabs, and nav chain intact
-  Build reproducibility: confirmed byte-identical
-  ⚠ NOTE: sections.json content still NOT injected into HTML (ISS-454 critical bug, one-line fix needed in generate-html.js)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SITE HEALTH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Integrity check: PASS (2036 tests, last 2026-04-07T08:11Z)
+Build: 2 patches applied, 2036 tests pass, published (commit a52ce66)
+V5.0 refactor: generate-html.js 1,833→907 lines. sections.json is now
+  primary source of truth, injected directly at render time (ISS-454 FIXED).
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EXTERNAL STATUS
-  Dome site: QUIET — 13 consecutive quiet polls, no changes since 2026-04-04
-  Threat level: NONE
-  April 5-9 reset window expires April 9 — no action needed yet
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Dome site: QUIET — 13 consecutive quiet polls, no changes since 2026-04-04.
+April 5-9 reset window predictions expired April 7 without outcome claims.
+Threat level: NONE.
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 INTERNAL STATUS
-  Open issues: 17 (was 20 at start of run)
-  New issues created: 9 (from WIN-053/054/055 Cycle 2 reviews)
-  Zombie issues closed: 8 (ISS-415/416/417/418/419/435/436/437 — expansions complete but never closed)
-  Patches self-applied: 4/4 all applied successfully (published commit db0618e)
-  Issues closed by self-apply: 4 (ISS-604, ISS-606, ISS-609, ISS-610)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Issues: 9 open | 490 closed (was 13 open at start of run)
+4 closed this run: ISS-597, ISS-603, ISS-605, ISS-611
 
-  Severity breakdown (17 open):
-    Critical: 3 (ISS-454 pending-human, ISS-593 analyst, ISS-597 analyst)
-    Major: 6 (ISS-422/427/440/442 pending-human, ISS-453/607 analyst)
-    Moderate: 5 (ISS-383/414 pending-human, ISS-603/605 open-patchable, ISS-383 DOCX)
-    Minor: 3 (ISS-370/432 pending-human, ISS-608 analyst, ISS-611 open/optional)
+Severity breakdown (open):
+  Critical:   0  (ISS-454 confirmed fixed by V5.0 refactor)
+  Major:      4  (all DOCX infra: ISS-422, ISS-427, ISS-440, ISS-442/analyst)
+  Moderate:   2  (DOCX infra: ISS-383, ISS-414)
+  Minor:      2  (DOCX infra: ISS-370, ISS-432)
+  Analyst:    1  (ISS-453 HOL-HIERARCHY)
 
+PATCHES APPLIED THIS RUN (2 patches, self-applied):
+  ✅ ISS-605 | WIN-053 detail_verdict_text: V50.6→V51.0 argument strengthened.
+     Toroidal architecture introduced a new self-contradiction (1,660:1 flux
+     mismatch) not present in V50.6 single-pole model. The "refinement" made
+     the model quantitatively worse on its own terms.
+  ✅ ISS-611 | WIN-055 detail_evidence: TRGB added as third independent distance
+     method (Freedman et al. 2019, CCHP; H₀=69.8±1.9 km/s/Mpc via helium-flash
+     stellar physics, different from Cepheid pulsation). Now 3 independent rungs
+     (Cepheids, TRGB, SBF) agree on megaparsec distance scales.
+
+EXP-023 (WIN-058): Expansion tracker corrected. WIN-058 was already updated
+  in a prior run (θ=−lonE rewrite + verdict Misleading) but tracker showed
+  status "pending". Marked complete+integrated. ISS-597 closed.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TOP 3 PRIORITY ACTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. [HUMAN/IMMEDIATE] DOCX sections work: 6 pending-human issues all require
+   manual edits to build-doc-v4.js. Most impactful:
+   - ISS-422: Sections 5.14-5.16 missing (inject_ai_layer.py analysis,
+     curve-fitting exposure, monitoring infrastructure — review's most
+     original contribution)
+   - ISS-440: KILLSHOT-GAIA missing from DOCX/PDF
+   - ISS-427: Self-Contradicted count hardcoded as 11 (actual: 13)
+   These make the Word/PDF download significantly incomplete.
 
-1. 🔴 HUMAN REQUIRED — ISS-454 critical: Apply ONE-LINE fix in generate-html.js line ~1777
-   Change: if (SECTIONS_AVAILABLE) { const sections = loadSectionsCache();
-   To:     const sections = loadSectionsCache(); if (sections) {
-   This unlocks ALL sections.json prose improvements (EXP-001 through EXP-018) which are
-   currently silently dropped from the HTML output.
+2. [HUMAN/NEXT SESSION] Verdict taxonomy (ISS-442): 22 WINs under "Misleading"
+   conflating 4 failure modes. Editorial decision needed on subcategories.
+   Counter-argument: the existing taxonomy is intentionally broad and adding
+   subcategories risks fragmenting reader attention. Worth discussing.
 
-2. 🟠 HUMAN REQUIRED — EXP-011 tab reorder: Apply 6 changes in generate-html.js to swap
-   selftest and falsify tabs (spec in monitor/analyst/expansions/EXP-011-tab-ordering.json).
-   The sections.json prose ALREADY assumes this ordering — current mismatch creates "above/below"
-   text inconsistency that will become visible once ISS-454 is fixed.
+3. [ANALYST/ONGOING] Curmudgeon Cycle 2: 12 WINs remain (WIN-056 through
+   WIN-067), then Phase 2 holistic. Globe fingerprint hunt at 48/67.
 
-3. 🟡 HUMAN DECISION — ISS-442 verdict taxonomy: Is "Misleading" appropriate for all 23 WINs
-   or should non-discriminating observations get their own subcategory?
-
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CURMUDGEON PROGRESS
-  Phase 1, Cycle 2: 55/67 WINs reviewed
-  Latest: WIN-055.c2 (verdict holds, minor_edit)
-  12 WINs remaining in Cycle 2: WIN-056 through WIN-067
-  EXP-024 created: cosmological WIN cluster cross-analysis (WIN-054 through WIN-058)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Cycle 2, Phase 1: 55/67 WINs reviewed. Latest: WIN-055.c2.
+Next: WIN-056 (Solar elevation from H(r))
+Globe fingerprint hunt (Mode 3): 48/67 reviewed, 19 remaining.
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CODE ANALYSIS TAG STATUS
-  All 67 WINs have code_analysis tags (curmudgeon validated)
-  Cycle 2 re-review ongoing — no tag changes this run
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+All 67 WINs have code_analysis tags (reviewed=true for all).
+Run `node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const t={h:0,l:0,n:0,r:0,p:0,d:0};w.forEach(x=>{if(!x.code_analysis)return;if(x.code_analysis.monitoring==='hardcoded')t.h++;if(x.code_analysis.monitoring==='live_fetch')t.l++;if(x.code_analysis.monitoring==='none')t.n++;if(x.code_analysis.relabels_standard)t.r++;if(x.code_analysis.post_hoc)t.p++;if(x.code_analysis.derives_from_dome)t.d++});console.log(t)"` for current counts.
 
-PATCHES APPLIED THIS RUN (commit db0618e)
-  ISS-606: WIN-053 detail_claim — clarified λ governs H(r) and B(r) not "both poles"
-  ISS-604: WIN-053 detail_evidence — added cross-ref to Section 3.5.8 shared-λ pattern
-  ISS-609: WIN-055 detail_evidence — "geometric tracers" → "standard candles anchored to geometric parallax"
-  ISS-610: WIN-055 detail_evidence — Gaia sentence scoped to Milky Way Cepheids specifically
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PIPELINE NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- EXP-011 (tab ordering): Still awaiting human — targets generate-html.js.
+  May need re-evaluation given V5.0 refactor changed the file significantly.
+- EXP-024 (cosmological WIN cluster cross-analysis): Analyst pending.
+- Workspace mount is behind clean clone on some status files.
+  build.js publish syncs on each run. No action needed.
+- Orphan detector bug (checks i.issue_id but field is i.id): Low-priority
+  script bug, no production impact.
