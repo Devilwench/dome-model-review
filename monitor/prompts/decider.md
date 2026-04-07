@@ -321,26 +321,45 @@ After writing your patches file, you can **apply simple patches yourself** inste
 
 **Self-apply procedure:**
 
-```bash
-# 1. Pull latest into clean clone (in case human or another agent pushed)
-cd /sessions/peaceful-gallant-rubin/dome-review-clean && git stash && git pull --rebase origin main && git stash pop
+Each agent session runs in its own isolated directory. You must clone fresh to get git access.
 
-# 2. Apply your patches (note the output — track which applied and which failed)
+```bash
+# 0. Clone fresh (you don't have access to any other session's clone)
+SESSION=$(pwd | grep -oP '/sessions/[^/]+')
+WORKSPACE="${SESSION}/mnt/dome-model-review"
+CLONE="${SESSION}/dome-review-clean"
+git clone https://github.com/funwithscience-org/dome-model-review.git ${CLONE}
+cd ${CLONE}
+npm install
+
+# Update workspace sync path in build.js to match this session
+sed -i "s|/sessions/[^/]*/mnt/dome-model-review|${WORKSPACE}|" build.js
+
+# 1. Apply your patches (note the output — track which applied and which failed)
 node build-scripts/apply-patches.js /path/to/your/suggested-patches-YYYY-MM-DDTHH-MM.json
 
-# 3. Build and test
+# 2. Build and test
 node build.js html 2>&1 | tail -5
 node test.js 2>&1 | tail -5
 
-# 4a. If ALL tests pass → publish
-node build.js publish 2>&1 | tail -15
+# 3a. If ALL tests pass → commit and push
+git add data/ docs/ downloads/ monitor/
+git commit -m "Decider self-apply: <brief summary of patches>
 
-# 4b. If ANY test fails → roll back and leave for human
-git checkout -- data/ docs/ downloads/
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+git push origin main
+
+# 3b. If ANY test fails → abandon and leave for human
 echo "SELF-APPLY FAILED: tests did not pass. Patch file left for human review."
-# Do NOT archive the patch file — leave it in monitor/decisions/ for human to review
 # Do NOT close any issues — the patches weren't applied
 ```
+
+**GIT SAFETY — HARD RULES:**
+- NEVER use `git push --force`, `git reset --hard`, `git rebase`, or any history-rewriting command
+- NEVER use `--no-verify` or skip hooks
+- Only `git push origin main` (fast-forward only) — if it fails, stop and leave for human
+- Only create NEW commits — never amend
+- If `git push` is rejected (someone else pushed), do `git pull --rebase origin main` then try push once more. If that also fails, stop.
 
 **After successful publish — close issues and clean up:**
 
@@ -379,7 +398,7 @@ mv /path/to/suggested-patches-YYYY-MM-DDTHH-MM.json monitor/decisions/applied-pa
 
 **Safety net:** The test suite (2000+ tests) validates schema, HTML consistency, links, tabs, and data-prose cross-references. If tests pass, the patch is safe to publish. If you're ever unsure whether a patch is "easy" or consequential, err on the side of leaving it for human review.
 
-**Important:** Always `git pull --rebase` before applying. Another agent or human may have pushed since your last run. Applying against stale data is the exact problem we're solving.
+**Important:** Because you clone fresh each run, you always have the latest code. If `git push` is rejected, someone pushed while you were working — do ONE `git pull --rebase origin main` and retry. If that also fails, stop and leave for human.
 
 ### 7. Write Morning Briefing
 Write a human-readable summary to `monitor/decisions/morning-briefing.txt`. Start with a timestamp header. This should be scannable in 30 seconds:
