@@ -1,0 +1,39 @@
+{
+  "last_run": "2026-04-07T23:57:00Z",
+  "last_agent": "decider",
+  "run_type": "Decider run: CRITICAL BUG found — sections.json never injected (SECTIONS_AVAILABLE circular dep). 4 patches self-applied (WIN-041, WIN-043). 20 issues closed. ISS-454 critical infrastructure issue created. EXP-011 tab reorder pending human.",
+  "mode": "Mode 2 (cleanup)",
+  "status": "complete",
+  "changes_pending_analysis": 0,
+  "patches_applied_this_run": {
+    "sections": 0,
+    "wins": 4,
+    "generate_html": 0
+  },
+  "issues_closed_this_run": 20,
+  "open_issues": 38,
+  "closed_issues": 423,
+  "issues_assigned_analyst": 0,
+  "issues_pending_human": 12,
+  "curmudgeon_cycle": "Cycle 2, Phase 1: 43/99 items reviewed (WIN-001 through WIN-043)",
+  "curmudgeon_last_review": "WIN-043 (2026-04-07T19:15:00Z)",
+  "expansions_integrated": [
+    "EXP-001 through EXP-010 (all complete, but NOTE: sections.json bug means none appear in HTML)",
+    "EXP-012 (WIN-012 spatial heterogeneity, same caveat)"
+  ],
+  "expansions_pending": [
+    "EXP-011 (tab ordering — awaiting human, targets generate-html.js)",
+    "EXP-013 (WIN-015 Meyl)",
+    "EXP-014 (Live Power archive)"
+  ],
+  "pipeline_bugs": [
+    "CRITICAL: generate-html.js SECTIONS_AVAILABLE circular dependency — sections.json NEVER injected (ISS-454)",
+    "gh CLI unavailable — cannot check external reports via GitHub API",
+    "EXP-011 (tab ordering) requires human to apply 6 generate-html.js edits"
+  ],
+  "external_reports": "gh CLI unavailable for external report check.",
+  "integrity_status": "PASS — 2028 tests, all anchors resolve.",
+  "dome_site_status": "QUIET — 12 consecutive quiet polls. No changes since 2026-04-04.",
+  "build_needed": false,
+  "build_note": "Commit b154ae4 pushed. wins.json updates for WIN-041 and WIN-043. Sections.json improvements still not appearing in HTML due to ISS-454 bug."
+}

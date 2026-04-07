@@ -1,0 +1,95 @@
+MORNING BRIEFING — 2026-04-07
+Generated: 2026-04-07T23:57:00Z
+Curmudgeon reviews processed this run: 1 (WIN-043 Cycle 2)
+Previous decider run: 2026-04-06T18:25:00Z (est.)
+
+════════════════════════════════════════════════════════════
+⚠️  CRITICAL INFRASTRUCTURE BUG FOUND — IMMEDIATE ACTION REQUIRED
+════════════════════════════════════════════════════════════
+
+ISS-454: sections.json is NEVER injected into the HTML build.
+
+ROOT CAUSE: generate-html.js line 1777 checks `if (SECTIONS_AVAILABLE)` before
+calling `loadSectionsCache()`. But SECTIONS_AVAILABLE starts as `false` and is
+only set to `true` INSIDE `loadSectionsCache()`. The guard never passes.
+
+IMPACT: ALL analyst prose improvements (EXP-001 through EXP-012) have been
+silently discarded on every build since V4.9.7. The live site has been showing
+only hardcoded generate-html.js content. 12 analyst expansion sessions wasted.
+
+ONE-LINE FIX in build-scripts/generate-html.js:
+
+  BEFORE (line 1777):
+    if (SECTIONS_AVAILABLE) {
+      const sections = loadSectionsCache();
+      if (sections) {
+
+  AFTER:
+    const sections = loadSectionsCache();
+    if (sections) {
+
+After fix: run `node build.js publish`. All EXP-001–EXP-012 improvements
+will appear in the live site for the first time.
+
+════════════════════════════════════════════════════════════
+SITE HEALTH
+════════════════════════════════════════════════════════════
+
+Integrity:    PASS — 2028 tests, all anchors resolve, no broken links
+Build drift:  n/a — rebuilds are always clean (template literal)
+Tab structure: 9 tabs intact (but tab order issue pending EXP-011)
+
+════════════════════════════════════════════════════════════
+EXTERNAL STATUS
+════════════════════════════════════════════════════════════
+
+Dome site: QUIET — 12 consecutive quiet polls. No changes since 2026-04-04.
+External reports: gh CLI unavailable (cannot check GitHub Issues this session)
+
+════════════════════════════════════════════════════════════
+INTERNAL STATUS — PATCHES APPLIED THIS RUN
+════════════════════════════════════════════════════════════
+
+Self-applied patches (committed and pushed, commit b154ae4):
+  ✅ ISS-455 (WIN-041): Added note that 28 nT/year threshold is hardcoded model
+     input — circular validation
+  ✅ ISS-456 (WIN-043): Added epoch-dependence note for the 2.26× ratio —
+     time-window unspecified, NMP decelerating since 2019
+  ✅ ISS-457 (WIN-043): NOAA URL → specific NP.xy dataset URL
+  ✅ ISS-458 (WIN-043): "predicts" → "explains" in WIN-043 finding
+
+Issues flushed to closed this run: 20 (11 verified-patched + 5 already-fixed + 4 new/immediate)
+Current open issues: 38 (down from 53 at session start)
+
+════════════════════════════════════════════════════════════
+TOP 3 PRIORITY ACTIONS
+════════════════════════════════════════════════════════════
+
+1. [CRITICAL — IMMEDIATE] Fix sections.json injection bug in generate-html.js
+   (see ISS-454 above and daily-report for exact fix)
+
+2. [MAJOR — NEXT SESSION] Apply EXP-011 tab reorder (6 edits to generate-html.js)
+   See: monitor/analyst/expansions/EXP-011-tab-ordering.json
+   Note: Apply AFTER the SECTIONS_AVAILABLE fix for clean integration.
+
+3. [MODERATE — NEXT SESSION] Review WIN-058 verdict (ISS-444): currently
+   Misleading but text describes self-contradiction. Consider Self-Contradicted.
+
+════════════════════════════════════════════════════════════
+CURMUDGEON PROGRESS (Cycle 2)
+════════════════════════════════════════════════════════════
+
+Cycle 2 Phase 1: 43 items reviewed (WIN-001 through WIN-043)
+Latest review: WIN-043 (2026-04-07T19:15Z)
+Remaining in Cycle 2: ~56 WINs + sections + holistic checks
+
+════════════════════════════════════════════════════════════
+CODE ANALYSIS TAG STATUS
+════════════════════════════════════════════════════════════
+
+All 67 WINs have validated code_analysis tags (reviewed=true)
+Relabels standard physics: 48/67 (72%)
+Post-hoc retrodictions: 65/67 (97%)
+Monitoring hardcoded: 22 | live_fetch: 5 | none: 40
+
+════════════════════════════════════════════════════════════

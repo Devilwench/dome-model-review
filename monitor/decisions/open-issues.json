@@ -1,32 +1,7 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-07T17:30:00Z",
+  "last_updated": "2026-04-07T11:43:54.815Z",
   "issues": [
-    {
-      "id": "ISS-048",
-      "win_id": null,
-      "severity": "major",
-      "category": "code_analysis",
-      "status": "patched",
-      "found_by": "decider",
-      "found_at": "2026-04-06T19:30:00Z",
-      "description": "Code_analysis tags partially synced: 67 WINs have curmudgeon reviews but 3 still lack reviewed=true tags (WIN-032, WIN-033, WIN-065). Run: node build-scripts/sync-code-analysis.js --apply --workspace to sync.",
-      "rationale_for_deferral": "INFRASTRUCTURE: 59/67 WINs synced; sync gap due to partial code_analysis review cycle. Requires running curmudgeon sync script (pending infrastructure build). Mark as deferred infrastructure task.",
-      "fix_details": "code_analysis_tags added to WIN-032, WIN-033, WIN-065 curmudgeon review files (2026-04-06 decider run). Apply via: node build-scripts/sync-code-analysis.js --apply --workspace. Correct tags: WIN-032 (none/false/true/false), WIN-033 (none/true/true/false), WIN-065 (none/true/true/false). Close after running sync script.",
-      "fix_date": "2026-04-06"
-    },
-    {
-      "id": "ISS-049",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "citation",
-      "status": "patched",
-      "found_by": "integrity",
-      "found_at": "2026-04-06T11:03:00Z",
-      "description": "Two external links broken: LPI Apollo 11 LRR (404), CUORE experiment site (expired SSL). Not yet fixed by ISS-032.",
-      "fix_details": "LPI link (WIN-020) resolved per integrity report 2026-04-06 (\"lpi.usra.edu: all resolve OK now\"). CUORE link (WIN-015) patched in suggested-patches-2026-04-06T06-35.json (removes incorrect CUORE sentence). Both components now addressed.",
-      "fix_date": "2026-04-06"
-    },
     {
       "id": "ISS-074",
       "win_id": null,
@@ -123,36 +98,6 @@
       "found_by": "curmudgeon-cycle-1",
       "found_at": "2026-04-06T14:40:00Z",
       "description": "SEC-3.5.4: WIN-024 tagging inconsistency — section treats it as relabeling but wins.json has relabels_standard=false."
-    },
-    {
-      "id": "ISS-303",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "missing_argument",
-      "status": "open",
-      "found_by": "curmudgeon-cycle-1",
-      "found_at": "2026-04-06T14:40:00Z",
-      "description": "SEC-3.5.4: Missing V51.0 timing context — five tidal WINs added 2026-04-05, hours before review launched. Strategic padding not flagged."
-    },
-    {
-      "id": "ISS-305",
-      "win_id": null,
-      "severity": "minor",
-      "category": "code_analysis",
-      "status": "open",
-      "found_by": "curmudgeon-cycle-1",
-      "found_at": "2026-04-06T14:40:00Z",
-      "description": "SEC-3.5.4: WIN-064 code_analysis=null (not yet reviewed). Add footnote noting pending status."
-    },
-    {
-      "id": "ISS-306",
-      "win_id": null,
-      "severity": "minor",
-      "category": "missing_argument",
-      "status": "open",
-      "found_by": "curmudgeon-cycle-1",
-      "found_at": "2026-04-06T14:40:00Z",
-      "description": "SEC-3.5.4: Missing aggregate statistic — 35/58 reviewed WINs (60%) relabel standard physics. Systemic proportion not highlighted."
     },
     {
       "id": "ISS-370",
@@ -287,30 +232,6 @@
       "fix_date": null
     },
     {
-      "id": "ISS-424",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "citation",
-      "description": "CUORE EXPERIMENT LINK BROKEN: https://cuore.lngs.infn.it/ returns HTTP 404. CUORE is cited in the context of WIN-015 (and possibly elsewhere) as an underground laboratory detector. The CUORE experiment may have moved its website or the LNGS portal was reorganized. Integrity check confirmed this on 2026-04-06.",
-      "source": "integrity",
-      "found_date": "2026-04-06",
-      "status": "patched",
-      "fix_details": "Patch in suggested-patches-2026-04-06T06-35.json: removes CUORE sentence from WIN-015 detail_evidence. CUORE is a neutrinoless double beta decay experiment unrelated to Faraday attenuation.",
-      "fix_date": "2026-04-06"
-    },
-    {
-      "id": "ISS-425",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "citation",
-      "description": "GFZ CHAMP MISSION LINK BROKEN: https://op.gfz-potsdam.de/champ/ returns HTTP 404. The CHAMP mission archive appears to have been reorganized at GFZ Potsdam. CHAMP is cited as a geomagnetic/gravity satellite mission. Integrity check confirmed this on 2026-04-06.",
-      "source": "integrity",
-      "found_date": "2026-04-06",
-      "status": "patched",
-      "fix_details": "Patch in suggested-patches-2026-04-06T06-35.json: updates WIN-039 CHAMP URL from op.gfz-potsdam.de/champ/ to new GFZ URL. Consistent with WIN-029 which already uses the new URL.",
-      "fix_date": "2026-04-06"
-    },
-    {
       "id": "ISS-426",
       "win_id": null,
       "severity": "moderate",
@@ -371,18 +292,6 @@
       "fix_date": null
     },
     {
-      "id": "ISS-431",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "citation",
-      "description": "Integrity report (2026-04-06T14:46Z): 2 broken external links: (1) https://cuore.lngs.infn.it/ returns HTTP 404 - CUORE experiment site may have moved. (2) https://op.gfz-potsdam.de/champ/ returns HTTP 404 - GFZ CHAMP mission archive reorganized. Need updated URLs for both.",
-      "source": "integrity",
-      "found_date": "2026-04-06",
-      "status": "patched",
-      "fix_details": "CUORE fix (WIN-015) and CHAMP fix (WIN-039) both patched in suggested-patches-2026-04-06T06-35.json. Integrity report links should resolve after applying patches and rebuilding.",
-      "fix_date": "2026-04-06"
-    },
-    {
       "id": "ISS-432",
       "win_id": null,
       "severity": "minor",
@@ -431,30 +340,6 @@
       "fix_date": "2026-04-06"
     },
     {
-      "id": "ISS-438",
-      "win_id": null,
-      "severity": "minor",
-      "category": "missing_argument",
-      "description": "KILLSHOT-GAIA missing scale comparison: Proxima Centauri parallax-derived distance (~4.02e13 km) is approximately 4.7 billion times the dome maximum firmament height (8,537 km). This ratio should be stated explicitly.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-06",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-439",
-      "win_id": null,
-      "severity": "minor",
-      "category": "accuracy",
-      "description": "KILLSHOT-GAIA: Section refers to \"The Gaia space telescope\" — Gaia is technically a space observatory/astrometric satellite (ESA nomenclature). Minor imprecision.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-06",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
       "id": "ISS-440",
       "win_id": null,
       "severity": "major",
@@ -465,20 +350,6 @@
       "status": "open",
       "fix_details": null,
       "fix_date": null
-    },
-    {
-      "id": "ISS-441",
-      "win_id": "054",
-      "severity": "major",
-      "category": "verdict",
-      "status": "patched",
-      "found_by": "curmudgeon-hol-taxonomy",
-      "found_at": "2026-04-07T12:00:00Z",
-      "description": "WIN-054 (El Gordo) verdict should change from 'Misleading' to 'Not Demonstrated'. El Gordo is a genuine 6.2σ ΛCDM anomaly — the dome isn't misrepresenting data, it's failing to offer alternative physics that explains the discrepancy. Dome's argument is 'this anomaly exists therefore dome is possible,' not 'dome predicts this anomaly.' Lacks derivation from dome geometry or testable alternative mechanism.",
-      "source": "curmudgeon-hol-taxonomy",
-      "found_date": "2026-04-07",
-      "fix_details": "Verdict changed Misleading->Not Demonstrated. Patch in suggested-patches-2026-04-07T17-30.json. Note: ISS-441 removed from EXP-005 scope; EXP-005 continues for ISS-442/443/444.",
-      "fix_date": "2026-04-07"
     },
     {
       "id": "ISS-442",
@@ -529,20 +400,6 @@
       "found_date": "2026-04-07"
     },
     {
-      "id": "ISS-446",
-      "win_id": "023",
-      "severity": "moderate",
-      "category": "missing_argument",
-      "status": "patched",
-      "found_by": "curmudgeon-hol-taxonomy",
-      "found_at": "2026-04-07T12:00:00Z",
-      "description": "WIN-023 (Schumann resonance ~950 CE): Detail_finding does not acknowledge that the geophysical timing claim (magnetic pole reversal ~950 AD) IS supported by archaeomagnetic data. Current text focuses on frequency mismatch (7.83 Hz observed vs 22 Hz dome prediction). Missing the kernel of truth: dome correctly identified real paleomagnetic event, then wrongly attributes timing to their Schumann resonance mechanism. Vulnerable to objection: 'You're ignoring our correct prediction about the paleomagnetic transition timing.' Add nuanced finding.",
-      "source": "curmudgeon-hol-taxonomy",
-      "found_date": "2026-04-07",
-      "fix_details": "Finding and detail_verdict_text updated to acknowledge kernel of truth (real paleomagnetic event) before critique. Patch in suggested-patches-2026-04-07T17-30.json.",
-      "fix_date": "2026-04-07"
-    },
-    {
       "id": "ISS-447",
       "win_id": null,
       "severity": "minor",
@@ -567,62 +424,6 @@
       "found_date": "2026-04-07"
     },
     {
-      "id": "ISS-449",
-      "win_id": "045",
-      "severity": "minor",
-      "category": "factual_error",
-      "status": "patched",
-      "found_by": "decider",
-      "found_at": "2026-04-07T17:30:00Z",
-      "description": "WIN-045 cross-references 'Section 4.5.4' (Solar Diameter) instead of 'Section 4.5.2' (Tidal Pattern). Readers following the link land in the wrong section. WIN-046, WIN-050, WIN-051 already correctly reference Section 4.5.2; WIN-045 and WIN-049 are outliers from the holistic cross-reference audit.",
-      "source": "decider",
-      "found_date": "2026-04-07",
-      "fix_details": "Patch in suggested-patches-2026-04-07T17-30.json: change display text from Section 4.5.4 to Section 4.5.2.",
-      "fix_date": "2026-04-07"
-    },
-    {
-      "id": "ISS-450",
-      "win_id": "049",
-      "severity": "minor",
-      "category": "factual_error",
-      "status": "patched",
-      "found_by": "decider",
-      "found_at": "2026-04-07T17:30:00Z",
-      "description": "WIN-049 cross-references 'Section 4.5.4' (Solar Diameter) instead of 'Section 4.5.2' (Tidal Pattern). Same error as WIN-045. All five tidal WINs (045-051) should reference the Tidal Pattern section where the geometric semidiurnal argument is developed.",
-      "source": "decider",
-      "found_date": "2026-04-07",
-      "fix_details": "Patch in suggested-patches-2026-04-07T17-30.json: change display text from Section 4.5.4 to Section 4.5.2.",
-      "fix_date": "2026-04-07"
-    },
-    {
-      "id": "ISS-451",
-      "win_id": "001",
-      "severity": "moderate",
-      "category": "missing_argument",
-      "status": "patched",
-      "found_by": "decider",
-      "found_at": "2026-04-07T17:30:00Z",
-      "description": "HOL-TONE: WIN-001 detail_evidence uses 'smuggles in a globe parameter under a new name' — loaded language imputing deliberate deception. Evaluation Guide Principle 2 commits the review to distinguishing flawed from fraudulent. Replace with 'incorporates a globe parameter under a new name.' Substantive critique unchanged.",
-      "source": "curmudgeon-hol-tone",
-      "found_date": "2026-04-07",
-      "fix_details": "Patch in suggested-patches-2026-04-07T17-30.json: 'smuggles in' -> 'incorporates'.",
-      "fix_date": "2026-04-07"
-    },
-    {
-      "id": "ISS-452",
-      "win_id": "002",
-      "severity": "moderate",
-      "category": "missing_argument",
-      "status": "patched",
-      "found_by": "decider",
-      "found_at": "2026-04-07T17:30:00Z",
-      "description": "HOL-TONE: WIN-002 detail_evidence uses 'pretending the dome has uniform height' — loaded language imputing intent. Replace with 'treating the dome as having uniform height.' The surrounding critique (V12 key discovery contradicts this assumption) fully preserves the substantive point without asserting deception.",
-      "source": "curmudgeon-hol-tone",
-      "found_date": "2026-04-07",
-      "fix_details": "Patch in suggested-patches-2026-04-07T17-30.json: 'pretending' -> 'treating ... as having'.",
-      "fix_date": "2026-04-07"
-    },
-    {
       "id": "ISS-453",
       "win_id": null,
       "severity": "major",
@@ -634,6 +435,18 @@
       "source": "decider",
       "found_date": "2026-04-07",
       "fix_details": "Assigned to analyst as EXP-007. Requires structural HTML rewrite of tab ordering and section sequencing in generate-html.js.",
+      "fix_date": null
+    },
+    {
+      "id": "ISS-454",
+      "win_id": null,
+      "severity": "critical",
+      "category": "factual_error",
+      "description": "SECTIONS.JSON NOT INJECTED INTO HTML: generate-html.js checks SECTIONS_AVAILABLE before calling loadSectionsCache(), but SECTIONS_AVAILABLE starts as false and is only set to true INSIDE loadSectionsCache(). Circular dependency means sections.json content is NEVER injected into the HTML. All sections.json patches (EXP-001 through EXP-012, all prose improvements) are silently ignored. Fix: change line 1777 from \"if (SECTIONS_AVAILABLE) { const sections = loadSectionsCache();\" to \"const sections = loadSectionsCache(); if (sections) {\"",
+      "source": "decider",
+      "found_date": "2026-04-07",
+      "status": "open",
+      "fix_details": null,
       "fix_date": null
     }
   ]
