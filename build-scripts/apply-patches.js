@@ -170,9 +170,16 @@ for (let i = 0; i < patches.length; i++) {
 }
 
 if (!dryRun) {
-  fs.writeFileSync(winsPath, JSON.stringify(winsData, null, 2));
+  // Atomic write for wins.json: write to temp, then rename
+  const winsTmp = winsPath + '.tmp';
+  fs.writeFileSync(winsTmp, JSON.stringify(winsData, null, 2));
+  fs.renameSync(winsTmp, winsPath);
+
+  // Atomic write for sections.json: write to temp, then rename
   if (sectionsModified && sectionsData) {
-    fs.writeFileSync(sectionsPath, JSON.stringify(sectionsData, null, 2));
+    const sectionsTmp = sectionsPath + '.tmp';
+    fs.writeFileSync(sectionsTmp, JSON.stringify(sectionsData, null, 2));
+    fs.renameSync(sectionsTmp, sectionsPath);
   }
 }
 

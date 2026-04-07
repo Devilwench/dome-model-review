@@ -118,7 +118,7 @@ if (target === 'publish') {
   const workspace = '/sessions/optimistic-vibrant-bohr/mnt/dome-model-review';
   if (fs.existsSync(workspace)) {
     console.log('\n⏳ Sync to workspace...');
-    const syncFiles = ['data/wins.json', 'docs/index.html', 'build-scripts/generate-html.js', 'build-scripts/build-doc-v4.js', 'CLAUDE.md'];
+    const syncFiles = ['data/wins.json', 'data/sections.json', 'docs/index.html', 'build-scripts/generate-html.js', 'build-scripts/build-doc-v4.js', 'CLAUDE.md'];
     let synced = 0;
     for (const f of syncFiles) {
       const src = path.join(ROOT, f);
