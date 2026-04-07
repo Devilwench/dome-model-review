@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-08T06:30:00Z",
+  "last_updated": "2026-04-07T13:32:31.959Z",
   "issues": [
     {
       "id": "ISS-370",
@@ -206,19 +206,6 @@
       "source": "curmudgeon-hol-taxonomy",
       "found_date": "2026-04-07",
       "rationale_for_deferral": "Verdict taxonomy restructuring requires human editorial decision on subcategory definitions"
-    },
-    {
-      "id": "ISS-443",
-      "win_id": null,
-      "severity": "major",
-      "category": "verdict",
-      "status": "pending-human",
-      "found_by": "curmudgeon-hol-taxonomy",
-      "found_at": "2026-04-07T12:00:00Z",
-      "description": "INCONSISTENT VERDICT BOUNDARY: WIN-043 and WIN-060 are classified 'Std Model Explains' but their findings explicitly mention 'duplicate of WIN-007' and 'duplicate of WIN-004/005'. Duplication is a 'Misleading' criterion per this review. Either remove duplication language from findings or reclassify these WINs to 'Misleading'. Current state violates verdict taxonomy consistency.",
-      "source": "curmudgeon-hol-taxonomy",
-      "found_date": "2026-04-07",
-      "rationale_for_deferral": "Inconsistent verdict boundary for WIN-043/060 requires human verdict review"
     },
     {
       "id": "ISS-453",

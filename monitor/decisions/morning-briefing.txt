@@ -1,78 +1,76 @@
-MORNING BRIEFING — 2026-04-08
-Generated: 2026-04-08T06:30:00Z
-Curmudgeon reviews processed this run: 1 (WIN-047)
-Previous decider run: 2026-04-07T23:57:00Z (prior patches file)
+MORNING BRIEFING — 2026-04-07
+Generated: 2026-04-07T13:30:00Z
+Curmudgeon reviews processed this run: 1 (WIN-049 Cycle 2)
+Previous decider run: 2026-04-08T06:30:00Z (clean clone) / 2026-04-07T22:00:00Z (workspace)
+Commit: 03db594
 
-=== SITE HEALTH ===
-Structure & Integrity: PASS — 2028 tests, all anchors resolve (2026-04-07T08:11Z)
-⚠️  CRITICAL NOTE: Tests pass but sections.json content is NOT visible in published HTML
-    due to ISS-454 (SECTIONS_AVAILABLE circular dependency in generate-html.js). All prose
-    improvements from EXP-001 through EXP-017 are silently ignored. See Priority 1 below.
+────────────────────────────────────────────────────────
+SITE HEALTH
+────────────────────────────────────────────────────────
+Integrity: PASS — 2028 tests, 0 failed. All anchors resolve.
+Build: Clean. Byte-identical rebuild confirmed.
+CRITICAL CAVEAT: sections.json prose improvements are NOT visible in the published HTML due to
+ISS-454 (SECTIONS_AVAILABLE circular dependency in generate-html.js). ONE-LINE FIX NEEDED.
 
-=== EXTERNAL STATUS ===
-Dome site changes: NONE — 12 consecutive quiet polls. Last change: 2026-04-04.
-⚠️  April 5-9 reset window predictions expire April 9 — watch for outcome claims in next polls.
+────────────────────────────────────────────────────────
+EXTERNAL STATUS
+────────────────────────────────────────────────────────
+Dome site: QUIET — 12+ consecutive quiet polls. No changes since 2026-04-04.
+Threat level: NONE
+NOTE: April 5-9 reset window expires April 9. Watch for post-window outcome claims.
+No external GitHub Issues filed.
 
-=== THIS RUN ===
-Patches applied (self): 1
-  ✅ WIN-047 detail_evidence — removed 3 duplicate paragraphs, added Hubble tension
-     paragraph, elevated extragalactic ontology as primary argument
-Issues created: 3 (ISS-574, ISS-575, ISS-576)
-Issues closed: 4 (ISS-574, ISS-575, ISS-576 self-applied; ISS-444 already resolved)
-Reviews processed: WIN-047.c2.json
+────────────────────────────────────────────────────────
+INTERNAL STATUS
+────────────────────────────────────────────────────────
+Open issues: 19 (was 20 in clean clone before this run)
+  Critical: 2 (ISS-454 pending-human, ISS-415 assigned-analyst)
+  Major: 10 (mix of pending-human DOCX issues and assigned-analyst prose rewrites)
+  Moderate: 5 (1 code_analysis, 4 prose)
+  Minor: 2
 
-=== ISSUE SUMMARY ===
-Open issues: 20 (down from 21 at start of run)
-  - critical: 1 (ISS-454: generate-html.js bug — NEEDS HUMAN)
-  - major: 13 (9 pending-human DOCX/verdict, 4 assigned-analyst)
-  - moderate: 4 (all assigned-analyst)
-  - minor: 2 (pending-human DOCX fixes)
-Closed issues total: 446
+Issues closed this run: 3 (ISS-577, ISS-578, ISS-443)
+Issues added this run: 2 (ISS-577, ISS-578 — immediately closed)
+Expansions integrated: EXP-015 (WIN-015 Meyl rewrite)
 
-Status breakdown:
-  - open (unassigned): 1 (ISS-454 only)
-  - pending-human: 9
-  - assigned-analyst: 10
+This run's patches (9 applied, 0 failed, commit 03db594):
+  ✅ WIN-049: Fixed tidal force equator error (0.6% → 1.48%)
+  ✅ WIN-049: Added pred=obs=23.9345h self-admission argument from dome dashboard
+  ✅ WIN-045/046/049: Corrected monitoring tags from 'none' to 'hardcoded'
+     (3 more WINs now counted in hardcoded/monitoring illusion category)
+  ✅ WIN-043: Removed "covered in WIN-007" cross-ref from verdict_text
+  ✅ WIN-060: Removed "Duplicate of WIN-004/005 data." from verdict_text
+  ✅ WIN-015: Integrated EXP-015 — comprehensive Meyl scalar wave rewrite
+     (adds near-field zone physics, anticipates theory-vs-experiment defense,
+      uses ADMX instead of KATRIN, adds dome codebase analysis)
 
-=== TOP 3 PRIORITY ACTIONS ===
+────────────────────────────────────────────────────────
+TOP 3 PRIORITY ACTIONS FOR HUMAN
+────────────────────────────────────────────────────────
+1. [CRITICAL — IMMEDIATE] Fix ISS-454: generate-html.js ~line 1777
+   Change: if (SECTIONS_AVAILABLE) { const sections = loadSectionsCache();
+   To:     const sections = loadSectionsCache(); if (sections) {
+   WHY: sections.json prose is never injected into HTML. All section improvements
+   from the past several decider runs are invisible to readers on the live site.
 
-⚠️  PRIORITY 1 (IMMEDIATE, HUMAN REQUIRED): Fix ISS-454 — generate-html.js SECTIONS_AVAILABLE
-    circular dependency. One-line fix in build-scripts/generate-html.js:
-    Line 1777 CHANGE FROM:
-        if (SECTIONS_AVAILABLE) {
-            const sections = loadSectionsCache();
-    CHANGE TO:
-        const sections = loadSectionsCache();
-        if (sections) {
-    Then run: node build.js publish
-    This will make all sections.json prose improvements visible in the published HTML.
-    All EXP-001 through EXP-017 expansions are currently silently dropped.
+2. [MAJOR — NEXT SESSION] Apply EXP-011 (tab ordering)
+   6 edits to generate-html.js. Output: monitor/analyst/expansions/EXP-011-tab-ordering.json
 
-🔧  PRIORITY 2 (NEXT SESSION, HUMAN REQUIRED): DOCX cluster (ISS-422, ISS-427, ISS-432,
-    ISS-440, ISS-383, ISS-414) — sections 5.14-5.16 missing from DOCX, Gaia kill-shot
-    missing from DOCX, hardcoded Self-Contradicted count, cross-reference errors.
-    All require build-doc-v4.js edits.
+3. [MAJOR — NEXT SESSION] DOCX update session (ISS-422, ISS-427, ISS-440):
+   - Add sections 5.14-5.16 to build-doc-v4.js
+   - Update Self-Contradicted count from 11 to 13
+   - Add KILLSHOT-GAIA section to DOCX
 
-⚖️  PRIORITY 3 (NEXT SESSION, HUMAN REQUIRED): Verdict policy (ISS-442, ISS-443) —
-    consider whether to split Misleading into subcategories, resolve WIN-043/WIN-060
-    verdict boundary question.
+────────────────────────────────────────────────────────
+CURMUDGEON PROGRESS
+────────────────────────────────────────────────────────
+Cycle 2, Phase 1: 48/67 WINs reviewed
+Last reviewed: WIN-049 (2026-04-07T22:30:00Z)
+Next pending: WIN-050 (Tidal O1 period)
 
-=== CURMUDGEON PROGRESS ===
-Cycle 2, Phase 1: 47 of 67 WINs reviewed (WIN-047 most recent, reviewed 2026-04-08T14:32)
-Pending in Cycle 2: WIN-048 through WIN-067 (20 WINs remaining before Phase 2)
-WIN-043 through WIN-046 c2 reviews: 0 holes each (all prior fixes confirmed)
-
-=== CODE ANALYSIS TAG STATUS ===
-All 67 WINs have code_analysis tags (reviewed: true for all with curmudgeon validation)
-Counts (from wins.json):
-  - hardcoded monitoring: run 'node -e "..."' per CLAUDE.md to get current counts
-  - Query: node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const t={h:0,l:0,n:0,r:0,p:0,d:0};w.forEach(x=>{if(!x.code_analysis)return;if(x.code_analysis.monitoring==='hardcoded')t.h++;if(x.code_analysis.monitoring==='live_fetch')t.l++;if(x.code_analysis.monitoring==='none')t.n++;if(x.code_analysis.relabels_standard)t.r++;if(x.code_analysis.post_hoc)t.p++;if(x.code_analysis.derives_from_dome)t.d++});console.log(t)"
-
-=== PIPELINE HEALTH ===
-gh CLI: Unavailable — cannot check external reports via GitHub API (known issue)
-Poller: Healthy — 12 consecutive quiet polls
-Analyst: Mode 3 (fingerprint hunt) — 38/67 fingerprints done
-Curmudgeon: Active — Cycle 2 Phase 1, on schedule
-Integrity: Pass — last check 2026-04-07T08:11Z
-Tinker: Not yet run this cycle
-
+────────────────────────────────────────────────────────
+CODE ANALYSIS TAG STATUS
+────────────────────────────────────────────────────────
+All 67 WINs have code_analysis tags (reviewed=true for all)
+This run: WIN-045/046/049 monitoring tags corrected to 'hardcoded'
+(Strengthens Part 4.6 "monitoring illusion" statistics)

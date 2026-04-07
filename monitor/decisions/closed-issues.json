@@ -5731,6 +5731,50 @@
       "fix_date": null,
       "fixed_at": "2026-04-08T06:30:00Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-577",
+      "win_id": "WIN-049",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "WIN-049 numerical error: tidal force at equator stated as 0.6% but computed value is 1.48% (x=10,008 km on AE projection, h=2,534 km gives f=h³/(x²+h²)^(3/2)=1.48%). The 0.6% figure corresponds to ~13,700 km from sub-lunar point, not the equator. Identified by curmudgeon Cycle 2.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-07",
+      "status": "fixed",
+      "fix_details": "Patches applied and tested (2028 pass) in decider run 2026-04-07T13:30",
+      "fix_date": null,
+      "fixed_at": "2026-04-07T13:32:31.959Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-578",
+      "win_id": "WIN-045",
+      "severity": "moderate",
+      "category": "code_analysis",
+      "description": "Monitoring tag mismatch: WIN-045 (M2), WIN-046 (S2), and WIN-049 (K1) are tagged monitoring=none but dome Live Model Power dashboard explicitly lists all three as scored domains with pred=obs identity checks (hardcoded IERS catalogue values). Correcting to hardcoded shifts 3 WINs in Part 4.6 statistics, strengthening monitoring illusion argument. Identified by curmudgeon Cycle 2.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-07",
+      "status": "fixed",
+      "fix_details": "Patches applied and tested (2028 pass) in decider run 2026-04-07T13:30",
+      "fix_date": null,
+      "fixed_at": "2026-04-07T13:32:31.959Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-443",
+      "win_id": null,
+      "severity": "major",
+      "category": "verdict",
+      "status": "fixed",
+      "found_by": "curmudgeon-hol-taxonomy",
+      "found_at": "2026-04-07T12:00:00Z",
+      "description": "INCONSISTENT VERDICT BOUNDARY: WIN-043 and WIN-060 are classified 'Std Model Explains' but their findings explicitly mention 'duplicate of WIN-007' and 'duplicate of WIN-004/005'. Duplication is a 'Misleading' criterion per this review. Either remove duplication language from findings or reclassify these WINs to 'Misleading'. Current state violates verdict taxonomy consistency.",
+      "source": "curmudgeon-hol-taxonomy",
+      "found_date": "2026-04-07",
+      "rationale_for_deferral": "Inconsistent verdict boundary for WIN-043/060 requires human verdict review",
+      "fixed_at": "2026-04-07T13:32:31.959Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Patches applied and tested (2028 pass) in decider run 2026-04-07T13:30"
     }
   ]
 }
