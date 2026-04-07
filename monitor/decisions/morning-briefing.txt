@@ -1,41 +1,73 @@
 MORNING BRIEFING — 2026-04-07
-Generated: 2026-04-07T18:30:00Z
-Curmudgeon reviews processed this run: 1 (WIN-056.c2)
-Previous decider run: 2026-04-07T06:30:00Z (estimated)
+Generated: 2026-04-07T21:00:00Z
+Curmudgeon reviews processed this run: 0 (no new reviews since last decider run)
+Previous decider run: 2026-04-07T18:48:19Z
 
-SITE HEALTH
-===========
-Integrity: WARN (minor) — 2050 tests pass, 1 ESA Gaia external link timeout (known slow), moderate heading hierarchy note. Site fully functional.
-Build: CLEAN — 0 diff lines, all 2050 tests pass post-patch.
-Tabs: 11 tabs functional, all anchors resolve.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SITE HEALTH: ✅ PASS (minor warnings only)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Build reproducibility: PASS
+  Test suite: 2050 tests, 0 failures
+  Internal anchors: PASS
+  Tab structure: PASS (11 tabs)
+  Data-prose consistency: PASS
+  External links: WARN (ESA Gaia timeout — known slow link)
+  Heading hierarchy: WARN (Killshots tab h1 in section source)
+  No action required.
 
-EXTERNAL STATUS (Dome Site)
-============================
-No changes. 14th consecutive quiet poll. All commits automated (monitor.py/pull_data.py). April 5-9 reset window expires April 9. Threat level: NONE.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXTERNAL STATUS: ✅ QUIET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Dome site: No changes — 14th consecutive quiet poll.
+  ECM V51.0 unchanged. 67 WINs, 95.2% accuracy claim unchanged.
+  ⚠️  April 5-9 reset window expires TOMORROW (April 9).
+  Watch for score updates, new WINs, or post-window Eclipse claims.
 
-INTERNAL STATUS
-===============
-Self-applied patches: 3 (all passed)
-  EXP-026 integrated: E-PRED-B FSF tautology proof (FSF=tan(lat)/tan(ref), verified 9/9 stations)
-  EXP-025 integrated: E-PRED-C three-layer gravity incoherence (no dome gravity framework, globe-calibrated SG, k division-by-zero)
-  ISS-612 fixed: WIN-056 text duplication removed (V9 coordinate paragraph appeared twice)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXPANSION INTEGRATION: ✅ EXP-027 PUBLISHED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  EXP-027 (NOTE-008 response) integrated into Section 2.9:
+  - e=0.66 traced as secondary globe derivative (a and b both fitted to WGS84)
+  - 14.1% mathematical error in elliptic integral E(0.4356): dome says 1.211, correct is 1.3824
+  - No V13 Finsler formula implemented in dome repository
+  All 27 analyst expansions now complete and integrated.
+  Commit: 2aee328
 
-Issues: 3 open (1 pending-human major, 1 moderate, 1 minor)
-  - ISS-442 [major, pending-human]: Verdict taxonomy — 'Misleading' conflates 4 failure modes. NEEDS HUMAN DECISION.
-  - ISS-613 [moderate]: WIN-056 quote unverifiable in raw-text. Deferred until poller confirms live page text.
-  - ISS-614 [minor]: WIN-056 escape-hatch classification clarification needed.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPEN ISSUES: 1 (all else closed)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ISS-442 [major, pending-human]: Verdict taxonomy — 'Misleading' conflates
+  4 failure modes across 23 WINs. Requires human editorial decision on
+  whether to add 'Non-Discriminating' subcategory or restructure taxonomy.
+  No action from decider. Awaiting human.
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TOP 3 PRIORITY ACTIONS
-=======================
-1. [HUMAN] ISS-442: Decide on verdict taxonomy restructuring for 'Misleading' subcategories.
-2. Continue curmudgeon Cycle 2: WIN-057 through WIN-067 remain (11 WINs pending).
-3. Poller: Extract WIN-056 page text to verify the 'reproduces the globe formula exactly' quote (ISS-613).
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  1. [HUMAN] ISS-442: Decide on 'Misleading' verdict taxonomy. The label
+     conflates dishonesty with non-discrimination — may unfairly imply
+     intent in cases that are simply weak evidence. Options: add subcategory,
+     move ~10 WINs to 'Std Model Explains', or retain with clarifying prose.
 
+  2. [WATCH] April 9 reset window expires. Poller alert active. If dome
+     updates score or adds WINs, analyst should run immediately.
+
+  3. [ANALYST] Process NOTE-007 (WGS84 dependency audit). Combined with
+     gravity dependency map, this will quantify the full extent of globe
+     infrastructure borrowed by the dome model.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CURMUDGEON PROGRESS
-===================
-Cycle 2, Phase 1: 56/67 WINs reviewed (WIN-056 processed this run)
-Remaining: WIN-057 through WIN-067 (11 WINs), then sections and holistic checks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Cycle 2, Phase 1: 56/67 WINs reviewed
+  Remaining: WIN-057 through WIN-067 (11 WINs)
+  Last review: WIN-056 (verdict holds, confidence 0.96)
+  Phase 2 holistic checks: PENDING (start after WIN-067)
 
-CODE ANALYSIS TAG STATUS
-=========================
-All 67 WINs have code_analysis tags reviewed by curmudgeon (Cycle 2 confirmation ongoing).
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CODE ANALYSIS TAGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  All 67 WINs have code_analysis tags (Cycle 1 complete).
+  Cycle 2 re-validation in progress (56/67 re-reviewed).
+  Run: node build-scripts/sync-code-analysis.js --apply --workspace
+  to sync any Cycle 2 tag corrections once curmudgeon completes.

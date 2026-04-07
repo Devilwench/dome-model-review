@@ -1,37 +1,33 @@
 {
-  "last_run": "2026-04-07T18:30:57.576699Z",
+  "last_run": "2026-04-07T21:00:00Z",
   "last_agent": "decider",
-  "run_type": "Decider run: Integrated EXP-025 (E-PRED-C gravity) and EXP-026 (E-PRED-B FSF tautology). Fixed WIN-056 text duplication (ISS-612). Processed WIN-056.c2 review. Created ISS-613, ISS-614 for WIN-056 moderate/minor holes.",
-  "mode": "Mode 3 (globe fingerprint hunt)",
+  "run_type": "Decider run: EXP-027 integrated (Section 2.9 eccentricity analysis). 27/27 expansions complete + integrated. 1 open issue (ISS-442 pending-human). 501 closed.",
+  "mode": "Mode 2 (cleanup — 0 patchable critical/major issues)",
   "status": "complete",
   "changes_pending_analysis": 0,
   "patches_applied_this_run": {
     "wins": 0,
-    "sections": 0
+    "sections": 1
   },
   "issues_closed_this_run": 0,
-  "open_issues": 3,
-  "closed_issues": 499,
+  "open_issues": 1,
+  "closed_issues": 501,
   "issues_assigned_analyst": 6,
   "issues_pending_human": 1,
   "curmudgeon_cycle": "Cycle 2, Phase 1: 56/67 WINs reviewed",
   "curmudgeon_last_review": "WIN-056.c2 (2026-04-07)",
   "expansions_integrated": [
-    "EXP-001 through EXP-023 (all complete + integrated)",
-    "EXP-024 (Cosmological WIN cluster — content verified in sections.json part2, marked complete)",
-    "EXP-025 (E-PRED-C gravity incoherence — integrated 2026-04-07)",
-    "EXP-026 (E-PRED-B FSF tautology — integrated 2026-04-07)"
+    "EXP-001 through EXP-026 (all complete + integrated)",
+    "EXP-027 (Section 2.9 eccentricity analysis — integrated 2026-04-07T21:00Z)"
   ],
-  "expansions_pending": [
-    "EXP-024 (Cosmological WIN cluster — still pending)"
-  ],
+  "expansions_pending": [],
   "pipeline_bugs": [
     "ISS-442 (pending-human): Verdict taxonomy — 'Misleading' conflates 4 failure modes. Requires human editorial decision."
   ],
-  "external_reports": "No external reports filed. (gh CLI unavailable this session — cannot check GitHub Issues.)",
-  "integrity_status": "PASS — 2036 tests, all anchors resolve (last checked 2026-04-07T16:30Z post-publish)",
-  "dome_site_status": "QUIET — 13+ consecutive quiet polls. No changes since 2026-04-04. April 5-9 reset window expires April 9.",
+  "external_reports": "No external reports filed. (gh CLI unavailable this session.)",
+  "integrity_status": "WARN (minor) — ESA Gaia link timeout (known slow), Killshots h1 in section source. No action required. 2050 tests pass.",
+  "dome_site_status": "QUIET — 14 consecutive quiet polls. No changes since 2026-04-04. April 5-9 reset window expires April 9.",
   "build_needed": false,
-  "build_note": "No code changes this run. Tracker updates and fingerprint output synced to workspace.",
-  "fingerprint_note": "54/67 WIN globe fingerprints reviewed. WIN-054 significant: λ_A = c/H₀ is Hubble distance, z = D/λ_A is Hubble's law, zero dome computation for cosmological claims. 13 remaining."
+  "build_note": "EXP-027 integration published (commit 2aee328). Workspace synced.",
+  "fingerprint_note": "54/67 WIN globe fingerprints reviewed. 13 remaining. Globe fingerprint hunt continues (Mode 3)."
 }
