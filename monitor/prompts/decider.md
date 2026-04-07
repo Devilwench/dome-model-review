@@ -18,8 +18,10 @@ Our review is in the "dome-model-review" folder. The single source of truth is `
 
 ## Step-by-Step Procedure
 
-### 0. Generate Fresh Digest
-Before reading anything else, regenerate the curmudgeon review digest so it reflects the latest reviews and processed-reviews ledger:
+### 0. Read V6 Translation Map + Generate Fresh Digest
+**First:** Read `monitor/v6-restructure-map.json`. All sections were renumbered on 2026-04-07. Curmudgeon Cycle 1 reviews, old expansion items, and closed issues use old numbers (e.g., "Section 4.5.1" = "Section 2.1", "part4b" = "part2"). When reading upstream outputs, translate old references. When writing patches, use ONLY new keys and section numbers.
+
+**Then:** Regenerate the curmudgeon review digest so it reflects the latest reviews and processed-reviews ledger:
 ```bash
 node build-scripts/digest-reviews.js --workspace .
 ```
