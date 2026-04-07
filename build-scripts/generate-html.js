@@ -577,8 +577,8 @@ ${CSS}
   <button class="tab-btn" onclick="showTab('wins')">${counts.total} Wins Reviewed</button>
   <button class="tab-btn" onclick="showTab('pages')">Live Power Analysis</button>
   <button class="tab-btn" onclick="showTab('predictions')">Predictions Analysis</button>
-  <button class="tab-btn" onclick="showTab('falsify')">Falsification Tests</button>
-  <button class="tab-btn" onclick="showTab('selftest')">Internal Contradictions</button>
+  <button class="tab-btn" onclick="showTab('selftest')">Self-Contradictions</button>
+  <button class="tab-btn" onclick="showTab('falsify')">External Tests</button>
   <button class="tab-btn" onclick="showTab('ai')">AI & Conclusions</button>
   <button class="tab-btn" onclick="showTab('refs')">References</button>
 </div>
@@ -686,9 +686,9 @@ ${CSS}
 </ul></li>
 <li><a href="#part3" onclick="showTab('pages');return false">Part 3: Live Power Dashboard &amp; Site Page Analysis</a></li>
 <li><a href="#part3b" onclick="showTab('predictions');return false">Part 3.5: Predictions Page — Structural Analysis</a></li>
-<li><a href="#part4" onclick="showTab('falsify');return false">Part 4: Falsification Tests</a></li>
-<li><a href="#part4b" onclick="showTab('selftest');return false">Part 4.5: Internal Contradictions — Does the Dome's Geometry Produce Its Claimed Predictions?</a></li>
+<li><a href="#part4b" onclick="showTab('selftest');return false">Part 4.5: Self-Contradictions — The Dome's Own Geometry Refutes Its Claims</a></li>
 <li><a href="#part4c" onclick="showTab('selftest');return false">Part 4.6: Repository Code Analysis — What the Automation Actually Does</a></li>
+<li><a href="#part4" onclick="showTab('falsify');return false">Part 4: External Falsification Tests</a></li>
 <li><a href="#part5" onclick="showTab('ai');return false">Part 5: Analysis of AI Context Directives</a></li>
 <li><a href="#part6" onclick="showTab('ai');return false">Part 6: Conclusions</a></li>
 <li><a href="#part7" onclick="showTab('refs');return false">Part 7: References and Public Datasets</a></li>
@@ -776,7 +776,7 @@ ${sectionNav('wins', counts.total + ' Wins Reviewed', 'predictions', 'Prediction
 
 ${renderSectionFromJson('part3b', context, winsByVerdict, wins, tally, sectionNav)}
 
-${sectionNav('pages', 'Live Power Analysis', 'falsify', 'Falsification Tests')}
+${sectionNav('pages', 'Live Power Analysis', 'selftest', 'Self-Contradictions')}
 
 </div>
 
@@ -784,7 +784,7 @@ ${sectionNav('pages', 'Live Power Analysis', 'falsify', 'Falsification Tests')}
 
 ${renderSectionFromJson('part4', context, winsByVerdict, wins, tally, sectionNav)}
 
-${sectionNav('predictions', 'Predictions Analysis', 'selftest', 'Internal Contradictions')}
+${sectionNav('selftest', 'Self-Contradictions', 'ai', 'AI & Conclusions')}
 
 </div>
 
@@ -793,7 +793,7 @@ ${sectionNav('predictions', 'Predictions Analysis', 'selftest', 'Internal Contra
 ${renderSectionFromJson('part4b', context, winsByVerdict, wins, tally, sectionNav)}
 ${renderSectionFromJson('part4c', context, winsByVerdict, wins, tally, sectionNav)}
 
-${sectionNav('falsify', 'Falsification Tests', 'ai', 'AI & Conclusions')}
+${sectionNav('selftest', 'Self-Contradictions', 'falsify', 'External Tests')}
 
 </div>
 
