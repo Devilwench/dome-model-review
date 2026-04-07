@@ -47,7 +47,9 @@ After the holistic review completes, increment `current_cycle` in the tracker, r
 
 **Step 0: Read the V6 translation map** (`monitor/v6-restructure-map.json`). All sections were renumbered on 2026-04-07. Your Cycle 1 reviews use old numbers (e.g., "Section 4.5.1" is now "Section 2.1"). When reading ANY prior review from `monitor/curmudgeon/reviews/`, mentally translate old section numbers to new ones using the map. When writing NEW reviews, always use the new numbers. The tracker items have already been updated to use new numbers.
 
-Each run, review ONE item from the tracker. Read `monitor/curmudgeon/tracker.json` to find the next unreviewed item (the first entry with `status: "pending"`). If in Phase 2, pick the next unreviewed holistic check. If all items in all phases are complete, start Phase 3.
+**Step 0b: Check human notes** (`monitor/curmudgeon/human-notes.json`). If any notes have `status: "pending"`, they take priority over the normal tracker sequence. Review the item specified in the note, focusing on the questions asked. Mark the note as `"consumed"` after completing the review. Then resume normal tracker order on the next run.
+
+Each run, review ONE item from the tracker (unless a human note overrides — see Step 0b). Read `monitor/curmudgeon/tracker.json` to find the next unreviewed item (the first entry with `status: "pending"`). If in Phase 2, pick the next unreviewed holistic check. If all items in all phases are complete, start Phase 3.
 
 For each WIN, you must:
 

@@ -1,0 +1,12 @@
+{
+  "description": "Notes from the human editor directing the curmudgeon to review specific items with specific focus areas. Check at the start of every run. Pending notes take priority over the normal tracker sequence. Mark notes as consumed after reviewing.",
+  "notes": [
+    {
+      "id": "CNOTE-002",
+      "target": "Evidence Exhibit A + Exhibit B on dome home page",
+      "note": "The dome's home page has two 'Evidence Exhibits' we may be under-covering:\n\nExhibit A: 'The 2003 Bedrock Audit' — Claims October 30, 2003 solar storm provides 'definitive 1-second domain proof.' Says superconducting gravimeters (MB and MC) recorded a phase-locked downward pulse during magnetic flux surge. Claims correlation r = 0.992 (raw L1A residuals) and Asymmetry Index (AI) = 1.152, arguing 15% downward bias proves a 'pressurized cavity (The Dome).' Includes a 'FORENSIC ZOOM' chart labeled 'UNMASKING THE SILENCED RESIDUALS' showing raw L1A vs L1B 'Administrative Mask.'\n\nExhibit B: 'The Administrative Mask Exposure' — Claims L1B processing is a global deception. Says raw L1A data captures '1.67 nT/μGal induction spikes at 1-second intervals' and that agencies apply a Low-Pass Butterworth Filter to hide them. Claims 'the raw binaries contain the evidence of the firmament's resonance.'\n\nReview these claims adversarially. Key questions:\n1. Is r = 0.992 meaningful? What's the sample size, degrees of freedom, and what would you expect from two noisy time series during a geomagnetic storm?\n2. Is AI = 1.152 statistically significant? What's the null distribution of asymmetry index for random walks or colored noise?\n3. The L1A vs L1B argument — is L1B processing actually hiding anything, or is this standard signal processing (drag removal, etc.) as documented in JPL D-22027?\n4. The 1.67 nT/μGal coupling constant (κ) — this is the same value from WIN-012. Does the Exhibit A data actually support it, or is it circular?\n5. Do we adequately cover these exhibits in our current review? If not, what's missing?\n\nThis is a prominent piece of the dome's home page — it's what visitors see first. If our review doesn't address it, that's a gap.",
+      "created_at": "2026-04-07T20:00:00Z",
+      "status": "pending"
+    }
+  ]
+}
