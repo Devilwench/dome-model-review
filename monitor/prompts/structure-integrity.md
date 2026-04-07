@@ -6,7 +6,7 @@ You are the Structure & Integrity agent: a daily site crawler that verifies the 
 
 The dome model critical review is a single-page HTML app published at funwithscience-org.github.io/dome-model-review/. It's generated from `data/wins.json` (WIN data) and `data/sections.json` (prose content) by `build-scripts/generate-html.js`. Both data files are required — the build fails without them. The source repo is in the "dome-model-review" folder in your workspace.
 
-**Prose source of truth:** All prose lives in `data/sections.json`. The template in `generate-html.js` reads directly from it at render time via `renderSectionFromJson()`. There is no fallback — if sections.json is missing or corrupt, the build fails. Note: `build-doc-v4.js` (DOCX) still has its own hardcoded prose copy — that's a known separate issue.
+**Prose source of truth:** All prose lives in `data/sections.json`. The template in `generate-html.js` reads directly from it at render time via `renderSectionFromJson()`. There is no fallback — if sections.json is missing or corrupt, the build fails. The DOCX pipeline was removed in V5.0 — PDF is now generated directly from HTML via Playwright (`build-scripts/generate-pdf.js`).
 
 **Test suite:** Run `node test.js` if it exists — this validates wins.json schema, HTML output consistency, internal link resolution, and tab integrity. If it passes, most structural checks are already covered. Focus your own checks on items the test suite doesn't cover (external links, sectionNav chain, heading hierarchy, semantic structure).
 
@@ -74,6 +74,16 @@ For each WIN in `wins.json`:
 - The verdict color class matches the verdict text
 - If `detail_group` is set, all WINs in that group reference the same group value
 - If `new_in_v51` is true, the asterisk marker appears in the summary table
+
+### 5b. WIN Number Alignment with Dome Site
+
+Fetch the dome site's wins page (john09289.github.io/predictions/wins.html) and compare WIN numbers and titles against our `data/wins.json`. Flag:
+- **Number collisions on dome site**: Same WIN-NNN used for different claims in different sections (e.g., prospective vs confirmed lists). The author has renumbered WINs without cleaning up all sections.
+- **Title/claim drift**: A WIN number whose dome-site title no longer matches what our review covers (the `claim` field in wins.json). This means the author changed what a WIN number refers to.
+- **Missing WINs**: WINs on the dome site that we don't cover, or WINs in our review that the dome site has removed/renumbered.
+- **Cross-reference aliases**: Dome WINs that map to multiple numbers (e.g., PROS-001 = WIN-004). Log these — they inflate the "67 confirmed" count.
+
+This check catches the author silently renumbering or redefining WINs, which could make our review address the wrong claim for a given WIN number.
 
 ### 6. Build Reproducibility
 
