@@ -191,9 +191,10 @@
       ],
       "created_at": "2026-04-08T00:30:00Z",
       "completed_at": "2026-04-07T18:00:00Z",
-      "integrated": false,
+      "integrated": true,
       "output_file": "monitor/analyst/expansions/EXP-011-tab-ordering.json",
-      "integration_notes": "Targets generate-html.js (infrastructure file). Cannot auto-apply. Requires human to apply 6 edits from expansion output. Associated with ISS-453. Decider note: Targets generate-html.js (infrastructure). Cannot auto-apply. See ISS-453 (assigned-analyst). Awaiting human."
+      "integration_notes": "Targets generate-html.js (infrastructure file). Cannot auto-apply. Requires human to apply 6 edits from expansion output. Associated with ISS-453. Decider note: Targets generate-html.js (infrastructure). Cannot auto-apply. See ISS-453 (assigned-analyst). Awaiting human. V6 restructure (commit 6b3e4a0, 2026-04-07) already achieved the tab reordering goal: Self-Contradictions (selftest) is now Part 2, immediately after The Model, before External Tests (falsify = Part 7). ISS-453 was closed as fixed by V6 restructure. EXP-011 formally marked integrated.",
+      "integrated_at": "2026-04-07T23:45:00Z"
     },
     {
       "id": "EXP-012",
@@ -401,13 +402,40 @@
         "ISS-607"
       ],
       "priority": "medium",
-      "status": "pending",
-      "notes": "Cycle 2 curmudgeon (WIN-054.c2.json) identifies structural pattern: WIN-054 to WIN-058 form a cosmology cluster all new in V51.0. They share the same failure mode (ΛCDM anomalies do not validate dome). A cross-analysis section showing the cluster pattern — and how dome model is exploiting current cosmology tensions without providing dome-specific predictions — would strengthen the argument for all 5 WINs. Should address: (1) why observing a ΛCDM anomaly is not a dome validation, (2) dome has no cosmological model at all (no expansion, no CMB, no large-scale structure), (3) the pattern of cherry-picking open ΛCDM questions as dome wins.",
+      "status": "complete",
+      "notes": "Cycle 2 curmudgeon (WIN-054.c2.json) identifies structural pattern: WIN-054 to WIN-058 form a cosmology cluster all new in V51.0. They share the same failure mode (ΛCDM anomalies do not validate dome). A cross-analysis section showing the cluster pattern — and how dome model is exploiting current cosmology tensions without providing dome-specific predictions — would strengthen the argument for all 5 WINs. Should address: (1) why observing a ΛCDM anomaly is not a dome validation, (2) dome has no cosmological model at all (no expansion, no CMB, no large-scale structure), (3) the pattern of cherry-picking open ΛCDM questions as dome wins. VERIFIED: Content already present in data/sections.json part2 (formerly part4b). Section 2.10 Cosmological WIN cluster analysis with V51.0 expansion statistics confirmed in place. Marked complete.",
       "created_at": "2026-04-07T16:00:00Z",
-      "completed_at": null,
+      "completed_at": "2026-04-07T16:00:00Z",
+      "integrated": true,
+      "output_file": null,
+      "integrated_at": "2026-04-07T16:00:00Z"
+    },
+    {
+      "id": "EXP-025",
+      "target": "E-PRED-C paragraph in data/sections.json part4",
+      "human_note": "NOTE-004",
+      "issue_ids": [],
+      "priority": "high",
+      "status": "complete",
+      "notes": "NOTE-004 response: Three-layer gravity incoherence analysis. (1) Dome has no gravitational framework — g(r) formula in monitor.py IS WGS84 with dome labels. (2) SG instruments calibrated via globe physics. (3) E-PRED-C (0.0 μGal) contradicts WIN-012 (κ = 10.9/6.5 — division by zero if gravity signal is null). Van Camp et al. 2001 misrepresented — they concluded null result consistent with standard physics, NOT 'electromagnetic not gravitational.'",
+      "created_at": "2026-04-08T00:00:00Z",
+      "completed_at": "2026-04-08T00:30:00Z",
       "integrated": false,
-      "output_file": null
+      "output_file": "monitor/analyst/expansions/EXP-025.json"
+    },
+    {
+      "id": "EXP-026",
+      "target": "E-PRED-B paragraph in data/sections.json part4",
+      "human_note": "NOTE-005",
+      "issue_ids": [],
+      "priority": "high",
+      "status": "complete",
+      "notes": "NOTE-005 response: FSF tautology proof. FSF = H(r)/r = tan(lat)/tan(ref) by algebraic identity — dome geometry cancels from station-placement equation. Verified 9/9 stations (max error 0.016). fsf_derivation.py in dome repo confirms formula. monitor.py uses hardcoded FSF=1.672. Standard Sq latitude dependence produces same ordering.",
+      "created_at": "2026-04-08T00:30:00Z",
+      "completed_at": "2026-04-08T01:00:00Z",
+      "integrated": false,
+      "output_file": "monitor/analyst/expansions/EXP-026.json"
     }
   ],
-  "last_updated": "2026-04-07T16:00:00Z"
+  "last_updated": "2026-04-08T01:00:00Z"
 }
