@@ -13,18 +13,18 @@ Repository: https://github.com/funwithscience-org/dome-model-review
 
 ### Single Source of Truth
 
-All WIN data lives in `data/wins.json`. Both the HTML site and Word document are generated from this file. Never edit `docs/index.html` directly — edit `wins.json` and rebuild.
+All WIN data lives in `data/wins.json`. The HTML site and PDF are generated from this file. Never edit `docs/index.html` directly — edit `wins.json` and rebuild.
 
 ### Build Pipeline
 
 ```
-node build.js          # Build HTML + DOCX + PDF
+node build.js          # Build HTML + PDF
 node build.js html     # HTML only (fast, for iteration)
-node build.js docx     # DOCX + bookmark fix + PDF
+node build.js pdf      # PDF only (uses Playwright)
 node build.js publish  # Build all + git commit + push
 ```
 
-Requires: Node.js, LibreOffice (for PDF conversion via headless mode)
+Requires: Node.js, Playwright (for HTML→PDF via headless Chromium)
 
 ### Two-Repo Architecture (Filesystem Constraint)
 
@@ -46,7 +46,7 @@ The workspace mount (`/mnt/dome-model-review/`) uses a FUSE filesystem that **do
 data/wins.json                    # 67 WINs: claims, verdicts, findings, detail writeups, code_analysis tags
 data/sections.json                # 11 prose sections with {{PLACEHOLDER}} tokens (extracted V4.9.7)
 build-scripts/generate-html.js    # Generates docs/index.html from wins.json + sections.json (all counts computed at build time)
-build-scripts/build-doc-v4.js     # Generates DOCX from wins.json (uses docx-js)
+build-scripts/generate-pdf.js     # Generates PDF from HTML using Playwright (@media print CSS)
 build-scripts/add-references.js   # Injects clickable hyperlinks into wins.json
 build-scripts/digest-reviews.js   # Preprocesses curmudgeon reviews into compact digest for decider
 build-scripts/backfill-issues.js  # One-time bulk issue creation from digest (fuzzy dedup)
@@ -56,7 +56,7 @@ build.js                          # Unified pipeline orchestrator
 test.js                           # Automated test suite (schema, HTML consistency, links, tabs)
 .github/workflows/ci.yml          # GitHub Actions CI (build + test on every push)
 docs/index.html                   # Generated HTML (GitHub Pages) — DO NOT EDIT DIRECTLY
-downloads/*.docx, *.pdf           # Generated document outputs
+downloads/*.pdf                   # Generated PDF output
 raw-text/                         # Extracted ECM site content (current version)
 raw-text-v50.6-2026-03-12/        # Archived V50.6 baseline for version comparison
 monitor/prompts/                  # Agent prompt files (editable markdown — see Monitoring Pipeline)
@@ -83,8 +83,7 @@ security-audit.md                 # Website security scan results
 
 ### Dependencies
 
-- `docx` (^9.6.1) — Word document generation
-- `adm-zip` (^0.5.17) — DOCX bookmark ID post-processing fix
+- `playwright` — HTML→PDF generation via headless Chromium
 
 ## Monitoring Pipeline
 
@@ -231,11 +230,8 @@ All 67 WINs now have code_analysis tags (reviewed by curmudgeon). Counts are com
 
 ## Known Technical Issues
 
-### docx-js Bookmark Bug
-The `docx` npm package generates duplicate bookmark IDs (all set to 0), which makes the DOCX invalid in some readers. `build.js` post-processes the DOCX using `adm-zip` to assign sequential unique IDs.
-
-### Prose Sections (sections.json — extracted V4.9.7)
-All 11 prose sections now live in `data/sections.json` (extracted from generate-html.js). The HTML build reads sections.json and injects computed values via `{{PLACEHOLDER}}` tokens (24 total, replacing 70 interpolations). The DOCX build (`build-doc-v4.js`) still has its own hardcoded copy — syncing DOCX prose remains a manual task.
+### Prose Sections (sections.json — V5.0 source of truth)
+All 11 prose sections live in `data/sections.json`. The HTML build reads sections.json via `renderSectionFromJson()` and injects computed values via `{{PLACEHOLDER}}` tokens (24 total). The build fails loudly if sections.json is missing — git is the recovery path.
 
 `apply-patches.js` routes patches to either `wins.json` or `sections.json` based on the `file` field. This makes prose patchable by the decider pipeline (previously impossible with hardcoded HTML in generate-html.js).
 
@@ -258,7 +254,7 @@ All 11 prose sections now live in `data/sections.json` (extracted from generate-
 1. Edit the relevant section in `data/sections.json` (each section has `id`, `title`, `html` fields)
 2. Use `{{PLACEHOLDER}}` tokens for any computed values (see generate-html.js for the replacement map)
 3. Run `node build.js`
-4. Note: DOCX prose in `build-doc-v4.js` is still hardcoded — must be updated separately
+4. Run `node build.js` to regenerate HTML + PDF
 
 ### Apply decider patches
 1. Run `node build-scripts/apply-patches.js <patches-file>` — applies against parsed JSON field values (handles HTML/unicode correctly)
@@ -292,6 +288,7 @@ All 11 prose sections now live in `data/sections.json` (extracted from generate-
 | V4.9.6 | e4b22d2–52c632d | Decider patch pipeline: digest preprocessing, apply-patches.js, backfill-issues.js, cycle-aware filenames, timestamped outputs, open/closed issue split. ~25 WINs patched across 5 decider runs. WIN-053 verdict→Self-Contradicted. |
 | V4.9.7 | 2abb55d | Prose extraction: 11 sections from generate-html.js → data/sections.json with {{PLACEHOLDER}} tokens. 2017 tests. |
 | V4.9.8 | 9755573–0e01a5f | WIN-012→Self-Contradicted. WIN-054→Not Demonstrated. Holistic Phase 2 patches (tone, cross-refs, taxonomy). 16 code_analysis tag corrections. Expansion integration pipeline. Human notes system. Globe fingerprint hunt (Mode 3). 94 issues flushed to closed. |
+| V5.0 | 6e68d56 | sections.json is sole prose source of truth (50% line reduction in generate-html.js). HTML→PDF via Playwright replaces DOCX→LibreOffice chain. Removed build-doc-v4.js, adm-zip, docx dependencies. 7 cross-ref fixes in sections.json. Print CSS for PDF layout. |
 
 ## Analyst Modes
 
@@ -303,4 +300,4 @@ The analyst operates in three modes, checked in priority order each run:
 ## Parked Content
 
 ### Section 3.6: Dielectric Infographic (GRACE L1A / EM-Gravity)
-Commented out in both `generate-html.js` (HTML comment) and `build-doc-v4.js` (JS block comment). Content preserved for potential reinstatement. The WIN-012 detail still references GRACE L1A as part of its individual evidence rebuttal.
+Commented out in `generate-html.js` (HTML comment). Content preserved for potential reinstatement. The WIN-012 detail still references GRACE L1A as part of its individual evidence rebuttal.

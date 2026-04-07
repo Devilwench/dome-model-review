@@ -10,8 +10,6 @@
     "publish": "node build.js all && node build.js publish"
   },
   "dependencies": {
-    "adm-zip": "^0.5.17",
-    "docx": "^9.6.1",
     "playwright": "^1.59.1"
   }
 }
