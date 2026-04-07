@@ -482,6 +482,21 @@
       "completed_at": null,
       "output_file": null,
       "integrated": false
+    },
+    {
+      "id": "EXP-030",
+      "target": "data/wins.json WIN-012 detail_evidence (Exhibit A statistical analysis)",
+      "curmudgeon_review": "monitor/curmudgeon/latest-review-summary.txt (EXHIBIT-AB special review 2026-04-07T22:30)",
+      "issue_ids": [
+        "ISS-449"
+      ],
+      "priority": "medium",
+      "status": "pending",
+      "notes": "WIN-012 currently says r=0.992 and AI=1.152 are static HTML (no computation) and that correlation during G5 storm does not confirm coupling constant. Needs additional statistical argument: (1) During a G5 storm all geophysical systems co-respond to the same solar driver — massive autocorrelation reduces effective DOF from N to perhaps 10-20 independent measurements, so r=0.992 is unsurprising and statistically uninformative. (2) AI=1.152 (15% bias) has no null distribution provided — but magnetic storms are asymmetric by definition: Dst is always negative (field suppression), so downward bias in any related measurement is the expected baseline, not evidence for a dome mechanism. Both arguments require ~2-3 sentences each and strengthen the already-strong Exhibit A rebuttal without needing new data sources.",
+      "created_at": "2026-04-07T19:48:41.402Z",
+      "completed_at": null,
+      "output_file": null,
+      "integrated": false
     }
   ],
   "last_updated": "2026-04-07T23:30:00Z"
