@@ -1,6 +1,6 @@
 # Dome Model Review — Session Context for AI Continuity
 
-**Last updated:** 2026-04-06 (context windows 5–12)
+**Last updated:** 2026-04-07 (context windows 5–13)
 **Repository:** https://github.com/funwithscience-org/dome-model-review
 **Live site:** https://funwithscience-org.github.io/dome-model-review
 **Version reviewed:** Ovoid Cavity Cosmological Model V51.0 (April 2026)
@@ -20,61 +20,55 @@ The review is built to be transparent, fair, and scientifically rigorous — we 
 
 ## 2. Architecture & Build Pipeline
 
-### Data-driven build system
+### Data-driven build system (V6)
 ```
-data/wins.json  →  node build.js  →  docs/index.html (HTML)
-                                   →  downloads/critical-review-dome-model-v4.docx
-                                   →  downloads/critical-review-dome-model-v4.pdf
+data/wins.json     ─┐
+data/sections.json ─┤→  node build.js  →  docs/index.html (HTML)
+                    │                   →  downloads/critical-review-dome-model-v6.pdf
 ```
 
-- **`data/wins.json`** — Single source of truth for all 67 WINs. Each entry has:
-  - `id`, `claim`, `verdict`, `finding` (one-line summary)
-  - `detail_claim`, `detail_evidence` (supports inline HTML), `detail_verdict_text`
-  - `detail_extra` (optional additional analysis)
-  - `detail_group` (for grouping related WINs)
-  - Verdict must be one of: "Refuted by Data", "Self-Contradicted", "Misleading", "Std Model Explains", "Not Demonstrated", "Unfalsifiable"
+- **`data/wins.json`** — Single source of truth for all 67 WINs (claims, verdicts, findings, detail writeups, code_analysis tags)
+- **`data/sections.json`** — 13 prose sections (parts 1–10 including 1b and 2b) with `{{PLACEHOLDER}}` tokens for computed values
+- **`build-scripts/generate-html.js`** — Generates docs/index.html from wins.json + sections.json. All counts computed at build time. Key functions: `generatePieChart()`, `sectionNav()`, `formatWinDetail()`, `renderSectionFromJson()`
+- **`build-scripts/generate-pdf.js`** — HTML→PDF via Playwright headless Chromium
+- **`build.js`** — Orchestrator. Also syncs key files to workspace on publish.
 
-- **`build-scripts/generate-html.js`** — THE primary file (~1000+ lines). Generates the full HTML page including:
-  - CSS (with custom color properties, dark mode support)
-  - Tab switching JavaScript
-  - All narrative content (Parts 1-5, evaluation guide, etc.)
-  - Pie chart SVG generation
-  - WIN detail cards from wins.json
-  - References section
-  - Key functions: `generatePieChart(tally, total)`, `sectionNav(prevTab, prevLabel, nextTab, nextLabel)`, `formatWinDetail(win)`
-
-- **`build-scripts/build-doc-v4.js`** — DOCX generation (uses docx library + libreoffice for PDF)
-
-- **`build.js`** — Orchestrator that calls both build scripts
+DOCX generation removed in V5.0 (build-doc-v4.js, adm-zip, docx dependencies all deleted). PDF now generated directly from HTML via Playwright.
 
 ### To rebuild:
 ```bash
-cd dome-model-review-git   # or wherever the repo is cloned
-node build.js
+cd dome-review-clean   # or wherever the repo is cloned
+node build.js          # HTML + PDF
+node build.js html     # HTML only (fast)
+node build.js publish  # Build + commit + push + workspace sync
 ```
 
 ### Two-directory workflow (in Cowork sessions):
-- **Mounted folder:** `/sessions/.../mnt/dome-model-review/` — user-visible, for browsing
-- **Git clone:** `/sessions/.../dome-model-review-git/` — for commits/pushes
-- After building in git clone, rsync to mounted folder
+- **Mounted folder:** `/sessions/<session-name>/mnt/dome-model-review/` — FUSE mount, no git operations
+- **Git clone:** `/sessions/<session-name>/dome-review-clean/` — for all git + build operations
+- `build.js publish` automatically syncs key files to workspace mount
 
 ---
 
-## 3. Tab Structure (9 tabs)
+## 3. Tab Structure (11 tabs — V6)
 
 | # | Tab ID      | Button Label             | Content                                    |
 |---|-------------|--------------------------|---------------------------------------------|
 | 1 | overview    | Overview                 | Executive summary, pie chart, scorecard, TOC |
 | 2 | evaluate    | Evaluation Guide         | 6 methodology principles, how to assess claims |
-| 3 | model       | The Model                | Parts 1 & 1.5: model description, version changes |
-| 4 | wins        | 67 Wins Reviewed         | Part 2: point-by-point WIN reviews from wins.json |
-| 5 | pages       | Live Power Analysis      | Part 3: analysis of site pages (Live Power, Kill-Shot, Audit, Eclipse, Tracking) |
-| 6 | falsify     | Falsification Tests      | Part 4: discriminating tests, domains analysis, SH distances |
-| 7 | selftest    | Internal Contradictions  | Part 4.5: dome's own geometry contradicts its claims |
-| 8 | ai          | AI & Conclusions         | Part 5: AI context analysis, terminology substitution, conclusions |
-| 9 | refs        | References               | Part 6: bibliography |
+| 3 | model       | The Model                | Parts 1 & 1b: model description, version changes |
+| 4 | selftest    | Self-Contradictions      | Part 2 & 2b: dome's own geometry contradicts its claims + code analysis |
+| 5 | wins        | 67 Wins Reviewed         | Part 3: point-by-point WIN reviews from wins.json |
+| 6 | pages       | Live Power Dashboard     | Part 4: analysis of site pages (Live Power, Audit, Eclipse, Tracking) |
+| 7 | killshots   | Kill Shots               | Part 5: six kill-shot test cards with status badges |
+| 8 | predictions | Predictions Analysis     | Part 6: discriminating tests, domains analysis, SH distances |
+| 9 | falsify     | External Tests           | Part 7: falsification tests (Gaia, GPS, solar diameter, etc.) |
+| 10| ai          | AI & Conclusions         | Parts 8-9: AI context analysis, terminology substitution, conclusions |
+| 11| refs        | References               | Part 10: bibliography |
 
-Navigation chain: overview → evaluate → model → wins → pages → falsify → selftest → ai → refs
+Navigation chain: overview → evaluate → model → selftest → wins → pages → killshots → predictions → falsify → ai → refs
+
+**V6 restructure note:** Section numbers changed significantly. A translation map at `monitor/v6-restructure-map.json` provides old→new mappings for section keys, numbers, anchors, and tab IDs. All agents read this map at Step 0 of every run.
 
 ---
 
@@ -109,14 +103,14 @@ Dark mode uses rgba(..., 0.20) variants. These colors are used consistently acro
 
 4. **SAA African cell (Test 4):** Dome extrapolates CHAOS-7 station decay rates. Globe predicts the same decay direction. Straw-mans globe as predicting "stability." Non-discriminating.
 
-5. **Eclipse 2026 (Test 5):** Uses standard Besselian elements (JPL DE440/441), not dome geometry. Cross-ref Section 3.2.
+5. **Eclipse 2026 (Test 5):** Uses standard Besselian elements (JPL DE440/441), not dome geometry. Cross-ref Section 4.2.
 
 6. **NMP drift rate (Test 6):** Dome currently FAILING at 39.9% error, exceeding own 30% threshold. Prediction is curve-fit extrapolation (deceleration constant 0.08), not geometry-derived. Globe also documents deceleration.
 
 ### Domains Table (20 domains):
 14 of 20 share the same fitted constant (one test, not fourteen). Remaining 6: globe predicts same or better in 5, dome contradicted in 1 (Polaris). Zero domains uniquely favor the dome.
 
-### V13 Finsler Coordinate System (Section 4.5.9 — major new analysis):
+### V13 Finsler Coordinate System (Section 2.9 — major new analysis):
 **No forward model exists.** The coordinate system has no published formula that takes two dome coordinates and outputs a predicted distance. Key findings:
 - d = d_geo / n(r_avg), but d_geo is undefined and n(r) is never given a functional form on the coordinates page
 - All inputs are converted from globe lat/lon (θ = −lonE, r from r·tan(lat) = H(r))
@@ -135,7 +129,7 @@ Dark mode uses rgba(..., 0.20) variants. These colors are used consistently acro
 4. Selective sourcing (use only dome-approved data)
 5. Terminology substitution (Rule 15: "Say 'aetheric slipstreams' NOT 'jet streams'")
 
-### Internal Contradictions (Part 4.5) — detailed calculations:
+### Internal Contradictions (Part 2) — detailed calculations:
 - **Schumann resonance**: Dome cavity H(r)=8537·exp(−r/8619) km. Using effective average height and parallel-plate approximation gives fundamental ~22 Hz, not 7.83 Hz. The author uses the simplified globe Schumann formula (f₁ = c/(2πR) × √(n(n+1))) which assumes a uniform spherical cavity — contradicting the exponentially varying dome. NOTE: an earlier session calculated 17.5 Hz; our more careful calculation gives ~22 Hz. Either way, far from 7.83 Hz.
 - **Tidal pattern**: The dome's local moon at ~2,534 km altitude (from inject_ai_layer.py core_parameters) orbits far too close to the disc (d/R ≈ 0.13) to produce the observed two-bulge tidal pattern. Tidal force falls off as 1/r³, so at the equatorial rim the force is ~0.2% of the sub-lunar peak — producing a single sharp spike, not the symmetric semidiurnal pattern actually observed. This is purely geometric and cannot be fixed by adjusting the moon's mass. The dome model claims tidal constituent periods (M2, S2, K1, O1, N2) as predictions, but these are astronomical constants derived by Laplace (1775) and Darwin (1883) — never derived from dome geometry.
 - **Gravity at rim**: Under the dome's exponential firmament, gravitational acceleration drops ~90% at r=20,015 km (disc edge). No such variation is observed.
@@ -145,7 +139,7 @@ Dark mode uses rgba(..., 0.20) variants. These colors are used consistently acro
 - **Polaris distance**: dome places it at 8,537 km; Gaia parallax measured at 433 light-years; 10,000× discrepancy
 - **Antarctic circumnavigation**: dome rim circumference = 2π × 20,015 = ~126,000 km. Measured circumnavigation distance = ~13,800 km. Factor of 9 discrepancy.
 - **Southern hemisphere distances**: V13 Finsler calibrated to known distances, fails on novel routes (SYD-EZE: −78% in V12, claimed −8.4% in V13 via unpublished functions)
-- **V13 Coordinate System (NEW Section 4.5.9)**: No forward model exists; self-referential loop of globe inputs → undefined functions → curve-fit outputs; scaffold vs Finsler 460 km disagreement; Christchurch-Greymouth 84% error; Singapore breaks model; 13-version fitting history
+- **V13 Coordinate System (Section 2.9)**: No forward model exists; self-referential loop of globe inputs → undefined functions → curve-fit outputs; scaffold vs Finsler 460 km disagreement; Christchurch-Greymouth 84% error; Singapore breaks model; 13-version fitting history
 
 ### GPS Constellation as Falsification:
 GPS requires 31 satellites in Keplerian orbits at 20,200 km altitude with relativistic corrections (38 μs/day). The dome's firmament height is 8,537 km at the apex. GPS satellites orbit ABOVE the dome. The system's cm-level precision requires general relativity — the dome model has no mechanism for this.
@@ -259,8 +253,8 @@ The ECM site was clearly built with AI assistance. The user observed that the au
 
 ### Completed:
 - **Tidal argument replaced across all files**: The old "300,000× excess tidal force" argument was fundamentally flawed (assumed dome's moon has same mass as real moon). Replaced with irrefutable geometric pattern argument: at d/R ≈ 0.13, tidal force is a sharp localized spike producing one pulse per lunar pass, not the observed two-bulge semidiurnal pattern. This is purely geometric and cannot be fixed by mass adjustment. Moon altitude corrected from 5,733 km (sun) to 2,534 km (moon, from inject_ai_layer.py core_parameters). Updated: wins.json (5 tidal WINs), generate-html.js (Section 4.5.2 + summary + patterns + version history), build-doc-v4.js (Section 4.5.4 + summary + patterns + version history), CLAUDE.md, SESSION-CONTEXT.md.
-- **Kill-Shot test card layout**: Section 3.3 now wraps each of the 6 tests in a bordered card with accent left border and colored status badge: "CLAIMED CONFIRMED" (red, Tests 1-2), "PENDING" (grey, Tests 3-5), "FAILING (39.9% ERROR)" (amber, Test 6). CSS classes: `.ks-test`, `.ks-status`, `.ks-claimed`, `.ks-pending`, `.ks-failing`. Dark mode support included.
-- **95.2% accuracy traced to source code**: Examined every script in the dome repo (scoring.js, predictions.js, build.js, analytics.js, apply_scoring_schema.py, recalc_v51.py, compile_exhaustive_api.py, verify_predictions.py, build_tracking.py). Finding: 95.2% is hardcoded as static HTML (`<div class="score-number score-green">95.2%</div>`), no script computes it, and it cannot be reproduced from the repo's own data (api/scorecard.json: 96.3%, results.json: 97.0%, homepage counts: 89.3% or 94.7%). Section 3.5.6 updated with definitive source-code evidence.
+- **Kill-Shot test card layout**: Part 5 (was Section 3.3, now own tab) wraps each of the 6 tests in a bordered card with accent left border and colored status badge: "CLAIMED CONFIRMED" (red, Tests 1-2), "PENDING" (grey, Tests 3-5), "FAILING (39.9% ERROR)" (amber, Test 6). CSS classes: `.ks-test`, `.ks-status`, `.ks-claimed`, `.ks-pending`, `.ks-failing`. Dark mode support included.
+- **95.2% accuracy traced to source code**: Examined every script in the dome repo (scoring.js, predictions.js, build.js, analytics.js, apply_scoring_schema.py, recalc_v51.py, compile_exhaustive_api.py, verify_predictions.py, build_tracking.py). Finding: 95.2% is hardcoded as static HTML (`<div class="score-number score-green">95.2%</div>`), no script computes it, and it cannot be reproduced from the repo's own data (api/scorecard.json: 96.3%, results.json: 97.0%, homepage counts: 89.3% or 94.7%). Section 6.6 (was 3.5.6) updated with definitive source-code evidence.
 - **Dielectric infographic section parked**: Section 3.6 (GRACE L1A / EM-gravity / 5 Decisive Points analysis) commented out in both generate-html.js (HTML comment) and build-doc-v4.js (JS block comment). Content preserved in source for future reinstatement. WIN-012 detail still references GRACE L1A as part of individual evidence rebuttal. "Dielectric infographic" removed from V51.0 intro paragraph.
 - **Hydrostatic equilibrium argument**: Searched for and confirmed no committed references exist. The "23 km moon can't be round" argument stayed in conversation only.
 
@@ -279,8 +273,7 @@ The ECM site was clearly built with AI assistance. The user observed that the au
 - NMP drift rate: check back in 2027-2028 for actual vs. predicted
 - SAA field strength: check INTERMAGNET data against dome's PRED-R002 by end of 2028
 - Consider adding interactive elements (sortable table, filter by verdict)
-- DOCX prose sync with sections.json (build-doc-v4.js still hardcoded)
-- DOCX missing Sections 5.14-5.16 (ISS-422) — most original contribution absent from downloadable doc
+- ~~DOCX prose sync with sections.json~~ **REMOVED in V5.0** (DOCX generation deleted; PDF from Playwright now)
 - ~~Extract prose sections into `data/sections.json`~~ **DONE (V4.9.7)**
 - Revisit Dielectric infographic section (currently parked) — may reinstate with stronger analysis
 - Archive dome Python scripts to raw-text/ before author removes them (ISS-423)
@@ -292,22 +285,23 @@ The ECM site was clearly built with AI assistance. The user observed that the au
 
 ```
 dome-model-review/
-├── build.js                          # Orchestrator: node build.js [all|html|docx|publish]
+├── build.js                          # Orchestrator: node build.js [all|html|pdf|publish]
 ├── build-scripts/
-│   ├── generate-html.js              # PRIMARY file — all HTML generation + narrative
-│   ├── build-doc-v4.js               # DOCX generation (reads wins.json)
+│   ├── generate-html.js              # Generates docs/index.html from wins.json + sections.json
+│   ├── generate-pdf.js               # HTML→PDF via Playwright headless Chromium
+│   ├── restructure-v6.js             # V6 tab reorder + section renumber (placeholder-based safe replace)
 │   ├── add-references.js             # Injects clickable hyperlinks into wins.json
 │   ├── digest-reviews.js             # Preprocesses curmudgeon reviews → pending-digest.json
 │   ├── backfill-issues.js            # Bulk issue creation from digest (fuzzy dedup)
 │   ├── apply-patches.js              # Applies decider patches against parsed JSON fields
 │   └── sync-code-analysis.js         # Syncs code_analysis tags from reviews to wins.json
 ├── data/
-│   └── wins.json                     # 67 WINs — single source of truth
+│   ├── wins.json                     # 67 WINs — single source of truth
+│   └── sections.json                 # 13 prose sections (parts 1-10 incl. 1b, 2b)
 ├── docs/
 │   └── index.html                    # GENERATED — do NOT edit directly
 ├── downloads/
-│   ├── critical-review-dome-model-v4.docx  # GENERATED
-│   └── critical-review-dome-model-v4.pdf   # GENERATED (via libreoffice --headless)
+│   └── critical-review-dome-model-v6.pdf   # GENERATED (via Playwright)
 ├── raw-text/                         # Extracted ECM V51.0 site content
 ├── raw-text-v50.6-2026-03-12/        # Archived V50.6 baseline for version comparison
 ├── security-audit.md                 # Website security scan results
@@ -317,7 +311,9 @@ dome-model-review/
 │   │   ├── analyst.md                # Analyst: deep scientific analysis
 │   │   ├── curmudgeon.md             # Curmudgeon: adversarial self-review + code_analysis tags
 │   │   ├── decider.md                # Decider: triage, patches, morning briefing
-│   │   └── structure-integrity.md    # Integrity: site health checks
+│   │   ├── structure-integrity.md    # Integrity: site health checks
+│   │   └── tinker.md                # Tinker: pipeline self-repair
+│   ├── v6-restructure-map.json      # V6 backward-compat translation map (old→new)
 │   ├── curmudgeon/
 │   │   ├── tracker.json              # Review progress + lifecycle phases
 │   │   ├── pending-digest.json       # Compact digest of unprocessed reviews (generated)
@@ -342,7 +338,7 @@ dome-model-review/
 ├── CLAUDE.md                         # Project context (shorter, overlaps this file)
 ├── README.md                         # Public-facing repo documentation
 ├── SESSION-CONTEXT.md                # This file — full session continuity context
-├── package.json                      # Dependencies: docx ^9.6.1, adm-zip ^0.5.17
+├── package.json                      # Dependencies: playwright ^1.59.1
 └── .gitignore                        # Excludes node_modules/, package-lock.json
 ```
 
@@ -352,10 +348,10 @@ dome-model-review/
 
 ### Major additions this session
 
-**Part 4.6: Repository Code Analysis** — Three new structural argument sections added to the selftest tab in generate-html.js, using computed counts from code_analysis tags in wins.json:
-- 4.6.1 The Monitoring Illusion: 20/31 hardcoded, 5/31 no validation, only 6/31 fetch live data
-- 4.6.2 Relabeling Standard Physics: 14/31 rename standard mechanisms as "aetheric"
-- 4.6.3 Post-Hoc Retrodiction: 21/31 adopt known observations as "predictions"; only 1 derives from dome geometry
+**Part 2b: Repository Code Analysis** (was Part 4.6 pre-V6) — Three structural argument sections in the Self-Contradictions tab, using computed counts from code_analysis tags in wins.json:
+- 2b.1 The Monitoring Illusion: majority hardcoded pred=obs checks; minority fetch live data
+- 2b.2 Relabeling Standard Physics: ~70% rename standard mechanisms as "aetheric"
+- 2b.3 Post-Hoc Retrodiction: ~93% adopt known observations as "predictions"; very few derive from dome geometry
 
 **Computed counts**: ALL numerical values in HTML prose are now computed from wins.json at build time (verdict tallies, total WINs, new-in-V51 count, code_analysis statistics). No hardcoded numbers remain in prose. This was done to avoid the same antipattern we criticize the dome model for (hardcoding "95.2%").
 
@@ -502,45 +498,107 @@ node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-i
 ### Analyst expansion status
 | ID | Target | Status | Notes |
 |----|--------|--------|-------|
-| EXP-001 | KILLSHOT-GAIA (Part 4.3) | complete | Ready for integration into sections.json |
-| EXP-002 | KILLSHOT-GPS (Part 4) | complete | Ready for integration |
-| EXP-003 | Section 4.5.9 (d_geo/V13) | revised | π×R argument added via human note |
-| EXP-004 | Section 4.8 (solar diameter) | complete | Ready for integration |
+| EXP-001 | KILLSHOT-GAIA (Part 7.3) | complete | Ready for integration into sections.json |
+| EXP-002 | KILLSHOT-GPS (Part 7) | complete | Ready for integration |
+| EXP-003 | Section 2.9 (d_geo/V13) | revised | π×R argument added via human note |
+| EXP-004 | Section 7.8 (solar diameter) | complete | Ready for integration |
 | EXP-005 | Verdict taxonomy analysis | complete | Ready for integration |
 | EXP-006 | KILLSHOT-GAIA round 2 | pending | |
-| EXP-007 | Argument hierarchy | pending | Self-contradictions in tab 8 of 10 |
-| EXP-008 | Eclipse prose (SEC-3.2) | pending | Critical vulnerability |
-| EXP-009 | Code analysis cluster (SEC-4.6.x) | pending | 6 issues from holistic reviews |
+| EXP-007 | Argument hierarchy | pending | Self-contradictions now in tab 4 (selftest) |
+| EXP-008 | Eclipse prose (SEC-4.2) | pending | Critical vulnerability |
+| EXP-009 | Code analysis cluster (SEC-2b.x) | pending | 6 issues from holistic reviews |
 | EXP-010 | Schumann formula direction | pending | ISS-465 |
-| EXP-011 | DOCX missing sections 5.14-5.16 | pending | |
+| EXP-011 | ~~DOCX missing sections~~ | pending | DOCX removed in V5.0; may be N/A |
 | EXP-012 | (reserved) | pending | |
 
 ### New issues from Phase 2 holistic checks
 - ISS-454/455: STRESSTEST — no success verdict category; no eclipse pre-commitment
-- ISS-456: COMPLETENESS — Part 4.6 cites zero specific WIN examples for statistics
+- ISS-456: COMPLETENESS — Part 2b cites zero specific WIN examples for statistics
 - ISS-457-461: Code analysis cluster (monitoring archive, category conflation, live_fetch WGS84 dependency)
 - ISS-462: 6 WINs relabels_standard=false should be true (corrected)
 - ISS-463: 10 WINs post_hoc=false should be true (corrected)
 - ISS-464: Dome's own PROSPECTIVE labels not engaged
-- ISS-465: Schumann formula direction wrong in SEC-5.15
+- ISS-465: Schumann formula direction wrong in SEC-8.15
 
 ### Pipeline sync fix
 `build.js publish` now syncs 6 files to workspace (added `data/sections.json` to sync list). Previous sync gap caused decider to skip expansion integration for one day because sections.json was missing from workspace.
 
-### Scheduled task states (as of CW12)
-- dome-analyst: every 30 minutes (Modes 1→2→3 priority)
-- dome-decider: every 20 minutes (yeet-first, expansion integration)
-- dome-curmudgeon: every 10 minutes (Cycle 2, Phase 1)
+### Scheduled task states (as of CW13 — V6)
+- dome-analyst: DISABLED (suspended during V6 stabilization)
+- dome-decider: DISABLED (suspended during V6 stabilization)
+- dome-curmudgeon: DISABLED (suspended during V6 stabilization)
 - dome-poller: every 4 hours
 - dome-integrity: daily 9 AM
 - dome-tinker: daily 10:30 AM
-- dome-integrity-post-refactor: one-time 2026-04-07T01:00:00Z
-- dome-daily-summary-apr7: one-time 2026-04-07T02:00:00Z
 - dome-prose-extraction: DISABLED (completed)
 - curmudgeon-cycle2-alert: DISABLED (no longer needed)
 
-### Known remaining work
-- Decider should integrate EXP-001–005 into sections.json on next run (sections.json now synced to workspace)
-- DOCX prose still hardcoded in build-doc-v4.js — needs manual sync with sections.json content
+**Note:** Analyst, decider, and curmudgeon were disabled for the V6 restructure. All three have updated prompts with V6 translation map (Step 0). Re-enable when ready to resume pipeline.
+
+### Known remaining work (updated CW13)
+- Decider should integrate EXP-001–005 into sections.json on next run (sections.json synced to workspace)
+- ~~DOCX prose still hardcoded~~ **REMOVED in V5.0** (DOCX generation deleted)
 - CI workflow push still pending (token lacks workflow scope)
 - NOTE-002 pending for analyst: π/2 ≈ 1.57c argument for WIN-001
+- NOTE-004 pending for analyst: E-PRED-C gravity incoherence (targets sections.json part4)
+- NOTE-005 pending for analyst: E-PRED-B FSF analysis (targets sections.json part4)
+- ISS-442 open: Verdict category overload (whether to split Misleading)
+- Parked patches: ISS-603, ISS-611, ISS-597
+- PDF needs regeneration with V6 structure (v6.pdf)
+- Re-enable analyst, decider, curmudgeon agents after V6 stabilization
+
+---
+
+## 14. Context Window 13 — V6 Restructure (2026-04-07)
+
+### What changed and why
+
+The site had accumulated a confusing section hierarchy: Self-Contradictions buried behind three other tabs (4.5), code analysis tagged as 4.6, kill shots crammed into a subsection of page analysis (3.3). V6 restructures everything into a clean 1-10 numbering with self-contradictions promoted to position 4 (right after The Model) and kill shots extracted to their own tab.
+
+### Tab reorder (V5 → V6)
+
+Self-Contradictions moved from tab 7 ("Internal Contradictions") to tab 4. Kill Shots extracted from inside "Live Power Analysis" into their own tab 7. "Falsification Tests" split into two tabs: "Predictions Analysis" (Part 6) and "External Tests" (Part 7). Full mapping in Section 3 above.
+
+### Renumbering engine
+
+`build-scripts/restructure-v6.js` — uses a two-pass placeholder-based replacement to avoid cascading double-renames. For example, old Part 4.5 → Part 2 and old Part 2 → Part 3 must not produce Part 4.5 → Part 2 → Part 3. The engine sorts replacements by length (longest first), replaces all old patterns with unique `__PH_xxx__` placeholders, then replaces placeholders with final values. Processes: sections.json (keys + content), wins.json (cross-refs), generate-html.js (tabs, divs, nav chain, TOC, inline refs).
+
+### Files modified
+
+| File | Changes |
+|------|---------|
+| `data/sections.json` | 11→13 keys (added part2b, part5). 81 heading/cross-ref changes. Kill-shot content extracted to new part5. |
+| `data/wins.json` | 18 cross-reference field values updated |
+| `build-scripts/generate-html.js` | New tab order (11 tabs), content div order, sectionNav chain, TOC, inline refs. Version→6, PDF→v6. |
+| `build-scripts/generate-pdf.js` | Output filename → v6.pdf |
+| `test.js` | EXPECTED_SECTIONS, VALID_TABS, EXPECTED_PARTS all updated |
+| `package.json` | 5.0.0 → 6.0.0 |
+| `build.js` | Sync list expanded (+ restructure map, agent prompts, test.js) |
+
+### Backward compatibility
+
+`monitor/v6-restructure-map.json` provides a complete translation map with five sub-maps: section_keys (old→new), part_titles, section_numbers, tab_ids, anchor_ids, plus curmudgeon_tracker_items. All four active agent prompts (curmudgeon, analyst, decider, tinker) updated with V6 notices and a Step 0 in their per-run procedure to read the translation map before processing any work.
+
+### Cleanup performed
+
+- Curmudgeon tracker.json: 38 section number references updated
+- Expansion tracker: 8 stale references fixed
+- ISS-453 closed (hierarchy issue resolved by restructure)
+- Lost human notes (NOTE-004, NOTE-005) recovered from transcript
+- Issue template example updated ("Part 4.5.2" → "Part 2.2")
+- Pending-digest.json regenerated (0 pending items)
+- CLAUDE.md updated throughout
+
+### Key pitfall: workspace sync overwrites
+
+When syncing clean clone files to the FUSE workspace mount, workspace-only changes (files written directly to workspace but never committed) get overwritten. This caused the loss of NOTE-004 and NOTE-005 (written to workspace in CW12, never committed). Fix: always commit workspace-only changes before syncing, or recover from transcript.
+
+### Commits
+
+| Hash | Description |
+|------|-------------|
+| 6b3e4a0 | V6 restructure: reorder tabs, renumber all sections 1-10, extract kill shots |
+| f2412aa | V6 cleanup: translation map, agent prompts, tracker, issue closure |
+| e332b16 | Restore lost human notes (NOTE-004/005), fix expansion tracker refs |
+| 1267229 | Add explicit translation map step to curmudgeon and decider per-run procedures |
+| 488f83c | V6 version bump: package.json 6.0.0, version strings, sync list, digest refresh |

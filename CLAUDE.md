@@ -67,7 +67,7 @@ The workspace mount path and clean clone path are the two key paths. Everything 
 
 ```
 data/wins.json                    # 67 WINs: claims, verdicts, findings, detail writeups, code_analysis tags
-data/sections.json                # 11 prose sections with {{PLACEHOLDER}} tokens (extracted V4.9.7)
+data/sections.json                # 13 prose sections (parts 1-10 incl. 1b, 2b) with {{PLACEHOLDER}} tokens
 build-scripts/generate-html.js    # Generates docs/index.html from wins.json + sections.json (all counts computed at build time)
 build-scripts/generate-pdf.js     # Generates PDF from HTML using Playwright (@media print CSS)
 build-scripts/add-references.js   # Injects clickable hyperlinks into wins.json
@@ -101,6 +101,8 @@ monitor/integrity/                # Structure & integrity check reports
 monitor/external-reports/         # Permanent log of all external problem reports (GitHub Issues)
 .github/ISSUE_TEMPLATE/           # "Report a Problem" structured issue template
 .github/workflows/ci.yml          # CI pipeline: build + test on push
+build-scripts/restructure-v6.js   # V6 tab reorder + section renumber script (placeholder-based safe replace)
+monitor/v6-restructure-map.json   # V6 backward-compat translation map (old→new section keys, numbers, anchors)
 security-audit.md                 # Website security scan results
 ```
 
@@ -323,5 +325,5 @@ The analyst operates in three modes, checked in priority order each run:
 
 ## Parked Content
 
-### Section 3.6: Dielectric Infographic (GRACE L1A / EM-Gravity)
-Commented out in `generate-html.js` (HTML comment). Content preserved for potential reinstatement. The WIN-012 detail still references GRACE L1A as part of its individual evidence rebuttal.
+### Dielectric Infographic (GRACE L1A / EM-Gravity)
+Commented out in `generate-html.js` (HTML comment). Content preserved for potential reinstatement. The WIN-012 detail still references GRACE L1A as part of its individual evidence rebuttal. (Was Section 3.6 pre-V6; section no longer has a numbered slot.)
