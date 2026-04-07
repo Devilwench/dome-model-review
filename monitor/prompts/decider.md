@@ -328,13 +328,20 @@ After writing your patches file, you can **apply simple patches yourself** inste
 **Self-apply procedure:**
 
 Each agent session runs in its own isolated directory. You must clone fresh to get git access.
+The authenticated remote URL is available from the workspace's existing git config.
 
 ```bash
-# 0. Clone fresh (you don't have access to any other session's clone)
+# 0. Clone fresh WITH credentials (plain https:// clone has no push auth)
 SESSION=$(pwd | grep -oP '/sessions/[^/]+')
 WORKSPACE="${SESSION}/mnt/dome-model-review"
 CLONE="${SESSION}/dome-review-clean"
-git clone https://github.com/funwithscience-org/dome-model-review.git ${CLONE}
+# Extract the authenticated remote URL from the workspace .git/config
+AUTH_URL=$(git -C "${WORKSPACE}" remote get-url origin 2>/dev/null)
+if [ -z "$AUTH_URL" ] || [[ "$AUTH_URL" != *"x-access-token"* ]]; then
+  echo "WARNING: No authenticated URL found in workspace. Falling back to unauthenticated clone (push will fail)."
+  AUTH_URL="https://github.com/funwithscience-org/dome-model-review.git"
+fi
+git clone "$AUTH_URL" ${CLONE}
 cd ${CLONE}
 npm install
 
