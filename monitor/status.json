@@ -1,48 +1,37 @@
 {
-  "last_run": "2026-04-07T23:00:00Z",
+  "last_run": "2026-04-07T18:30:57.576699Z",
   "last_agent": "decider",
-  "run_type": "Decider run: ISS-605/611 patched (WIN-053/055), EXP-023 tracker sync, 4 issues closed. Open: 9 (all DOCX infra or analyst). ISS-454 confirmed fixed by V5.0 refactor.",
-  "mode": "Mode 2 (expansion integration + WIN cleanup)",
+  "run_type": "Decider run: Integrated EXP-025 (E-PRED-C gravity) and EXP-026 (E-PRED-B FSF tautology). Fixed WIN-056 text duplication (ISS-612). Processed WIN-056.c2 review. Created ISS-613, ISS-614 for WIN-056 moderate/minor holes.",
+  "mode": "Mode 3 (globe fingerprint hunt)",
   "status": "complete",
   "changes_pending_analysis": 0,
   "patches_applied_this_run": {
-    "wins": 2,
+    "wins": 0,
     "sections": 0
   },
-  "issues_closed_this_run": 4,
-  "open_issues": 9,
-  "closed_issues": 490,
+  "issues_closed_this_run": 0,
+  "open_issues": 3,
+  "closed_issues": 499,
   "issues_assigned_analyst": 6,
-  "issues_pending_human": 8,
-  "curmudgeon_cycle": "Cycle 2, Phase 1: WIN-055.c2 reviewed (55/67 WINs in cycle)",
-  "curmudgeon_last_review": "WIN-055.c2 (2026-04-07)",
+  "issues_pending_human": 1,
+  "curmudgeon_cycle": "Cycle 2, Phase 1: 56/67 WINs reviewed",
+  "curmudgeon_last_review": "WIN-056.c2 (2026-04-07)",
   "expansions_integrated": [
-    "EXP-001 through EXP-010 (all complete + integrated)",
-    "EXP-012 (WIN-012 spatial heterogeneity)",
-    "EXP-013 (WIN-015 Meyl scalar wave — superseded by EXP-015)",
-    "EXP-014 (SEC-3.1 verifiability footnote)",
-    "EXP-015 (WIN-015 comprehensive Meyl rewrite — replaces EXP-013)",
-    "EXP-016 (Section 4.5.1 Schumann)",
-    "EXP-017 (Eclipse kill-shot section)",
-    "EXP-018 (sections.json part5 eclipse formula)",
-    "EXP-019 (WIN-051 eccentricity restructure)",
-    "EXP-020 (WIN-052 RAR depth + galaxy ontology)",
-    "EXP-021 (WIN-053 flux conservation + V50.6 reframe)",
-    "EXP-022 (WIN-054 El Gordo critical correction + primary literature rewrite)"
+    "EXP-001 through EXP-023 (all complete + integrated)",
+    "EXP-024 (Cosmological WIN cluster — content verified in sections.json part2, marked complete)",
+    "EXP-025 (E-PRED-C gravity incoherence — integrated 2026-04-07)",
+    "EXP-026 (E-PRED-B FSF tautology — integrated 2026-04-07)"
   ],
   "expansions_pending": [
-    "EXP-011 (tab ordering — awaiting human, targets generate-html.js)",
-    "EXP-023 (WIN-058 angular coordinates — analyst pending)",
-    "EXP-024 (SEC-4.10 cosmological WIN cluster cross-analysis — NEW, analyst pending)"
+    "EXP-024 (Cosmological WIN cluster — still pending)"
   ],
   "pipeline_bugs": [
-    "CRITICAL: generate-html.js SECTIONS_AVAILABLE circular dependency — sections.json NEVER injected (ISS-454). ONE LINE FIX: change line ~1777 from if (SECTIONS_AVAILABLE) { const sections = loadSectionsCache(); to const sections = loadSectionsCache(); if (sections) {",
-    "EXP-011 (tab ordering) requires human to apply 6 generate-html.js edits"
+    "ISS-442 (pending-human): Verdict taxonomy — 'Misleading' conflates 4 failure modes. Requires human editorial decision."
   ],
-  "external_reports": "No external reports filed. Only README.md in monitor/external-reports/.",
+  "external_reports": "No external reports filed. (gh CLI unavailable this session — cannot check GitHub Issues.)",
   "integrity_status": "PASS — 2036 tests, all anchors resolve (last checked 2026-04-07T16:30Z post-publish)",
-  "dome_site_status": "QUIET — 13 consecutive quiet polls. No changes since 2026-04-04. April 5-9 reset window expires April 9.",
+  "dome_site_status": "QUIET — 13+ consecutive quiet polls. No changes since 2026-04-04. April 5-9 reset window expires April 9.",
   "build_needed": false,
-  "build_note": "ISS-605 (WIN-053) and ISS-611 (WIN-055) patched. EXP-023 tracker marked integrated. Published commit a52ce66.",
-  "fingerprint_note": "48/67 WIN globe fingerprints reviewed by analyst. Mode 3 active. Latest: WIN-048 (CMB Axis of Evil — spherical harmonic circularity)."
+  "build_note": "No code changes this run. Tracker updates and fingerprint output synced to workspace.",
+  "fingerprint_note": "54/67 WIN globe fingerprints reviewed. WIN-054 significant: λ_A = c/H₀ is Hubble distance, z = D/λ_A is Hubble's law, zero dome computation for cosmological claims. 13 remaining."
 }

@@ -1,60 +1,41 @@
 MORNING BRIEFING — 2026-04-07
-Generated: 2026-04-07T18:07:57Z
-Curmudgeon reviews processed this run: 0 (no pending reviews — all 55 Cycle 2 reviews already processed)
-Previous decider run: 2026-04-07T23:00:00Z
+Generated: 2026-04-07T18:30:00Z
+Curmudgeon reviews processed this run: 1 (WIN-056.c2)
+Previous decider run: 2026-04-07T06:30:00Z (estimated)
 
 SITE HEALTH
-  Integrity: PASS (2036 tests, all anchors resolve — as of last check 2026-04-07T16:30Z)
-  Build drift: None. Published site matches source data.
-  External links: No new broken links detected.
+===========
+Integrity: WARN (minor) — 2050 tests pass, 1 ESA Gaia external link timeout (known slow), moderate heading hierarchy note. Site fully functional.
+Build: CLEAN — 0 diff lines, all 2050 tests pass post-patch.
+Tabs: 11 tabs functional, all anchors resolve.
 
-INFRASTRUCTURE FIXES THIS RUN
-  [FIXED] WIN-052.c2.json JSON parse error — file had truncated JSON with citation_check
-          field stranded outside the main object. Merged and validated. Workspace updated.
-          All WIN-052 Cycle 2 holes were already addressed by EXP-020. No new issues.
-  [DONE] EXP-011 marked as integrated — V6 restructure already achieved tab reordering.
-         Self-Contradictions is now Part 2 (second tab). ISS-453 was already closed.
-
-EXTERNAL STATUS
-  Dome site: QUIET — 13+ consecutive quiet polls. No changes since 2026-04-04.
-  April 5-9 reset window expires April 9. No threat.
+EXTERNAL STATUS (Dome Site)
+============================
+No changes. 14th consecutive quiet poll. All commits automated (monitor.py/pull_data.py). April 5-9 reset window expires April 9. Threat level: NONE.
 
 INTERNAL STATUS
-  Open issues: 1
-    ISS-442 (major, pending-human): Verdict taxonomy — 'Misleading' conflates 4 failure
-    modes. Requires human decision on subcategory definitions. Deferred.
-  Closed issues: 498
-  Patches this run: 0 (nothing patchable)
-  
-  Curmudgeon alert check:
-    WIN-005 CHAOS-7 DOI alert — STALE. DOI 10.1186/s40623-020-01252-9 is already in
-    the current text. Alert from Cycle 1 is outdated. No action needed.
+===============
+Self-applied patches: 3 (all passed)
+  EXP-026 integrated: E-PRED-B FSF tautology proof (FSF=tan(lat)/tan(ref), verified 9/9 stations)
+  EXP-025 integrated: E-PRED-C three-layer gravity incoherence (no dome gravity framework, globe-calibrated SG, k division-by-zero)
+  ISS-612 fixed: WIN-056 text duplication removed (V9 coordinate paragraph appeared twice)
+
+Issues: 3 open (1 pending-human major, 1 moderate, 1 minor)
+  - ISS-442 [major, pending-human]: Verdict taxonomy — 'Misleading' conflates 4 failure modes. NEEDS HUMAN DECISION.
+  - ISS-613 [moderate]: WIN-056 quote unverifiable in raw-text. Deferred until poller confirms live page text.
+  - ISS-614 [minor]: WIN-056 escape-hatch classification clarification needed.
 
 TOP 3 PRIORITY ACTIONS
-  1. [HUMAN REQUIRED] ISS-442: Decide verdict taxonomy split. Is 'Non-Discriminating' 
-     a useful subcategory, or should non-discriminating WINs move to 'Std Model Explains'?
-     23 WINs currently under 'Misleading'.
-  2. [WAIT] EXP-024: Analyst to write Section 4.10 cosmological WIN cluster cross-analysis.
-     No action needed from human until analyst delivers.
-  3. [WATCH] April 9: Dome site reset window expires. Resume active monitoring.
+=======================
+1. [HUMAN] ISS-442: Decide on verdict taxonomy restructuring for 'Misleading' subcategories.
+2. Continue curmudgeon Cycle 2: WIN-057 through WIN-067 remain (11 WINs pending).
+3. Poller: Extract WIN-056 page text to verify the 'reproduces the globe formula exactly' quote (ISS-613).
 
 CURMUDGEON PROGRESS
-  Cycle 2, Phase 1: 55/67 WINs reviewed
-  Next expected: WIN-056.c2
-  WINs remaining in Cycle 2: 056, 057, 058, 059, 060, 061, 062, 063, 064, 065, 066, 067
+===================
+Cycle 2, Phase 1: 56/67 WINs reviewed (WIN-056 processed this run)
+Remaining: WIN-057 through WIN-067 (11 WINs), then sections and holistic checks
 
 CODE ANALYSIS TAG STATUS
-  All 67 WINs: code_analysis tags populated and curmudgeon-reviewed (Cycle 1 complete).
-  Cycle 2 re-review complete for 55/67 WINs.
-
-VERDICT TALLIES (current)
-  Refuted by Data:   9
-  Self-Contradicted: 13
-  Misleading:        22
-  Std Model Explains:16
-  Not Demonstrated:  3
-  Unfalsifiable:     4
-  TOTAL:             67
-
-PIPELINE: In maintenance mode. Primary tasks are completing Cycle 2 curmudgeon sweep
-and integrating EXP-024 when analyst delivers. The review is in excellent shape.
+=========================
+All 67 WINs have code_analysis tags reviewed by curmudgeon (Cycle 2 confirmation ongoing).

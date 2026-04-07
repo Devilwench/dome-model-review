@@ -6450,6 +6450,20 @@
       "found_date": "2026-04-07",
       "fix_details": "Resolved by V6 restructure (commit 6b3e4a0). Self-Contradictions moved to Part 2, immediately after The Model (tab 4 of 11). Kill Shots extracted to own tab (Part 5). All sections renumbered 1-10 matching tab order.",
       "fix_date": "2026-04-07"
+    },
+    {
+      "id": "ISS-612",
+      "win_id": "056",
+      "severity": "minor",
+      "category": "factual_error",
+      "description": "WIN-056 detail_evidence has a verbatim duplicate paragraph: the V9 coordinate system lat_S explanation appears twice at the end of the text.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-07",
+      "status": "fixed",
+      "fix_details": "Removed second occurrence of duplicated paragraph. Patch applied by decider-self-apply.",
+      "fix_date": "2026-04-07",
+      "fixed_at": "2026-04-07T18:30:05.562598Z",
+      "fixed_by": "decider-self-apply"
     }
   ]
 }
