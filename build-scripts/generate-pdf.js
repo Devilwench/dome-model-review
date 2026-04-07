@@ -10,7 +10,7 @@ const path = require('path');
 const fs = require('fs');
 
 const HTML_PATH = path.join(__dirname, '..', 'docs', 'index.html');
-const PDF_PATH = path.join(__dirname, '..', 'downloads', 'critical-review-dome-model-v5.pdf');
+const PDF_PATH = path.join(__dirname, '..', 'downloads', 'critical-review-dome-model-v6.pdf');
 
 async function main() {
   if (!fs.existsSync(HTML_PATH)) {

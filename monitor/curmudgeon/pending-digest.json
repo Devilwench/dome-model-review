@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-07T15:04:13.756Z",
+  "generated_at": "2026-04-07T17:54:42.603Z",
   "total_reviews": 67,
-  "already_processed": 120,
+  "already_processed": 123,
   "pending_count": 0,
   "severity_breakdown": {
     "critical": 0,
@@ -1155,9 +1155,17 @@
     {
       "win_id": "WIN-053",
       "topic": "Two-pole geomagnetic model — toroidal architecture with B(r) equation, flux conservation failure",
-      "issues_created": 2,
+      "issues_created": 0,
       "holes_found": 5,
       "missing_holes": [
+        {
+          "severity": "moderate",
+          "summary": "AREA RATIO DERIVATION USES ARBITRARY POLE APERTURE RADIUS. The detail_evidence now includes the 1,600:1 derivation (treating north pole source as circular aperture of radius ~500 km). However, the choice of 500 km is not justified by any dome parameter. The dome's Axis Mundi is not given a specific "
+        },
+        {
+          "severity": "moderate",
+          "summary": "MISSING CROSS-REFERENCE TO SECTION 3.5.8. The detail_evidence for WIN-053 makes several arguments (fitted coefficients, single-pole collapse) that overlap substantially with Section 3.5.8 ('WIN-012 single-pole collapse'). Neither references the other. A reader encountering WIN-053 first may miss the"
+        },
         {
           "severity": "moderate",
           "summary": "V50.6→V51.0 TRANSITION ARGUMENT STILL SOMEWHAT WEAK. The current text says 'the change was not motivated by any failed prediction or new observation; it is asserted rather than derived from a detected flaw in V50.6.' While this is an improvement over the Cycle 1 framing (which penalized model evolut"
@@ -1175,9 +1183,13 @@
     {
       "win_id": "WIN-054",
       "topic": "El Gordo cluster impossibility — non-discriminating cherry-picking",
-      "issues_created": 1,
+      "issues_created": 0,
       "holes_found": 9,
       "missing_holes": [
+        {
+          "severity": "critical",
+          "summary": "VERDICT CATEGORY MISMATCH: 'Not Demonstrated' is correct, but our finding understates the real problem. The finding says 'non-discriminating cherry-picking' — but that's a MISLEADING category judgment, not 'Not Demonstrated.' A 'Not Demonstrated' verdict should mean: 'The claim is not shown to be tr"
+        },
         {
           "severity": "critical",
           "summary": "MISSING RESEARCH FOUNDATION: Cycle 1 identified unverified Kim et al. 2022 citation. We cite Kim et al. (2023, ApJ 954?) as evidence that modern simulations accommodate massive clusters. But: (1) We never confirmed the exact title/doi. (2) We never read the paper to verify it addresses El Gordo. (3)"
@@ -1214,38 +1226,42 @@
     },
     {
       "win_id": "WIN-055",
-      "topic": "Distance-redshift Cepheid/SBF — near-duplicate of WIN-047, dome adopts standard candle results without framework",
+      "topic": "Distance-redshift Cepheid/SBF — standard candles place galaxies at 10–100 Mpc; dome has no extragalactic framework",
       "issues_created": 0,
       "holes_found": 5,
       "missing_holes": [
         {
-          "severity": "major",
-          "summary": "Misidentification of Cepheids as 'geometric' distance indicators: Our detail_evidence states Cepheids and SBF are 'direct geometric distance indicators, independent of redshift.' This is factually wrong. Cepheids are STANDARD CANDLES (luminosity indicators), not geometric indicators. Geometric dista"
+          "severity": "moderate",
+          "summary": "Subtle imprecision: 'Cepheid pulsation periods and SBF surface-brightness magnitudes are geometric tracers.' The phrasing is still slightly misleading. Cepheids are luminosity tracers (period-luminosity relation), not geometric tracers. The term 'geometric' might confuse readers into thinking Cephei"
         },
         {
           "severity": "moderate",
-          "summary": "Near-duplicate of WIN-047 not flagged: WIN-055 (Cepheid/SBF distance-redshift) and WIN-047 (low-z Hubble Law) both claim that the distance-redshift relationship supports the dome model. They are the same observational relationship measured with different standard candles. This is a textbook example "
-        },
-        {
-          "severity": "moderate",
-          "summary": "Pantheon+ DOI may be misleading for a WIN about Cepheids/SBF: The citation links to Pantheon+ / SH0ES (DOI 10.3847/1538-4357/ac8e04, Scolnic et al. 2022). Pantheon+ is primarily a Type Ia supernova dataset, not a Cepheid or SBF catalog. SH0ES uses Cepheids to calibrate the SN Ia distance scale, so t"
-        },
-        {
-          "severity": "moderate",
-          "summary": "Argument is thin compared to other WINs: The entire evidence block is four sentences. Other WINs in the review have substantially more detailed rebuttals. WIN-055's argument boils down to 'dome has no redshift mechanism,' which, while correct, doesn't develop the point. Missing: (1) the dome's firma"
+          "summary": "WIN-055 and WIN-047 remain functionally identical despite flagging the duplication. The salami-slicing footnote ('See also WIN-047, which covers the redshift angle; together they provide independent but converging evidence that the dome has no extragalactic physics — a salami-slicing duplication, Se"
         },
         {
           "severity": "minor",
-          "summary": "The summary finding ('Standard cosmological observations; dome has no redshift mechanism') closely duplicates WIN-047's substance. Readers scanning the summary table would see two near-identical entries. The finding for WIN-055 should differentiate itself by emphasizing the standard candle / distanc"
+          "summary": "Gaia DR3 parallax claim needs precision: The text states 'Gaia DR3 parallaxes independently confirm Cepheid distances to ~1%.' This is true, but it should specify which Cepheids. Gaia DR3 provides parallaxes for ~75 Galactic Cepheids (within the Milky Way), which is sufficient to recalibrate the per"
+        },
+        {
+          "severity": "minor",
+          "summary": "Missing cross-check with TRGB: The Cycle 1 stronger_arguments section noted that Cepheid, SBF, TRGB (tip of the red giant branch), and Type Ia supernova distances all agree to within a few percent across overlapping distance ranges. The main text does not mention TRGB. Including TRGB strengthens the"
+        },
+        {
+          "severity": "minor",
+          "summary": "Claim text vs. finding text mismatch: The CLAIM is 'Distance-redshift Cepheid/SBF,' which is vague. The FINDING is much more specific: 'Cepheid/SBF distances via Magellanic parallax place galaxies at 10–100 Mpc with no cosmological assumption; dome has no aetheric pulsation or surface-brightness mec"
         }
       ]
     },
     {
       "win_id": "WIN-056",
       "topic": "Solar elevation from H(r) — globe declination formula smuggled into dome model",
-      "issues_created": 1,
+      "issues_created": 0,
       "holes_found": 6,
       "missing_holes": [
+        {
+          "severity": "major",
+          "summary": "Broken cross-reference to Section 4.5.7: WIN-056's detail_evidence says 'See Section 4.5.7 for the derivation.' In the HTML (docs/index.html), Section 4.5.7 is titled 'Eclipse Duration: Dome vs. Globe' — it discusses eclipse geometry, NOT solar elevation. The solar elevation analysis DOES exist in t"
+        },
         {
           "severity": "moderate",
           "summary": "Unverifiable quote attribution: Our detail_evidence states 'The model page states this \"reproduces the globe formula exactly.\"' This quote cannot be verified from any of our extracted V50.6 raw text (raw-text/01-home.txt through 07-ai-context.txt). WIN-056 was added in V51.0, and the specific page t"
@@ -1303,9 +1319,17 @@
     {
       "win_id": "WIN-058",
       "topic": "Unified angular coordinate system — convention vs. prediction",
-      "issues_created": 2,
+      "issues_created": 0,
       "holes_found": 7,
       "missing_holes": [
+        {
+          "severity": "critical",
+          "summary": "WIN-058 itself is undefined on the dome's site. Searching the dome's wins page, we find WIN-057 (two-zone disc topology) in detail but WIN-058 is listed with no justifying content, no equations, no measurements, and no physical consequences specified. The dome provides a one-line claim ('Unified ang"
+        },
+        {
+          "severity": "major",
+          "summary": "Our argument 'coordinate choice is convention, not a physical prediction' is philosophically true but logically weak. It proves too much. By the same logic, WGS84 is also 'just a convention,' yet WGS84 enables GPS to work with meter-level precision. A coordinate system can be 'conventional' (in the "
+        },
         {
           "severity": "major",
           "summary": "Citation of Torge & Müller (2012) is misleading in context. Torge & Müller's textbook on geodesy does indeed explain that coordinates are human-defined systems. However, the book does NOT claim that coordinate transformations cannot produce testable predictions. In fact, geodesy is the study of coor"

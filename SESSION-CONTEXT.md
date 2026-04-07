@@ -1,6 +1,6 @@
 # Dome Model Review — Session Context for AI Continuity
 
-**Last updated:** 2026-04-06 (context windows 5–10)
+**Last updated:** 2026-04-06 (context windows 5–12)
 **Repository:** https://github.com/funwithscience-org/dome-model-review
 **Live site:** https://funwithscience-org.github.io/dome-model-review
 **Version reviewed:** Ovoid Cavity Cosmological Model V51.0 (April 2026)
@@ -10,7 +10,9 @@
 
 ## 1. Project Overview
 
-This is a comprehensive, data-driven critical review of a flat-earth dome model that claims 67 confirmed predictions and zero falsifications. Our review finds: 9 refuted by data, 12 self-contradicted, 23 misleading, 16 explained by standard model, 3 not demonstrated, 4 unfalsifiable. Zero of 67 are uniquely explained by the dome.
+This is a comprehensive, data-driven critical review of a flat-earth dome model that claims 67 confirmed predictions and zero falsifications. Query current verdict tallies:
+`node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const c={};w.forEach(x=>c[x.verdict]=(c[x.verdict]||0)+1);console.log(c)"`
+Zero of 67 are uniquely explained by the dome.
 
 The review is built to be transparent, fair, and scientifically rigorous — we acknowledge where the dome model shows genuine sophistication (V13 Finsler coordinates, cryptographic timestamping, toroidal architecture) while documenting where claims fail.
 
@@ -272,15 +274,17 @@ The ECM site was clearly built with AI assistance. The user observed that the au
 
 ## 9. Potential Future Work
 
-- Monitor dome site for V51.x updates (WIN count changes, new falsifications)
+- Monitor dome site for V51.x updates (WIN count changes, new falsifications) — **automated via dome-poller**
 - If Eclipse 2026 (Aug 12) produces any dome-specific predictions that differ from Besselian elements, analyze
 - NMP drift rate: check back in 2027-2028 for actual vs. predicted
 - SAA field strength: check INTERMAGNET data against dome's PRED-R002 by end of 2028
 - Consider adding interactive elements (sortable table, filter by verdict)
-- The DOCX/PDF outputs could use formatting improvements (the build-doc-v4.js is functional but basic)
-- Extract prose sections into `data/sections.json` so narrative text has a single source too
+- DOCX prose sync with sections.json (build-doc-v4.js still hardcoded)
+- DOCX missing Sections 5.14-5.16 (ISS-422) — most original contribution absent from downloadable doc
+- ~~Extract prose sections into `data/sections.json`~~ **DONE (V4.9.7)**
 - Revisit Dielectric infographic section (currently parked) — may reinstate with stronger analysis
-- Consider expanding repository source code analysis section (Section 5.14) with more script findings
+- Archive dome Python scripts to raw-text/ before author removes them (ISS-423)
+- Globe fingerprint systematic search — **automated via analyst Mode 3**
 
 ---
 
@@ -458,6 +462,85 @@ node test.js 2>&1 | tail -3
 ### Open items
 - Open issues remaining (mostly moderate/minor) — check live count above. Decider processing 10 WINs per run.
 - Curmudgeon progressing through Phase 1 — check tracker above for current position.
-- Prose extraction task scheduled for 8 PM (migrates hardcoded prose to data/sections.json)
+- ~~Prose extraction task scheduled for 8 PM~~ **COMPLETED in CW11**: sections.json created with 11 sections, 2017 tests passing.
 - CI workflow needs manual push (token lacks workflow scope)
 - ISS-308: Double-escaped unicode in some WIN entries (cosmetic but causes patch failures)
+
+---
+
+## 13. Context Windows 11–12 — Prose Extraction, Expansion Pipeline, Globe Fingerprint Hunt (2026-04-06)
+
+### Major achievements
+
+**Prose extraction completed (V4.9.7):** All 11 prose sections extracted from generate-html.js into `data/sections.json`. 24 `{{PLACEHOLDER}}` tokens replacing 70 interpolations. Byte-identical HTML output. Test suite grew from 1841 to 2017 (sections.json validation tests activated). Committed as 2abb55d.
+
+**apply-patches.js dual-file support:** Extended to route patches to `wins.json` or `sections.json` based on `p.file` field. Sections patches search `html` and `title` fields. This makes prose patchable by decider — previously impossible.
+
+**Expansion integration pipeline closed:** Identified and fixed gap where analyst expansion outputs sat in JSON files with no agent integrating them. Added step 2a to decider prompt: read expansion tracker → find completed/revised items → write patches to swap replacement_html into sections.json → mark integrated. First run failed because sections.json wasn't synced to workspace — fixed by copying file and adding sections.json to build.js publish sync list.
+
+**Human notes system:** Created `monitor/analyst/human-notes.json` and `monitor/decisions/human-notes.json`. Agents check each run, act immediately, mark consumed. Key innovation: notes trigger revisions on completed work — e.g., NOTE-001 added π×R critique to already-completed EXP-003.
+
+**Globe fingerprint hunt (Mode 3):** Systematic background search for globe-derived constants across all 67 WINs. Motivated by discovering d_geo = a/n(r_avg) where a = π×R_earth and 1.57c ≈ π/2 in WIN-001. 67-item tracker, one per analyst run, low priority (idle only). Output to `monitor/analyst/globe-fingerprints/WIN-NNN.json`.
+
+**Curmudgeon Phase 2 complete → Cycle 2 started:** All 9 holistic checks completed (NARRATIVE, TAXONOMY, CROSSREF, HIERARCHY, TONE, COMPLETENESS, STRESSTEST, REDUNDANCY, MISSING). Cycle incremented. Now in Phase 1 Cycle 2 with fresh per-item reviews (WIN-001.c2.json, WIN-002.c2.json already written).
+
+**94 issues flushed to closed:** 74 patched→fixed, 24 wontfix. 4 SEC prose issues reverted from "patched" to "open" since they're now patchable via sections.json. Check current counts:
+```bash
+node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const c=JSON.parse(require('fs').readFileSync('monitor/decisions/closed-issues.json','utf8'));console.log('Open:',o.issues.length,'Closed:',c.issues.length)"
+```
+
+### Verdict changes applied
+- **WIN-012**: Misleading → Self-Contradicted (KAPPA circularity was described as self-contradiction in evidence but verdict didn't match — added verdict mismatch detection to curmudgeon+decider prompts)
+- **WIN-054**: Misleading → Not Demonstrated (El Gordo — dome has no spatial framework for mass estimation)
+
+### Decider behavior changes
+- **Yeet-first architecture:** Decider runs yeet scan FIRST every run (both modes), immediately assigns ALL unpatchable issues to analyst. No queue management — "the goal of the decider is to fix/decide/move on, he wants his queue empty, not the analyst's."
+- **Expansion integration (step 2a):** Every run, check expansion tracker for completed items, write patches to swap replacement_html into sections.json.
+- **Human notes (step 1a):** Check for human notes, act immediately.
+- **Verdict mismatch detection:** Explicit check added before issue creation.
+
+### Analyst expansion status
+| ID | Target | Status | Notes |
+|----|--------|--------|-------|
+| EXP-001 | KILLSHOT-GAIA (Part 4.3) | complete | Ready for integration into sections.json |
+| EXP-002 | KILLSHOT-GPS (Part 4) | complete | Ready for integration |
+| EXP-003 | Section 4.5.9 (d_geo/V13) | revised | π×R argument added via human note |
+| EXP-004 | Section 4.8 (solar diameter) | complete | Ready for integration |
+| EXP-005 | Verdict taxonomy analysis | complete | Ready for integration |
+| EXP-006 | KILLSHOT-GAIA round 2 | pending | |
+| EXP-007 | Argument hierarchy | pending | Self-contradictions in tab 8 of 10 |
+| EXP-008 | Eclipse prose (SEC-3.2) | pending | Critical vulnerability |
+| EXP-009 | Code analysis cluster (SEC-4.6.x) | pending | 6 issues from holistic reviews |
+| EXP-010 | Schumann formula direction | pending | ISS-465 |
+| EXP-011 | DOCX missing sections 5.14-5.16 | pending | |
+| EXP-012 | (reserved) | pending | |
+
+### New issues from Phase 2 holistic checks
+- ISS-454/455: STRESSTEST — no success verdict category; no eclipse pre-commitment
+- ISS-456: COMPLETENESS — Part 4.6 cites zero specific WIN examples for statistics
+- ISS-457-461: Code analysis cluster (monitoring archive, category conflation, live_fetch WGS84 dependency)
+- ISS-462: 6 WINs relabels_standard=false should be true (corrected)
+- ISS-463: 10 WINs post_hoc=false should be true (corrected)
+- ISS-464: Dome's own PROSPECTIVE labels not engaged
+- ISS-465: Schumann formula direction wrong in SEC-5.15
+
+### Pipeline sync fix
+`build.js publish` now syncs 6 files to workspace (added `data/sections.json` to sync list). Previous sync gap caused decider to skip expansion integration for one day because sections.json was missing from workspace.
+
+### Scheduled task states (as of CW12)
+- dome-analyst: every 30 minutes (Modes 1→2→3 priority)
+- dome-decider: every 20 minutes (yeet-first, expansion integration)
+- dome-curmudgeon: every 10 minutes (Cycle 2, Phase 1)
+- dome-poller: every 4 hours
+- dome-integrity: daily 9 AM
+- dome-tinker: daily 10:30 AM
+- dome-integrity-post-refactor: one-time 2026-04-07T01:00:00Z
+- dome-daily-summary-apr7: one-time 2026-04-07T02:00:00Z
+- dome-prose-extraction: DISABLED (completed)
+- curmudgeon-cycle2-alert: DISABLED (no longer needed)
+
+### Known remaining work
+- Decider should integrate EXP-001–005 into sections.json on next run (sections.json now synced to workspace)
+- DOCX prose still hardcoded in build-doc-v4.js — needs manual sync with sections.json content
+- CI workflow push still pending (token lacks workflow scope)
+- NOTE-002 pending for analyst: π/2 ≈ 1.57c argument for WIN-001

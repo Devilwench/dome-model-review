@@ -55,7 +55,7 @@ if (target === 'publish') {
   const workspace = '/sessions/peaceful-gallant-rubin/mnt/dome-model-review';
   if (fs.existsSync(workspace)) {
     console.log('\n⏳ Sync to workspace...');
-    const syncFiles = ['data/wins.json', 'data/sections.json', 'docs/index.html', 'build-scripts/generate-html.js', 'build-scripts/generate-pdf.js', 'CLAUDE.md'];
+    const syncFiles = ['data/wins.json', 'data/sections.json', 'docs/index.html', 'build-scripts/generate-html.js', 'build-scripts/generate-pdf.js', 'CLAUDE.md', 'monitor/v6-restructure-map.json', 'monitor/prompts/curmudgeon.md', 'monitor/prompts/analyst.md', 'monitor/prompts/decider.md', 'monitor/prompts/tinker.md', 'test.js'];
     let synced = 0;
     for (const f of syncFiles) {
       const src = path.join(ROOT, f);
