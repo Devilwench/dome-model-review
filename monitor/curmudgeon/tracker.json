@@ -3,8 +3,8 @@
   "current_cycle": 2,
   "phase": 1,
   "phase_description": "Phase 3 (Repaint): Cycle 2 — re-reviewing all items with higher severity thresholds. Focus on whether Cycle 1 fixes were applied, new content consistency, code_analysis tag re-validation.",
-  "last_reviewed": "WIN-056",
-  "last_run": "2026-04-07T20:15:00Z",
+  "last_reviewed": "WIN-063",
+  "last_run": "2026-04-09T08:30:00Z",
   "points": [
     {
       "id": "WIN-001",
@@ -459,49 +459,56 @@
       "type": "win",
       "section": "2.6",
       "topic": "Two-zone disc topology",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-07T23:30:00Z"
     },
     {
       "id": "WIN-058",
       "type": "win",
       "section": "2.6",
       "topic": "Unified angular coordinate",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-08T00:15:00Z"
     },
     {
       "id": "WIN-059",
       "type": "win",
       "section": "2.4",
       "topic": "NMP deceleration Siberian",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-08T17:30:00Z"
     },
     {
       "id": "WIN-060",
       "type": "win",
       "section": "2.4",
       "topic": "SAA western cell shift",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-08T20:15:00Z"
     },
     {
       "id": "WIN-061",
       "type": "win",
       "section": "2.3",
       "topic": "Schumann suppression G3 storm",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-08T22:30:00Z"
     },
     {
       "id": "WIN-062",
       "type": "win",
       "section": "2.6",
       "topic": "Tesla longitudinal wave 1.574c",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-08T23:45:00Z"
     },
     {
       "id": "WIN-063",
       "type": "win",
       "section": "2.4",
       "topic": "Magnetic decay asymmetry ratio",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-09T08:30:00Z"
     },
     {
       "id": "WIN-064",
@@ -754,6 +761,22 @@
       "section": "2b.3",
       "topic": "Post-Hoc Retrodiction — prediction vs retrodiction distinction",
       "status": "pending"
+    },
+    {
+      "id": "WIN-068",
+      "type": "win",
+      "section": "3.68",
+      "topic": "Eclipse magnetic ensemble (39 eclipses)",
+      "status": "priority-new",
+      "added_at": "2026-04-08T17:41:38.426Z"
+    },
+    {
+      "id": "WIN-069",
+      "type": "win",
+      "section": "3.69",
+      "topic": "Australia road scaffold validation",
+      "status": "priority-new",
+      "added_at": "2026-04-08T17:41:38.426Z"
     }
   ],
   "holistic_checks": [
@@ -803,6 +826,6 @@
       "status": "pending"
     }
   ],
-  "items_reviewed": 56,
-  "total_items": 67
+  "items_reviewed": 63,
+  "total_items": 69
 }

@@ -564,9 +564,10 @@
         "ISS-635"
       ],
       "priority": "high",
-      "status": "superseded",
+      "status": "complete",
       "created_at": "2026-04-08T15:54:16.280Z",
-      "notes": "SUPERSEDED BY MODE 0: WIN-068/069 should now be picked up by analyst Mode 0 (new WIN onboarding) rather than the expansion queue. Mode 0 writes to monitor/analyst/new-wins/ and the decider commits. This EXP item remains as a reference but should not block Mode 0 from acting."
+      "notes": "Analyst wrote WIN-068/069 entries. Human committed to wins.json. Trackers updated. Superseded by Mode 0 for future new WINs but this one completed via old path.",
+      "completed_at": "2026-04-08T17:41:38.436Z"
     },
     {
       "id": "EXP-039",
