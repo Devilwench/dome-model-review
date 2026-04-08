@@ -61,7 +61,7 @@ a:hover{text-decoration:none}
 .title-block .subtitle{font-size:1.1rem;color:#666;margin:.2rem 0}
 .title-block .meta{font-size:.95rem;color:#999;margin-top:1rem}
 .scorecard{display:grid;gap:1.5rem;margin:2rem 0;max-width:none}
-.sc-hero{grid-template-columns:repeat(2,1fr)}
+.sc-hero{grid-template-columns:repeat(3,1fr)}
 .sc-breakdown{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:.5rem}
 .scorecard .sc-card{background:var(--card-bg);border:2px solid var(--border);border-radius:8px;padding:1.5rem 1.2rem;text-align:center;transition:all .2s}
 .scorecard .sc-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1);border-color:var(--accent)}
@@ -190,7 +190,7 @@ h3{font-size:1rem}
 <p class="meta">April 8, 2026 &nbsp;|&nbsp; Version 6<br>Source: <a href="https://john09289.github.io/predictions">john09289.github.io/predictions</a></p>
 </div>
 
-<div class="scorecard sc-hero">
+<div class="scorecard sc-hero" style="grid-template-columns:repeat(3,1fr)">
 <div class="sc-card">
 <div class="sc-number">67</div>
 <div class="sc-label">Claimed "Wins"</div>
@@ -200,6 +200,11 @@ h3{font-size:1rem}
 <div class="sc-number">0</div>
 <div class="sc-label">Actual Wins</div>
 <div class="sc-sublabel">Not one claim produces a result that the globe model can't explain and the dome uniquely can</div>
+</div>
+<div class="sc-card" style="border-left:4px solid #c45050">
+<div class="sc-number">5</div>
+<div class="sc-label">Acknowledged Failures</div>
+<div class="sc-sublabel">Predictions that failed — labeled "refined," "suspended," or quietly dropped</div>
 </div>
 </div>
 
