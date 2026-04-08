@@ -1,6 +1,6 @@
 {
   "description": "Archived closed issues. Decider does not need to read this file.",
-  "last_updated": "2026-04-08T16:09:50.305Z",
+  "last_updated": "2026-04-08T17:10:53.081Z",
   "issues": [
     {
       "id": "ISS-001",
@@ -7048,6 +7048,20 @@
       "found_by": "curmudgeon-cycle2-WIN-063",
       "fixed_at": "2026-04-08T16:09:50.305Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-643",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "infrastructure",
+      "description": "Hardcoded version number (\"Version 6\"), date (\"April 7, 2026\"), and dome model version (\"V51.0\") in generate-html.js. Version should come from package.json, date should be build date, dome version was stale (now V51.1).",
+      "source": "human",
+      "found_date": "2026-04-08",
+      "status": "fixed",
+      "fix_details": "Review version now computed from package.json major version. Build date computed at build time. Dome version uses single DOME_VERSION constant (updated to V51.1). All four scattered V51.0 references replaced with template variable. Commit 9d5dfb5.",
+      "fix_date": "2026-04-08",
+      "fixed_by": "human-session",
+      "fixed_at": "2026-04-08T17:10:53.081Z"
     }
   ]
 }
