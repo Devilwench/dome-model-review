@@ -521,12 +521,13 @@
       "issue_ids": [],
       "priority": "medium",
       "status": "complete",
-      "notes": "Recovered from write collision. De-duplication table (67→39 independent claims). Integration mode: human_placement_required. Numbering collision: was labeled EXP-032 in file but is NOTE-012 work (dedup table), not NOTE-011 (gravity paradox).",
+      "notes": "Recovered from write collision. De-duplication table (67→39 independent claims). Integration mode: Human decided: Part 6 (predictions tab). AI-readable structured content — pairs with 95.2% accuracy debunk.. Numbering collision: was labeled EXP-032 in file but is NOTE-012 work (dedup table), not NOTE-011 (gravity paradox).",
       "created_at": "2026-04-07T21:07:23Z",
       "completed_at": "2026-04-07T21:07:23Z",
       "integrated": false,
       "output_file": "monitor/analyst/expansions/EXP-032.json",
-      "integration_mode": "human_placement_required"
+      "integration_mode": "insert_into",
+      "placement": "Part 6 (predictions tab), near the 95.2% accuracy discussion. This is the logical home: the predictions tab dismantles the 67-confirmed/95.2%-accurate headline, and the dedup table undercuts the denominator by showing 28 of 67 WINs are re-descriptions of 10 observations."
     },
     {
       "id": "EXP-033",
