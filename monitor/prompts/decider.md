@@ -113,6 +113,57 @@ console.log('Added FAIL-'+String(maxId+1).padStart(3,'0'));
 
 The build computes `{{ACKNOWLEDGED_FAILURES}}` from this file's entry count. After adding entries, rebuild to update the scorecard on the overview page.
 
+### 1f. Onboard New WINs from Analyst
+
+Check `monitor/analyst/new-wins/` for new WIN entry files (WIN-NNN.json). These are the analyst's initial debunks of dome WINs we don't yet cover — **highest priority work**.
+
+For each new WIN file:
+
+1. **Read the entry and validate.** Check all required fields are present and the verdict is defensible.
+
+2. **Append to `data/wins.json`.** Add the `win_entry` from the file to the wins.json array. Verify the ID doesn't collide with an existing entry.
+
+3. **Update curmudgeon tracker.** Add the new WIN to the `points` array in `monitor/curmudgeon/tracker.json` with `status: "priority-new"` (NOT "pending" — this signals the curmudgeon to review it before continuing cyclic work). Increment `total_items`.
+```bash
+node -e "
+const fs=require('fs');
+const t=JSON.parse(fs.readFileSync('monitor/curmudgeon/tracker.json','utf8'));
+t.points.push({
+  id:'WIN-NNN', type:'win', section:'X.X',
+  topic:'Short topic', status:'priority-new',
+  added_at:new Date().toISOString()
+});
+t.total_items=t.points.filter(p=>p.type==='win').length;
+fs.writeFileSync('monitor/curmudgeon/tracker.json',JSON.stringify(t,null,2));
+"
+```
+
+4. **Update analyst fingerprint tracker.** Add the new WIN to `monitor/analyst/globe-fingerprint-tracker.json` so it enters the Mode 3 rotation:
+```bash
+node -e "
+const fs=require('fs');
+const t=JSON.parse(fs.readFileSync('monitor/analyst/globe-fingerprint-tracker.json','utf8'));
+t.items.push({id:'WIN-NNN', status:'pending', findings:null, reviewed_at:null});
+t.total_items=t.items.length;
+fs.writeFileSync('monitor/analyst/globe-fingerprint-tracker.json',JSON.stringify(t,null,2));
+"
+```
+
+5. **Build, test, self-apply** (step 6b procedure). New WINs are self-appliable — they're additive, not verdict changes.
+
+6. **Close the open issue** and archive the new-wins file.
+
+**New WINs are the #1 priority in every decider run.** Until our WIN count matches the dome's, every run should check for and process new WIN files before touching the curmudgeon backlog or expansion queue. Our credibility depends on covering every claim — a gap in coverage is worse than a weak argument.
+
+### 1g. Onboard New Categories from Analyst
+
+Check `monitor/analyst/category-proposals/` for new category proposals (CAT-NNN.json). These require human approval for structural decisions (data files, build pipeline, section placement), so:
+
+1. Read the proposal
+2. Create an open issue with `status: "needs-human"` and `severity: "high"`
+3. Summarize the proposal in the morning briefing
+4. **After human approves and builds the structure**: create expansion tracker items for the content fill, flag curmudgeon for first-review after content is live
+
 ### 2. Process Curmudgeon Reviews via Digest
 
 A preprocessing script (`build-scripts/digest-reviews.js`) generates a compact digest of all unprocessed curmudgeon reviews at `monitor/curmudgeon/pending-digest.json`. This digest contains every finding from every review — not just summaries — so nothing gets lost even if you never open the full review file.

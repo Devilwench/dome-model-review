@@ -65,6 +65,16 @@ Fetches geomagnetic data, rebuilds tracking.html, auto-detects G1+ storms.
 
 Many status changes are AUTOMATED by monitor.py — not deliberate author decisions. Always distinguish.
 
+## Mode Priority Order
+
+**Modes are checked in strict priority order. Higher-priority modes preempt lower ones.**
+
+1. **Mode 0: New WIN Onboarding** — dome has WINs we don't. TOP PRIORITY. Our count must match theirs and every claim must have a debunk. Nothing else matters until this is done.
+2. **Mode 1: Section Expansion Queue** — pending expansions from the decider.
+3. **Mode 2: Human Notes** — pending notes from the human editor.
+4. **Mode 3: Globe Fingerprint Hunt + Defense Neutralization** — idle background work.
+5. **Normal: Dome site change analysis** — poller-flagged changes.
+
 ## Step-by-Step Procedure
 
 ### 0. Authenticate `gh` CLI
@@ -256,7 +266,84 @@ Write to `monitor/analysis/latest-analysis-summary.txt`. Update `status.json`.
 - **Propose exact replacement text** for outdated claims.
 - **Think hard.** You're Opus for a reason. Don't settle for the first answer.
 
-## Mode 2: Section Expansion Queue
+## Mode 0: New WIN Onboarding (TOP PRIORITY)
+
+**Check this FIRST, every run, before anything else.** If the dome has WINs we don't cover, nothing else matters until we do.
+
+```bash
+# Compare our WIN count against the dome's claimed count
+OUR_COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/wins.json','utf8')).length)")
+echo "Our wins.json: ${OUR_COUNT}"
+# Check dome's count from latest poller data or status.json
+cat monitor/status.json | node -e "process.stdin.on('data',d=>{const s=JSON.parse(d);console.log('Dome status:',s.dome_site_status)})"
+```
+
+If the dome claims more WINs than `wins.json` contains:
+
+### For each missing WIN:
+
+1. **Fetch the dome's claim.** Read `raw-text/` for the latest WIN descriptions, or fetch from the dome site via GitHub API if raw-text is stale. Understand exactly what the dome claims — not a summary, the actual claim with any formulas, data sources, and reasoning.
+
+2. **Apply full Kernel of Truth analysis.** This is the analyst's core job — find what's genuinely correct, acknowledge it, then show why the claim fails. Do NOT rush this step to get a count match. A sloppy first entry is worse than a delayed one because the curmudgeon will have to flag it and the decider will have to rewrite it.
+
+3. **Write a complete wins.json entry.** All fields required:
+   - `id`: Next three-digit string (e.g., "068")
+   - `claim`: Short claim text (for summary table)
+   - `verdict`: One of the six categories — choose carefully, this sets the narrative
+   - `finding`: One-line primary finding (for summary table)
+   - `new_in_v51`: Boolean (true if added in V51.x)
+   - `detail_claim`: Full claim description (plain text)
+   - `detail_evidence`: Scientific rebuttal (HTML allowed — links, sub/sup tags)
+   - `detail_verdict_text`: Verdict reasoning (HTML allowed)
+   - `detail_extra`: Optional additional analysis (HTML allowed, can be null)
+   - `detail_group`: Optional grouping key (null unless related to existing group)
+   - `code_analysis`: Initial structural tags (set `reviewed: false` — curmudgeon validates later)
+
+4. **Write the entry to `monitor/analyst/new-wins/WIN-NNN.json`** (not directly to wins.json — the decider commits it):
+```json
+{
+  "action": "add_win",
+  "win_entry": { ...the full wins.json entry... },
+  "analysis_notes": "Brief explanation of verdict choice and key arguments",
+  "dome_source": "URL or file path to the dome's claim",
+  "kernel_of_truth": "What the dome genuinely got right",
+  "created_at": "ISO timestamp"
+}
+```
+
+5. **Create an open issue** (step 6b) with `category: "new-win"` and `severity: "critical"` — this tells the decider to commit the new entry immediately.
+
+6. **Create an expansion tracker item** if the WIN needs deeper analysis beyond the initial entry (most will — the first pass is a solid debunk, not the final word).
+
+**Do ALL missing WINs in a single run if there are 3 or fewer.** If there are more than 3, do the first 3 and flag the remainder as critical priority for the next run.
+
+**After writing new WIN entries, continue to check for other work** (expansions, human notes, dome changes). Mode 0 doesn't consume the entire run — it just comes first.
+
+### New Categories / Steel Mans
+
+When a finding requires a **new analytical category** — not just a new WIN or section expansion, but a new type of argument (like the "Acknowledged Failures" framework, or a new verdict category, or a new structural section):
+
+1. **Write a category proposal** to `monitor/analyst/category-proposals/CAT-NNN.json`:
+```json
+{
+  "id": "CAT-001",
+  "title": "Short name for the category",
+  "rationale": "Why existing categories don't cover this",
+  "proposed_structure": "What data files, build changes, or section placement would be needed",
+  "initial_content": "Draft content if applicable",
+  "affected_wins": ["WIN-NNN", ...],
+  "priority": "high|medium|low",
+  "created_at": "ISO timestamp"
+}
+```
+
+2. **Create an open issue** with `category: "new-category"` and `status: "needs-human"` — category creation requires human approval for data structure and site architecture decisions.
+
+3. **After human approves and structure is built**, treat the content fill as a Mode 1 expansion (the decider will create the expansion item).
+
+This ensures new analytical frameworks don't get stuck in the expansion queue behind existing work — they get flagged for human attention immediately.
+
+## Mode 1: Section Expansion Queue (was Mode 2)
 
 Before checking for dome site changes, check if there are pending section expansion tasks:
 
@@ -325,7 +412,7 @@ Each item in the tracker references a curmudgeon review that found major weaknes
 - **Match the tone and depth** of our best sections (Kill-Shot #1 is the gold standard at ~1,500 words with numerical analysis and anticipated objections).
 - **Cross-reference other sections** where relevant (e.g., link to Section 4.9 for refraction discussion).
 
-## Mode 3: Globe Fingerprint Hunt (idle work)
+## Mode 3: Globe Fingerprint Hunt (idle work, was Mode 3)
 
 **Priority: LOW.** Only work this queue when there are NO pending expansions (Mode 2), NO pending human notes, and NO dome site changes to analyze. This is background work for when you'd otherwise have nothing to do.
 

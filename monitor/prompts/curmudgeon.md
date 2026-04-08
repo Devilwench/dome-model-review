@@ -32,6 +32,8 @@ After all individual items are reviewed, switch to holistic review mode. This ph
 - **Counter-narrative stress test**: Read the review as a dome defender would. What's the single most effective rebuttal to the whole review? Does our text preempt it?
 - **Redundancy check**: Are there sections that say substantially the same thing? Can anything be tightened?
 - **Missing arguments**: Based on everything reviewed in Phase 1, are there cross-cutting arguments we should be making that don't appear anywhere?
+- **Reader-path attack surface**: A dome defender who reads only the first tab, or only the summary table, or only the overview — can they find enough weak-looking material to dismiss the whole review without encountering the irrefutable self-contradictions? If a hostile reader can construct a "this debunk is sloppy" narrative from the first things they see (e.g., a "Std Model Explains" WIN that sounds like mere disagreement), that's a structural vulnerability. Identify the worst possible "skim path" through the review and what it looks like to a motivated skeptic.
+- **AI-adversarial framing**: If a dome defender pastes our URL into an AI and says "debunk this debunk," what does the AI see first and how could the dome's framing (67 WINs, 95.2%, Bitcoin timestamps) outweigh our arguments in a shallow parse? Identify the points where our review is most vulnerable to being dismissed by an AI that reads narratively rather than computationally. Where do we rely on the reader doing math we haven't shown inline?
 
 Write holistic review output to `monitor/curmudgeon/reviews/HOLISTIC-{check_id}.json` with the same severity/recommendation structure as WIN reviews.
 
@@ -43,13 +45,80 @@ After the holistic review completes, increment `current_cycle` in the tracker, r
 - Re-check external citations (DOIs can break over time)
 - Set severity thresholds higher — cycle 2+ should mostly find moderate/minor issues unless the review has been substantially rewritten
 
+### Cycle 3+ Expanded Review Lenses
+
+Starting in Cycle 3, each per-WIN review gains three additional analysis modes on top of the existing procedure. These produce new fields in the review JSON (see updated schema below). Not every mode will produce findings for every WIN — that's fine. But you must attempt each one.
+
+#### Lens A: Advocate Mode — Construct the Best Defense
+
+Don't just look for holes in our text. Explicitly role-play as a dome defender who has read and accepted our review's own six methodological principles (internal consistency first, discriminatory power required, no default favoritism, etc.) and construct the **strongest possible rebuttal** to our debunk of this specific WIN.
+
+- Write the defense in the advocate's voice. Be genuinely creative — find angles we haven't considered.
+- Then step out of character and assess: does the defense hold up? Rate it 1–5 (1 = trivially refuted, 5 = requires a text change to preempt).
+- If rated 3+, write a specific recommendation for how to preemptively neutralize it in our text.
+
+This is different from the existing "holes_found" analysis. Holes are things we got wrong. Advocate mode finds things we got right but left rhetorically vulnerable.
+
+#### Lens B: Cross-WIN Consistency Check
+
+For each WIN, identify 2–3 other WINs that share data sources, physical mechanisms, or argumentative structure. Check:
+
+- Do our arguments across these WINs make compatible assumptions? (e.g., if WIN-001 says Tesla was measuring spherical-Earth propagation, and WIN-002 says the dome borrows the globe's Schumann formula, do those two arguments reinforce or contradict each other?)
+- Do we cite the same source paper differently in different WINs?
+- Could a critic compile our cross-WIN statements into a "your review contradicts itself" attack?
+
+Record findings in a new `cross_win_consistency` field. Most WINs will pass — that's expected. The value is catching the few that don't.
+
+#### Lens C: Quantitative Verification
+
+For WINs involving mathematical claims (formulas, computed values, unit conversions, statistical claims), **actually run the calculation** using bash/python. Compare your result against:
+1. The value our review claims
+2. The value the dome claims
+3. The value from the cited source
+
+Record the computation and result in a new `quantitative_verification` field. If our review states "H_eff ≈ 3,400 km → f ≈ 22 Hz," compute H_eff yourself from the integral and verify. If our review says "12,717 km matches Earth's diameter to 0.2%," compute 12,742/12,717 yourself.
+
+For WINs with no mathematical content (purely qualitative arguments), record `"quantitative_verification": "N/A — no mathematical claims to verify"`.
+
+### Updated Review JSON Fields (Cycle 3+)
+
+Add these fields to the standard review JSON alongside the existing fields:
+
+```json
+{
+  "advocate_mode": {
+    "best_defense": "The strongest rebuttal a fair-minded dome defender could construct",
+    "defense_survives": 1-5,
+    "preemptive_recommendation": "How to neutralize this defense in our text (null if rated 1-2)"
+  },
+  "cross_win_consistency": {
+    "related_wins": ["WIN-NNN", "WIN-NNN"],
+    "compatible": true/false,
+    "inconsistencies_found": "Description of any cross-WIN contradictions in our arguments (null if none)"
+  },
+  "quantitative_verification": {
+    "claims_checked": ["list of specific numerical claims verified"],
+    "computations": "Brief description of what was computed and how",
+    "all_verified": true/false,
+    "discrepancies": "Any numerical errors found in our text (null if none)"
+  }
+}
+```
+
 ## Per-Run Procedure
 
 **Step 0: Read the V6 translation map** (`monitor/v6-restructure-map.json`). All sections were renumbered on 2026-04-07. Your Cycle 1 reviews use old numbers (e.g., "Section 4.5.1" is now "Section 2.1"). When reading ANY prior review from `monitor/curmudgeon/reviews/`, mentally translate old section numbers to new ones using the map. When writing NEW reviews, always use the new numbers. The tracker items have already been updated to use new numbers.
 
-**Step 0b: Check human notes** (`monitor/curmudgeon/human-notes.json`). If any notes have `status: "pending"`, they take priority over the normal tracker sequence. Review the item specified in the note, focusing on the questions asked. Mark the note as `"consumed"` after completing the review. Then resume normal tracker order on the next run.
+**Step 0b: Check for priority-new items** (new WINs or new categories). Read `monitor/curmudgeon/tracker.json` and check for any items with `status: "priority-new"`. These are freshly onboarded WINs or new analytical sections that have never been reviewed. **They jump the queue** — review them before continuing any cyclic or holistic work. The analyst wrote the initial entry; your job is to stress-test it before it accumulates readers. After reviewing a priority-new item, set its status to `"reviewed"` (it then enters normal cycle rotation).
 
-Each run, review ONE item from the tracker (unless a human note overrides — see Step 0b). Read `monitor/curmudgeon/tracker.json` to find the next unreviewed item (the first entry with `status: "pending"`). If in Phase 2, pick the next unreviewed holistic check. If all items in all phases are complete, start Phase 3.
+**Step 0c: Check human notes** (`monitor/curmudgeon/human-notes.json`). If any notes have `status: "pending"`, they take priority over the normal tracker sequence. Review the item specified in the note, focusing on the questions asked. Mark the note as `"consumed"` after completing the review. Then resume normal tracker order on the next run.
+
+**Priority order each run:**
+1. `priority-new` items (Step 0b) — new WINs/sections that have never been reviewed
+2. Human notes (Step 0c) — explicit human requests
+3. Normal tracker sequence — next `pending` item in the current phase
+
+Each run, review ONE item following the priority order above. Read `monitor/curmudgeon/tracker.json` to find the highest-priority unreviewed item. If no priority-new or human notes, pick the next entry with `status: "pending"`. If in Phase 2, pick the next unreviewed holistic check. If all items in all phases are complete, start Phase 3.
 
 For each WIN, you must:
 
