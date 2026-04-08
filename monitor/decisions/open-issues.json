@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-08T11:12:35.425Z",
+  "last_updated": "2026-04-08T11:13:39.393Z",
   "issues": [
     {
       "id": "ISS-442",
@@ -50,32 +50,6 @@
       "source": "curmudgeon",
       "found_date": "2026-04-08",
       "status": "assigned-analyst",
-      "fix_details": null,
-      "fix_date": null,
-      "found_by": "curmudgeon-cycle2"
-    },
-    {
-      "id": "ISS-644",
-      "win_id": "061",
-      "severity": "moderate",
-      "category": "citation",
-      "description": "WIN-061 citation imprecise: detail_evidence cites Nickolaenko & Hayakawa 2002 ch.11 for storm-specific Schumann suppression evidence, but Schlegel & Füllekrug (1999, J. Geophys. Res. 104, 10111) is the primary peer-reviewed source specifically documenting G3+ storm suppression of Schumann frequencies. The general reference should be supplemented or replaced with the storm-specific one.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-08",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null,
-      "found_by": "curmudgeon-cycle2"
-    },
-    {
-      "id": "ISS-645",
-      "win_id": "061",
-      "severity": "moderate",
-      "category": "missing_argument",
-      "description": "WIN-061 Live Power Dashboard untapped: the dome's own Live Power Dashboard lists WIN-061 as \"Unscored — no G3+ storm observed.\" This is a powerful self-undermining argument: the dome claims confirmation of a G3+ storm suppression test, but its own monitoring infrastructure confirms no qualifying storm has been observed. detail_evidence should add: \"The dome's own Live Power Dashboard scores this WIN as Unscored — meaning by its own automated metrics, the test has never been run.\"",
-      "source": "curmudgeon",
-      "found_date": "2026-04-08",
-      "status": "open",
       "fix_details": null,
       "fix_date": null,
       "found_by": "curmudgeon-cycle2"

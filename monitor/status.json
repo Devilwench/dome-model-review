@@ -1,47 +1,46 @@
 {
-  "last_run": "2026-04-08T07:07:02Z",
-  "last_agent": "poller",
-  "run_type": "Routine poll. 18th consecutive quiet poll. No substantive changes. Pipeline cadence recovered.",
-  "mode": "poll",
+  "last_run": "2026-04-08T14:00:00Z",
+  "last_agent": "decider",
+  "run_type": "Decider: EXP-035 integration, 11 patches self-applied (2 commits), 11 issues closed. Open: 4.",
+  "mode": "triage",
   "status": "complete",
   "changes_pending_analysis": 0,
   "patches_applied_this_run": {
-    "wins": 5,
+    "wins": 10,
     "sections": 1
   },
-  "issues_closed_this_run": 6,
-  "open_issues": 1,
-  "closed_issues": 515,
-  "issues_assigned_analyst": 1,
+  "issues_closed_this_run": 11,
+  "open_issues": 4,
+  "closed_issues": 531,
+  "issues_assigned_analyst": 2,
   "issues_pending_human": 1,
-  "curmudgeon_cycle": "Cycle 2, Phase 1: 59/67 WINs reviewed",
-  "curmudgeon_last_review": "WIN-059 Cycle 2 (2026-04-08T17:30)",
+  "curmudgeon_cycle": "Cycle 2, Phase 1: 61/67 WINs reviewed",
+  "curmudgeon_last_review": "WIN-061 Cycle 2 (2026-04-08T22:30)",
   "expansions_integrated": [
     "EXP-001 through EXP-028 (all complete + integrated)",
     "EXP-029 (WIN-002 Schumann reconciliation — integrated 2026-04-08)",
-    "EXP-030 (WIN-012 Exhibit A forensics — integrated 2026-04-08T18:30)"
+    "EXP-030 (WIN-012 Exhibit A forensics — integrated 2026-04-08T18:30)",
+    "EXP-035 (WIN-052 MOND relabeling — integrated 2026-04-08T14:00)"
   ],
   "expansions_pending": [
     "EXP-031 (Section 1.6 Dielectric Foundation)",
     "EXP-032 (Section 1.7 Gravity Paradox — depends on EXP-031)",
     "EXP-033 (De-duplication table — human_placement_required)",
-    "EXP-034 (Axial symmetry tightening — human_placement_required)"
+    "EXP-034 (Axial symmetry tightening — human_placement_required)",
+    "EXP-036 (Exhibits A and B coverage gap — next analyst priority)"
   ],
   "pipeline_bugs": [],
   "external_reports": "No new external reports. GitHub CLI unavailable.",
-  "integrity_status": "WARN (minor) — killshots h1→h3 is false positive (verified h1→h2 in HTML). ESA Gaia timeout known. 2050 tests pass.",
-  "dome_site_status": "QUIET — 18 consecutive quiet polls. Pipeline cadence recovered (5 commits Apr 8 through 07:05 UTC). April 9 reset window expires tomorrow.",
+  "integrity_status": "PASS (minor warnings only) — duplicate id='dielectric' FIXED. geodesy.noaa.gov timeout likely transient. 2075 tests pass.",
+  "dome_site_status": "QUIET — 18+ consecutive quiet polls. April 9 reset window expires today.",
   "build_needed": false,
-  "build_note": "Build passing. 2074 tests. NOTE-015 patches applied and built.",
-  "human_notes_status": "All notes consumed.",
+  "build_note": "Build passing. 2075 tests. 2 decider commits pushed today.",
+  "human_notes_status": "No pending notes.",
   "priority_for_human": [
-    "1. PUSH: 2 commits ready in /sessions/elegant-fervent-curie/dome-review-clean/ (NOTE-015 gravity patches + WIN-062 fingerprint). No git auth available.",
-    "2. REVIEW: EXP-030 (WIN-012 Exhibit A) still awaiting decider integration.",
-    "3. DECISION: ISS-442 verdict taxonomy (Misleading subcategories).",
-    "4. PIPELINE: EXP-031/032 not yet in expansion tracker.",
-    "5. OBSERVE: Dome site pipeline sluggish."
+    "1. VERIFY: ISS-634 — WIN-054 El Gordo total mass (Kim et al. 2021 gives subclusters ~1.64e15 Msun, our text cites 2.13e15). Check if Kim et al. 2021 quotes a total system mass or if we need different citation.",
+    "2. DECISION: ISS-442 verdict taxonomy (Misleading subcategories). Structural decision needed.",
+    "3. ANALYST: EXP-036 (Exhibits A and B) — next analyst priority. Homepage features this prominently.",
+    "4. WATCH: April 9 reset window expires today. Monitor for post-window claims."
   ],
-  "expansions_just_completed": [
-    "EXP-030 (WIN-012 Exhibit A — graph forensics + statistical rebuttal + BOU verification)"
-  ]
+  "key_finding_this_run": "WIN-052: dome's rho_A = g0*rho_bar/g-dagger formula uses g-dagger identifiable as MOND's critical acceleration a0. Dome lists formula as CONSISTENT (not CONFIRMED), all symbols undefined. If g-dagger = a0, dome formula is MOND relabeled — not new physics. Now live in published review."
 }

@@ -1,60 +1,85 @@
 MORNING BRIEFING — 2026-04-08
-Generated: 2026-04-08T21:00:00Z
-Curmudgeon reviews processed this run: 10 (WIN-052 through WIN-060 + EXHIBIT-AB, all Cycle 2)
-Previous decider run: 2026-04-08T03:12:31Z (analyst ran after that)
+Generated: 2026-04-08T14:00:00Z
+Curmudgeon reviews processed this run: 2 (WIN-060.c2, WIN-061.c2 — both 0 holes)
+Previous decider run: 2026-04-08T07:11Z
 
-=== SITE HEALTH ===
-Integrity check: WARN (minor) — 2074 tests passing, 0 failures
-  ✅ Build reproducible, all tabs functional, data-prose consistent
-  ⚠ ESA Gaia link timeout (known/transient)
-  ⚠ Killshots h1→h3 hierarchy (confirmed false positive — actual HTML is h1→h2)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SITE HEALTH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Integrity: WARN (minor)
+  - Duplicate id="dielectric" FIXED this run (renamed part4 commented-out instance)
+  - geodesy.noaa.gov timeout: monitor next run (likely transient)
+  - 2075 tests pass (up from 2074)
+  - Build: PASSING, 522 KB HTML
 
-=== EXTERNAL STATUS ===
-Dome site changes: NONE (17th consecutive quiet poll)
-  Pipeline sluggish: only 2 automated commits today vs typical 12/day
-  No manual commits. V51.0 unchanged. Eclipse test Aug 12, 2026 still featured.
-Threat level: NONE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXTERNAL STATUS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Dome site: QUIET — 18 consecutive quiet polls.
+April Reset Block expires tomorrow (Apr 9) — watch for post-window claims.
+Pipeline cadence: recovered to normal (~1 commit/70min).
+No external problem reports.
 
-=== SELF-APPLY THIS RUN ===
-3 patches applied, 0 failed | 5 issues closed | 2 commits pushed
-  ✅ WIN-060: monitoring tag 'hardcoded' → 'none' (ISS-639 — MAJOR fix)
-  ✅ sections.json Kill Shot 6: Remove unsourced 30% threshold, fix 'self-falsifying' label (ISS-643 — CRITICAL fix)
-     - Dome's actual criterion is 50%, not 30%. 'PASS' at 50% is what the dome reports.
-  ✅ WIN-057: '~40% population' → named cities Singapore/Jakarta/Nairobi (ISS-636 — MODERATE fix)
-  ✅ ISS-638: WIN-059 'self-falsified' framing — verified already fixed in WIN-059 detail_evidence
-  ✅ ISS-631: WIN-053 pole aperture — verified already disclosed in text ('estimated from model geometry')
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERNAL STATUS — EXCELLENT RUN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Open issues this run: 13 -> 4 (dropped 9)
+11 patches self-applied, 0 failed, 2 commits pushed.
 
-=== INTERNAL STATUS — 13 open issues ===
-Severity breakdown: 2 critical, 5 major, 6 moderate
-Status breakdown: 7 open (patchable), 5 assigned-analyst, 1 pending-human
+Issues closed this run (11):
+  ISS-627/628/629 -- WIN-052 EXP-035: MOND relabeling (dome's g-dagger = MOND's a0)
+  ISS-630 -- WIN-052 MOND/LCDM framing (resolved by EXP-035)
+  ISS-632 -- WIN-053 cross-ref (already present, closed as fixed)
+  ISS-633 -- WIN-054 finding conflation (rewritten, committed)
+  ISS-635 -- WIN-055 duplication note (already present, closed as fixed)
+  ISS-637 -- WIN-058 600-700x derivation (added, committed)
+  ISS-640 -- WIN-060 overlap distinction (added, committed)
+  ISS-644 -- WIN-061 citation (Schlegel & Fullekrug 1999 added, committed)
+  ISS-645 -- WIN-061 Live Power Dashboard (Unscored argument added, committed)
 
-NEW ISSUES CREATED (17, from Cycle 2 processing):
-  ISS-627/628 (WIN-052, CRITICAL): MOND priority + galaxy ontology underplayed → EXP-035 (analyst)
-  ISS-629 (WIN-052, MAJOR): Cross-WIN 047/048/052 incoherence → EXP-035
-  ISS-630 (WIN-052, MODERATE): MOND vs ΛCDM framing confusion → open
-  ISS-632 (WIN-053, MODERATE): Missing Section 6.8 cross-reference → open
-  ISS-633 (WIN-054, MAJOR): Finding conflates 'genuine anomaly' + 'non-discriminating' → open
-  ISS-634 (WIN-054, MODERATE): Kim et al. 2021 DOI verification needed → open
-  ISS-635 (WIN-055, MODERATE): WIN-055/WIN-047 duplication not resolved → open
-  ISS-637 (WIN-058, MODERATE): 600-700× explanation needed → open
-  ISS-640 (WIN-060, MODERATE): SAA group overlap distinction missing → open
-  ISS-641/642 (null, MAJOR): Exhibits A & B coverage gap → EXP-036 (analyst)
-  ISS-643 (null, CRITICAL): Kill Shot 6 30% threshold → FIXED this run
+Remaining 4 open issues:
+  ISS-442 [major, pending-human] -- Misleading verdict taxonomy overload
+  ISS-634 [moderate, open] -- WIN-054 Kim et al. mass figure needs verification
+  ISS-641/642 [major, assigned-analyst] -- Exhibit A/B coverage gap (EXP-036 queued)
 
-EXISTING ISSUE STATUS:
-  ISS-442 (MAJOR, pending-human): Verdict taxonomy (Misleading subcategories) — awaiting human decision
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOP 3 PRIORITY ACTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. [HUMAN] Verify WIN-054 total El Gordo mass (ISS-634): Kim et al. 2021 gives
+   subclusters NW 9.9e14 + SE 6.5e14 ~ 1.64e15 Msun total, but our text
+   cites 2.13e15 Msun. Check if this total appears in Kim et al. 2021 or if
+   it should reference Asencio et al. 2023 or Jee et al. 2014.
 
-=== TOP 3 PRIORITY ACTIONS ===
-1. [HUMAN] ISS-442: Decide verdict taxonomy — should 'Misleading' be split into 'Non-Discriminating' + 'Misleading'? Affects 23 WINs and reviewer's perception of dome author intent.
-2. [ANALYST] EXP-035 (high priority): Restructure WIN-052 — galaxy ontology crisis must LEAD the rebuttal; MOND priority argument must be explicit vs dome's zero-equation label.
-3. [ANALYST] EXP-036 (high priority): Write new section addressing dome's home page Exhibits A & B — r=0.992 correlation and AI=1.152 asymmetry index are the dome's most quoted stats, yet unaddressed.
+2. [ANALYST] EXP-036 (Exhibit A and B: 2003 Bentheimer storm correlation, r=0.992
+   claim). Dome's homepage features this prominently; our review lacks a section.
+   High priority for analyst's next run.
 
-=== CURMUDGEON PROGRESS ===
-Cycle 2, Phase 1: 60/67 WINs reviewed (last: WIN-060, 2026-04-08T20:15Z)
-7 WINs remaining for Cycle 2: WIN-061 through WIN-067
-Next expected: WIN-061
+3. [CURMUDGEON] 6 WINs remain in Cycle 2 Phase 1: WIN-062 through WIN-067.
+   Expected 2 more runs to complete Phase 1.
 
-=== CODE ANALYSIS TAG STATUS ===
-All 67 WINs have code_analysis tags (reviewed=true)
-This run fixed: WIN-060 monitoring tag ('hardcoded' → 'none')
-Hardcoded: 29 | Live fetch: 3 | None: 35 (WIN-060 now in 'none' group)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CURMUDGEON PROGRESS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Cycle 2, Phase 1: 61/67 WINs reviewed
+Last reviewed: WIN-061 (Schumann G3 storm suppression)
+Remaining: WIN-062 (Tesla 1.574c), WIN-063 (magnetic decay asymmetry),
+           WIN-064 (P-wave shadow zone), WIN-065 (Polaris excess),
+           WIN-066 (NH heat asymmetry), WIN-067 (Antarctic gravity hole)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CODE ANALYSIS TAG STATUS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+All 67 WINs have code_analysis tags.
+Cycle 2 re-validation in progress (61/67 validated so far).
+No tag corrections needed this run.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+KEY FINDING THIS RUN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WIN-052 (RAR/MOND): The dome's own formula rho_A = g0*rho_bar/g-dagger uses
+g-dagger which is recognizable as MOND's critical acceleration a0 ~ 1.2e-10 m/s2.
+The dome lists this formula as CONSISTENT (not CONFIRMED) with no symbol
+definitions, no derivation, and no numerical values. If g-dagger = a0, the dome's
+'aetheric medium' formula is MOND relabeled -- not new physics. This argument is
+now live in the published review. The dome cannot simultaneously claim MOND's RAR
+evidence while providing none of MOND's mathematical content.
