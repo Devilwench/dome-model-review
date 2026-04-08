@@ -114,6 +114,45 @@ Check for signs that the pipeline's persistent state is degrading over time:
 
 - **Review staleness for repaint.** If the curmudgeon is in Phase 3 (repaint cycle), check whether the wins.json text has changed since the Phase 1 review. Compare the current `detail_evidence` text length/content against what existed when the review was written (use review timestamps vs git history if available). Flag WINs where the text changed substantially — those need priority re-review, not a rubber stamp.
 
+### 7b. Workspace Data Freshness — The FUSE Staleness Class
+
+The workspace FUSE mount (`/sessions/*/mnt/dome-model-review/`) can serve stale file content. This is a systemic issue — any agent that reads data files from the workspace and makes decisions based on them is vulnerable. Known incident: curmudgeon couldn't find WIN-068 in wins.json despite it being committed 18 hours earlier.
+
+**Agents with freshness protection (verify these are working):**
+- **Decider:** Clones fresh each run. Check recent decider reports — if it says "0 WINs in wins.json" or a count that doesn't match GitHub, the clone step is broken.
+- **Curmudgeon:** Clones fresh each run (added after WIN-068 incident). Same verification — check if the curmudgeon's reported WIN count matches GitHub.
+- **Analyst:** Cross-checks workspace count vs GitHub raw URL before Mode 0. Check if recent analyst reports show mismatched counts.
+
+**Agents WITHOUT freshness protection (monitor for symptoms):**
+- **Integrity:** Reads `docs/index.html` from workspace. If integrity reports a broken anchor or wrong count that the clean build doesn't have, it's reading stale HTML.
+- **Social:** Reads `docs/llms.txt` and `data/` files from workspace. If social reports stale counts that were actually fixed, it's a freshness issue.
+
+**What to check each run:**
+```bash
+# Compare workspace vs GitHub for key data files
+WORKSPACE=$(find /sessions/*/mnt/dome-model-review -maxdepth 0 2>/dev/null | head -1)
+for f in data/wins.json data/sections.json data/uncounted-failures.json; do
+  WS_HASH=$(md5sum "${WORKSPACE}/${f}" 2>/dev/null | cut -d' ' -f1)
+  GH_HASH=$(curl -s "https://raw.githubusercontent.com/funwithscience-org/dome-model-review/main/${f}" | md5sum | cut -d' ' -f1)
+  if [ "$WS_HASH" != "$GH_HASH" ]; then
+    echo "STALE: ${f} (workspace differs from GitHub)"
+  else
+    echo "OK: ${f}"
+  fi
+done
+```
+
+If any files are stale, flag as **major** — it means agents reading from the workspace are making decisions on old data. The fix is usually to copy fresh files from a clone or raw GitHub fetch to the workspace. Also check whether the `build.js publish` sync step is actually running (it should copy key files to the workspace after each push).
+
+**Cross-agent write collision detection:**
+Multiple agents write to the same workspace files (especially `monitor/curmudgeon/tracker.json`, `monitor/decisions/open-issues.json`). Check for signs of data loss:
+- Did a tracker entry's status regress (e.g., went from "reviewed" back to "pending")? That's an overwrite.
+- Did an open issue disappear without appearing in closed-issues.json? That's a collision.
+- Compare timestamps: if two agents both modified tracker.json within a 30-minute window, the second writer may have clobbered the first.
+
+**Phantom file detection:**
+The FUSE mount may show files that were deleted in git, or miss files that were added. If an agent reports "file not found" for something that exists in the GitHub repo, or processes a file that was deleted, it's a mount sync issue.
+
 ### 8. Audit Agent Infrastructure — Can They Actually Do Their Jobs?
 
 Agents fail silently when they lack access to tools they need. Check these every run:
