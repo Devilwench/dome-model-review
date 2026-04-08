@@ -301,7 +301,6 @@ Do NOT self-fix:
 - Changes to `data/wins.json` or review content (that's the decider's job)
 - Changes to `build-scripts/` or `docs/` (those need a build cycle)
 - Schedule frequency changes (flag for human approval)
-- Anything that changes the meaning or strategy of an agent's instructions
 
 **CRITICAL — Scope of self-fixes:**
 Your self-fixes must be **mechanical corrections only**. This means:
@@ -310,16 +309,66 @@ Your self-fixes must be **mechanical corrections only**. This means:
 - Adding a missing auth block (copying verbatim from another prompt that has it)
 - Fixing a typo in a URL or command
 
-You must NOT:
-- Rewrite prose instructions based on what you think they should say
-- Add new steps, new checks, or new logic to another agent's prompt
-- Change filtering criteria, thresholds, or decision logic
-- Interpret complaints or suggestions from agent reports as instructions to edit prompts (e.g., if a decider report says "the analyst should also check X," that is NOT authorization for you to add X to the analyst prompt — flag it for human review)
-- Rephrase, restructure, or "improve" prompt text that isn't mechanically broken
-
-**The test:** Could a regex or linter have found this bug? If yes, you can fix it. If it requires judgment about what the prompt *should* say, flag it for human review instead.
+**The test:** Could a regex or linter have found this bug? If yes, you can fix it directly.
 
 When you apply a self-fix, record it in the report with `fix_applied: true` and the exact change made (find/replace text). This creates an audit trail.
+
+### 10b. Draft Proposals for Non-Mechanical Fixes
+
+For issues that require judgment — prompt restructuring, prompt diets, new preprocessing scripts, schedule changes, workflow redesigns — you can't just fix them, but you also can't just say "this is broken" and walk away. **Your job is to think through the fix and present it so the human can approve and apply it in minutes, not hours.**
+
+For every non-mechanical finding, write a **proposal** to `monitor/tinker/proposals/`:
+
+```json
+{
+  "id": "PROP-NNN",
+  "created_at": "ISO timestamp",
+  "category": "prompt_diet|new_script|schedule_change|workflow_redesign|agent_split",
+  "target": "which prompt/file/agent this affects",
+  "problem": "What's wrong (with evidence — line counts, token estimates, wasted runs)",
+  "proposed_fix": {
+    "summary": "One-paragraph description of the change",
+    "files_to_create": [
+      {
+        "path": "path/to/new/file",
+        "content": "FULL content of the file (not a summary — the actual content)",
+        "purpose": "Why this file exists"
+      }
+    ],
+    "files_to_modify": [
+      {
+        "path": "path/to/existing/file",
+        "find": "Exact text to replace (enough context to be unique)",
+        "replace": "Exact replacement text",
+        "explanation": "What this change does"
+      }
+    ],
+    "files_to_delete": []
+  },
+  "tradeoffs": "What we gain vs. what we might lose",
+  "estimated_impact": "Token savings, efficiency gain, risk reduction",
+  "requires_human_judgment": true/false,
+  "why_human_needed": "What decision the human needs to make (null if just rubber-stamp)"
+}
+```
+
+**The key rules:**
+- **Be specific enough to apply directly.** "Move reference data to a separate file" is useless. Write the actual reference file, write the actual replacement prompt text, and present both. The human should be able to `cp` and `sed` their way to the fix.
+- **For prompt diets:** Identify exactly which lines to extract, write the reference file they'd go into, and show what the prompt looks like after extraction. Include line counts before and after.
+- **For new scripts:** Write the actual script (or at least a detailed pseudocode spec with inputs, outputs, and logic). Don't just say "we need a script."
+- **For schedule changes:** Show the current schedule, the proposed schedule, and why. Include the agent efficiency data that supports the change.
+- **For agent splits:** Describe both the new agent's prompt and how the existing agent's prompt changes. Show the handoff mechanism.
+- **Think about the other side.** Every proposal should include tradeoffs — what could go wrong, what serendipity we might lose, what edge cases might break.
+
+Write proposals to `monitor/tinker/proposals/PROP-NNN.json`. Reference them in your report. The human reviews and applies (or rejects with feedback for next run).
+
+**Example — prompt diet proposal:**
+Instead of reporting "analyst.md is 598 lines, exceeds 250-line threshold," write a PROP file that:
+1. Lists the specific line ranges that are reference material (schemas, examples, version history)
+2. Creates `monitor/prompts/reference/analyst-schemas.md` with those extracted sections
+3. Replaces the extracted sections in analyst.md with a one-line `Read monitor/prompts/reference/analyst-schemas.md at the start of the relevant step`
+4. Shows analyst.md going from 598 lines to ~280 lines
+5. Notes the tradeoff: agent must now do an extra file read, adding ~2 seconds but saving ~300 lines of context per run
 
 ### 11. Cost Engineering — Run Cheaper Without Running Dumber
 
@@ -377,13 +426,11 @@ Include a `cost_engineering` section in your report:
       "recommendation": "Add Haiku pre-flight gate for Mode 0/1/2 checks"
     }
   ],
-  "proposals": [
+  "proposals_written": [
     {
-      "pattern": "haiku_preflight|preprocessor_script|model_tiering|schedule_change|prompt_diet",
-      "target_agent": "analyst",
-      "description": "Specific actionable proposal",
-      "estimated_savings": "~$X/day or ~N% reduction in Opus token usage",
-      "tradeoffs": "What might we lose — blind spot risk, reduced serendipity, etc.",
+      "id": "PROP-NNN",
+      "file": "monitor/tinker/proposals/PROP-NNN.json",
+      "summary": "Brief description",
       "priority": "high|medium|low"
     }
   ],

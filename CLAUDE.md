@@ -110,6 +110,7 @@ monitor/social/drafts/            # Social analyst draft files (llms-full.txt, s
 monitor/social/discoverability-baseline.json # Competitive discoverability snapshot (both sites)
 monitor/social/search-rankings.json # Search term ranking history
 monitor/tinker/                   # Tinker reports, self-fix audit trail, cost engineering analysis
+monitor/tinker/proposals/         # Actionable fix proposals (PROP-NNN.json) with full replacement text
 monitor/integrity/                # Structure & integrity check reports
 monitor/external-reports/         # Permanent log of all external problem reports (GitHub Issues)
 .github/ISSUE_TEMPLATE/           # "Report a Problem" structured issue template
