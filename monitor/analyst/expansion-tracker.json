@@ -476,10 +476,10 @@
         "ISS-446"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "notes": "WIN-002 does not engage the dome's explicit reconciliation argument: \"Not contradictory. Complementary. The dome medium damps the resonance (WIN-002), and the damped measured frequency still back-derives the correct dome height (WIN-029).\" This argument appears in dome 06-evolution.txt. Our text needs to quote and then rebut this reconciliation. The key rebuttal: (a) back-deriving dome height from an equation that assumes globe-spherical cavity geometry is circular — the damped frequency 7.83 Hz was derived using globe parameters, not dome parameters; (b) WIN-029 uses f = c/(2πa)√2 where a = R_Earth (globe radius), so the \"back-derivation\" of dome height is actually just the Schumann formula for a globe; (c) invoking aetheric damping as the explanation does not salvage the dome geometry — it just adds an unfalsifiable free parameter. Research: read dome 06-evolution.txt raw-text for exact reconciliation language, then craft response. Cannot fix with find/replace — requires new analytical prose.",
       "created_at": "2026-04-07T19:33:15.608Z",
-      "completed_at": null,
+      "completed_at": "2026-04-08T06:08:00Z",
       "output_file": null,
       "integrated": true,
       "integrated_at": "2026-04-08T06:08:00Z",
@@ -493,12 +493,13 @@
         "ISS-449"
       ],
       "priority": "medium",
-      "status": "pending",
-      "notes": "WIN-012 currently says r=0.992 and AI=1.152 are static HTML (no computation) and that correlation during G5 storm does not confirm coupling constant. Needs additional statistical argument: (1) During a G5 storm all geophysical systems co-respond to the same solar driver — massive autocorrelation reduces effective DOF from N to perhaps 10-20 independent measurements, so r=0.992 is unsurprising and statistically uninformative. (2) AI=1.152 (15% bias) has no null distribution provided — but magnetic storms are asymmetric by definition: Dst is always negative (field suppression), so downward bias in any related measurement is the expected baseline, not evidence for a dome mechanism. Both arguments require ~2-3 sentences each and strengthen the already-strong Exhibit A rebuttal without needing new data sources.",
+      "status": "complete",
+      "notes": "WIN-012 detail_evidence rewritten with Exhibit A graph forensics, GRACE data impossibilities, and statistical analysis. Companion report at monitor/analyst/exhibit-a-replication.json covers independent BOU data verification, GRACE access barriers, autocorrelation analysis (effective DOF ~3, AI=1.000 for BOU data itself), and full graph panel-by-panel assessment. NOTE-014 (Parts A+B) addressed. Duplicated paragraph removed. Five new evidence points added.",
       "created_at": "2026-04-07T19:48:41.402Z",
-      "completed_at": null,
-      "output_file": null,
-      "integrated": false
+      "completed_at": "2026-04-08T15:45:00Z",
+      "output_file": "monitor/analyst/expansions/EXP-030.json",
+      "integrated": true,
+      "integrated_at": "2026-04-08T03:11:48Z"
     }
   ],
   "last_updated": "2026-04-07T23:30:00Z"

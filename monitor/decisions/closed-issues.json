@@ -1,6 +1,6 @@
 {
   "description": "Archived closed issues. Decider does not need to read this file.",
-  "last_updated": "2026-04-08T06:08:00Z",
+  "last_updated": "2026-04-08T03:12:31Z",
   "issues": [
     {
       "id": "ISS-001",
@@ -6615,6 +6615,93 @@
       "fixed_at": "2026-04-08T06:08:00Z",
       "fixed_by": "decider-self-apply",
       "fix_details": "finding updated to \"600–700×\" for consistency with detail_evidence."
+    },
+    {
+      "id": "ISS-449",
+      "win_id": "WIN-012",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "fixed",
+      "source": "curmudgeon",
+      "found_date": "2026-04-08",
+      "found_by": "curmudgeon-exhibit-ab-special-review",
+      "description": "WIN-012 addresses dome Exhibit A (r=0.992, AI=1.152) but lacks statistical depth. Current text says correlation during G5 storm does not confirm coupling constant and notes values are static HTML. Missing: (a) DOF correction — r=0.992 during a G5 storm where all geophysical systems respond to the same atmospheric driver has massive autocorrelation, shrinking effective DOF from N~thousands to N~tens; (b) null distribution for AI=1.152 — magnetic storms are inherently asymmetric by definition (Dst is negative), so 15% downward bias is expected baseline, not evidence of dome mechanism. These statistical arguments directly rebut the dome quote-worthy statistics without requiring new data.",
+      "fix_details": "EXP-030 replacement_html applied to WIN-012 detail_evidence. Includes Exhibit A graph forensics, GRACE orbital impossibility, BOU independent verification, and effective DOF analysis.",
+      "fix_date": null,
+      "assigned_to": "analyst",
+      "exp_item": "EXP-030",
+      "fixed_at": "2026-04-08T03:12:13Z",
+      "fixed_by": "expansion-integration-EXP-030"
+    },
+    {
+      "id": "ISS-622",
+      "win_id": "WIN-059",
+      "severity": "critical",
+      "category": "factual_error",
+      "description": "Unsourced 30% threshold in WIN-059 detail_evidence. Dome dashboard shows 50% tolerance (Status: PASS at 39.9% error). The dome's own note says tolerance was \"originally tighter, widened when predictions missed.\" Our claim that 39.9% exceeds the dome's \"own 30% acceptability threshold\" is factually incorrect. Also affects Kill-Shot Test 6 in sections.json part5.",
+      "source": "curmudgeon-cycle2",
+      "found_date": "2026-04-08",
+      "found_by": "curmudgeon-WIN-059-c2",
+      "status": "fixed",
+      "fixed_at": "2026-04-08T03:12:13Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Replaced \"self-falsified\" + 30% threshold framing with tolerance-gaming argument using dome's own dashboard admission. Applied in WIN-059 detail_evidence and sections.json part5 Kill-Shot Test 6."
+    },
+    {
+      "id": "ISS-623",
+      "win_id": "WIN-059",
+      "severity": "major",
+      "category": "factual_error",
+      "description": "Duplicate sentence in WIN-059 detail_evidence: \"The dome's own OPEN-007 concedes that polar shift dynamics have no working dome-native explanation...\" appears twice verbatim. Copy-paste error from Cycle 1 patch application.",
+      "source": "curmudgeon-cycle2",
+      "found_date": "2026-04-08",
+      "found_by": "curmudgeon-WIN-059-c2",
+      "status": "fixed",
+      "fixed_at": "2026-04-08T03:12:13Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Removed duplicate sentence. One instance retained."
+    },
+    {
+      "id": "ISS-624",
+      "win_id": "WIN-059",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "Finding field still references \"failing\" when dome marks test as PASS. Updated to tolerance-gaming framing consistent with corrected detail_evidence.",
+      "source": "curmudgeon-cycle2",
+      "found_date": "2026-04-08",
+      "found_by": "curmudgeon-WIN-059-c2",
+      "status": "fixed",
+      "fixed_at": "2026-04-08T03:12:13Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Updated WIN-059 finding to reflect tolerance-gaming argument."
+    },
+    {
+      "id": "ISS-625",
+      "win_id": null,
+      "severity": "critical",
+      "category": "factual_error",
+      "description": "Kill-Shot Test 6 section (sections.json part5) also cites the unsourced 30% threshold: \"exceeding its own stated tolerance threshold of 30%.\" Same factual error as ISS-622. Dome shows PASS at 50% tolerance.",
+      "source": "curmudgeon-cycle2",
+      "found_date": "2026-04-08",
+      "found_by": "curmudgeon-WIN-059-c2",
+      "status": "fixed",
+      "fixed_at": "2026-04-08T03:12:13Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Patched sections.json part5 to use tolerance-gaming framing with dome formula prediction (~22.8 km/yr for 2026)."
+    },
+    {
+      "id": "ISS-626",
+      "win_id": "WIN-057",
+      "severity": "major",
+      "category": "factual_error",
+      "description": "Internal inconsistency in WIN-057: finding/detail_verdict_text say \"600× worse (sub-0.01%)\" but detail_evidence says \"60,000× worse (better than 0.0001%)\". Factor of 100 discrepancy. Dome defender would exploit this. Also removes redundant OPEN-015 parenthetical from detail_evidence (OPEN-015 has dedicated section in detail_extra).",
+      "source": "curmudgeon-cycle2",
+      "found_date": "2026-04-08",
+      "found_by": "curmudgeon-WIN-057-c2",
+      "status": "fixed",
+      "fixed_at": "2026-04-08T03:12:13Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Changed \"better than 0.0001%\" to \"better than 0.01%\" and \"60,000×\" to \"600×\" in WIN-057 detail_evidence. Removed redundant OPEN-015 parenthetical."
     }
   ]
 }

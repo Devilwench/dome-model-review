@@ -1,0 +1,162 @@
+{
+  "generated_at": "2026-04-08T18:30:00Z",
+  "report_date": "2026-04-08",
+  "curmudgeon_reviews_processed": ["WIN-057", "WIN-059"],
+  "pipeline_status": {
+    "poller": "QUIET — 16 consecutive quiet polls. April 9 reset window expires tomorrow. No dome site changes.",
+    "analyst": "EXP-030 completed (WIN-012 Exhibit A forensics + BOU independent replication). NOTE-014 consumed. EXP-031/032 queued.",
+    "curmudgeon": "59/67 WINs reviewed in Cycle 2 (WIN-059 last). 8 WINs pending (WIN-060 through WIN-067)."
+  },
+  "external_changes": {
+    "dome_site_changes": "No changes. 16 consecutive quiet polls. PRED-CURR registered with future date 2026-04-28 (pre-registration). monitor.py pipeline appears paused since April 7 23:00.",
+    "threat_level": "none"
+  },
+  "integration_performed": {
+    "exp_030": {
+      "status": "integrated",
+      "target": "WIN-012 detail_evidence",
+      "summary": "Full field replacement with Exhibit A graph forensics. New content: GRACE satellite impossibility (unit mismatch, product naming, orbital mechanics/12150km, zero processing code), INTERMAGNET BOU independent verification, static HTML statistics (r=0.992, AI=1.152). ISS-449 closed.",
+      "issues_closed": ["ISS-449"]
+    }
+  },
+  "internal_issues": [
+    {
+      "issue_id": "ISS-622",
+      "win_id": "WIN-059",
+      "severity": "critical",
+      "category": "factual_error",
+      "description": "Unsourced 30% threshold. Dome dashboard shows 50% tolerance (Status: PASS at 39.9% error). Our review cited a 30% threshold that does not appear in any extracted dome text.",
+      "source": "curmudgeon-cycle2",
+      "status": "fixed",
+      "suggested_patch": {
+        "file": "data/wins.json",
+        "field": "detail_evidence",
+        "find": "exceeding the dome's own 30% acceptability threshold",
+        "replace": "tolerance gaming (50% threshold widened from original after predictions missed)"
+      }
+    },
+    {
+      "issue_id": "ISS-623",
+      "win_id": "WIN-059",
+      "severity": "major",
+      "category": "factual_error",
+      "description": "Duplicate OPEN-007 sentence in detail_evidence (verbatim copy-paste error from Cycle 1 patch).",
+      "source": "curmudgeon-cycle2",
+      "status": "fixed",
+      "suggested_patch": {
+        "file": "data/wins.json",
+        "field": "detail_evidence",
+        "find": "duplicate sentence",
+        "replace": "single sentence retained"
+      }
+    },
+    {
+      "issue_id": "ISS-624",
+      "win_id": "WIN-059",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "Finding field said 'failing' when dome marks PASS. Updated to tolerance-gaming framing.",
+      "source": "curmudgeon-cycle2",
+      "status": "fixed"
+    },
+    {
+      "issue_id": "ISS-625",
+      "win_id": null,
+      "severity": "critical",
+      "category": "factual_error",
+      "description": "Kill-Shot Test 6 in sections.json part5 also cited unsourced 30% threshold.",
+      "source": "curmudgeon-cycle2",
+      "status": "fixed",
+      "suggested_patch": {
+        "file": "data/sections.json",
+        "field": "part5",
+        "find": "exceeding its own stated tolerance threshold of 30%",
+        "replace": "dome marks as PASS using 50% tolerance widened from original"
+      }
+    },
+    {
+      "issue_id": "ISS-626",
+      "win_id": "WIN-057",
+      "severity": "major",
+      "category": "factual_error",
+      "description": "WIN-057 detail_evidence said '60,000× worse / better than 0.0001%' while finding/verdict said '600× worse / sub-0.01%'. Factor of 100 inconsistency. OPEN-015 parenthetical also removed (detail_extra covers it).",
+      "source": "curmudgeon-cycle2",
+      "status": "fixed",
+      "suggested_patch": {
+        "file": "data/wins.json",
+        "field": "detail_evidence",
+        "find": "60,000× worse, better than 0.0001%",
+        "replace": "600× worse, better than 0.01%"
+      }
+    },
+    {
+      "issue_id": "ISS-449",
+      "win_id": "WIN-012",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "WIN-012 Exhibit A statistical depth — addressed by EXP-030 integration.",
+      "source": "curmudgeon",
+      "status": "fixed"
+    },
+    {
+      "issue_id": "ISS-442",
+      "win_id": null,
+      "severity": "major",
+      "category": "verdict",
+      "description": "VERDICT CATEGORY OVERLOAD: 'Misleading' conflates 4 distinct failure modes. Requires human editorial decision.",
+      "source": "curmudgeon-hol-taxonomy",
+      "status": "pending-human",
+      "rationale_for_deferral": "Verdict taxonomy restructuring is a human editorial decision — affects 23 WINs and narrative framing."
+    }
+  ],
+  "code_analysis_updates": [
+    {
+      "win_id": "WIN-059",
+      "tags": {
+        "monitoring": "none",
+        "relabels_standard": true,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "source_review": "monitor/curmudgeon/reviews/WIN-059.c2.json"
+    },
+    {
+      "win_id": "WIN-057",
+      "tags": {
+        "monitoring": "none",
+        "relabels_standard": true,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "source_review": "monitor/curmudgeon/reviews/WIN-057.c2.json"
+    }
+  ],
+  "recommended_actions": [
+    {
+      "priority": 1,
+      "action": "HUMAN DECISION: ISS-442 — Verdict taxonomy restructuring for 'Misleading' category. Consider subcategory or redistribution to 'Std Model Explains'. Affects 23 WINs.",
+      "urgency": "next_session"
+    },
+    {
+      "priority": 2,
+      "action": "WATCH: April 9 dome site reset window expires tomorrow. Check for post-window outcome claims or WIN score updates.",
+      "urgency": "immediate"
+    },
+    {
+      "priority": 3,
+      "action": "PIPELINE: EXP-031 (Section 1.6 Dielectric Foundation) and EXP-032 (Section 1.7 Gravity Paradox, depends on EXP-031) are next in analyst queue. No action needed — analyst will pick up.",
+      "urgency": "backlog"
+    }
+  ],
+  "self_apply_summary": {
+    "patches_applied": 5,
+    "patches_failed": 0,
+    "exp030_integrated": true,
+    "issues_created": 5,
+    "issues_closed": 6,
+    "issues_pending_human": 1,
+    "open_issues_remaining": 1
+  }
+}

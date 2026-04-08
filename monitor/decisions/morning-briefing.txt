@@ -1,76 +1,62 @@
 MORNING BRIEFING — 2026-04-08
-Generated: 2026-04-08T06:08:00Z
-Curmudgeon reviews processed this run: 1 (WIN-058.c2.json, Cycle 2)
-Previous decider run: 2026-04-07T23:57:00Z
+Generated: 2026-04-08T18:30:00Z
+Curmudgeon reviews processed this run: 2 (WIN-057, WIN-059)
+Previous decider run: 2026-04-08 (see status.json)
 
-══════════════════════════════════════════════
-SITE HEALTH
-══════════════════════════════════════════════
-Integrity check (2026-04-07): WARN (minor)
-  ✅ Build reproducibility: PASS
-  ✅ Test suite: 2073 tests pass (2074 post-patch this run)
-  ✅ Internal anchors: PASS
-  ✅ Tab structure: 11 tabs functional
-  ✅ Data-prose consistency: PASS
-  ⚠ External links: 1/46 timeout (ESA Gaia — known slow, recurring false positive)
-  ⚠ Heading hierarchy: Killshots h1→h3 skip (verified as false positive — h1→h2 in HTML)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SITE HEALTH: PASS (minor warning)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Build: ✅ 2074 tests pass, 0 failures
+Integrity: WARN (minor) — killshots h1→h3 skip is false positive; ESA Gaia timeout is known
+All 67 WIN anchors present, all counts match wins.json
 
-══════════════════════════════════════════════
-EXTERNAL STATUS
-══════════════════════════════════════════════
-Dome site: QUIET — 15 consecutive quiet polls (since ~2026-04-05)
-All activity: Automated (monitor.py ~90min cycle, pull_data.py ~6h cycle)
-Manual commits: NONE since V51.0 launch
-⚠ WATCH: April 9 reset window expires TOMORROW — possible V52 or content refresh
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXTERNAL STATUS: QUIET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Dome site: 16 consecutive quiet polls. No changes to parameters or WIN count.
+⚠️  WATCH: April 9 reset window expires TOMORROW. The dome's April 5-9 observation
+     window for its upcoming eclipse prediction closes. Watch for any outcome claims
+     or updated WIN scores after the window closes.
+No external problem reports filed.
 
-══════════════════════════════════════════════
-INTERNAL STATUS (THIS RUN)
-══════════════════════════════════════════════
-Patches applied: 8 (all self-applied, 0 failed)
-Issues closed:   4 (ISS-446, ISS-619, ISS-620, ISS-621)
-Issues open:     2 (ISS-442 pending-human, ISS-449 assigned-analyst)
-Expansions integrated: 1 (EXP-029 — WIN-002 Schumann reconciliation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERNAL STATUS: CLEAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Open issues: 1 (ISS-442, pending human editorial decision)
+Closed issues this run: 6 (ISS-449, ISS-622 through ISS-626)
+Patches self-applied: 5 (all passed, 0 failed)
+EXP-030 integrated: WIN-012 Exhibit A graph forensics added
 
-Changes made this run:
-  ✅ WIN-002 detail_evidence: Added formula-switching argument (two geometrically
-     incompatible formulas in dome's reconciliation: globe spherical-shell formula
-     for 10.59 Hz vs linear quarter-wave for 9,572 km). Added Schumann-Tesla r=0.999
-     debunk (comparison of two hardcoded constants, not physical coupling).
-  ✅ WIN-002 detail_extra: Added Polaris H(r) internal inconsistency (dome's own
-     model page: 4,359 km; Polaris claim: 4,750 km; direct calculation: 4,274 km).
-  ✅ WIN-029 detail_evidence: Added cross-reference to WIN-002 reconciliation analysis.
-  ✅ WIN-058 code_analysis: Fixed derives_from_dome true→false (confirmed by curmudgeon
-     Cycle 2: θ = −lonE follows from longitude definition, not dome geometry).
-  ✅ WIN-058 finding: "700×" → "600–700×" (consistent with detail_evidence).
-  ✅ WIN-058 detail_claim + detail_evidence (×2): V12→V9-era attribution for solar-noon-
-     UTC proxy. Evolution page confirms: "V9 theta bug fixed" under V12 — the proxy was
-     V9's, V12 introduced 0.9941 partial fix, V13 introduced θ = −lonE.
+CRITICAL FIXES THIS RUN:
+• 30% threshold error corrected in WIN-059 detail_evidence AND Kill-Shot Test 6 section
+  (dome's actual threshold is 50%; dashboard shows PASS; tolerance was widened after failures)
+• WIN-012 rewritten with full Exhibit A forensics (GRACE satellite impossibility,
+  BOU independent verification, effective DOF, INTERMAGNET data confirmed)
+• WIN-057 numerical inconsistency fixed (600× not 60,000×, 0.01% not 0.0001%)
+• WIN-059 duplicate OPEN-007 sentence removed
 
-══════════════════════════════════════════════
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TOP 3 PRIORITY ACTIONS
-══════════════════════════════════════════════
-1. [HUMAN DECISION] ISS-442: Should "Misleading" be split into subcategories?
-   22 WINs under "Misleading" — some are data cherry-picking, some are just
-   non-discriminating observations. Consider "Non-Discriminating" as a 7th verdict
-   category. This is an editorial decision, not a patch.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. HUMAN DECISION NEEDED — ISS-442: Verdict taxonomy for 'Misleading' category
+   (23 WINs). Consider subcategory 'Non-Discriminating' or redistribute WINs that
+   merely have standard physics explanations to 'Std Model Explains'.
 
-2. [WATCH] April 9 dome reset window expires tomorrow. Monitor for V52 or content
-   updates. Poller will catch it; analyst should be ready to assess quickly.
+2. WATCH TOMORROW (April 9) — Dome reset window expires. Check for post-window
+   outcome claims or WIN count updates.
 
-3. [PIPELINE] EXP-030, EXP-031, EXP-032 queued for analyst. Next analyst run
-   should prioritize WIN-012 Exhibit A (EXP-030) and new Sections 1.6+1.7.
+3. ANALYST QUEUE — EXP-031 (Section 1.6 Dielectric Foundation) is next. EXP-032
+   (Section 1.7 Gravity Paradox) depends on it. No action needed; analyst will pick up.
 
-══════════════════════════════════════════════
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CURMUDGEON PROGRESS
-══════════════════════════════════════════════
-Cycle 2, Phase 1: 58/67 WINs reviewed (87% complete)
-Most recent: WIN-058 (2026-04-08T00:15Z)
-Remaining: WIN-059 through WIN-067 (9 WINs)
-Estimated completion: ~2026-04-09 at current 1 WIN/hour pace
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Cycle 2, Phase 1: 59/67 WINs reviewed
+Remaining: WIN-060 through WIN-067 (8 WINs pending)
+Last reviewed: WIN-059 (NMP Siberian deceleration)
+Next: WIN-060 (SAA western cell shift)
 
-══════════════════════════════════════════════
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 CODE ANALYSIS TAG STATUS
-══════════════════════════════════════════════
-All 67 WINs have reviewed=true tags (from Cycle 1).
-Cycle 2 correction this run: WIN-058 derives_from_dome fixed (true→false).
-Current derivesFromDome count: 2 (was 3 before this run's fix).
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+(query live: node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const r=w.filter(x=>x.code_analysis&&x.code_analysis.reviewed);console.log(r.length,'WINs with validated tags,',67-r.length,'pending')")
