@@ -1,72 +1,52 @@
 MORNING BRIEFING — 2026-04-08
-Generated: 2026-04-08T19:18:46Z
-Previous decider run: 2026-04-08T18:35:00Z
+Generated: 2026-04-08T19:40:00Z
+Decider run type: Standard processing — stale issue cleanup + WIN-030 patch
 
-══════════════════════════════════════════════════════
 SITE HEALTH
-══════════════════════════════════════════════════════
-Integrity: WARN (prev report) — duplicate id="dielectric" already fixed in
-  sections.json. NOAA link timeout (transient). Tests: 2196 pass, 0 fail.
-Build: PASSING. Latest commit: 121d487. HTML: 553.7 KB.
+-----------
+Build: PASS (2196 tests pass, 553.7 KB HTML)
+Integrity: WARN (minor) — geodesy.noaa.gov timeout was transient, monitoring
+Commit pushed: eef8b58
 
-══════════════════════════════════════════════════════
 EXTERNAL STATUS
-══════════════════════════════════════════════════════
-Dome site: QUIET — V51.1 stable, 69 WINs, 94.5% accuracy.
-Eclipse test PRED-073/074 active for Aug 12 2026.
-Ongoing: Homepage 94.5% vs Evolution 93.3% inconsistency.
+---------------
+Dome site: QUIET — V51.1 stable (94.5% accuracy, 69 WINs)
+Changes since last poll: None
+Threat level: None
 
-══════════════════════════════════════════════════════
-INTERNAL STATUS — THIS RUN
-══════════════════════════════════════════════════════
-Issues closed this run: 2 (ISS-637, ISS-658)
-Issues created this run: 6 (ISS-660 through ISS-665)
-Open issues: 10 total
-  pending-human: 1 (ISS-442 verdict taxonomy)
-  assigned-analyst: 9
-  patchable: 0
-Closed issues total: 555
-
-Patches self-applied: 2
-  EXP-039 integrated into Part 2b (AI Onboarding Infrastructure subsection)
-  ISS-658 WIN-069 selection bias paragraph added
-
-══════════════════════════════════════════════════════
-TOP 3 PRIORITY ACTIONS
-══════════════════════════════════════════════════════
-1. [HUMAN] ISS-442: Verdict taxonomy decision — split 'Misleading' into
-   subcategories? 23 WINs under one label. Editorial call required.
-
-2. [ANALYST] EXP-041 (high priority): Steelman Evidence Ladder + killshot.html
-   analysis. Then EXP-040 (sun altitude split) and EXP-042 (delta=6371 fingerprint).
-
-3. [ANALYST] EXP-043 through EXP-047 (new): Under-covered Cycle 1 holes —
-   WIN-027 V12 law, WIN-002/029 tension, WIN-024 longitude mismatch + hardcoded
-   monitoring, WIN-030 redundancy, WIN-031 shallow rebuttal.
-
-══════════════════════════════════════════════════════
 CURMUDGEON PROGRESS
-══════════════════════════════════════════════════════
-Phase: 1 | Reviewed: 66/69
-Pending Cycle 2: WIN-064, WIN-065, WIN-066, WIN-067
-No reviews to digest this run (all current reviews processed).
-Under-covered processed: 64 WINs with 276 missing holes (many may be stale).
+-------------------
+Cycle 2 Phase 1: 63/69 WINs reviewed
+Remaining: WIN-064/065/066/067 + holistic Phase 2 (9 items)
+Digest: 0 pending reviews to process
 
-══════════════════════════════════════════════════════
-CODE ANALYSIS TAG STATUS
-══════════════════════════════════════════════════════
-Reviewed: 69/70 WINs with validated code_analysis tags.
-All 70 WINs have code_analysis populated. No new sync needed this run.
+ISSUES THIS RUN
+---------------
+Self-applied: 1 patch (WIN-030 paragraph 2 dedup)
+Issues closed: 6 (ISS-660/661/662/663/664/665)
+  - 5 were stale: text they flagged had been patched by prior decider runs
+  - 1 was genuinely fixed this run: ISS-664 (WIN-030 redundancy)
+Open issues: 4 (down from 10)
+  - ISS-442: PENDING-HUMAN (Misleading subcategory taxonomy)
+  - ISS-638: ASSIGNED-ANALYST (V51.1 sun altitude split)
+  - ISS-640: ASSIGNED-ANALYST (V51.1 Steelman Evidence Ladder)
+  - ISS-641: ASSIGNED-ANALYST (δ=6371 globe fingerprint)
 
-══════════════════════════════════════════════════════
-EXPANSION QUEUE (8 pending)
-══════════════════════════════════════════════════════
-  EXP-039: INTEGRATED this run (AI Onboarding Infrastructure)
-  EXP-040: pending — sun altitude split
-  EXP-041: pending — Steelman Evidence Ladder [HIGH PRIORITY]
-  EXP-042: pending — delta=6371 globe fingerprint
-  EXP-043: pending — WIN-027 V12 superseded law [NEW]
-  EXP-044: pending — WIN-002/029 tension rebuttal [NEW]
-  EXP-045: pending — WIN-024 longitude + hardcoded monitoring [NEW]
-  EXP-046: pending — WIN-030 evidence redundancy [NEW]
-  EXP-047: pending — WIN-031 shallow rebuttal [NEW]
+TOP 3 PRIORITIES
+----------------
+1. [HUMAN] ISS-442: Misleading verdict taxonomy decision. Human editorial call.
+2. [ANALYST] ISS-641: δ=6,371 km = globe radius fingerprint in V51.1 cavity parameters.
+   Strong argument: dome introduced sub-terrestrial cavity parameter that equals Earth's
+   mean radius to 4 significant figures. Needs formal documentation.
+3. [CURMUDGEON] Complete Cycle 2: WIN-064–067 + Phase 2 holistic checks. 
+   WIN-064 (P-wave shadow zone) and WIN-065 (Polaris excess) are geometrically
+   strong rebuttals — priority to get fresh eyes on them.
+
+NOTE ON STALE ISSUES
+--------------------
+Found 5 stale issues (ISS-660 through ISS-663, ISS-665) where curmudgeon Cycle 2
+reviews identified missing arguments, but previous decider runs had already patched
+the text. The curmudgeon's text fingerprints at review time were shorter than current
+text, confirming the patches landed before the Cycle 2 reviews. This is expected:
+Cycle 2 is reviewing text that was already patched from Cycle 1 findings, creating
+a timing mismatch. Pipeline is healthy — the mismatch is informational, not a bug.
