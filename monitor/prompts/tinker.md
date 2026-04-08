@@ -40,16 +40,21 @@ Trigger: Any output older than expected, or previous report flagged a stalled ag
 **Mode 2 — Infrastructure & FUSE** (run if staleness or auth issues detected)
 Check: Are workspace files fresh? Is git auth working? Any error patterns in agent outputs?
 ```bash
-# Quick FUSE check — compare workspace wins.json count vs GitHub
-WS_COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/wins.json','utf8')).length)" 2>/dev/null)
-GH_COUNT=$(curl -s "https://raw.githubusercontent.com/funwithscience-org/dome-model-review/main/data/wins.json" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>console.log(JSON.parse(d).length))" 2>/dev/null)
-echo "Workspace: ${WS_COUNT}, GitHub: ${GH_COUNT}"
-# Quick auth check
+# Quick FUSE check — md5 hash key files against GitHub (not just record counts!)
+# A count-only check misses stale build-scripts, HTML, and config files.
 WORKSPACE=$(find /sessions/*/mnt/dome-model-review -maxdepth 0 2>/dev/null | head -1)
+STALE=0
+for f in data/wins.json data/sections.json build-scripts/digest-reviews.js build-scripts/generate-html.js docs/index.html; do
+  WS_HASH=$(md5sum "${WORKSPACE}/${f}" 2>/dev/null | cut -d' ' -f1)
+  GH_HASH=$(curl -s "https://raw.githubusercontent.com/funwithscience-org/dome-model-review/main/${f}" | md5sum | cut -d' ' -f1)
+  if [ "$WS_HASH" != "$GH_HASH" ]; then echo "STALE: ${f}"; STALE=$((STALE+1)); fi
+done
+[ $STALE -eq 0 ] && echo "FUSE: all checked files match GitHub"
+# Quick auth check
 TOKEN=$(git -C "${WORKSPACE}" remote get-url origin 2>/dev/null | grep -oP 'x-access-token:\K[^@]+')
 [ -n "$TOKEN" ] && curl -s -o /dev/null -w "Auth: %{http_code}" -H "Authorization: token $TOKEN" "https://api.github.com/repos/funwithscience-org/dome-model-review" || echo "Auth: NO TOKEN"
 ```
-Trigger: Count mismatch, auth failure, or previous report flagged FUSE/infra issues.
+Trigger: Any STALE file, auth failure, or previous report flagged FUSE/infra issues.
 → Read `monitor/prompts/reference/tinker-infrastructure.md`, execute that procedure.
 
 **Mode 3 — Cost Engineering & Architecture** (run when pipeline is healthy)
