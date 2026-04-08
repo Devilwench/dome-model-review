@@ -476,6 +476,51 @@ if (html) {
 }
 
 // ════════════════════════════════════════════
+// Uncounted Failures Validation
+// ════════════════════════════════════════════
+
+{
+  const failuresPath = path.join(__dirname, 'data', 'uncounted-failures.json');
+  if (fs.existsSync(failuresPath)) {
+    const failures_data = JSON.parse(fs.readFileSync(failuresPath, 'utf8'));
+    assert(Array.isArray(failures_data.entries), 'uncounted-failures.json has entries array');
+    assert(typeof failures_data.dome_claimed_failures === 'number', 'dome_claimed_failures is a number');
+    assert(typeof failures_data.dome_claimed_accuracy === 'string', 'dome_claimed_accuracy is a string');
+
+    const failIds = new Set();
+    for (const entry of failures_data.entries) {
+      assert(typeof entry.id === 'string' && /^FAIL-\d{3}$/.test(entry.id),
+        `Failure ${entry.id} has valid FAIL-NNN format`);
+      assert(!failIds.has(entry.id), `No duplicate failure ID: ${entry.id}`);
+      failIds.add(entry.id);
+      assert(typeof entry.dome_ref === 'string' && entry.dome_ref.length > 0,
+        `${entry.id} has dome_ref`);
+      assert(typeof entry.summary === 'string' && entry.summary.length > 0,
+        `${entry.id} has summary`);
+      assert(typeof entry.prediction === 'string' && entry.prediction.length > 0,
+        `${entry.id} has prediction`);
+      assert(typeof entry.outcome === 'string' && entry.outcome.length > 0,
+        `${entry.id} has outcome`);
+      assert(typeof entry.dome_label === 'string' && entry.dome_label.length > 0,
+        `${entry.id} has dome_label`);
+      assert(typeof entry.what_actually_happened === 'string' && entry.what_actually_happened.length > 0,
+        `${entry.id} has what_actually_happened`);
+      if (entry.related_wins) {
+        assert(Array.isArray(entry.related_wins), `${entry.id} related_wins is array`);
+      }
+    }
+
+    // Check that HTML contains resolved uncounted failures count (not placeholder)
+    if (html) {
+      assert(!html.includes('{{ACKNOWLEDGED_FAILURES}}'),
+        'HTML has no unresolved {{ACKNOWLEDGED_FAILURES}} placeholder');
+      assert(!html.includes('{{DOME_CLAIMED_ACCURACY}}'),
+        'HTML has no unresolved {{DOME_CLAIMED_ACCURACY}} placeholder');
+    }
+  }
+}
+
+// ════════════════════════════════════════════
 // Results
 // ════════════════════════════════════════════
 

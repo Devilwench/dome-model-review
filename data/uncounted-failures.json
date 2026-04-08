@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "description": "Dome model predictions that actually failed, regardless of how the dome categorizes them. The dome uses soft language — 'refined', 'suspended', 'pending' — to avoid calling failures failures. This file tracks what the data actually showed. Our FAIL-NNN IDs are stable; the dome may reuse, rename, or remove their references.",
+    "placeholders": {
+      "{{ACKNOWLEDGED_FAILURES}}": "Computed from entries array length",
+      "{{DOME_CLAIMED_FAILURES}}": "The dome's own stated failure count",
+      "{{DOME_CLAIMED_ACCURACY}}": "The dome's own stated accuracy string"
+    }
+  },
+  "dome_claimed_failures": 4,
+  "dome_claimed_accuracy": "94.5%",
+  "dome_accuracy_formula": "69 / (69 + 4)",
+  "entries": [
+    {
+      "id": "FAIL-001",
+      "dome_ref": "W024",
+      "dome_ref_type": "weekly_prediction",
+      "related_wins": [],
+      "summary": "Polaris elevation excess",
+      "prediction": "Polaris elevation at various latitudes would exceed WGS84 latitude by specific amounts (e.g., +0.27°)",
+      "outcome": "Falsified by dome's own OPEN-006 data showing altitude excesses of +0.32° to +1.29° — contradicting the predicted +0.27°",
+      "dome_label": "FALSIFIED",
+      "what_actually_happened": "Prediction failed. Dome acknowledged it.",
+      "evidence_date": "2026-03-15",
+      "added_at": "2026-04-09T00:00:00Z"
+    },
+    {
+      "id": "FAIL-002",
+      "dome_ref": "W027",
+      "dome_ref_type": "weekly_prediction",
+      "related_wins": ["061"],
+      "summary": "Schumann resonance elevation during G3+ storms",
+      "prediction": "G3+ geomagnetic storms elevate Schumann resonance amplitude",
+      "outcome": "March 2026 G3 storm showed 35% suppression — the opposite of the prediction",
+      "dome_label": "refined to damping",
+      "what_actually_happened": "Prediction failed. Dome replaced it with the opposite claim (PRED-SR-SUPPRESS) borrowed from standard ionospheric physics.",
+      "evidence_date": "2026-03-28",
+      "added_at": "2026-04-09T00:00:00Z"
+    },
+    {
+      "id": "FAIL-003",
+      "dome_ref": "W019",
+      "dome_ref_type": "weekly_prediction",
+      "related_wins": ["043"],
+      "summary": "NMP drift direction dominance",
+      "prediction": "North Magnetic Pole drift: poleward motion dominates lateral motion",
+      "outcome": "Dome's own weekly test found lateral motion 5.5× larger than poleward — the opposite of the prediction",
+      "dome_label": "refined",
+      "what_actually_happened": "Prediction failed. Dome called it 'refined' rather than falsified.",
+      "evidence_date": "2026-03-19",
+      "added_at": "2026-04-09T00:00:00Z"
+    },
+    {
+      "id": "FAIL-004",
+      "dome_ref": "W020",
+      "dome_ref_type": "weekly_prediction",
+      "related_wins": [],
+      "summary": "Roaring 40s 500hPa anomaly",
+      "prediction": "Roaring 40s 500hPa anomaly ≥3% above climatology",
+      "outcome": "Prediction did not match data. Changed after failing.",
+      "dome_label": "refined",
+      "what_actually_happened": "Prediction failed. Dome changed the prediction after the fact and called it 'refined'.",
+      "evidence_date": "2026-04-05",
+      "added_at": "2026-04-09T00:00:00Z"
+    },
+    {
+      "id": "FAIL-005",
+      "dome_ref": "W021",
+      "dome_ref_type": "weekly_prediction",
+      "related_wins": [],
+      "summary": "Moon angular diameter variation",
+      "prediction": "Moon angular diameter variation >2% between moonrise and transit",
+      "outcome": "Dome's own H(r) curve produces incorrect values for this prediction. Test suspended.",
+      "dome_label": "suspended",
+      "what_actually_happened": "Prediction can't work under the dome's own geometry. Rather than count it as failed, the dome suspended the test indefinitely.",
+      "evidence_date": "2026-03-19",
+      "added_at": "2026-04-09T00:00:00Z"
+    }
+  ]
+}

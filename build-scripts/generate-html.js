@@ -17,6 +17,7 @@ const path = require('path');
 
 const WINS_PATH = path.join(__dirname, '..', 'data', 'wins.json');
 const SECTIONS_PATH = path.join(__dirname, '..', 'data', 'sections.json');
+const FAILURES_PATH = path.join(__dirname, '..', 'data', 'uncounted-failures.json');
 const OUTPUT_PATH = path.join(__dirname, '..', 'docs', 'index.html');
 
 // Load section-loader helper
@@ -69,6 +70,11 @@ function resolvePlaceholders(html, context) {
     '{{CA_RELABELS}}': context.codeAnalysis?.relabelsStandard || 0,
     '{{CA_POSTHOC}}': context.codeAnalysis?.postHoc || 0,
     '{{CA_DOME}}': context.codeAnalysis?.derivesFromDome || 0,
+
+    // Acknowledged failures
+    '{{ACKNOWLEDGED_FAILURES}}': context.acknowledgedFailures || 0,
+    '{{DOME_CLAIMED_FAILURES}}': context.domeClaimedFailures || 0,
+    '{{DOME_CLAIMED_ACCURACY}}': context.domeClaimedAccuracy || '?',
   };
 
   // Simple replacements
@@ -570,6 +576,13 @@ function main() {
   };
   console.log('Computed counts:', JSON.stringify(counts, null, 2));
 
+  // Load acknowledged failures
+  let failures = { entries: [], dome_claimed_failures: 4, dome_claimed_accuracy: '94.5%' };
+  if (fs.existsSync(FAILURES_PATH)) {
+    failures = JSON.parse(fs.readFileSync(FAILURES_PATH, 'utf8'));
+    console.log('Acknowledged failures:', failures.entries.length);
+  }
+
   // Build context object for section rendering
   const context = {
     totalWins: counts.total,
@@ -578,6 +591,9 @@ function main() {
     unfalsifiable: counts.unfalsifiable,
     tally,
     codeAnalysis: counts.codeAnalysis,
+    acknowledgedFailures: failures.entries.length,
+    domeClaimedFailures: failures.dome_claimed_failures,
+    domeClaimedAccuracy: failures.dome_claimed_accuracy,
   };
 
   // Start HTML

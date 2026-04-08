@@ -79,8 +79,32 @@ Update `monitor/status.json` with:
 ### 9. Write Summary
 Overwrite `monitor/changes/latest-poll-summary.txt` with human-readable summary.
 
+### 10. Track Prediction Test Windows
+
+The dome model assigns test windows to weekly predictions (W-numbers). When a window closes, the prediction either passes, gets "refined" (dome euphemism for failed), gets suspended, or gets quietly dropped. **Our review tracks all actual failures in `data/uncounted-failures.json`** — the poller's job is to detect when windows open and close.
+
+Each poll, check:
+- **Active test windows**: Look for predictions with future deadlines on the predictions page or in status_history.json. Log which specific predictions (by W-number) are in each window and what they predict.
+- **Window closures**: If a prediction had a deadline that has now passed, flag it prominently in the poll summary. Specifically note:
+  - Did the prediction pass or fail?
+  - If it failed, how did the dome label it? (FALSIFIED, refined, suspended, removed, or silently ignored?)
+  - Did the dome's accuracy denominator change?
+  - Were any WINs added or removed coinciding with the window closure?
+- **Pre-registration**: Note any new predictions registered with future test dates (like PRED-CURR at 2026-04-28). These are important because they're the rare genuinely prospective predictions.
+
+**In the poll summary**, always include a "Test Windows" section:
+```
+TEST WINDOWS:
+  Active: W0XX (description, expires YYYY-MM-DD), PRED-CURR (expires 2026-04-28)
+  Expired since last poll: W0YY (result: PASS/FAIL, dome label: "refined")
+  Upcoming: PRED-ZZZ (opens YYYY-MM-DD)
+```
+
+When a window expires, set `analyst_priority: "HIGH"` — the analyst needs to determine whether the outcome should be added to `data/uncounted-failures.json`.
+
 ## Critical Rules
 - **Distinguish automated from manual commits.** monitor.py commits every 5 minutes; pull_data.py every 6 hours. These are noise unless their content changes.
 - **Be thorough but fast.** The poller runs every 4 hours — don't spend time on analysis, that's the analyst's job.
 - **Always check canary traps.** This is the early warning system.
+- **Track test windows.** When prediction deadlines pass, the dome tends to update the site within 24-48 hours. That's when failures get "refined" away.
 - **Log everything.** Even quiet polls get a summary line.

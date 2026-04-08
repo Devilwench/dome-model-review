@@ -62,6 +62,38 @@ Check the dome repo (john09289/predictions) for:
 - Forks (who is forking it and why?)
 - Stars/watchers trend
 
+**GitHub CLI setup:** Your workspace has a PAT (Personal Access Token) embedded in the git remote URL. Extract and authenticate `gh` at the start of your run:
+
+```bash
+# Extract PAT from workspace git config and authenticate gh
+WORKSPACE=$(find /sessions/*/mnt/dome-model-review -maxdepth 0 2>/dev/null | head -1)
+AUTH_URL=$(git -C "${WORKSPACE}" remote get-url origin 2>/dev/null)
+TOKEN=$(echo "$AUTH_URL" | grep -oP 'x-access-token:\K[^@]+')
+if [ -n "$TOKEN" ]; then
+  echo "$TOKEN" | gh auth login --with-token 2>/dev/null
+  echo "gh authenticated"
+else
+  echo "WARNING: No PAT found. Falling back to curl."
+fi
+```
+
+**Fallback if `gh` is unavailable or auth fails:** Use `curl` with the GitHub API directly:
+```bash
+# List recent commits
+curl -s "https://api.github.com/repos/john09289/predictions/commits?per_page=5" | node -e "process.stdin.on('data',d=>JSON.parse(d).forEach(c=>console.log(c.sha.slice(0,7),c.commit.message.split('\n')[0],c.commit.author.date)))"
+
+# Check forks
+curl -s "https://api.github.com/repos/john09289/predictions/forks" | node -e "process.stdin.on('data',d=>console.log(JSON.parse(d).length,'forks'))"
+
+# Check stars/watchers
+curl -s "https://api.github.com/repos/john09289/predictions" | node -e "process.stdin.on('data',d=>{const r=JSON.parse(d);console.log('Stars:',r.stargazers_count,'Watchers:',r.subscribers_count,'Forks:',r.forks_count)})"
+
+# Check issues
+curl -s "https://api.github.com/repos/john09289/predictions/issues?state=open" | node -e "process.stdin.on('data',d=>console.log(JSON.parse(d).length,'open issues'))"
+```
+
+Always try `gh` first; fall back to `curl` if it fails. Either way, report the actual numbers — never put `-1`.
+
 ## Output
 
 Write your findings to `monitor/social/report-YYYY-MM-DD.json` with this structure:
@@ -105,9 +137,92 @@ Write your findings to `monitor/social/report-YYYY-MM-DD.json` with this structu
 
 Also write a human-readable summary to `monitor/social/latest-summary.txt`.
 
+### 4. Discoverability & Counter-Presence
+
+The dome model is actively building AI discoverability infrastructure (llms.txt, structured evidence graphs, claim indices). Our review should be findable wherever the dome is findable — by both traditional search engines and AI systems. Each run, check the following and report gaps:
+
+**AI Discoverability:**
+- Does our site have an `llms.txt`? If not, flag it as an action item with a recommended structure. The file should describe our review, its methodology, its relationship to the dome model, and the canonical read order.
+- Does the dome's `llms.txt` or `ai_manifest.json` reference or link to our review? (If it does, note it. If it doesn't, that's expected but worth tracking.)
+- Search for our review URL (`funwithscience-org.github.io/dome-model-review`) in AI-oriented indexes, directories, or datasets. Are we indexed anywhere?
+- Check: if you prompt a search engine or AI with "ovoid cavity cosmological model review" or "dome model predictions critique," does our page appear?
+
+**Search Term Monitoring:**
+Each run, perform web searches for the following terms and record where the dome site and our review rank. Track position changes over time.
+
+Core search terms (check every run):
+- "ovoid cavity cosmological model"
+- "ovoid cavity model predictions"
+- "ECM dome model"
+- "flat earth 67 predictions"
+- "dome model review" / "dome model critique"
+- "john09289 predictions"
+- "firmament resonance model"
+
+Situational terms (check when relevant):
+- "Schumann resonance dome" / "Schumann resonance flat earth"
+- "flat earth predictions confirmed" / "flat earth predictions debunked"
+- "aetheric medium cosmology"
+- Site-specific: `site:john09289.github.io` and `site:funwithscience-org.github.io` to check indexing
+
+For each search, record:
+```json
+"search_monitoring": [
+  {
+    "query": "ovoid cavity cosmological model",
+    "dome_position": 1,
+    "our_position": null,
+    "top_3_results": ["url1", "url2", "url3"],
+    "notes": "We don't appear in the first 3 pages"
+  }
+]
+```
+
+Track these over time in `monitor/social/search-rankings.json` — append each run's results so we can see trends. If our position improves or degrades, flag it.
+
+**Search Engine Presence (site audit):**
+- Does our site have proper meta tags (description, og:title, og:description) that mention the dome model by name?
+- Does our site have a sitemap.xml?
+- Does our site have schema.org `ClaimReview` structured data markup? This is the standard used by fact-checkers and is consumed by Google Search. Each of our 67+ verdicts could be a ClaimReview.
+- Is our GitHub repo description and topics optimized? (Should reference "ovoid cavity," "ECM," "dome model," "flat earth" so GitHub search connects the two repos.)
+
+**Platform Presence:**
+- If the dome model appears on a new platform (YouTube, Reddit, TikTok, etc.), flag it as an opportunity. The report should include a `counter_presence_opportunity` field describing where a response or link to our review could naturally appear (without us posting it — just noting the gap for the human to decide).
+
+**Action items go in the report under a new `discoverability` field:**
+```json
+"discoverability": {
+  "our_llms_txt": "missing|present|outdated",
+  "our_meta_tags": "missing|present|incomplete",
+  "our_sitemap": "missing|present",
+  "our_claim_review_markup": "missing|present|partial",
+  "our_github_seo": "missing|optimized|partial",
+  "search_visibility": "Description of what searches find us vs. find only the dome",
+  "action_items": [
+    {
+      "priority": "high|medium|low",
+      "action": "What needs to be done",
+      "details": "Specifics — draft content, suggested markup, etc."
+    }
+  ],
+  "counter_presence_opportunities": [
+    {
+      "platform": "...",
+      "url": "...",
+      "opportunity": "Description of how our review could become visible here"
+    }
+  ]
+}
+```
+
+**On the first run with this section**, do a full baseline audit of all the above. On subsequent runs, only check for changes and new opportunities. Write the baseline to `monitor/social/discoverability-baseline.json` so future runs can diff against it.
+
+**Important:** The social agent does NOT implement these changes (doesn't create llms.txt, doesn't edit HTML). It identifies gaps and writes action items. Implementation goes through the normal pipeline: social flags it → open issue → decider/analyst patches it. For items that need human judgment (e.g., "should we add ourselves to X directory?"), mark as `needs-human`.
+
 ## Rules
 
 - **Do not engage.** You are an observer only. Never post, comment, reply, or interact with any content.
+- **Do not implement.** You identify discoverability gaps and opportunities. You do not create files, edit HTML, or push changes. Write action items for the pipeline.
 - **Log everything.** Even "quiet" days get a report. The absence of activity is information.
 - **Err toward inclusion.** If you're unsure whether something is relevant, log it. The human will filter.
 - **Note sentiment.** If you find discussion of our review, note whether it's supportive, hostile, or neutral.
