@@ -1,58 +1,70 @@
-MORNING BRIEFING — 2026-04-09
-Generated: 2026-04-09T10:00:00Z
-Curmudgeon reviews processed this run: 1 (WIN-063 Cycle 2)
-Previous decider run: 2026-04-09T06:30:00Z
+MORNING BRIEFING — 2026-04-08
+Generated: 2026-04-08T10:45:00Z
+Curmudgeon reviews processed this run: 1 (WIN-063 Cycle 2 — carried from workspace)
+Previous decider run: ~2026-04-08T09:30Z (status.json last_run was 2026-04-08T17:17:04Z by analyst)
 
-SITE HEALTH (Integrity)
-  Status: WARN (minor) — 2078 tests pass (up from 2075)
-  Duplicate id=dielectric: RESOLVED in prior run (confirmed)
-  geodesy.noaa.gov timeout: transient, monitoring
-  Build drift: None — build fully reproducible
+SITE HEALTH
+-----------
+Integrity check (2026-04-08): PASS in current build.
+  - Duplicate id="dielectric" flagged in integrity report — VERIFIED RESOLVED in current HTML.
+  - geodesy.noaa.gov timeout (transient, monitor next run).
+  - 2182 tests pass, 0 failed.
 
 EXTERNAL STATUS
-  Dome site: No new changes. V51.1 stable (69 WINs, 94.5% accuracy).
-  Standing watch: WIN-068/069 still uncovered, AI infrastructure undocumented.
+---------------
+Dome site: QUIET — V51.1 stable since 2026-04-08T22:00Z.
+  - 69 WINs, 94.5% claimed accuracy (inconsistent: evolution page still shows 93.3%).
+  - August 12 2026 eclipse: 3 conflicting prediction values on dome site — WATCH.
+  - No new commits since last poll.
 
-SELF-APPLY SUMMARY THIS RUN
-  Patches applied: 11/12 (+ 1 fix patch = 12/12 total)
-  Issues closed: 4 (ISS-636, ISS-639, ISS-646, ISS-647)
-  Issues closed wontfix: 1 (ISS-634 — Kim et al. citation confirmed correct)
-  Issues assigned to analyst: 5 (ISS-635, 637, 638, 640, 641)
-  Tests: 2078 passed, 0 failed
-  Verdict changes: NONE (no verdict patches this run)
+INTERNAL STATUS — THIS RUN
+---------------------------
+Patches self-applied: 3 (all passed, 0 failed)
+Issues closed this run: 5 (ISS-635, ISS-642, ISS-643, ISS-648, ISS-649)
+Issues added this run: 2 (ISS-648, ISS-649 — both immediately patched and closed)
+Open issues: 5 (4 assigned-analyst, 1 pending-human)
+Closed issues total: 544
 
-OPEN ISSUES REMAINING: 6
-  ISS-442 [pending-human] — Misleading verdict subcategory taxonomy (human editorial call)
-  ISS-635 [assigned-analyst/EXP-038] — WIN-068/069 full entries needed
-  ISS-637 [assigned-analyst/EXP-039] — AI onboarding infrastructure (Part 2b)
-  ISS-638 [assigned-analyst/EXP-040] — Sun altitude split kill-shot update
-  ISS-640 [assigned-analyst/EXP-041] — Steelman Evidence Ladder analysis
-  ISS-641 [assigned-analyst/EXP-042] — δ = 6,371 km globe fingerprint integration
+Patches applied:
+  1. WIN-067 detail_evidence: Added WGS84 tautology paragraph (ISS-643)
+     The dome's gravity formula g(r) = 9.7803×(1+0.005307×exp(-r/8619)) uses
+     entirely WGS84 constants. Monitor.py evaluates at r=0 where the dome-specific
+     exponential vanishes. Two incompatible gravity models now documented side-by-side:
+     H(r) predicts 90% variation (catastrophic failure); WGS84 formula predicts 0.48%
+     (works, but is just the globe's answer). Source field: "WGS84 standard."
+
+  2. WIN-063 detail_evidence: Fixed malformed nested <a> tag (ISS-648)
+     Prior fix for ISS-646 introduced erroneous outer anchor wrapping Olson & Deguen.
+     Each citation now has its own distinct link.
+
+  3. WIN-063 detail_evidence: Replaced invented '1.4×' with 'X%' placeholder (ISS-649)
+     Avoids dome defender quoting our example value out of context.
 
 TOP 3 PRIORITY ACTIONS
-  1. [HUMAN] Add WIN-068/069 to wins.json (V51.1 coverage gap — EXP-038 for detail writeup)
-  2. [HUMAN] Decide ISS-442: Misleading subcategories vs status quo
-  3. [ANALYST] Process EXP-038 through EXP-042 (5 pending expansions)
+----------------------
+1. HUMAN — ISS-442: Verdict taxonomy decision. Should "Misleading" be split into
+   subcategories? Affects ~20 WINs. Holistic editorial call.
 
-PATCHES APPLIED THIS RUN
-  ISS-636: Updated "95.2%" → version-aware accuracy across 8 locations in sections.json
-    - part6 intro, Section 6.6 header (removed hardcoded number), 6.6 body (added V51.1 update
-      strengthens argument: manual update between versions proves figure is hand-typed),
-      denominator paragraph, part2b monitoring illusion section, part1/part4/part8 parentheticals
-  ISS-639: WIN-061 Schumann — added V51.1 acknowledgment paragraph: dome credited for
-    honest falsification acknowledgment, PRED-SR-SUPPRESS shown as post-hoc retrodiction
-  ISS-646: WIN-063 — added Olson & Deguen (2012) as targeted hemispheric asymmetry citation;
-    reframed data-constrained model caveat to emphasize key distinction
-  ISS-647: WIN-063 — added WIN-005 re-slicing argument; WIN-063 repackages WIN-005 observation
-    as ratio metric (same pattern as WIN-041/042 Misleading verdicts)
+2. ANALYST — EXP-041 (HIGH/steelman): Analyze dome's own Steelman Evidence Ladder
+   (4 tiers from V51.1). The dome's intellectual honesty in structuring its own evidence
+   is a double-edged sword — analyze it with the steelman procedure.
 
-INFRASTRUCTURE FIX
-  analyst.md: Fixed orphan check query (i.issue_id → i.id). Was causing false positives.
+3. ANALYST — EXP-040: Update sun/firmament collision argument for V51.1 physical/
+   apparent sun split. V51.1 introduced a "physical altitude <4,200 km / apparent 5,733 km"
+   distinction almost certainly in response to our critique. Need to address the new
+   defense.
 
-CURMUDGEON PROGRESS: 63/67 WINs reviewed in Cycle 2
-  Remaining: WIN-064 (P-wave shadow zone), WIN-065 (Polaris), WIN-066 (NH heat), WIN-067 (Antarctic gravity)
-  Holistic Phase 2 checks: all 9 pending
+CURMUDGEON PROGRESS
+-------------------
+Cycle 2, Phase 1: 63/69 WINs reviewed (91%)
+WIN-068 and WIN-069 added as priority-new to tracker.
+Next: WIN-064 (P-wave shadow zone geometric)
+Digest status: 64 under-covered processed reviews / 276 "missing issues" — NOTE: this
+count is inflated as the digest only checks open issues, not the 544 closed ones.
+Most "missing" holes were already addressed and closed in prior cycles.
 
-FINGERPRINT HUNT PROGRESS: 66/99 items reviewed
-  WIN-066: CERES framework dependency, hemisphere area ratio mismatch, no dome radiation budget
-  Next: WIN-067 (Antarctic gravity hole)
+CODE ANALYSIS TAG STATUS
+------------------------
+All 69 WINs (including new 068/069 with reviewed=true) have code_analysis tags.
+WIN-068: monitoring=none, relabels_standard=true, post_hoc=true, derives_from_dome=false
+WIN-069: monitoring=none, relabels_standard=false, post_hoc=true, derives_from_dome=false
