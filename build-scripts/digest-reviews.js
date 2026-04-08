@@ -47,10 +47,6 @@ function run() {
   const processedData = loadJSON(PROCESSED_PATH);
   const processedRaw = processedData ? processedData.processed : [];
   const processedSet = new Set(processedRaw);
-  // Also create a set of bare WIN IDs for legacy format compatibility
-  const processedWinIds = new Set(processedRaw.map(p =>
-    p.replace('.json', '').replace(/\.c\d+$/, '')
-  ));
 
   // 2. Find all review files
   let reviewFiles;
@@ -143,9 +139,8 @@ function run() {
     // Cycle 2+ files (e.g., WIN-001.c2.json) must be checked by FILENAME only —
     // do NOT match against the base WIN ID, or every Cycle 2 review gets silently
     // marked as processed because Cycle 1's WIN-001.json is in the ledger.
-    const isCycle2Plus = /\.c\d+\.json$/.test(file);
-    const isProcessed = processedSet.has(file) ||
-      (!isCycle2Plus && (processedSet.has(entry.win_id) || processedWinIds.has(entry.win_id)));
+    // Filename-only matching: cycle-aware by design (WIN-001.json ≠ WIN-001.c2.json)
+    const isProcessed = processedSet.has(file);
     if (isProcessed) {
       alreadyProcessed.push(entry);
     } else {
