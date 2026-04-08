@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-08T19:16:04Z",
+  "last_updated": "2026-04-08T19:41:16.655Z",
   "issues": [
     {
       "id": "ISS-442",
@@ -50,84 +50,6 @@
       "description": "V51.1 introduced sub-terrestrial cavity parameter δ = 6,371 km — exactly the mean radius of the globe Earth. Combined with disc radius a = π×R = 20,015 km, both horizontal AND vertical dome scales are globe-derived. This is a smoking-gun fingerprint. Needs integration into the globe fingerprint narrative (Part 2b or wherever the coordinate system discussion lives).",
       "source": "analysis-20260408-v51-1-update",
       "assigned_at": "2026-04-08T16:04:07.812Z"
-    },
-    {
-      "id": "ISS-660",
-      "win_id": "WIN-027",
-      "severity": "major",
-      "category": "missing_argument",
-      "description": "WIN-027's V12 quadratic correction law was SUPERSEDED by V13's H(r) exponential function. Our review critiques the quadratic correction as a post-hoc fudge factor, but the model no longer uses it. We may be attacking a straw man. Need to update evidence to note the V12→V13 evolution and show why V13 H(r) is equally problematic.",
-      "source": "curmudgeon-cycle1-undercovered",
-      "found_date": "2026-04-08",
-      "status": "assigned-analyst",
-      "assigned_at": "2026-04-08T19:15:13Z",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-661",
-      "win_id": "WIN-002",
-      "severity": "major",
-      "category": "missing_argument",
-      "description": "Dome explicitly addresses WIN-002/WIN-029 tension in its evolution text: 'Not contradictory. Complementary. The dome medium damps the resonance (WIN-002), and the damped measured frequency still back-derives the correct dome height (WIN-029).' Our review does not quote or rebut this explanation. Need to add rebuttal showing why H(r) supremum of 8,537 km cannot spatial-average to 9,086 km.",
-      "source": "curmudgeon-cycle1-undercovered",
-      "found_date": "2026-04-08",
-      "status": "assigned-analyst",
-      "assigned_at": "2026-04-08T19:15:13Z",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-662",
-      "win_id": "WIN-024",
-      "severity": "major",
-      "category": "missing_argument",
-      "description": "LONGITUDE MISMATCH not mentioned: The Roaring 40s wind belt encircles the entire latitude band continuously. Under dome geometry, southern latitudes compress toward the rim — the circumference at 40°S dome latitude is far shorter than on a globe. A continuous circumpolar wind belt is geometrically impossible on a dome disc where the southern hemisphere rim is stretched. This is the strongest refutation and our review omits it.",
-      "source": "curmudgeon-cycle1-undercovered",
-      "found_date": "2026-04-08",
-      "status": "assigned-analyst",
-      "assigned_at": "2026-04-08T19:15:13Z",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-663",
-      "win_id": "WIN-024",
-      "severity": "major",
-      "category": "code_analysis",
-      "description": "Missing code-level evidence: 2 of 3 WIN-024 validation domains (Domains 27, 33) hardcode pass=True, making them untestable by the monitoring system. Our review doesn't mention this — it's a code analysis finding that directly undermines the dome's claim of ongoing monitoring of this WIN.",
-      "source": "curmudgeon-cycle1-undercovered",
-      "found_date": "2026-04-08",
-      "status": "assigned-analyst",
-      "assigned_at": "2026-04-08T19:15:13Z",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-664",
-      "win_id": "WIN-030",
-      "severity": "moderate",
-      "category": "missing_argument",
-      "description": "WIN-030 detail_evidence paragraphs 1 and 2 contain substantial redundancy — both make the identical WGS84-projection argument ('inter-city distances computed from WGS84 globe coordinates...ellipse absorbing projection distortion...any smooth closed curve'). Para 2 should be revised to add new information (e.g., AIC/BIC penalization analysis) rather than restating para 1.",
-      "source": "curmudgeon-cycle1-undercovered",
-      "found_date": "2026-04-08",
-      "status": "assigned-analyst",
-      "assigned_at": "2026-04-08T19:15:13Z",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-665",
-      "win_id": "WIN-031",
-      "severity": "major",
-      "category": "missing_argument",
-      "description": "WIN-031 rebuttal is too shallow — 2-3 sentences without engaging what the dome actually claims about the Antarctic ice boundary. Need to expand with: what the dome's boundary prediction says, why standard geomagnetic models (IGRF/CHAOS) explain geomagnetic patterns without a dome boundary, and whether any observational test could distinguish the dome boundary claim from standard field models.",
-      "source": "curmudgeon-cycle1-undercovered",
-      "found_date": "2026-04-08",
-      "status": "assigned-analyst",
-      "assigned_at": "2026-04-08T19:15:13Z",
-      "fix_details": null,
-      "fix_date": null
     }
   ]
 }

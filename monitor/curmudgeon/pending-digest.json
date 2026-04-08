@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-07T17:54:42.603Z",
+  "generated_at": "2026-04-08T19:34:43.223Z",
   "total_reviews": 67,
-  "already_processed": 123,
+  "already_processed": 132,
   "pending_count": 0,
   "severity_breakdown": {
     "critical": 0,
@@ -35,13 +35,9 @@
     {
       "win_id": "WIN-002",
       "topic": "Schumann 26% aetheric damping",
-      "issues_created": 0,
+      "issues_created": 1,
       "holes_found": 4,
       "missing_holes": [
-        {
-          "severity": "major",
-          "summary": "The dome model explicitly addresses the WIN-002/WIN-029 tension in its evolution text (06-evolution.txt): 'Not contradictory. Complementary. The dome medium damps the resonance (WIN-002), and the damped measured frequency still back-derives the correct dome height (WIN-029).' Our review does not quo"
-        },
         {
           "severity": "moderate",
           "summary": "The dome claims three firmament heights are 'reconciled' by the H(r) curve: Schumann (~9,500 km), Polaris (4,750 km), and model parameterization (9,086 km). But the H(r) = 8537·exp(−r/8619) curve has a supremum of 8,537 km at r=0. No spatial average of this function can reach 9,086 km (mathematicall"
@@ -523,17 +519,9 @@
     {
       "win_id": "WIN-024",
       "topic": "Roaring 40s = SAA boundary",
-      "issues_created": 0,
+      "issues_created": 2,
       "holes_found": 5,
       "missing_holes": [
-        {
-          "severity": "moderate",
-          "summary": "Latitude range inconsistency in current text. The detail_evidence says 'The SAA's southern boundary falls at roughly 30–35°S (defined by the 30,000 nT intensity contour at sea level)' but earlier findings from Cycle 1 noted the SAA extends to ~50°S (using the 32,000 nT contour per Wikipedia/NOAA). T"
-        },
-        {
-          "severity": "major",
-          "summary": "The current text does not mention the LONGITUDE MISMATCH, which is the strongest refutation of this WIN. The Roaring 40s wind belt encircles the entire Southern Hemisphere at all longitudes (Indian Ocean, Pacific, Atlantic, Southern Ocean). A historical fact: circumnavigators from Drake (1577) onwar"
-        },
         {
           "severity": "major",
           "summary": "Missing code-level evidence. Current review text does not mention that 2 of 3 validation domains (Domains 27, 33) hardcode pass=True, making them untestable. The phrase 'the dome's aetheric field prediction' in the current text (comparing to WIN-025) glosses over the fact that there is NO PREDICTION"
@@ -591,13 +579,9 @@
     {
       "win_id": "WIN-027",
       "topic": "Southern Distance Quadratic Latitude Law",
-      "issues_created": 0,
+      "issues_created": 1,
       "holes_found": 4,
       "missing_holes": [
-        {
-          "severity": "moderate",
-          "summary": "Cycle 1 review cited Vincenty (1975) and claimed 'sub-0.5% error' but didn't specify the error metric or context. Our review conflates Vincenty's sub-millimeter ABSOLUTE error (0.5 mm per km) with the dome's R²=0.79 which measures VARIANCE EXPLAINED in a distance-ratio function. A dome defender coul"
-        },
         {
           "severity": "moderate",
           "summary": "Our review doesn't address the specific routes or wind corrections the dome model claims to have measured. We cite that find_curve.py has only 6 hardcoded cities, but we don't probe: are those 6 the actual test set? Are the 20 routes a claim that was never formalized? The raw-text doesn't specify th"
@@ -663,13 +647,9 @@
     {
       "win_id": "WIN-030",
       "topic": "Elliptical disc geometry V5-V9",
-      "issues_created": 0,
+      "issues_created": 1,
       "holes_found": 4,
       "missing_holes": [
-        {
-          "severity": "major",
-          "summary": "The `finding` field contains a duplicated phrase: 'Adding parameters always improves fit; no AIC/BIC comparison shown; 48.6% RMS figure unverifiable (no computation in repo); 48.6% RMS figure unverifiable (no computation in repo)'. The semicolon-separated clause '48.6% RMS figure unverifiable (no co"
-        },
         {
           "severity": "major",
           "summary": "The detail_evidence contains substantial redundancy between paragraphs 1 and 2. Both paragraphs make the same WGS84 projection-absorption argument in nearly identical language: Para 1 says 'the ellipse is not discovering the Earth's shape — it is absorbing the radial scaling distortion that the Azim"
@@ -687,13 +667,9 @@
     {
       "win_id": "WIN-031",
       "topic": "North Pole cosmic mountain — 6-text biblical convergence",
-      "issues_created": 0,
+      "issues_created": 1,
       "holes_found": 5,
       "missing_holes": [
-        {
-          "severity": "major",
-          "summary": "Cycle 1 correctly identified that our rebuttal is too shallow. We dismiss the claim in 2-3 sentences without acknowledging what the dome actually claims the 6-text convergence consists of. The dome model assignment of the north pole as both theological axis mundi AND functional geometric origin (r=0"
-        },
         {
           "severity": "major",
           "summary": "The 6-text convergence is never analyzed in detail. The axis mundi motif appears cross-culturally in Hindu (Mount Meru), Norse (Yggdrasil), Greek (Olympus), Islamic (Mount Qaf), Zoroastrian (Harā Bərəz), and Chinese (Kunlun) cosmologies. These traditions embed the cosmic center in mutually contradic"
@@ -1153,6 +1129,46 @@
       ]
     },
     {
+      "win_id": "WIN-052",
+      "topic": "RAR lensing extension — dome hijacks genuine ΛCDM challenge; provides no galaxy-scale physics or RAR derivation",
+      "issues_created": 0,
+      "holes_found": 8,
+      "missing_holes": [
+        {
+          "severity": "critical",
+          "summary": "MOND PRIORITY ARGUMENT NOW REQUIRED. Cycle 1 identified MOND as having 40 years' priority (Milgrom 1983) with a specific mathematical framework (transition function μ(x), critical acceleration a₀, testable predictions for rotation curves). Our current detail_verdict_text mentions MOND once but burie"
+        },
+        {
+          "severity": "critical",
+          "summary": "GALAXY-SCALE ONTOLOGY CRISIS UNDERPLAYED. The current detail_evidence mentions the firmament-at-9,086-km issue once but treats it as a secondary point. This is the single strongest structural argument: the dome's physical boundaries cannot accommodate galaxies at kiloparsec-plus distances. This is n"
+        },
+        {
+          "severity": "major",
+          "summary": "CROSS-WIN STRUCTURAL INCOHERENCE NEEDS EXPLICIT MENTION. Cycle 1 identified that WINs 047, 048, 052, 054, 055 all claim phenomena at cosmological distances as evidence while the dome maxes out at 9,086 km. WIN-047 (Hubble Law) mentions this as a secondary point. WIN-048 (CMB) mentions it in stronger"
+        },
+        {
+          "severity": "moderate",
+          "summary": "MOND vs ΛCDM framing confusion in the rebuttal. The current text acknowledges that ΛCDM 'predicts more scatter than observed' in the RAR, which is true. However, it then argues ΛCDM explains the RAR via galaxy formation physics (feedback, star formation efficiency). A dome defender could argue: 'So "
+        },
+        {
+          "severity": "moderate",
+          "summary": "MISTELE 2024 AMBIGUITY. The current link (10.3847/2041-8213/ad54b0) resolves correctly to the ApJL 969, L3 paper 'Indefinitely Flat Circular Velocities and the Baryonic Tully–Fisher Relation from Weak Lensing' by Mistele et al. (2024). However, there is another highly relevant Mistele et al. (2024) "
+        },
+        {
+          "severity": "moderate",
+          "summary": "THE FALSE DILEMMA FRAMING DESERVES EXPLICIT TREATMENT. The dome's strategy is: '(a) ΛCDM has problems with the RAR, therefore (b) the dome model is correct.' This is a classic false dilemma — there are many alternatives (MOND, TeVeS, emergent gravity, modified inertia theories, etc.) and the existen"
+        },
+        {
+          "severity": "minor",
+          "summary": "McGaugh et al. (2016) is cited correctly but Keller & Wadsley (2017) and Ludlow et al. (2017), which show ΛCDM can reproduce the RAR, are not in the current evidence text. Cycle 1 identified these as 'stronger arguments.' They should appear in the text to show that ΛCDM's difficulty with the RAR is "
+        },
+        {
+          "severity": "minor",
+          "summary": "The detail_claim could be more precise. 'Radial Acceleration Relation (RAR) extends from kinematic to weak-lensing scales with near-zero scatter' is accurate but 'near-zero scatter' should be quantified to match the data. McGaugh et al. (2016) reported 0.13 dex observed scatter with 0.057 dex intrin"
+        }
+      ]
+    },
+    {
       "win_id": "WIN-053",
       "topic": "Two-pole geomagnetic model — toroidal architecture with B(r) equation, flux conservation failure",
       "issues_created": 0,
@@ -1254,33 +1270,33 @@
     },
     {
       "win_id": "WIN-056",
-      "topic": "Solar elevation from H(r) — globe declination formula smuggled into dome model",
+      "topic": "Solar elevation from H(r)",
       "issues_created": 0,
       "holes_found": 6,
       "missing_holes": [
         {
           "severity": "major",
-          "summary": "Broken cross-reference to Section 4.5.7: WIN-056's detail_evidence says 'See Section 4.5.7 for the derivation.' In the HTML (docs/index.html), Section 4.5.7 is titled 'Eclipse Duration: Dome vs. Globe' — it discusses eclipse geometry, NOT solar elevation. The solar elevation analysis DOES exist in t"
+          "summary": "WIN-056 detail_evidence (in current HTML) references 'Section 4.5.7 for the derivation.' In the published HTML (docs/index.html), Section 4.5.7 discusses 'Eclipse Duration: Dome vs. Globe' — not solar elevation. The solar elevation analysis exists in the DOCX (build-doc-v4.js line 744: '4.5.7 Solar "
         },
         {
           "severity": "moderate",
-          "summary": "Unverifiable quote attribution: Our detail_evidence states 'The model page states this \"reproduces the globe formula exactly.\"' This quote cannot be verified from any of our extracted V50.6 raw text (raw-text/01-home.txt through 07-ai-context.txt). WIN-056 was added in V51.0, and the specific page t"
+          "summary": "Cycle 1 review noted: Our detail_evidence states 'The model page states this \"reproduces the globe formula exactly.\"' This quote cannot be verified against the extracted V50.6 raw-text (raw-text/01-home.txt through 07-ai-context.txt). WIN-056 was added in V51.0, and the specific page text was not ex"
         },
         {
           "severity": "moderate",
-          "summary": "WIN-056 listed as 'relying on aetheric refraction' in Section 4.9 (escape hatch analysis): The HTML (line 1474) states 'At least six WINs rely on aetheric refraction to avoid falsification: WIN-016 (annual aberration), WIN-017 (stellar parallax), WIN-026 (crepuscular rays), WIN-033 (Sigma Octantis d"
-        },
-        {
-          "severity": "moderate",
-          "summary": "Claim text says 'density function H(r)' — H(r) is a HEIGHT function, not a density function. From the dome's own site (05-model.txt, 04-coordinates.txt), H(r) = 8537 × exp(−r/8619) km is explicitly the firmament HEIGHT as a function of radial distance. Calling it a 'density function' mischaracterize"
+          "summary": "Cycle 1 noted: WIN-056 is listed in Section 4.9 (escape hatch analysis) as one of 'at least six WINs rely on aetheric refraction to avoid falsification.' But WIN-056's primary argument is about formula substitution (using 23.45° globe declination), not aetheric refraction. Including it in the refrac"
         },
         {
           "severity": "minor",
-          "summary": "Framing inconsistency between HTML and DOCX: The DOCX (build-doc-v4.js line 495) frames WIN-056 as: 'H(r) was fitted to match solar observations, then solar elevation is re-derived from H(r). This is circular.' The HTML detail focuses on globe formula substitution (23.45° axial tilt). These are rela"
+          "summary": "Cycle 1 noted: The dome's claim text may refer to 'density function H(r)' but H(r) is a HEIGHT function, not a density function. H(r) = 8537 × exp(−r/8619) km is explicitly the firmament HEIGHT from raw-text/05-model.txt line 16."
         },
         {
           "severity": "minor",
-          "summary": "V9 coordinate evidence not cited: The dome's own V9 coordinate system (04-coordinates.txt line 25) uses 'lat_S = 90 − noon_altitude_june + 23.44' — explicitly incorporating the globe's obliquity value as a direct input. This is smoking-gun evidence that the dome model treats 23.44/23.45° as a known "
+          "summary": "Cycle 1 noted: The DOCX (build-doc-v4.js line 495) frames WIN-056 as: 'H(r) was fitted to match solar observations, then solar elevation is re-derived from H(r). This is circular.' The HTML detail focuses on globe formula substitution (23.45° axial tilt). These are related but distinct arguments: ci"
+        },
+        {
+          "severity": "minor",
+          "summary": "Cycle 1 found: The dome's V9 coordinate system (04-coordinates.txt line 25) uses 'lat_S = 90 − noon_altitude_june + 23.44' — explicitly treating Earth's obliquity as a direct input. This is smoking-gun evidence that 23.44° is imported, not derived. WIN-056's detail_evidence should prominently featur"
         }
       ]
     },
@@ -1456,27 +1472,23 @@
       "win_id": "WIN-063",
       "topic": "Magnetic decay asymmetry ratio",
       "issues_created": 0,
-      "holes_found": 5,
+      "holes_found": 4,
       "missing_holes": [
         {
           "severity": "moderate",
-          "summary": "Our review claims 'CHAOS-7 derives it from first principles' but this overstates CHAOS-7's role. CHAOS-7 is a spherical harmonic fit to satellite and observatory data — it is a data product, not a first-principles derivation. The first-principles explanation comes from MHD core dynamics (geodynamo s"
+          "summary": "The Aubert et al. (2013) citation (doi:10.1038/nature12574) may not be the best reference for hemispheric asymmetry specifically. That paper ('Bottom-up control of geomagnetic secular variation by the Earth's inner core') focuses on inner core control of secular variation, not specifically on hemisp"
         },
         {
           "severity": "moderate",
-          "summary": "WIN-063 is extremely vague — it claims a 'hemispheric magnetic dipole decay asymmetry ratio matches dome model' without specifying what the ratio IS, what numerical value the dome predicts, or what dataset confirms it. Our review doesn't call out this fundamental vagueness forcefully enough. The det"
-        },
-        {
-          "severity": "moderate",
-          "summary": "Our review says the dome 'has no core dynamics, no MHD equations.' While literally true, a dome defender could counter: 'We don't need a core — the asymmetry arises from our aetheric vortex topology, which has different geometry in the two hemispheres.' The dome's model does have radial asymmetry in"
+          "summary": "The WIN-005 re-slicing argument is missing from the current text. WIN-005 already claims 'African SAA cell decays faster' using CHAOS-7 asymmetric decay data. WIN-063 takes the same observation and repackages it as a 'ratio.' This was identified as a stronger argument in Cycle 1 but was not incorpor"
         },
         {
           "severity": "minor",
-          "summary": "The CHAOS-7 citation URL (https://spacecenter.dk/files/magnetic-models/CHAOS-7/) is a DTU Space file repository, not a peer-reviewed paper citation. While it's the legitimate CHAOS-7 data hosting site, a more authoritative citation would be the Finlay et al. (2020) paper: doi:10.1186/s40623-020-0125"
+          "summary": "The detail_evidence text includes a long parenthetical aside about data-constrained numerical models: '(Note: these simulations are data-constrained numerical models, not purely first-principles derivations — but they are derived from Maxwell's equations and Navier-Stokes, with boundary conditions f"
         },
         {
           "severity": "minor",
-          "summary": "WIN-063 is in the group 'WIN-040-043, 059-061, 063' and our DOCX build (build-doc-v4.js) groups these as 'Geomagnetic Re-slicing' with a shared paragraph. The detail text in wins.json for WIN-063 is individual and self-contained, but the generated DOCX uses a combined group writeup. These two repres"
+          "summary": "The text says 'The dome needs to commit to a predicted ratio (e.g., NH decays 1.4× faster than SH over the next 10 years) before observation, not after.' While the point is valid, the specific example value '1.4×' was invented by us and could be misread as a value the dome claims. A dome defender co"
         }
       ]
     },
@@ -1593,12 +1605,6 @@
       ]
     }
   ],
-  "under_covered_count": 63,
-  "pending_reviews": [],
-  "errors": [
-    {
-      "file": "WIN-052.c2.json",
-      "error": "Failed to parse JSON"
-    }
-  ]
+  "under_covered_count": 64,
+  "pending_reviews": []
 }
