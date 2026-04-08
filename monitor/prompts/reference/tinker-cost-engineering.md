@@ -21,48 +21,50 @@ A healthy agent spends >60% of its tokens on judgment. An unhealthy one spends >
 
 For each agent, estimate what fraction of recent runs produced substantive output. Report this.
 
-## Step 2: Propose Improvements
+## Step 2: Pick the Worst Offender and Go Deep
 
-When you identify waste, propose one of these patterns. **Pattern 1 is the north star.**
+**Do NOT survey all agents shallowly.** Pick the SINGLE agent with the highest waste or biggest prompt, read its actual prompt file, and produce a complete PROP with all the files needed to implement the fix. One agent, deep work, ready to apply.
 
-### Pattern 1: Dispatcher + Worker Architecture (the goal)
+### How to pick:
+1. Check prompt line counts: `wc -l monitor/prompts/*.md`
+2. Check which agents already have dispatchers: look for dispatcher routing logic in the prompt
+3. Pick the fattest un-converted agent, OR the agent with highest waste from Step 1
+4. Read its FULL prompt: `cat monitor/prompts/{agent}.md`
 
-The fundamental problem: 400+ lines of instructions compete for the same context window as the analytical work. The solution: split every expensive agent into a **thin dispatcher** (~80-100 lines) and **on-demand worker modules** (loaded only for the active mode).
+### What to produce:
+A PROP file containing the ACTUAL dispatcher prompt and ALL worker module files — not a description of what they'd look like, the real content. The human should be able to copy-paste these files and be done.
 
-The dispatcher's job:
-1. Check what work exists (timestamps, file counts, tracker status — cheap checks)
-2. Determine which mode to run (or exit early if nothing to do)
-3. Read ONLY the reference file for that mode
-4. Do the actual work with maximum context available
+To write a good dispatcher split, you need to understand:
+- **What's the agent's soul?** The core directive that every mode needs (e.g., analyst's Kernel of Truth). This stays in the dispatcher.
+- **What are the mutually exclusive modes?** Each becomes a worker module.
+- **What's shared infrastructure?** (auth setup, data loading) — stays in dispatcher or becomes a tiny shared module.
+- **What's the routing logic?** Quick checks (file counts, timestamps, tracker status) that determine which mode to run.
 
-**This is not just prompt diet — it's architectural.** A prompt diet extracts blocks but keeps the skeleton. A dispatcher redesigns the skeleton. The dispatcher never contains procedure details — only routing logic.
+### Conversion template:
+```
+Dispatcher (~80-100 lines):
+  - Identity + core directive
+  - Context (brief)
+  - Setup steps (auth, etc.)
+  - Mode priority checks (bash one-liners)
+  - Routing: "Read reference/agent-modeN.md, execute"
+  - Critical rules (apply to ALL modes)
 
-Think about this for every agent, every run:
-- Which agents are closest to being split?
-- Which would benefit most from the context savings?
-- Write PROP files with the actual dispatcher prompt and module files.
+Worker module (~60-150 lines each):
+  - Full procedure for one mode
+  - All code blocks, schemas, examples for that mode
+  - Self-contained — agent doesn't need the other modules
+```
 
-**Current targets (in order of impact):**
-- Analyst (436 lines, 5 modes that never run together — natural dispatcher candidate)
-- Decider (453 lines, multi-step with independent phases)
-- Curmudgeon (316 lines, three lifecycle phases — could split per-phase)
-- Social (299 lines, smaller but has distinct check vs. create modes)
+### Optimization patterns (beyond dispatcher conversion):
 
-### Pattern 2: Haiku Pre-Flight Gate
+**Haiku pre-flight gate:** Cheaper agent checks if there's work before spinning up Opus. Good intermediate step.
 
-Cheaper version of Pattern 1: a separate Haiku agent runs first, checks if there's work. If not, writes a skip-signal. The expensive agent reads it and exits early. Good intermediate step when a full dispatcher rewrite isn't ready.
+**Preprocessor scripts:** Move mechanical data gathering into Node scripts. We have `digest-reviews.js` already. Look for more: "what changed since last run" summaries, skip-signal files.
 
-### Pattern 3: Preprocessor Scripts
+**Smarter scheduling:** Event-driven beats time-driven. If curmudgeon hasn't produced a new review, why run the decider?
 
-Move mechanical data gathering into Node scripts that run before the agent. We already do this with `digest-reviews.js`. Look for more: "what changed since last run" summaries, compact state digests, skip-signal files.
-
-### Pattern 4: Smarter Scheduling
-
-Event-driven beats time-driven. Can one agent's output trigger another? If curmudgeon hasn't produced a new review, decider has nothing to process — why run it?
-
-### Pattern 5: Prompt Diet
-
-Move reference material to files read on-demand. This is a stepping stone to Pattern 1, not the end state.
+**Prompt diet:** Extract reference material to files. Stepping stone to dispatcher, not the end state.
 
 ## Step 3: Track and Report
 
@@ -88,12 +90,14 @@ Include in your report:
 }
 ```
 
-## Step 4: Audit Yourself
+## Step 4: Audit Yourself and Track Conversions
 
-**You are not exempt.** After this dispatcher conversion, your core prompt is ~90 lines + whichever module you loaded. Track:
-- Your own no-op run rate (if pipeline is always healthy and you always run Mode 3, is that time well-spent?)
-- Whether your modules are growing (they shouldn't — if they are, they need splitting too)
-- Whether your proposals are getting implemented (if they sit for weeks, the proposal system isn't working)
+**You are not exempt.** Track your own no-op rate, module growth, and proposal implementation rate.
+
+**Dispatcher conversion status** (check with `wc -l monitor/prompts/*.md`):
+- Agents already converted: check for dispatcher routing logic in the prompt
+- Agents intentionally excluded: curmudgeon (benefits from holistic context), integrity/poller/social (small enough or cheap model)
+- If all high-impact agents are converted, shift focus to other patterns (Haiku pre-flight gates, preprocessor scripts, smarter scheduling)
 
 ## The Quality Guardrail
 
