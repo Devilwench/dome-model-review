@@ -84,6 +84,8 @@ function resolvePlaceholders(html, context) {
     '{{ACKNOWLEDGED_FAILURES}}': context.acknowledgedFailures || 0,
     '{{DOME_CLAIMED_FAILURES}}': context.domeClaimedFailures || 0,
     '{{DOME_CLAIMED_ACCURACY}}': context.domeClaimedAccuracy || '?',
+    '{{ACCURACY_VARIANT_LIST}}': context.accuracyVariantList || '',
+    '{{ACCURACY_VARIANT_DETAIL}}': context.accuracyVariantDetail || '',
   };
 
   // Simple replacements
@@ -592,6 +594,18 @@ function main() {
     console.log('Acknowledged failures:', failures.entries.length);
   }
 
+  // Compute accuracy variant list from data
+  const variantSources = failures.dome_accuracy_variants?.sources || [];
+  const accuracyVariants = variantSources.map(s => s.result);
+  const accuracyVariantList = accuracyVariants.length > 0
+    ? accuracyVariants.slice(0, -1).join(', ') + ', or ' + accuracyVariants[accuracyVariants.length - 1]
+    : '';
+  // Detailed breakdown with endpoint names and formulas (for Section 6)
+  const accuracyVariantDetail = variantSources
+    .filter(s => s.endpoint.startsWith('api/'))
+    .map(s => `<code>${s.endpoint}</code> gives ${s.formula} = ${s.result}`)
+    .join('; ');
+
   // Build context object for section rendering
   const context = {
     totalWins: counts.total,
@@ -603,6 +617,8 @@ function main() {
     acknowledgedFailures: failures.entries.length,
     domeClaimedFailures: failures.dome_claimed_failures,
     domeClaimedAccuracy: failures.dome_claimed_accuracy,
+    accuracyVariantList,
+    accuracyVariantDetail,
   };
 
   // Start HTML
@@ -736,7 +752,7 @@ ${CSS}
 </div>
 
 <div style="border:2px solid var(--accent);border-radius:8px;padding:1.2rem 1.4rem;margin:1.5rem 0;background:var(--card-bg)">
-<p style="margin-top:0"><strong>The headline "${failures.dome_claimed_accuracy}" accuracy is not computed by any script in the model's repository.</strong> It is a static string in the HTML source code — a <code>.score-number</code> CSS class rendering the percentage alongside the WIN count. No Python script, no JavaScript function, and no API endpoint produces this number. The arithmetic is stated on the wins page, but no script validates the count against the actual WIN registry. When the model's own internal data is queried, it returns 96.3%, 97.0%, 89.3%, or 94.7% — depending on which data source and counting method is used. The denominator is chosen to include only ${failures.dome_claimed_failures} acknowledged falsifications while excluding unresolved open problems and below-detection-threshold entries. The headline number is manually entered with a self-serving denominator. See <a href="#part6" onclick="showTab('predictions');return false">Section 6.6</a> for the full source-code analysis.</p>
+<p style="margin-top:0"><strong>The headline "${failures.dome_claimed_accuracy}" accuracy is not computed by any script in the model's repository.</strong> It is a static string in the HTML source code — a <code>.score-number</code> CSS class rendering the percentage alongside the WIN count. No Python script, no JavaScript function, and no API endpoint produces this number. The arithmetic is stated on the wins page, but no script validates the count against the actual WIN registry. When the model's own internal data is queried, it returns ${accuracyVariantList} — depending on which data source and counting method is used. The denominator is chosen to include only ${failures.dome_claimed_failures} acknowledged falsifications while excluding unresolved open problems and below-detection-threshold entries. The headline number is manually entered with a self-serving denominator. See <a href="#part6" onclick="showTab('predictions');return false">Section 6.6</a> for the full source-code analysis.</p>
 </div>
 
 <h2>Downloads</h2>

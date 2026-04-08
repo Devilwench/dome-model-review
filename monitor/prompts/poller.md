@@ -130,9 +130,31 @@ TEST WINDOWS:
 
 When a window expires, set `analyst_priority: "HIGH"` — the analyst needs to determine whether the outcome should be added to `data/uncounted-failures.json`.
 
+### 11. Check Accuracy Data Sources
+
+Our review cites specific accuracy percentages computed from the dome's own API endpoints. These are stored in `data/uncounted-failures.json` under `dome_accuracy_variants.sources`. Each poll, spot-check these values — if the dome changes its data, our cited figures become wrong.
+
+**Fetch and compare:**
+```bash
+# Read our stored values
+node -e "const f=JSON.parse(require('fs').readFileSync('data/uncounted-failures.json','utf8'));(f.dome_accuracy_variants?.sources||[]).forEach(s=>console.log(s.endpoint,s.formula,'=',s.result))"
+
+# Fetch current dome API data (if endpoints are accessible)
+curl -s "https://john09289.github.io/predictions/api/scorecard.json" | node -e "process.stdin.on('data',d=>{try{const j=JSON.parse(d);console.log('scorecard:',JSON.stringify(j))}catch(e){console.log('scorecard: fetch failed')}})"
+curl -s "https://john09289.github.io/predictions/api/current/results.json" | node -e "process.stdin.on('data',d=>{try{const j=JSON.parse(d);console.log('results:',JSON.stringify(j))}catch(e){console.log('results: fetch failed')}})"
+```
+
+If any endpoint returns different numbers than what we have stored, flag as **critical** — it means our published review cites stale figures. Set `analyst_priority: "HIGH"` with a note to update `dome_accuracy_variants` in `data/uncounted-failures.json`.
+
+Also check:
+- **Headline accuracy figure**: Does the dome still claim `{{DOME_CLAIMED_ACCURACY}}`? If it changed (e.g., to 95% after adding new WINs), flag as critical — our `dome_claimed_accuracy` field needs updating.
+- **DOME_VERSION**: Does the dome still identify as `V51.1`? If it's moved to V51.2 or V52, flag as critical. The decider should update the `DOME_VERSION` constant in `build-scripts/generate-html.js`.
+- **Failure count**: Does the dome still claim only `{{DOME_CLAIMED_FAILURES}}` failures? New falsifications or reclassifications change our denominator analysis.
+
 ## Critical Rules
 - **Distinguish automated from manual commits.** monitor.py commits every 5 minutes; pull_data.py every 6 hours. These are noise unless their content changes.
 - **Be thorough but fast.** The poller runs every 4 hours — don't spend time on analysis, that's the analyst's job.
 - **Always check canary traps.** This is the early warning system.
 - **Track test windows.** When prediction deadlines pass, the dome tends to update the site within 24-48 hours. That's when failures get "refined" away.
+- **Check accuracy data sources.** When API-derived figures drift, our review becomes wrong.
 - **Log everything.** Even quiet polls get a summary line.

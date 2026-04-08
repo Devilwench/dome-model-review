@@ -10,6 +10,36 @@
   "dome_claimed_failures": 4,
   "dome_claimed_accuracy": "94.5%",
   "dome_accuracy_formula": "69 / (69 + 4)",
+  "dome_accuracy_variants": {
+    "_meta": "Different accuracy figures computed from the dome's own internal data sources. None agree with the headline figure. Poller should re-check these periodically.",
+    "sources": [
+      {
+        "endpoint": "api/scorecard.json",
+        "formula": "26 / 27",
+        "result": "96.3%",
+        "notes": "Scorecard pass/fail ratio"
+      },
+      {
+        "endpoint": "api/current/results.json",
+        "formula": "33 / 34",
+        "result": "97.0%",
+        "notes": "Current results pass/fail"
+      },
+      {
+        "endpoint": "wins page arithmetic (excluding open problems)",
+        "formula": "67 / 75",
+        "result": "89.3%",
+        "notes": "WIN count divided by total including open problems"
+      },
+      {
+        "endpoint": "wins page arithmetic (dome's own denominator, pre-V51.1)",
+        "formula": "67 / 71",
+        "result": "94.7%",
+        "notes": "Dome's own count before V51.1 reclassification"
+      }
+    ],
+    "summary_text": "returns {{VARIANT_LIST}} — depending on which data source and counting method is used"
+  },
   "entries": [
     {
       "id": "FAIL-001",
