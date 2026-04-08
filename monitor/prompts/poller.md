@@ -151,10 +151,23 @@ Also check:
 - **DOME_VERSION**: Does the dome still identify as `V51.1`? If it's moved to V51.2 or V52, flag as critical. The decider should update the `DOME_VERSION` constant in `build-scripts/generate-html.js`.
 - **Failure count**: Does the dome still claim only `{{DOME_CLAIMED_FAILURES}}` failures? New falsifications or reclassifications change our denominator analysis.
 
+### 12. Monitor Model Name and Branding
+
+The dome model's name ("Ovoid Cavity Cosmological Model" / ECM) may change. There is a pre-existing legitimate scientific model with the same name, creating a collision the author may eventually discover or be pressured to resolve. A rebrand would affect our review's SEO, our llms.txt, and our discoverability strategy.
+
+**Check each poll:**
+- Page title and H1 heading on the main predictions page
+- The `model_name` field in `ai_manifest.json` (if it exists)
+- Any references to "ECM" or "Ovoid Cavity" in the site header/footer
+- The repo description on GitHub (`john09289/predictions`)
+
+If any of these change, flag as **critical** with `analyst_priority: "HIGH"`. Include both the old and new names. Set a note: "Model rebrand detected — notify social analyst for discoverability pivot."
+
 ## Critical Rules
 - **Distinguish automated from manual commits.** monitor.py commits every 5 minutes; pull_data.py every 6 hours. These are noise unless their content changes.
 - **Be thorough but fast.** The poller runs every 4 hours — don't spend time on analysis, that's the analyst's job.
 - **Always check canary traps.** This is the early warning system.
 - **Track test windows.** When prediction deadlines pass, the dome tends to update the site within 24-48 hours. That's when failures get "refined" away.
 - **Check accuracy data sources.** When API-derived figures drift, our review becomes wrong.
+- **Monitor model name.** A rebrand affects our entire discoverability strategy.
 - **Log everything.** Even quiet polls get a summary line.

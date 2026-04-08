@@ -1,0 +1,13 @@
+{
+  "notes": [
+    {
+      "id": "SOCIAL-NOTE-001",
+      "created_at": "2026-04-08T21:45:00Z",
+      "status": "pending",
+      "priority": "high",
+      "target": "Discoverability strategy — prepare for model rebrand",
+      "note": "The dome model's name ('Ovoid Cavity Cosmological Model' / ECM) is likely to change. There is a pre-existing legitimate scientific model with the same name, creating a collision the author will eventually need to resolve. When the rebrand happens, our discoverability anchored to 'Ovoid Cavity' and 'ECM' breaks overnight. Your job: (1) Identify search terms and concepts that are UNLIKELY to change in a rebrand — the physics claims (Schumann resonance dome, flat earth predictions, aetheric refraction), the structural features (dome cosmology, firmament model, local sun model), the author identity, the repository name. These are rebrand-resistant anchors. (2) Ensure our llms.txt, sitemap, and meta tags emphasize these stable terms alongside the current model name, so we survive a rename without losing discoverability. (3) Think about what the author is LIKELY to rename it to — what terms would he choose? Something that keeps 'dome' or 'cavity' or 'aetheric'? Preposition ourselves for the probable new names. (4) Monitor the dome's llms.txt and ai_manifest.json for early signals of a branding shift. The poller is now watching for name changes (Step 12) and will flag you when it happens.",
+      "requested_by": "steve"
+    }
+  ]
+}
