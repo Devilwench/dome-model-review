@@ -403,146 +403,22 @@ Update `monitor/decisions/open-issues.json` with any new issues discovered and a
 If `open-issues.json` contains more than 50 entries with status "fixed" or "wontfix" that are older than 7 days, move them to `monitor/decisions/closed-issues-archive.json` (append, don't overwrite). Keep only open issues and recently-closed (last 7 days) in the active file. This prevents the file from growing indefinitely and wasting context on irrelevant history.
 
 ### 6. Generate Suggested Patches
-Write to `monitor/decisions/suggested-patches-YYYY-MM-DDTHH-MM.json` (timestamped, same as daily reports — never overwrite a previous run's patches). Patches can target `data/wins.json` or `data/sections.json`. Do NOT write patches for `generate-html.js` or `build-doc-v4.js` — those are infrastructure files.
 
-```json
-{
-  "generated_at": "ISO timestamp",
-  "patches": [
-    {
-      "issue_id": "ISS-NNN",
-      "win_id": "WIN-NNN",
-      "file": "data/wins.json",
-      "field": "claim|finding|detail_evidence|detail_verdict_text|detail_extra|verdict|code_analysis",
-      "find": "exact current text to find (from the PARSED field value, not raw JSON — no escaped quotes)",
-      "replace": "exact replacement text (same encoding as find — plain text with literal HTML tags)",
-      "rationale": "Why this change"
-    }
-  ]
-}
-```
+**Read `monitor/prompts/reference/decider-patches-and-selfapply.md` for the full patch format, encoding rules, verification procedure, self-apply bash scripts, git safety rules, and issue closure workflow.**
 
-**CRITICAL: Patch encoding.** The `find` and `replace` strings must match the *parsed* field value in wins.json, NOT the raw JSON with escape sequences. For example, if the field contains an HTML link like `<a href="https://...">text</a>`, write the find string with literal quotes, not `\"`. The apply script will parse the JSON, do the replacement on the parsed value, and re-serialize. Unicode characters should be literal (e.g., `–` not `\u2013`). If your find string contains `\"` or `\\u`, you're doing it wrong.
+Write patches to `monitor/decisions/suggested-patches-YYYY-MM-DDTHH-MM.json` (timestamped — never overwrite). Patches target `data/wins.json`, `data/sections.json`, or `data/uncounted-failures.json`. Do NOT target infrastructure files.
 
-**CRITICAL: Verify find strings before writing patches.** The most common patch failure is a find string that doesn't match the actual file content — because the text was changed by a prior patch, or you composed the string from memory instead of reading it. Before finalizing your patches JSON, verify EVERY find string actually exists in the target file. For wins.json patches, run:
-```bash
-node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const win=w.find(x=>x.id==='NNN');console.log(win.FIELD.includes('FIRST 60 CHARS OF FIND STRING'))"
-```
-For sections.json patches, run:
-```bash
-node -e "const s=JSON.parse(require('fs').readFileSync('data/sections.json','utf8'));console.log(s.SECTION_ID.html.includes('FIRST 60 CHARS OF FIND STRING'))"
-```
-If the result is `false`, your find string is stale. Re-read the field and compose a new find string from the CURRENT text. Do not write a patch you haven't verified — a 100% apply rate is better than a high patch count with failures.
-
-**CRITICAL: JSON validity.** Your output files MUST be valid JSON. Common mistakes that break parsing:
-- Unescaped double quotes inside string values — if your text contains a word in "quotes", you MUST escape them as `\"quotes\"` in the JSON output
-- Unescaped newlines inside string values — use `\n` not literal newlines
-- Trailing commas after the last item in an array or object
-Before writing any JSON file, mentally verify that all string values have their internal quotes escaped.
-
-**Patch target files.** Patches can target `data/wins.json` (WIN fields), `data/sections.json` (prose sections), or `data/uncounted-failures.json` (acknowledged failures). The first two are required — the build fails without them. The `apply-patches.js` script handles both files. Prose section issues (SEC-*, KILLSHOT-*, etc.) are directly patchable via find/replace against sections.json. Do NOT write patches for `generate-html.js` or `build-doc-v4.js` — those are infrastructure files that read from the JSON data sources.
+Key rules (details in reference file):
+- Find/replace strings must match **parsed** field values, not raw JSON
+- Verify EVERY find string exists in the current file before writing the patch
+- All output files must be valid JSON (escape internal quotes, no trailing commas)
 
 ### 6b. Self-Apply Easy Patches
 
-After writing your patches file, you can **apply simple patches yourself** instead of waiting for a human. This eliminates staleness (the #1 cause of patch failure) and keeps the review continuously up to date.
+**CAN self-apply:** Text edits to wins.json fields, code_analysis tags, sections.json prose.
+**MUST NOT self-apply:** Verdict changes, infrastructure file changes, structural HTML changes.
 
-**What you CAN self-apply:**
-- Text edits to wins.json fields: `detail_evidence`, `detail_verdict_text`, `detail_extra`, `detail_claim`, `finding`, `claim`
-- `code_analysis` tag updates/merges
-- Text edits to `sections.json` prose (the `html` field)
-
-**What you MUST NOT self-apply (leave for human):**
-- `verdict` changes — these shift the review's narrative and need human judgment
-- Any patch targeting infrastructure files (`generate-html.js`, `build-doc-v4.js`, `build.js`)
-- Structural HTML changes (new sections, tab reordering, layout changes)
-
-**Self-apply procedure:**
-
-Each agent session runs in its own isolated directory. You must clone fresh to get git access.
-The authenticated remote URL is available from the workspace's existing git config.
-
-```bash
-# 0. Clone fresh WITH credentials (plain https:// clone has no push auth)
-SESSION=$(pwd | grep -oP '/sessions/[^/]+')
-WORKSPACE="${SESSION}/mnt/dome-model-review"
-CLONE="${SESSION}/dome-review-clean"
-# Extract the authenticated remote URL from the workspace .git/config
-AUTH_URL=$(git -C "${WORKSPACE}" remote get-url origin 2>/dev/null)
-if [ -z "$AUTH_URL" ] || [[ "$AUTH_URL" != *"x-access-token"* ]]; then
-  echo "WARNING: No authenticated URL found in workspace. Falling back to unauthenticated clone (push will fail)."
-  AUTH_URL="https://github.com/funwithscience-org/dome-model-review.git"
-fi
-git clone "$AUTH_URL" ${CLONE}
-cd ${CLONE}
-npm install
-
-# Update workspace sync path in build.js to match this session
-sed -i "s|/sessions/[^/]*/mnt/dome-model-review|${WORKSPACE}|" build.js
-
-# 1. Apply your patches (note the output — track which applied and which failed)
-node build-scripts/apply-patches.js /path/to/your/suggested-patches-YYYY-MM-DDTHH-MM.json
-
-# 2. Build and test
-node build.js html 2>&1 | tail -5
-node test.js 2>&1 | tail -5
-
-# 3a. If ALL tests pass → commit and push
-git add data/ docs/ downloads/ monitor/
-git commit -m "Decider self-apply: <brief summary of patches>
-
-Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
-git push origin main
-
-# 3b. If ANY test fails → abandon and leave for human
-echo "SELF-APPLY FAILED: tests did not pass. Patch file left for human review."
-# Do NOT close any issues — the patches weren't applied
-```
-
-**GIT SAFETY — HARD RULES:**
-- NEVER use `git push --force`, `git reset --hard`, `git rebase`, or any history-rewriting command
-- NEVER use `--no-verify` or skip hooks
-- Only `git push origin main` (fast-forward only) — if it fails, stop and leave for human
-- Only create NEW commits — never amend
-- If `git push` is rejected (someone else pushed), do `git pull --rebase origin main` then try push once more. If that also fails, stop.
-
-**After successful publish — close issues and clean up:**
-
-This is critical. You own the full lifecycle now. Don't leave zombie issues or stale patch files.
-
-1. **Close issues that were successfully patched.** For each patch that applied (the `✅` lines from apply-patches.js output), move its issue from `open-issues.json` to `closed-issues.json`:
-```bash
-node -e "
-const fs=require('fs');
-const o=JSON.parse(fs.readFileSync('monitor/decisions/open-issues.json','utf8'));
-const c=JSON.parse(fs.readFileSync('monitor/decisions/closed-issues.json','utf8'));
-const toClose=['ISS-NNN','ISS-NNN']; // list the issue IDs that were successfully patched
-const now=new Date().toISOString();
-toClose.forEach(id=>{
-  const idx=o.issues.findIndex(i=>i.id===id);
-  if(idx>=0){const issue=o.issues.splice(idx,1)[0];issue.status='fixed';issue.fixed_at=now;issue.fixed_by='decider-self-apply';c.issues.push(issue)}
-});
-o.last_updated=now;
-fs.writeFileSync('monitor/decisions/open-issues.json',JSON.stringify(o,null,2));
-fs.writeFileSync('monitor/decisions/closed-issues.json',JSON.stringify(c,null,2));
-console.log('Closed',toClose.length,'issues. Open:',o.issues.length,'Closed:',c.issues.length);
-"
-```
-Do NOT mark issues as `"patched"` and leave them — that's the old human-will-flush model. You applied and published, so they're `"fixed"`.
-
-2. **Archive the patch file** to keep the decisions/ directory clean:
-```bash
-mv /path/to/suggested-patches-YYYY-MM-DDTHH-MM.json monitor/decisions/applied-patches/
-```
-
-3. **For patches that FAILED to apply** (the `❌` lines): leave those issues open with their current status. They'll get fresh patches on your next run when you read the updated text.
-
-4. **For verdict-change patches you couldn't self-apply**: leave the patch file in `monitor/decisions/` (don't archive it) and note in your briefing that it needs human review. Mark those issues as `status: "pending-human"` so they're clearly distinguished from regular open issues.
-
-5. **Note in your daily report**: how many patches self-applied, how many failed, how many issues closed, and whether any verdict changes are queued for human review.
-
-**Safety net:** The test suite (2000+ tests) validates schema, HTML consistency, links, tabs, and data-prose cross-references. If tests pass, the patch is safe to publish. If you're ever unsure whether a patch is "easy" or consequential, err on the side of leaving it for human review.
-
-**Important:** Because you clone fresh each run, you always have the latest code. If `git push` is rejected, someone pushed while you were working — do ONE `git pull --rebase origin main` and retry. If that also fails, stop and leave for human.
+**Read the reference file above** for the full self-apply procedure (clone, apply, build, test, push, close issues). The procedure includes git safety rules, issue closure scripts, and the complete clone-with-credentials setup.
 
 ### 7. Write Morning Briefing
 Write a human-readable summary to `monitor/decisions/morning-briefing.txt`. Start with a timestamp header. This should be scannable in 30 seconds:
