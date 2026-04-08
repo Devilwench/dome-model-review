@@ -164,6 +164,21 @@ Check `monitor/analyst/category-proposals/` for new category proposals (CAT-NNN.
 3. Summarize the proposal in the morning briefing
 4. **After human approves and builds the structure**: create expansion tracker items for the content fill, flag curmudgeon for first-review after content is live
 
+### 1h. Process Social Analyst Outputs
+
+Check `monitor/social/drafts/` for new machine-readable files social has prepared, and check social's latest report for issues filed or decider-routed items.
+
+**Social owns:** `docs/llms.txt`, `docs/sitemap.xml`, `docs/robots.txt`, and drafts of new machine-facing files. Social does NOT own content — it owns how content is presented to LLMs and crawlers.
+
+**What to accept:**
+- Draft machine-readable files in `monitor/social/drafts/` (e.g., llms-full.txt, structured claim JSON). Review for accuracy against current data, then deploy to `docs/`.
+- Proposed meta tag or ClaimReview fixes for `generate-html.js` — implement as patches.
+- Sitemap or robots.txt updates social couldn't deploy (e.g., if a new page was added by the build).
+
+**What to reject:**
+- Any patch that modifies `data/wins.json`, `data/sections.json`, `data/uncounted-failures.json`, or prose content. Social doesn't own content — it owns discoverability. If social submits a content change, **reject it** and log a tinker action item: "Social attempted content modification — review social.md compliance" with the specifics of what was proposed. This is a prompt adherence issue that tinker should investigate.
+- Any patch targeting build logic (`build-scripts/`) without clear machine-layer justification.
+
 ### 2. Process Curmudgeon Reviews via Digest
 
 A preprocessing script (`build-scripts/digest-reviews.js`) generates a compact digest of all unprocessed curmudgeon reviews at `monitor/curmudgeon/pending-digest.json`. This digest contains every finding from every review — not just summaries — so nothing gets lost even if you never open the full review file.

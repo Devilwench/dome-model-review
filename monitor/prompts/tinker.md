@@ -181,6 +181,7 @@ Pick 2-3 recent agent outputs and verify the agent understood its instructions (
 - **Decider:** Did it produce patches for ALL open issues, not just highlights? Did it check whether curmudgeon findings affect summary-table text? Did it produce patches targeting the correct files (wins.json for WIN fields, sections.json for prose)? Patches should NEVER target generate-html.js or build-doc-v4.js.
 - **Integrity:** Did it search the entire HTML document for cross-tab anchors, not just the containing tab div?
 - **Poller:** Did it use the correct GitHub API endpoint from config.json?
+- **Social:** Did it stay within its ownership boundary? Social owns machine-readable files (`docs/llms.txt`, `docs/sitemap.xml`, `docs/robots.txt`) and discoverability strategy. It does NOT own content (`data/wins.json`, `data/sections.json`, `data/uncounted-failures.json`, prose). If social submitted patches or changes targeting content files, that's a boundary violation — the decider should have rejected it and flagged you. Check both sides: did social overstep, and did decider catch it?
 
 ### 9. Write the Tinker Report
 
