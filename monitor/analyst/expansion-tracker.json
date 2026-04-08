@@ -549,13 +549,10 @@
       "issue_ids": [],
       "priority": "high",
       "status": "pending",
-      "notes": "Recovered from write collision. Gravity paradox section — never written by analyst. Three-part argument: (1) dome uses gravity in 49% of WINs (per gravity-dependency-map.json), (2) dome has no gravity theory (g(r) uses WGS84 constants), (3) flat disc geometry contradicts measured gravity field (self-contradictions 2.3, 2.8). Depends on EXP-031 integration (forward reference from Section 1.6). Sources: NOTE-011 spec, gravity-dependency-map.json, EXP-025.json.",
+      "notes": "Recovered from write collision. Gravity paradox section — never written by analyst. Three-part argument: (1) dome uses gravity in 49% of WINs (per gravity-dependency-map.json), (2) dome has no gravity theory (g(r) uses WGS84 constants), (3) flat disc geometry contradicts measured gravity field (self-contradictions 2.3, 2.8). Sources: NOTE-011 spec, gravity-dependency-map.json, EXP-025.json.",
       "created_at": "2026-04-07T21:07:23Z",
       "integrated": false,
-      "output_file": "monitor/analyst/expansions/EXP-034.json",
-      "depends_on": [
-        "EXP-031"
-      ]
+      "output_file": "monitor/analyst/expansions/EXP-034.json"
     },
     {
       "id": "EXP-035",
