@@ -1,62 +1,60 @@
 MORNING BRIEFING — 2026-04-08
-Generated: 2026-04-08T18:30:00Z
-Curmudgeon reviews processed this run: 2 (WIN-057, WIN-059)
-Previous decider run: 2026-04-08 (see status.json)
+Generated: 2026-04-08T21:00:00Z
+Curmudgeon reviews processed this run: 10 (WIN-052 through WIN-060 + EXHIBIT-AB, all Cycle 2)
+Previous decider run: 2026-04-08T03:12:31Z (analyst ran after that)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SITE HEALTH: PASS (minor warning)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Build: ✅ 2074 tests pass, 0 failures
-Integrity: WARN (minor) — killshots h1→h3 skip is false positive; ESA Gaia timeout is known
-All 67 WIN anchors present, all counts match wins.json
+=== SITE HEALTH ===
+Integrity check: WARN (minor) — 2074 tests passing, 0 failures
+  ✅ Build reproducible, all tabs functional, data-prose consistent
+  ⚠ ESA Gaia link timeout (known/transient)
+  ⚠ Killshots h1→h3 hierarchy (confirmed false positive — actual HTML is h1→h2)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EXTERNAL STATUS: QUIET
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Dome site: 16 consecutive quiet polls. No changes to parameters or WIN count.
-⚠️  WATCH: April 9 reset window expires TOMORROW. The dome's April 5-9 observation
-     window for its upcoming eclipse prediction closes. Watch for any outcome claims
-     or updated WIN scores after the window closes.
-No external problem reports filed.
+=== EXTERNAL STATUS ===
+Dome site changes: NONE (17th consecutive quiet poll)
+  Pipeline sluggish: only 2 automated commits today vs typical 12/day
+  No manual commits. V51.0 unchanged. Eclipse test Aug 12, 2026 still featured.
+Threat level: NONE
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-INTERNAL STATUS: CLEAN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Open issues: 1 (ISS-442, pending human editorial decision)
-Closed issues this run: 6 (ISS-449, ISS-622 through ISS-626)
-Patches self-applied: 5 (all passed, 0 failed)
-EXP-030 integrated: WIN-012 Exhibit A graph forensics added
+=== SELF-APPLY THIS RUN ===
+3 patches applied, 0 failed | 5 issues closed | 2 commits pushed
+  ✅ WIN-060: monitoring tag 'hardcoded' → 'none' (ISS-639 — MAJOR fix)
+  ✅ sections.json Kill Shot 6: Remove unsourced 30% threshold, fix 'self-falsifying' label (ISS-643 — CRITICAL fix)
+     - Dome's actual criterion is 50%, not 30%. 'PASS' at 50% is what the dome reports.
+  ✅ WIN-057: '~40% population' → named cities Singapore/Jakarta/Nairobi (ISS-636 — MODERATE fix)
+  ✅ ISS-638: WIN-059 'self-falsified' framing — verified already fixed in WIN-059 detail_evidence
+  ✅ ISS-631: WIN-053 pole aperture — verified already disclosed in text ('estimated from model geometry')
 
-CRITICAL FIXES THIS RUN:
-• 30% threshold error corrected in WIN-059 detail_evidence AND Kill-Shot Test 6 section
-  (dome's actual threshold is 50%; dashboard shows PASS; tolerance was widened after failures)
-• WIN-012 rewritten with full Exhibit A forensics (GRACE satellite impossibility,
-  BOU independent verification, effective DOF, INTERMAGNET data confirmed)
-• WIN-057 numerical inconsistency fixed (600× not 60,000×, 0.01% not 0.0001%)
-• WIN-059 duplicate OPEN-007 sentence removed
+=== INTERNAL STATUS — 13 open issues ===
+Severity breakdown: 2 critical, 5 major, 6 moderate
+Status breakdown: 7 open (patchable), 5 assigned-analyst, 1 pending-human
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TOP 3 PRIORITY ACTIONS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. HUMAN DECISION NEEDED — ISS-442: Verdict taxonomy for 'Misleading' category
-   (23 WINs). Consider subcategory 'Non-Discriminating' or redistribute WINs that
-   merely have standard physics explanations to 'Std Model Explains'.
+NEW ISSUES CREATED (17, from Cycle 2 processing):
+  ISS-627/628 (WIN-052, CRITICAL): MOND priority + galaxy ontology underplayed → EXP-035 (analyst)
+  ISS-629 (WIN-052, MAJOR): Cross-WIN 047/048/052 incoherence → EXP-035
+  ISS-630 (WIN-052, MODERATE): MOND vs ΛCDM framing confusion → open
+  ISS-632 (WIN-053, MODERATE): Missing Section 6.8 cross-reference → open
+  ISS-633 (WIN-054, MAJOR): Finding conflates 'genuine anomaly' + 'non-discriminating' → open
+  ISS-634 (WIN-054, MODERATE): Kim et al. 2021 DOI verification needed → open
+  ISS-635 (WIN-055, MODERATE): WIN-055/WIN-047 duplication not resolved → open
+  ISS-637 (WIN-058, MODERATE): 600-700× explanation needed → open
+  ISS-640 (WIN-060, MODERATE): SAA group overlap distinction missing → open
+  ISS-641/642 (null, MAJOR): Exhibits A & B coverage gap → EXP-036 (analyst)
+  ISS-643 (null, CRITICAL): Kill Shot 6 30% threshold → FIXED this run
 
-2. WATCH TOMORROW (April 9) — Dome reset window expires. Check for post-window
-   outcome claims or WIN count updates.
+EXISTING ISSUE STATUS:
+  ISS-442 (MAJOR, pending-human): Verdict taxonomy (Misleading subcategories) — awaiting human decision
 
-3. ANALYST QUEUE — EXP-031 (Section 1.6 Dielectric Foundation) is next. EXP-032
-   (Section 1.7 Gravity Paradox) depends on it. No action needed; analyst will pick up.
+=== TOP 3 PRIORITY ACTIONS ===
+1. [HUMAN] ISS-442: Decide verdict taxonomy — should 'Misleading' be split into 'Non-Discriminating' + 'Misleading'? Affects 23 WINs and reviewer's perception of dome author intent.
+2. [ANALYST] EXP-035 (high priority): Restructure WIN-052 — galaxy ontology crisis must LEAD the rebuttal; MOND priority argument must be explicit vs dome's zero-equation label.
+3. [ANALYST] EXP-036 (high priority): Write new section addressing dome's home page Exhibits A & B — r=0.992 correlation and AI=1.152 asymmetry index are the dome's most quoted stats, yet unaddressed.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CURMUDGEON PROGRESS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Cycle 2, Phase 1: 59/67 WINs reviewed
-Remaining: WIN-060 through WIN-067 (8 WINs pending)
-Last reviewed: WIN-059 (NMP Siberian deceleration)
-Next: WIN-060 (SAA western cell shift)
+=== CURMUDGEON PROGRESS ===
+Cycle 2, Phase 1: 60/67 WINs reviewed (last: WIN-060, 2026-04-08T20:15Z)
+7 WINs remaining for Cycle 2: WIN-061 through WIN-067
+Next expected: WIN-061
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CODE ANALYSIS TAG STATUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-(query live: node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const r=w.filter(x=>x.code_analysis&&x.code_analysis.reviewed);console.log(r.length,'WINs with validated tags,',67-r.length,'pending')")
+=== CODE ANALYSIS TAG STATUS ===
+All 67 WINs have code_analysis tags (reviewed=true)
+This run fixed: WIN-060 monitoring tag ('hardcoded' → 'none')
+Hardcoded: 29 | Live fetch: 3 | None: 35 (WIN-060 now in 'none' group)

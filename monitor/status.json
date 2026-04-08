@@ -1,8 +1,8 @@
 {
-  "last_run": "2026-04-08T03:14:38Z",
-  "last_agent": "decider",
-  "run_type": "Decider run. WIN-059 critical (30% threshold) + major (duplicate sentence) fixed. Kill-Shot Test 6 section same fix. WIN-057 major (60,000x->600x inconsistency) fixed. EXP-030 integrated into WIN-012 (Exhibit A GRACE forensics). ISS-449/622-626 closed. ISS-442 pending human.",
-  "mode": "Mode 2 (cleanup)",
+  "last_run": "2026-04-08T07:07:02Z",
+  "last_agent": "poller",
+  "run_type": "Routine poll. 18th consecutive quiet poll. No substantive changes. Pipeline cadence recovered.",
+  "mode": "poll",
   "status": "complete",
   "changes_pending_analysis": 0,
   "patches_applied_this_run": {
@@ -30,13 +30,16 @@
   "pipeline_bugs": [],
   "external_reports": "No new external reports. GitHub CLI unavailable.",
   "integrity_status": "WARN (minor) — killshots h1→h3 is false positive (verified h1→h2 in HTML). ESA Gaia timeout known. 2050 tests pass.",
-  "dome_site_status": "QUIET — 17 consecutive quiet polls. Pipeline sluggish (2 commits Apr 8 vs usual 12-16/day). April 9 reset window expires tomorrow.",
+  "dome_site_status": "QUIET — 18 consecutive quiet polls. Pipeline cadence recovered (5 commits Apr 8 through 07:05 UTC). April 9 reset window expires tomorrow.",
   "build_needed": false,
-  "build_note": "Build passing. 2074 tests. All decider patches self-applied and committed.",
+  "build_note": "Build passing. 2074 tests. NOTE-015 patches applied and built.",
   "human_notes_status": "All notes consumed.",
   "priority_for_human": [
-    "1. DECISION: ISS-442 verdict taxonomy (Misleading subcategories)",
-    "2. WATCH: April 9 dome site reset window expires TOMORROW"
+    "1. PUSH: 2 commits ready in /sessions/elegant-fervent-curie/dome-review-clean/ (NOTE-015 gravity patches + WIN-062 fingerprint). No git auth available.",
+    "2. REVIEW: EXP-030 (WIN-012 Exhibit A) still awaiting decider integration.",
+    "3. DECISION: ISS-442 verdict taxonomy (Misleading subcategories).",
+    "4. PIPELINE: EXP-031/032 not yet in expansion tracker.",
+    "5. OBSERVE: Dome site pipeline sluggish."
   ],
   "expansions_just_completed": [
     "EXP-030 (WIN-012 Exhibit A — graph forensics + statistical rebuttal + BOU verification)"
