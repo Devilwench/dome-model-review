@@ -579,9 +579,12 @@
         "ISS-637"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "created_at": "2026-04-08T15:54:16.280Z",
-      "notes": "Document evolution: inject_ai_layer.py (covert) → llms.txt/evidence_graph (overt). Fetch and analyze actual files first. Check for circular refs in evidence_graph, steelman path omissions, claim_index treatment of falsified WINs."
+      "notes": "Document evolution: inject_ai_layer.py (covert) → llms.txt/evidence_graph (overt). Fetch and analyze actual files first. Check for circular refs in evidence_graph, steelman path omissions, claim_index treatment of falsified WINs.",
+      "integrated": true,
+      "integrated_at": "2026-04-08T19:14:44Z",
+      "output_file": "monitor/analyst/expansions/EXP-039.json"
     },
     {
       "id": "EXP-040",
@@ -619,6 +622,87 @@
       "status": "pending",
       "created_at": "2026-04-08T15:54:16.280Z",
       "notes": "Smoking-gun: both horizontal (a = πR) and vertical (δ = R) dome scales are globe-derived. Combine with existing disc radius fingerprint for devastating one-two punch."
+    },
+    {
+      "id": "EXP-043",
+      "target": "WIN-027 detail_evidence — V12 superseded quadratic law not mentioned",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-027.json",
+      "issue_ids": [
+        "ISS-660"
+      ],
+      "category": "steelman",
+      "priority": "major",
+      "status": "pending",
+      "notes": "WIN-027 curmudgeon Cycle 1: dome's V12 evolution note reveals quadratic law is SUPERSEDED by H(r) function in V13. Our review critiques V12 correction factor but model no longer uses it — we may be attacking a straw man. Needs update noting V12→V13 evolution and why the V13 replacement is equally problematic. Requires reading raw-text/05-model.txt for evolution note context.",
+      "created_at": "2026-04-08T19:14:44Z",
+      "completed_at": null,
+      "output_file": null,
+      "integrated": false
+    },
+    {
+      "id": "EXP-044",
+      "target": "WIN-002 detail_evidence — WIN-002/WIN-029 tension unaddressed",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-002.json",
+      "issue_ids": [
+        "ISS-661"
+      ],
+      "category": "steelman",
+      "priority": "major",
+      "status": "pending",
+      "notes": "Dome explicitly addresses WIN-002/WIN-029 tension in evolution page: 'Not contradictory. Complementary. The dome medium damps the resonance (WIN-002), and the damped measured frequency still back-derives the correct dome height (WIN-029).' Our review doesn't quote or rebut this. Need to explain why the complementary framing fails — specifically that H(r) supremum is 8,537 km and no spatial average reaches 9,086 km.",
+      "created_at": "2026-04-08T19:14:44Z",
+      "completed_at": null,
+      "output_file": null,
+      "integrated": false
+    },
+    {
+      "id": "EXP-045",
+      "target": "WIN-024 detail_evidence — longitude mismatch and code evidence missing",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-024.json",
+      "issue_ids": [
+        "ISS-662",
+        "ISS-663"
+      ],
+      "category": "steelman",
+      "priority": "major",
+      "status": "pending",
+      "notes": "Two holes: (1) LONGITUDE MISMATCH unmentioned — Roaring 40s encircle entire latitude band, impossible under dome where southern latitudes compress at rim. (2) Code evidence missing — 2 of 3 validation domains (Domains 27, 33) hardcode pass=True, making them untestable. Both need addition to detail_evidence.",
+      "created_at": "2026-04-08T19:14:44Z",
+      "completed_at": null,
+      "output_file": null,
+      "integrated": false
+    },
+    {
+      "id": "EXP-046",
+      "target": "WIN-030 detail_evidence — paragraph redundancy and finding field duplicate",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-030.json",
+      "issue_ids": [
+        "ISS-664"
+      ],
+      "category": "steelman",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "WIN-030 detail_evidence paragraphs 1 and 2 make the same WGS84-projection argument twice. Remove the duplicated content in para 2 ('More fundamentally, the RMS improvement is large precisely because...') and replace with a tighter statement that adds new information (e.g., note that AIC/BIC penalization would show the ellipse has negative evidence value when accounting for 4 extra parameters).",
+      "created_at": "2026-04-08T19:14:44Z",
+      "completed_at": null,
+      "output_file": null,
+      "integrated": false
+    },
+    {
+      "id": "EXP-047",
+      "target": "WIN-031 detail_evidence — shallow rebuttal needs expansion",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-031.json",
+      "issue_ids": [
+        "ISS-665"
+      ],
+      "category": "steelman",
+      "priority": "major",
+      "status": "pending",
+      "notes": "Curmudgeon Cycle 1: rebuttal is too shallow, dismisses claim in 2-3 sentences without acknowledging what dome actually claims about Antarctic ice boundary. Need to expand with what the dome's boundary prediction actually says, why standard geomagnetic models explain it without a dome boundary, and include any observational tests.",
+      "created_at": "2026-04-08T19:14:44Z",
+      "completed_at": null,
+      "output_file": null,
+      "integrated": false
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z"

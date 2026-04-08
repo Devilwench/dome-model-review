@@ -1,6 +1,6 @@
 {
   "description": "Archived closed issues. Decider does not need to read this file.",
-  "last_updated": "2026-04-08T17:10:53.081Z",
+  "last_updated": "2026-04-08T19:16:04Z",
   "issues": [
     {
       "id": "ISS-001",
@@ -7258,6 +7258,36 @@
       "fix_details": null,
       "fix_date": null,
       "fixed_at": "2026-04-08T18:33:09.491Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-637",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "content-update",
+      "status": "fixed",
+      "found_by": "analyst-v51.1-backfill",
+      "found_at": "2026-04-08T15:53:58.971Z",
+      "description": "V51.1 added AI onboarding infrastructure: llms.txt, evidence_graph.json, claim_index.json, ai_manifest.json. This is the public-facing evolution of inject_ai_layer.py — covert code-level steering → overt standards-compliant AI narrative control. Needs documentation in Part 2b (Code Analysis). Also need to fetch and analyze the actual files for circular references, steelman path omissions, and whether claim_index includes falsified WINs.",
+      "source": "analysis-20260408-v51-1-update",
+      "affected_sections": [
+        "part2b"
+      ],
+      "assigned_at": "2026-04-08T16:04:07.812Z",
+      "fix_details": "EXP-039 integrated — AI onboarding infrastructure analysis added to Part 2b",
+      "fix_date": "2026-04-08"
+    },
+    {
+      "id": "ISS-658",
+      "win_id": "WIN-069",
+      "severity": "minor",
+      "category": "missing_argument",
+      "description": "12 roads and 9 cross-links cited in detail_claim but our evidence does not challenge for selection bias. With thousands of possible Australian road routes, the cherry-picking concern is real and should be noted.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-08",
+      "status": "fixed",
+      "fix_details": "Decider self-apply: added selection bias paragraph to WIN-069 detail_evidence",
+      "fix_date": "2026-04-08",
       "fixed_by": "decider-self-apply"
     }
   ]
