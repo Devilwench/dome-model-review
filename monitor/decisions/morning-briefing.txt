@@ -1,89 +1,72 @@
 MORNING BRIEFING — 2026-04-08
-Generated: 2026-04-08T18:35:00Z
-Curmudgeon reviews processed this run: 2 (WIN-068 and WIN-069 — priority-new Cycle 2)
-Previous decider run: 2026-04-08T10:45:00Z
+Generated: 2026-04-08T19:18:46Z
+Previous decider run: 2026-04-08T18:35:00Z
 
-════════════════════════════════════════════════════════════
+══════════════════════════════════════════════════════
 SITE HEALTH
-════════════════════════════════════════════════════════════
-Integrity: PASS — 2189 tests pass (7 added by WIN-068/069 entries this run).
-Build: CURRENT — no drift.
-Published site: https://funwithscience-org.github.io/dome-model-review/
+══════════════════════════════════════════════════════
+Integrity: WARN (prev report) — duplicate id="dielectric" already fixed in
+  sections.json. NOAA link timeout (transient). Tests: 2196 pass, 0 fail.
+Build: PASSING. Latest commit: 121d487. HTML: 553.7 KB.
 
-════════════════════════════════════════════════════════════
-EXTERNAL STATUS (Dome Site)
-════════════════════════════════════════════════════════════
-QUIET — V51.1 stable since 2026-04-08T22:00Z.
-69 WINs confirmed, 94.5% claimed accuracy (inconsistency with 93.3% on evolution page persists).
-Auto-commit only. No substantive changes.
+══════════════════════════════════════════════════════
+EXTERNAL STATUS
+══════════════════════════════════════════════════════
+Dome site: QUIET — V51.1 stable, 69 WINs, 94.5% accuracy.
+Eclipse test PRED-073/074 active for Aug 12 2026.
+Ongoing: Homepage 94.5% vs Evolution 93.3% inconsistency.
 
-════════════════════════════════════════════════════════════
-THIS RUN SUMMARY
-════════════════════════════════════════════════════════════
-Mode 2 — curmudgeon digest cleanup (WIN-068/069 priority-new reviews).
+══════════════════════════════════════════════════════
+INTERNAL STATUS — THIS RUN
+══════════════════════════════════════════════════════
+Issues closed this run: 2 (ISS-637, ISS-658)
+Issues created this run: 6 (ISS-660 through ISS-665)
+Open issues: 10 total
+  pending-human: 1 (ISS-442 verdict taxonomy)
+  assigned-analyst: 9
+  patchable: 0
+Closed issues total: 555
 
-Issues created: 10 (ISS-650 to ISS-659)
-Patches applied (self-apply): 9 of 9 patchable
-  ✅ ISS-650 MAJOR: Fixed Chapman 1933 DOI — was doi:10.1098/rsta.1933.0001 (wrong paper);
-     replaced with plain-text citation of Terrestrial Magnetism and Atmospheric Electricity 38:3
-  ✅ ISS-651 MODERATE: Removed unverified dome quotes from WIN-068; replaced with
-     paraphrase of Steelman Evidence Ladder Tier 1 non-discrimination admission
-  ✅ ISS-652 MODERATE: Fixed Ashour-Chapman link — clarified 2021 Frontiers paper is a
-     review, not the original model; softened "quantitatively predicts" to "predicts the
-     qualitative pattern" (more accurate, harder to attack)
-  ✅ ISS-653 MODERATE: Updated WIN-010/025 detail_group from WIN-010/025 → WIN-010/025/068
-  ✅ ISS-654 MINOR: WIN-068 finding now leads with triple-counting argument
-  ✅ ISS-655 MODERATE: WIN-069 Nullarbor ratio corrected (~1.07 full crossing; 1.00 only for
-     146 km dead-straight central segment)
-  ✅ ISS-656 MODERATE: WIN-069 new paragraph preempts dome defense ("globe can't predict
-     roads either") — rebutted via terrain-based routing and Nullarbor flat-terrain counterexample
-  ✅ ISS-657 MINOR: WIN-069 10,000× precision: now shows range 10,000×-250,000×
-  ✅ ISS-659 MINOR: WIN-027/057 detail_group null → WIN-027/057/069
+Patches self-applied: 2
+  EXP-039 integrated into Part 2b (AI Onboarding Infrastructure subsection)
+  ISS-658 WIN-069 selection bias paragraph added
 
-Issues closed: 9 (ISS-650 through ISS-659, minus ISS-658 deferred)
-Issues deferred: 1
-  - ISS-658 MINOR: WIN-069 selection bias on 12 roads — needs dome source to know
-    selection criteria before challenging. Deferred.
-
-════════════════════════════════════════════════════════════
-OPEN ISSUES (6 total)
-════════════════════════════════════════════════════════════
-ISS-442  MAJOR    pending-human    — Verdict taxonomy: 'Misleading' conflates 4 failure modes
-                                     → Human editorial call required
-ISS-637  MODERATE assigned-analyst — V51.1 AI onboarding (llms.txt, evidence_graph, claim_index)
-                                     → EXP-039 (pending)
-ISS-638  MODERATE assigned-analyst — V51.1 sun altitude split (physical <4,200 / apparent 5,733)
-                                     → EXP-040 (pending, HIGH)
-ISS-640  MODERATE assigned-analyst — V51.1 Steelman Evidence Ladder + Aug 2026 eclipse killshot
-                                     → EXP-041 (pending, HIGH)
-ISS-641  MAJOR    assigned-analyst — δ = 6,371 km globe fingerprint
-                                     → EXP-042 (pending, HIGH)
-ISS-658  MINOR    open            — WIN-069: 12 roads selection bias (deferred)
-
-════════════════════════════════════════════════════════════
+══════════════════════════════════════════════════════
 TOP 3 PRIORITY ACTIONS
-════════════════════════════════════════════════════════════
-1. HUMAN REQUIRED: ISS-442 — Verdict taxonomy decision. 'Misleading' covers four distinct failure
-   modes (duplication, cherry-picking, circularity, non-discrimination). Consider subcategories
-   or a taxonomy note in the methodology section. Human editorial judgment needed.
-   
-2. ANALYST QUEUE: EXP-040/041/042 — Sun altitude split + Steelman Ladder + δ=6,371 fingerprint.
-   All HIGH priority. Analyst processes in order on next runs.
-   
-3. WATCH: August 12 2026 eclipse (127 days away). THREE conflicting dome magnitude predictions
-   (homepage -17 to -21 nT, killshot.html -28.9 nT, code -29.1 nT). Document baseline now
-   before any prediction is amended post-eclipse.
+══════════════════════════════════════════════════════
+1. [HUMAN] ISS-442: Verdict taxonomy decision — split 'Misleading' into
+   subcategories? 23 WINs under one label. Editorial call required.
 
-════════════════════════════════════════════════════════════
+2. [ANALYST] EXP-041 (high priority): Steelman Evidence Ladder + killshot.html
+   analysis. Then EXP-040 (sun altitude split) and EXP-042 (delta=6371 fingerprint).
+
+3. [ANALYST] EXP-043 through EXP-047 (new): Under-covered Cycle 1 holes —
+   WIN-027 V12 law, WIN-002/029 tension, WIN-024 longitude mismatch + hardcoded
+   monitoring, WIN-030 redundancy, WIN-031 shallow rebuttal.
+
+══════════════════════════════════════════════════════
 CURMUDGEON PROGRESS
-════════════════════════════════════════════════════════════
-Phase 1, Cycle 2 — 65/69 reviewed (67 WINs + 2 SEC items reviewed of 69 total)
-WIN-068 and WIN-069 now reviewed (priority-new). 4 WINs remaining for standard Cycle 2 pass
-(WIN-064, WIN-065, WIN-066, WIN-067 Cycle 2 reviews pending).
+══════════════════════════════════════════════════════
+Phase: 1 | Reviewed: 66/69
+Pending Cycle 2: WIN-064, WIN-065, WIN-066, WIN-067
+No reviews to digest this run (all current reviews processed).
+Under-covered processed: 64 WINs with 276 missing holes (many may be stale).
 
-════════════════════════════════════════════════════════════
-CODE ANALYSIS STATUS
-════════════════════════════════════════════════════════════
-69/70 WINs with validated code_analysis tags.
-1 pending: WIN-058b (Bedrock Induction Ratio κ = 1.672) — awaiting curmudgeon review.
-Tags synced to wins.json. run sync-code-analysis.js if needed.
+══════════════════════════════════════════════════════
+CODE ANALYSIS TAG STATUS
+══════════════════════════════════════════════════════
+Reviewed: 69/70 WINs with validated code_analysis tags.
+All 70 WINs have code_analysis populated. No new sync needed this run.
+
+══════════════════════════════════════════════════════
+EXPANSION QUEUE (8 pending)
+══════════════════════════════════════════════════════
+  EXP-039: INTEGRATED this run (AI Onboarding Infrastructure)
+  EXP-040: pending — sun altitude split
+  EXP-041: pending — Steelman Evidence Ladder [HIGH PRIORITY]
+  EXP-042: pending — delta=6371 globe fingerprint
+  EXP-043: pending — WIN-027 V12 superseded law [NEW]
+  EXP-044: pending — WIN-002/029 tension rebuttal [NEW]
+  EXP-045: pending — WIN-024 longitude + hardcoded monitoring [NEW]
+  EXP-046: pending — WIN-030 evidence redundancy [NEW]
+  EXP-047: pending — WIN-031 shallow rebuttal [NEW]
