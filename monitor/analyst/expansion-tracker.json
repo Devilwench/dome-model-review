@@ -515,8 +515,9 @@
       "notes": "Two critical holes: (1) Galaxy ontology crisis needs to LEAD the rebuttal (dome cannot physically accommodate kpc-scale objects within 9,086-km firmament). (2) MOND priority argument must be explicit and prominent — contrast MOND's mathematical content (μ(x), a₀, testable predictions for rotation curves) vs dome's zero-equation label. Also: cross-WIN structural incoherence among 047/048/052 should be explicitly noted. Cannot fix with find/replace — requires significant prose restructuring of both detail_evidence and detail_verdict_text.",
       "created_at": "2026-04-08T07:11:07.630Z",
       "completed_at": null,
-      "integrated": false,
-      "output_file": null
+      "integrated": true,
+      "output_file": null,
+      "integrated_at": "2026-04-08T11:12:21.640Z"
     },
     {
       "id": "EXP-036",
