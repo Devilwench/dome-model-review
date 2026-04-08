@@ -67,11 +67,37 @@ Many status changes are AUTOMATED by monitor.py — not deliberate author decisi
 
 ## Step-by-Step Procedure
 
+### 0. Authenticate `gh` CLI
+Your workspace has a PAT (Personal Access Token) embedded in the git remote URL. Extract and authenticate `gh` at the start of your run:
+
+```bash
+# Extract PAT from workspace git config and authenticate gh
+WORKSPACE=$(find /sessions/*/mnt/dome-model-review -maxdepth 0 2>/dev/null | head -1)
+AUTH_URL=$(git -C "${WORKSPACE}" remote get-url origin 2>/dev/null)
+TOKEN=$(echo "$AUTH_URL" | grep -oP 'x-access-token:\K[^@]+')
+if [ -n "$TOKEN" ]; then
+  echo "$TOKEN" | gh auth login --with-token 2>/dev/null
+  echo "gh authenticated"
+else
+  echo "WARNING: No PAT found. Falling back to curl."
+fi
+```
+
+If `gh` is unavailable or auth fails, use curl with the GitHub API directly (examples provided in step 1b fallback).
+
 ### 1. Check for pending work
 Read `monitor/status.json`. If `changes_pending_analysis` is 0 AND no new external reports exist (step 1b), write "No pending changes" to `monitor/analysis/latest-analysis-summary.txt` and stop.
 
 ### 1b. Check for external problem reports
-Check for new GitHub issues with the `external-report` label on the `funwithscience-org/dome-model-review` repo using `gh issue list --label external-report --state open --json number,title,body,author,createdAt`. For each new issue not yet logged in `monitor/external-reports/`:
+Check for new GitHub issues with the `external-report` label on the `funwithscience-org/dome-model-review` repo using `gh issue list --label external-report --state open --json number,title,body,author,createdAt`. 
+
+**Fallback if `gh` fails:** Use curl:
+```bash
+# List external-report issues
+curl -s "https://api.github.com/repos/funwithscience-org/dome-model-review/issues?labels=external-report&state=open" | node -e "process.stdin.on('data',d=>JSON.parse(d).forEach(i=>console.log(i.number,i.title)))"
+```
+
+For each new issue not yet logged in `monitor/external-reports/`:
 
 1. Read the full issue body
 2. Apply the same kernel-of-truth analysis you'd apply to any claim — assume the reporter found something real
