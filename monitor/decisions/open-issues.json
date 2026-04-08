@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-08T16:30:36.056Z",
+  "last_updated": "2026-04-08T17:11:32.364Z",
   "issues": [
     {
       "id": "ISS-442",
@@ -92,6 +92,16 @@
       "found_at": "2026-04-08T16:30:36.055Z",
       "description": "New data file data/uncounted-failures.json tracks dome predictions that failed but are not counted in the dome accuracy denominator. Pipeline agents (poller, analyst) should monitor for new prediction outcomes and add FAIL-NNN entries when predictions are quietly removed, frozen as pending, refined, or suspended without being counted as failures. The build computes {{UNCOUNTED_FAILURES}} from this file. See existing entries (FAIL-001 through FAIL-004) for schema.",
       "source": "human-direction"
+    },
+    {
+      "id": "ISS-643",
+      "win_id": null,
+      "severity": "minor",
+      "category": "infrastructure",
+      "description": "DOME_VERSION in generate-html.js is a manual constant. Poller should auto-update it when it detects a dome version change (e.g., V51.1 → V51.2). Currently requires a human edit to propagate.",
+      "source": "human",
+      "found_date": "2026-04-08",
+      "status": "open"
     }
   ]
 }
