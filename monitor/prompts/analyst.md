@@ -89,15 +89,19 @@ If `gh` is unavailable or auth fails, use curl with the GitHub API directly (exa
 Read `monitor/status.json`. If `changes_pending_analysis` is 0 AND no new external reports exist (step 1b), write "No pending changes" to `monitor/analysis/latest-analysis-summary.txt` and stop.
 
 ### 1b. Check for external problem reports
-Check for new GitHub issues with the `external-report` label on the `funwithscience-org/dome-model-review` repo using `gh issue list --label external-report --state open --json number,title,body,author,createdAt`. 
+Check for new GitHub issues on the `funwithscience-org/dome-model-review` repo. Check ALL open issues, not just labeled ones — reporters may not use the template, and labels may not be applied:
+
+```bash
+gh issue list --state open --json number,title,body,author,createdAt,labels 2>/dev/null
+```
 
 **Fallback if `gh` fails:** Use curl:
 ```bash
-# List external-report issues
-curl -s "https://api.github.com/repos/funwithscience-org/dome-model-review/issues?labels=external-report&state=open" | node -e "process.stdin.on('data',d=>JSON.parse(d).forEach(i=>console.log(i.number,i.title)))"
+# List ALL open issues (not just labeled ones)
+curl -s "https://api.github.com/repos/funwithscience-org/dome-model-review/issues?state=open" | node -e "process.stdin.on('data',d=>JSON.parse(d).forEach(i=>console.log(i.number,i.title,i.labels.map(l=>l.name).join(','))))"
 ```
 
-For each new issue not yet logged in `monitor/external-reports/`:
+For each open issue not yet logged in `monitor/external-reports/`:
 
 1. Read the full issue body
 2. Apply the same kernel-of-truth analysis you'd apply to any claim — assume the reporter found something real
