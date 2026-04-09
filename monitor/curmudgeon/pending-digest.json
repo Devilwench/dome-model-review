@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-04-09T03:10:30.612Z",
+  "generated_at": "2026-04-09T07:04:25.657Z",
   "total_reviews": 69,
-  "already_processed": 132,
-  "pending_count": 3,
+  "already_processed": 136,
+  "pending_count": 0,
   "severity_breakdown": {
     "critical": 0,
-    "major": 2,
-    "moderate": 1,
+    "major": 0,
+    "moderate": 0,
     "minor": 0,
     "none": 0
   },
-  "needs_full_read_count": 2,
+  "needs_full_read_count": 0,
   "under_covered_processed": [
     {
       "win_id": "WIN-001",
@@ -1059,13 +1059,9 @@
     {
       "win_id": "WIN-048",
       "topic": "CMB Axis of Evil — Cycle 2 re-review after analyst expansion integration",
-      "issues_created": 0,
+      "issues_created": 1,
       "holes_found": 6,
       "missing_holes": [
-        {
-          "severity": "critical",
-          "summary": "TRIPLE-DUPLICATED PARAGRAPH in detail_evidence. The paragraph beginning 'A dome defender might reinterpret the CMB as thermal emission from the firmament itself at 2.725 K — but a uniform dome surface...' appears THREE times verbatim (starting at approximately characters 1780, 2300, and 2820). This "
-        },
         {
           "severity": "major",
           "summary": "code_analysis.relabels_standard is set to TRUE in wins.json, but this is incorrect. The Cycle 1 review explicitly argued it should be FALSE (anomaly hijacking ≠ relabeling), yet the tag was never corrected. The CMB Axis of Evil is not a phenomenon that standard physics explains and the dome renames "
@@ -1465,6 +1461,30 @@
       ]
     },
     {
+      "win_id": "WIN-062",
+      "topic": "Tesla longitudinal wave 1.574c",
+      "issues_created": 0,
+      "holes_found": 4,
+      "missing_holes": [
+        {
+          "severity": "moderate",
+          "summary": "Cycle 1 identified that our text presented two different velocity numbers (471,240 km/s from Tesla vs 472,400 km/s computed from circumference/time) without explaining the discrepancy. The current text now states '40,075/0.08484 ≈ 472,400 km/s — a 0.25% difference from Tesla's stated figure, reflect"
+        },
+        {
+          "severity": "moderate",
+          "summary": "WIN-001's evidence text has a significant problem: the final paragraph about the dome's version history ('The dome's own version history acknowledges this...') is repeated FOUR times verbatim. This is a copy-paste bug that a dome defender could use to dismiss our review as sloppily assembled. While "
+        },
+        {
+          "severity": "minor",
+          "summary": "Our text says the dome's number is '1.574c' but Tesla's patent gives 471,240 km/s which is 471,240/299,792.458 = 1.5719c. The dome rounds this up to 1.574c (a 0.13% discrepancy). Our text now includes 'the dome relabels globe circumference as disc diameter' but doesn't flag this small numerical infl"
+        },
+        {
+          "severity": "minor",
+          "summary": "The cross-reference link points to Section 6.2 via '#part6' with onclick='showTab(\"predictions\")'. This is correct for V6 numbering. However, the anchor text says 'Section 6.2' — verify the user lands near the 6.2 heading when clicking. The V6 restructure map confirms part6 = predictions tab, and Se"
+        }
+      ]
+    },
+    {
       "win_id": "WIN-063",
       "topic": "Magnetic decay asymmetry ratio",
       "issues_created": 0,
@@ -1489,30 +1509,74 @@
       ]
     },
     {
-      "win_id": "WIN-066",
-      "topic": null,
+      "win_id": "WIN-064",
+      "topic": "P-wave shadow zone geometric lock",
       "issues_created": 0,
-      "holes_found": 5,
+      "holes_found": 4,
       "missing_holes": [
         {
-          "severity": "critical",
-          "summary": "FABRICATED DOI: The citation 'Stephens et al. (2015, Nature Geoscience)' with DOI 10.1038/ngeo2516 resolves to Doetterl et al. (2015) 'Soil carbon storage controlled by interactions between geochemistry and climate' — a paper about soil carbon, not hemispheric energy balance. A dome defender checkin"
-        },
-        {
           "severity": "major",
-          "summary": "MISCHARACTERIZED FIGURE: The +0.34 W/m² appears to be a TREND (per decade) from recent CERES data (Raghuraman et al., 2025 PNAS), not a static hemispheric difference. Our review and the dome both present it as if it's a fixed asymmetry. The distinction between a static equilibrium feature and an eme"
-        },
-        {
-          "severity": "major",
-          "summary": "WRONG SCIENTIFIC FRAMING: Stephens et al.'s famous result is that Earth's hemispheres are remarkably SYMMETRIC in energy balance (a surprising finding). Our review says 'well-studied consequence' as if the asymmetry is established fact, when the key Stephens finding is about symmetry. A dome defende"
+          "summary": "DUPLICATE TEXT: The detail_evidence contains a verbatim copy-paste duplication. Starting from 'On a flat disc 20,015 km in radius, there is no spherical liquid core to refract P-waves...' through '...WIN-064 was added in V51.0 without any explanation of how a flat disc produces this observation.' — "
         },
         {
           "severity": "moderate",
-          "summary": "MISSING DOME GEOMETRY ACKNOWLEDGMENT: The dome IS geometrically asymmetric (NP at center, sun orbiting at varying radii). Our review says 'dome provides no mechanism for hemispheric heat differences' without acknowledging the dome's inherent geometric asymmetry. A defender could argue we're ignoring"
+          "summary": "Angular range inconsistency STILL PRESENT between WIN-064 and the seismic tomography section in sections.json. WIN-064 consistently uses '104°–140°' but sections.json contains '140–103°' (reversed order AND different inner boundary — 103° vs 104°). This was flagged in Cycle 1 review and has not been"
+        },
+        {
+          "severity": "minor",
+          "summary": "The surface distance conversion '11,600–15,600 km' is correct (computed: 11,564–15,567 km on a sphere of radius 6,371 km) but the context is slightly misleading. The text says 'On a flat disc 20,015 km in radius, angular distances of 104°–140° (corresponding to 11,600–15,600 km surface distance)' — "
+        },
+        {
+          "severity": "minor",
+          "summary": "The finding text says 'Shadow zone at 104-140 deg proves spherical layered Earth with liquid core.' While scientifically accurate, 'proves' is a strong epistemic claim. The shadow zone is extremely powerful evidence that is consistent with and best explained by a spherical layered Earth, but scienti"
+        }
+      ]
+    },
+    {
+      "win_id": "WIN-065",
+      "topic": "Polaris systematic excess",
+      "issues_created": 0,
+      "holes_found": 4,
+      "missing_holes": [
+        {
+          "severity": "major",
+          "summary": "Duplicate paragraph in detail_evidence. The PRED-NEW-001 retrodiction argument appears twice with slightly different wording: 'The dome's PRED-NEW-001, registered 2026-03-12, appeared after extensive site development work and uses Polaris observations published in standard star catalogs for decades "
         },
         {
           "severity": "moderate",
-          "summary": "LAND FRACTION IMPRECISION: Our review states '39% land vs 19% in the south.' Standard references give NH land fraction as ~39.3% and SH as ~19.1%. These are approximately correct, but the '2× more land' in the finding oversimplifies — it's the difference in thermal inertia, albedo, and evaporation t"
+          "summary": "Missing killer argument: dome's own coordinate table contradicts PRED-NEW-001. Quantitative analysis shows 23 of 24 cities in the dome's coordinate table have Polaris elevation matching WGS84 latitude to within ±0.05° (London: -0.007°, Paris: +0.043°, Berlin: -0.020°, Oslo: -0.014°, Moscow: -0.006°,"
+        },
+        {
+          "severity": "moderate",
+          "summary": "The word 'systematic' in the claim and detail_claim is misleading even as a characterization of the dome's position. A single data point (Chapel Hill +0.27° in a table of 24 cities where 23 show ≈0° excess) is the opposite of systematic. Our text should make this clearer — currently the error budget"
+        },
+        {
+          "severity": "minor",
+          "summary": "The refraction analysis could be sharper. Our text says the dome's n(r) formula 'would predict ~0.04° of refraction at Oslo.' My quantitative computation of n(r) = 1 + 0.20·(r/20015)² at r=2753 km (Oslo) gives n ≈ 1.00378, which translates to roughly 0.22° of angular deviation — not 0.04°. The discr"
+        }
+      ]
+    },
+    {
+      "win_id": "WIN-066",
+      "topic": "NH heat excess asymmetry",
+      "issues_created": 0,
+      "holes_found": 4,
+      "missing_holes": [
+        {
+          "severity": "moderate",
+          "summary": "MISSING KILLER ARGUMENT — dome geometry over-predicts by factor of ~274. A flat disc with sun at 5,733 km altitude creates extreme inverse-square flux falloff. Computing the integrated solar energy over the inner half (NH) vs outer half (SH) of a 20,015 km disc gives a ~2.3:1 ratio — roughly 93 W/m²"
+        },
+        {
+          "severity": "moderate",
+          "summary": "DOME CLAIM MISREPRESENTATION in detail_claim. The dome's wins.html says the Ovoid Tilt geometry 'predicts a persistent Northern Hemisphere energy absorption excess' — framing +0.34 W/m² as a STATIC difference. Our detail_claim says 'emerging +0.34 W/m²/decade trend in absorbed solar radiation.' Thes"
+        },
+        {
+          "severity": "minor",
+          "summary": "VERDICT TEXT cites 'Stephens & L'Ecuyer (2015)' without a DOI link, while the evidence section links to Stephens et al. (2012) with doi:10.1038/ngeo1580. These are different papers (2012 is Nature Geoscience; 2015 is Surveys in Geophysics, doi:10.1007/s10712-015-9340-1). Both are valid references, b"
+        },
+        {
+          "severity": "minor",
+          "summary": "UNVERIFIABLE PNAS DOI. The DOI 10.1073/pnas.2511595122 for Raghuraman et al. (2025, PNAS) returned a 403 error when I attempted to verify. The DOI format is consistent with PNAS but the paper content cannot be independently confirmed. The Cycle 1 review flagged that the +0.34 W/m² figure needs caref"
         }
       ]
     },
@@ -1601,151 +1665,6 @@
       ]
     }
   ],
-  "under_covered_count": 63,
-  "pending_reviews": [
-    {
-      "win_id": "WIN-064",
-      "review_file": "monitor/curmudgeon/reviews/WIN-064.c2.json",
-      "reviewed_at": "2026-04-08T23:30:00Z",
-      "cycle": 2,
-      "topic": "P-wave shadow zone geometric lock",
-      "verdict_holds": true,
-      "confidence": 0.95,
-      "recommended_action": "minor_edit",
-      "holes": [
-        {
-          "severity": "major",
-          "summary": "DUPLICATE TEXT: The detail_evidence contains a verbatim copy-paste duplication. Starting from 'On a flat disc 20,015 km in radius, there is no spherical liquid core to refract P-waves...' through '...WIN-064 was added in V51.0 without any explanation of how a flat disc produces this observation.' — ",
-          "recommendation": "Remove the second occurrence of the duplicated block. The text starting at the second 'On a flat disc 20,015 km in radius, there is no spherical liquid core...' through the end should be deleted. This will reduce detail_evidence from ~2808 to ~2100 characters while losing no content.",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "moderate",
-          "summary": "Angular range inconsistency STILL PRESENT between WIN-064 and the seismic tomography section in sections.json. WIN-064 consistently uses '104°–140°' but sections.json contains '140–103°' (reversed order AND different inner boundary — 103° vs 104°). This was flagged in Cycle 1 review and has not been",
-          "recommendation": "Standardize to '104°–140°' throughout both wins.json and sections.json. The 104° value is more commonly cited in introductory seismology texts (Shearer, Introduction to Seismology; Stein & Wysession, An Introduction to Seismology). Fix the reversed order in sections.json.",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "minor",
-          "summary": "The surface distance conversion '11,600–15,600 km' is correct (computed: 11,564–15,567 km on a sphere of radius 6,371 km) but the context is slightly misleading. The text says 'On a flat disc 20,015 km in radius, angular distances of 104°–140° (corresponding to 11,600–15,600 km surface distance)' — ",
-          "recommendation": "Either clarify that these are spherical surface distances (the point being that the dome model borrows spherical concepts) or remove the parenthetical. The argument is stronger without it — the key point is that angular shadow zones require spherical refraction geometry, period.",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "minor",
-          "summary": "The finding text says 'Shadow zone at 104-140 deg proves spherical layered Earth with liquid core.' While scientifically accurate, 'proves' is a strong epistemic claim. The shadow zone is extremely powerful evidence that is consistent with and best explained by a spherical layered Earth, but scienti",
-          "recommendation": "Consider softening to 'demonstrates' or keeping 'proves' — this is a judgment call. The argument IS essentially proof-level given the precision of modern seismic tomography. No change required; noting for completeness.",
-          "affects_summary_table": false
-        }
-      ],
-      "worst_severity": "major",
-      "citation_failures": [],
-      "code_analysis_tags": {
-        "monitoring": "none",
-        "relabels_standard": true,
-        "post_hoc": true,
-        "derives_from_dome": false,
-        "reviewed": true
-      },
-      "argument_summary": "The P-wave shadow zone at 104°–140° is foundational evidence for a spherical, layered Earth with a liquid outer core. First explained by Oldham (1906) and Gutenberg (1913). S-waves are completely bloc",
-      "stronger_arguments_count": 2,
-      "needs_full_read": true
-    },
-    {
-      "win_id": "WIN-065",
-      "review_file": "monitor/curmudgeon/reviews/WIN-065.c2.json",
-      "reviewed_at": "2026-04-09T15:30:00Z",
-      "cycle": 2,
-      "topic": "Polaris systematic excess",
-      "verdict_holds": true,
-      "confidence": 0.95,
-      "recommended_action": "minor_edit",
-      "holes": [
-        {
-          "severity": "major",
-          "summary": "Duplicate paragraph in detail_evidence. The PRED-NEW-001 retrodiction argument appears twice with slightly different wording: 'The dome's PRED-NEW-001, registered 2026-03-12, appeared after extensive site development work and uses Polaris observations published in standard star catalogs for decades ",
-          "recommendation": "Delete the second (longer) duplicate paragraph. Keep the first, more concise version. The repetition weakens what is otherwise a strong argument by looking like an editing error.",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "moderate",
-          "summary": "Missing killer argument: dome's own coordinate table contradicts PRED-NEW-001. Quantitative analysis shows 23 of 24 cities in the dome's coordinate table have Polaris elevation matching WGS84 latitude to within ±0.05° (London: -0.007°, Paris: +0.043°, Berlin: -0.020°, Oslo: -0.014°, Moscow: -0.006°,",
-          "recommendation": "Add a sentence: 'The dome's own coordinate table lists Oslo Polaris elevation at 59.90° (WGS84: 59.91°N), showing essentially zero excess — directly contradicting PRED-NEW-001's prediction of +4.5° for Oslo. Of 24 cities in the table, only Chapel Hill shows any notable deviation; the other 23 match ",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "moderate",
-          "summary": "The word 'systematic' in the claim and detail_claim is misleading even as a characterization of the dome's position. A single data point (Chapel Hill +0.27° in a table of 24 cities where 23 show ≈0° excess) is the opposite of systematic. Our text should make this clearer — currently the error budget",
-          "recommendation": "Add to detail_evidence: 'The 'excess' is not systematic: of 24 cities in the dome's coordinate table, only Chapel Hill shows a notable offset (+0.27°). The other 23 cities match WGS84 latitude to within ±0.05°, consistent with the globe model prediction that Polaris altitude equals geographic latitu",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "minor",
-          "summary": "The refraction analysis could be sharper. Our text says the dome's n(r) formula 'would predict ~0.04° of refraction at Oslo.' My quantitative computation of n(r) = 1 + 0.20·(r/20015)² at r=2753 km (Oslo) gives n ≈ 1.00378, which translates to roughly 0.22° of angular deviation — not 0.04°. The discr",
-          "recommendation": "Verify the ~0.04° figure or replace with a range. The key point is that n(r) at Oslo is ~1.004, far too small to produce 4.5° of deviation. Consider stating the refractive index value directly rather than the angular deviation, to avoid ambiguity in the ray-tracing calculation.",
-          "affects_summary_table": false
-        }
-      ],
-      "worst_severity": "major",
-      "citation_failures": [],
-      "code_analysis_tags": {
-        "monitoring": "none",
-        "relabels_standard": true,
-        "post_hoc": true,
-        "derives_from_dome": false,
-        "reviewed": true
-      },
-      "argument_summary": "Polaris is 0.74° from true pole; the claimed +0.27° excess at 35.9°N falls within the combined error budget (Polaris offset ±0.74°, atmospheric refraction ~0.02°, measurement uncertainty ±0.2–0.5°). N",
-      "stronger_arguments_count": 2,
-      "needs_full_read": true
-    },
-    {
-      "win_id": "WIN-062",
-      "review_file": "monitor/curmudgeon/reviews/WIN-062.c2.json",
-      "reviewed_at": "2026-04-08T23:45:00Z",
-      "cycle": 2,
-      "topic": "Tesla longitudinal wave 1.574c",
-      "verdict_holds": true,
-      "confidence": 0.96,
-      "recommended_action": "minor_edit",
-      "holes": [
-        {
-          "severity": "moderate",
-          "summary": "Cycle 1 identified that our text presented two different velocity numbers (471,240 km/s from Tesla vs 472,400 km/s computed from circumference/time) without explaining the discrepancy. The current text now states '40,075/0.08484 ≈ 472,400 km/s — a 0.25% difference from Tesla's stated figure, reflect",
-          "recommendation": "Consider tightening: '40,075 / 0.08484 ≈ 472,360 km/s — a 0.24% difference reflecting rounding in Tesla's original calculation.' This is a minor fix.",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "moderate",
-          "summary": "WIN-001's evidence text has a significant problem: the final paragraph about the dome's version history ('The dome's own version history acknowledges this...') is repeated FOUR times verbatim. This is a copy-paste bug that a dome defender could use to dismiss our review as sloppily assembled. While ",
-          "recommendation": "File a separate issue for WIN-001 text deduplication. The version history paragraph should appear exactly once.",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "minor",
-          "summary": "Our text says the dome's number is '1.574c' but Tesla's patent gives 471,240 km/s which is 471,240/299,792.458 = 1.5719c. The dome rounds this up to 1.574c (a 0.13% discrepancy). Our text now includes 'the dome relabels globe circumference as disc diameter' but doesn't flag this small numerical infl",
-          "recommendation": "Optional addition: 'Note: Tesla's stated 471,240 km/s gives 1.572c; the dome's 1.574c is a slight rounding up.' Low priority.",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "minor",
-          "summary": "The cross-reference link points to Section 6.2 via '#part6' with onclick='showTab(\"predictions\")'. This is correct for V6 numbering. However, the anchor text says 'Section 6.2' — verify the user lands near the 6.2 heading when clicking. The V6 restructure map confirms part6 = predictions tab, and Se",
-          "recommendation": "No change needed. Cross-reference is correct.",
-          "affects_summary_table": false
-        }
-      ],
-      "worst_severity": "moderate",
-      "citation_failures": [],
-      "code_analysis_tags": {
-        "monitoring": "none",
-        "relabels_standard": true,
-        "post_hoc": true,
-        "derives_from_dome": false,
-        "reviewed": true
-      },
-      "argument_summary": "Our review argues: (1) Tesla's Patent US 787412 describes surface wave propagation around a spherical Earth — the patent drawings depict Earth as a sphere and Tesla writes of signals traveling 'over t",
-      "stronger_arguments_count": 2,
-      "needs_full_read": false
-    }
-  ]
+  "under_covered_count": 66,
+  "pending_reviews": []
 }

@@ -557,9 +557,8 @@
       "status": "complete",
       "notes": "Recovered from write collision. Gravity paradox section — never written by analyst. Three-part argument: (1) dome uses gravity in 49% of WINs (per gravity-dependency-map.json), (2) dome has no gravity theory (g(r) uses WGS84 constants), (3) flat disc geometry contradicts measured gravity field (self-contradictions 2.3, 2.8). Sources: NOTE-011 spec, gravity-dependency-map.json, EXP-025.json.",
       "created_at": "2026-04-07T21:07:23Z",
-      "integrated": true,
-      "output_file": "monitor/analyst/expansions/EXP-034.json",
-      "integrated_at": "2026-04-09T07:08:05.424Z"
+      "integrated": false,
+      "output_file": "monitor/analyst/expansions/EXP-034.json"
     },
     {
       "id": "EXP-035",
@@ -656,9 +655,7 @@
       "priority": "medium",
       "status": "complete",
       "created_at": "2026-04-08T15:54:16.280Z",
-      "notes": "Show why split makes things worse: unfalsifiable inequality, impossible refraction (~15° needed vs ~0.01° real), all triangulation measurements become unreliable. Which sun altitude do eclipse predictions use?",
-      "integrated": true,
-      "integrated_at": "2026-04-09T07:08:05.424Z"
+      "notes": "Show why split makes things worse: unfalsifiable inequality, impossible refraction (~15° needed vs ~0.01° real), all triangulation measurements become unreliable. Which sun altitude do eclipse predictions use?"
     },
     {
       "id": "EXP-041",
@@ -668,10 +665,13 @@
         "ISS-640"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "created_at": "2026-04-08T15:54:16.280Z",
       "notes": "STEELMAN ANALYSIS: The dome built a tiered evidence structure (Evidence Ladder) ranking its claims by strength, plus killshot.html escape clauses. This is the dome's best attempt at self-organization — find the kernel of truth in the tiering, then show why even Tier 1 evidence doesn't discriminate dome from globe. For each tier: acknowledge what's genuinely strong, show why it fails. Killshot: Kp<2 precondition voids test ~50% of the time, three conflicting prediction values (-17 to -21, -28.9, -29.1 nT). This is a new analytical category — may need its own section or integration into existing structure. Analyst decides placement.",
-      "category": "steelman"
+      "category": "steelman",
+      "completed_at": "2026-04-09T07:12:09.607Z",
+      "output_file": "monitor/analyst/expansions/EXP-041.json",
+      "completion_notes": "Existing output file (1850 words) was complete and substantive — covered all four STEELMAN tiers with kernel-of-truth treatment, three conflicting eclipse nT values, Kp<2 escape clause, asymmetric evidentiary standard. Verified content quality before marking complete. Prior analyst run wrote the file but did not update tracker."
     },
     {
       "id": "EXP-042",
@@ -775,9 +775,7 @@
       "status": "complete",
       "category": "steelman",
       "notes": "NOTE-015: Rewrite 6.5 with identified refined predictions (FAIL-002 through FAIL-005). [Tracker entry swapped with EXP-049 to match actual file content]",
-      "created_at": "2026-04-08T23:06:33.581Z",
-      "integrated": true,
-      "integrated_at": "2026-04-09T07:08:05.424Z"
+      "created_at": "2026-04-08T23:06:33.581Z"
     },
     {
       "id": "EXP-049",
@@ -788,23 +786,8 @@
       "status": "complete",
       "notes": "NOTE-014 Part A: GRACE graph forensics paragraph for Section 1.6 Exhibit A. [Tracker entry swapped with EXP-048 to match actual file content]",
       "created_at": "2026-04-08T23:06:33.581Z",
-      "category": "steelman",
-      "integrated": true,
-      "integrated_at": "2026-04-09T07:08:05.424Z"
-    },
-    {
-      "id": "EXP-050",
-      "target": "data/sections.json part1 (Section 1.5 or wherever n(r) is discussed) and/or WIN detail — refractive index formula reconciliation",
-      "source": "decider-yeet",
-      "issue_ids": [
-        "ISS-672"
-      ],
-      "priority": "high",
-      "status": "pending",
-      "notes": "Reconcile n(r) discrepancy: dome model page shows n(r) = 1 + 0.20 × (8537/H(r) − 1), giving n=3.49 at ice wall (r=20,015 km). Our review (Part 1b/sections.json) may cite n=28.8 using a different formula or extrapolation point. Analyst must (1) read raw-text/05-model.txt for the current n(r) formula, (2) compute n at ice wall using both formulas, (3) determine which formula the review uses and whether it is outdated. If our 28.8 figure uses an older/different formula, update our prose to use the current 3.49 value (or explain the discrepancy if both formulas are in the dome source). ISS-672 severity: major.",
-      "created_at": "2026-04-09T07:09:46.258Z"
+      "category": "steelman"
     }
   ],
-  "last_updated": "2026-04-09T06:30:00Z",
-  "total_items": 50
+  "last_updated": "2026-04-09T06:30:00Z"
 }

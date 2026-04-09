@@ -2,9 +2,9 @@
   "description": "Tracks which review points the curmudgeon agent has analyzed and which are pending",
   "current_cycle": 2,
   "phase": 1,
-  "phase_description": "Phase 3 (Repaint): Cycle 2 — re-reviewing all items with higher severity thresholds. Focus on whether Cycle 1 fixes were applied, new content consistency, code_analysis tag re-validation.",
-  "last_reviewed": "WIN-063",
-  "last_run": "2026-04-09T08:30:00Z",
+  "phase_description": "Phase 3 (Repaint): Cycle 2 \u2014 re-reviewing all items with higher severity thresholds. Focus on whether Cycle 1 fixes were applied, new content consistency, code_analysis tag re-validation.",
+  "last_reviewed": "WIN-067",
+  "last_run": "2026-04-09T13:20:00Z",
   "points": [
     {
       "id": "WIN-001",
@@ -515,28 +515,32 @@
       "type": "win",
       "section": "2.4",
       "topic": "P-wave shadow zone geometric",
-      "status": "pending"
+      "status": "reviewed",
+      "last_reviewed_cycle": 2
     },
     {
       "id": "WIN-065",
       "type": "win",
       "section": "2.2",
       "topic": "Polaris systematic excess",
-      "status": "pending"
+      "status": "reviewed",
+      "last_reviewed_cycle": 2
     },
     {
       "id": "WIN-066",
       "type": "win",
       "section": "2.4",
       "topic": "NH heat excess asymmetry",
-      "status": "pending"
+      "status": "reviewed",
+      "last_reviewed_cycle": 2
     },
     {
       "id": "WIN-067",
       "type": "win",
       "section": "2.3",
       "topic": "Antarctic gravity hole",
-      "status": "pending"
+      "status": "reviewed",
+      "last_reviewed_cycle": 2
     },
     {
       "id": "SEC-4.1",
@@ -563,7 +567,7 @@
       "id": "SEC-6.1",
       "type": "section",
       "section": "6.1",
-      "topic": "Zero fitted parameters — hidden parameters",
+      "topic": "Zero fitted parameters \u2014 hidden parameters",
       "status": "pending"
     },
     {
@@ -591,7 +595,7 @@
       "id": "SEC-6.5",
       "type": "section",
       "section": "6.5",
-      "topic": "4 refined predictions — hidden falsifications",
+      "topic": "4 refined predictions \u2014 hidden falsifications",
       "status": "pending"
     },
     {
@@ -605,7 +609,7 @@
       "id": "SEC-6.7",
       "type": "section",
       "section": "6.7",
-      "topic": "Eclipse prediction — genuine test or pre-fitted",
+      "topic": "Eclipse prediction \u2014 genuine test or pre-fitted",
       "status": "pending"
     },
     {
@@ -668,7 +672,7 @@
       "id": "SEC-5.14",
       "type": "section",
       "section": "5.14",
-      "topic": "Repository infrastructure — steering AI",
+      "topic": "Repository infrastructure \u2014 steering AI",
       "status": "pending"
     },
     {
@@ -696,7 +700,7 @@
       "id": "SEC-6.2",
       "type": "section",
       "section": "6.2",
-      "topic": "Eclipse test — not what it appears",
+      "topic": "Eclipse test \u2014 not what it appears",
       "status": "pending"
     },
     {
@@ -745,21 +749,21 @@
       "id": "SEC-2b.1",
       "type": "section",
       "section": "2b.1",
-      "topic": "The Monitoring Illusion — hardcoded validation analysis",
+      "topic": "The Monitoring Illusion \u2014 hardcoded validation analysis",
       "status": "pending"
     },
     {
       "id": "SEC-2b.2",
       "type": "section",
       "section": "2b.2",
-      "topic": "Relabeling Standard Physics — vocabulary substitution pattern",
+      "topic": "Relabeling Standard Physics \u2014 vocabulary substitution pattern",
       "status": "pending"
     },
     {
       "id": "SEC-2b.3",
       "type": "section",
       "section": "2b.3",
-      "topic": "Post-Hoc Retrodiction — prediction vs retrodiction distinction",
+      "topic": "Post-Hoc Retrodiction \u2014 prediction vs retrodiction distinction",
       "status": "pending"
     },
     {
@@ -767,66 +771,68 @@
       "type": "win",
       "section": "3.68",
       "topic": "Eclipse magnetic ensemble (39 eclipses)",
-      "status": "priority-new",
-      "added_at": "2026-04-08T17:41:38.426Z"
+      "status": "reviewed",
+      "added_at": "2026-04-08T17:41:38.426Z",
+      "last_reviewed_cycle": 2
     },
     {
       "id": "WIN-069",
       "type": "win",
       "section": "3.69",
       "topic": "Australia road scaffold validation",
-      "status": "priority-new",
-      "added_at": "2026-04-08T17:41:38.426Z"
+      "status": "reviewed",
+      "added_at": "2026-04-08T17:41:38.426Z",
+      "last_reviewed_cycle": 2
     }
   ],
   "holistic_checks": [
     {
       "id": "HOL-NARRATIVE",
-      "topic": "Narrative arc — does the argument build persuasively from overview to conclusion?",
+      "topic": "Narrative arc \u2014 does the argument build persuasively from overview to conclusion?",
       "status": "pending"
     },
     {
       "id": "HOL-TAXONOMY",
-      "topic": "Verdict taxonomy — do the six categories still make sense? Any WINs that should move?",
+      "topic": "Verdict taxonomy \u2014 do the six categories still make sense? Any WINs that should move?",
       "status": "pending"
     },
     {
       "id": "HOL-CROSSREF",
-      "topic": "Cross-reference integrity — do all section cross-references still say what they claim?",
+      "topic": "Cross-reference integrity \u2014 do all section cross-references still say what they claim?",
       "status": "pending"
     },
     {
       "id": "HOL-HIERARCHY",
-      "topic": "Argument hierarchy — are the top kill-shots actually our strongest arguments?",
+      "topic": "Argument hierarchy \u2014 are the top kill-shots actually our strongest arguments?",
       "status": "pending"
     },
     {
       "id": "HOL-TONE",
-      "topic": "Consistency of tone — same rigor and charity throughout, or uneven?",
+      "topic": "Consistency of tone \u2014 same rigor and charity throughout, or uneven?",
       "status": "pending"
     },
     {
       "id": "HOL-COMPLETENESS",
-      "topic": "Structural completeness — does Part 4.6 use the strongest examples? Do counts match tags?",
+      "topic": "Structural completeness \u2014 does Part 4.6 use the strongest examples? Do counts match tags?",
       "status": "pending"
     },
     {
       "id": "HOL-STRESSTEST",
-      "topic": "Counter-narrative stress test — read as a dome defender, find the single best rebuttal",
+      "topic": "Counter-narrative stress test \u2014 read as a dome defender, find the single best rebuttal",
       "status": "pending"
     },
     {
       "id": "HOL-REDUNDANCY",
-      "topic": "Redundancy check — sections saying the same thing? Anything that can be tightened?",
+      "topic": "Redundancy check \u2014 sections saying the same thing? Anything that can be tightened?",
       "status": "pending"
     },
     {
       "id": "HOL-MISSING",
-      "topic": "Missing arguments — cross-cutting insights from Phase 1 that aren't captured anywhere",
+      "topic": "Missing arguments \u2014 cross-cutting insights from Phase 1 that aren't captured anywhere",
       "status": "pending"
     }
   ],
-  "items_reviewed": 63,
+  "items_reviewed": 69,
   "total_items": 69,
   "cycle": 2
 }
