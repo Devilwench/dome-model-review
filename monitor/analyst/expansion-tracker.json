@@ -686,9 +686,13 @@
         "ISS-641"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "created_at": "2026-04-08T15:54:16.280Z",
-      "notes": "Smoking-gun: both horizontal (a = πR) and vertical (δ = R) dome scales are globe-derived. Combine with existing disc radius fingerprint for devastating one-two punch."
+      "notes": "Smoking-gun: both horizontal (a = πR) and vertical (δ = R) dome scales are globe-derived. Combine with existing disc radius fingerprint for devastating one-two punch.",
+      "completed_at": "2026-04-09T00:00:00Z",
+      "output_file": "monitor/analyst/expansions/EXP-042.json",
+      "integrated": false,
+      "completion_note": "Output file already existed from prior run; tracker updated to reflect completion."
     },
     {
       "id": "EXP-043",
@@ -699,11 +703,11 @@
       ],
       "category": "steelman",
       "priority": "major",
-      "status": "pending",
+      "status": "complete",
       "notes": "WIN-027 curmudgeon Cycle 1: dome's V12 evolution note reveals quadratic law is SUPERSEDED by H(r) function in V13. Our review critiques V12 correction factor but model no longer uses it — we may be attacking a straw man. Needs update noting V12→V13 evolution and why the V13 replacement is equally problematic. Requires reading raw-text/05-model.txt for evolution note context.",
       "created_at": "2026-04-08T19:14:44Z",
-      "completed_at": null,
-      "output_file": null,
+      "completed_at": "2026-04-09T15:12:40.133Z",
+      "output_file": "monitor/analyst/expansions/EXP-043.json",
       "integrated": false
     },
     {
