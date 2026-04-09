@@ -87,14 +87,30 @@ Check `monitor/analyst/new-wins/` for WIN-NNN.json files.
 For each:
 1. **Read and validate.** All required fields present, verdict defensible.
 2. **Append to `data/wins.json`.** Verify ID doesn't collide.
-3. **Update curmudgeon tracker** — add with `status: "priority-new"`:
+3. **Add to curmudgeon tracker as `pending`** (for normal cycle rotation) AND **push to priority queue** (for urgent first-review). The tracker entry ensures the WIN is eventually re-reviewed in Phase 1 cycles; the queue entry gets it reviewed NOW:
 ```bash
 node -e "
 const fs=require('fs');
+// Normal tracker: add as pending (NOT priority-new — that mechanism is deprecated)
 const t=JSON.parse(fs.readFileSync('monitor/curmudgeon/tracker.json','utf8'));
-t.points.push({id:'WIN-NNN',type:'win',section:'X.X',topic:'Short topic',status:'priority-new',added_at:new Date().toISOString()});
+t.points.push({id:'WIN-NNN',type:'win',section:'X.X',topic:'Short topic',status:'pending',added_at:new Date().toISOString()});
 t.total_items=t.points.filter(p=>p.type==='win').length;
 fs.writeFileSync('monitor/curmudgeon/tracker.json',JSON.stringify(t,null,2));
+// Priority queue: push for urgent first-review
+const pq=JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+const existing=pq.queue.find(q=>q.target_type==='win-new'&&q.target_id==='WIN-NNN');
+if(!existing){
+  pq.queue.push({
+    queue_id: pq.next_id++,
+    target_type: 'win-new',
+    target_id: 'WIN-NNN',
+    reason: 'New WIN onboarded from analyst Mode 0',
+    pushed_by: 'decider',
+    pushed_at: new Date().toISOString(),
+    context_hints: {source_file:'monitor/analyst/new-wins/WIN-NNN.json',related_issues:[],human_note:null}
+  });
+  fs.writeFileSync('monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
+}
 "
 ```
 4. **Update fingerprint tracker:**

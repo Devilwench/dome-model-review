@@ -125,14 +125,51 @@ In short: read data from the clone (guaranteed fresh), write outputs to the work
 
 **Step 0a: Read the V6 translation map** (`${CLONE}/monitor/v6-restructure-map.json`). All sections were renumbered on 2026-04-07. Your Cycle 1 reviews use old numbers (e.g., "Section 4.5.1" is now "Section 2.1"). When reading ANY prior review from `monitor/curmudgeon/reviews/`, mentally translate old section numbers to new ones using the map. When writing NEW reviews, always use the new numbers. The tracker items have already been updated to use new numbers.
 
-**Step 0b: Check for priority-new items** (new WINs or new categories). Read the tracker (`${WORKSPACE}/monitor/curmudgeon/tracker.json`) and check for any items with `status: "priority-new"`. These are freshly onboarded WINs or new analytical sections that have never been reviewed. **They jump the queue** — review them before continuing any cyclic or holistic work. The analyst wrote the initial entry and the decider committed it to `data/wins.json` — the entry IS in the repo (that's why you cloned fresh in Step 0). Your job is to stress-test it before it accumulates readers. After reviewing a priority-new item, set its status to `"reviewed"` (it then enters normal cycle rotation).
+**Step 0b: Check the priority queue** (`${CLONE}/monitor/curmudgeon/priority-queue.json` — read from the CLONE, not the workspace mount, because the mount can be stale). This is the urgent re-review queue. Items here are freshly onboarded WINs, rewritten sections, new proposal packages, or anything else the decider flagged as needing immediate attention. **They jump ALL normal cycle work — Phase 1, Phase 2, and Phase 3.**
+
+**Hard rule: review ONE queue item per run, then STOP all priority work.** Do not drain the queue in a single invocation. Do not "while you're at it" a second item. One item, full focus, fresh context next run. The scheduler (not you) decides throughput via the decider's churn-and-burn mode.
+
+Queue structure:
+```json
+{
+  "mode": "bau" | "churn-and-burn",
+  "queue": [
+    {
+      "queue_id": 1,
+      "target_type": "win-new" | "win-detail-rewrite" | "section-new" | "section-rewrite" | "proposal" | "killshot-new" | "killshot-rewrite",
+      "target_id": "WIN-068" | "SEC-2.1" | "EXP-050" | ...,
+      "reason": "New WIN onboarded by analyst Mode 0",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-09T...",
+      "context_hints": {
+        "source_file": "monitor/analyst/new-wins/WIN-068.json",
+        "related_issues": ["ISS-696"],
+        "human_note": "NOTE-2026-04-09-cat005"
+      }
+    }
+  ]
+}
+```
+
+**Procedure:**
+1. Read the queue. If `queue` is empty, skip to Step 0c.
+2. Pop the **oldest** item (`queue[0]`) — strict FIFO, no reordering.
+3. Review that item using the appropriate section below (WIN review procedure for `win-*`, section review for `section-*`, proposal-package review for `proposal`, kill-shot review for `killshot-*`).
+4. **For `proposal` target_type**: do NOT attack the prose — it doesn't exist yet. Instead review the proposal package in `monitor/analyst/expansions/<EXP-ID>.json` against the analytical questions in the package itself (verdict-flip plausibility, new-tag naming, alternatives considered, unknowns acknowledged). Write your review to `monitor/curmudgeon/reviews/<EXP-ID>-proposal.json`. Your verdict here gates whether the analyst writes prose next.
+5. Write the review to the normal `reviews/` location.
+6. Remove the item from `queue` and append a compact record to the `history` array (`{queue_id, target_id, target_type, reviewed_at, review_file, verdict_summary}`). Keep history bounded to the most recent 50 entries.
+7. **STOP.** Do not pick up another queue item. Do not continue to normal cycle work this run. Save/commit and exit.
+
+If the queue had no items, continue to Step 0c.
 
 **Step 0c: Check human notes** (`${WORKSPACE}/monitor/curmudgeon/human-notes.json`). If any notes have `status: "pending"`, they take priority over the normal tracker sequence. Review the item specified in the note, focusing on the questions asked. Mark the note as `"consumed"` after completing the review. Then resume normal tracker order on the next run.
 
 **Priority order each run:**
-1. `priority-new` items (Step 0b) — new WINs/sections that have never been reviewed
+1. **Priority queue** (Step 0b) — one item, FIFO, then STOP
 2. Human notes (Step 0c) — explicit human requests
 3. Normal tracker sequence — next `pending` item in the current phase
+
+**Legacy note on `status: "priority-new"` in `tracker.json`:** This older mechanism is being phased out in favor of `priority-queue.json`. If you still see items with `status: "priority-new"` in the tracker during the transition, treat them as though they were in the queue (review one, mark reviewed, exit). New pushes all go through `priority-queue.json`.
 
 Each run, review ONE item following the priority order above. Read `monitor/curmudgeon/tracker.json` to find the highest-priority unreviewed item. If no priority-new or human notes, pick the next entry with `status: "pending"`. If in Phase 2, pick the next unreviewed holistic check. If all items in all phases are complete, start Phase 3.
 

@@ -70,6 +70,99 @@ After processing, always:
 → Read `monitor/prompts/reference/decider-patches-and-selfapply.md` for patch format and self-apply procedure.
 → Read `monitor/prompts/reference/decider-reporting.md` for report schema, issue management, and morning briefing.
 
+## End-of-Run: Curmudgeon Priority Queue Management
+
+**After** all other work (patches applied, commits made, report written), manage the curmudgeon priority queue and throughput mode. This is a mandatory end-of-run step.
+
+### Step E1: Honor pending mode toggles from human notes
+
+Check `monitor/decisions/human-notes.json` for any unconsumed note with `action: "set_curmudgeon_mode"`. If present:
+```bash
+node -e "
+const fs=require('fs');
+const pq=JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+const notes=JSON.parse(fs.readFileSync('monitor/decisions/human-notes.json','utf8'));
+const pending=(notes.notes||notes).find(n=>n.status==='pending'&&n.action==='set_curmudgeon_mode');
+if(pending){
+  pq.mode=pending.mode;
+  pq.mode_set_by='human';
+  pq.mode_set_at=new Date().toISOString();
+  fs.writeFileSync('monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
+  pending.status='consumed';
+  pending.consumed_at=new Date().toISOString();
+  fs.writeFileSync('monitor/decisions/human-notes.json',JSON.stringify(notes,null,2));
+  console.log('Mode set to:',pending.mode);
+}
+"
+```
+
+### Step E2: Read current state
+
+```bash
+node -e "
+const pq=JSON.parse(require('fs').readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+console.log('mode:',pq.mode,'| queue_depth:',pq.queue.length,'| current_interval_min:',pq.schedule_state.curmudgeon_current_interval_minutes);
+"
+```
+
+### Step E3: Apply the mode rules
+
+**If `mode === "bau"`:** Do nothing. Curmudgeon stays on whatever schedule it has. Items in the queue (if any) will be drained at the normal cadence. Skip to Step E4 (logging only).
+
+**If `mode === "churn-and-burn"` AND `queue.length > 0`:**
+- If `curmudgeon_current_interval_minutes !== curmudgeon_fast_interval_minutes` (i.e. we haven't already bumped), call `mcp__scheduled-tasks__update_scheduled_task` on the `dome-curmudgeon` task to set its interval to 30 minutes.
+- Update `priority-queue.json`: set `schedule_state.curmudgeon_current_interval_minutes = 30`, `last_schedule_change = <ISO>`, `last_schedule_change_by = "decider"`.
+- Log `churn_schedule_bumped` in the daily report.
+
+**If `mode === "churn-and-burn"` AND `queue.length === 0`:** The queue has been drained. Auto-restore and auto-flip:
+- If `curmudgeon_current_interval_minutes !== curmudgeon_default_interval_minutes` (i.e. we're currently fast), call `mcp__scheduled-tasks__update_scheduled_task` on `dome-curmudgeon` to restore interval to 240 minutes (4h).
+- Update `priority-queue.json`: set `mode = "bau"`, `mode_set_by = "decider-auto-restore"`, `mode_set_at = <ISO>`, `schedule_state.curmudgeon_current_interval_minutes = 240`, `last_schedule_change = <ISO>`, `last_schedule_change_by = "decider"`.
+- Log `churn_complete_auto_restore` in the daily report.
+
+**Self-healing invariant:** The system can never get stuck in fast mode. Once the queue drains, the next decider run restores BAU. If something weird happens and you see `mode === "churn-and-burn"` with an empty queue and `curmudgeon_current_interval_minutes === 240`, just flip mode back to bau without touching the scheduler.
+
+### Step E4: Log queue state in daily report
+
+Always include in the daily report:
+```json
+"curmudgeon_queue": {
+  "mode": "bau" | "churn-and-burn",
+  "depth": <number>,
+  "items": [<target_id>, ...],
+  "current_schedule_interval_minutes": <number>,
+  "action_taken": "none" | "bumped_to_fast" | "auto_restored_to_bau" | "mode_toggled_from_human_note"
+}
+```
+
+### How to push items onto the queue
+
+When you onboard a new WIN (Step 1f), integrate a rewritten section (Step 2a), or merge a proposal package (Step 2a category-proposal-writeup handling), **push to the queue instead of (or in addition to) mutating `tracker.json`**:
+
+```bash
+node -e "
+const fs=require('fs');
+const pq=JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+pq.queue.push({
+  queue_id: pq.next_id++,
+  target_type: 'win-new',           // or win-detail-rewrite, section-new, section-rewrite, proposal, killshot-new, killshot-rewrite
+  target_id: 'WIN-068',
+  reason: 'New WIN onboarded from analyst Mode 0 output',
+  pushed_by: 'decider',
+  pushed_at: new Date().toISOString(),
+  context_hints: {
+    source_file: 'monitor/analyst/new-wins/WIN-068.json',
+    related_issues: ['ISS-696'],
+    human_note: null
+  }
+});
+fs.writeFileSync('monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
+"
+```
+
+**Dedup:** Before pushing, check if an item with the same `target_type` + `target_id` is already in the queue. If so, don't duplicate — just update its `reason` and `pushed_at`.
+
+**Who can push:** Only the decider writes to `priority-queue.json`. Analyst and humans route through you via human notes or completed expansion items. If you see any other agent mutating the queue, log an alert.
+
 ## Critical Rules
 
 - **Produce patches for ALL open issues, not just highlights.** Exact find/replace text.
