@@ -70,6 +70,34 @@ For issues requiring judgment — prompt restructuring, new scripts, schedule ch
 - **For schedule changes:** Current schedule, proposed schedule, and supporting efficiency data.
 - **For dispatcher conversions:** Write the actual dispatcher prompt AND module files. Show the handoff.
 - **Think about the other side.** Include tradeoffs — what could go wrong, what serendipity we lose, what edge cases break.
+- **Always include a `verification_pattern` field.** A one-line shell snippet that returns `FIXED` or `STILL_BROKEN` when run from the clean clone root. This is what future tinker runs use to verify whether the bug is still present without re-reading the whole PROP. Example: `grep -q 'badSymbol' build-scripts/target.js && echo STILL_BROKEN || echo FIXED`. Without this, tinker cannot reliably close the PROP and will re-escalate it forever (see PROP-003 for the cautionary tale — re-flagged for 9 consecutive runs after being fixed on run 8).
+
+## Step 2b: PROP Lifecycle Verification (every run, before writing followups)
+
+Before copying last run's findings into `previous_followup`, walk `monitor/tinker/proposals/` and verify the status of every PROP whose `status` is `"proposed"` or that appeared in the most recent report's findings:
+
+```bash
+# From the clean clone root
+for prop in monitor/tinker/proposals/PROP-*.json; do
+  STATUS=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$prop','utf8')).status)")
+  [ "$STATUS" = "implemented" ] && continue
+  PATTERN=$(node -e "const p=JSON.parse(require('fs').readFileSync('$prop','utf8'));console.log(p.verification_pattern||'')")
+  if [ -n "$PATTERN" ]; then
+    RESULT=$(bash -c "$PATTERN" 2>/dev/null)
+    echo "$(basename $prop): $RESULT"
+  else
+    echo "$(basename $prop): NO_PATTERN (cannot auto-verify)"
+  fi
+done
+```
+
+Rules for handling the output:
+
+- **If `verification_pattern` returns `FIXED`:** Update the PROP file in place — set `status: "implemented"`, add `implemented_at` (use the commit timestamp from `git log --follow --format=%aI -- <target_file> | head -1` if you can find it, else the current run time), add `implemented_by: "auto-detected by tinker"`, and write a short `actual_result` noting which tinker run detected the fix. Then mark the corresponding `previous_followup` entry `FIXED` with the verification snippet as evidence. **Do not** re-escalate the finding in the current run.
+- **If `verification_pattern` returns `STILL_BROKEN`:** Keep the PROP `proposed`, increment its `escalation_history` count, and add it to the current run's findings. The escalation is legitimate.
+- **If the PROP has no `verification_pattern`:** Do not auto-verify. Write a `self` category finding in the current run: "PROP-NNN lacks verification_pattern; cannot close automatically. Add one." Then manually inspect whether the bug is still present by reading the target file and grepping for the documented symbol. Never re-escalate a previous PROP without actually reading the target file — md5-matching the workspace copy against GitHub main is not verification; it only tells you whether workspace and main agree, not whether main still has the bug.
+
+**Cautionary tale:** PROP-003 was fixed in commit `f094909` on 2026-04-08. Tinker re-escalated it in runs 8 and 9 because the verification step was "md5 of digest-reviews.js matches main" — which matched, because main was already fixed. The test tinker should have run was `grep -q 'processedWinIds' build-scripts/digest-reviews.js`, which would have returned nothing and correctly reported FIXED.
 
 ## Report Schema
 

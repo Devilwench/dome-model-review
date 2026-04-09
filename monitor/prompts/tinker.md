@@ -85,7 +85,7 @@ Every run writes two files:
 Include in every report regardless of mode:
 - `mode_selected`: which mode ran and why
 - `modes_checked`: quick-check results for all modes (so the next run has context)
-- `previous_followup`: status of any unresolved findings from last report
+- `previous_followup`: status of any unresolved findings from last report. **Before filling this section**, walk `monitor/tinker/proposals/` and run each PROP's `verification_pattern` to decide FIXED vs STILL_BROKEN — see the "PROP Lifecycle Verification" section in `monitor/prompts/reference/tinker-proposals-and-fixes.md`. Never mark a previous finding STILL_BROKEN based only on "workspace md5 matches main" — that is not verification, it only confirms the workspace is in sync.
 
 ## Critical Rules
 
