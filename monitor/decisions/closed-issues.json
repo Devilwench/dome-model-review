@@ -7670,6 +7670,20 @@
       "found_by": "curmudgeon-cycle2-sec4.1",
       "fixed_at": "2026-04-09T15:10:09.707Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-692",
+      "win_id": null,
+      "severity": "major",
+      "category": "infrastructure",
+      "description": "generate-html.js line 588: CA_PENDING computed as wins.length minus reviewed.length against unfiltered wins array, causing WIN-058b (code_analysis.reviewed=false) to leak. Results in prose saying \"69 reviewed, 1 remain\" when all real WINs are reviewed. Fix: use baseWins instead of wins in the codeAnalysis IIFE.",
+      "source": "integrity",
+      "found_date": "2026-04-09",
+      "status": "fixed",
+      "fix_details": "generate-html.js codeAnalysis IIFE: filter reviewed from baseWins instead of wins, and use baseWins.length for pending denominator. WIN-058b (sub-ID tracking entry for dome numbering collisions, not a real WIN) no longer leaks into the pending count. Prose now reads 69 reviewed, 0 remain.",
+      "fix_date": "2026-04-09",
+      "found_by": "integrity-agent",
+      "closed_by": "human+claude"
     }
   ]
 }

@@ -663,10 +663,14 @@ function main() {
     unfalsifiable: tally['Unfalsifiable'] || 0,
     // Code analysis counts (from reviewed WINs with code_analysis tags)
     codeAnalysis: (() => {
-      const reviewed = wins.filter(w => w.code_analysis && w.code_analysis.reviewed);
+      // Count against baseWins (3-digit IDs only) — sub-ID tracking entries like
+      // WIN-058b are our own collision bookkeeping, not real WINs to review. Using
+      // unfiltered `wins` caused prose to report "1 pending" forever after WIN-058b
+      // was added (ISS-692).
+      const reviewed = baseWins.filter(w => w.code_analysis && w.code_analysis.reviewed);
       return {
         reviewed: reviewed.length,
-        pending: wins.length - reviewed.length,
+        pending: baseWins.length - reviewed.length,
         monitoring: {
           hardcoded: reviewed.filter(w => w.code_analysis.monitoring === 'hardcoded').length,
           liveFetch: reviewed.filter(w => w.code_analysis.monitoring === 'live_fetch').length,
