@@ -91,6 +91,22 @@ Trace patterns to root cause. A `-1` in social's `github_activity.forks` = gh au
 - **Unsynced code_analysis tags.** Compare curmudgeon reviewed count vs wins.json. Gap = run `sync-code-analysis.js`.
 - **Review staleness for repaint.** If curmudgeon in Phase 3, check if wins.json text changed since Phase 1 review. Changed WINs need priority re-review.
 
+## Step 6: Project Documentation — Architecture & Strategy
+
+The project has two key documentation files that new Cowork sessions depend on:
+- `CLAUDE.md` — quick-reference for AI sessions (architecture, file map, pipeline, key arguments)
+- `SESSION-CONTEXT.md` — full project context (analytical findings, design decisions, work history)
+
+Tinker owns the **architectural and strategic** accuracy of these files:
+- **Architecture drift**: Does CLAUDE.md describe the current dispatcher+worker architecture? Are module file paths correct? Are all worker modules listed?
+- **Pipeline design**: Is the data flow diagram current? Any new pipelines or handoffs not documented?
+- **Missing capabilities**: Any new pipeline features, agent behaviors, or design patterns not documented?
+- **Version history**: Is the latest review version documented?
+
+Note: **Integrity** separately checks the mechanical facts (schedule tables, file paths exist, file map completeness, no hardcoded counts). Tinker checks the harder stuff — whether the *description of how things work* matches how they actually work.
+
+Write a PROP if updates are needed — these files are high-value because every new session reads them first.
+
 ## Existing Scripts (check if they solve the problem before proposing new ones)
 
 - `build-scripts/digest-reviews.js` — curmudgeon reviews → compact digest for decider

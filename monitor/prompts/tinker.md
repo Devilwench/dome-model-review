@@ -12,13 +12,15 @@ You maintain the monitoring pipeline for the ECM critical review. Seven agents, 
 
 | Agent | Prompt | Schedule | Key Outputs |
 |-------|--------|----------|-------------|
-| Poller | `poller.md` | Every 4h | `monitor/changes/`, `monitor/status.json` |
-| Analyst | `analyst.md` | Every 30min | `monitor/analyst/` (new-wins, expansions, fingerprints, external-reports) |
-| Curmudgeon | `curmudgeon.md` | Every 10min | `monitor/curmudgeon/reviews/`, `tracker.json`, `alerts.txt` |
-| Decider | `decider.md` | Every 20min | `monitor/decisions/` (open/closed issues, patches, daily reports) |
+| Poller | `poller.md` | Every 12h | `monitor/changes/`, `monitor/status.json` |
+| Analyst | `analyst.md` | Every 2h | `monitor/analyst/` (new-wins, expansions, fingerprints, external-reports) |
+| Curmudgeon | `curmudgeon.md` | Every 4h | `monitor/curmudgeon/reviews/`, `tracker.json`, `alerts.txt` |
+| Decider | `decider.md` | Every 4h | `monitor/decisions/` (open/closed issues, patches, daily reports) |
 | Integrity | `structure-integrity.md` | Daily 9 AM | `monitor/integrity/` |
 | Tinker | `tinker.md` | Daily 10:30 AM | `monitor/tinker/` (reports, proposals) |
 | Social | `social.md` | Daily 11 AM | `monitor/social/` (rankings, drafts), direct `docs/llms.txt` updates |
+
+**NOTE: Verify these schedules against actual cron expressions each run.** Use `list_scheduled_tasks` or check the task configs. If the table above is wrong, update it.
 
 ## Dispatcher — Mode Selection
 

@@ -121,7 +121,18 @@ The FUSE workspace mount is read-write but git cannot operate on it. Agents that
 
 Classify: Any workspace-only file is **major** (at risk of silent data loss). List the specific filenames so they can be committed.
 
-### 8. Build Reproducibility
+### 8. Project Documentation — Mechanical Checks
+
+`CLAUDE.md` and `SESSION-CONTEXT.md` are the first things new AI sessions read. Check the mechanical facts:
+
+- **Schedule table**: Compare the agent schedule table in CLAUDE.md against actual cron expressions (check task configs or recent run timestamps). Flag any mismatches.
+- **File map**: Every file listed in CLAUDE.md's file map should exist on disk. Every file in `monitor/prompts/reference/` and `data/` should appear in the file map. Flag missing entries in either direction.
+- **No hardcoded counts**: CLAUDE.md should provide commands to query live values, never static numbers. Search for bare numbers that look like counts (test counts, issue counts, WIN tallies). Flag any that aren't wrapped in a query command.
+- **File paths**: Spot-check 5 file paths mentioned in CLAUDE.md — do they exist?
+
+Classify: Schedule mismatches and missing file map entries are **moderate**. Hardcoded counts are **major** (we criticize the dome for this exact thing).
+
+### 9. Build Reproducibility
 
 Run `node build.js html` and diff the output against the current `docs/index.html`. If they differ, the published site doesn't match the source data. This is a critical finding.
 
