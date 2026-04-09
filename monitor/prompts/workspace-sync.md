@@ -186,12 +186,42 @@ smart_copy "${WORKSPACE}/monitor/status.json" monitor/status.json
 smart_copy "${WORKSPACE}/monitor/review-state.json" monitor/review-state.json
 
 # Report any skips loudly — these indicate workspace-sync SPARED a newer git file
+# OR refused to push a git-owned file (direction violation, Phase 1 Change 1.2).
 if [ -s "$SKIP_LOG" ]; then
   echo ""
-  echo "⚠️  Workspace-sync spared $(wc -l < "$SKIP_LOG") file(s) because git was newer than workspace:"
+  echo "⚠️  Workspace-sync skipped $(wc -l < "$SKIP_LOG") file(s):"
   cat "$SKIP_LOG"
   echo ""
-  echo "If this keeps happening, it means build.js publish sync isn't running from the sessions that made those commits (see PROP-004). The sparing itself is correct — better to leave git's newer version than revert it."
+  echo "If 'git newer than workspace' keeps happening, it means build.js publish sync isn't running from the sessions that made those commits (see PROP-004). The sparing itself is correct — better to leave git's newer version than revert it."
+  echo "If 'git-owned; direction violation' keeps happening, a writer is editing a git-owned file from the workspace side — investigate."
+
+  # Persist skip records to monitor/integrity/ so the structure-integrity agent
+  # (Section 7d, Phase 1 Change 1.8) can detect sustained patterns across
+  # ephemeral sessions. Use a pure-node JSON encoder — NOT jq — because jq is
+  # not guaranteed to be on the PATH of every scheduled-task sandbox. Each
+  # line in the jsonl file is an independent record {timestamp, run_id, path, reason}.
+  mkdir -p monitor/integrity
+  RUN_ID="ws-sync-$(date -u +%Y%m%dT%H%M%SZ)-$$"
+  RUN_TS="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  SKIP_LOG_PATH="$SKIP_LOG" RUN_ID="$RUN_ID" RUN_TS="$RUN_TS" node -e "
+    const fs=require('fs');
+    const logPath=process.env.SKIP_LOG_PATH;
+    const runId=process.env.RUN_ID;
+    const ts=process.env.RUN_TS;
+    const out='monitor/integrity/workspace-sync-skips.jsonl';
+    if (!fs.existsSync(logPath)) process.exit(0);
+    const lines=fs.readFileSync(logPath,'utf8').split('\n').filter(Boolean);
+    const records=lines.map(line=>{
+      // Skip log format: 'SKIP (reason): path [extra]'
+      const m=line.match(/^SKIP \(([^)]+)\):\s*(\S+)/);
+      const reason=m?m[1]:'unknown';
+      const p=m?m[2]:line;
+      return {timestamp: ts, run_id: runId, path: p, reason: reason, raw: line};
+    });
+    const append=records.map(r=>JSON.stringify(r)).join('\n')+'\n';
+    fs.appendFileSync(out, append);
+    console.log('Persisted '+records.length+' skip record(s) to '+out);
+  "
 fi
 ```
 

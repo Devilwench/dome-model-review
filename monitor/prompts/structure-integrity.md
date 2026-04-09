@@ -138,6 +138,72 @@ The FUSE workspace mount is read-write but git cannot operate on it. Agents that
 
 Classify: Any workspace-only file is **major** (at risk of silent data loss). List the specific filenames so they can be committed.
 
+### 7c. Section-New / Proposal-Writeup Priority-Queue Coupling (Phase 1 Change 1.7)
+
+New-section and category-proposal-writeup expansions are supposed to produce a curmudgeon re-review before the prose lands — that's why the decider pushes them onto `monitor/curmudgeon/priority-queue.json` at intake time. If one of these items exists in the tracker but is **not** on the queue, the prose will either never be written or will be written without any adversarial review, silently bypassing the churn-and-burn mode and the curmudgeon's coverage invariants.
+
+Check that every expansion-tracker item whose `category` is `section-new` or `category-proposal-writeup` has a matching entry in the priority queue, identified either by `target_id === <EXP id>` or by `context_hints.related_issues` containing the EXP id (decider may queue under an ISS alias).
+
+```bash
+node -e "
+const fs=require('fs');
+const t=JSON.parse(fs.readFileSync('monitor/analyst/expansion-tracker.json','utf8'));
+const pq=JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+const coupledCategories = ['section-new','category-proposal-writeup'];
+const needed = t.items.filter(i => coupledCategories.includes(i.category) && i.status !== 'integrated');
+const inQueue = (expId) => pq.queue.some(q =>
+  q.target_id === expId ||
+  (q.context_hints && Array.isArray(q.context_hints.related_issues) && q.context_hints.related_issues.includes(expId))
+);
+const missing = needed.filter(i => !inQueue(i.id));
+if (missing.length) {
+  console.error('FAIL: ' + missing.length + ' coupled-category items not represented in priority-queue:');
+  missing.forEach(i => console.error('  ' + i.id + ' (' + i.category + ', status=' + i.status + ')'));
+  process.exit(1);
+}
+console.log('OK: all ' + needed.length + ' coupled-category items have priority-queue entries');
+"
+```
+
+Classify decoupled items as **major**. The fix is usually a one-line decider patch to push the missing entry onto the queue with the EXP id as `target_id`; the integrity agent does not push itself — it reports and lets the decider reconcile.
+
+### 7d. Workspace-Sync Direction-Violation Skip Log (Phase 1 Change 1.8)
+
+The workspace-sync agent now refuses to push any file classified as git-owned (Change 1.2 direction guard). When it skips a file, it writes a line to `/tmp/workspace-sync-skips.log` and — for persistence across ephemeral sessions — appends a JSON record to `monitor/integrity/workspace-sync-skips.jsonl`. Each record is one line of JSON with `{timestamp, run_id, path, reason}`.
+
+This log is the early-warning signal that a prompt edited a git-owned file from the wrong side of the boundary. A single entry is a curiosity; a sustained pattern (the same file skipped on consecutive runs) means a writer is stuck in a bad loop.
+
+```bash
+node -e "
+const fs=require('fs');
+const path='monitor/integrity/workspace-sync-skips.jsonl';
+if (!fs.existsSync(path)) { console.log('OK: no skip log yet (workspace-sync never tripped the direction guard)'); process.exit(0); }
+const lines=fs.readFileSync(path,'utf8').split('\n').filter(Boolean);
+const recent=lines.slice(-200).map(l=>{try{return JSON.parse(l)}catch{return null}}).filter(Boolean);
+const now=Date.now();
+const windowMs=24*60*60*1000;
+const recentWindow=recent.filter(r => {
+  const t=Date.parse(r.timestamp||'');
+  return Number.isFinite(t) && (now - t) < windowMs;
+});
+const byPath={};
+recentWindow.forEach(r=>{ byPath[r.path]=(byPath[r.path]||0)+1 });
+const repeated=Object.entries(byPath).filter(([,n])=>n>=3);
+if (repeated.length) {
+  console.error('MAJOR: direction-violation skips repeating in the last 24h — a writer is editing a git-owned file from the workspace side:');
+  repeated.forEach(([p,n])=>console.error('  '+p+' ('+n+' skips)'));
+  process.exit(1);
+}
+if (recentWindow.length) {
+  console.log('OK: '+recentWindow.length+' skip(s) in the last 24h, none repeated — transient, watch next run');
+} else {
+  console.log('OK: no skips in the last 24h');
+}
+"
+```
+
+Classify repeated skips (same path, ≥3 times in 24h) as **major** and include the list in the integrity report so the tinker or a human can trace the offending writer. A single transient skip is **informational** — log it but don't escalate.
+
 ### 8. Project Documentation — Mechanical Checks
 
 `CLAUDE.md` and `SESSION-CONTEXT.md` are the first things new AI sessions read. Check the mechanical facts:

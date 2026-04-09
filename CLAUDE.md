@@ -237,6 +237,26 @@ Integrity → integrity/report-*.json → Decider (also reads these)
 Tinker reads ALL outputs + prompt files → monitor/tinker/report-*.json + cost engineering analysis
 ```
 
+### Operator Runbook — Disabling a Scheduled Task Safely (Phase 1 Change 1.9)
+
+Disabling a scheduled task via `mcp__scheduled-tasks__update_scheduled_task` with `enabled: false` stops **future** triggers but does **not** kill an in-flight run. A decider or analyst that started 30 seconds before the disable will keep running, finish its read-modify-write cycle, and push to `origin/main` after the operator "disabled" it. This is Bug X2 from the phase1-context doc — the disable is a front-door lock while the window is still open.
+
+When you need to pause an agent to land a risky change, run the **disable-then-wait** sequence and do not touch git until the wait completes:
+
+1. **Disable the task.** Call `mcp__scheduled-tasks__update_scheduled_task` with `enabled: false`. Note the current wall-clock time as `T_disable`.
+2. **Wait out the longest plausible run.** The worst-case agent duration seen in practice is the decider at ~8 minutes. Wait `T_disable + 15 minutes` to be safe. Set a timer; do not rely on "it feels like long enough".
+3. **Confirm no recent push from the disabled agent.** Check the workspace `monitor/status.json` / `monitor/decisions/daily-report-*.json` and `git log --since=15.minutes origin/main` for commits authored by the agent you disabled. If a commit landed after `T_disable`, a run was in flight — wait another 15 minutes from that commit's timestamp.
+4. **Verify queue depth.** For the curmudgeon, confirm `monitor/curmudgeon/priority-queue.json` isn't mid-drain with an uncommitted pop. For the decider, confirm `monitor/decisions/suggested-patches-*.json` has no file newer than `T_disable`.
+5. **Only now** land your risky change (commit, rebase, runbook step, prompt edit).
+6. **Re-enable the task** when done. Use `enabled: true` on the same task id. Do not create a new task — the id is referenced by other prompts and by the Mode toggle logic in `reference/decider-patches-and-selfapply.md`.
+
+**What you MUST NOT do:**
+- Do not assume "disable" is instant. It is not.
+- Do not `git push --force` after a disable to "clean up" a run that finished while you were waiting — that's a history rewrite and is banned by the hard rules in `reference/decider-patches-and-selfapply.md`.
+- Do not disable `dome-workspace-sync` without also disabling the agents that write to the FUSE mount — you'll silently accumulate workspace-only files that no one is copying into git.
+
+**Phase 3.1 recommendation (deferred to operator action):** The durable fix is scheduler-side — the scheduled task should run `git fetch && git pull --rebase origin main` on the clean clone as a prerequisite step *before* invoking the agent, and hold a per-agent lock to serialize runs of the same agent. Until then, the Phase 1 Change 1.5 prelude (decider/analyst refresh the clone at the top of every run) is a partial substitute, and the Change 1.6 pre-push integrity gate catches the residual window. When the operator wires the scheduler-side fix, delete the prelude blocks and leave the gate in place — the gate is defense-in-depth even with the scheduler fix.
+
 ### Curmudgeon Lifecycle
 
 The curmudgeon operates in three phases, tracked in `monitor/curmudgeon/tracker.json`:
