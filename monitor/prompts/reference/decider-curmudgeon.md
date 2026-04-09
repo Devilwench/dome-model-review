@@ -84,8 +84,23 @@ If target section already has a pending EXP item, add the issue ID to that item'
 
 Set issue status to `"assigned-analyst"` in open-issues.json. Next available EXP number:
 ```bash
-node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));console.log('EXP-'+String(t.items.length+1).padStart(3,'0'))"
+node -e "
+const fs=require('fs');
+const path='monitor/analyst/expansion-tracker.json';
+const t=JSON.parse(fs.readFileSync(path,'utf8'));
+if(typeof t.next_id!=='number'){
+  // Self-heal: compute from current items and write it back. This should never
+  // fire post-Phase 0 — a non-numeric next_id indicates either a fresh migration
+  // or a direct human edit that lost the counter. Log LOUDLY so tinker notices.
+  console.error('WARNING: next_id missing or non-numeric; self-heal engaged');
+  t.next_id=t.items.reduce((m,i)=>Math.max(m,parseInt((i.id||'EXP-0').replace('EXP-',''))||0),0)+1;
+  fs.writeFileSync(path,JSON.stringify(t,null,2));
+}
+console.log('EXP-'+String(t.next_id).padStart(3,'0'));
+console.log('(next_id field, NOT items.length+1 — that formula is buggy with gaps. Do not increment this in the display command; the allocating writer bumps next_id.)');
+"
 ```
+**NEVER** compute the next EXP from `items.length + 1`. The counter lives in `t.next_id` and the allocator is responsible for `t.next_id++` after the push. The `length+1` formula collides on any gap (renames, out-of-order allocation, or cross-writer allocations).
 
 ## Batch Processing: Mode Selection
 
@@ -110,8 +125,17 @@ When `advocate_mode.defense_survives >= 3`:
 ```bash
 node -e "
 const fs=require('fs');
-const t=JSON.parse(fs.readFileSync('monitor/analyst/expansion-tracker.json','utf8'));
-const nextNum=t.items.length+1;
+const path='monitor/analyst/expansion-tracker.json';
+const t=JSON.parse(fs.readFileSync(path,'utf8'));
+// ID allocation: ALWAYS use t.next_id, NEVER t.items.length+1. The length formula
+// collides on gaps (renames, concurrent allocation, or cross-writer allocation).
+// next_id is the canonical counter and the allocating writer bumps it.
+if(typeof t.next_id!=='number'){
+  console.error('WARNING: next_id missing or non-numeric; self-heal engaged');
+  t.next_id=t.items.reduce((m,i)=>Math.max(m,parseInt((i.id||'EXP-0').replace('EXP-',''))||0),0)+1;
+}
+const nextNum=t.next_id;
+t.next_id++;
 t.items.push({
   id:'EXP-'+String(nextNum).padStart(3,'0'),
   target:'WIN-NNN defense neutralization — rated N/5',
@@ -124,7 +148,8 @@ t.items.push({
   notes:'Surviving defense: [brief]. Rating: N/5.',
   created_at:new Date().toISOString()
 });
-fs.writeFileSync('monitor/analyst/expansion-tracker.json',JSON.stringify(t,null,2));
+fs.writeFileSync(path,JSON.stringify(t,null,2));
+console.log('allocated EXP-'+String(nextNum).padStart(3,'0')+' (next_id now '+t.next_id+')');
 "
 ```
 2. Create open issue with `category: "defense"`.

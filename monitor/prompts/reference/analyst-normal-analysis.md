@@ -101,8 +101,17 @@ fs.writeFileSync('monitor/decisions/open-issues.json',JSON.stringify(o,null,2));
 ```bash
 node -e "
 const fs=require('fs');
-const t=JSON.parse(fs.readFileSync('monitor/analyst/expansion-tracker.json','utf8'));
-const nextNum=t.items.length+1;
+const path='monitor/analyst/expansion-tracker.json';
+const t=JSON.parse(fs.readFileSync(path,'utf8'));
+// ID allocation: ALWAYS use t.next_id, NEVER t.items.length+1. The length formula
+// collides on gaps (renames, concurrent allocation, or cross-writer allocation).
+// next_id is the canonical counter — allocate from it, then increment.
+if(typeof t.next_id!=='number'){
+  console.error('WARNING: next_id missing or non-numeric; self-heal engaged');
+  t.next_id=t.items.reduce((m,i)=>Math.max(m,parseInt((i.id||'EXP-0').replace('EXP-',''))||0),0)+1;
+}
+const nextNum=t.next_id;
+t.next_id++;
 t.items.push({
   id:'EXP-'+String(nextNum).padStart(3,'0'),
   target:'What needs writing',
@@ -111,7 +120,8 @@ t.items.push({
   status:'pending',
   created_at:new Date().toISOString()
 });
-fs.writeFileSync('monitor/analyst/expansion-tracker.json',JSON.stringify(t,null,2));
+fs.writeFileSync(path,JSON.stringify(t,null,2));
+console.log('allocated EXP-'+String(nextNum).padStart(3,'0')+' (next_id now '+t.next_id+')');
 "
 ```
 

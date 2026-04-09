@@ -108,8 +108,25 @@ Check `monitor/analyst/expansion-tracker.json` for signs of write collisions (co
 - **Orphaned output files**: List all files in `monitor/analyst/expansions/`. For each EXP-NNN.json file, verify a matching tracker entry exists. Flag orphans — these are completed work the decider will never integrate.
 - **Phantom tracker entries**: For each tracker entry with `status: complete` and an `output_file`, verify the file exists on disk. Flag entries pointing to missing files.
 - **Stale pending items**: Flag any tracker entry with `status: pending` that was `created_at` more than 48 hours ago — the analyst may have lost track of it.
+- **`next_id` correctness** (Phase 0 invariant): Check that `tracker.next_id > max(tracker.items[].id)`. If `next_id <= max_id`, a writer used `items.length + 1` and skipped the canonical counter — **the next allocation will collide**. **Classify as major and block the next decider run.** Command:
+  ```bash
+  node -e "
+  const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansion-tracker.json','utf8'));
+  const maxId=t.items.reduce((m,i)=>Math.max(m,parseInt((i.id||'EXP-0').replace('EXP-',''))||0),0);
+  if(typeof t.next_id!=='number'){
+    console.error('FAIL: next_id missing or non-numeric (max_id='+maxId+')');
+    process.exit(1);
+  }
+  if(t.next_id<=maxId){
+    console.error('FAIL: next_id='+t.next_id+' <= max_id='+maxId+' — COLLISION IMMINENT on next allocation');
+    process.exit(1);
+  }
+  console.log('OK: next_id='+t.next_id+', max_id='+maxId);
+  "
+  ```
+- **`next_id` missing**: If the field is entirely absent, a writer has stripped it. Flag **major** — self-heal is possible but the writer bug must be found and fixed.
 
-Classify: ID gaps and orphaned output files are **major** (lost work). Phantom entries and stale pending are **moderate**.
+Classify: ID gaps, orphaned output files, and `next_id` inversions are **major** (lost work / imminent collision). Phantom entries and stale pending are **moderate**.
 
 ### 7b. Workspace-Only Files at Risk
 
