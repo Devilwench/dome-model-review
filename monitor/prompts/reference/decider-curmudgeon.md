@@ -20,15 +20,23 @@ For each completed/revised expansion not yet integrated:
 
 1. **Read the expansion output file** (e.g., `monitor/analyst/expansions/EXP-001.json`).
 
-2. **Determine target type** from the expansion's `target` and output structure:
+2. **CHECK CATEGORY FIRST — category-proposal-writeup items do NOT get integrated as prose.** If the tracker item has `category: "category-proposal-writeup"` (or the output file has `replacement_html: null` plus a `proposal_package` field), this is meta-work that routes through curmudgeon review BEFORE any section content is written. Do NOT write a patch. Instead:
+   - **Append a priority-new review item to `monitor/curmudgeon/tracker.json`.** The curmudgeon tracker may not have a natural slot for proposal reviews — if there is no `priority_new` or `items` array at the top level, add one: `{"priority_new": [{"type": "proposal-review", "id": "<EXP-ID>", "cat_id": "<CAT-ID>", "expansion_file": "monitor/analyst/expansions/<EXP-ID>.json", "created_at": "<ISO>", "status": "pending-review", "notes": "<1-sentence context from the human note>"}]}`. Do not overwrite existing tracker state.
+   - **Update any linked issues to `status: "blocked-on-curmudgeon"`** (not `fixed`). These issues are NOT closed — they're blocked pending curmudgeon signoff on the proposal package. Add a `blocked_at` timestamp and `blocked_reason: "awaiting curmudgeon review of <EXP-ID> proposal package"`.
+   - **Mark the tracker item `"routed_to_curmudgeon": true`** with `routed_at` timestamp. Do NOT set `integrated: true` — integration only happens later when a follow-up EXP writes actual section prose after curmudgeon signoff.
+   - **Mark the associated human note consumed** only after all three steps above complete. If any step fails, leave the note pending and flag in the daily report.
+   - **Log in daily report:** "Routed EXP-NNN (CAT-NNN proposal package) to curmudgeon for priority review. ISS-NNN blocked on curmudgeon signoff. No section prose written — that comes in a follow-up EXP after curmudgeon review."
+   - Move to the next expansion. Do not continue with steps 3–4 below for category-proposal-writeup items.
+
+3. **Determine target type** from the expansion's `target` and output structure (for normal expansion items):
    - **sections.json replacement** (target mentions "Section"/"Part", has `replacement_html`): Write find/replace patch swapping old text for analyst's replacement. For full replacements, find unique opening/closing strings.
    - **sections.json insertion** (has `integration_mode: "insert_after"` with `anchor`): Find end of anchor section, insert new block before next `<h2>`. Check dependencies first.
    - **wins.json target** (mentions "WIN-NNN", detail fields): May use `replacement_detail_evidence`, `insertion_1`/`insertion_2` (targeted insertions with anchors), or `replacement_html` for full field replacement.
    - **Route patches correctly.** `"file": "wins.json"` or `"file": "sections.json"` so apply-patches.js routes correctly.
 
-3. **Mark expansion `"integrated": true`** with `integrated_at` timestamp.
+4. **Mark expansion `"integrated": true`** with `integrated_at` timestamp.
 
-4. **Close related issues — do NOT skip.** For each issue ID in `issue_ids`, move from open-issues.json to closed-issues.json with `status: "fixed"`, `fixed_by: "expansion-integration"`. Verify removal. Unclosed issues become zombies.
+5. **Close related issues — do NOT skip.** For each issue ID in `issue_ids`, move from open-issues.json to closed-issues.json with `status: "fixed"`, `fixed_by: "expansion-integration"`. Verify removal. Unclosed issues become zombies.
 
 ## Step 2b: Yeet Scan (EVERY run)
 
