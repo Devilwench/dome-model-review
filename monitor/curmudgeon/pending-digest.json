@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-04-08T23:04:00.023Z",
-  "total_reviews": 67,
+  "generated_at": "2026-04-09T03:10:30.612Z",
+  "total_reviews": 69,
   "already_processed": 132,
-  "pending_count": 0,
+  "pending_count": 3,
   "severity_breakdown": {
     "critical": 0,
-    "major": 0,
-    "moderate": 0,
+    "major": 2,
+    "moderate": 1,
     "minor": 0,
     "none": 0
   },
-  "needs_full_read_count": 0,
+  "needs_full_read_count": 2,
   "under_covered_processed": [
     {
       "win_id": "WIN-001",
@@ -1328,67 +1328,59 @@
       "win_id": "WIN-057",
       "topic": "Two-zone disc topology — cross-equatorial coordinate improvement, NH regression",
       "issues_created": 0,
-      "holes_found": 6,
+      "holes_found": 5,
       "missing_holes": [
         {
           "severity": "major",
-          "summary": "detail_claim mischaracterizes the dome's actual claim. Our detail_claim states: 'Two-zone disc topology improves northern hemisphere accuracy.' But the dome's WIN-057 actually claims cross-equatorial improvement — reducing 25-78% errors to 6.2% RMSE on cross-equatorial routes. The dome's own coordin"
-        },
-        {
-          "severity": "major",
-          "summary": "Summary-table finding focuses on the wrong metric. The finding reads: 'V13 coordinates regressed NH accuracy from 5.2% to 7.3%.' While factually correct, this addresses a side-effect the dome itself acknowledges, not the WIN's actual claimed achievement. The dome's WIN-057 is about cross-equatorial "
+          "summary": "Internal numerical inconsistency: 600× vs 60,000×. The finding and detail_verdict_text say the dome's result is '600× worse than standard geodesy (sub-0.01%),' while the detail_evidence says 'the dome's 6.2% RMSE... is over 60,000× worse' (comparing to 'better than 0.0001%'). These are a factor of 1"
         },
         {
           "severity": "moderate",
-          "summary": "The detail_evidence doesn't mention that the equatorial ring radius (14,105 km) is a free parameter. This is the strongest argument against WIN-057: the dome added a new adjustable parameter specifically to reduce cross-equatorial errors. Any model can improve its fit by adding parameters — this is "
+          "summary": "The 'not derived from dome geometry' characterization in detail_evidence creates tension with the code_analysis tag derives_from_dome: true. The text says the 14,105 km value is 'not derived from dome geometry' — meaning the specific numerical value was fitted, not geometrically derived. But our own"
         },
         {
           "severity": "moderate",
-          "summary": "OPEN-015 is not mentioned in our review. The dome's own coordinates page acknowledges that near-equatorial cities (below ~12° latitude) 'fall beyond the equatorial ring,' meaning the two-zone formula fails entirely for equatorial regions. This is a significant self-admitted limitation that our revie"
+          "summary": "OPEN-015 is mentioned three times: twice in detail_evidence (mid-paragraph and near the end) and again in detail_extra. The double mention in detail_evidence is particularly noticeable — same quote ('fall beyond the range') used 130 words apart. This redundancy weakens the prose by making it look pa"
         },
         {
           "severity": "moderate",
-          "summary": "The Vincenty comparison is understated. Our text says Vincenty achieves 'sub-0.5% error.' In reality, Vincenty's inverse geodetic formulae achieve millimeter precision on the WGS84 ellipsoid — sub-0.001% for any distance on Earth. The dome's best (6.2% RMSE on cross-equatorial routes, 7.3% on NH) is"
+          "summary": "The '~40% of the world's population' claim for the ±12° equatorial band may be overstated. The tropics (±23.4°) contain roughly 40% of world population. The ±12° band is about half that latitude range and probably contains 15–25% of the world's population. The detail_extra then says 'approximately t"
         },
         {
           "severity": "minor",
-          "summary": "detail_extra is null. WIN-057 has substantial additional analysis potential: the curve-fitting argument, the free parameter count, the OPEN-015 limitation, the fact that only six routes are cited as evidence, and the comparison with standard geodesy. The detail block is thin relative to the complexi"
+          "summary": "The detail_evidence paragraph is very long (1,781 characters) and covers multiple distinct arguments in a single block. It discusses: parameter fitting, parameter count comparison, NH regression, Vincenty comparison, OPEN-015/OPEN-001 exclusion zones, and selection bias — all in one paragraph. This "
         }
       ]
     },
     {
       "win_id": "WIN-058",
-      "topic": "Unified angular coordinate system — convention vs. prediction",
+      "topic": "Unified angular coordinate θ = −lonE — V13 coordinate identity",
       "issues_created": 0,
-      "holes_found": 7,
+      "holes_found": 6,
       "missing_holes": [
         {
-          "severity": "critical",
-          "summary": "WIN-058 itself is undefined on the dome's site. Searching the dome's wins page, we find WIN-057 (two-zone disc topology) in detail but WIN-058 is listed with no justifying content, no equations, no measurements, and no physical consequences specified. The dome provides a one-line claim ('Unified ang"
+          "severity": "major",
+          "summary": "code_analysis tag mismatch: derives_from_dome is 'true' in wins.json but our own detail_evidence explicitly states 'The identity θ = −lonE is not derived from dome geometry.' These are contradictory. The tag was likely carried over from the Cycle 1 review, which evaluated the 0.9941 factor (arguably"
         },
         {
           "severity": "major",
-          "summary": "Our argument 'coordinate choice is convention, not a physical prediction' is philosophically true but logically weak. It proves too much. By the same logic, WGS84 is also 'just a convention,' yet WGS84 enables GPS to work with meter-level precision. A coordinate system can be 'conventional' (in the "
-        },
-        {
-          "severity": "major",
-          "summary": "Citation of Torge & Müller (2012) is misleading in context. Torge & Müller's textbook on geodesy does indeed explain that coordinates are human-defined systems. However, the book does NOT claim that coordinate transformations cannot produce testable predictions. In fact, geodesy is the study of coor"
-        },
-        {
-          "severity": "major",
-          "summary": "We do not engage with the actual parameter value (0.9941) or its origin. Why 0.9941 and not 0.9900 or 1.0000? The dome's answer is likely: 'because it fits city distances.' But we should explicitly examine whether this parameter was derived from dome geometry a priori or fitted post-hoc to WGS84 dis"
+          "summary": "V12 vs V9 attribution confusion. Our detail_evidence says: 'The V12 formula used solar noon UTC as a proxy for θ, producing catastrophic errors in the Southern Hemisphere (Sydney: +32.5°...).' But the dome's coordinates page header says V12 uses 'theta = delta_lon × 0.9941' (NOT solar noon UTC). The"
         },
         {
           "severity": "moderate",
-          "summary": "The verdict category (Misleading) may be incorrect. 'Misleading' is typically reserved for claims that are cherry-picked, duplicated, or circular. WIN-058 is not any of those — it's just a coordinate system. The better verdict might be 'Not Demonstrated' (the dome has not shown this coordinate syste"
+          "summary": "The 0.9941 factor's relationship to θ = −lonE is under-explained. Our text mentions that distance_analysis.py still applies 'delta_t = np.radians(t2 - t1) * 0.9941' — implying the V12 scaling persists alongside V13's θ = −lonE identity. But θ = −lonE means the angular coordinate is EXACTLY the negat"
         },
         {
           "severity": "moderate",
-          "summary": "WIN-057 and WIN-058 are conflated in the build doc. The build-doc-v4.js file states: 'WIN-057/058 (two-zone disc / angular coordinate): V13 two-zone topology improved cross-equatorial routes but regressed northern hemisphere accuracy from 5.2% to 7.3%. An internal coordinate convention is not a phys"
+          "summary": "The '700× worse than standard geodesy' claim in the finding needs verification. Our text says 7.3% mean error vs sub-0.01% for Vincenty/WGS84. 7.3 / 0.01 = 730, so '700×' is roughly correct. But 'sub-0.01%' for Vincenty is an understatement — Vincenty achieves sub-millimeter accuracy over thousands "
+        },
+        {
+          "severity": "moderate",
+          "summary": "The Singapore OPEN-015 citation at the end may be incorrect. Our text says: 'the dome's own OPEN-015 concedes Singapore (r = 23,556 km) falls beyond the equatorial ring at r_eq = 14,105 km.' This is a strong argument showing the coordinate system breaks for equatorial cities. However, we don't verif"
         },
         {
           "severity": "minor",
-          "summary": "The detail_extra field is null. For a coordinate system claim, there is substantial supporting analysis that could be added: the formula derivation, the 0.9941 parameter justification, comparison with standard coordinate systems (UTM, Mercator, WGS84), explanation of why this coordinate system is ne"
+          "summary": "The Cycle 1 review raised a valid philosophical point that our current text still partially inherits: we argue that θ = −lonE 'is not derived from dome physics' (true) and that it follows from 'the definition of geographic longitude' (true). But we should acknowledge the counter-argument more explic"
         }
       ]
     },
@@ -1396,23 +1388,27 @@
       "win_id": "WIN-059",
       "topic": "NMP deceleration in Siberian sector",
       "issues_created": 0,
-      "holes_found": 4,
+      "holes_found": 5,
       "missing_holes": [
         {
-          "severity": "moderate",
-          "summary": "Our review calls WIN-059 a 'duplicate of WIN-007' but this is inaccurate. WIN-007 claims a post-1990 'phase transition' (acceleration) while WIN-059 claims the opposite phenomenon — deceleration. They describe different phases of the same trajectory. A dome defender could argue: 'WIN-007 predicted t"
+          "severity": "critical",
+          "summary": "UNSOURCED 30% THRESHOLD: Our detail_evidence states 'Kill-Shot Test 6 records the NMP drift rate prediction failing at 39.9% error, exceeding the dome's own 30% acceptability threshold.' However, the dome's own dashboard (raw-text/08-live-power.txt:257) shows: Tolerance: 50.0%, Status: PASS (39.9% e"
         },
         {
           "severity": "major",
-          "summary": "We miss the most devastating counterargument against WIN-059: the dome's own Kill-Shot Test 6 shows its NMP drift rate prediction is FAILING at 39.9% error, exceeding its own 30% threshold. This is documented in SESSION-CONTEXT.md. WIN-059 claims the dome predicts Siberian-sector deceleration, but t"
+          "summary": "DUPLICATE SENTENCE: The detail_evidence contains a word-for-word duplicated sentence: 'The dome's own OPEN-007 concedes that polar shift dynamics have no working dome-native explanation — making any sector-specific prediction built on these dynamics doubly self-undermined.' This sentence appears twi"
         },
         {
           "severity": "moderate",
-          "summary": "The detail_evidence is generic — it references WMM2025 and NOAA broadly but doesn't explain what 'NMP deceleration in Siberian sector' actually means as a physical claim, why the Siberian sector is relevant, or how standard geophysics explains sector-specific behavior. A dome defender reading our re"
+          "summary": "SELF-FALSIFIED FRAMING CONTRADICTS DOME DASHBOARD: The detail_evidence opens with 'By the dome model's own published falsification criteria, WIN-059 is self-falsified.' But the dome's own dashboard shows this test as PASS (at 50% tolerance). Calling it 'self-falsified' when the dome reports PASS is "
+        },
+        {
+          "severity": "moderate",
+          "summary": "MONITORING TAG BORDERLINE: WIN-059 is tagged monitoring='none', but Domain 3 in the dome's monitoring infrastructure does track NMP drift rate (the broader category that subsumes WIN-059's claim). The formula rate=55×exp(-0.08×(year-2015)) generates time-dependent predictions, and the dashboard repo"
         },
         {
           "severity": "minor",
-          "summary": "The detail_claim is vague: 'NMP deceleration in Siberian sector follows dome model.' It doesn't specify what numerical prediction the dome makes for Siberian-sector deceleration, what the measured deceleration rate is, or how 'follows dome model' is defined. Our review doesn't note this vagueness."
+          "summary": "SECTION CROSS-REFERENCE VALIDITY: The detail_evidence references 'Section 6.5' for the asymmetric scorecard pattern. Section 6.5 is 'The 4 Refined Predictions — Hidden Falsifications?' which does discuss the pattern of not counting failures. The reference is semantically valid but slightly imprecise"
         }
       ]
     },
@@ -1423,24 +1419,24 @@
       "holes_found": 5,
       "missing_holes": [
         {
-          "severity": "minor",
-          "summary": ""
+          "severity": "major",
+          "summary": "Monitoring tag mismatch: WIN-060 is tagged monitoring='hardcoded' in wins.json, but no hardcoded monitoring check exists for this WIN. The W022 prediction maps to WIN-040 (static position 'west of 45°W'), not WIN-060 (drift direction). All other WINs in this group (WIN-040, 041, 043, 059, 063) are c"
         },
         {
           "severity": "moderate",
-          "summary": ""
+          "summary": "Cycle 1 recommendation not applied: The Cycle 1 review recommended adding a clear distinction between WIN-004 (separation between cells), WIN-005 (decay rate), and WIN-060 (drift direction) to preempt the dome defender's argument that these test independent physical properties. The current text stil"
         },
         {
           "severity": "moderate",
-          "summary": ""
+          "summary": "Summary-table finding is dense and may overstate the argument. The finding reads: 'Non-discriminating: dome extrapolates same drift data as NOAA/ESA; geomagnetic drift explained by standard core-mantle dynamics without any dome-specific parameters.' This is accurate but front-loads 'Non-discriminati"
         },
         {
           "severity": "minor",
-          "summary": ""
+          "summary": "The detail_claim is extremely terse: 'SAA western cell drifts westward as predicted.' This accurately paraphrases the dome's claim, but 'as predicted' begs the question: predicted by whom, when, and from what derivation? Our evidence addresses this but the claim field should reflect what the dome ac"
         },
         {
           "severity": "minor",
-          "summary": ""
+          "summary": "The duplicate sentence in WIN-040's detail_evidence ('Notably, the dome's own predictions tracker listed W022... meaning the dome itself had not confirmed this WIN at baseline.') appears twice verbatim. This is a copy-paste artifact in a sibling WIN, not in WIN-060 itself, but readers viewing the gr"
         }
       ]
     },
@@ -1452,43 +1448,19 @@
       "missing_holes": [
         {
           "severity": "moderate",
-          "summary": "Our detail text cites a DOI (doi.org/10.1007/978-3-662-03137-4_11) as supporting the ionospheric plasma physics explanation. This DOI points to a chapter in the Nickolaenko & Hayakawa 2002 Springer volume on Schumann resonances. While this is a valid and authoritative source on Schumann resonance ph"
+          "summary": "Cycle 1 finding still open: The citation (doi.org/10.1007/978-3-662-03137-4_11) points to a general Schumann resonance reference (Nickolaenko & Hayakawa 2002), not specifically to storm-time suppression. While valid, it's imprecise. A dome defender who checks the citation finds a general cavity phys"
         },
         {
           "severity": "moderate",
-          "summary": "Our argument that 'the dome model has no equivalent mechanism' for storm-time suppression could be challenged by a dome defender who argues that the dome's 'aetheric medium' would be perturbed by geomagnetic storms just as the ionosphere is perturbed. The dome model is flexible enough to accommodate"
+          "summary": "The 'Unscored' status from the dome's own monitoring dashboard is a powerful untapped argument. The dome lists WIN-061 as 'CONFIRMED' in its wins table, but Domain 9 in the live power dashboard says 'Unscored — no G3+ storm observed.' This is a direct inconsistency in the dome's own presentation: ho"
         },
         {
           "severity": "minor",
-          "summary": "The detail text says 'the dome gets the base frequency wrong by 2.8×' — this is the ratio of 22/7.83 = 2.81. However, depending on the averaging method for H_eff, the ratio could be 1.8× (using pole height only: 8.77/7.83) or 4.5× (using area-weighted average: 35/7.83). The 2.8× figure uses one spec"
+          "summary": "Cycle 1 finding still open: The '~22 Hz' claim uses H_eff ≈ 3,400 km (simple linear average of H(r)), but doesn't specify the averaging method. Quantitative verification shows the simple linear average gives H_eff = 3,316 km → f ≈ 22.6 Hz. The area-weighted average gives H_eff = 2,135 km → f ≈ 35.1 "
         },
         {
           "severity": "minor",
-          "summary": "WIN-061 is grouped with WIN-040-043, 059-061, 063 (detail_group field). This large group suggests substantial overlap with other geomagnetic monitoring WINs. Our review doesn't explicitly call out this grouping as evidence of the dome's duplicate-counting pattern, though Section 6.1 covers this gene"
-        }
-      ]
-    },
-    {
-      "win_id": "WIN-062",
-      "topic": "Tesla longitudinal wave 1.574c",
-      "issues_created": 0,
-      "holes_found": 4,
-      "missing_holes": [
-        {
-          "severity": "moderate",
-          "summary": "Our text states Tesla's velocity as '471,240 km/s (~1.57c)' and also calculates '40,075/0.08484 ≈ 472,400 km/s.' These are slightly different numbers (471,240 vs 472,400 km/s — a 0.25% discrepancy). The 471,240 figure comes directly from Tesla's patent text ('four hundred and seventy-one thousand tw"
-        },
-        {
-          "severity": "moderate",
-          "summary": "Our text asserts the dome's disc diameter is '40,030 km' and claims it 'numerically matches because it equals the globe's circumference (40,075 km).' But 40,030 ≠ 40,075 — they differ by 45 km (0.11%). While this IS close enough to call a 'match,' a dome defender could argue that 40,030 km is NOT th"
-        },
-        {
-          "severity": "minor",
-          "summary": "The dome's claim text says '1.574 times the speed of light,' but Tesla's patent gives 471,240 km/s, which is 471,240/299,792.458 = 1.5719c, not 1.574c. The dome has introduced a small error (1.574 vs 1.572). Our review repeats the dome's '1.574c' figure without flagging this minor numerical discrepa"
-        },
-        {
-          "severity": "minor",
-          "summary": "Our text claims Tesla's patent drawings 'depict Earth as a sphere.' While this is consistent with WIN-001's review (which references 'Figure 1 (bottom): the large sphere labeled C is the Earth'), we should verify this characterization is precise. Tesla's patent diagrams are schematic — the sphere co"
+          "summary": "The stronger argument about copper firmament contradiction (WIN-034 vs WIN-061) identified in Cycle 1 was not added. If the firmament is copper (WIN-034), its conductivity is constant at ~6×10⁷ S/m regardless of geomagnetic storms. Schumann suppression requires variable boundary conductivity (the io"
         }
       ]
     },
@@ -1513,62 +1485,6 @@
         {
           "severity": "minor",
           "summary": "The text says 'The dome needs to commit to a predicted ratio (e.g., NH decays 1.4× faster than SH over the next 10 years) before observation, not after.' While the point is valid, the specific example value '1.4×' was invented by us and could be misread as a value the dome claims. A dome defender co"
-        }
-      ]
-    },
-    {
-      "win_id": "WIN-064",
-      "topic": "P-wave shadow zone geometric lock",
-      "issues_created": 0,
-      "holes_found": 4,
-      "missing_holes": [
-        {
-          "severity": "moderate",
-          "summary": "Gutenberg 1913 DOI may be incorrect. Our review cites DOI 10.1007/BF01800425 for Gutenberg (1913). The 10.1007 prefix is Springer, but Gutenberg's 1913 work was published in Physikalische Zeitschrift (vol 14, pp 1217-1218), not a Springer journal. His more detailed 1914 paper appeared in Nachrichten"
-        },
-        {
-          "severity": "moderate",
-          "summary": "Angular range inconsistency between WIN-064 and the Seismic Tomography kill-shot section. WIN-064 states '104°-140°' but the Seismic Tomography section in Part 4 (generate-html.js line 1181) says '140–103° from epicenter'. The range endpoints differ (103° vs 104°) and the order is reversed. Standard"
-        },
-        {
-          "severity": "moderate",
-          "summary": "Our detail_evidence is thin compared to the strength of this argument. We correctly note the shadow zone assumes spherical geometry, but we miss several powerful points: (1) A flat disc has no spherical core to refract waves around — there would be no angular shadow zone at all, just simple attenuat"
-        },
-        {
-          "severity": "minor",
-          "summary": "The dome's raw-text files contain NO discussion of P-wave shadow zones — not in the wins list, predictions, model, or any other page. WIN-064 was added in V51.0 but our archive may be incomplete for V51 content (v51.0-2026-04-05 directory is empty). We should verify what the dome model actually clai"
-        }
-      ]
-    },
-    {
-      "win_id": "WIN-065",
-      "topic": null,
-      "issues_created": 0,
-      "holes_found": 6,
-      "missing_holes": [
-        {
-          "severity": "MAJOR",
-          "summary": "wins.json says +0.27° at 35.9°N; PRED-NEW-001 says 3-7° above 55°N. These are incompatible. Either the summary is wrong, or the prediction is wrong."
-        },
-        {
-          "severity": "CRITICAL",
-          "summary": "The dome does not specify what instrument was used, how many measurements, at what time(s), under what conditions, how the prediction was calculated, or what the error budget is. A single unreplicated measurement is not confirmation."
-        },
-        {
-          "severity": "CRITICAL",
-          "summary": "Dome's site (2026-03-15) marks 'Polaris altitude matches latitude' as FALSIFIED. This is the broader prediction of which WIN-065 is a special case. The dome cannot claim both falsification and confirmation of related predictions."
-        },
-        {
-          "severity": "CRITICAL",
-          "summary": "If n(r) = 1 + 0.20·(r/20015)² predicts refraction at different latitudes, it produces ~0.04° at Oslo (59.91°N, r=2753 km), not the claimed +4.5°. The formula fails on the dome's own test case."
-        },
-        {
-          "severity": "MAJOR",
-          "summary": "PRED-NEW-001 was registered 2026-03-12 after dome site changes and development work. It may reflect known measurements rather than prospective prediction."
-        },
-        {
-          "severity": "MAJOR",
-          "summary": "Combined error from Polaris's 0.74° polar offset, ~0.02-0.03° refraction, and ±0.2-0.5° measurement uncertainty is ±0.3-0.5°. The +0.27° figure falls entirely within this band and is not statistically significant."
         }
       ]
     },
@@ -1627,8 +1543,209 @@
           "summary": "H(r) APPLICABILITY ASSUMPTION: Our critique assumes gravity is proportional to H(r) (the aetheric column height). The dome says this in its general physics but may not explicitly state it for gravity. A dome defender could say: 'H(r) describes the firmament height, not gravity directly. We never cla"
         }
       ]
+    },
+    {
+      "win_id": "WIN-068",
+      "topic": "Eclipse magnetic ensemble (39 eclipses) — priority-new review of analyst draft (EXP-038)",
+      "issues_created": 0,
+      "holes_found": 6,
+      "missing_holes": [
+        {
+          "severity": "major",
+          "summary": "WRONG DOI for Chapman 1933. The proposed text links to DOI 10.1098/rsta.1933.0001 (Phil. Trans. Royal Society A), but Chapman's 1933 eclipse paper was published in 'Terrestrial Magnetism and Atmospheric Electricity' (now JGR), not Phil. Trans. The correct reference is Chapman (1933), Terr. Magn. Atm"
+        },
+        {
+          "severity": "moderate",
+          "summary": "Unverified dome quotes. The proposed text quotes the dome as having an 'honest caveat' that 'Globe has a competing ionospheric conductivity mechanism' and that 'Tier 1 is consistent with both models.' These phrases do not appear in our V51.0 raw-text captures. They appear to be from V51.1 content (t"
+        },
+        {
+          "severity": "moderate",
+          "summary": "The 'Ashour-Chapman conductivity model' link goes to a Frontiers in Astronomy and Space Sciences paper (doi: 10.3389/fspas.2021.766327). While the link text says 'Ashour-Chapman conductivity model,' the Ashour-Chapman model is actually from Ashour (1950) / Chapman (1919), and the Frontiers paper is "
+        },
+        {
+          "severity": "moderate",
+          "summary": "detail_group inconsistency. WIN-010 and WIN-025 currently have detail_group 'WIN-010/025'. The proposed WIN-068 has detail_group 'WIN-010/025/068'. If WIN-068 is added without updating WIN-010 and WIN-025's detail_group to match, the grouping will be asymmetric — WIN-068 references WIN-010/025 but t"
+        },
+        {
+          "severity": "minor",
+          "summary": "The claim field 'Eclipse magnetic ensemble (39 eclipses)' is clear, but the finding field could be tighter. 'Kim & Chang 2018 confirmed eclipse geomagnetic effects — standard ionospheric Sq mechanism (Chapman 1933)' buries the triple-counting argument that is arguably our strongest point against thi"
+        },
+        {
+          "severity": "minor",
+          "summary": "The PROS-003 text in the dome's own wins page says the eclipse prediction was prospective: 'What we predicted: During a solar eclipse, a magnetic anomaly would appear...' The dome claims PROS-003 (made before some confirming data) maps to WIN-010/WIN-025. If the dome similarly claims PROS-003 covers"
+        }
+      ]
+    },
+    {
+      "win_id": "WIN-069",
+      "topic": "Australia road scaffold validation",
+      "issues_created": 0,
+      "holes_found": 4,
+      "missing_holes": [
+        {
+          "severity": "moderate",
+          "summary": "The '10,000× worse' claim is imprecise and vulnerable to challenge. The exact ratio depends on what comparison: 6,200× using 0.001% geodetic accuracy, 62,000× using sub-meter accuracy, or 248,000× using positioning accuracy. The 10,000× figure is defensible as order-of-magnitude but a dome defender "
+        },
+        {
+          "severity": "moderate",
+          "summary": "The review doesn't preempt the strongest dome defense: 'The globe doesn't predict road distances either — Vincenty gives geodesics, not road distances. Our model actually attempts to account for the road-vs-geodesic excess by modeling it as a topological effect.' Our review correctly notes that road"
+        },
+        {
+          "severity": "minor",
+          "summary": "The detail_claim mentions '12 roads and 9 cross-links' but our evidence text doesn't verify or challenge these specific numbers. We don't say where these came from or whether the selection is representative."
+        },
+        {
+          "severity": "minor",
+          "summary": "The Nullarbor Highway ratio claim ('ratio of 1.00') is stated but not verified with specific distances. My computation shows the Norseman-Ceduna stretch has a ratio of ~1.07, while Perth-Adelaide is ~1.27. The specific claim of 1.00 may refer to a different segment."
+        }
+      ]
     }
   ],
-  "under_covered_count": 64,
-  "pending_reviews": []
+  "under_covered_count": 63,
+  "pending_reviews": [
+    {
+      "win_id": "WIN-064",
+      "review_file": "monitor/curmudgeon/reviews/WIN-064.c2.json",
+      "reviewed_at": "2026-04-08T23:30:00Z",
+      "cycle": 2,
+      "topic": "P-wave shadow zone geometric lock",
+      "verdict_holds": true,
+      "confidence": 0.95,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "DUPLICATE TEXT: The detail_evidence contains a verbatim copy-paste duplication. Starting from 'On a flat disc 20,015 km in radius, there is no spherical liquid core to refract P-waves...' through '...WIN-064 was added in V51.0 without any explanation of how a flat disc produces this observation.' — ",
+          "recommendation": "Remove the second occurrence of the duplicated block. The text starting at the second 'On a flat disc 20,015 km in radius, there is no spherical liquid core...' through the end should be deleted. This will reduce detail_evidence from ~2808 to ~2100 characters while losing no content.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Angular range inconsistency STILL PRESENT between WIN-064 and the seismic tomography section in sections.json. WIN-064 consistently uses '104°–140°' but sections.json contains '140–103°' (reversed order AND different inner boundary — 103° vs 104°). This was flagged in Cycle 1 review and has not been",
+          "recommendation": "Standardize to '104°–140°' throughout both wins.json and sections.json. The 104° value is more commonly cited in introductory seismology texts (Shearer, Introduction to Seismology; Stein & Wysession, An Introduction to Seismology). Fix the reversed order in sections.json.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The surface distance conversion '11,600–15,600 km' is correct (computed: 11,564–15,567 km on a sphere of radius 6,371 km) but the context is slightly misleading. The text says 'On a flat disc 20,015 km in radius, angular distances of 104°–140° (corresponding to 11,600–15,600 km surface distance)' — ",
+          "recommendation": "Either clarify that these are spherical surface distances (the point being that the dome model borrows spherical concepts) or remove the parenthetical. The argument is stronger without it — the key point is that angular shadow zones require spherical refraction geometry, period.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The finding text says 'Shadow zone at 104-140 deg proves spherical layered Earth with liquid core.' While scientifically accurate, 'proves' is a strong epistemic claim. The shadow zone is extremely powerful evidence that is consistent with and best explained by a spherical layered Earth, but scienti",
+          "recommendation": "Consider softening to 'demonstrates' or keeping 'proves' — this is a judgment call. The argument IS essentially proof-level given the precision of modern seismic tomography. No change required; noting for completeness.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": true,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "The P-wave shadow zone at 104°–140° is foundational evidence for a spherical, layered Earth with a liquid outer core. First explained by Oldham (1906) and Gutenberg (1913). S-waves are completely bloc",
+      "stronger_arguments_count": 2,
+      "needs_full_read": true
+    },
+    {
+      "win_id": "WIN-065",
+      "review_file": "monitor/curmudgeon/reviews/WIN-065.c2.json",
+      "reviewed_at": "2026-04-09T15:30:00Z",
+      "cycle": 2,
+      "topic": "Polaris systematic excess",
+      "verdict_holds": true,
+      "confidence": 0.95,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "Duplicate paragraph in detail_evidence. The PRED-NEW-001 retrodiction argument appears twice with slightly different wording: 'The dome's PRED-NEW-001, registered 2026-03-12, appeared after extensive site development work and uses Polaris observations published in standard star catalogs for decades ",
+          "recommendation": "Delete the second (longer) duplicate paragraph. Keep the first, more concise version. The repetition weakens what is otherwise a strong argument by looking like an editing error.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Missing killer argument: dome's own coordinate table contradicts PRED-NEW-001. Quantitative analysis shows 23 of 24 cities in the dome's coordinate table have Polaris elevation matching WGS84 latitude to within ±0.05° (London: -0.007°, Paris: +0.043°, Berlin: -0.020°, Oslo: -0.014°, Moscow: -0.006°,",
+          "recommendation": "Add a sentence: 'The dome's own coordinate table lists Oslo Polaris elevation at 59.90° (WGS84: 59.91°N), showing essentially zero excess — directly contradicting PRED-NEW-001's prediction of +4.5° for Oslo. Of 24 cities in the table, only Chapel Hill shows any notable deviation; the other 23 match ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The word 'systematic' in the claim and detail_claim is misleading even as a characterization of the dome's position. A single data point (Chapel Hill +0.27° in a table of 24 cities where 23 show ≈0° excess) is the opposite of systematic. Our text should make this clearer — currently the error budget",
+          "recommendation": "Add to detail_evidence: 'The 'excess' is not systematic: of 24 cities in the dome's coordinate table, only Chapel Hill shows a notable offset (+0.27°). The other 23 cities match WGS84 latitude to within ±0.05°, consistent with the globe model prediction that Polaris altitude equals geographic latitu",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The refraction analysis could be sharper. Our text says the dome's n(r) formula 'would predict ~0.04° of refraction at Oslo.' My quantitative computation of n(r) = 1 + 0.20·(r/20015)² at r=2753 km (Oslo) gives n ≈ 1.00378, which translates to roughly 0.22° of angular deviation — not 0.04°. The discr",
+          "recommendation": "Verify the ~0.04° figure or replace with a range. The key point is that n(r) at Oslo is ~1.004, far too small to produce 4.5° of deviation. Consider stating the refractive index value directly rather than the angular deviation, to avoid ambiguity in the ray-tracing calculation.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": true,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "Polaris is 0.74° from true pole; the claimed +0.27° excess at 35.9°N falls within the combined error budget (Polaris offset ±0.74°, atmospheric refraction ~0.02°, measurement uncertainty ±0.2–0.5°). N",
+      "stronger_arguments_count": 2,
+      "needs_full_read": true
+    },
+    {
+      "win_id": "WIN-062",
+      "review_file": "monitor/curmudgeon/reviews/WIN-062.c2.json",
+      "reviewed_at": "2026-04-08T23:45:00Z",
+      "cycle": 2,
+      "topic": "Tesla longitudinal wave 1.574c",
+      "verdict_holds": true,
+      "confidence": 0.96,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "Cycle 1 identified that our text presented two different velocity numbers (471,240 km/s from Tesla vs 472,400 km/s computed from circumference/time) without explaining the discrepancy. The current text now states '40,075/0.08484 ≈ 472,400 km/s — a 0.25% difference from Tesla's stated figure, reflect",
+          "recommendation": "Consider tightening: '40,075 / 0.08484 ≈ 472,360 km/s — a 0.24% difference reflecting rounding in Tesla's original calculation.' This is a minor fix.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "WIN-001's evidence text has a significant problem: the final paragraph about the dome's version history ('The dome's own version history acknowledges this...') is repeated FOUR times verbatim. This is a copy-paste bug that a dome defender could use to dismiss our review as sloppily assembled. While ",
+          "recommendation": "File a separate issue for WIN-001 text deduplication. The version history paragraph should appear exactly once.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Our text says the dome's number is '1.574c' but Tesla's patent gives 471,240 km/s which is 471,240/299,792.458 = 1.5719c. The dome rounds this up to 1.574c (a 0.13% discrepancy). Our text now includes 'the dome relabels globe circumference as disc diameter' but doesn't flag this small numerical infl",
+          "recommendation": "Optional addition: 'Note: Tesla's stated 471,240 km/s gives 1.572c; the dome's 1.574c is a slight rounding up.' Low priority.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The cross-reference link points to Section 6.2 via '#part6' with onclick='showTab(\"predictions\")'. This is correct for V6 numbering. However, the anchor text says 'Section 6.2' — verify the user lands near the 6.2 heading when clicking. The V6 restructure map confirms part6 = predictions tab, and Se",
+          "recommendation": "No change needed. Cross-reference is correct.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": true,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "Our review argues: (1) Tesla's Patent US 787412 describes surface wave propagation around a spherical Earth — the patent drawings depict Earth as a sphere and Tesla writes of signals traveling 'over t",
+      "stronger_arguments_count": 2,
+      "needs_full_read": false
+    }
+  ]
 }

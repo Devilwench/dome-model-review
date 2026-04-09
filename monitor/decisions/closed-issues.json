@@ -7379,6 +7379,76 @@
       "fix_date": null,
       "fixed_at": "2026-04-08T19:41:16.655Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-666",
+      "win_id": "WIN-064",
+      "severity": "major",
+      "category": "prose_quality",
+      "description": "WIN-064 detail_evidence contains verbatim duplicate block (~700 chars): \"On a flat disc 20,015 km in radius, there is no spherical liquid core...\" through end appears twice in succession",
+      "source": "curmudgeon",
+      "found_date": "2026-04-09",
+      "status": "fixed",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-09T03:17:55.249Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-667",
+      "win_id": "WIN-065",
+      "severity": "major",
+      "category": "prose_quality",
+      "description": "WIN-065 detail_evidence: PRED-NEW-001 retrodiction argument appears twice — once concise, once expanded (different wording). Second occurrence should be removed.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-09",
+      "status": "fixed",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-09T03:17:55.249Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-668",
+      "win_id": "WIN-065",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "WIN-065: Missing Oslo counterargument. Dome own coordinate table shows Oslo Polaris at 59.90° vs WGS84 59.91°N (0 excess), contradicting PRED-NEW-001 prediction of +4.5°. Only Chapel Hill of 24 cities shows any deviation.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-09",
+      "status": "fixed",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-09T03:17:55.249Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-669",
+      "win_id": "WIN-062",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "WIN-062 detail_evidence: velocity computed as 472,400 km/s (should be 472,360) and percentage difference stated as 0.25% (should be 0.24%). Minor rounding error undermines precision-focused tone.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-09",
+      "status": "fixed",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-09T03:17:55.249Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-670",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "sections.json part7: P-wave shadow zone angular range stated as \"140–103° from epicenter\" — reversed and wrong inner boundary. Should be \"104°–140°\" (standard seismology notation, matches WIN-064).",
+      "source": "curmudgeon",
+      "found_date": "2026-04-09",
+      "status": "fixed",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-09T03:17:55.249Z",
+      "fixed_by": "decider-self-apply"
     }
   ]
 }

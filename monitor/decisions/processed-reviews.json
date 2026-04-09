@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-08T18:30:08.897Z",
+  "last_updated": "2026-04-09T03:18:00.967Z",
   "processed": [
     "WIN-033.json",
     "WIN-052.json",
@@ -132,7 +132,10 @@
     "WIN-061.c2.json",
     "WIN-063.c2.json",
     "WIN-068.c2.json",
-    "WIN-069.c2.json"
+    "WIN-069.c2.json",
+    "WIN-064.c2.json",
+    "WIN-065.c2.json",
+    "WIN-062.c2.json"
   ],
   "section_reviews_processed": [
     "SEC-3.1.json",

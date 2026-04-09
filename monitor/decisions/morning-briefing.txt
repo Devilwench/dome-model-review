@@ -1,73 +1,63 @@
-MORNING BRIEFING — 2026-04-08
-Generated: 2026-04-08T23:06:00Z
-Decider run type: Expansion integration (EXP-031/033) + human notes (NOTE-014/015)
+MORNING BRIEFING — 2026-04-09
+Generated: 2026-04-09T04:18Z
+Curmudgeon reviews processed this run: 3 (WIN-062, WIN-064, WIN-065 Cycle 2)
+Previous decider run: 2026-04-08T23:10Z
+Commit: ba225d4
 
-────────────────────────────────────────────────────────────────
-SITE HEALTH
-────────────────────────────────────────────────────────────────
-Build: PASS (2203 tests pass, 557.8 KB HTML — +4 KB from EXP-033 expansion)
-Integrity: PASS
-Commit pushed this run: [pending — see below]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SITE HEALTH: ✅ PASS (2211 tests pass, build clean)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXTERNAL STATUS: Dome site stable at V51.1, 69 WINs, 94.5% accuracy.
+No new changes detected.
 
-────────────────────────────────────────────────────────────────
-EXTERNAL STATUS
-────────────────────────────────────────────────────────────────
-Dome site: V51.1 stable — 69 WINs, 94.5% accuracy
-Changes since last run: None detected
-Threat level: None
-External reports: 0 new
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERNAL STATUS: 5 issues found and fixed in this run
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Issues fixed:
+  [MAJOR]    ISS-666: WIN-064 duplicate block removed (~700 chars)
+  [MAJOR]    ISS-667: WIN-065 duplicate PRED-NEW-001 paragraph removed
+  [MODERATE] ISS-668: WIN-065 Oslo counterargument added
+  [MODERATE] ISS-669: WIN-062 velocity rounding fixed (472,400→472,360 km/s)
+  [MODERATE] ISS-670: sections.json part7 P-wave range fixed (140–103°→104°–140°)
+  [CLEANUP]  ISS-641 zombie removed from open-issues
 
-────────────────────────────────────────────────────────────────
-THIS RUN'S WORK
-────────────────────────────────────────────────────────────────
-EXP-031 (Section 1.6 Dielectric Foundation): Marked integrated — was already
-  inserted by previous session. Tracker updated to reflect this.
+Expansion integrated:
+  EXP-032: De-duplication table (69 WINs → 41 independent claims) added to
+           Part 6 (Predictions tab) after Section 6.6 accuracy discussion.
+           Includes collapsible <details> with full cluster analysis and
+           "fair objection" section. Auto-computed via dedupClusters in
+           generate-html.js.
 
-EXP-033 (Axial symmetry passage, Part 2): INTEGRATED ✅
-  Replaced 2-paragraph 'Why this matters' with 3-paragraph version.
-  New version provides mathematical proof: two-pole exponential sum cannot
-  produce two SAA lobes (requires degree-2+ spherical harmonics minimum).
-  Directly contradicts WIN-004/WIN-005 claims. Fixes '~100 vs 195 parameters'
-  inconsistency. Patch applied, 2203 tests pass.
+Open issues after run: 3
+  ISS-442  [MAJOR, pending-human]   Misleading verdict subcategories taxonomy
+  ISS-638  [MODERATE, analyst]      V51.1 sun altitude split (EXP-040 pending)
+  ISS-640  [MODERATE, analyst]      V51.1 Steelman Evidence Ladder (EXP-041 pending)
 
-EXP-032 (De-duplication table): Deferred — human_placement_required.
-  Contains collapsible HTML/CSS/JS table. Placement: Part 6 near 95.2% accuracy.
-  Flagged for human integration.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOP 3 PRIORITY ACTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. [HUMAN] ISS-442: Editorial decision needed on Misleading verdict taxonomy.
+   Should we split into subtypes (cherry-picked, circular, duplicate, relabeling)?
+   This changes the review's narrative structure. Human editorial call only.
 
-NOTE-014 (Exhibit A graph forensics): Consumed → EXP-048 created for analyst.
-  Two-part task: (A) Section 1.6 paragraph on GRACE graph problems (wrong units,
-  satellite collocation impossible, GRACE-A safe mode, no such data product
-  as 'Raw Induction Residual'), (B) BOU/GRACE independent replication attempt.
+2. [INFRASTRUCTURE] Curmudgeon review files not committed to GitHub.
+   WIN-064.c2.json, WIN-065.c2.json, WIN-062.c2.json, WIN-068.c2.json,
+   WIN-069.c2.json exist in workspace but were never pushed. Curmudgeon
+   should commit these to prevent loss. WIN-068/069 still show as
+   "priority-new" in tracker (no committed reviews).
 
-NOTE-015 (Section 6.5 four refined predictions): Consumed → EXP-049 created.
-  Rewrite naming all four with dome W-numbers + FAIL-NNN IDs (FAIL-002–005).
+3. [ANALYST] 11 pending expansions. Priority order:
+   EXP-041 (Steelman Evidence Ladder, V51.1 new content)
+   EXP-042 (δ=6,371 km = R_Earth globe fingerprint)
+   EXP-034 (Section 1.7: dome's odd relationship with standard physics)
 
-────────────────────────────────────────────────────────────────
-CURMUDGEON PROGRESS
-────────────────────────────────────────────────────────────────
-Cycle 2, Phase 1: 63/69 WINs reviewed (6 remaining)
-Most recent: WIN-069 (priority-new, 2026-04-08T21:00Z)
-Pending digest: 0 new reviews
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CURMUDGEON PROGRESS: 63/69 reviewed, Phase 1 Cycle 2
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Remaining: WIN-064, 065, 066, 067 (Cycle 2), SEC-4.1 through SEC-6.3 (sections)
+Priority-new: WIN-068, WIN-069 (added 2026-04-08)
 
-────────────────────────────────────────────────────────────────
-ISSUES THIS RUN
-────────────────────────────────────────────────────────────────
-Self-applied patches: 1 (EXP-033 axial symmetry expansion)
-Issues created: 0
-Issues closed: 0
-Open issues: 4
-  ISS-442: PENDING-HUMAN (Misleading verdict taxonomy)
-  ISS-638: ASSIGNED-ANALYST (V51.1 sun altitude split)
-  ISS-640: ASSIGNED-ANALYST (V51.1 Steelman Evidence Ladder)
-  ISS-641: ASSIGNED-ANALYST (V51.1 δ=6,371 km sub-terrestrial cavity)
-
-STALE ALERT CLEARED: alerts.txt had Cycle 1 CHAOS-7 DOI mismatch for WIN-005.
-Verified: current wins.json has correct DOI (s40623-020-01252-9). Already fixed.
-
-────────────────────────────────────────────────────────────────
-TOP 3 PRIORITIES
-────────────────────────────────────────────────────────────────
-1. [HUMAN] ISS-442: Misleading verdict taxonomy — overdue editorial call
-2. [HUMAN] Integrate EXP-032: De-duplication table into Part 6 (complex HTML/CSS)
-3. [ANALYST] Process EXP-048 + EXP-049: Exhibit A forensics + Section 6.5 rewrite
-   (both high priority, NOTE-014/015 from human)
+CODE ANALYSIS TAGS: All 69 WINs tagged, all reviewed by curmudgeon.
+Stats (auto-computed from wins.json):
+  hardcoded: 23 | live_fetch: 4 | none: 40
+  relabels_standard: 49 | post_hoc: 67 | derives_from_dome: 2
