@@ -1,7 +1,12 @@
 {
   "id": "PROP-004",
   "created": "2026-04-09T10:45:00Z",
-  "status": "proposed",
+  "status": "implemented",
+  "implemented_at": "2026-04-09T21:45:00Z",
+  "implemented_by": "human+claude peaceful-gallant-rubin",
+  "implementing_commit": "0734e78",
+  "actual_result": "build.js now derives the workspace path from process.cwd() (matches /sessions/<name>/) with a fallback that scans /sessions/*/mnt/dome-model-review for any accessible mount. Silent skip replaced with a loud warning. SECOND application — the first commit (0734e78) was re-clobbered by the decider's own session-setup sed in decider-patches-and-selfapply.md line 76, which ran `sed -i 's|/sessions/[^/]*/mnt/dome-model-review|${WORKSPACE}|' build.js` and matched the template literal `/sessions/${sessionMatch}/...`. Fixed here by deleting the sed line from the decider reference module (it was a leftover from the old hardcoded-path era and is no longer needed). Also the PROP-004 metadata was clobbered by workspace-sync bot 4ac60b2 (same direction bug as PROP-003). Re-applied.",
+  "verification_pattern": "grep -q \"'/sessions/busy-cool-mayer/mnt/dome-model-review'\\|'/sessions/determined-beautiful-wozniak/mnt/dome-model-review'\" build.js && echo STILL_BROKEN || echo FIXED",
   "priority": "high",
   "category": "bug-fix",
   "target": "build.js",

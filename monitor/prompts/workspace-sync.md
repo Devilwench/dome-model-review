@@ -36,48 +36,103 @@ git pull --rebase origin main
 
 ### Step 2: Sync workspace files to clone
 
-Copy these directories from workspace to clone (these are the ones agents write to):
+Copy files from workspace to clone using a **direction-aware smart_copy** helper. This prevents the sync bot from silently reverting commits that landed on main directly from a human session (e.g. PROP lifecycle updates) when the workspace hasn't seen those commits yet because `build.js publish` sync was broken or hadn't run.
 
 ```bash
+SKIP_LOG=/tmp/workspace-sync-skips.log
+: > "$SKIP_LOG"
+
+# smart_copy: copy $src → $dst only if:
+#   - $dst does not exist, OR
+#   - $src and $dst differ AND $src mtime > $dst's last git commit time
+# If the clone's git history is newer than the workspace mtime, SKIP and log.
+# This is the fix for the 2026-04-09 regression where workspace-sync reverted
+# PROP-003 and PROP-004 status updates by blindly copying stale workspace files
+# on top of newer git commits.
+smart_copy() {
+  local src="$1"
+  local dst="$2"
+  [ ! -f "$src" ] && return 0
+  if [ ! -f "$dst" ]; then
+    cp "$src" "$dst"
+    return 0
+  fi
+  if cmp -s "$src" "$dst"; then
+    return 0
+  fi
+  local ws_mtime git_time
+  ws_mtime=$(stat -c %Y "$src" 2>/dev/null || echo 0)
+  git_time=$(git log -1 --format=%at -- "$dst" 2>/dev/null || echo 0)
+  if [ "$ws_mtime" -gt "$git_time" ]; then
+    cp "$src" "$dst"
+  else
+    echo "SKIP (git newer than workspace): $dst (git $(date -u -d @$git_time +%FT%TZ 2>/dev/null || echo $git_time), ws $(date -u -d @$ws_mtime +%FT%TZ 2>/dev/null || echo $ws_mtime))" >> "$SKIP_LOG"
+  fi
+}
+
+# Iterate over each file the workspace might author and smart_copy it
+sync_glob() {
+  # $1 = subdir relative to monitor/ root, $2 = glob pattern
+  local rel="$1"
+  local pat="$2"
+  mkdir -p "$rel"
+  for f in "${WORKSPACE}/${rel}/"${pat}; do
+    [ -e "$f" ] || continue
+    smart_copy "$f" "${rel}/$(basename "$f")"
+  done
+}
+
 # Analyst outputs
-cp -r "${WORKSPACE}/monitor/analyst/expansions/"*.json monitor/analyst/expansions/ 2>/dev/null
-cp -r "${WORKSPACE}/monitor/analyst/category-proposals/"*.json monitor/analyst/category-proposals/ 2>/dev/null
-cp -r "${WORKSPACE}/monitor/analyst/new-wins/"*.json monitor/analyst/new-wins/ 2>/dev/null
-cp -r "${WORKSPACE}/monitor/analyst/globe-fingerprints/"*.json monitor/analyst/globe-fingerprints/ 2>/dev/null
-cp "${WORKSPACE}/monitor/analyst/expansion-tracker.json" monitor/analyst/expansion-tracker.json 2>/dev/null
-cp "${WORKSPACE}/monitor/analyst/globe-fingerprint-tracker.json" monitor/analyst/globe-fingerprint-tracker.json 2>/dev/null
-cp "${WORKSPACE}/monitor/analyst/human-notes.json" monitor/analyst/human-notes.json 2>/dev/null
-cp "${WORKSPACE}/monitor/analyst/exhibit-a-replication.json" monitor/analyst/exhibit-a-replication.json 2>/dev/null
+sync_glob monitor/analyst/expansions '*.json'
+sync_glob monitor/analyst/category-proposals '*.json'
+sync_glob monitor/analyst/new-wins '*.json'
+sync_glob monitor/analyst/globe-fingerprints '*.json'
+smart_copy "${WORKSPACE}/monitor/analyst/expansion-tracker.json" monitor/analyst/expansion-tracker.json
+smart_copy "${WORKSPACE}/monitor/analyst/globe-fingerprint-tracker.json" monitor/analyst/globe-fingerprint-tracker.json
+smart_copy "${WORKSPACE}/monitor/analyst/human-notes.json" monitor/analyst/human-notes.json
+smart_copy "${WORKSPACE}/monitor/analyst/exhibit-a-replication.json" monitor/analyst/exhibit-a-replication.json
 
 # Curmudgeon outputs
-cp -r "${WORKSPACE}/monitor/curmudgeon/reviews/"*.json monitor/curmudgeon/reviews/ 2>/dev/null
-cp "${WORKSPACE}/monitor/curmudgeon/tracker.json" monitor/curmudgeon/tracker.json 2>/dev/null
-cp "${WORKSPACE}/monitor/curmudgeon/pending-digest.json" monitor/curmudgeon/pending-digest.json 2>/dev/null
+sync_glob monitor/curmudgeon/reviews '*.json'
+smart_copy "${WORKSPACE}/monitor/curmudgeon/tracker.json" monitor/curmudgeon/tracker.json
+smart_copy "${WORKSPACE}/monitor/curmudgeon/pending-digest.json" monitor/curmudgeon/pending-digest.json
 
 # Poller outputs
-mkdir -p monitor/changes
-cp "${WORKSPACE}/monitor/changes/"*.json monitor/changes/ 2>/dev/null
-cp "${WORKSPACE}/monitor/changes/"*.txt monitor/changes/ 2>/dev/null
+sync_glob monitor/changes '*.json'
+sync_glob monitor/changes '*.txt'
 
 # Decider outputs (reports, patches — the decider commits its own data file changes,
 # but its report/patch files are often workspace-only)
-cp "${WORKSPACE}/monitor/decisions/daily-report-"*.json monitor/decisions/ 2>/dev/null
-cp "${WORKSPACE}/monitor/decisions/suggested-patches-"*.json monitor/decisions/ 2>/dev/null
-cp "${WORKSPACE}/monitor/decisions/morning-briefing.txt" monitor/decisions/morning-briefing.txt 2>/dev/null
+sync_glob monitor/decisions 'daily-report-*.json'
+sync_glob monitor/decisions 'suggested-patches-*.json'
+smart_copy "${WORKSPACE}/monitor/decisions/morning-briefing.txt" monitor/decisions/morning-briefing.txt
 
-# Social outputs
-cp -r "${WORKSPACE}/monitor/social/drafts/"* monitor/social/drafts/ 2>/dev/null
-cp "${WORKSPACE}/monitor/social/discoverability-baseline.json" monitor/social/discoverability-baseline.json 2>/dev/null
-cp "${WORKSPACE}/monitor/social/search-rankings.json" monitor/social/search-rankings.json 2>/dev/null
+# Social outputs (drafts directory has mixed file types)
+mkdir -p monitor/social/drafts
+for f in "${WORKSPACE}/monitor/social/drafts/"*; do
+  [ -e "$f" ] || continue
+  [ -f "$f" ] && smart_copy "$f" "monitor/social/drafts/$(basename "$f")"
+done
+smart_copy "${WORKSPACE}/monitor/social/discoverability-baseline.json" monitor/social/discoverability-baseline.json
+smart_copy "${WORKSPACE}/monitor/social/search-rankings.json" monitor/social/search-rankings.json
 
-# Integrity + Tinker reports
-cp "${WORKSPACE}/monitor/integrity/"*.json monitor/integrity/ 2>/dev/null
-cp "${WORKSPACE}/monitor/tinker/"*.json monitor/tinker/ 2>/dev/null
-cp "${WORKSPACE}/monitor/tinker/proposals/"*.json monitor/tinker/proposals/ 2>/dev/null
+# Integrity + Tinker reports and proposals
+sync_glob monitor/integrity '*.json'
+sync_glob monitor/tinker '*.json'
+sync_glob monitor/tinker/proposals '*.json'
 
 # Status files
-cp "${WORKSPACE}/monitor/status.json" monitor/status.json 2>/dev/null
-cp "${WORKSPACE}/monitor/review-state.json" monitor/review-state.json 2>/dev/null
+smart_copy "${WORKSPACE}/monitor/status.json" monitor/status.json
+smart_copy "${WORKSPACE}/monitor/review-state.json" monitor/review-state.json
+
+# Report any skips loudly — these indicate workspace-sync SPARED a newer git file
+if [ -s "$SKIP_LOG" ]; then
+  echo ""
+  echo "⚠️  Workspace-sync spared $(wc -l < "$SKIP_LOG") file(s) because git was newer than workspace:"
+  cat "$SKIP_LOG"
+  echo ""
+  echo "If this keeps happening, it means build.js publish sync isn't running from the sessions that made those commits (see PROP-004). The sparing itself is correct — better to leave git's newer version than revert it."
+fi
 ```
 
 ### Step 3: Check for changes
@@ -115,5 +170,6 @@ Output a one-line summary: how many files were new, how many modified, or "Nothi
 - **Do NOT analyze or review files.** You are a file mover, not a reviewer.
 - **Do NOT edit data/wins.json, data/sections.json, or data/uncounted-failures.json.** Those are committed by the decider after build/test. You only sync monitor/ files.
 - **Do NOT run build.js or test.js.** The decider handles builds.
+- **Never revert git.** Always use `smart_copy` instead of raw `cp`. The helper refuses to overwrite a clone file whose last git commit is newer than the workspace file's mtime — this protects direct-to-git commits from being silently undone. If you find yourself wanting to force-overwrite a skipped file, stop and escalate to tinker or a human instead.
 - If git pull --rebase fails with merge conflicts, do NOT attempt to resolve. Output the error and stop. A human or the tinker agent will fix it.
 - Use your own clone directory (`dome-sync-clone`), never touch `dome-review-clean`.

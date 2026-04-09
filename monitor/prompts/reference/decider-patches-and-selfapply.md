@@ -72,8 +72,11 @@ git clone "$AUTH_URL" ${CLONE}
 cd ${CLONE}
 npm install
 
-# Update workspace sync path in build.js to match this session
-sed -i "s|/sessions/[^/]*/mnt/dome-model-review|${WORKSPACE}|" build.js
+# DO NOT sed build.js — as of PROP-004, build.js derives the workspace path
+# from process.cwd() dynamically. Running sed against the /sessions/[^/]*/...
+# pattern will match the template literal `/sessions/${sessionMatch}/...` and
+# clobber the dynamic detection with a hardcoded session name. Leave build.js
+# alone.
 
 # 1. Apply your patches (note the output — track which applied and which failed)
 node build-scripts/apply-patches.js /path/to/your/suggested-patches-YYYY-MM-DDTHH-MM.json
