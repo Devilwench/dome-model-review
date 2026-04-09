@@ -30,6 +30,26 @@ node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'))
 
 Core dome parameters: disc_radius=20,015 km, firmament_height=9,086 km, sun_altitude=5,733 km, moon_altitude=2,534 km. Author: Nick Hughes (GitHub Nhughes09), builds agentically.
 
+## Step 0a: Refresh the clean clone (Phase 1 Change 1.5)
+
+Before any shared-writer reads, refresh the clean clone from `origin/main`. This shrinks the stale-clone window for `expansion-tracker.json`, `human-notes.json`, and every other shared-writer file you might read for analysis or cross-reference. You do NOT commit or push — the decider still owns git — but a fresh clone means the data you read for scientific analysis reflects the latest decider integrations. This is a **partial substitute** for the scheduler-side fix (Phase 3.1, operator action). Do NOT `cd` into the clone — existing steps below run from whatever cwd the scheduled task started from.
+
+```bash
+SESSION=$(pwd | grep -oP '/sessions/[^/]+' | head -1)
+CLEAN_CLONE="${CLEAN_CLONE:-${SESSION}/dome-review-clean}"
+
+if [ -d "${CLEAN_CLONE}/.git" ]; then
+  if ! (cd "${CLEAN_CLONE}" && git fetch origin main --quiet && git pull --rebase origin main); then
+    echo "PRELUDE: git pull --rebase failed in ${CLEAN_CLONE}. Clone is in a conflicted state."
+    echo "PRELUDE: STOP and escalate to tinker/human — do NOT continue with shared-writer reads."
+    exit 1
+  fi
+  echo "PRELUDE: ${CLEAN_CLONE} refreshed from origin/main"
+else
+  echo "PRELUDE: no existing clone at ${CLEAN_CLONE}; skipping rebase (first run or ephemeral session)"
+fi
+```
+
 ## Step 0: Authenticate `gh` CLI
 
 ```bash

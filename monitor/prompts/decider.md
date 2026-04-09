@@ -18,7 +18,36 @@ You synthesize outputs from six upstream agents monitoring the ECM critical revi
 
 Sources of truth: `data/wins.json` (WINs), `data/sections.json` (prose), `data/uncounted-failures.json` (failures).
 
-## Step 0: Setup
+## Step 0: Refresh the clean clone (Phase 1 Change 1.5)
+
+Before any shared-writer reads, refresh the clean clone from `origin/main`. This shrinks the stale-clone window for `monitor/analyst/expansion-tracker.json`, `monitor/curmudgeon/tracker.json`, `monitor/decisions/open-issues.json`, `monitor/decisions/human-notes.json`, and every other shared-writer file. It is a **partial substitute** for the scheduler-side workspace-sync-as-prerequisite fix (Phase 3.1, deferred to operator action) and should be replaced by it when the operator updates the scheduled-task wiring. The residual window (top-of-run pull → writes → push) is covered by the pre-push integrity gate in `reference/decider-patches-and-selfapply.md`.
+
+The self-apply block in `reference/decider-patches-and-selfapply.md` re-derives `CLONE="${SESSION}/dome-review-clean"` when it needs a clone with push credentials, so the variable name and path are shared. Do NOT `cd` into the clone here — the rest of this prompt's dispatcher logic runs from whatever cwd the scheduled task started from.
+
+```bash
+# Compute the canonical clone path. Respect any CLEAN_CLONE already set
+# by the scheduler or an upstream wrapper; fall back to the same name
+# the self-apply block uses (${SESSION}/dome-review-clean).
+SESSION=$(pwd | grep -oP '/sessions/[^/]+' | head -1)
+CLEAN_CLONE="${CLEAN_CLONE:-${SESSION}/dome-review-clean}"
+
+if [ -d "${CLEAN_CLONE}/.git" ]; then
+  if ! (cd "${CLEAN_CLONE}" && git fetch origin main --quiet && git pull --rebase origin main); then
+    echo "PRELUDE: git pull --rebase failed in ${CLEAN_CLONE}. Clone is in a conflicted state."
+    echo "PRELUDE: STOP and escalate to tinker/human — do NOT continue with shared-writer reads."
+    exit 1
+  fi
+  echo "PRELUDE: ${CLEAN_CLONE} refreshed from origin/main"
+else
+  # No existing clone — the self-apply block in decider-patches-and-selfapply.md
+  # will clone fresh later with an authenticated URL. A first-run decider reads
+  # upstream outputs from the workspace mount via the existing Step 0 below,
+  # which is the same behavior as before Phase 1.
+  echo "PRELUDE: no existing clone at ${CLEAN_CLONE}; skipping rebase (first run or ephemeral session)"
+fi
+```
+
+## Step 0b: Setup
 
 **Read V6 map:** `monitor/v6-restructure-map.json`
 

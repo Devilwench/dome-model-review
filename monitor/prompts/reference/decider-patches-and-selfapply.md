@@ -85,11 +85,96 @@ node build-scripts/apply-patches.js /path/to/your/suggested-patches-YYYY-MM-DDTH
 node build.js html 2>&1 | tail -5
 node test.js 2>&1 | tail -5
 
-# 3a. If ALL tests pass → commit and push
+# 3a. If ALL tests pass → commit, run pre-push integrity gate, then push
 git add data/ docs/ downloads/ monitor/
 git commit -m "Decider self-apply: <brief summary of patches>
 
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+
+# ── Pre-push integrity gate (Phase 1 Change 1.6) ──
+#
+# Before pushing, verify that the post-rebase state passes the
+# structure-integrity Section 7 invariants. This catches the one
+# failure mode that slips past Phase 0's next_id allocator, the
+# Change 1.5 top-of-run pull, and git's own merge-conflict detection:
+# git's line-based auto-merge producing syntactically valid but
+# semantically wrong JSON (duplicate EXP/ISS/WIN ids, backward next_id,
+# stale total_items). Without the gate, silent corruption lands on
+# origin/main and the integrity agent catches it hours later on its
+# own schedule, by which time the provenance is smeared across
+# multiple commits. With the gate, the push is blocked at the writer
+# and a human reconciles before any corruption is visible downstream.
+#
+# The gate checks STRUCTURAL invariants only — duplicate ids, monotonic
+# next_id, total_items correctness. It deliberately does NOT check
+# business rules (valid status transitions, section references, blocked_on
+# targets existing) — those remain the integrity agent's job. Keep the
+# gate simple or it will false-positive and wedge the pipeline.
+
+git fetch origin main
+if ! git merge-base --is-ancestor origin/main HEAD; then
+  # Our local HEAD is not a descendant of origin/main — need to rebase.
+  if ! git pull --rebase origin main; then
+    echo "PRE-PUSH GATE: rebase failed with conflict. Aborting push. Escalate to tinker/human."
+    exit 1
+  fi
+fi
+
+# Run the Section 7 invariants against the (possibly post-rebase) tree.
+node -e "
+const fs=require('fs');
+const errors=[];
+// Invariant 1: next_id > max(items[].id) in expansion-tracker, no duplicate EXP ids
+try {
+  const t=JSON.parse(fs.readFileSync('monitor/analyst/expansion-tracker.json','utf8'));
+  const ids=t.items.map(i=>i.id);
+  const maxId=t.items.reduce((m,i)=>Math.max(m,parseInt((i.id||'EXP-0').replace('EXP-',''))||0),0);
+  if(typeof t.next_id!=='number') errors.push('expansion-tracker: next_id missing or non-numeric');
+  else if(t.next_id<=maxId) errors.push('expansion-tracker: next_id='+t.next_id+' <= max_id='+maxId+' (collision imminent)');
+  const seen=new Set();
+  for(const id of ids){ if(seen.has(id)) errors.push('expansion-tracker: duplicate id '+id); seen.add(id); }
+} catch (e) { errors.push('expansion-tracker: read/parse failed: '+e.message); }
+
+// Invariant 2: no duplicate ISS ids, next_id monotonicity (if present)
+try {
+  const o=JSON.parse(fs.readFileSync('monitor/decisions/open-issues.json','utf8'));
+  const ids=(o.issues||[]).map(i=>i.id).filter(Boolean);
+  const seen=new Set();
+  for(const id of ids){ if(seen.has(id)) errors.push('open-issues: duplicate id '+id); seen.add(id); }
+  if(typeof o.next_id==='number'){
+    const maxId=ids.reduce((m,id)=>Math.max(m,parseInt((id||'ISS-0').replace('ISS-',''))||0),0);
+    if(o.next_id<=maxId) errors.push('open-issues: next_id='+o.next_id+' <= max_id='+maxId);
+  }
+} catch (e) { /* non-fatal — open-issues shape may vary */ }
+
+// Invariant 3: no duplicate WIN ids in curmudgeon/tracker, total_items correctness.
+// This is the only protection the unclassified multi-writer curmudgeon/tracker.json
+// has against decider-vs-curmudgeon rebase races in Phase 1.
+try {
+  const c=JSON.parse(fs.readFileSync('monitor/curmudgeon/tracker.json','utf8'));
+  const pts=(c.points||[]).filter(p=>p.type==='win');
+  const ids=pts.map(p=>p.id);
+  const seen=new Set();
+  for(const id of ids){ if(seen.has(id)) errors.push('curmudgeon/tracker: duplicate win '+id); seen.add(id); }
+  if(typeof c.total_items==='number' && c.total_items!==pts.length){
+    errors.push('curmudgeon/tracker: total_items='+c.total_items+' != actual '+pts.length);
+  }
+} catch (e) { /* non-fatal — tracker may be structured differently in older formats */ }
+
+if(errors.length){
+  console.error('PRE-PUSH GATE FAILED:');
+  errors.forEach(e => console.error('  '+e));
+  process.exit(1);
+}
+console.log('PRE-PUSH GATE OK');
+"
+if [ $? -ne 0 ]; then
+  echo "PRE-PUSH GATE: integrity violation after rebase. Aborting push."
+  echo "PRE-PUSH GATE: the rebase produced semantically wrong JSON — human must reconcile."
+  echo "PRE-PUSH GATE: your local HEAD still contains the work, but it is NOT safe to push."
+  exit 1
+fi
+
 git push origin main
 
 # 3b. If ANY test fails → abandon and leave for human
