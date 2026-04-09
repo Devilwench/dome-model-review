@@ -197,10 +197,14 @@
       "description": "CAT-005 proposal: Analyst proposes new section \"V51.1 Refraction Cascade: How One Parameter Fix Breaks Everything\" covering 12+ affected WINs. Cascade failure analysis shows refraction needed is 13-27 degrees vs 0.03 degrees real. Human must decide: approve as new section (Part 2 or Section 7 extension), reject, or integrate as individual WIN patches.",
       "source": "analyst",
       "found_date": "2026-04-09",
-      "status": "needs-human",
+      "status": "assigned-analyst",
       "fix_details": null,
       "fix_date": null,
-      "found_by": "analyst-cat-005"
+      "found_by": "analyst-cat-005",
+      "assigned_to": "analyst-EXP-050",
+      "human_decision": "Approved as new section under The Model tab (option a). New code_analysis sub-category tag requested for cascade-affected WINs. Analyst to write recommended proposal package — route to curmudgeon before fleshing out prose. See CAT-005.json human_decision block.",
+      "decided_at": "2026-04-09T17:55:00Z",
+      "decided_by": "steve"
     }
   ],
   "next_id": 697
