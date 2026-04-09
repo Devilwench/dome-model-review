@@ -1,18 +1,18 @@
 # Dome Model Review — Session Context for AI Continuity
 
-**Last updated:** 2026-04-07 (context windows 5–13)
+**Last updated:** 2026-04-09 (context windows 5–16)
 **Repository:** https://github.com/funwithscience-org/dome-model-review
 **Live site:** https://funwithscience-org.github.io/dome-model-review
-**Version reviewed:** Ovoid Cavity Cosmological Model V51.0 (April 2026)
+**Version reviewed:** Ovoid Cavity Cosmological Model V51.1 (April 2026)
 **Source site:** john09289.github.io/predictions
 
 ---
 
 ## 1. Project Overview
 
-This is a comprehensive, data-driven critical review of a flat-earth dome model that claims 67 confirmed predictions and zero falsifications. Query current verdict tallies:
-`node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const c={};w.forEach(x=>c[x.verdict]=(c[x.verdict]||0)+1);console.log(c)"`
-Zero of 67 are uniquely explained by the dome.
+This is a comprehensive, data-driven critical review of a flat-earth dome model. Query current WIN count and verdict tallies:
+`node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const c={};w.forEach(x=>c[x.verdict]=(c[x.verdict]||0)+1);console.log('WINs:',w.length,c)"`
+Zero are uniquely explained by the dome.
 
 The review is built to be transparent, fair, and scientifically rigorous — we acknowledge where the dome model shows genuine sophistication (V13 Finsler coordinates, cryptographic timestamping, toroidal architecture) while documenting where claims fail.
 
@@ -27,7 +27,7 @@ data/sections.json ─┤→  node build.js  →  docs/index.html (HTML)
                     │                   →  downloads/critical-review-dome-model-v6.pdf
 ```
 
-- **`data/wins.json`** — Single source of truth for all 67 WINs (claims, verdicts, findings, detail writeups, code_analysis tags)
+- **`data/wins.json`** — Single source of truth for all WINs (claims, verdicts, findings, detail writeups, code_analysis tags). Query count: `node -e "console.log(JSON.parse(require('fs').readFileSync('data/wins.json','utf8')).length)"`
 - **`data/sections.json`** — 13 prose sections (parts 1–10 including 1b and 2b) with `{{PLACEHOLDER}}` tokens for computed values
 - **`build-scripts/generate-html.js`** — Generates docs/index.html from wins.json + sections.json. All counts computed at build time. Key functions: `generatePieChart()`, `sectionNav()`, `formatWinDetail()`, `renderSectionFromJson()`
 - **`build-scripts/generate-pdf.js`** — HTML→PDF via Playwright headless Chromium
@@ -296,13 +296,14 @@ dome-model-review/
 │   ├── apply-patches.js              # Applies decider patches against parsed JSON fields
 │   └── sync-code-analysis.js         # Syncs code_analysis tags from reviews to wins.json
 ├── data/
-│   ├── wins.json                     # 67 WINs — single source of truth
-│   └── sections.json                 # 13 prose sections (parts 1-10 incl. 1b, 2b)
+│   ├── wins.json                     # All WINs — single source of truth
+│   ├── sections.json                 # 13 prose sections (parts 1-10 incl. 1b, 2b)
+│   └── uncounted-failures.json       # Dome prediction failures (FAIL-NNN IDs)
 ├── docs/
 │   └── index.html                    # GENERATED — do NOT edit directly
 ├── downloads/
 │   └── critical-review-dome-model-v6.pdf   # GENERATED (via Playwright)
-├── raw-text/                         # Extracted ECM V51.0 site content
+├── raw-text/                         # Extracted ECM V51.1 site content
 ├── raw-text-v50.6-2026-03-12/        # Archived V50.6 baseline for version comparison
 ├── security-audit.md                 # Website security scan results
 ├── monitor/
@@ -357,14 +358,16 @@ dome-model-review/
 
 **code_analysis schema** added to wins.json: `{monitoring: "hardcoded"|"live_fetch"|"none", relabels_standard: bool, post_hoc: bool, derives_from_dome: bool, reviewed: bool}`. 31 WINs have tags from the initial batch review; the curmudgeon now validates and populates tags as it reviews WIN-032+.
 
-**Five-agent monitoring pipeline** with externalized prompts in `monitor/prompts/*.md`:
-- Poller (Sonnet/4h): Change detection on dome site
-- Analyst (Opus/8h): Deep scientific analysis with kernel-of-truth methodology
-- Curmudgeon (Opus/15min): Adversarial per-WIN review with code_analysis tag validation
-- Decider (Opus/daily 6:30 AM): Triage, suggested patches, morning briefing, persistent issue tracking
-- Structure & Integrity (Haiku/daily 9 AM): Site health — internal anchors, tab navigation, external links (no DOIs), data-prose consistency, build reproducibility
+**Seven-agent monitoring pipeline** with externalized prompts in `monitor/prompts/*.md`:
+- Poller (Sonnet/12h): Change detection on dome site, test window tracking
+- Analyst (Opus/2h): Deep scientific analysis, Modes 0–4, picks up assigned-analyst issues
+- Curmudgeon (Opus/4h): Adversarial per-WIN review with code_analysis tag validation
+- Decider (Opus/4h): Triage, patches, poll summary triage (Step 1i), expansion integration
+- Integrity (Haiku/daily 9 AM): Site health, links, tabs, build drift, data-prose consistency, tracker continuity, workspace-only file detection, documentation freshness
+- Tinker (Opus/daily 10:30 AM): Pipeline ops, audit outputs, FUSE staleness detection, cost engineering, documentation architecture audit
+- Social (Sonnet/daily 11 AM): Machine-readable layer (llms.txt, sitemap, robots.txt), competitive discoverability
 
-**Curmudgeon lifecycle**: Phase 1 (per-item: 67 WINs + sections + prose) → Phase 2 (9 holistic checks: narrative arc, taxonomy, cross-refs, stress test, etc.) → Phase 3 (repaint: cycle increments, start over). Currently at WIN-034 in Phase 1.
+**Curmudgeon lifecycle**: Phase 1 (per-item: WINs + sections + prose) → Phase 2 (9 holistic checks: narrative arc, taxonomy, cross-refs, stress test, etc.) → Phase 3 (repaint: cycle increments, start over). Check progress: `cat monitor/curmudgeon/tracker.json | node -e "process.stdin.on('data',d=>{const t=JSON.parse(d);console.log('Cycle',t.cycle,'Phase',t.phase,t.items_reviewed+'/'+t.total_items)})"`
 
 **Persistent issue tracker** (`monitor/decisions/open-issues.json` + `closed-issues.json`). Check live counts with commands in Section 12. Decider required to acknowledge every open issue with rationale for deferral.
 
@@ -476,7 +479,9 @@ node test.js 2>&1 | tail -3
 
 **Human notes system:** Created `monitor/analyst/human-notes.json` and `monitor/decisions/human-notes.json`. Agents check each run, act immediately, mark consumed. Key innovation: notes trigger revisions on completed work — e.g., NOTE-001 added π×R critique to already-completed EXP-003.
 
-**Globe fingerprint hunt (Mode 3):** Systematic background search for globe-derived constants across all 67 WINs. Motivated by discovering d_geo = a/n(r_avg) where a = π×R_earth and 1.57c ≈ π/2 in WIN-001. 67-item tracker, one per analyst run, low priority (idle only). Output to `monitor/analyst/globe-fingerprints/WIN-NNN.json`.
+**Globe fingerprint hunt (Mode 4):** Systematic background search for globe-derived constants across all WINs. Motivated by discovering d_geo = a/n(r_avg) where a = π×R_earth and 1.57c ≈ π/2 in WIN-001. Tracker at `monitor/analyst/globe-fingerprint-tracker.json`, one per analyst run, low priority (idle only). Output to `monitor/analyst/globe-fingerprints/WIN-NNN.json`.
+
+**Poll summary triage pipeline (Step 1i):** Fixed gap where poller's `analyst_priority` flags on secondary findings weren't converted to tracked issues. Decider now scans `latest-poll-summary.txt` every run and creates issues for untracked HIGH/MEDIUM items. Analyst now checks for `assigned-analyst` issues when no higher-priority mode triggers. Added CW15-16.
 
 **Curmudgeon Phase 2 complete → Cycle 2 started:** All 9 holistic checks completed (NARRATIVE, TAXONOMY, CROSSREF, HIERARCHY, TONE, COMPLETENESS, STRESSTEST, REDUNDANCY, MISSING). Cycle incremented. Now in Phase 1 Cycle 2 with fresh per-item reviews (WIN-001.c2.json, WIN-002.c2.json already written).
 

@@ -4,7 +4,7 @@
 
 ## What This Is
 
-A scientific critical review of the "Ovoid Cavity Cosmological Model" (ECM V51.0) published at john09289.github.io/predictions. The model claims 67 confirmed predictions ("WINs") for a flat-earth dome cosmology. This review evaluates every claim against published data and the model's own internal consistency.
+A scientific critical review of the "Ovoid Cavity Cosmological Model" (ECM V51.1) published at john09289.github.io/predictions. The model claims 69 confirmed predictions ("WINs") for a flat-earth dome cosmology. This review evaluates every claim against published data and the model's own internal consistency. Query current WIN count: `node -e "console.log(JSON.parse(require('fs').readFileSync('data/wins.json','utf8')).length)"`
 
 Published at: https://funwithscience-org.github.io/dome-model-review/
 Repository: https://github.com/funwithscience-org/dome-model-review
@@ -112,6 +112,7 @@ monitor/social/search-rankings.json # Search term ranking history
 monitor/tinker/                   # Tinker reports, self-fix audit trail, cost engineering analysis
 monitor/tinker/proposals/         # Actionable fix proposals (PROP-NNN.json) with full replacement text
 monitor/integrity/                # Structure & integrity check reports
+monitor/changes/                  # Poller output: change detections (chg-*.json), poll summaries (latest-poll-summary.txt)
 monitor/external-reports/         # Permanent log of all external problem reports (GitHub Issues)
 .github/ISSUE_TEMPLATE/           # "Report a Problem" structured issue template
 .github/workflows/ci.yml          # CI pipeline: build + test on push
@@ -130,10 +131,10 @@ Seven scheduled agents run continuously. All prompts live in `monitor/prompts/*.
 
 | Agent | Schedule | Model | Prompt File | Purpose |
 |-------|----------|-------|-------------|---------|
-| dome-poller | Every 4h | Sonnet | `monitor/prompts/poller.md` | Detect changes on the dome site, track prediction test windows |
-| dome-analyst | Every 30min | Opus | `monitor/prompts/analyst.md` | Modes 0–4: new WIN onboarding, expansions, defense neutralization, fingerprints |
-| dome-curmudgeon | Every 10min | Opus | `monitor/prompts/curmudgeon.md` | Adversarial self-review; priority-new items jump the queue |
-| dome-decider | Every 20min | Opus | `monitor/prompts/decider.md` | Triage, patches, new WIN commits, tracker updates, expansion integration |
+| dome-poller | Every 12h | Sonnet | `monitor/prompts/poller.md` | Detect changes on the dome site, track prediction test windows |
+| dome-analyst | Every 2h | Opus | `monitor/prompts/analyst.md` | Modes 0–4: new WIN onboarding, expansions, defense neutralization, fingerprints; picks up assigned-analyst issues |
+| dome-curmudgeon | Every 4h | Opus | `monitor/prompts/curmudgeon.md` | Adversarial self-review; priority-new items jump the queue |
+| dome-decider | Every 4h | Opus | `monitor/prompts/decider.md` | Triage, patches, new WIN commits, tracker updates, expansion integration, poll summary triage (Step 1i) |
 | dome-integrity | Daily 9:00 AM | Haiku | `monitor/prompts/structure-integrity.md` | Site health: links, tabs, build drift, data-prose consistency, discoverability |
 | dome-tinker | Daily 10:30 AM | Opus | `monitor/prompts/tinker.md` | Pipeline ops: audit outputs, trace handoffs, fix stale configs, FUSE staleness detection, cost engineering |
 | dome-social | Daily 11:00 AM | Sonnet | `monitor/prompts/social.md` | Strategic analyst: owns machine-readable layer (llms.txt, sitemap, robots.txt), competitive discoverability, search rankings, dome author activity |
@@ -191,6 +192,15 @@ Social analyst → drafts new files to monitor/social/drafts/ (e.g., llms-full.t
 Decider step 1h → reviews drafts, deploys to docs/, rejects content boundary violations
          ↓
 Tinker → audits social's boundary compliance (machine-readable only, no content changes)
+
+POLLER → ISSUE PIPELINE (Step 1i):
+Poller → latest-poll-summary.txt (with analyst_priority flags)
+         ↓
+Decider Step 1i (every run) → scans for analyst_priority: HIGH/MEDIUM items
+         ↓
+Cross-checks against open-issues.json → creates issues for untracked findings
+         ↓
+Analyst picks up assigned-analyst issues when no higher-priority mode triggers
 
 SUPPORTING FLOWS:
 Human notes: human-notes.json → Agent reads on next run → acts immediately → marks consumed
@@ -293,7 +303,7 @@ All numerical counts in the HTML prose are computed from wins.json at build time
 - Model's own "Open Problems" (OPEN-001, 003, 007) concede it can't function without WGS84
 
 ### Repository Source Code Findings (Part 2b)
-All 67 WINs now have code_analysis tags (reviewed by curmudgeon). Counts are computed from wins.json at build time — query with:
+All WINs now have code_analysis tags (reviewed by curmudgeon). Counts are computed from wins.json at build time — query with:
 `node -e "const w=JSON.parse(require('fs').readFileSync('data/wins.json','utf8'));const t={h:0,l:0,n:0,r:0,p:0,d:0};w.forEach(x=>{if(!x.code_analysis)return;if(x.code_analysis.monitoring==='hardcoded')t.h++;if(x.code_analysis.monitoring==='live_fetch')t.l++;if(x.code_analysis.monitoring==='none')t.n++;if(x.code_analysis.relabels_standard)t.r++;if(x.code_analysis.post_hoc)t.p++;if(x.code_analysis.derives_from_dome)t.d++});console.log(t)"`
 - **Monitoring illusion**: Majority use hardcoded pred=obs checks; minority fetch live data
 - **Relabeling standard physics**: ~70% rename standard physics mechanisms as "aetheric" without changing any numerical prediction
@@ -365,6 +375,7 @@ All 13 prose sections (parts 1–10 including 1b and 2b) live in `data/sections.
 | V4.9.8 | 9755573–0e01a5f | WIN-012→Self-Contradicted. WIN-054→Not Demonstrated. Holistic Phase 2 patches (tone, cross-refs, taxonomy). 16 code_analysis tag corrections. Expansion integration pipeline. Human notes system. Globe fingerprint hunt (Mode 3). 94 issues flushed to closed. |
 | V5.0 | 6e68d56 | sections.json is sole prose source of truth (50% line reduction in generate-html.js). HTML→PDF via Playwright replaces DOCX→LibreOffice chain. Removed build-doc-v4.js, adm-zip, docx dependencies. 7 cross-ref fixes in sections.json. Print CSS for PDF layout. |
 | V6.0 | 6b3e4a0 | Major restructure: tabs reordered (Self-Contradictions after The Model), kill shots extracted to own tab, all sections renumbered 1-10. Placeholder-based renumbering script. Translation map at `monitor/v6-restructure-map.json` for backward compat. |
+| V6.1 | ongoing | V51.1 coverage (69 WINs, 94.5% accuracy). WIN-068/069 onboarded. Dedup table (EXP-032), axial symmetry (EXP-033) integrated. Section 1.6 Dielectric Foundation (EXP-031) ready. Analytical tags methodology table in Part 3. WIN-001 Colorado Springs argument. Poll summary triage pipeline (Step 1i). Agent schedules reduced (poller 12h, analyst 2h, curmudgeon/decider 4h). |
 
 ## Analyst Modes
 
