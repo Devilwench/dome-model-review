@@ -127,3 +127,29 @@ Check `monitor/social/drafts/` and social's latest report.
 **Accept:** Draft machine-readable files in `monitor/social/drafts/` (review for accuracy, deploy to `docs/`). Meta tag fixes. Sitemap/robots.txt updates.
 
 **Reject:** Any patch modifying `data/wins.json`, `data/sections.json`, `data/uncounted-failures.json`, or prose content. Log tinker action item: "Social attempted content modification — review social.md compliance." Also reject build-script changes without clear machine-layer justification.
+
+## Step 1i: Poll Summary Triage (every run)
+
+The poller writes `monitor/changes/latest-poll-summary.txt` with detailed findings. Many include `analyst_priority:` flags (HIGH, MEDIUM, LOW) for items requiring follow-up. **These can fall through the cracks** if they aren't converted to issues — the main dispatch only checks WIN count and `changes_pending_analysis`, not the detailed secondary findings.
+
+**Every run**, scan the poll summary for actionable items NOT already tracked:
+
+```bash
+# 1. Read the poll summary
+cat monitor/changes/latest-poll-summary.txt
+
+# 2. Check what's already tracked
+node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const c=JSON.parse(require('fs').readFileSync('monitor/decisions/closed-issues.json','utf8'));console.log('Open:',o.issues.map(i=>i.id+': '+i.description.substring(0,80)));console.log('Closed count:',c.issues.length)"
+```
+
+For each `analyst_priority: MEDIUM` or `analyst_priority: HIGH` item in the poll summary:
+1. **Check if already tracked** — search open-issues.json descriptions for keywords (e.g., "results.json", "refractive index", "W048 confidence")
+2. **If not tracked** → create a new issue with `found_by: "poller-summary-triage"`, appropriate severity, `status: "assigned-analyst"` for investigation items or `status: "open"` for direct patches
+3. **If already tracked** → skip (no duplicate issues)
+
+**Severity mapping:**
+- `analyst_priority: HIGH` → severity `major`
+- `analyst_priority: MEDIUM` → severity `moderate`
+- `analyst_priority: LOW` → severity `minor` (only create if it persists across 2+ consecutive polls)
+
+**The point:** Nothing the poller flags with analyst_priority should go untracked. If the poller cared enough to flag it, it needs an issue. Items flagged in 2+ consecutive polls are especially urgent — the poller is telling you something was missed.

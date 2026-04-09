@@ -94,6 +94,12 @@ Trigger: No higher-priority work. One item per run.
 Trigger: `changes_pending_analysis > 0` in status.json, or new external reports on GitHub.
 → Read `monitor/prompts/reference/analyst-normal-analysis.md`, execute that procedure.
 
+**Also every run — Check for assigned issues from poller triage**
+```bash
+node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const a=o.issues.filter(i=>i.status==='assigned-analyst');console.log(a.length?'ASSIGNED ISSUES: '+a.length:'NO ASSIGNED ISSUES');a.forEach(i=>console.log(i.id+': '+i.description.substring(0,120)))"
+```
+The decider creates `assigned-analyst` issues from poller findings and other sources. If any exist and no higher-priority mode triggered, work on the highest-severity assigned issue. Write findings as an expansion (EXP item) or direct patch proposal to `monitor/analyst/expansions/`. Mark the issue description with your findings so the decider can close or patch it.
+
 ### After mode work completes:
 If Mode 0 completed, also check for Modes 1-4 and normal analysis — Mode 0 doesn't consume the entire run. All other modes: write summary and stop.
 
