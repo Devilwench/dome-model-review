@@ -54,6 +54,23 @@ const OWNERSHIP = {
   'monitor/decisions/open-issues.json': 'git',
   'monitor/decisions/closed-issues.json': 'git',
   'monitor/curmudgeon/priority-queue.json': 'git',
+  // Direction-guard skip log (Phase 1 Change 1.8). Authoritatively written
+  // by workspace-sync from its clone (fs.appendFileSync → git add -A → push),
+  // read by structure-integrity Section 7d from the workspace mount. MUST
+  // be classified 'git' even though it lives under monitor/integrity/ (which
+  // is 'append_only' for the per-run report-*.json files), because:
+  //   (a) walkAppendOnly filters by extension '.json' and '.jsonl'.endsWith('.json')
+  //       is false, so a growing .jsonl log inside an append_only directory is
+  //       NEVER copied by the walker — it would be born dead in the workspace;
+  //   (b) the log grows in place (not per-run immutable files), so append_only
+  //       semantics (if (fs.existsSync(dst)) continue) would freeze integrity's
+  //       view at the first copy anyway.
+  // The 'git' override forces unconditional git→workspace copy every publish,
+  // so integrity 7d sees fresh skip records. The same-named entry in
+  // workspace-sync.md's OWNED_BY_GIT array does NOT regress the writer:
+  // workspace-sync writes via fs.appendFileSync directly, not smart_copy, so
+  // the direction guard never fires on the authoritative writer.
+  'monitor/integrity/workspace-sync-skips.jsonl': 'git',
 
   // workspace-owned: workspace-sync owns direction; build.js does NOT sync these
   'monitor/status.json': 'workspace',
@@ -241,6 +258,16 @@ if (target === 'publish') {
       return true;
     };
 
+    // NOTE: this walker has TWO independent filters that can drop files:
+    //   (1) the extension filter (globExt) — e.g. '.json' will silently skip
+    //       '.jsonl' because 'foo.jsonl'.endsWith('.json') is false;
+    //   (2) the append-only dedupe (`if (fs.existsSync(dst)) continue`) —
+    //       files that grow in place get frozen at their first-seen snapshot.
+    // A growing log file (e.g. workspace-sync-skips.jsonl) inside an
+    // append_only directory hits BOTH traps and must be classified 'git'
+    // explicitly in the OWNERSHIP table so it's copied unconditionally by the
+    // git-owned branch of the publish loop instead. See the comment on
+    // 'monitor/integrity/workspace-sync-skips.jsonl' in OWNERSHIP above.
     const walkAppendOnly = (relDir, globExt) => {
       const absDir = path.join(ROOT, relDir);
       if (!fs.existsSync(absDir)) return;

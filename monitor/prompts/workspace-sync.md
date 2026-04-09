@@ -66,6 +66,7 @@ OWNED_BY_GIT=(
   'monitor/decisions/open-issues.json'
   'monitor/decisions/closed-issues.json'
   'monitor/curmudgeon/priority-queue.json'
+  'monitor/integrity/workspace-sync-skips.jsonl'
   # All .md files under monitor/prompts/ are git-owned (handled by the
   # dynamic rule in is_git_owned() below).
 )
@@ -92,6 +93,10 @@ if ! is_git_owned 'monitor/decisions/open-issues.json'; then
 fi
 if is_git_owned 'monitor/curmudgeon/tracker.json'; then
   echo "FATAL: is_git_owned self-test failed (monitor/curmudgeon/tracker.json must NOT be classified)"
+  exit 1
+fi
+if ! is_git_owned 'monitor/integrity/workspace-sync-skips.jsonl'; then
+  echo "FATAL: is_git_owned self-test failed (workspace-sync-skips.jsonl must be git-owned; without it build.js publish skips the file entirely due to the .json extension filter)"
   exit 1
 fi
 
