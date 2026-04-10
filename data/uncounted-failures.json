@@ -143,7 +143,7 @@
       "dome_ref": "WIN-010",
       "dome_ref_current": "WIN-010",
       "dome_ref_type": "win",
-      "dome_status_current": "REMOVED",
+      "dome_status_current": "REMOVED (WIN-010 re-confirmed 2026-03-15 via quiet-day eclipse data)",
       "related_wins": [
         "010"
       ],
@@ -151,7 +151,7 @@
       "prediction": "BOU magnetometer recorded a -10.9 nT excursion during the 2017 total solar eclipse, claimed as a dome-aether-geometry confirmation",
       "outcome": "Timing audit by the dome author across 2017 and 2024 eclipse events showed Z-component minima uncorrelated with eclipse geometry (scatter -180 to +111 min from totality). The dome removed both eclipse confirmations rather than count them as failed.",
       "dome_label": "REMOVED 2026-03-15",
-      "what_actually_happened": "Dome explicitly marks WIN-010 [REMOVED] inline on wins.html, excluded from the 69-WIN headline count and from the 4-refined accuracy denominator. Stated reason: storm contamination and timing scatter. Bundled with WIN-025 (2024 eclipse) and PROS-003 (eclipse timing) in the same 2026-03-15 removal action.",
+      "what_actually_happened": "Dome explicitly marks WIN-010 [REMOVED] inline on wins.html, excluded from the 69-WIN headline count and from the 4-refined accuracy denominator. Stated reason: storm contamination and timing scatter. Bundled with WIN-025 (2024 eclipse) and PROS-003 (eclipse timing) in the same 2026-03-15 removal action. NOTE: WIN-010 has since been re-confirmed by the dome using a different eclipse with quieter geomagnetic conditions (Kp < 2). FAIL-006 tracks the V51.0 removal; the current site shows WIN-010 as confirmed. See EXP-058 annotation on WIN-025 for full context.",
       "evidence_date": "2026-03-15",
       "added_at": "2026-04-09T20:00:00Z",
       "discovered_by": "wins.html audit triggered by integrity report 2026-04-09T08-14",

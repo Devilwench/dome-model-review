@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-10T15:14:35Z",
+  "last_updated": "2026-04-10T17:24:31.995Z",
   "issues": [
     {
       "id": "ISS-442",
@@ -85,19 +85,6 @@
       "notes": " [2026-04-09] workspace-sync agent should commit these files. Decider cannot commit workspace-only files directly (FUSE filesystem ownership rules). [2026-04-10] Decider rescued EXP-059.json and ISS-672-research.json (critical expansion files). Workspace-sync agent should handle remaining files on next run."
     },
     {
-      "id": "ISS-694",
-      "win_id": "025",
-      "severity": "moderate",
-      "category": "content-update",
-      "description": "Claim drift: dome site marks WIN-025 (2024 Eclipse 9-Station Confirmation) as [REMOVED] due to storm contamination. Our review still presents it as a current claim. Needs annotation noting dome removed this WIN, or restructuring to make this clear. WIN-025 is in uncounted-failures already; review text should acknowledge removal.",
-      "source": "integrity",
-      "found_date": "2026-04-09",
-      "status": "assigned-analyst",
-      "fix_details": null,
-      "fix_date": null,
-      "found_by": "integrity-agent"
-    },
-    {
       "id": "ISS-696",
       "win_id": null,
       "severity": "major",
@@ -105,16 +92,16 @@
       "description": "CAT-005 proposal: Analyst proposes new section \"V51.1 Refraction Cascade: How One Parameter Fix Breaks Everything\" covering 12+ affected WINs. Cascade failure analysis shows refraction needed is 13-27 degrees vs 0.03 degrees real. Human must decide: approve as new section (Part 2 or Section 7 extension), reject, or integrate as individual WIN patches.",
       "source": "analyst",
       "found_date": "2026-04-09",
-      "status": "blocked-on-curmudgeon",
+      "status": "assigned-analyst",
       "fix_details": null,
       "fix_date": null,
       "found_by": "analyst-cat-005",
-      "assigned_to": "analyst-EXP-050",
+      "assigned_to": "analyst-EXP-050-revision",
       "human_decision": "Approved as new section under The Model tab (option a). New code_analysis sub-category tag requested for cascade-affected WINs. Analyst to write recommended proposal package — route to curmudgeon before fleshing out prose. See CAT-005.json human_decision block.",
       "decided_at": "2026-04-09T17:55:00Z",
       "decided_by": "steve",
-      "blocked_at": "2026-04-09T19:06:09.104Z",
-      "blocked_reason": "awaiting curmudgeon review of EXP-050 CAT-005 V51.1 Refraction Cascade proposal package"
+      "gate_returned_at": "2026-04-10T17:24:31.995Z",
+      "gate_returned_reason": "Curmudgeon gate (2026-04-10): ACCEPT_WITH_MODIFICATIONS — 7 blockers. Analyst must produce EXP-050-numerics.json, re-audit WIN flip table (per-WIN re-read required), withdraw cascade_dependent tag, use structural title, renumber to Section 1.8. Resubmit for second gate pass."
     },
     {
       "id": "ISS-698",
@@ -192,7 +179,22 @@
       "found_by": "human-note",
       "found_at": "2026-04-10T15:14:35Z",
       "source": "NOTE-2026-04-10-sha256-recycling"
+    },
+    {
+      "id": "ISS-705",
+      "win_id": "025",
+      "severity": "critical",
+      "category": "factual_error",
+      "description": "SEC-2b.7 (April 2026 Scoreboard Drift) claims W004 in results.json IS the 2024 Eclipse 9-Station test (WIN-025). But dome raw-text assigns W004 to Noise Floor Limit (empirical recalibration at v50.2). If the identity mapping is wrong, the two-scoreboards argument comparing W004 across different scoreboards is a category error. Must re-fetch results.json and verify exact mapping before this argument can be published.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-10",
+      "status": "assigned-analyst",
+      "fix_details": null,
+      "fix_date": null,
+      "found_by": "curmudgeon-cycle2-SEC-2b.7-alert",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.7.c2.json",
+      "notes": "ACTION: Re-fetch results.json from dome API (raw.githubusercontent.com path). Dump entry with W004 ID. Confirm or correct identity mapping in SEC-2b.7 text. If mapping is wrong, the opening scoreboard argument needs rewrite."
     }
   ],
-  "next_id": 705
+  "next_id": 706
 }
