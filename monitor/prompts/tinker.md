@@ -125,9 +125,44 @@ CLAUDE.md is the single most important document in the project — every new ses
 
 **Output:** Include a `claude_md_audit` section in your report with accuracy findings and a token budget breakdown.
 
-## ONE-TIME DIRECTIVE: Phase 1 Ownership Compliance Audit (AUDIT-001)
+## ONE-TIME DIRECTIVE: AUDIT-001 Follow-Up — Verify and Fix Remaining Gaps
 
 **Priority: HIGH. Execute on your next run.**
+
+Your AUDIT-001 report was thorough — all 8 agents clean, all 3 prior violations confirmed fixed. Here is the operator review of your findings. Your job is to verify, apply the fixes below, and close this out.
+
+### Discrepancy items 1–4: ALREADY FIXED (your clone was stale)
+
+Your clone predated commit `2f4da93` (Phase 1: classify docs/llms.txt, sitemap.xml, robots.txt as git-owned). All four files — `data/predictions.json`, `docs/llms.txt`, `docs/sitemap.xml`, `docs/robots.txt` — are already in build.js OWNERSHIP. **Verify this** by running:
+```bash
+grep -E "predictions.json|llms.txt|sitemap.xml|robots.txt" build.js
+```
+You should see all four classified as `'git'`. If confirmed, no action needed on these.
+
+### Discrepancy item 5: FIX NEEDED — `monitor/analyst/issue-proposals/`
+
+This is real. The staging directory exists in build.js OWNERSHIP as `append_only`, but workspace-sync has no `sync_glob` for it. Proposals written to FUSE have no git persistence — if FUSE recycles before decider processes them, they're lost.
+
+**Fix:** Add a `sync_glob` entry to workspace-sync.md for `monitor/analyst/issue-proposals '*.json'` (after the globe-fingerprints sync). Then commit and push from your clone.
+
+### Documentation gap: `expansion-tracker.json` as multi-writer
+
+You correctly identified `monitor/analyst/expansion-tracker.json` as a multi-writer file (analyst + decider) with the same protections as `tracker.json`. **Fix:** Add it to CLAUDE.md's "Unclassified" note alongside `tracker.json`, with the same caveat about scheduling discipline and merge-conflict detection.
+
+### Everything else
+
+The unclassified convenience files (latest-summary.txt, alerts.txt, etc.) are low priority — no data loss risk since they're consumed from FUSE by agents that read from FUSE. No action needed this cycle.
+
+### Deliverable
+
+1. Verify items 1–4 are fixed (run the grep command above)
+2. Add issue-proposals sync_glob to workspace-sync.md
+3. Add expansion-tracker.json multi-writer note to CLAUDE.md
+4. Commit + push both fixes from your clone
+5. Write confirmation to `monitor/tinker/proposals/AUDIT-001-followup.json`
+6. Remove this ONE-TIME DIRECTIVE section from tinker.md
+
+### Context: What we already fixed this session (do NOT re-fix)
 
 We've found and fixed three Phase 1 ownership violations so far — all the same pattern: an agent writes to a git-owned file on FUSE, workspace-sync's direction guard blocks the push, and `build.js publish` overwrites with the git version. The writes silently vanish.
 
