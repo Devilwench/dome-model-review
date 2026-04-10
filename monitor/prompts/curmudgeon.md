@@ -136,7 +136,7 @@ Queue structure:
   "queue": [
     {
       "queue_id": 1,
-      "target_type": "win-new" | "win-detail-rewrite" | "section-new" | "section-rewrite" | "proposal" | "killshot-new" | "killshot-rewrite",
+      "target_type": "win-new" | "win-detail-rewrite" | "section-new" | "section-rewrite" | "proposal" | "killshot-new" | "killshot-rewrite" | "prediction-batch" | "research",
       "target_id": "WIN-068" | "SEC-2.1" | "EXP-050" | ...,
       "reason": "New WIN onboarded by analyst Mode 0",
       "pushed_by": "decider",
@@ -154,8 +154,13 @@ Queue structure:
 **Procedure:**
 1. Read the queue. If `queue` is empty, skip to Step 0c.
 2. Find the **first un-reviewed** item in `queue` — strict FIFO, no reordering. To determine if an item has already been reviewed, check whether a review file exists in `${CLONE}/monitor/curmudgeon/reviews/` whose filename contains the item's `target_id`. For example, queue item `target_id: "WIN-003"` is already reviewed if `WIN-003.c2.json` (or any file matching `WIN-003*`) exists. Queue item `target_id: "EXP-050"` is already reviewed if `EXP-050-proposal.c2.json` exists. For `EXP-054-batch`, check for `EXP-054-batch*.json`. For section items like `part3-3.1b`, check for `SEC-3.1b*.json`. **If ALL queue items have matching review files, skip to Step 0c** — the queue is fully reviewed and the decider will clean it up on its next run.
-3. Review that item using the appropriate section below (WIN review procedure for `win-*`, section review for `section-*`, proposal-package review for `proposal`, kill-shot review for `killshot-*`).
+3. Review that item using the appropriate section below (WIN review procedure for `win-*`, section review for `section-*`, proposal-package review for `proposal`, kill-shot review for `killshot-*`, prediction-batch review for `prediction-batch`).
 4. **For `proposal` target_type**: do NOT attack the prose — it doesn't exist yet. Instead review the proposal package in `monitor/analyst/expansions/<EXP-ID>.json` against the analytical questions in the package itself (verdict-flip plausibility, new-tag naming, alternatives considered, unknowns acknowledged). Write your review to `monitor/curmudgeon/reviews/<EXP-ID>-proposal.json`. Your verdict here gates whether the analyst writes prose next.
+4b. **For `prediction-batch` target_type**: The decider integrated a batch of prediction verdicts into `data/predictions.json`. The `context_hints.prediction_ids` lists which predictions were assessed. For each prediction in the batch:
+   - Read the entry from `data/predictions.json` and the assessment file from `monitor/analyst/expansions/PRED-assessment-<ID>.json`
+   - Challenge the `our_verdict`: Is `recycled` correct, or does this prediction add genuinely new content beyond the WIN it restates? Is `standard_physics` fair, or is the dome's derivation path non-trivial enough to count? Is `unfalsifiable` warranted, or is there a reasonable test we're overlooking?
+   - Check for the other side: could a dome defender argue this prediction IS genuinely prospective? What's the strongest counterargument to our verdict?
+   - Write your review to `monitor/curmudgeon/reviews/<target_id>.json` (e.g., `PRED-batch-2026-04-10.json`). Include per-prediction verdicts: `agree`, `challenge` (with reasoning), or `upgrade` (we were too harsh).
 5. Write the review to the normal `reviews/` location.
 6. **Do NOT modify `priority-queue.json`.** The decider is the single writer for this file (Phase 1 ownership rule). The decider will pop reviewed items and append history records when it processes your review files. Your review file IS the signal that the item is done.
 7. **STOP.** Do not pick up another queue item. Do not continue to normal cycle work this run. Save/commit and exit.

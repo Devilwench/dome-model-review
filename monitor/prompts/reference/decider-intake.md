@@ -160,6 +160,26 @@ For each assessment file found:
 3. After updating all assessments, run `node test.js` to verify schema validity
 4. Commit and push `data/predictions.json`
 5. Do NOT delete the assessment files (append-only directory)
+6. Push a curmudgeon queue item for the batch so the verdicts get adversarial review:
+```javascript
+const pq = JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+const nextId = Math.max(0, ...pq.queue.map(i=>i.queue_id), ...(pq.history||[]).map(i=>i.queue_id)) + 1;
+pq.queue.push({
+  queue_id: nextId,
+  target_type: 'prediction-batch',
+  target_id: `PRED-batch-${new Date().toISOString().slice(0,10)}`,
+  reason: `Prediction assessments integrated: ${assessedIds.join(', ')}. Spot-check verdict reasoning — are any recycled/standard_physics calls too aggressive? Any genuinely testable predictions dismissed?`,
+  pushed_by: 'decider',
+  pushed_at: new Date().toISOString(),
+  context_hints: {
+    prediction_ids: assessedIds,
+    assessment_files: assessmentFiles,
+    verdicts_set: verdictSummary
+  }
+});
+fs.writeFileSync('monitor/curmudgeon/priority-queue.json', JSON.stringify(pq, null, 2));
+```
+   Where `assessedIds` is the list of prediction IDs processed this run. Batch them — one queue item per decider run, not per prediction.
 
 This is a high-throughput step during prediction churn — analyst produces 3-5 assessments per run.
 
