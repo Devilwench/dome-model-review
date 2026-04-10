@@ -125,7 +125,46 @@ if(pending){
 "
 ```
 
-### Step E2: Read current state
+### Step E2: Pop reviewed items from the queue
+
+The curmudgeon does NOT modify `priority-queue.json` (Phase 1 single-writer rule). Instead, it writes review files to `monitor/curmudgeon/reviews/`. The decider pops items whose review files exist. This is the ONLY place queue items are removed.
+
+```bash
+node -e "
+const fs=require('fs');
+const path=require('path');
+const pq=JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+const reviews=fs.readdirSync('monitor/curmudgeon/reviews/');
+const before=pq.queue.length;
+if(!pq.history) pq.history=[];
+// Check each queue item — if a review file exists for it, pop it
+pq.queue=pq.queue.filter(item=>{
+  // Build search patterns from target_id
+  const tid=item.target_id;
+  // For sections like 'part3-3.1b', curmudgeon writes 'SEC-3.1b*.json'
+  const secMatch=tid.match(/^part(\d+[a-z]?)-(.+)$/);
+  const searchTerms=[tid];
+  if(secMatch) searchTerms.push('SEC-'+secMatch[2]);
+  const hasReview=reviews.some(f=>searchTerms.some(t=>f.includes(t)));
+  if(hasReview){
+    pq.history.push({queue_id:item.queue_id,target_id:tid,target_type:item.target_type,popped_at:new Date().toISOString(),popped_by:'decider'});
+    return false; // remove from queue
+  }
+  return true; // keep in queue
+});
+// Trim history to 50
+if(pq.history.length>50) pq.history=pq.history.slice(-50);
+const after=pq.queue.length;
+if(before!==after){
+  fs.writeFileSync('monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
+  console.log('Popped '+(before-after)+' reviewed items. Queue: '+before+' -> '+after);
+}else{
+  console.log('No items to pop. Queue depth: '+after);
+}
+"
+```
+
+### Step E3: Read current state and apply mode rules
 
 ```bash
 node -e "
@@ -134,9 +173,9 @@ console.log('mode:',pq.mode,'| queue_depth:',pq.queue.length,'| current_interval
 "
 ```
 
-### Step E3: Apply the mode rules
+### Step E4: Apply the mode rules
 
-**If `mode === "bau"`:** Do nothing. Curmudgeon stays on whatever schedule it has. Items in the queue (if any) will be drained at the normal cadence. Skip to Step E4 (logging only).
+**If `mode === "bau"`:** Do nothing. Curmudgeon stays on whatever schedule it has. Items in the queue (if any) will be drained at the normal cadence. Skip to Step E5 (logging only).
 
 **If `mode === "churn-and-burn"` AND `queue.length > 0`:**
 - If `curmudgeon_current_interval_minutes !== curmudgeon_fast_interval_minutes` (i.e. we haven't already bumped), call `mcp__scheduled-tasks__update_scheduled_task` on the `dome-curmudgeon` task to set its interval to 30 minutes.
@@ -150,7 +189,7 @@ console.log('mode:',pq.mode,'| queue_depth:',pq.queue.length,'| current_interval
 
 **Self-healing invariant:** The system can never get stuck in fast mode. Once the queue drains, the next decider run restores BAU. If something weird happens and you see `mode === "churn-and-burn"` with an empty queue and `curmudgeon_current_interval_minutes === 240`, just flip mode back to bau without touching the scheduler.
 
-### Step E4: Log queue state in daily report
+### Step E5: Log queue state in daily report
 
 Always include in the daily report:
 ```json
