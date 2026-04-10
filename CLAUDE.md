@@ -66,7 +66,7 @@ Every file that crosses the workspace↔git boundary has exactly one authoritati
 - `monitor/curmudgeon/reviews/`, `monitor/analyst/new-wins/`, `monitor/analyst/expansions/`, `monitor/analyst/category-proposals/`, `monitor/analyst/globe-fingerprints/`, `monitor/analyst/issue-proposals/`, `monitor/tinker/proposals/`, `monitor/integrity/`, `monitor/changes/`, `monitor/social/drafts/` — one file per ID.
 - `monitor/decisions/` and `monitor/tinker/` as "append_only_glob" — mixed directories with timestamped files.
 
-**Unclassified — `monitor/curmudgeon/tracker.json`.** Known multi-writer (decider + curmudgeon). Protected by: (a) `git pull --rebase` at run start, (b) pre-push integrity gate, (c) git merge-conflict detection, (d) non-concurrent scheduling. **Do not add to OWNERSHIP in build.js or OWNED_BY_GIT in workspace-sync.md.**
+**Unclassified — `monitor/curmudgeon/tracker.json` and `monitor/analyst/expansion-tracker.json`.** Known multi-writer files (tracker.json: decider + curmudgeon; expansion-tracker.json: analyst + decider). Protected by: (a) `git pull --rebase` at run start, (b) pre-push integrity gate, (c) git merge-conflict detection, (d) non-concurrent scheduling. **Do not add to OWNERSHIP in build.js or OWNED_BY_GIT in workspace-sync.md.**
 
 > If you are editing a prompt file and you find yourself adding a write to a file not listed above, STOP. Either classify the new file here and update `build.js` and `workspace-sync.md`, or put the write on a file that is already classified.
 

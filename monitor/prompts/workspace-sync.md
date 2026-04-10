@@ -156,6 +156,7 @@ sync_glob monitor/analyst/expansions '*.json'
 sync_glob monitor/analyst/category-proposals '*.json'
 sync_glob monitor/analyst/new-wins '*.json'
 sync_glob monitor/analyst/globe-fingerprints '*.json'
+sync_glob monitor/analyst/issue-proposals '*.json'
 smart_copy "${WORKSPACE}/monitor/analyst/expansion-tracker.json" monitor/analyst/expansion-tracker.json
 smart_copy "${WORKSPACE}/monitor/analyst/globe-fingerprint-tracker.json" monitor/analyst/globe-fingerprint-tracker.json
 smart_copy "${WORKSPACE}/monitor/analyst/human-notes.json" monitor/analyst/human-notes.json
