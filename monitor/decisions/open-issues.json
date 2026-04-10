@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-10T17:26:59.141Z",
+  "last_updated": "2026-04-10T18:13:52.813Z",
   "issues": [
     {
       "id": "ISS-442",
@@ -44,7 +44,7 @@
       "win_id": null,
       "severity": "moderate",
       "category": "coverage_gap",
-      "status": "blocked-on-curmudgeon",
+      "status": "assigned-analyst",
       "priority_hint": "above-baseline-reviews-below-iss676-677",
       "found_by": "human-session",
       "found_at": "2026-04-09T21:15:00.000Z",
@@ -52,7 +52,10 @@
       "source": "human discussion 2026-04-09",
       "rationale_for_deferral": "Schema design and re-categorization work best handled by analyst with full context; not urgent, but should not wait indefinitely behind baseline review cycles.",
       "blocked_at": "2026-04-10T15:14:35Z",
-      "blocked_reason": "awaiting curmudgeon review of EXP-057 kill-shot schema proposal package"
+      "blocked_reason": "awaiting curmudgeon review of EXP-057 kill-shot schema proposal package",
+      "notes": "\n[2026-04-10] Curmudgeon reviewed EXP-057 proposal (approve_with_changes). Follow-up EXP-060 created for implementation with 5 required changes. Status unblocked -> assigned-analyst.",
+      "unblocked_at": "2026-04-10T18:11:02.872Z",
+      "unblocked_reason": "Curmudgeon signoff complete on EXP-057 proposal"
     },
     {
       "id": "ISS-693",
@@ -111,7 +114,8 @@
       "found_by": "decider-human-note",
       "found_at": "2026-04-10T15:14:35Z",
       "source": "NOTE-2026-04-10-50-new-predictions + NOTE-2026-04-10-sha256-recycling",
-      "analyst_priority": "MODE_0"
+      "analyst_priority": "MODE_0",
+      "notes": "\n[2026-04-10] Wave 1 classification complete (analyst proposal ISS-700-status): 86 entries in predictions.json now have entry_type, author_status, our_verdict. 36 newly classified: 2 genuinely prospective, 28 data-predates, 6 unfalsifiable model params. Waves 2 (15 genuinely prospective writeups) and 3 (11 recycled + ~40 backtested writeups + Part 6 prose) remain. Status kept assigned-analyst."
     },
     {
       "id": "ISS-701",
@@ -140,7 +144,8 @@
       "found_by": "decider-human-note",
       "found_at": "2026-04-10T15:14:35Z",
       "source": "NOTE-2026-04-10-50-new-predictions",
-      "depends_on": "ISS-700"
+      "depends_on": "ISS-700",
+      "notes": "\n[2026-04-10] Part 6 prose update blocked on Wave 3 (analyst proposal ISS-702-status). Key finding already identified: author's \"What Prospective Means\" framework concedes backtested vs prospective distinction. 57/86 entries are author-labeled backtested. PRED-090 confirmed as post-hoc retrodiction. By author's own standard ~93% of 69 WINs are backtested. Prose will quote author's own framework once Wave 3 writeups complete. Status kept assigned-analyst."
     },
     {
       "id": "ISS-703",
@@ -149,17 +154,6 @@
       "category": "factual_error",
       "status": "open",
       "description": "SHA-256 RECYCLING FORENSICS: The dome April 4 batch of ~28 \"new prospective\" predictions recycle already-confirmed WINs with fresh SHA-256 timestamps. Need: (1) curmudgeon forensic analysis of git commit timeline for April 4 batch — verify whether commits actually landed April 4 or were backdated; (2) per-prediction restates_win classification; (3) key argument: author responded to our timestamping critique by adding crypto envelopes around post-hoc content. Canary trap opentimestamps-provenance is probable_trigger.",
-      "found_by": "human-note",
-      "found_at": "2026-04-10T15:14:35Z",
-      "source": "NOTE-2026-04-10-sha256-recycling"
-    },
-    {
-      "id": "ISS-704",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "infrastructure",
-      "status": "open",
-      "description": "UPDATE POLLER PROMPT: Canary trap checks must explicitly cross-reference prediction registration methodology changes (not just commit message content). The poller missed the SHA-256 per-prediction hashing shift for 6 consecutive polls. Add rule: when a new prediction registration methodology appears (new hash format, new crypto tool, new commit patterns), flag as analyst_priority HIGH even if WIN count is unchanged. (Note: d9548dc may have already updated poller.md — verify before patching.)",
       "found_by": "human-note",
       "found_at": "2026-04-10T15:14:35Z",
       "source": "NOTE-2026-04-10-sha256-recycling"
@@ -177,8 +171,49 @@
       "fix_date": null,
       "found_by": "curmudgeon-cycle2-SEC-2b.7-alert",
       "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.7.c2.json",
-      "notes": "ACTION: Re-fetch results.json from dome API (raw.githubusercontent.com path). Dump entry with W004 ID. Confirm or correct identity mapping in SEC-2b.7 text. If mapping is wrong, the opening scoreboard argument needs rewrite."
+      "notes": "ACTION: Re-fetch results.json from dome API (raw.githubusercontent.com path). Dump entry with W004 ID. Confirm or correct identity mapping in SEC-2b.7 text. If mapping is wrong, the opening scoreboard argument needs rewrite.\n[2026-04-10] Curmudgeon Cycle 2 review (SEC-2b.7.c2.json) confirms this is critical. Root cause: W004 in dome wins namespace = Noise Floor Limit (empirical recalibration, HUA lunar transit baseline). W004 in results.json may be a different entry using W-numbers as internal IDs distinct from WIN-numbers. The analyst's EXP-055 fetch showed prediction -10±2 nT, observation -17.6 nT — this DOES match WIN-025 (BOU 2017 baseline). Two possible explanations: (a) results.json W-numbers differ from wins-page W-numbers, so W004 in results.json IS the eclipse test despite the wins-page W004 being something else; (b) misread. Must re-fetch results.json before publishing. Action: re-fetch raw.githubusercontent.com dome API results.json, dump W004 entry in full."
+    },
+    {
+      "id": "ISS-706",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "assigned-analyst",
+      "description": "EXP-054 V-TEMPLATE MISMATCH: The post-hoc V-template opens with \"The numerical value is one the dome framework derives from its own geometric or symbolic parameters\" — but WIN-034 (copper firmament) and WIN-032 (New Jerusalem axis) have no numerical values and no derivations. The circularity argument does not apply to non-numerical theological WINs. Template needs a non-numerical variant.",
+      "win_ids_affected": [
+        "034",
+        "032",
+        "023"
+      ],
+      "found_by": "curmudgeon-cycle2-EXP-054-batch",
+      "found_at": "2026-04-10T18:12:38.706Z",
+      "source": "curmudgeon/reviews/EXP-054-batch.c2.json",
+      "notes": "V-template should be split into numerical variant (current) and conceptual/theological variant (needs writing). Or add a guard clause that skips the derivation language for non-numerical wins.",
+      "expansion_item": "EXP-061"
+    },
+    {
+      "id": "ISS-707",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "description": "EXP-054 OPENTIMESTAMPS GAP: The batch appended post-hoc sentences claim the dome's definition is \"unverifiable\" because monitor.py hardcodes targets. But 5 self-declared PROSPECTIVE WINs (035-039, weekly confirmations) claim the prediction was registered via OTS before data arrival. The post-hoc rebuttal must address the OTS claim directly rather than relying on monitor.py evidence that doesn't apply to these WINs. Related to Section 3.1b's existing OTS gap.",
+      "win_ids_affected": [
+        "035",
+        "036",
+        "037",
+        "038",
+        "039"
+      ],
+      "found_by": "curmudgeon-cycle2-EXP-054-batch",
+      "found_at": "2026-04-10T18:12:38.706Z",
+      "source": "curmudgeon/reviews/EXP-054-batch.c2.json",
+      "notes": "This is a subset of the wider OTS/SHA-256 investigation (ISS-703). The specific action needed: craft a different post-hoc rebuttal for OTS-claiming WINs that addresses the timestamp chain rather than the monitor.py hardcoding argument. Route to analyst as addendum to EXP-054 or new EXP. Blocked on ISS-703 SHA-256 forensics.",
+      "related_issues": [
+        "ISS-703"
+      ],
+      "expansion_item": "EXP-062"
     }
   ],
-  "next_id": 706
+  "next_id": 708
 }

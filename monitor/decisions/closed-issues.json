@@ -7894,6 +7894,20 @@
       "fixed_at": "2026-04-10T17:26:59.141Z",
       "fixed_by": "decider-self-apply",
       "fix_details": "Part 1: Corrected n(r) values to formula outputs (1.83, 2.84, 21.53) and noted table-vs-formula discrepancy with cross-ref to Sec 2.9. Part 7: Fixed disc edge error (n=21.53 at extreme radii, n≈2.84 at ice wall). Curmudgeon MAJOR x2 from ISS-672-nr-coefficient.c2.json addressed. Moderate item (coefficient change history) covered in Part 1 note about older coefficient ~0.27."
+    },
+    {
+      "id": "ISS-704",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "infrastructure",
+      "status": "fixed",
+      "description": "UPDATE POLLER PROMPT: Canary trap checks must explicitly cross-reference prediction registration methodology changes (not just commit message content). The poller missed the SHA-256 per-prediction hashing shift for 6 consecutive polls. Add rule: when a new prediction registration methodology appears (new hash format, new crypto tool, new commit patterns), flag as analyst_priority HIGH even if WIN count is unchanged. (Note: d9548dc may have already updated poller.md — verify before patching.)",
+      "found_by": "human-note",
+      "found_at": "2026-04-10T15:14:35Z",
+      "source": "NOTE-2026-04-10-sha256-recycling",
+      "fixed_at": "2026-04-10T18:09:19.565Z",
+      "fixed_by": "decider-verify",
+      "fix_details": "Verified: poller.md lines 87-93 already contain the required SHA-256/canary-trap cross-reference rule. The fix was applied in a prior run (d9548dc). Closing."
     }
   ]
 }

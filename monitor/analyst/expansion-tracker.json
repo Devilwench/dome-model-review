@@ -954,14 +954,17 @@
       ],
       "priority": "moderate",
       "status": "complete",
-      "notes": "Each kill-shot should have: (1) verdict category from standard taxonomy, (2) strength rating (decisive/major/supportive), (3) reproducibility assessment. Write expansion for Section 5 (Kill Shots tab).",
+      "notes": "Each kill-shot should have: (1) verdict category from standard taxonomy, (2) strength rating (decisive/major/supportive), (3) reproducibility assessment. Write expansion for Section 5 (Kill Shots tab). [2026-04-10] Curmudgeon signed off: approve_with_changes. 5 required changes needed. Follow-up EXP-060 created for implementation.",
       "created_at": "2026-04-09T22:02:27.744Z",
       "completed_at": "2026-04-10T09:17:15.524Z",
       "output_file": "monitor/analyst/expansions/EXP-057.json",
       "completion_note": "Schema proposal + 6 kill-shot ratings + Wait-and-See definition + badge rendering plan + curmudgeon integration plan. No current kill-shot qualifies for Wait and See. Verdict distribution: 1 Misleading, 1 Not Demonstrated, 3 Std Model Explains, 1 Refuted by Data. 4/6 straw-man globe predictions identified.",
       "routed_to_curmudgeon": true,
       "routed_at": "2026-04-10T15:14:35Z",
-      "routing_note": "proposal_package with replacement_html:null — routes through curmudgeon before implementation per decider-curmudgeon.md protocol"
+      "routing_note": "proposal_package with replacement_html:null — routes through curmudgeon before implementation per decider-curmudgeon.md protocol",
+      "curmudgeon_signoff": "approve_with_changes",
+      "curmudgeon_signoff_at": "2026-04-10T18:10:57.094Z",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/EXP-057-proposal.c2.json"
     },
     {
       "id": "EXP-058",
@@ -970,12 +973,15 @@
         "ISS-694"
       ],
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "WIN-025 is already in uncounted-failures (FAIL-007). The WIN-025 detail panel and/or our review text should note the dome site has marked this [REMOVED]. Add a prominent note to detail_extra.",
       "created_at": "2026-04-09T22:02:27.744Z",
       "integrated": true,
       "integrated_at": "2026-04-10T17:23:56.222Z",
-      "integration_mode": "direct-field-set"
+      "integration_mode": "direct-field-set",
+      "completed_at": "2026-04-10T17:23:56.222Z",
+      "output_file": "N/A — direct field set by decider",
+      "analyst_note": "WIN-025 detail_extra already contains dome removal annotation. Decider applied directly via integration_mode=direct-field-set. Analyst confirms annotation is present and accurate."
     },
     {
       "id": "EXP-059",
@@ -994,8 +1000,49 @@
       "integrated_at": "2026-04-10T07:09:03.595Z",
       "integration_mode": "direct-patch",
       "integration_note": "Applied 2 find/replace patches to WIN-067 detail_evidence: DOI 10.1029/2019JB018855→10.1029/2019JB017997, Ebbing et al. 2021→Pappa et al. 2019. ISS-683 closed."
+    },
+    {
+      "id": "EXP-060",
+      "target": "Kill-shot rating system: implement data/kill-shots.json + Part 5 HTML with 5 curmudgeon-required fixes from EXP-057 review",
+      "source": "curmudgeon-signoff-EXP-057",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/EXP-057-proposal.c2.json",
+      "issue_ids": [
+        "ISS-678"
+      ],
+      "category": "implementation",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "Follow-up to EXP-057. Curmudgeon approved with 5 changes: (1) define strength tiers formally; (2) fix KS-006 dome_status vs dome page; (3) add KS_STRAW_MAN_COUNT/KS_TOTAL/KS_WAIT_AND_SEE_COUNT placeholders; (4) KS-006 quantitative implausibility 9x decel argument; (5) kill-shots.json OWNERSHIP in 3 files. Then write replacement_html for Part 5 and create kill-shots.json.",
+      "created_at": "2026-04-10T18:10:57.094Z"
+    },
+    {
+      "id": "EXP-061",
+      "target": "EXP-054 V-template mismatch: write non-numerical variant of post-hoc V-template for WIN-023, WIN-032, WIN-034 (no numerical values or derivations — circularity argument does not apply)",
+      "source": "curmudgeon-EXP-054-batch-c2",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/EXP-054-batch.c2.json",
+      "issue_ids": [
+        "ISS-706"
+      ],
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "These WINs (copper firmament, New Jerusalem axis) have no numerical values and no derivations. The V-template \"derives from its own geometric or symbolic parameters\" does not apply. Need a conceptual/theological variant: something like \"This is a categorical claim, not a derived numerical value. Our post-hoc test: the observation is so broad that any cosmological framework could accommodate it — the dome model gains no predictive advantage over standard alternatives.\"",
+      "created_at": "2026-04-10T18:13:52.813Z"
+    },
+    {
+      "id": "EXP-062",
+      "target": "EXP-054 OTS gap: write OpenTimestamps-specific post-hoc rebuttal variant for WIN-035 through WIN-039 (self-declared PROSPECTIVE with OTS claims — monitor.py hardcoding argument does not apply)",
+      "source": "curmudgeon-EXP-054-batch-c2",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/EXP-054-batch.c2.json",
+      "issue_ids": [
+        "ISS-707"
+      ],
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "Blocked on ISS-703 SHA-256 forensics: must verify whether OTS timestamps were actually registered before the data arrived. If ISS-703 finds recycling, the OTS claim is undermined. If OTS is legitimate, our post-hoc rebuttal must instead argue the metric window is sufficiently broad that any weekly solar-weather data would confirm. Do not write this until ISS-703 forensics are complete.",
+      "blocked_on": "ISS-703",
+      "created_at": "2026-04-10T18:13:52.813Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 60
+  "next_id": 63
 }

@@ -1,87 +1,67 @@
 MORNING BRIEFING — 2026-04-10
-Generated: 2026-04-10T17:27:00Z
-Curmudgeon reviews processed this run: 0 new (queue items popped: 7 already-reviewed items)
-Previous decider run: 2026-04-10T08:45:00Z (EXP-056/059 integration, WIN-048 note, WIN-067 citation fix)
+Generated: 2026-04-10T18:14:00Z
+Curmudgeon reviews processed this run: 4 (SEC-2b.7, EXP-054-batch, EXP-057-proposal, ISS-672-nr-coefficient)
+Previous decider run: 2026-04-10T17:28:27Z
 
-════════════════════════════════════════
 SITE HEALTH
-════════════════════════════════════════
-Build: PASSING (2937 tests, up from 2244)
-Integrity: WARN — ISS-705 (critical) SEC-2b.7 W004 identity unverified
-Poller: QUIET (7th consecutive, V51.1 stable)
-External: 0 unresolved reports (Report-1 was positive feedback, ISS-698 wontfix)
+  Integrity: WARN (pre-existing false positives on #part4c, showTab — wontfix)
+  Build: 2751 tests pass, reproducibility OK
+  Dome site: QUIET (7th consecutive quiet poll, V51.1 stable)
 
-════════════════════════════════════════
-DOME STATUS
-════════════════════════════════════════
-Dome site: V51.1 stable. 69 WINs, 94.5% accuracy claimed. 4 claimed failures.
-Our coverage: 70 WINs in wins.json (we cover more than claimed).
-No dome site changes in 7 consecutive polls. Monitor.py auto-commits only.
-Eclipse 2026-08-12 is the next major test event (PRED-095, −17.8 nT ±2 nT target).
+EXTERNAL STATUS
+  Dome changes: None
+  WINs: 69 (matched)
+  Threat level: NONE
 
-════════════════════════════════════════
-PATCHES SELF-APPLIED THIS RUN
-════════════════════════════════════════
-3 patches applied + 1 direct integration. 0 failed. 2937 tests pass.
+INTERNAL STATUS
+  Open issues: 14 (1 critical, 5 major, 6 moderate, 2 minor)
+  Pending-human: 2 (ISS-442 verdict overload, ISS-675 PAT on disk)
+  Assigned-analyst: 9 (ISS-677, ISS-696, ISS-700, ISS-701, ISS-702, ISS-703, ISS-705, ISS-706, ISS-707)
+  Wontfix: 1 (ISS-698)
 
-1. Part 1 n(r) values (ISS-672 MAJOR): Corrected formula outputs from stale table
-   values (1.40/3.49/28.8) to current formula (1.83/2.84/21.53). Added note about
-   table-vs-formula discrepancy and cross-ref to Section 2.9.
+⚠ CRITICAL — ISS-705: SEC-2b.7 W004 IDENTITY UNVERIFIED
+  The two-scoreboards argument in SEC-2b.7 (scoreboard drift) labels a results.json entry
+  as "W004 / WIN-025" (2024 eclipse 9-station test). But the dome's wins-page W004 is
+  "Noise Floor Limit" (HUA lunar transit baseline). W-number namespace may differ from
+  WIN-number namespace. Analyst must re-fetch results.json before SEC-2b.7 is published.
 
-2. Part 7 disc edge (ISS-672 MAJOR): Fixed two errors: (a) "disc edge" is ice wall
-   at r=20,015 where n≈2.84, not 28.8; (b) n=21.53 only at r=40,000 beyond disc.
+  Action: Analyst — verify W004 entry in results.json matches eclipse test data (-10±2 nT,
+  -17.6 nT observed). If mapping confirmed, add namespace clarification note. If wrong, 
+  rewrite the section's opening scoreboard argument.
 
-3. SEC-3.1b broken anchor (CRITICAL): Removed sentence with self-pointing href
-   (#posthoc-standard → same section h3). CAT-005 reference premature until
-   Section 1.8 actually exists.
+⚠ MAJOR — ISS-703: SHA-256 RECYCLING FORENSICS
+  The dome's April 4 batch of ~28 "new prospective" predictions may wrap post-hoc content
+  in SHA-256 timestamps. Curmudgeon is investigating (ISS-703-sha256-forensics in queue).
+  Churn-and-burn mode active, 30min interval. Expected resolution: next 1-2 curmudgeon runs.
 
-4. WIN-025 detail_extra (EXP-058 integration): Added dome removal annotation
-   (2026-03-15, Kp~5-6 storm, 34-104 min scatter). Acknowledges self-correction,
-   explains accuracy denominator impact. ISS-694 closed.
+THIS RUN'S WORK
+  - Processed 2 analyst proposals (ISS-700 Wave 1 complete, ISS-702 blocked on Wave 3)
+  - Verified ISS-704 (poller prompt SHA-256 rule) already applied — closed as fixed
+  - EXP-057 curmudgeon review popped: APPROVE WITH CHANGES → EXP-060 created for implementation
+  - ISS-678 unblocked (kill-shot rating system cleared for analyst implementation)
+  - Created ISS-706 (V-template mismatch for non-numerical WINs) → EXP-061 
+  - Created ISS-707 (OTS gap in post-hoc rebuttals) → EXP-062 (blocked on ISS-703)
+  - ISS-672 n(r) curmudgeon holes: FUSE staleness confirmed — fix was already applied
+  - Popped 4 items from priority queue (SEC-2b.7, EXP-054-batch, EXP-057, ISS-672-nr-coeff)
+  - No self-apply patches (all actionable issues assigned-analyst or pending-human)
 
-Issues closed this run: ISS-672, ISS-694 (2 total)
-Issues created this run: ISS-705 (critical, SEC-2b.7 W004 mapping) (1 total)
-Issues updated: ISS-696 returned to assigned-analyst with EXP-050 gate blockers
+TOP 3 PRIORITY ACTIONS
+  1. ANALYST: Resolve ISS-705 — re-fetch results.json, verify W004 eclipse identity mapping
+  2. CURMUDGEON: Complete ISS-703-sha256-forensics review (in queue, 30min churn-and-burn)
+  3. ANALYST: Implement EXP-060 — kill-shot rating system with 5 curmudgeon-required fixes
 
-════════════════════════════════════════
-TOP 3 PRIORITY ACTIONS FOR HUMAN/ANALYST
-════════════════════════════════════════
+CURMUDGEON QUEUE
+  Mode: churn-and-burn | Depth: 1 | Interval: 30min
+  Remaining: ISS-703-sha256-forensics
+  Action: None (already at fast interval, queue not empty)
 
-1. [CRITICAL] ISS-705: Verify W004 identity in SEC-2b.7 scoreboard argument
-   The curmudgeon flagged (2026-04-10T11:30) that W004 in results.json may be
-   "Noise Floor Limit (empirical recalibration at v50.2)" NOT the 2024 Eclipse
-   9-Station test. If wrong, the opening claim of SEC-2b.7 is a category error.
-   ACTION: Analyst to re-fetch results.json from raw.githubusercontent.com,
-   dump W004 entry, confirm or rewrite the two-scoreboards argument.
+TINKER ALERT (non-blocking)
+  AUDIT-001: 4 git-owned files missing from build.js OWNERSHIP (predictions.json, llms.txt,
+  sitemap.xml, robots.txt). Workspace copies can go stale on these files. Fix in build.js
+  OWNERSHIP object + corresponding workspace-sync.md update.
 
-2. [MAJOR] EXP-050 revision required (ISS-696 returned to analyst)
-   Curmudgeon gate: ACCEPT_WITH_MODIFICATIONS, 7 blockers. Before prose writing:
-   (a) Produce EXP-050-numerics.json validating all load-bearing numerics
-   (b) Per-WIN re-read for all 7 proposed flips (WIN-010 is eclipse not analemma!)
-   (c) Remove cascade_dependent code_analysis tag (category error)
-   (d) Renumber Section 1.7 → Section 1.8 (collision with Gravity Paradox)
-   (e) Use structural section title (not V51.1-coupled)
-   (f) Resubmit for second curmudgeon gate pass.
+UPCOMING TEST WINDOWS
+  PRED-090: April 2026 (imminent — standard physics, expected to trivially pass)
+  PRED-095: Eclipse 2026-08-12 (highest-profile, August)
+  SAA Western Cell: May 2026 drift check
 
-3. [MAJOR] ISS-442: Verdict taxonomy restructuring (pending-human)
-   'Misleading' verdict conflates 4 distinct failure modes. Steve's decision needed.
-
-════════════════════════════════════════
-CURMUDGEON PROGRESS
-════════════════════════════════════════
-Mode: churn-and-burn (30min interval)
-Queue depth: 5 items
-  - part2b-2b.7: Awaiting curmudgeon review of SEC-2b.7 content
-  - EXP-054-batch: post-hoc methodology expansion batch
-  - ISS-672-nr-coefficient: REVIEWED but review file not yet in git (workspace-sync needed)
-  - EXP-057: Kill-shot rating schema proposal (awaiting curmudgeon gate)
-  - ISS-703-sha256-forensics: SHA-256 recycling forensics
-
-Cycle 2 Phase 1: Complete (~71/69 reviewed). 7 items just popped from queue
-(review files confirmed: EXP-050, part3-3.1b, WIN-003/011/015/048/067).
-
-════════════════════════════════════════
-CODE ANALYSIS TAG STATUS
-════════════════════════════════════════
-No new tag sync needed this run.
-EXP-054-batch in queue will drive a batch post_hoc tag audit when integrated.
