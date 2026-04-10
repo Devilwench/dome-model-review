@@ -144,6 +144,25 @@ Check `monitor/social/drafts/` and social's latest report.
 
 **Reject:** Any patch modifying `data/wins.json`, `data/sections.json`, `data/uncounted-failures.json`, or prose content. Log tinker action item: "Social attempted content modification — review social.md compliance." Also reject build-script changes without clear machine-layer justification.
 
+## Step 1h2: Prediction Assessment Integration
+
+Check for analyst prediction assessments in `monitor/analyst/expansions/PRED-assessment-*.json`. These contain `our_verdict` values for predictions in `data/predictions.json`.
+
+```bash
+ls monitor/analyst/expansions/PRED-assessment-*.json 2>/dev/null | head -20
+```
+
+For each assessment file found:
+1. Read the assessment — it has `prediction_id`, `our_verdict`, `reasoning`, and other fields
+2. Update the matching entry in `data/predictions.json` (`d.entries.find(e=>e.id===prediction_id)`):
+   - Set `our_verdict` to the assessment's value
+   - Optionally add assessment reasoning to the entry's `notes` field
+3. After updating all assessments, run `node test.js` to verify schema validity
+4. Commit and push `data/predictions.json`
+5. Do NOT delete the assessment files (append-only directory)
+
+This is a high-throughput step during prediction churn — analyst produces 3-5 assessments per run.
+
 ## Step 1i: Poll Summary Triage (every run)
 
 The poller writes `monitor/changes/latest-poll-summary.txt` with detailed findings. Many include `analyst_priority:` flags (HIGH, MEDIUM, LOW) for items requiring follow-up. **These can fall through the cracks** if they aren't converted to issues — the main dispatch only checks WIN count and `changes_pending_analysis`, not the detailed secondary findings.

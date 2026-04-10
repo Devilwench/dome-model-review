@@ -89,6 +89,13 @@ node -e "const t=JSON.parse(require('fs').readFileSync('monitor/analyst/expansio
 Trigger: Pending expansions exist (includes steelman and standard items).
 → Read `monitor/prompts/reference/analyst-mode1-expansions.md`, execute that procedure.
 
+**Mode 1b — Prediction Writeups** (HIGH PRIORITY)
+```bash
+node -e "const d=JSON.parse(require('fs').readFileSync('data/predictions.json','utf8'));const p=d.entries.filter(e=>(e.entry_type==='prediction'||e.entry_type==='tracking')&&(!e.our_verdict||e.our_verdict==='pending'));const gp=p.filter(e=>e.is_genuinely_prospective===true);console.log(p.length?'PREDICTION WRITEUPS: '+p.length+' remaining ('+gp.length+' genuinely prospective)':'ALL DONE')"
+```
+Trigger: Reviewable predictions exist with `our_verdict` null or `'pending'`. Process 3-5 per run.
+→ Read `monitor/prompts/reference/analyst-mode1b-predictions.md`, execute that procedure.
+
 **Mode 2 — Human Notes**
 ```bash
 cat monitor/analyst/human-notes.json 2>/dev/null | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const n=JSON.parse(d);const p=n.notes?n.notes.filter(x=>x.status==='pending'):[];console.log(p.length?'HUMAN NOTES: '+p.length+' pending':'NO NOTES')})"
