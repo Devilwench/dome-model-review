@@ -125,47 +125,31 @@ CLAUDE.md is the single most important document in the project — every new ses
 
 **Output:** Include a `claude_md_audit` section in your report with accuracy findings and a token budget breakdown.
 
-## ONE-TIME DIRECTIVE: CLAUDE.md Structured Refactor (PROP-005)
+## ONE-TIME DIRECTIVE: Phase 1 Ownership Compliance Audit (AUDIT-001)
 
-**Priority: HIGH. Execute on your next Mode 3 or Mode 4 run.**
+**Priority: HIGH. Execute on your next run.**
 
-CLAUDE.md has grown to ~440 lines / ~6400 tokens. Every agent reads it every run (~51k tokens/cycle). Analysis shows most agents only need 20-40% of the content. A structured refactor would cut per-agent context by ~75%.
+We've found and fixed three Phase 1 ownership violations so far — all the same pattern: an agent writes to a git-owned file on FUSE, workspace-sync's direction guard blocks the push, and `build.js publish` overwrites with the git version. The writes silently vanish.
 
-**Write a PROP-005 to `monitor/tinker/proposals/PROP-005.json` with:**
+**Bugs found and fixed:**
+1. **Curmudgeon** wrote to `monitor/curmudgeon/priority-queue.json` (git-owned). Fixed: curmudgeon signals via review files, decider pops via Step E2.
+2. **Analyst** wrote to `monitor/decisions/open-issues.json` (git-owned). Fixed: analyst writes proposals to `monitor/analyst/issue-proposals/`, decider reads at Priority 1b.
+3. **Social** wrote directly to `docs/llms.txt`, `docs/sitemap.xml`, `docs/robots.txt` (now classified git-owned). Fixed: social drafts to `monitor/social/drafts/`, decider commits to `docs/`.
 
-1. **Lean CLAUDE.md core (~140 lines):** Keep only what ALL or MOST agents need:
-   - FUSE constraint & two-repo architecture
-   - File Ownership Rules (Phase 1)
-   - Monitoring Pipeline table
-   - Data Flow diagram
-   - Computed Counts rule
-   - Single Source of Truth
+**Your job: Find any remaining violations of the same type.** Read every agent prompt carefully (all `.md` files under `monitor/prompts/` and `monitor/prompts/reference/`) and cross-check every `fs.writeFileSync`, `fs.appendFileSync`, file write, `cp`, `echo >`, or equivalent against the OWNERSHIP table in `build.js`. For each write:
+- What file is being written?
+- Is it classified in the OWNERSHIP table? If not, that's a gap — it should be classified.
+- Is the writing agent the authorized single-writer for that file? If not, that's a violation.
+- Does the agent write to FUSE or to a git clone? FUSE writes to git-owned files will silently vanish.
 
-2. **Reference files** — move agent-specific or low-frequency content to `monitor/prompts/reference/`:
-   - `reference/VERSION-ARCHIVE.md` — version history table (only humans/tinker)
-   - `reference/OPERATOR-RUNBOOK.md` — session setup, disable-then-wait (only operators/tinker)
-   - `reference/SCIENTIFIC-CONTEXT.md` — key scientific arguments, verdict categories (only analyst/curmudgeon/decider)
-   - `reference/DATA-SCHEMAS.md` — wins.json schema, sections.json schema, predictions.json schema (only agents that write data)
-   - `reference/BUILD-AND-CHANGE.md` — how to make changes, build pipeline, dependencies (only decider/tinker)
+**Also check for the inverse bug:** An agent that SHOULD write to a file but writes to the wrong location (e.g., git clone when the file is workspace-owned, or FUSE when the file is git-owned).
 
-3. **Per-agent reading lists** — at the bottom of the lean CLAUDE.md, add a section:
-   ```
-   ## Agent-Specific References
-   Each agent should read ONLY the reference files relevant to its work:
-   - Poller: (none beyond this file)
-   - Analyst: SCIENTIFIC-CONTEXT.md, DATA-SCHEMAS.md
-   - Curmudgeon: SCIENTIFIC-CONTEXT.md, DATA-SCHEMAS.md
-   - Decider: SCIENTIFIC-CONTEXT.md, DATA-SCHEMAS.md, BUILD-AND-CHANGE.md
-   - Integrity: DATA-SCHEMAS.md
-   - Tinker: all reference files
-   - Social: (none beyond this file)
-   - Workspace-sync: (none beyond this file)
-   ```
+**Deliverable:** Write a report to `monitor/tinker/proposals/AUDIT-001.json` with:
+- `violations`: Array of remaining violations found (file, agent, current behavior, recommended fix)
+- `unclassified_files`: Array of files written by agents but not in the OWNERSHIP table
+- `clean_agents`: Array of agents with no violations (so we know you checked them)
+- `false_alarms`: Anything that looked suspicious but is actually correct (with reasoning)
 
-4. **Full replacement text** for the lean CLAUDE.md and each reference file. This is a PROP, not a suggestion — provide the complete content so the decider can apply it.
+If you find violations, include concrete fix text (replacement prompt snippets) the decider can apply. Use the same patterns as the three fixes above: staging directories + decider integration.
 
-5. **Verification:** After refactor, every agent prompt should still have access to everything it needs. Cross-check the agent-specific reading lists against the per-agent relevance analysis.
-
-**Also fix the analyst open-issues.json ownership violation** found by audit: analyst-mode0-onboarding.md and analyst-normal-analysis.md both write to `monitor/decisions/open-issues.json` (git-owned, decider-only). The PROP should include replacement text that routes issue creation through the analyst's own output files instead, same pattern as the curmudgeon priority-queue fix.
-
-After this PROP lands, remove this ONE-TIME DIRECTIVE section from tinker.md.
+After this audit is complete and the decider has applied any fixes, remove this ONE-TIME DIRECTIVE section from tinker.md.
