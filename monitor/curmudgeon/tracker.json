@@ -3,8 +3,8 @@
   "current_cycle": 2,
   "phase": 1,
   "phase_description": "Phase 3 (Repaint): Cycle 2 — re-reviewing all items with higher severity thresholds. Focus on whether Cycle 1 fixes were applied, new content consistency, code_analysis tag re-validation.",
-  "last_reviewed": "EXP-050-proposal (priority queue interrupt — not a tracker item)",
-  "last_run": "2026-04-09T19:30:00Z",
+  "last_reviewed": "EXP-050-proposal.c2 (priority queue interrupt — queue_id 1, Cycle 2 re-review)",
+  "last_run": "2026-04-10T12:30:00Z",
   "points": [
     {
       "id": "WIN-001",
