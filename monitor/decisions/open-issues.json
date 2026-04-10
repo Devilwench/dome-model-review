@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-10T17:24:31.995Z",
+  "last_updated": "2026-04-10T17:26:59.141Z",
   "issues": [
     {
       "id": "ISS-442",
@@ -14,22 +14,6 @@
       "source": "curmudgeon-hol-taxonomy",
       "found_date": "2026-04-07",
       "rationale_for_deferral": "Verdict taxonomy restructuring requires human editorial decision on subcategory definitions"
-    },
-    {
-      "id": "ISS-672",
-      "win_id": null,
-      "severity": "major",
-      "category": "factual-accuracy",
-      "status": "assigned-analyst",
-      "found_by": "poller-summary-triage",
-      "found_at": "2026-04-09T05:36:43.944552+00:00",
-      "description": "Refractive index discrepancy: dome model page explicitly shows n(r) formula yielding n=3.49 at ice wall (20,015 km). Our review cites 28.8. Flagged 2 CONSECUTIVE polls. Either: (a) our formula extrapolates beyond the ice wall, (b) dome revised n(r), or (c) we use a different formula. Analyst must reconcile — if we have the wrong number, this is a factual error in our review. Check raw-text/ for dome formula vs our derivation.",
-      "source": "latest-poll-summary.txt",
-      "expansion_item": "EXP-050",
-      "notes": "Yeeted to analyst as EXP-050 for n(r) formula reconciliation. [2026-04-09] 4th consecutive poll flag. Resolution flows through CAT-005/EXP-050 curmudgeon review (ISS-696 blocked-on-curmudgeon). After curmudgeon review, analyst will write actual section prose reconciling the 28.8 vs 3.49 discrepancy. [2026-04-10] ISS-672-research.json in expansions/: Analyst confirmed dome changed coefficient from 0.27 to 0.20. Our Part 1 ice wall value (3.49) was from old coefficient; Part 7 (28.8) was at r=40,000 beyond dome geometry. Multiple formula errors in our review. Feeds into CAT-005/EXP-050 pipeline for correction.",
-      "poll_flags": 5,
-      "last_poll_flag": "2026-04-10T07:09:03.602Z",
-      "poll_note": "4th consecutive poll (2026-04-09 21:44Z). Poller continues to flag n(r) discrepancy: dome model page = 3.49 at ice wall, our review = 28.8. CAT-005/EXP-050 proposal package for Refraction Cascade is now queued for curmudgeon review (blocked-on-curmudgeon). Resolution will flow through that channel."
     },
     {
       "id": "ISS-675",

@@ -1,78 +1,87 @@
 MORNING BRIEFING — 2026-04-10
-Generated: 2026-04-10T15:20Z
-Curmudgeon reviews processed this run: 0
-Previous decider run: 2026-04-10T11:09Z (ISS-699 closed, meta keywords deployed)
+Generated: 2026-04-10T17:27:00Z
+Curmudgeon reviews processed this run: 0 new (queue items popped: 7 already-reviewed items)
+Previous decider run: 2026-04-10T08:45:00Z (EXP-056/059 integration, WIN-048 note, WIN-067 citation fix)
 
-═══════════════════════════════════════════════════════
+════════════════════════════════════════
 SITE HEALTH
-═══════════════════════════════════════════════════════
-Integrity: WARN (false positives #part4c, showTab — ISS-283/307 wontfix, non-blocking)
-Build: 2250 tests passing. Last build clean.
-External: dome V51.1 stable, 69 WINs. No substantive changes. 6th consecutive QUIET poll.
-Canary trap: opentimestamps-provenance → PROBABLE_TRIGGER (another agent updated review-state.json)
+════════════════════════════════════════
+Build: PASSING (2937 tests, up from 2244)
+Integrity: WARN — ISS-705 (critical) SEC-2b.7 W004 identity unverified
+Poller: QUIET (7th consecutive, V51.1 stable)
+External: 0 unresolved reports (Report-1 was positive feedback, ISS-698 wontfix)
 
-═══════════════════════════════════════════════════════
-🚨 CRITICAL — SHA-256 RECYCLING DETECTED
-═══════════════════════════════════════════════════════
-The dome's ~50 "new prospective" predictions include many that recycle confirmed WINs
-with fresh SHA-256 crypto timestamps. This is NOT a genuine methodological improvement —
-it is a credibility shield for post-hoc content.
+════════════════════════════════════════
+DOME STATUS
+════════════════════════════════════════
+Dome site: V51.1 stable. 69 WINs, 94.5% accuracy claimed. 4 claimed failures.
+Our coverage: 70 WINs in wins.json (we cover more than claimed).
+No dome site changes in 7 consecutive polls. Monitor.py auto-commits only.
+Eclipse 2026-08-12 is the next major test event (PRED-095, −17.8 nT ±2 nT target).
 
-Known recycled predictions:
-  PRED-095 (eclipse -17.8 nT) = restates WIN-068
-  PRED-072 (TTB midnight ±15 nT) = restates WIN-042
-  PRED-090 (NH TOA flux >0.3 W/m²) = refs WIN-066 trend data (EXPIRES APRIL 2026)
-  PRED-087 (geoid low stationary) = mirrors WIN-076
-  PRED-074 (NMP longitude) = uses pre-registration historical data
+════════════════════════════════════════
+PATCHES SELF-APPLIED THIS RUN
+════════════════════════════════════════
+3 patches applied + 1 direct integration. 0 failed. 2937 tests pass.
 
-Key argument for our review: Author responded to our timestamping critique by adding
-cryptographic envelopes around post-hoc content. SHA-256 timestamps are real;
-predictions are not genuinely prospective. This should be PROMINENT in Part 6.
+1. Part 1 n(r) values (ISS-672 MAJOR): Corrected formula outputs from stale table
+   values (1.40/3.49/28.8) to current formula (1.83/2.84/21.53). Added note about
+   table-vs-formula discrepancy and cross-ref to Section 2.9.
 
-Issues created:
-  ISS-700 (major, analyst Mode 0): Catalog predictions.json with restates_win + data_predates_registration
-  ISS-701 (major, IMMINENT): PRED-090 April 2026 window — assess and catalog this week
-  ISS-702 (moderate): Update Part 6 prose with SHA-256 recycling analysis
-  ISS-703 (major): Curmudgeon forensic: verify April 4 batch git commit timeline
-  ISS-704 (moderate): Update poller to detect prediction methodology changes
+2. Part 7 disc edge (ISS-672 MAJOR): Fixed two errors: (a) "disc edge" is ice wall
+   at r=20,015 where n≈2.84, not 28.8; (b) n=21.53 only at r=40,000 beyond disc.
 
-═══════════════════════════════════════════════════════
-EXPANSIONS ROUTED
-═══════════════════════════════════════════════════════
-EXP-057 (kill-shot rating system): Routed to curmudgeon priority queue (queue_id=11)
-  → ISS-678 blocked-on-curmudgeon
-  → Curmudgeon to review: schema design, 6 verdict assignments, Wait-and-See definition
-EXP-050 (CAT-005 refraction cascade): Already routed (queue_id=1) — ISS-696 blocked
+3. SEC-3.1b broken anchor (CRITICAL): Removed sentence with self-pointing href
+   (#posthoc-standard → same section h3). CAT-005 reference premature until
+   Section 1.8 actually exists.
 
-═══════════════════════════════════════════════════════
-TOP ACTIONS FOR HUMAN
-═══════════════════════════════════════════════════════
-1. [ISS-442] Verdict taxonomy restructuring — editorial decision needed
-2. [ISS-675] SECURITY: GitHub PAT at .workspace-sync-token (gitignored, review rotation)
-3. [ISS-703] SHA-256 recycling — curmudgeon forensics will confirm; key new argument for review
-4. PRED-090 NH TOA flux April 2026 deadline is IMMINENT — analyst working on ISS-701
+4. WIN-025 detail_extra (EXP-058 integration): Added dome removal annotation
+   (2026-03-15, Kp~5-6 storm, 34-104 min scatter). Acknowledges self-correction,
+   explains accuracy denominator impact. ISS-694 closed.
 
-═══════════════════════════════════════════════════════
+Issues closed this run: ISS-672, ISS-694 (2 total)
+Issues created this run: ISS-705 (critical, SEC-2b.7 W004 mapping) (1 total)
+Issues updated: ISS-696 returned to assigned-analyst with EXP-050 gate blockers
+
+════════════════════════════════════════
+TOP 3 PRIORITY ACTIONS FOR HUMAN/ANALYST
+════════════════════════════════════════
+
+1. [CRITICAL] ISS-705: Verify W004 identity in SEC-2b.7 scoreboard argument
+   The curmudgeon flagged (2026-04-10T11:30) that W004 in results.json may be
+   "Noise Floor Limit (empirical recalibration at v50.2)" NOT the 2024 Eclipse
+   9-Station test. If wrong, the opening claim of SEC-2b.7 is a category error.
+   ACTION: Analyst to re-fetch results.json from raw.githubusercontent.com,
+   dump W004 entry, confirm or rewrite the two-scoreboards argument.
+
+2. [MAJOR] EXP-050 revision required (ISS-696 returned to analyst)
+   Curmudgeon gate: ACCEPT_WITH_MODIFICATIONS, 7 blockers. Before prose writing:
+   (a) Produce EXP-050-numerics.json validating all load-bearing numerics
+   (b) Per-WIN re-read for all 7 proposed flips (WIN-010 is eclipse not analemma!)
+   (c) Remove cascade_dependent code_analysis tag (category error)
+   (d) Renumber Section 1.7 → Section 1.8 (collision with Gravity Paradox)
+   (e) Use structural section title (not V51.1-coupled)
+   (f) Resubmit for second curmudgeon gate pass.
+
+3. [MAJOR] ISS-442: Verdict taxonomy restructuring (pending-human)
+   'Misleading' verdict conflates 4 distinct failure modes. Steve's decision needed.
+
+════════════════════════════════════════
 CURMUDGEON PROGRESS
-═══════════════════════════════════════════════════════
-Cycle 2 Phase 1: Complete (~71/69 reviewed). Phase 2 not started.
-Priority queue: 12 items. Running at 30-min cadence (churn-and-burn).
-Next up: EXP-050 (refraction cascade proposal review, queue_id=1)
-Then: part3-3.1b, part2b-2b.7, WIN-003/011/015 detail rewrites
+════════════════════════════════════════
+Mode: churn-and-burn (30min interval)
+Queue depth: 5 items
+  - part2b-2b.7: Awaiting curmudgeon review of SEC-2b.7 content
+  - EXP-054-batch: post-hoc methodology expansion batch
+  - ISS-672-nr-coefficient: REVIEWED but review file not yet in git (workspace-sync needed)
+  - EXP-057: Kill-shot rating schema proposal (awaiting curmudgeon gate)
+  - ISS-703-sha256-forensics: SHA-256 recycling forensics
 
-═══════════════════════════════════════════════════════
-OPEN ISSUES SUMMARY (14 open / 592 closed)
-═══════════════════════════════════════════════════════
-  assigned-analyst: ISS-672, ISS-677, ISS-694, ISS-700, ISS-701, ISS-702
-  blocked-on-curmudgeon: ISS-678, ISS-696
-  open: ISS-693 (workspace-sync job), ISS-703 (SHA-256 forensics), ISS-704 (poller update)
-  pending-human: ISS-442, ISS-675
-  wontfix: ISS-698
+Cycle 2 Phase 1: Complete (~71/69 reviewed). 7 items just popped from queue
+(review files confirmed: EXP-050, part3-3.1b, WIN-003/011/015/048/067).
 
-═══════════════════════════════════════════════════════
-UPCOMING TEST WINDOWS
-═══════════════════════════════════════════════════════
-  ⚠ PRED-090: NH TOA flux >0.3 W/m² — APRIL 2026 (IMMINENT — ISS-701 open)
-  SAA Western Cell ≥0.3° westward drift — May 2026
-  TTB Decay ≥35 nT Jan–Jun — June 2026
-  Eclipse 2026-08-12: PRED-095 (−17.8 nT ±2 nT) — Aug 2026 (= restates WIN-068)
+════════════════════════════════════════
+CODE ANALYSIS TAG STATUS
+════════════════════════════════════════
+No new tag sync needed this run.
+EXP-054-batch in queue will drive a batch post_hoc tag audit when integrated.

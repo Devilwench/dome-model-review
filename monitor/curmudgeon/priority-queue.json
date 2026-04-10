@@ -21,45 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 1,
-      "target_type": "proposal",
-      "target_id": "EXP-050",
-      "reason": "CAT-005 V51.1 Refraction Cascade proposal package awaiting curmudgeon review before any prose is written",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-09T19:06:09.104Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-050.json",
-        "related_issues": [
-          "ISS-696",
-          "ISS-638",
-          "ISS-666",
-          "ISS-667",
-          "ISS-668",
-          "ISS-669",
-          "ISS-670",
-          "ISS-671",
-          "ISS-672",
-          "ISS-673"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 2,
-      "target_type": "section-new",
-      "target_id": "part3-3.1b",
-      "reason": "EXP-053 integrated — new Section 3.1b (Post-hoc vs Prospective) needs fresh adversarial review",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-09T22:01:07.487Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-053.json",
-        "related_issues": [
-          "ISS-697"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 3,
       "target_type": "section-new",
       "target_id": "part2b-2b.7",
@@ -70,51 +31,6 @@
         "source_file": "monitor/analyst/expansions/EXP-055.json",
         "related_issues": [
           "ISS-671"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 4,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-003",
-      "reason": "EXP-054 post-hoc audit: flagged as obscure (category O). Needs verdict review — legitimate-novelty carve-out may apply if value is non-indexed archival and derivation is unique to dome framework.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-10T03:07:41.344Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-054.json",
-        "related_issues": [
-          "ISS-697"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 5,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-011",
-      "reason": "EXP-054 post-hoc audit: flagged as obscure (category O). Needs verdict review — legitimate-novelty carve-out may apply if value is non-indexed archival and derivation is unique to dome framework.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-10T03:07:41.344Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-054.json",
-        "related_issues": [
-          "ISS-697"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 6,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-015",
-      "reason": "EXP-054 post-hoc audit: flagged as obscure (category O). Needs verdict review — legitimate-novelty carve-out may apply if value is non-indexed archival and derivation is unique to dome framework.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-10T03:07:41.344Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-054.json",
-        "related_issues": [
-          "ISS-697"
         ],
         "human_note": null
       }
@@ -132,36 +48,6 @@
           "ISS-697"
         ],
         "human_note": "representative_wins: 001(D), 016(T), 012(V), 038(T), 067(D)"
-      }
-    },
-    {
-      "queue_id": 8,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-048",
-      "reason": "EXP-056 integrated — WIN-048 detail_extra added (dome self-correction acknowledgment + why verdict stands). Fresh attack needed.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-10T07:07:10.013Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-056.json",
-        "related_issues": [
-          "ISS-673"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 9,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-067",
-      "reason": "EXP-059: Citation fix (wrong DOI → Pappa et al. 2019 Antarctic gravity). Needs fresh review after citation correction.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-10T07:09:03.601Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-059.json",
-        "related_issues": [
-          "ISS-683"
-        ],
-        "human_note": null
       }
     },
     {
@@ -222,7 +108,57 @@
     }
   ],
   "next_id": 13,
-  "history": [],
+  "history": [
+    {
+      "queue_id": 1,
+      "target_id": "EXP-050",
+      "target_type": "proposal",
+      "popped_at": "2026-04-10T17:26:04.609Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 2,
+      "target_id": "part3-3.1b",
+      "target_type": "section-new",
+      "popped_at": "2026-04-10T17:26:04.611Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 4,
+      "target_id": "WIN-003",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-10T17:26:04.612Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 5,
+      "target_id": "WIN-011",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-10T17:26:04.612Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 6,
+      "target_id": "WIN-015",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-10T17:26:04.612Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 8,
+      "target_id": "WIN-048",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-10T17:26:04.612Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 9,
+      "target_id": "WIN-067",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-10T17:26:04.612Z",
+      "popped_by": "decider"
+    }
+  ],
   "schedule_state": {
     "curmudgeon_current_interval_minutes": 30,
     "curmudgeon_default_interval_minutes": 240,

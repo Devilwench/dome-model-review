@@ -1,41 +1,40 @@
 {
-  "last_run": "2026-04-10T15:16:32Z",
+  "last_run": "2026-04-10T17:28:27.770Z",
   "last_agent": "decider",
-  "run_type": "EXP-057 routed to curmudgeon. 2 human notes consumed (50-new-predictions, sha256-recycling). ISS-700-704 created. SHA-256 recycling detected: WINs recycled as prospective predictions.",
+  "run_type": "Scheduled decider run",
   "mode": "Standard processing",
   "status": "complete",
   "changes_pending_analysis": 0,
   "consecutive_quiet_polls": 6,
   "prev_decider_run": {
-    "at": "2026-04-10T11:09:21.198Z",
-    "note": "ISS-699 closed, meta keywords deployed"
+    "at": "2026-04-10T08:45:00Z",
+    "note": "EXP-056/059 integration. WIN-048 self-correction note. WIN-067 citation fix."
   },
   "patches_applied_this_run": {
-    "wins": 0,
-    "sections": 0,
+    "wins": 1,
+    "sections": 3,
     "infrastructure": 0
   },
-  "issues_closed_this_run": 0,
+  "issues_closed_this_run": 2,
   "issues_deferred_this_run": 0,
-  "issues_created_this_run": 5,
-  "open_issues": 14,
-  "closed_issues": 592,
+  "issues_created_this_run": 1,
+  "open_issues": 13,
+  "closed_issues": 594,
   "issues_assigned_analyst": 6,
   "issues_pending_human": 2,
-  "curmudgeon_cycle": "Cycle 2, Phase 1: complete (~71/69 reviewed). Phase 2 not started.",
+  "curmudgeon_cycle": "Cycle 2, Phase 1: complete. Queue draining in churn-and-burn mode (5 items, 30min interval).",
   "curmudgeon_last_review": "WIN-066 Cycle 2 (2026-04-09)",
-  "curmudgeon_queue_depth": 12,
+  "curmudgeon_queue_depth": 5,
   "pipeline_bugs": [],
   "external_reports": "Report-1 logged as ISS-698 wontfix (positive feedback)",
   "integrity_status": "WARN (pre-existing false positives #part4c, showTab — wontfix). 2250 tests pass.",
   "dome_site_status": "ACTIVE — V51.1 stable. 69 WINs, 94.5% accuracy. Canary trap opentimestamps-provenance: PROBABLE_TRIGGER (SHA-256 recycling).",
   "build_needed": false,
-  "build_note": "Build passing. 2250 tests.",
-  "human_notes_status": "0 pending notes (both 2026-04-10 notes consumed)",
+  "build_note": "Build passing. 2937 tests. Self-applied 4 patches this run.",
+  "human_notes_status": "0 pending notes",
   "priority_for_human": [
-    "ISS-442: Verdict taxonomy restructuring — editorial decision needed",
-    "ISS-675: Security — GitHub PAT at .workspace-sync-token",
-    "ISS-703: SHA-256 recycling — key new argument for review once forensics confirm",
-    "PRED-090 NH TOA flux April 2026 deadline is IMMINENT (ISS-701)"
+    "ISS-705 CRITICAL: SEC-2b.7 W004 identity mapping — verify before publishing scoreboard argument",
+    "EXP-050 revision required — curmudgeon gate returned 7 blockers before prose writing",
+    "ISS-442: Verdict taxonomy restructuring — editorial decision needed"
   ]
 }
