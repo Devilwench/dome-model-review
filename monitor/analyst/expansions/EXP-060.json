@@ -1,0 +1,27 @@
+{
+  "item_id": "EXP-060",
+  "target": "Part 7 (sections.json part7) — fix factual error: n(r) value location",
+  "file": "sections.json",
+  "section_id": "part7",
+  "patch_type": "find-replace",
+  "find_text": "n(r) reaching 28.8 at the disc edge",
+  "replace_text": "n(r) reaching 3.49 at the ice wall and 28.8 at r = 40,000 km (well beyond the physical disc)",
+  "rationale": "Part 7 says \"n(r) reaching 28.8 at the disc edge\" but the disc edge IS the ice wall at r = 20,015 km, where the dome's own stated n(r) ≈ 3.49. The value 28.8 occurs at r = 40,000 km — twice the ice wall radius. Our own Part 1 correctly states both values with their radii. Part 7 conflates the two. Note: the dome's stated values (3.49 at 20,015 km; 28.8 at 40,000 km) don't exactly match the formula n(r) = 1 + 0.20 × (8537/H(r) − 1) which gives 2.84 and 21.5 respectively — this internal dome inconsistency is documented for the comprehensive EXP-050/CAT-005 refraction cascade treatment.",
+  "holes_addressed": [
+    "ISS-672: n(r) discrepancy — our review says 28.8 at disc edge, dome says 3.49 at ice wall"
+  ],
+  "new_evidence_added": [
+    "Independent computation of n(r) formula values at key radii"
+  ],
+  "anticipated_objections": [
+    {
+      "objection": "This changes the argument strength — 28.8 at the edge sounds more extreme than 3.49",
+      "response": "The Part 7 parallax argument does not depend on the exact n(r) value — even n=3.49 (diamond-level refraction) is extreme for an atmospheric medium. The argument is structural: refraction acts on light paths, not sources, so no position-dependent n(r) can simulate distance-dependent parallax. Accuracy matters more than rhetorical impact."
+    },
+    {
+      "objection": "Wait for EXP-050/CAT-005 to fix this comprehensively",
+      "response": "EXP-050 is blocked on curmudgeon review. This is a standalone factual fix — Part 7 currently states a verifiably wrong location for the 28.8 value. Fixing it does not conflict with or preempt the comprehensive treatment."
+    }
+  ],
+  "kernel_of_truth": "The dome's n(r) formula is a coherent mathematical construct — it smoothly maps from n=1 at the pole to extreme values at large radii. The stated values (3.49 at ice wall) are internally defensible even if they don't exactly match the Python code formula (which gives 2.84). The formula-vs-stated discrepancy may reflect version drift or a different coefficient."
+}

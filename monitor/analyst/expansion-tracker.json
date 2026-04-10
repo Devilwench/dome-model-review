@@ -859,7 +859,7 @@
       "target": "Part 3 methodology prose — add post_hoc caveat paragraph citing dome author definition + legitimate-novelty carve-out",
       "curmudgeon_review": null,
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "category": "methodology",
       "notes": "ISS-697: The dome author defines \"prospective\" as \"prediction was timestamped before confirming data was pulled\" (verbatim from john09289.github.io/predictions home page — extracted 2026-04-09: \"Prospective = prediction was timestamped before confirming data was pulled. Not retrofitted. Not explained after the fact. Predicted, then verified.\"). We apply a stricter scientific standard without addressing his stated one. Task: (1) Write a caveat paragraph for the methodology section (Part 3) that introduces post_hoc reasoning. Must: cite the author's definition verbatim with URL, explain the scientific standard (observation did not exist at prediction time, or predictor provably had no knowledge of it, with timestamped pre-registration), define the legitimate-novelty carve-out (unique framework + unknown-to-author data = legitimate independent discovery), and define the trivial-transcription test (value in physics textbook + no pre-registration = not a prediction). ALSO: Note the smoking-gun evidence — dome monitor scripts typically hardcode expected values in the same commit as the live fetch, making even the author's weaker self-definition unverifiable. DATA DEPENDENCY CONFIRMED: home-page quote fetched 2026-04-09 from john09289.github.io/predictions — see also monitor/analyst/human-notes.json ISS-697.tasks[1]. Cross-reference EXP-050/CAT-005 for consistent language on verdict criteria.",
       "created_at": "2026-04-09T18:31:54.848Z",
@@ -876,7 +876,9 @@
       "integrated": true,
       "integrated_at": "2026-04-09T22:01:07.470Z",
       "integration_mode": "section-replace",
-      "integration_note": "Integrated by decider. Patch applied to sections.json part3. Section 3.1b added. Committed c8b7464."
+      "integration_note": "Integrated by decider. Patch applied to sections.json part3. Section 3.1b added. Committed c8b7464.",
+      "completed_at": "2026-04-09T22:01:07.470Z",
+      "output_file": "monitor/analyst/expansions/EXP-053.json"
     },
     {
       "id": "EXP-054",
@@ -913,12 +915,14 @@
         "ISS-671"
       ],
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "Analyst: Check dome raw.githubusercontent.com results.json for the new entry. If it's a duplicate of a known WIN, note it. If it's genuinely new, initiate Mode 0 onboarding pipeline.",
       "created_at": "2026-04-09T22:02:27.744Z",
       "integrated": true,
       "integrated_at": "2026-04-09T23:06:18.483Z",
-      "integration_mode": "append_subsection"
+      "integration_mode": "append_subsection",
+      "completed_at": "2026-04-09T23:06:18.483Z",
+      "output_file": "monitor/analyst/expansions/EXP-055.json"
     },
     {
       "id": "EXP-056",
@@ -944,9 +948,12 @@
         "ISS-678"
       ],
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "Each kill-shot should have: (1) verdict category from standard taxonomy, (2) strength rating (decisive/major/supportive), (3) reproducibility assessment. Write expansion for Section 5 (Kill Shots tab).",
-      "created_at": "2026-04-09T22:02:27.744Z"
+      "created_at": "2026-04-09T22:02:27.744Z",
+      "completed_at": "2026-04-10T09:17:15.524Z",
+      "output_file": "monitor/analyst/expansions/EXP-057.json",
+      "completion_note": "Schema proposal + 6 kill-shot ratings + Wait-and-See definition + badge rendering plan + curmudgeon integration plan. No current kill-shot qualifies for Wait and See. Verdict distribution: 1 Misleading, 1 Not Demonstrated, 3 Std Model Explains, 1 Refuted by Data. 4/6 straw-man globe predictions identified."
     },
     {
       "id": "EXP-058",

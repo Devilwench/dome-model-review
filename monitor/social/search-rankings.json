@@ -234,6 +234,69 @@
           "notes": "Our domain still not indexed."
         }
       ]
+    },
+    {
+      "date": "2026-04-10",
+      "queries": [
+        {
+          "query": "john09289 \"ovoid cavity\" dome model predictions 2026",
+          "dome_position": null,
+          "our_position": null,
+          "top_3_results": [],
+          "notes": "Zero results."
+        },
+        {
+          "query": "\"ovoid cavity cosmological model\" OR \"ECM dome\" OR \"aetheric refraction\" flat earth 2026",
+          "dome_position": null,
+          "our_position": null,
+          "top_3_results": [
+            "walter.bislins.ch (flat earth dome model)",
+            "journalofgeocentriccosmology.org (Modeling the Celestial Dome)",
+            "myflatearth.org"
+          ],
+          "notes": "Generic flat earth dome content. No ECM-specific results."
+        },
+        {
+          "query": "\"funwithscience-org\" OR \"dome-model-review\" critique",
+          "dome_position": null,
+          "our_position": null,
+          "top_3_results": [
+            "blog.gruffdavies.com (Norton's dome)",
+            "arxiv.org (DOME diffusion model)",
+            "Wikipedia (Norton's dome)"
+          ],
+          "notes": "Our domain still not indexed."
+        },
+        {
+          "query": "\"john09289.github.io\" OR \"john09289/predictions\"",
+          "dome_position": null,
+          "our_position": null,
+          "top_3_results": [],
+          "notes": "Zero results. Dome repo/site completely unindexed."
+        },
+        {
+          "query": "\"Schumann resonance\" dome cavity flat earth model predictions 2026",
+          "dome_position": null,
+          "our_position": null,
+          "top_3_results": [
+            "galacticfederation.ca (Schumann resonance 2026)",
+            "Wikipedia (Schumann resonances conspiracy theories)",
+            "mdpi.com (Schumann Resonance Observations)"
+          ],
+          "notes": "New Age / scientific monitoring content. No ECM overlap."
+        },
+        {
+          "query": "\"dome model\" \"67 predictions\" OR \"69 predictions\" flat earth",
+          "dome_position": null,
+          "our_position": null,
+          "top_3_results": [
+            "Wikipedia (Flat Earth)",
+            "Quora (dome in flat Earth theory)",
+            "Britannica (Flat Earth)"
+          ],
+          "notes": "Generic flat earth encyclopedic entries."
+        }
+      ]
     }
   ]
 }

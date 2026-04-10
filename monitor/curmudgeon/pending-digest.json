@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-10T03:03:58.628Z",
+  "generated_at": "2026-04-10T11:03:51.620Z",
   "total_reviews": 69,
   "already_processed": 137,
   "pending_count": 0,
@@ -1055,9 +1055,13 @@
     {
       "win_id": "WIN-048",
       "topic": "CMB Axis of Evil — Cycle 2 re-review after analyst expansion integration",
-      "issues_created": 1,
+      "issues_created": 0,
       "holes_found": 6,
       "missing_holes": [
+        {
+          "severity": "critical",
+          "summary": "TRIPLE-DUPLICATED PARAGRAPH in detail_evidence. The paragraph beginning 'A dome defender might reinterpret the CMB as thermal emission from the firmament itself at 2.725 K — but a uniform dome surface...' appears THREE times verbatim (starting at approximately characters 1780, 2300, and 2820). This "
+        },
         {
           "severity": "major",
           "summary": "code_analysis.relabels_standard is set to TRUE in wins.json, but this is incorrect. The Cycle 1 review explicitly argued it should be FALSE (anomaly hijacking ≠ relabeling), yet the tag was never corrected. The CMB Axis of Evil is not a phenomenon that standard physics explains and the dome renames "
@@ -1579,9 +1583,13 @@
     {
       "win_id": "WIN-067",
       "topic": "Antarctic gravity hole — Cycle 2 re-review after substantial rewrite",
-      "issues_created": 1,
+      "issues_created": 0,
       "holes_found": 6,
       "missing_holes": [
+        {
+          "severity": "major",
+          "summary": "BROKEN CROSS-REFERENCE. The detail_evidence ends with 'See <a href=\"#part2\" onclick=\"showTab('selftest');return false\">Section 2.2</a>.' but Section 2.2 in the V6-restructured part2 is 'Tidal Pattern: One Spike vs. Two Bulges' — it has nothing to do with gravity or the Antarctic anomaly. The intende"
+        },
         {
           "severity": "moderate",
           "summary": "FINDING WORDING IS PARSE-AMBIGUOUS. The summary-table finding reads 'Dome predicts 90% gravity drop at rim (H=837 km vs 8,537 at pole); actual variation is 0.53%'. A first-time reader can easily mis-parse 'H=837 km vs 8,537 at pole' as a gravity figure (units of km make no sense for g, but the eye i"

@@ -1,231 +1,330 @@
 {
   "item_id": "EXP-057",
-  "target": "Part 5 (Kill-Shot Binary Tests) — add structured metadata and formal rating system for each kill-shot test, paralleling WIN analytical fields",
-  "curmudgeon_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA.json, KILLSHOT-GPS.json, KILLSHOT-SH.json",
-  "current_word_count": 3900,
+  "target": "Kill-shot rating system: structured verdicts, strength ratings, schema proposal, and Wait-and-See category definition for Part 5 kill-shot items",
+  "curmudgeon_review": null,
+  "current_word_count": null,
   "replacement_word_count": null,
   "replacement_html": null,
-  "design_note": "This expansion proposes a structured data schema for kill-shot tests and provides ratings for all 6 tests, plus the 3 implicit kill-shots already in the review (Gaia, GPS, Southern Hemisphere). The decider should implement this as either: (a) a new data/killshots.json file analogous to wins.json, or (b) structured metadata embedded in sections.json part5. Option (a) is recommended for consistency with the data-driven architecture.",
-  "proposed_schema": {
-    "description": "Each kill-shot test entry follows this structure, paralleling the WIN schema where applicable.",
-    "fields": {
-      "test_id": "String — KS-NNN format (e.g., KS-001)",
-      "name": "String — short test name",
-      "dome_claim": "String — what the dome predicts",
-      "dome_status": "String — dome's own assessment: \"confirmed\" | \"pending\" | \"failing\"",
-      "our_verdict": "String — one of the 6 standard verdict categories",
-      "verdict_reasoning": "String — one-sentence summary of why this verdict applies",
-      "strength": "String — \"decisive\" (would falsify dome alone) | \"major\" (strong evidence against) | \"supportive\" (contributes to pattern)",
-      "discriminating": "Boolean — does this test actually distinguish dome from globe?",
-      "discrimination_note": "String — why it does or does not discriminate",
-      "reproducibility": "String — \"high\" (public data, anyone can verify) | \"medium\" (requires specialist tools) | \"low\" (unreplicated) | \"pending\" (test not yet occurred)",
-      "post_hoc": "Boolean — was the \"prediction\" made after the observation was known?",
-      "derives_from_dome": "Boolean — is the prediction derived from dome geometry specifically?",
-      "relabels_standard": "Boolean — does this rename a standard physics explanation?",
-      "kernel_of_truth": "String — what the dome genuinely gets right about this topic",
-      "primary_failure_mode": "String — the single strongest structural problem",
-      "cross_references": "Array of strings — related WIN IDs and section references",
-      "test_window": "String or null — when the test can be definitively resolved",
-      "falsification_assessment": "String — \"dome_falsified\" | \"non_discriminating\" | \"genuinely_pending\" | \"dome_favored\""
+  "proposal_package": {
+    "summary": "Propose a structured data layer for kill-shots (data/kill-shots.json) with per-item verdicts, strength ratings, and code_analysis tags. Kill-shots remain a separate tab rendered from their own data file — NOT merged into wins.json — to prevent double-counting in headline tallies. Section prose in sections.json part5 is retained; the build pipeline reads kill-shots.json to inject verdict badges into the existing HTML structure. A new 'Wait and See' verdict category is defined but does NOT apply to any current kill-shot (all six fail criterion (a): genuinely unique prediction not derivable from standard physics).",
+    "design_decision": {
+      "question": "Should kill shots remain a separate tab or become a filtered view of WINs with a kill_shot:true flag?",
+      "recommendation": "Separate data/kill-shots.json file, separate tab retained",
+      "rationale": [
+        "Kill-shots don't map 1:1 to individual WINs — Test 1 (Sydney-Perth) has no direct WIN, Test 3 (JFK-LHR) has no WIN. They are curated thematic arguments, not claim rebuttals.",
+        "Merging into wins.json creates double-counting risk: every aggregation query (verdict tallies, hero cards, code_analysis stats) would need a kill_shot exclusion filter. One forgotten filter = inflated numbers. A separate file makes the boundary architectural, not conventional.",
+        "Kill-shots have unique fields (dome_prediction, dome_claimed_globe_prediction, actual_globe_prediction, dome_status) that don't apply to regular WINs.",
+        "The curmudgeon lifecycle can track kill-shots via their KS-NNN IDs in the same tracker.json (adding a new type field), without polluting the WIN namespace."
+      ]
+    },
+    "wait_and_see_definition": {
+      "name": "Wait and See",
+      "description": "Applied when the dome has put forward a prediction that is (a) genuinely unique — not a relabel of standard physics, not already measured, not derivable from standard model data — (b) grounded in data the dome has actually produced or can point to, and (c) verifiable in principle, with a defined time window or observation that will resolve it. All three criteria must hold. This is the honest 'we cannot refute this yet; it is a real open prediction' bucket.",
+      "badge_color_light": "#B3D4FC",
+      "badge_color_dark": "#2C5282",
+      "badge_text": "Wait and See",
+      "scope": "Kill-shots only for now. Will extend to Prospective Wins (ISS-677) when that work lands. Must NOT be counted in the headline verdict tallies or 4-card scorecard.",
+      "strictness_note": "This verdict is a compliment — it means the dome has stated something falsifiable and non-trivial. Expect it to be rare. If any criterion fails, fall back to the appropriate critical verdict. Post-hoc adoption of known observations with a different label does not qualify, even if the dome timestamps the adoption.",
+      "current_applicability": "NONE of the six current kill-shots qualify. All fail criterion (a): their predictions are either derived from standard-model data (Tests 4, 5, 6), explain observations already fully accounted for by standard physics (Test 3), or are post-hoc calibration (Test 1). Test 2 fails criterion (b): no methodology published, no reproducible observation."
+    },
+    "proposed_schema": {
+      "file": "data/kill-shots.json",
+      "note": "Array of objects, one per kill-shot test. Build pipeline reads this to inject verdict badges into the Part 5 HTML. Separate from wins.json to prevent tally contamination.",
+      "fields": {
+        "id": "String, KS-NNN format",
+        "test_name": "String, canonical test name",
+        "dome_prediction": "String, dome's stated prediction with numbers",
+        "dome_claimed_globe_prediction": "String, what the dome CLAIMS the globe predicts (often a straw man)",
+        "actual_globe_prediction": "String, what standard physics actually predicts (our correction)",
+        "dome_status": "String, dome's self-assessment: 'Claimed Confirmed' | 'Pending' | 'Failing'",
+        "our_verdict": "String, from standard taxonomy + Wait and See",
+        "our_strength": "String, 'decisive' | 'major' | 'supportive' — how strong this argument is as evidence against the dome",
+        "our_finding": "String, one-line summary",
+        "reproducibility": "String, can an independent observer verify this?",
+        "kernel_of_truth": "String, what the dome genuinely gets right",
+        "straw_man_identified": "Boolean, does the dome misrepresent the globe prediction?",
+        "straw_man_detail": "String or null, how the dome misrepresents standard physics",
+        "related_wins": "Array of WIN ID strings",
+        "related_failures": "Array of FAIL ID strings",
+        "code_analysis": "Object with same fields as WIN code_analysis (monitoring, relabels_standard, post_hoc, derives_from_dome, reviewed)",
+        "section_anchor": "String, HTML anchor ID for linking"
+      }
+    },
+    "kill_shot_ratings": [
+      {
+        "id": "KS-001",
+        "test_name": "Sydney–Perth Distance",
+        "dome_prediction": "4,352 km (V13 Finsler formula)",
+        "dome_claimed_globe_prediction": "3,287 km",
+        "actual_globe_prediction": "3,291 km geodesic, confirmed by direct flights (~3,290 km great-circle distance). The 3,287 km figure the dome cites is the standard WGS84 geodesic — both values agree. The dome presents this as a disagreement, but its own 4,352 km matches a circuitous railway, not a geometric distance.",
+        "dome_status": "Claimed Confirmed",
+        "our_verdict": "Misleading",
+        "our_strength": "major",
+        "our_finding": "V13 Finsler formula was calibrated against the Indian Pacific railway distance (not a blind prediction), matches a circuitous rail route rather than the geometric city-pair distance, and fails by 78% on Sydney-Buenos Aires in V12. Two internal methods (Finsler vs MDS scaffold) disagree by 460 km on Sydney-Perth itself.",
+        "reproducibility": "Partially reproducible. The Indian Pacific distance is public record (4,352 km track length). The globe geodesic (3,291 km) is independently verifiable via flight distances. The dome's V13 formula is partially published but the n(r) scaling function is not, preventing independent replication of the Finsler calculation.",
+        "kernel_of_truth": "The dome's V13 Finsler coordinate system is genuinely more sophisticated than naive flat-earth azimuthal equidistant projections. It uses elliptic integrals, two-zone topology, and position-dependent refraction — real mathematical tools applied to a problem most flat-earth models ignore entirely. The dome also correctly identifies that southern hemisphere distances are the hardest test for non-globe geometries. Credit for engaging with the hardest problem rather than hiding from it.",
+        "straw_man_identified": false,
+        "straw_man_detail": null,
+        "related_wins": [
+          "058"
+        ],
+        "related_failures": [],
+        "code_analysis": {
+          "monitoring": "none",
+          "relabels_standard": false,
+          "post_hoc": true,
+          "derives_from_dome": true,
+          "reviewed": false
+        },
+        "section_anchor": "ks-test-1"
+      },
+      {
+        "id": "KS-002",
+        "test_name": "Polaris Altitude at 35.9°N",
+        "dome_prediction": "36.18° altitude (0.27° excess over latitude)",
+        "dome_claimed_globe_prediction": "35.91° (altitude = latitude)",
+        "actual_globe_prediction": "~35.9° ± measurement uncertainty. Globe predicts altitude ≈ latitude ± corrections for Polaris polar offset (±0.66°), atmospheric refraction (~0.02°), and instrument precision (±0.2–0.5° for field sextant). The claimed 0.27° 'excess' is well within these known error sources.",
+        "dome_status": "Claimed Confirmed",
+        "our_verdict": "Not Demonstrated",
+        "our_strength": "supportive",
+        "our_finding": "The claimed +0.27° excess is smaller than Polaris's known polar offset (±0.66°), within typical field measurement uncertainty (±0.2–0.5°), and is based on a single unreplicated measurement with no published methodology. The dome's own site separately marks its broader Polaris-latitude prediction as FALSIFIED, creating an internal contradiction.",
+        "reproducibility": "Not reproducible. No instrument, methodology, time of observation, atmospheric conditions, or number of measurements published. A single unreplicated measurement cannot be independently verified.",
+        "kernel_of_truth": "Polaris IS offset from the true celestial pole by ~0.66° (currently ~0.66° and precessing). This means its altitude does vary with hour angle, and simplified 'altitude = latitude' statements in introductory astronomy are slightly imprecise. The dome is correct to demand precision in this measurement. The problem is that the dome's own measurement doesn't meet that standard.",
+        "straw_man_identified": false,
+        "straw_man_detail": null,
+        "related_wins": [
+          "065"
+        ],
+        "related_failures": [
+          "FAIL-001"
+        ],
+        "code_analysis": {
+          "monitoring": "none",
+          "relabels_standard": false,
+          "post_hoc": true,
+          "derives_from_dome": false,
+          "reviewed": false
+        },
+        "section_anchor": "ks-test-2"
+      },
+      {
+        "id": "KS-003",
+        "test_name": "JFK–LHR Flight Time Asymmetry",
+        "dome_prediction": "Eastbound >5% advantage from 'aetheric slipstream'",
+        "dome_claimed_globe_prediction": "0% (after wind)",
+        "actual_globe_prediction": "Eastbound advantage of ~55–75 minutes (varying by season), caused by the polar jet stream. Standard atmospheric science predicts: larger asymmetry in winter (stronger jet), smaller in summer (weaker jet), absent near equator (no jet stream), and variable by hemisphere (different jet positions). All four predictions confirmed by data.",
+        "dome_status": "Pending",
+        "our_verdict": "Std Model Explains",
+        "our_strength": "decisive",
+        "our_finding": "Three independent discriminating tests — seasonal variation, equatorial absence, and southern hemisphere pattern — all match jet stream physics and are incompatible with a fixed aetheric circulation. The dome's AI context directive (Rule 15: 'Say aetheric slipstreams NOT jet streams') confirms the model is relabeling, not proposing an alternative mechanism. A fixed dome cavity property cannot explain seasonal variation.",
+        "reproducibility": "Fully reproducible. Airline schedules, OpenSky ADS-B data, and peer-reviewed studies (Williams 2016, Environ. Res. Lett.) provide independent confirmation. Seasonal and latitudinal variation patterns are publicly verifiable.",
+        "kernel_of_truth": "The dome is correct that transatlantic flight time asymmetry is large, consistent, and sometimes undersold in casual explanations. The ~13% eastbound advantage on JFK-LHR is a striking real-world phenomenon. The dome also correctly notes that the effect exists (which some flat-earth models might struggle with). Where the dome fails is in mechanism: renaming the jet stream 'aetheric slipstream' adds no explanatory power and loses the ability to explain seasonal variation.",
+        "straw_man_identified": true,
+        "straw_man_detail": "The dome frames the globe prediction as '0% (after wind)' — implying that removing the jet stream leaves no asymmetry, and therefore the asymmetry needs a different explanation. This is like saying 'the thermometer predicts 0° after removing the temperature.' The jet stream IS the explanation, not a correction to be subtracted.",
+        "related_wins": [],
+        "related_failures": [],
+        "code_analysis": {
+          "monitoring": "none",
+          "relabels_standard": true,
+          "post_hoc": true,
+          "derives_from_dome": false,
+          "reviewed": false
+        },
+        "section_anchor": "ks-test-3"
+      },
+      {
+        "id": "KS-004",
+        "test_name": "SAA African Cell Field Strength",
+        "dome_prediction": "Below 21,500 nT by December 2026 (PRED-R002: ≤21,750 nT by end 2028)",
+        "dome_claimed_globe_prediction": "~21,800 nT (implying stability)",
+        "actual_globe_prediction": "Continued SAA deepening and westward drift. IGRF-14 (Dec 2024), CHAOS-7 (Finlay et al. 2020), and WMM2025 all predict ongoing field decay. Aubert (2015) forecasts 1.46 ± 0.4 μT surface decrease by 2065. Globe models predict the same direction as the dome — decline — driven by reversed flux patches at the core-mantle boundary.",
+        "dome_status": "Pending",
+        "our_verdict": "Std Model Explains",
+        "our_strength": "supportive",
+        "our_finding": "Both models predict continued SAA weakening. The dome extrapolates from CHAOS-7 station decay rates (~75 nT/yr from Tsumeb and Keetmanshoop) — globe observational data. The dome attributes decay to 'aetheric field stress at the ovoid shoulder,' but the calculation is linear extrapolation from globe measurements. A spreadsheet with the same data produces the same prediction. Non-discriminating: the two models predict the same direction from the same data.",
+        "reproducibility": "Fully reproducible. INTERMAGNET station data is public. CHAOS-7, IGRF-14, and WMM2025 models are published. The linear extrapolation can be independently replicated. The question is not whether the SAA will weaken (both models agree it will) but whether the dome's specific threshold adds value — it does not, because it derives from the same data as standard models.",
+        "kernel_of_truth": "The dome correctly identifies the SAA two-cell structure (western/South American and eastern/African cells), correctly notes ongoing field decay, and commits to specific falsifiable thresholds — which is more than most alternative cosmologies do. The act of registering a numeric prediction with a deadline is commendable methodology, even though the prediction itself is non-unique. The dome also correctly notes that the African cell is the more scientifically interesting of the two cells for monitoring.",
+        "straw_man_identified": true,
+        "straw_man_detail": "The dome claims the globe predicts '~21,800 nT' (implying stability). Every major geomagnetic model predicts continued decline, not stability. The dome's 'prediction' of decline is framed as diverging from the globe, but both models agree on the direction. The disagreement is about mechanism, not trajectory.",
+        "related_wins": [
+          "004",
+          "005",
+          "035",
+          "040",
+          "041",
+          "060"
+        ],
+        "related_failures": [],
+        "code_analysis": {
+          "monitoring": "live_fetch",
+          "relabels_standard": true,
+          "post_hoc": false,
+          "derives_from_dome": false,
+          "reviewed": false
+        },
+        "section_anchor": "ks-test-4"
+      },
+      {
+        "id": "KS-005",
+        "test_name": "Eclipse 2026 Magnetic Anomaly",
+        "dome_prediction": "−28.9 nT at Ebro station (killshot.html). Note: homepage cites −17 to −21 nT; monitor.py computes −29.1 nT. Three different values for the 'same' prediction.",
+        "dome_claimed_globe_prediction": "0 nT (no magnetic effect)",
+        "actual_globe_prediction": "5–25 nT magnetic perturbation via Chapman ionospheric Sq current mechanism (peer-reviewed since 1933). Chapman & Bartels predicted eclipse magnetic effects; confirmed quantitatively by Takeda & Araki (1984), Curto et al. (2006), and dozens of eclipses. The dome's claimed globe prediction of '0 nT' is false — standard physics has predicted eclipse magnetic effects for 90+ years.",
+        "dome_status": "Pending",
+        "our_verdict": "Std Model Explains",
+        "our_strength": "major",
+        "our_finding": "The Chapman ionospheric mechanism predicts 5–25 nT perturbations for solar eclipses, fully explaining the dome's predicted range. The eclipse path itself is computed from JPL DE440/441 ephemerides (globe Keplerian orbits) — the dome's local-sun geometry cannot independently produce eclipse paths. Additionally, the dome presents three different numerical predictions (−17 to −21, −28.9, −29.1 nT) for the same event, undermining its own claimed precision. The straw-man '0 nT' globe prediction is egregious: Chapman published his prediction in 1933.",
+        "reproducibility": "Will be directly testable on August 12, 2026. INTERMAGNET Ebro data is public. However, any result within 5–30 nT range will be consistent with BOTH models. Only a result well outside the Chapman range (e.g., >50 nT or <1 nT) could potentially discriminate, and even then the dome's own numerical inconsistency (three different values) means no single observation can confirm its prediction.",
+        "kernel_of_truth": "The dome correctly identifies that solar eclipses produce measurable magnetic perturbations — this IS real physics. The dome also commits to a specific station (Ebro) and a specific number, which is commendable methodology. The dome's monitor.py includes a Kp<2 precondition (geomagnetically quiet conditions required), which is scientifically sound — storm-time perturbations would mask the eclipse signal. These are genuine methodological strengths, even though the prediction itself is non-unique and internally inconsistent.",
+        "straw_man_identified": true,
+        "straw_man_detail": "The dome claims the globe predicts '0 nT' — no magnetic effect from eclipses. This is flatly false. Chapman published the ionospheric Sq current mechanism for eclipse magnetic effects in 1933. The standard prediction of 5–25 nT has been confirmed across dozens of eclipses. The dome is fighting a straw man that no geophysicist would recognize.",
+        "related_wins": [
+          "010",
+          "025",
+          "068"
+        ],
+        "related_failures": [
+          "FAIL-006",
+          "FAIL-007",
+          "FAIL-008"
+        ],
+        "code_analysis": {
+          "monitoring": "hardcoded",
+          "relabels_standard": true,
+          "post_hoc": false,
+          "derives_from_dome": false,
+          "reviewed": false
+        },
+        "section_anchor": "ks-test-5"
+      },
+      {
+        "id": "KS-006",
+        "test_name": "NMP Drift Rate Deceleration",
+        "dome_prediction": "NMP drift rate <20 km/yr by 2027 (deceleration constant 0.08)",
+        "dome_claimed_globe_prediction": "'Continued high-speed drift' (implying no deceleration predicted)",
+        "actual_globe_prediction": "NMP deceleration already documented in mainstream geomagnetic literature. Livermore et al. (2020, Nature Geoscience) attributed 1999–2005 acceleration to a hydromagnetic jet at the core surface; current data shows jet weakening. WMM2025 and IGRF-14 incorporate the deceleration trend. Both models agree the pole is slowing down — the disagreement is about mechanism, not direction.",
+        "dome_status": "Pending (currently 39.9% error on dome's own metrics)",
+        "our_verdict": "Refuted by Data",
+        "our_strength": "decisive",
+        "our_finding": "The dome's own internal tracking reports 39.9% error on this prediction — exceeding even the dome's self-set 30% falsification threshold. The dome marks this as PASS only by widening the tolerance from a tighter original value to 50% after predictions missed. Current observed drift rate is ~35 km/yr; the dome predicts ~22.8 km/yr for 2026. The 'deceleration constant' of 0.08 has no derivation from dome geometry, aetheric circulation, or any structural element of the model — it is a free parameter fitted to existing data. On the dome's own terms, by the dome's original criteria, this prediction fails.",
+        "reproducibility": "Fully reproducible. NOAA National Centers for Environmental Information publishes NMP position data. The dome's own tracking page reports the 39.9% error. WMM2025 provides independent drift rate estimates. The failure is documented by the dome's own infrastructure.",
+        "kernel_of_truth": "The dome correctly identifies that NMP drift IS decelerating — this is real geomagnetic science confirmed by WMM2025 and Livermore et al. The dome also deserves credit for maintaining a quantitative tracking page that honestly reports the 39.9% error rather than hiding it. Most alternative cosmologies would quietly remove a failing prediction; the dome leaves it visible. The intellectual honesty of showing the failure, even while reclassifying it as a pass, is a step above the norm for this genre.",
+        "straw_man_identified": true,
+        "straw_man_detail": "The dome claims the globe predicts 'continued high-speed drift' with no deceleration. WMM2025 and IGRF-14 both incorporate the observed deceleration trend. Livermore et al. (2020) published the mechanism in Nature Geoscience. The dome is fighting a version of globe geophysics that hasn't existed since ~2020.",
+        "related_wins": [
+          "006",
+          "043",
+          "059"
+        ],
+        "related_failures": [
+          "FAIL-003"
+        ],
+        "code_analysis": {
+          "monitoring": "live_fetch",
+          "relabels_standard": true,
+          "post_hoc": false,
+          "derives_from_dome": false,
+          "reviewed": false
+        },
+        "section_anchor": "ks-test-6"
+      }
+    ],
+    "badge_rendering": {
+      "approach": "Modify generate-html.js to read data/kill-shots.json and inject verdict badges into the existing kill-shot HTML. Each <h2> heading in the kill-shot section gets a verdict badge (same CSS classes as the WINs tab) replacing or supplementing the current dome-status badge.",
+      "css_note": "The existing .ks-status classes (.ks-claimed, .ks-pending, .ks-failing) show the DOME's self-assessment. Add a second badge (.ks-verdict) showing OUR verdict, using the same color scheme as the WINs table verdict badges. Both badges should be visible: dome's claim on the left, our verdict on the right.",
+      "wait_and_see_css": "background-color: #B3D4FC (light mode). Same class pattern: .verdict-wait-and-see. Distinct from all six existing verdict colors.",
+      "example_html": "<h2>Test 6 — NMP Drift Rate <span class=\"ks-status ks-failing\">Failing (39.9% Error)</span> <span class=\"verdict-badge verdict-refuted\">Refuted by Data</span></h2>"
+    },
+    "curmudgeon_integration": {
+      "approach": "Add kill-shot items to tracker.json with type: 'kill-shot' and IDs KS-001 through KS-006. Curmudgeon reviews them on the same cadence as WINs. Priority: lower than WINs (kill-shots are curated highlights of arguments already reviewed via their parent WINs), but important for the adversarial check on verdict assignments.",
+      "tracker_entry_template": {
+        "id": "KS-001",
+        "type": "kill-shot",
+        "status": "pending",
+        "cycle": 1,
+        "reviewed_at": null,
+        "review_file": null
+      }
+    },
+    "build_pipeline_changes": [
+      "Add data/kill-shots.json to the build pipeline (generate-html.js reads it alongside wins.json and sections.json)",
+      "Add kill-shots.json to the test suite (test.js): schema validation, verdict values from allowed set including 'Wait and See', cross-reference validation against wins.json IDs",
+      "Add kill-shots.json to CI (ci.yml): included in build + test",
+      "Add kill-shots.json to OWNERSHIP table in CLAUDE.md and build.js as git-owned",
+      "Add {{KS_*}} placeholder tokens for any computed kill-shot stats needed in prose"
+    ],
+    "explicitly_not_in_scope": [
+      "Kill-shot verdicts do NOT count in top-line hero tallies or 4-card scorecard",
+      "No fifth hero card for kill-shots",
+      "Wait and See does NOT extend to regular WINs (scoped to kill-shots and future Prospective Wins ISS-677)"
+    ],
+    "verdict_summary_table": {
+      "KS-001": {
+        "verdict": "Misleading",
+        "strength": "major",
+        "dome_status": "Claimed Confirmed"
+      },
+      "KS-002": {
+        "verdict": "Not Demonstrated",
+        "strength": "supportive",
+        "dome_status": "Claimed Confirmed"
+      },
+      "KS-003": {
+        "verdict": "Std Model Explains",
+        "strength": "decisive",
+        "dome_status": "Pending"
+      },
+      "KS-004": {
+        "verdict": "Std Model Explains",
+        "strength": "supportive",
+        "dome_status": "Pending"
+      },
+      "KS-005": {
+        "verdict": "Std Model Explains",
+        "strength": "major",
+        "dome_status": "Pending"
+      },
+      "KS-006": {
+        "verdict": "Refuted by Data",
+        "strength": "decisive",
+        "dome_status": "Pending (39.9% error)"
+      }
     }
   },
-  "ratings": [
-    {
-      "test_id": "KS-001",
-      "name": "Sydney-Perth Rail Distance",
-      "dome_claim": "Dome predicts 4,352 km; globe predicts 3,287 km. Indian Pacific rail distance confirms dome.",
-      "dome_status": "confirmed",
-      "our_verdict": "Misleading",
-      "verdict_reasoning": "The V13 Finsler formula was built with the Sydney-Perth distance already known (calibration data, not blind prediction), matches a circuitous railway route rather than the geodesic, and fails by 78% on Sydney-Buenos Aires before ad hoc patching.",
-      "strength": "decisive",
-      "discriminating": false,
-      "discrimination_note": "The test compares a geodesic distance (globe) against a railway routing distance (dome). These measure different things. The dome formula matches the railway because the railway distance was used to calibrate the formula. The geodesic distance (3,291 km by direct flight) matches the globe.",
-      "reproducibility": "high",
-      "post_hoc": true,
-      "derives_from_dome": false,
-      "relabels_standard": false,
-      "kernel_of_truth": "The dome model uses a sophisticated V13 Finsler coordinate system with elliptic integrals and position-dependent refractive index — far more mathematically rigorous than typical flat-earth distance calculations. The recognition that naive azimuthal equidistant projection fails (it gives ~8,300 km, wildly wrong) shows genuine engagement with the problem.",
-      "primary_failure_mode": "Calibration presented as prediction. The Indian Pacific distance was known reference data used to build V13, not a blind test.",
-      "cross_references": [
-        "Section 2.9 (coordinate system self-referential structure)",
-        "OPEN-016 (dome's own reference data acknowledgment)"
-      ],
-      "test_window": null,
-      "falsification_assessment": "non_discriminating"
-    },
-    {
-      "test_id": "KS-002",
-      "name": "Polaris Altitude at 35.9°N",
-      "dome_claim": "Dome predicts 36.18° elevation; globe predicts 35.91°. Measured +0.27° excess confirms dome.",
-      "dome_status": "confirmed",
-      "our_verdict": "Refuted by Data",
-      "verdict_reasoning": "The claimed +0.27° excess is smaller than Polaris's polar offset (±0.66°), smaller than typical measurement uncertainty (±0.2-0.5°), and the dome's own site marks the broader Polaris-latitude prediction as FALSIFIED.",
-      "strength": "decisive",
-      "discriminating": false,
-      "discrimination_note": "The signal (0.27°) is within the error budget of known systematic effects (polar offset, refraction, instrument precision). No methodology is published. The dome's own site contradicts this by marking the broader Polaris prediction as falsified.",
-      "reproducibility": "low",
-      "post_hoc": true,
-      "derives_from_dome": true,
-      "relabels_standard": false,
-      "kernel_of_truth": "The dome model does make a specific, testable numerical prediction (36.18° vs 35.91°). The concept of measuring small deviations in celestial altitude is legitimate observational astronomy. The +0.27° number is at least in principle measurable — the problem is that no published methodology allows verification.",
-      "primary_failure_mode": "Signal-to-noise: the claimed detection (0.27°) is smaller than the known error sources. Unreplicated with no published methodology. Self-contradicted by dome's own falsification of the broader Polaris-latitude relationship.",
-      "cross_references": [
-        "WIN-065 (Polaris systematic excess — Refuted by Data)",
-        "WIN-017 (stellar parallax — firmament wobble claim)"
-      ],
-      "test_window": null,
-      "falsification_assessment": "dome_falsified"
-    },
-    {
-      "test_id": "KS-003",
-      "name": "JFK-LHR Flight Time Asymmetry",
-      "dome_claim": "Dome predicts eastbound >5% advantage from aetheric slipstream. Globe predicts 0% after wind.",
-      "dome_status": "pending",
-      "our_verdict": "Std Model Explains",
-      "verdict_reasoning": "Three discriminating tests (seasonal variation, equatorial absence, hemispheric variation) all match jet stream physics and are incompatible with a fixed aetheric circulation. The AI context directive (Rule 15) confirms the model is relabeling the jet stream.",
-      "strength": "decisive",
-      "discriminating": true,
-      "discrimination_note": "The observation (asymmetry exists) is predicted by both models. However, the three sub-tests are genuinely discriminating: (1) seasonal variation matches jet stream, not constant cavity property; (2) equatorial routes show no asymmetry, contradicting disc-wide aetheric flow; (3) southern hemisphere patterns match southern westerlies, not radial aetheric circulation.",
-      "reproducibility": "high",
-      "post_hoc": true,
-      "derives_from_dome": false,
-      "relabels_standard": true,
-      "kernel_of_truth": "The flight time asymmetry is real and well-documented. The dome author correctly identifies it as a testable phenomenon. The framing as a \"kill-shot\" is appropriate — flight asymmetry patterns genuinely discriminate between models. The problem is that the discrimination goes against the dome: the data matches the jet stream prediction in all three sub-tests.",
-      "primary_failure_mode": "Relabeling: AI Context Rule 15 explicitly instructs \"say aetheric slipstreams NOT jet streams.\" The model renames the standard explanation without changing any numerical prediction, then claims the renamed version as a dome success.",
-      "cross_references": [
-        "WIN-026 (JFK-LHR routing)",
-        "Williams 2016 Environ. Res. Lett. (seasonal jet stream data)",
-        "AI Context page Rule 15"
-      ],
-      "test_window": "rolling (data available now)",
-      "falsification_assessment": "dome_falsified"
-    },
-    {
-      "test_id": "KS-004",
-      "name": "SAA African Cell Field Strength",
-      "dome_claim": "African cell below 21,500 nT by December 2026. Globe predicts ~21,800 nT (stable).",
-      "dome_status": "pending",
-      "our_verdict": "Std Model Explains",
-      "verdict_reasoning": "The dome's prediction is linear extrapolation from CHAOS-7 station data (~75 nT/yr decay). Globe models (IGRF-14, WMM2025) predict the same continued decay. The dome misrepresents the globe as predicting stability.",
-      "strength": "major",
-      "discriminating": false,
-      "discrimination_note": "Both models predict continued SAA weakening. The dome extrapolates station trends; the globe derives decay from core-mantle boundary dynamics. The specific nT threshold cannot distinguish them because the dome's prediction is computed from the globe's observational data.",
-      "reproducibility": "high",
-      "post_hoc": false,
-      "derives_from_dome": false,
-      "relabels_standard": false,
-      "kernel_of_truth": "The dome's specific, timestamped nT prediction (PRED-R002: ≤21,750 nT by end 2028) is a genuinely prospective, falsifiable commitment. This is better methodology than most alternative models. The prediction also correctly identifies the African cell as the more dynamic of the two SAA cells, which reflects real geophysical understanding.",
-      "primary_failure_mode": "Non-discriminating: the dome's calculation (21,880 − 3×75 = 21,655 nT) is just linear extrapolation from standard geomagnetic data. Any spreadsheet produces the same number. The dome attributes the decay to \"aetheric field stress at the ovoid shoulder\" but the arithmetic comes from CHAOS-7.",
-      "cross_references": [
-        "WIN-004 (SAA exponential separation)",
-        "WIN-005 (African SAA cell faster decay)",
-        "WIN-035 (SAA African < 21,795 nT)",
-        "WIN-040 (SAA western cell)",
-        "WIN-041 (SAA multi-station decay)",
-        "Finlay et al. 2020 (CHAOS-7)",
-        "Aubert 2015 (long-range forecast)"
-      ],
-      "test_window": "December 2026 (first threshold), end 2028 (registered prediction)",
-      "falsification_assessment": "non_discriminating"
-    },
-    {
-      "test_id": "KS-005",
-      "name": "Eclipse 2026 Magnetic Anomaly",
-      "dome_claim": "Dome predicts −28.9 nT at Ebro (Z-component). Globe predicts 0 nT.",
-      "dome_status": "pending",
-      "our_verdict": "Std Model Explains",
-      "verdict_reasoning": "The Chapman ionospheric mechanism (peer-reviewed since 1933) predicts 5-25 nT magnetic anomalies during eclipses under identical conditions. The dome misrepresents the globe as predicting exactly 0 nT — mainstream geophysics has documented eclipse magnetic effects for nearly a century.",
-      "strength": "major",
-      "discriminating": false,
-      "discrimination_note": "The globe does NOT predict 0 nT during eclipses. Chapman (1933) established that eclipse-induced ionospheric conductivity changes produce measurable magnetic signatures. The dome's predicted magnitude (-28.9 nT) overlaps with the range observed in the literature (5-25 nT typical, occasionally larger). The test as framed is non-discriminating because both models predict a nonzero effect.",
-      "reproducibility": "pending",
-      "post_hoc": false,
-      "derives_from_dome": false,
-      "relabels_standard": false,
-      "kernel_of_truth": "This is the strongest kill-shot test in the dome's arsenal. It is genuinely prospective (timestamped before the event), specific (−28.9 nT, Z-component, named station, time window), and will be resolved by public data within 72 hours of the August 12, 2026 eclipse. The dome deserves credit for making a precise, falsifiable prediction with a clear resolution date. If the dome had framed this as \"a larger anomaly than Chapman predicts\" rather than \"any anomaly vs. zero,\" the test would be more interesting.",
-      "primary_failure_mode": "Straw man: the globe prediction is stated as 0.0 nT, which misrepresents nearly a century of Chapman mechanism research. Both models predict nonzero magnetic effects. The actual discriminating question is whether the magnitude and spatial pattern match ionospheric conductivity changes (globe) or \"aetheric resonance\" (dome) — but the dome provides no derivation of -28.9 nT from dome geometry.",
-      "cross_references": [
-        "WIN-010 (BOU 2017 eclipse)",
-        "WIN-025 (2024 eclipse — REMOVED by dome)",
-        "WIN-068 (eclipse magnetic ensemble)",
-        "Section 4.2 (eclipse analysis)",
-        "Chapman 1933 (ionospheric mechanism)"
-      ],
-      "test_window": "August 12, 2026 (INTERMAGNET data within 72 hours)",
-      "falsification_assessment": "genuinely_pending"
-    },
-    {
-      "test_id": "KS-006",
-      "name": "NMP Drift Rate Deceleration",
-      "dome_claim": "NMP drift rate <20 km/yr by 2027. Globe predicts continued high-speed drift.",
-      "dome_status": "pending",
-      "our_verdict": "Self-Contradicted",
-      "verdict_reasoning": "The dome's own tracking shows 39.9% error on this prediction. The dome marks it as PASS only by widening its tolerance threshold to 50% after the original threshold was missed. On the dome's own pre-widening criteria, this test is failing.",
-      "strength": "decisive",
-      "discriminating": false,
-      "discrimination_note": "Both models agree the NMP is decelerating. The disagreement is about rate and mechanism. The dome's deceleration constant (0.08) is a free parameter with no geometric derivation. WMM2025 and IGRF-14 document the same trend. The dome misrepresents the globe as predicting no deceleration.",
-      "reproducibility": "high",
-      "post_hoc": false,
-      "derives_from_dome": false,
-      "relabels_standard": false,
-      "kernel_of_truth": "The dome correctly identifies NMP deceleration as a real and important geomagnetic trend. The prediction is timestamped and falsifiable, which is good methodology. The dome also correctly notes that mainstream models initially expected continued acceleration — Livermore et al. 2020 was indeed surprised by the deceleration. However, the dome's prediction (0.08 decay constant → <20 km/yr by 2027) is substantially off: observed rate is ~35 km/yr, and the dome's own tracker shows 39.9% error.",
-      "primary_failure_mode": "Self-contradicted: the dome's own tracking page reports 39.9% error, exceeding its original falsification threshold. The 50% tolerance used to mark this as PASS was widened after the prediction missed. This is the asymmetric scorecard pattern: widen pass criteria when losing, claim success.",
-      "cross_references": [
-        "WIN-043 (NMP drift longitudinal)",
-        "WIN-059 (NMP deceleration Siberian)",
-        "Livermore et al. 2020 Nature Geoscience",
-        "WMM2025",
-        "IGRF-14"
-      ],
-      "test_window": "End of 2027 (dome's stated deadline)",
-      "falsification_assessment": "dome_falsified"
-    }
-  ],
-  "framework_meta_analysis": {
-    "kernel_of_truth": "The kill-shot framework is methodologically admirable. Binary falsification tests with explicit pass/fail criteria are exactly what Popperian science demands. The dome author deserves genuine credit for proposing tests that could falsify his own model — this is more intellectual honesty than most alternative cosmologies display. The framework's fatal weakness is execution: the two \"confirmed\" tests are not blind predictions (one is calibration data, the other is within error), and the pending tests are mostly non-discriminating because the dome misrepresents what the globe actually predicts.",
-    "pattern_summary": "Of 6 kill-shot tests: 0 genuinely discriminate in the dome's favor, 2 are non-discriminating (KS-001, KS-004), 3 are falsified on the dome's own terms or by data (KS-002, KS-003, KS-006), and 1 is genuinely pending (KS-005, Eclipse 2026). The recurring failure mode is straw-manning the globe prediction — 4 of 6 tests misrepresent what mainstream science actually predicts.",
-    "verdict_distribution": {
-      "Misleading": 1,
-      "Refuted by Data": 1,
-      "Std Model Explains": 3,
-      "Self-Contradicted": 1
-    },
-    "strength_distribution": {
-      "decisive": 4,
-      "major": 2,
-      "supportive": 0
-    },
-    "fairness_note": "Our ratings should be reviewed after the August 2026 eclipse. If the dome's specific -28.9 nT prediction at Ebro is confirmed with Kp<2, KS-005 should be re-rated. We commit to updating these ratings based on data, not defending our current positions.",
-    "straw_man_count": "4 of 6 tests misrepresent the globe prediction (KS-001: compares geodesic vs railway; KS-003: \"globe predicts 0% after wind\"; KS-005: \"globe predicts 0 nT\"; KS-006: \"globe predicts continued high-speed drift\")"
-  },
-  "implementation_recommendation": "Create data/killshots.json with this structured data, paralleling wins.json. Update generate-html.js to render verdict badges and strength indicators in the kill-shot test cards (similar to WIN summary table). Add computed counts for killshot verdicts to the build pipeline. This makes kill-shot metadata queryable and keeps the data-driven architecture consistent.",
   "holes_addressed": [
-    "ISS-678: Kill shots now have formal ratings with verdict taxonomy",
-    "Each test rated for strength (decisive/major/supportive)",
-    "Reproducibility assessed for each test",
-    "Discriminating power explicitly evaluated (4 of 6 are non-discriminating)",
-    "Kernel of truth identified for each test and the framework itself",
-    "Cross-references link kill-shots to related WINs"
+    "ISS-678: Kill-shot items lack structured verdicts, badges, and analytical fields",
+    "Readers must parse full prose paragraphs to extract our conclusion — verdict badges make the tl;dr instantly visible",
+    "Kill-shots were outside the curmudgeon review lifecycle",
+    "No formal definition of 'Wait and See' for genuinely pending predictions",
+    "Dome's straw-man characterizations of globe predictions were not systematically flagged"
   ],
   "new_evidence_added": [
-    "Dome kill-shot page V51.1 (fetched 2026-04-10): updated test numbering and predictions",
-    "Dome's own falsification assessment: KS-006 at 39.9% error",
-    "Dome's straw-man pattern quantified: 4/6 tests misrepresent globe predictions",
-    "Chapman 1933 ionospheric mechanism for eclipse magnetic effects",
-    "Williams 2016 seasonal jet stream data for KS-003 discrimination"
+    "Dome killshot.html (fetched 2026-04-10): current dome self-assessments for all 6 tests",
+    "Systematic straw-man analysis: 4 of 6 kill-shots misrepresent the globe prediction (Tests 3, 4, 5, 6)",
+    "Numerical inconsistency in eclipse prediction: −17 to −21 nT (homepage) vs −28.9 nT (killshot.html) vs −29.1 nT (monitor.py)",
+    "NMP 39.9% error from dome's own tracking infrastructure"
   ],
   "anticipated_objections": [
     {
-      "objection": "The dome author could argue we're applying WIN-level taxonomy to items that are inherently different — kill-shots are binary go/no-go tests, not continuous claims.",
-      "response": "Binary tests still need verdict categories to explain WHY they pass or fail. A test marked \"confirmed\" that is actually calibration data (KS-001) needs to be labeled \"Misleading\" so readers understand the distinction. The taxonomy adds analytical rigor without changing the binary nature of the tests."
+      "objection": "Some kill-shots are genuinely pending predictions — shouldn't they get 'Wait and See' rather than immediate verdicts?",
+      "response": "Wait and See requires three strict criteria: (a) genuinely unique prediction, (b) grounded in dome-produced data, (c) verifiable. Tests 4 and 5 fail criterion (a): their predictions derive from standard model data (CHAOS-7, Chapman mechanism) and both models predict the same direction. Test 6 already has data showing 39.9% error. The dome's predictions are non-discriminating — even if confirmed, they cannot distinguish between models because standard physics predicts the same outcomes."
     },
     {
-      "objection": "Rating 4 of 6 as \"decisive\" seems harsh — aren't we being overconfident?",
-      "response": "The \"decisive\" rating means the evidence is strong enough to resolve the test alone, not that we're certain. KS-002 is decisive because the dome's own site marks the broader Polaris prediction as falsified. KS-003 is decisive because three independent sub-tests all discriminate against the dome. KS-006 is decisive because the dome's own tracker shows 39.9% error. These are decisive on the dome's own terms."
+      "objection": "Assigning 'Refuted by Data' to Test 6 (NMP) is premature — the deadline is 2027, and the dome might still hit <20 km/yr.",
+      "response": "Fair point, but the dome's own current tracking shows 39.9% error against its own formula's output for 2026. The dome itself widened its tolerance threshold after missing predictions. We're evaluating the prediction as of today's data. If the NMP drift rate drops below 20 km/yr by 2027, we update the verdict. The rating system is living, not carved in stone. But as of April 2026, the dome's own metrics show failure."
     },
     {
-      "objection": "We give the Eclipse test (KS-005) \"genuinely_pending\" but rate it Std Model Explains — isn't that contradictory?",
-      "response": "No — \"genuinely_pending\" means we cannot yet evaluate the specific prediction (-28.9 nT at Ebro). \"Std Model Explains\" is the current verdict based on the framing: the dome claims the globe predicts 0 nT, which is wrong (Chapman mechanism). If the eclipse data shows -28.9 nT specifically, we'd need to reassess whether the magnitude exceeds Chapman predictions. The fairness_note commits us to this update."
+      "objection": "Kill-shots should be merged into wins.json for uniform treatment rather than a separate file.",
+      "response": "Kill-shots don't map 1:1 to WINs (Tests 1 and 3 have no direct WIN correspondence). Merging creates double-counting risk in every aggregation query. A separate file with the same analytical schema provides uniform treatment without the architectural hazard. The curmudgeon can review kill-shots via the tracker using KS-NNN IDs without touching the WIN namespace."
+    },
+    {
+      "objection": "The 'Misleading' verdict for Test 1 (Sydney-Perth) is too harsh — the dome did derive a distance from its geometry.",
+      "response": "The V13 Finsler formula was built AFTER the Indian Pacific distance was known (site documents the V13 diagnosis using this data). The formula matches a railway route, not the geometric distance. And two internal methods (Finsler vs MDS scaffold) disagree by 460 km on the same city pair. Calibration dressed as prediction is the definition of 'Misleading.' We give full credit in the kernel_of_truth for the mathematical sophistication."
+    },
+    {
+      "objection": "The straw-man analysis is itself a straw man — maybe the dome is comparing against a simplified globe, not mainstream geophysics.",
+      "response": "This is a valid concern in principle. But the dome explicitly names specific globe predictions (e.g., '0 nT' for eclipse magnetics, '~21,800 nT' stability for SAA) that no mainstream source supports. Chapman (1933), WMM2025, IGRF-14, and Livermore et al. (2020) are standard references, not cutting-edge. If the dome is comparing against a simplified globe, it's comparing against a version no geophysicist would defend — which is still a straw man."
     }
-  ]
+  ],
+  "kernel_of_truth": "The kill-shot framework itself is the dome's strongest methodological contribution. By defining binary falsification criteria — 'if any single test fails, dome is falsified' — the dome commits to Popperian falsifiability, which is rare in alternative cosmology. The framework deserves respect even when the individual tests don't hold up. Several predictions show genuine methodological strengths: specific numbers, defined timelines, public data sources, and automated tracking. The dome's willingness to leave its 39.9% NMP error visible rather than hiding it is unusual intellectual honesty for the genre. Our rating system should honor this framework by taking each test seriously — which means giving honest verdicts, including acknowledging where the dome's own data shows failure."
 }
