@@ -7950,6 +7950,21 @@
       "fixed_at": "2026-04-10T19:10:17.202Z",
       "fixed_by": "decider-self-apply",
       "fix_details": "EXP-057 integrated: Part 5 Kill-Shot HTML fully rewritten with verdict table, strength ratings, code_analysis tags, and per-test analysis for all 6 tests. data/kill-shots.json created from EXP-060. EXP-060 template-variable approach ({{KS_TOTAL}} etc.) deferred to ISS-708 (generate-html.js pipeline support). Core ask achieved: all kill-shots have structured verdicts, strength ratings, and curmudgeon lifecycle entries."
+    },
+    {
+      "id": "ISS-705",
+      "win_id": "025",
+      "severity": "critical",
+      "category": "factual_error",
+      "description": "SEC-2b.7 (April 2026 Scoreboard Drift) claims W004 in results.json IS the 2024 Eclipse 9-Station test (WIN-025). But dome raw-text assigns W004 to Noise Floor Limit (empirical recalibration at v50.2). If the identity mapping is wrong, the two-scoreboards argument comparing W004 across different scoreboards is a category error. Must re-fetch results.json and verify exact mapping before this argument can be published.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-10",
+      "status": "closed",
+      "fix_details": "Analyst independently verified W004 identity mapping (ISS-705-verification.json). W-prefix is results.json-only namespace, WIN-prefix is wins page. All 6 curmudgeon gates addressed. Closed by human operator.",
+      "fix_date": "2026-04-10",
+      "found_by": "curmudgeon-cycle2-SEC-2b.7-alert",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.7.c2.json",
+      "notes": "ACTION: Re-fetch results.json from dome API (raw.githubusercontent.com path). Dump entry with W004 ID. Confirm or correct identity mapping in SEC-2b.7 text. If mapping is wrong, the opening scoreboard argument needs rewrite.\n[2026-04-10] Curmudgeon Cycle 2 review (SEC-2b.7.c2.json) confirms this is critical. Root cause: W004 in dome wins namespace = Noise Floor Limit (empirical recalibration, HUA lunar transit baseline). W004 in results.json may be a different entry using W-numbers as internal IDs distinct from WIN-numbers. The analyst's EXP-055 fetch showed prediction -10±2 nT, observation -17.6 nT — this DOES match WIN-025 (BOU 2017 baseline). Two possible explanations: (a) results.json W-numbers differ from wins-page W-numbers, so W004 in results.json IS the eclipse test despite the wins-page W004 being something else; (b) misread. Must re-fetch results.json before publishing. Action: re-fetch raw.githubusercontent.com dome API results.json, dump W004 entry in full."
     }
   ]
 }
