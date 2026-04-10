@@ -1,77 +1,62 @@
 MORNING BRIEFING — 2026-04-10
-Generated: 2026-04-10T03:20:00Z
-Curmudgeon reviews processed this run: 0 (no new curmudgeon reviews pending)
-Previous decider run: 2026-04-09T23:10:44Z
+Generated: 2026-04-10T08:45:00Z
+Curmudgeon reviews processed this run: 0 (no new reviews pending)
+Previous decider run: 2026-04-10T03:20:00Z
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SITE HEALTH
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Integrity: WARN (non-blocking — EXP-052 ID gap is intentional renumbering artifact)
-Build: 2244 tests pass. HTML 672.6 KB.
+  Build: PASS (2244 tests). HTML 675.6 KB. PDF not rebuilt this run.
+  Integrity: WARN (expected — EXP-052 gap intentional, non-blocking)
+  External links: skipped this cycle (rate-limit precaution)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EXTERNAL STATUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Dome changes: None. V51.1 stable. 69 WINs, 94.5% accuracy.
-Threat level: NONE (5th consecutive quiet poll)
-ai-context page: Still 404 (pre-existing, not a threat)
+  Dome site changes: QUIET (5th consecutive quiet poll)
+  V51.1 stable. 69 WINs. 94.5% claimed accuracy. No manual commits in 24h.
+  Pending test windows: PRED-CURR-001..004, Eclipse 2026-08-12, GRACE/CHAOS-7
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-THIS RUN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EXP-054 integrated: 62 WINs now have standardized post-hoc rebuttal sentences
-  - 18 WIN (T: textbook value, trivial-transcription test)
-  - 31 WIN (D: field-specific published dataset)
-  - 10 WIN (V: dome-derived circular derivation)
-  - 3 WIN (O: obscure, FLAGGED FOR VERDICT REVIEW — WINs 003, 011, 015)
-  All 62 patches applied successfully. 2244 tests pass.
+INTERNAL STATUS — THIS RUN
+  Expansions integrated: 3 (EXP-054 mark, EXP-056 WIN-048, EXP-059 WIN-067)
+  Issues closed: 2 (ISS-673, ISS-683)
+  Issues remaining open: 10
+  Files rescued from FUSE: 2 (EXP-059.json, ISS-672-research.json)
+  Priority queue: 9 items, mode=BAU, interval=240min
 
-EXP-050 (CAT-005 Refraction Cascade): Already routed to curmudgeon. ISS-696 blocked.
+CHANGES PUSHED
+  WIN-048 detail_extra: Acknowledges dome self-correction (>99.9% → 2-3σ, dated
+  2026-03-23). Explains why Misleading verdict stands: false dilemma unchanged,
+  corrected 2-3σ is within mainstream Planck range, WIN-034 copper opacity at 160
+  GHz is a geometric fact independent of significance level.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-OPEN ISSUES (12 total)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-3 pending-human:
-  - ISS-442: Verdict taxonomy restructuring (MAJOR — editorial decision)
-  - ISS-675: GitHub PAT stored on FUSE mount (MINOR — security)
-  - ISS-699: Keywords meta tag expansion / rebrand resistance (MINOR)
+  WIN-067 citation: Corrected wrong DOI (10.1029/2019JB018855 → seismic noise in 
+  California) to correct DOI (10.1029/2019JB017997, Pappa et al. 2019, Antarctic 
+  lithosphere gravity). Author/year updated from "Ebbing et al. 2021" to 
+  "Pappa et al. 2019". This was a factual citation error (wrong paper entirely).
 
-1 blocked-on-curmudgeon:
-  - ISS-696: CAT-005 refraction cascade (MAJOR — awaiting EXP-050 curmudgeon review)
+TOP 3 PRIORITY ACTIONS FOR HUMAN
+  1. CURMUDGEON QUEUE_ID=1: Review CAT-005 (V51.1 Refraction Cascade) proposal 
+     package (EXP-050). This is the only item blocking the new section. Curmudgeon 
+     must pop and review before analyst can write actual section prose. Consider 
+     toggling churn-and-burn mode via human note to accelerate queue drain.
+  
+  2. ISS-442: Verdict taxonomy restructuring. 'Misleading' conflates 4 distinct 
+     failure modes. Editorial decision needed — this affects how curmudgeon and 
+     analyst frame their work. Has been pending-human since Cycle 1.
 
-6 assigned-analyst: ISS-672, ISS-673, ISS-677, ISS-678, ISS-683, ISS-694
+  3. ISS-675: GitHub PAT at .workspace-sync-token on FUSE mount. Low immediate 
+     exploitability but should be rotated and stored more securely.
 
-1 open: ISS-693 (workspace-only files not committed — workspace-sync should handle)
-1 wontfix: ISS-698 (positive feedback report, no action)
+CURMUDGEON PROGRESS
+  Cycle 2, Phase 1: COMPLETE (71/69 reviewed — holistic items counted separately)
+  Mode: BAU (240-min intervals)
+  Queue: 9 items awaiting pop-and-review
+  Cycle 3 will begin after curmudgeon drains the priority queue or human sets next phase
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CURMUDGEON PIPELINE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Mode: BAU (4h cadence)
-Queue depth: 7 items
-Priority queue:
-  [1] EXP-050 proposal package (CAT-005) — highest priority, curmudgeon signoff before any prose
-  [2] Section 3.1b (EXP-053 integration review)
-  [3] Section 2b.7 (EXP-055 integration review)
-  [4] WIN-003 — obscure verdict review (King's Chamber harmonic)
-  [5] WIN-011 — obscure verdict review (Mohe 1997 gravity anomaly)
-  [6] WIN-015 — obscure verdict review (Meyl scalar Faraday)
-  [7] EXP-054-batch — sanity-check post-hoc language on representative WINs
+CODE ANALYSIS TAG STATUS
+  All 69 WINs reviewed. code_analysis.reviewed=true across all WINs.
+  Pending Cycle 3 advocate_mode review for surviving defenses.
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TOP 3 PRIORITIES FOR HUMAN (steve)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. ISS-442: Verdict taxonomy decision — 4 sub-types of "Misleading" need editorial call
-2. ISS-675: GitHub PAT at .workspace-sync-token — rotate or move to safer storage
-3. ISS-699: Approve rebrand-resistance meta keywords (Dome Cosmology, Aetheric Dome Model, etc.)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-NOTES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-- EXP-052 ID gap: integrity flagged as warn. Intentional (renumbered EXP-052→EXP-054 to avoid
-  collision with existing analyst EXP-052 file). Non-blocking. Will clear on next integrity run.
-- ISS-693 (workspace sync files): workspace-sync agent should commit these on next run.
-  No decider action needed unless sync agent is broken.
-- EXP-054 per-commit git-history check (verifying dome pre-registration): deferred to EXP-054b
-  (proposed follow-on). Current rebuttal sentences are correct without it — the structural
-  argument (hardcoded-expected-in-same-commit-as-fetch) holds regardless.
+ISS-672 NOTE (n(r) refractive index discrepancy)
+  Analyst research confirms dome changed formula coefficient from ~0.27 to 0.20.
+  Our review cites values based on old coefficient. Part 7 also has a geometry
+  error (28.8 was for r=40,000, beyond dome geometry — ice wall is at r=20,015).
+  This will be corrected via CAT-005/EXP-050 pipeline (same refraction cascade
+  analysis). No action needed now — flows through existing pipeline.
