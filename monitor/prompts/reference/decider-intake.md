@@ -138,9 +138,9 @@ Check `monitor/analyst/category-proposals/` for CAT-NNN.json:
 
 Check `monitor/social/drafts/` and social's latest report.
 
-**Social owns:** `docs/llms.txt`, `docs/sitemap.xml`, `docs/robots.txt`, drafts of new machine-facing files. NOT content.
+**Social drafts:** `docs/llms.txt`, `docs/sitemap.xml`, `docs/robots.txt` are git-owned (Phase 1). Social writes updated versions to `monitor/social/drafts/`. You are the single writer who commits them to `docs/`. NOT content.
 
-**Accept:** Draft machine-readable files in `monitor/social/drafts/` (review for accuracy, deploy to `docs/`). Meta tag fixes. Sitemap/robots.txt updates.
+**Accept:** Draft machine-readable files in `monitor/social/drafts/` (review for accuracy, then `cp` to `docs/` and commit). Meta tag fixes. Sitemap/robots.txt updates.
 
 **Reject:** Any patch modifying `data/wins.json`, `data/sections.json`, `data/uncounted-failures.json`, or prose content. Log tinker action item: "Social attempted content modification — review social.md compliance." Also reject build-script changes without clear machine-layer justification.
 

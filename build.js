@@ -47,6 +47,9 @@ const OWNERSHIP = {
   'data/uncounted-failures.json': 'git',
   'data/predictions.json': 'git',
   'docs/index.html': 'git',
+  'docs/llms.txt': 'git',        // Social drafts updates to monitor/social/drafts/; decider commits to docs/
+  'docs/sitemap.xml': 'git',     // Same pattern — social drafts, decider commits
+  'docs/robots.txt': 'git',      // Same pattern — social drafts, decider commits
   'build-scripts/generate-html.js': 'git',
   'build-scripts/generate-pdf.js': 'git',
   'CLAUDE.md': 'git',
