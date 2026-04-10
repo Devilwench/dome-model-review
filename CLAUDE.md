@@ -69,6 +69,8 @@ Every file that crosses the workspace↔git boundary has exactly one authoritati
 
 > If you are editing a prompt file and you find yourself adding a write to a file not listed above, STOP. Either classify the new file here and update `build.js` and `workspace-sync.md`, or put the write on a file that is already classified.
 
+**Human Notes Rule:** All `human-notes.json` files (`monitor/analyst/`, `monitor/decisions/`, `monitor/social/`, `monitor/curmudgeon/`) are **dual-write**. When adding a human note, ALWAYS write to BOTH the FUSE workspace AND the git clone, then commit+push from the clone. This is required because: (a) some agents read from FUSE (analyst), (b) some agents read from their git clone (decider, curmudgeon), (c) workspace-sync only copies `monitor/analyst/human-notes.json` explicitly — the others rely on the git path. Writing to both guarantees every agent sees the note on its next run regardless of which path it reads from.
+
 **FUSE Staleness Warning:** The workspace FUSE mount can serve stale file content. Agents that make decisions based on data file contents (wins.json, sections.json) must clone fresh or cross-check against GitHub. Currently: decider and curmudgeon clone fresh each run; analyst cross-checks counts against GitHub raw URL.
 
 ## Monitoring Pipeline
