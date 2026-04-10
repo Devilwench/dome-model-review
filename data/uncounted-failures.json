@@ -196,5 +196,7 @@
       "needs_reconciliation": false,
       "dome_ref_namespace": "prospective"
     }
-  ]
+  ],
+  "dome_claimed_prospective_count": 10,
+  "dome_claimed_prospective_note": "Count from dome predictions page. Updated when poller detects changes."
 }

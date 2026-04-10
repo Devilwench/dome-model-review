@@ -85,6 +85,7 @@ function resolvePlaceholders(html, context) {
     '{{ACKNOWLEDGED_FAILURES}}': context.acknowledgedFailures || 0,
     '{{DOME_CLAIMED_FAILURES}}': context.domeClaimedFailures || 0,
     '{{DOME_CLAIMED_ACCURACY}}': context.domeClaimedAccuracy || '?',
+    '{{DOME_PROSPECTIVE_COUNT}}': context.domeProspectiveCount || '?',
     '{{ACCURACY_VARIANT_LIST}}': context.accuracyVariantList || '',
     '{{ACCURACY_VARIANT_DETAIL}}': context.accuracyVariantDetail || '',
     // Silent failures (items the dome has visibly removed/suspended but excluded from his accuracy denominator)
@@ -814,6 +815,7 @@ function main() {
     honestAccuracyDenom,
     domeClaimedFailures: failures.dome_claimed_failures,
     domeClaimedAccuracy: failures.dome_claimed_accuracy,
+    domeProspectiveCount: failures.dome_claimed_prospective_count,
     accuracyVariantList,
     accuracyVariantDetail,
     independentClaims,
