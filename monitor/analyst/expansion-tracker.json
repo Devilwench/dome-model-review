@@ -1086,7 +1086,10 @@
       "notes": "Assessed as recycled — restates WIN-066, data predates registration (Raghuraman et al. 2025 PNAS published before April 2026 registration). Standard physics explains asymmetry. Dome conflates decadal trend with static prediction.",
       "created_at": "2026-04-11T00:05:00Z",
       "completed_at": "2026-04-10T20:10:43.133Z",
-      "output_file": "monitor/analyst/expansions/EXP-063.json"
+      "output_file": "monitor/analyst/expansions/EXP-063.json",
+      "integrated": true,
+      "integrated_at": "2026-04-10T21:06:30.052Z",
+      "integrated_by": "decider"
     },
     {
       "id": "EXP-064",

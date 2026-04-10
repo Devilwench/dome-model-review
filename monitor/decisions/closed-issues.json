@@ -7967,6 +7967,27 @@
       "notes": "ACTION: Re-fetch results.json from dome API (raw.githubusercontent.com path). Dump entry with W004 ID. Confirm or correct identity mapping in SEC-2b.7 text. If mapping is wrong, the opening scoreboard argument needs rewrite.\n[2026-04-10] Curmudgeon Cycle 2 review (SEC-2b.7.c2.json) confirms this is critical. Root cause: W004 in dome wins namespace = Noise Floor Limit (empirical recalibration, HUA lunar transit baseline). W004 in results.json may be a different entry using W-numbers as internal IDs distinct from WIN-numbers. The analyst's EXP-055 fetch showed prediction -10±2 nT, observation -17.6 nT — this DOES match WIN-025 (BOU 2017 baseline). Two possible explanations: (a) results.json W-numbers differ from wins-page W-numbers, so W004 in results.json IS the eclipse test despite the wins-page W004 being something else; (b) misread. Must re-fetch results.json before publishing. Action: re-fetch raw.githubusercontent.com dome API results.json, dump W004 entry in full.",
       "fixed_at": "2026-04-10T20:12:16.618Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-701",
+      "win_id": null,
+      "severity": "major",
+      "category": "content-update",
+      "status": "fixed",
+      "description": "IMMINENT TEST WINDOW: PRED-090 (NH TOA flux excess >0.3 W/m² in April 2026) expires THIS MONTH (April 2026). Assess whether CERES/SORCE/CMIP6 data shows this result. Data source: NASA CERES TOA flux monthly composites. Catalog result as confirmed/falsified in predictions.json.",
+      "found_by": "decider-human-note",
+      "found_at": "2026-04-10T15:14:35Z",
+      "source": "NOTE-2026-04-10-50-new-predictions",
+      "test_window": {
+        "status": "open",
+        "closes": "2026-04-30",
+        "test_id": "PRED-090"
+      },
+      "analyst_priority": "MODE_0",
+      "notes": "\n[2026-04-10] Human checked dome site — no PRED-090 result posted yet. No human action needed until test window closes (2026-04-30). Dome has not posted TOA flux data. Cleared from human-required list. Let analyst/poller monitor and flag again if result appears or window expires.",
+      "fixed_at": "2026-04-10T21:06:56.939Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "EXP-063: PRED-090 assessed as recycled. Restates WIN-066 (NH heat excess asymmetry). Data (Raghuraman et al. 2025 PNAS) predates April 2026 registration. Updated predictions.json our_verdict=recycled."
     }
   ]
 }

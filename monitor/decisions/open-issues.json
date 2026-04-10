@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-10T20:12:16.618Z",
+  "last_updated": "2026-04-10T21:06:56.939Z",
   "issues": [
     {
       "id": "ISS-442",
@@ -100,24 +100,6 @@
       "notes": "\n[2026-04-10] Wave 1 classification complete (analyst proposal ISS-700-status): 86 entries in predictions.json now have entry_type, author_status, our_verdict. 36 newly classified: 2 genuinely prospective, 28 data-predates, 6 unfalsifiable model params. Waves 2 (15 genuinely prospective writeups) and 3 (11 recycled + ~40 backtested writeups + Part 6 prose) remain. Status kept assigned-analyst."
     },
     {
-      "id": "ISS-701",
-      "win_id": null,
-      "severity": "major",
-      "category": "content-update",
-      "status": "assigned-analyst",
-      "description": "IMMINENT TEST WINDOW: PRED-090 (NH TOA flux excess >0.3 W/m² in April 2026) expires THIS MONTH (April 2026). Assess whether CERES/SORCE/CMIP6 data shows this result. Data source: NASA CERES TOA flux monthly composites. Catalog result as confirmed/falsified in predictions.json.",
-      "found_by": "decider-human-note",
-      "found_at": "2026-04-10T15:14:35Z",
-      "source": "NOTE-2026-04-10-50-new-predictions",
-      "test_window": {
-        "status": "open",
-        "closes": "2026-04-30",
-        "test_id": "PRED-090"
-      },
-      "analyst_priority": "MODE_0",
-      "notes": "\n[2026-04-10] Human checked dome site — no PRED-090 result posted yet. No human action needed until test window closes (2026-04-30). Dome has not posted TOA flux data. Cleared from human-required list. Let analyst/poller monitor and flag again if result appears or window expires."
-    },
-    {
       "id": "ISS-702",
       "win_id": null,
       "severity": "moderate",
@@ -175,7 +157,20 @@
       "found_at": "2026-04-10T19:10:17.202Z",
       "source": "EXP-060 integration",
       "notes": "Not urgent — existing Part 5 HTML is complete and correct via EXP-057. This is a refactoring to data-driven counts. Lower priority than content work."
+    },
+    {
+      "id": "ISS-709",
+      "win_id": "WIN-025",
+      "severity": "critical",
+      "category": "factual_error",
+      "status": "open",
+      "description": "SEC-2b.7 W004/WIN-025 IDENTITY MAPPING: Section 2b.7 identifies W004 in results.json as the 2024 Eclipse 9-Station test (WIN-025), but dome raw-text/02-wins.txt defines W004 as \"Noise Floor Limit (empirical recalibration at v50.2 established baseline -22.24 nT)\" — a detection-threshold item, NOT the eclipse. The section's core \"two scoreboards\" argument (same observation simultaneously removed on wins tab and confirmed_strong in results.json) depends entirely on this W004=WIN-025 mapping being correct. Must re-fetch results.json live and dump W004 entry to verify. If mapping is wrong, section must be rewritten.",
+      "found_by": "curmudgeon-cycle2",
+      "found_at": "2026-04-10T21:06:49.390Z",
+      "source": "monitor/curmudgeon/reviews/SEC-2b.7.c2.json",
+      "blocker": true,
+      "notes": "Curmudgeon Cycle 2 flagged as blocker — do not publish section 2b.7 until verified. Two hypotheses: (a) results.json uses different W-number namespace than wins page (W004 in results.json IS the eclipse despite wins-page W004 being noise-floor); (b) analyst misidentified the entry. Check results.json W004 entry title and prediction field (-10 ± 2 nT matches WIN-025 BOU baseline, not -22.24 nT noise-floor)."
     }
   ],
-  "next_id": 709
+  "next_id": 710
 }

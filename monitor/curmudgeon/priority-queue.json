@@ -38,11 +38,28 @@
         "verdicts_set": {
           "standard_physics": 5
         },
-        "note": "Manual backfill — these were assessed before Step 1h2 had the queue-push logic"
+        "note": "Manual backfill — these were assessed before Step 1h2 had the queue-push logic",
+        "notes": " | EXP-063 (PRED-090) integrated 2026-04-10 by decider."
+      }
+    },
+    {
+      "queue_id": 17,
+      "target_type": "proposal",
+      "target_id": "EXP-050",
+      "reason": "EXP-050 category-proposal-writeup (complete) flagged by integrity agent as bypassing adversarial review. Prose writeup was not queued for curmudgeon review when integrated.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-10T21:07:06.786Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-050.json",
+        "related_issues": [
+          "ISS-696"
+        ],
+        "human_note": null,
+        "integrity_flag": "2026-04-10T15:22Z integrity report major issue #1"
       }
     }
   ],
-  "next_id": 17,
+  "next_id": 18,
   "history": [
     {
       "queue_id": 1,
