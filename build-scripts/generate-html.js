@@ -109,6 +109,7 @@ function resolvePlaceholders(html, context) {
     '{{PRED_DOME_DERIVED}}': context.predCounts?.domeDerived || 0,
     '{{PRED_ACTIVE_WINDOWS}}': context.predCounts?.activeWindows || 0,
     '{{PRED_IMMINENT}}': context.predCounts?.imminent || 0,
+    '{{PRED_RECYCLED}}': context.predCounts?.recycled || 0,
   };
 
   // Simple replacements
@@ -725,6 +726,7 @@ function main() {
     stdRelabel: predEntries.filter(e => e.derivation === 'standard_physics').length,
     testable: predEntries.filter(e => e.testability === 'testable').length,
     domeDerived: predEntries.filter(e => e.derivation === 'dome_geometry').length,
+    recycled: predEntries.filter(e => e.restates_win != null).length,
     activeWindows: predEntries.filter(e => e.test_window?.status === 'open').length,
     imminent: predEntries.filter(e => {
       if (!e.test_window?.closes) return false;

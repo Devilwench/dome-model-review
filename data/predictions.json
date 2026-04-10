@@ -21,7 +21,17 @@
       "{{PRED_TESTABLE}}": "Predictions with specific, measurable test criteria",
       "{{PRED_DOME_DERIVED}}": "Predictions genuinely derived from dome geometry (our assessment)",
       "{{PRED_ACTIVE_WINDOWS}}": "Predictions with test windows open right now",
-      "{{PRED_IMMINENT}}": "Test windows closing within 30 days"
+      "{{PRED_IMMINENT}}": "Test windows closing within 30 days",
+      "{{PRED_RECYCLED}}": "Predictions that restate already-confirmed WINs with new timestamps"
+    },
+    "entry_schema_notes": {
+      "required_fields": "id, claim, category, outcome, prospective (boolean)",
+      "recycling_detection": {
+        "restates_win": "WIN ID (e.g. 'WIN-068') if this prediction restates an already-confirmed WIN, null otherwise. This is the primary recycling indicator.",
+        "data_predates_registration": "Boolean. True if the underlying observational data was published or available before the dome's registration date. Distinguishes genuinely prospective predictions from timestamped retrodictions.",
+        "crypto_hash": "SHA-256 hex string from dome's registration (if provided). Hash formula claimed: SHA256('ECM V51.0 {ID}: {text} on {date}T00:00:00Z'). No independent verification mechanism exists.",
+        "registration_date": "ISO date when dome registered the prediction (from git commit or claimed date)"
+      }
     }
   },
   "summary": {

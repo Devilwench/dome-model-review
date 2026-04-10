@@ -89,6 +89,8 @@ The 2026-04-04 batch of ~50 new predictions was classified QUIET because no conf
 ### 6. Check Canary Traps
 Read `monitor/review-state.json` and check if any canary traps have been triggered. Canary traps are specific criticisms in our review that, if addressed, indicate the author is reading our review.
 
+**IMPORTANT: Canary traps must be checked against ALL detected changes, not just commit messages.** The `opentimestamps-provenance` canary was missed for 6 polls because the poller only checked commit messages for trigger signals. Changes to prediction registration methodology (new hashing schemes, new timestamping systems, separating predictions from observations) are EXACTLY the kind of structural change canary traps are designed to detect. Cross-reference every canary's `trigger_signals` against: new files, new data structures, new cryptographic mechanisms, changes to how predictions are registered or validated — not just text in commit messages.
+
 ### 7. Write Change Records
 For each non-automated change, write a JSON record to `monitor/changes/`:
 ```json
