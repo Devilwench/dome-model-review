@@ -114,7 +114,8 @@
         "closes": "2026-04-30",
         "test_id": "PRED-090"
       },
-      "analyst_priority": "MODE_0"
+      "analyst_priority": "MODE_0",
+      "notes": "\n[2026-04-10] Human checked dome site — no PRED-090 result posted yet. No human action needed until test window closes (2026-04-30). Dome has not posted TOA flux data. Cleared from human-required list. Let analyst/poller monitor and flag again if result appears or window expires."
     },
     {
       "id": "ISS-702",
