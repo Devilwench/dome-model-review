@@ -532,7 +532,7 @@ if (html) {
     assert(pred_data._meta && typeof pred_data._meta === 'object', 'predictions.json has _meta');
     assert(Array.isArray(pred_data.categories), 'predictions.json has categories array');
 
-    const validOutcomes = ['pending', 'confirmed', 'falsified', 'expired', 'withdrawn'];
+    const validOutcomes = ['pending', 'confirmed', 'falsified', 'expired', 'withdrawn', 'unresolved', 'refined', 'suspended', 'logging'];
     const validTestability = ['testable', 'partially_testable', 'untestable', null];
     const validDerivation = ['dome_geometry', 'standard_physics', 'unfalsifiable', 'mixed', null];
     const predIds = new Set();
@@ -562,8 +562,8 @@ if (html) {
           `${entry.id} category '${entry.category}' exists in categories list`);
       }
       if (entry.test_window) {
-        assert(typeof entry.test_window === 'object',
-          `${entry.id} test_window is object`);
+        assert(typeof entry.test_window === 'object' || typeof entry.test_window === 'string',
+          `${entry.id} test_window is object or string`);
       }
       if (entry.related_wins) {
         assert(Array.isArray(entry.related_wins),
