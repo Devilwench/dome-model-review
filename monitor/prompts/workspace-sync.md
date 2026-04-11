@@ -270,3 +270,13 @@ Output a one-line summary: how many files were new, how many modified, or "Nothi
 - **Never revert git.** Always use `smart_copy` instead of raw `cp`. The helper refuses to overwrite a clone file whose last git commit is newer than the workspace file's mtime — this protects direct-to-git commits from being silently undone. If you find yourself wanting to force-overwrite a skipped file, stop and escalate to tinker or a human instead.
 - If git pull --rebase fails with merge conflicts, do NOT attempt to resolve. Output the error and stop. A human or the tinker agent will fix it.
 - Use your own clone directory (`dome-sync-clone`), never touch `dome-review-clean`.
+
+## Cleanup (mandatory, run last)
+
+Run git garbage collection to keep the clone lean. At 4h intervals this prevents slow growth from accumulating pack files.
+
+```bash
+cd "$CLONE" && git gc --auto --quiet 2>/dev/null
+```
+
+**Only touch `dome-sync-clone`.** Never delete or modify `dome-review-clean` (analyst/decider) or `dome-curmudgeon-clone` (curmudgeon).

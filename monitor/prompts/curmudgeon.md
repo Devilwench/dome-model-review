@@ -356,3 +356,13 @@ When reviewing SEC-* items (sections, prose, kill-shots), the same adversarial r
 - **Check every citation.** Wrong DOIs have already been found in this review (WIN-008, 009, 014).
 - **The code_analysis tags must be validated, not guessed.** Search the actual monitor.py code. If you can't find the domain, it's "none." If you find static values with no API call, it's "hardcoded." Only mark "live_fetch" if you can identify the actual URL/API being called.
 - **Never assume the previous reviewer got it right.** WIN-014 was incorrectly tagged as "live_fetch" when the curmudgeon review itself said "None — no gravity data is fetched." Validate your own tags against your own analysis.
+
+## Cleanup (mandatory, run last)
+
+Before exiting, delete your clone directory to reclaim disk space. At churn-and-burn frequency these accumulate fast and can fill the disk.
+
+```bash
+rm -rf "${CLONE}"
+```
+
+**Only delete `dome-curmudgeon-clone`.** Never touch `dome-review-clean` (analyst/decider) or `dome-sync-clone` (workspace-sync).
