@@ -727,9 +727,30 @@ function formatPredictionDetail(pred) {
   const verdictLabel = PRED_VERDICT_LABELS[verdict] || verdict;
   const anchorId = 'pred-' + pred.id.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
-  let html = `<div class="evidence" id="${anchorId}">\n`;
-  html += `<h3>${escapeHtml(pred.id)}: ${escapeHtml(pred.claim || 'No claim text')}</h3>\n`;
+  // Verdict badge color mapping (match kill-shot badge style)
+  const badgeColors = {
+    'standard_physics': 'background:#C8E6C9;color:#1B5E20',
+    'recycled': 'background:#FFE0B2;color:#BF360C',
+    'falsified': 'background:#FFCDD2;color:#B71C1C',
+    'unfalsifiable': 'background:#E0E0E0;color:#424242',
+    'pending': 'background:#D1C4E9;color:#4A148C',
+  };
+  const badgeStyle = badgeColors[verdict] || badgeColors['pending'];
 
+  // TLDR: use detail_reasoning, or a fallback
+  const tldr = pred.detail_reasoning
+    ? escapeHtml(pred.detail_reasoning)
+    : (verdict === 'pending' ? 'Awaiting assessment — test window has not yet closed.' : escapeHtml(verdictLabel));
+
+  // ── Summary bar (always visible, kill-shot pattern) ──
+  let html = `<div class="ks-test"><details id="${anchorId}"><summary class="ks-summary">`;
+  html += `<h2 style="display:inline;margin:0">${escapeHtml(pred.id)}: ${escapeHtml(pred.claim || 'No claim text')}`;
+  html += ` <span class="verdict-badge" style="${badgeStyle};padding:2px 8px;border-radius:3px;font-weight:600;margin-left:8px;">${escapeHtml(verdictLabel)}</span>`;
+  html += `</h2>`;
+  html += `<p class="ks-tldr">${tldr}</p>`;
+  html += `</summary><div class="ks-detail">\n`;
+
+  // ── Detail content (visible on expand) ──
   // Metadata line
   const meta = [];
   if (pred.category) meta.push(`<strong>Category:</strong> ${escapeHtml(pred.category)}`);
@@ -742,13 +763,12 @@ function formatPredictionDetail(pred) {
 
   // Restates WIN cross-reference
   if (pred.restates_win) {
-    // Normalize: strip "WIN-" prefix if present, get bare number
     const rawWin = String(pred.restates_win).replace(/^WIN-/i, '');
     const winId = rawWin.padStart(3, '0');
     html += `<p><strong>Restates:</strong> <a href="#win${winId}" onclick="showTab('wins');return false">WIN-${escapeHtml(winId)}</a></p>\n`;
   }
 
-  // Verdict tag + reasoning
+  // Verdict tag + reasoning (full form in detail)
   if (pred.detail_reasoning) {
     html += `<p><span class="verdict-tag ${verdictClass}">${escapeHtml(verdictLabel).toUpperCase()}</span> ${escapeHtml(pred.detail_reasoning)}</p>\n`;
   } else if (verdict !== 'pending') {
@@ -757,7 +777,7 @@ function formatPredictionDetail(pred) {
     html += `<p><span class="verdict-tag vt-notdemo">AWAITING ASSESSMENT</span></p>\n`;
   }
 
-  html += `</div>\n`;
+  html += `</div></details></div>\n`;
   return html;
 }
 
@@ -844,12 +864,8 @@ function renderPredictionPanels(predictions) {
   html += tombstone.map(formatPredictionTableRow).join('\n');
   html += `\n</tbody></table>\n`;
 
-  // Detail panels — collapsed
-  html += `<details id="pred-tombstone-detail"><summary class="ps-summary"><h2 style="display:inline;margin:0">Prospective Prediction Details (${tombstone.length})</h2>`;
-  html += `<p class="ps-tldr">Full per-prediction assessments: what the dome claims, what the data shows, and why each one fails to discriminate between dome and globe physics.</p>`;
-  html += `</summary><div class="ps-detail">\n`;
+  // Individual prediction panels — each collapsible (kill-shot pattern)
   html += tombstone.map(formatPredictionDetail).join('\n');
-  html += `</div></details>\n`;
 
   // ── Mined Predictions (all visible except detail panels) ──
   html += `<h2 id="pred-mined">Extracted Predictions — Registered After the Data</h2>\n`;
