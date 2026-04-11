@@ -8059,6 +8059,53 @@
       "notes": "Curmudgeon Cycle 2 flagged as blocker — do not publish section 2b.7 until verified. Two hypotheses: (a) results.json uses different W-number namespace than wins page (W004 in results.json IS the eclipse despite wins-page W004 being noise-floor); (b) analyst misidentified the entry. Check results.json W004 entry title and prediction field (-10 ± 2 nT matches WIN-025 BOU baseline, not -22.24 nT noise-floor).\n[2026-04-11] W004/WIN-025 verification: section 2b.7 cites prediction \"-10 ± 2 nT and observation -17.6 nT (sigma_distance 3.8)\" for the W004 entry. WIN-025 is the 2024 Eclipse 9-Station test at BOU station (-10 ± 2 nT). Raw-text/02-wins.txt lists wins-page W004 as \"Noise Floor Limit (-22.24 nT)\" — a different namespace. Curmudgeon hypothesis (a) confirmed: results.json uses its own W-numbering distinct from the wins-page sidebar. The prediction values (-10 ± 2 nT) unambiguously identify the eclipse, not the noise-floor. live results.json fetch returned 404 (URL may have changed). Section mapping appears correct based on internal evidence. Blocker downgraded to minor. Recommend: add a clarifying note to the section text distinguishing results.json W-numbers from wins-page W-numbers.\n[2026-04-11] Human review: not a human decision — decider can patch a clarifying note into SEC-2b.7 distinguishing results.json W-numbers from wins-page W-numbers. Reassigned to normal pipeline.",
       "fixed_at": "2026-04-11T06:09:41.250Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-713",
+      "win_id": null,
+      "severity": "critical",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "SEC-6.5 FACTUAL ERRORS: (1) Wrong 4 identified — Section 6.5 names W021 as one of the dome's 4 Refined predictions, but Section 6.6 and poller data confirm the dome's 4 are W019, W020, W024, W027. W024 (Polaris elevation) was explicitly FALSIFIED by the dome; W021 (Moon angular diameter) is SUSPENDED and not in the dome's 4-count. (2) \"0 Falsified\" misquote — our text says dome claims \"0 Falsified\" but dome actually labeled W024 as FALSIFIED. Two adjacent sections contradict each other. Fix: replace W021 with W024 in the 4 Refined list, correct the 0-Falsified claim, add W021 as a 5th uncounted failure. Fix: also correct the W021 geometry claim — dome geometry OVERPREDICTS (~83% variation) not underpredicts. This actually strengthens our argument.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon-SEC-6.5.c2",
+      "found_date": "2026-04-11",
+      "found_at": "2026-04-11T07:06:57.013Z",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-11T07:10:30.698Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-714",
+      "win_id": null,
+      "severity": "major",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "PRED-097 wrong restates_win cross-reference in data/predictions.json. Entry PRED-097 (CMB quadrupole/octupole alignment → LiteBIRD) has restates_win: \"055\" but WIN-055 is \"Distance-redshift Cepheid/SBF\" — a completely different topic. PRED-097 should cite WIN-048 (CMB Axis of Evil). The verdict (recycled) is correct but the wrong WIN is cited. Fix: change restates_win from \"055\" to \"048\" in data/predictions.json.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon-PRED-batch-2026-04-10-wave3",
+      "found_date": "2026-04-11",
+      "found_at": "2026-04-11T07:06:57.013Z",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-11T07:10:30.698Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-710",
+      "win_id": null,
+      "severity": "minor",
+      "category": "infrastructure",
+      "status": "fixed",
+      "description": "SOCIAL: Keywords meta tag expansion for rebrand-resistance. Social analyst recommends expanding keywords meta tag to include ECM alternative names (Ovoid Cavity Model, Closed Toroidal Ovoid, dome cosmology) and numerical fingerprints (20015 km, 8537 km, firmament height) to survive potential model rename. See monitor/social/drafts/rebrand-resistance-strategy.md for full strategy.",
+      "found_by": "social-analyst",
+      "found_at": "2026-04-10T22:08:18.885Z",
+      "source": "monitor/social/drafts/rebrand-resistance-strategy.md",
+      "notes": "Social draft action_needed: decide whether to expand keywords meta tag. Not deployed — needs human approval before committing to docs/.\n[2026-04-11] Human approved: go ahead with keywords meta tag expansion for rebrand resistance.",
+      "fixed_at": "2026-04-11T07:10:52.470Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Rebrand-resistant keywords (Dome Cosmology, Aetheric Dome Model, Firmament Cavity Model) already present in generate-html.js line 833 meta keywords tag. Applied in prior session."
     }
   ]
 }

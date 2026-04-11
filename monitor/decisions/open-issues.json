@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-11T07:06:57.013Z",
+  "last_updated": "2026-04-11T07:10:52.470Z",
   "issues": [
     {
       "id": "ISS-677",
@@ -134,46 +134,6 @@
       "found_at": "2026-04-10T19:10:17.202Z",
       "source": "EXP-060 integration",
       "notes": "Not urgent — existing Part 5 HTML is complete and correct via EXP-057. This is a refactoring to data-driven counts. Lower priority than content work."
-    },
-    {
-      "id": "ISS-710",
-      "win_id": null,
-      "severity": "minor",
-      "category": "infrastructure",
-      "status": "approved",
-      "description": "SOCIAL: Keywords meta tag expansion for rebrand-resistance. Social analyst recommends expanding keywords meta tag to include ECM alternative names (Ovoid Cavity Model, Closed Toroidal Ovoid, dome cosmology) and numerical fingerprints (20015 km, 8537 km, firmament height) to survive potential model rename. See monitor/social/drafts/rebrand-resistance-strategy.md for full strategy.",
-      "found_by": "social-analyst",
-      "found_at": "2026-04-10T22:08:18.885Z",
-      "source": "monitor/social/drafts/rebrand-resistance-strategy.md",
-      "notes": "Social draft action_needed: decide whether to expand keywords meta tag. Not deployed — needs human approval before committing to docs/.\n[2026-04-11] Human approved: go ahead with keywords meta tag expansion for rebrand resistance."
-    },
-    {
-      "id": "ISS-713",
-      "win_id": null,
-      "severity": "critical",
-      "category": "factual_error",
-      "status": "open",
-      "description": "SEC-6.5 FACTUAL ERRORS: (1) Wrong 4 identified — Section 6.5 names W021 as one of the dome's 4 Refined predictions, but Section 6.6 and poller data confirm the dome's 4 are W019, W020, W024, W027. W024 (Polaris elevation) was explicitly FALSIFIED by the dome; W021 (Moon angular diameter) is SUSPENDED and not in the dome's 4-count. (2) \"0 Falsified\" misquote — our text says dome claims \"0 Falsified\" but dome actually labeled W024 as FALSIFIED. Two adjacent sections contradict each other. Fix: replace W021 with W024 in the 4 Refined list, correct the 0-Falsified claim, add W021 as a 5th uncounted failure. Fix: also correct the W021 geometry claim — dome geometry OVERPREDICTS (~83% variation) not underpredicts. This actually strengthens our argument.",
-      "source": "curmudgeon",
-      "found_by": "curmudgeon-SEC-6.5.c2",
-      "found_date": "2026-04-11",
-      "found_at": "2026-04-11T07:06:57.013Z",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-714",
-      "win_id": null,
-      "severity": "major",
-      "category": "factual_error",
-      "status": "open",
-      "description": "PRED-097 wrong restates_win cross-reference in data/predictions.json. Entry PRED-097 (CMB quadrupole/octupole alignment → LiteBIRD) has restates_win: \"055\" but WIN-055 is \"Distance-redshift Cepheid/SBF\" — a completely different topic. PRED-097 should cite WIN-048 (CMB Axis of Evil). The verdict (recycled) is correct but the wrong WIN is cited. Fix: change restates_win from \"055\" to \"048\" in data/predictions.json.",
-      "source": "curmudgeon",
-      "found_by": "curmudgeon-PRED-batch-2026-04-10-wave3",
-      "found_date": "2026-04-11",
-      "found_at": "2026-04-11T07:06:57.013Z",
-      "fix_details": null,
-      "fix_date": null
     },
     {
       "id": "ISS-715",
