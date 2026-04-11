@@ -1115,6 +1115,7 @@ ${CSS}
   <button class="tab-btn" onclick="showTab('wins')">${counts.total} Wins Reviewed</button>
   <button class="tab-btn" onclick="showTab('pages')">Live Power Dashboard</button>
   <button class="tab-btn" onclick="showTab('killshots')">Kill Shots</button>
+  <button class="tab-btn" onclick="showTab('timestamp')">Timestamp Error</button>
   <button class="tab-btn" onclick="showTab('predictions')">Predictions Analysis</button>
   <button class="tab-btn" onclick="showTab('falsify')">External Tests</button>
   <button class="tab-btn" onclick="showTab('ai')">AI & Conclusions</button>
@@ -1148,9 +1149,9 @@ ${CSS}
 <div class="sc-sublabel">He admits ${failures.dome_claimed_failures}. We found ${silentFailures} more he silently removed. Honest accuracy: <strong>${honestAccuracy}</strong>, not ${failures.dome_claimed_accuracy}. <a href="#p3-failures" onclick="showTab('wins');return false">Details →</a></div>
 </div>
 <div class="sc-card" style="border-left:4px solid #2a6496">
-<div class="sc-number">${predCounts.genuinelyProspective}</div>
-<div class="sc-label">Genuinely Prospective</div>
-<div class="sc-sublabel">Of ${predictions.summary?.dome_total_claimed || '?'} predictions on his registry, only ${predCounts.genuinelyProspective} were registered before the data. <a href="#pred-tombstone" onclick="showTab('predictions');return false">Details →</a></div>
+<div class="sc-number" style="font-size:1.4rem">Wrong Side</div>
+<div class="sc-label">Timestamp Error</div>
+<div class="sc-sublabel">His blockchain proof timestamps the <em>observations</em>, not the predictions. The cryptographic infrastructure is real — it just proves the wrong thing. <a href="#timestamp-error" onclick="showTab('timestamp');return false">Details →</a></div>
 </div>
 </div>
 
@@ -1235,6 +1236,7 @@ ${CSS}
 </ul></li>
 <li><a href="#part4" onclick="showTab('pages');return false">Part 4: Live Power Dashboard &amp; Site Page Analysis</a></li>
 <li><a href="#part5" onclick="showTab('killshots');return false">Part 5: Kill-Shot Binary Tests</a></li>
+<li><a href="#timestamp-error" onclick="showTab('timestamp');return false">The Timestamp Error — He Timestamps the Wrong Side</a></li>
 <li><a href="#part6" onclick="showTab('predictions');return false">Part 6: Predictions Page — Structural Analysis</a></li>
 <li><a href="#part7" onclick="showTab('falsify');return false">Part 7: External Falsification Tests</a></li>
 <li><a href="#part8" onclick="showTab('ai');return false">Part 8: Analysis of AI Context Directives</a></li>
@@ -1340,7 +1342,85 @@ ${sectionNav('wins', counts.total + ' Wins Reviewed', 'killshots', 'Kill Shots')
 
 ${renderSectionFromJson('part5', context, winsByVerdict, wins, tally, sectionNav)}
 
-${sectionNav('pages', 'Live Power Dashboard', 'predictions', 'Predictions Analysis')}
+${sectionNav('pages', 'Live Power Dashboard', 'timestamp', 'Timestamp Error')}
+
+</div>
+
+<!-- ═══ TAB: Timestamp Error ═══ -->
+<div class="tab-content" id="timestamp">
+
+<h1 id="timestamp-error">The Timestamp Error</h1>
+<h2 style="color:var(--accent);font-weight:400;margin-top:0">He timestamps the observations, not the predictions</h2>
+
+<div class="scorecard" style="grid-template-columns:1fr 1fr;margin:1.5em 0">
+<div class="sc-card" style="border-left:4px solid #c45050">
+<div class="sc-label" style="font-size:1.1em">What gets timestamped</div>
+<div class="sc-sublabel"><code>status_history.json</code> — observed values, pass/fail audit results, statistical comparisons. This is the <strong>answer sheet</strong>.</div>
+</div>
+<div class="sc-card" style="border-left:4px solid #2a6496">
+<div class="sc-label" style="font-size:1.1em">What should get timestamped</div>
+<div class="sc-sublabel">The prediction itself — the formula, the expected value, the tolerance — in a <strong>separate document, before the data arrives</strong>.</div>
+</div>
+</div>
+
+<p>The dome model uses <a href="https://opentimestamps.org/">OpenTimestamps</a> — Bitcoin blockchain anchoring — to prove predictions existed before confirming data arrived. The cryptographic mechanism is sound. Credit is due for implementing it. <strong>But it timestamps the wrong side of the ledger.</strong></p>
+
+<p>OpenTimestamps anchors <code>status_history.json</code>, the file containing <em>reference data</em>: observed values, pass/fail results, and statistical comparisons. These are observations — the outcomes. The prediction parameters — the formulas, expected values, and tolerances — live in <code>monitor.py</code> source code and <code>docs/model.html</code>, which are only git-versioned, not blockchain-timestamped.</p>
+
+<h2 id="ts-why-it-matters">Why This Matters</h2>
+
+<p>A timestamped prediction means one thing: cryptographic proof that <em>the prediction</em> existed before <em>the data</em>. To prove this, you need two documents with two timestamps:</p>
+
+<ol>
+<li><strong>A predictions-only document</strong>, timestamped <em>before</em> data collection. This locks in what you expect to see.</li>
+<li><strong>An observations document</strong>, timestamped <em>after</em> data collection. This records what you actually saw.</li>
+</ol>
+
+<p>The first timestamp must predate the second. That's the entire proof structure. Anything less and you haven't proven temporal priority — you've just proven that a file existed at some point.</p>
+
+<p>The dome model does the opposite. It timestamps the observation side (the file with measured values and pass/fail results) and leaves the prediction side in mutable git history. Git commits can be rewritten (<code>git rebase</code>, <code>force push</code>). Blockchain anchoring cannot. <strong>The system's strongest cryptographic proof applies to the part that needs it least.</strong></p>
+
+<h2 id="ts-analogy">The Exam Analogy</h2>
+
+<p>Imagine a student takes an exam, writes down the answers, then seals the answer sheet in a tamper-proof envelope and has it notarized. The notary confirms: "This envelope existed at 3:00 PM on Tuesday."</p>
+
+<p>The student then claims: "See? I knew the answers before the exam was given."</p>
+
+<p>But the notary timestamp proves the <em>answers</em> existed at 3:00 PM. It says nothing about when the <em>questions</em> were seen. To prove foreknowledge, you'd need to seal your answers <em>before</em> the questions are distributed — and have that earlier timestamp on record.</p>
+
+<p>The dome model seals the answer sheet. The questions (predictions) sit in an unsealed folder (git). The notarization is real. The proof structure is backwards.</p>
+
+<h2 id="ts-sha256">The SHA-256 Hashes Don't Fix This</h2>
+
+<p>The model also uses per-prediction SHA-256 hashes — claimed formula: <code>SHA256('ECM V51.0 {ID}: {text} on {date}T00:00:00Z')</code>. A SHA-256 hash proves content integrity: given a hash, you can verify that a specific text produced it. But a hash alone does not prove <em>when</em> the text was written. Without an independent timestamp on the hash itself (from a third-party service, a blockchain, or a publication with a verifiable date), the hash proves "this text matches this hash" — not "this text existed before the data."</p>
+
+<p>If you create the hash after you already have the data, the hash is cryptographically perfect and temporally meaningless.</p>
+
+<h2 id="ts-what-would-fix-it">What Would Fix It</h2>
+
+<p>The fix is straightforward and the dome author clearly has the technical skill to implement it:</p>
+
+<ol>
+<li>Create a <strong>predictions-only file</strong> — containing just the prediction ID, the expected value, the tolerance, and the test criteria. No observation data.</li>
+<li><strong>Blockchain-timestamp that file</strong> (via OpenTimestamps or similar) <em>before</em> pulling the reference data.</li>
+<li>Later, after the data arrives, record observations in a <strong>separate file</strong> with its own timestamp.</li>
+<li>Publish both timestamps. The proof is in the ordering: prediction timestamp &lt; observation timestamp.</li>
+</ol>
+
+<p>This is exactly how pre-registration works in clinical trials, physics experiments, and prediction markets. The prediction is locked before the outcome is known. The dome author has built an impressive monitoring infrastructure — scripts that pull real data from real instruments. The architecture is 90% there. The timestamp just needs to move from the observation side to the prediction side.</p>
+
+<h2 id="ts-scope">Which Claims This Affects</h2>
+
+<p>Every WIN that relies on "prospective" timestamping for its credibility is affected. Specifically:</p>
+<ul>
+<li><strong>WIN-035 through WIN-039</strong> — described by the dome as prospective, with predictions registered via OpenTimestamps before data arrival. These are the WINs where the OTS chain is the primary evidence. But the OTS chain timestamps <code>status_history.json</code> (observations), not the prediction parameters.</li>
+<li><strong>All entries in the prediction registry</strong> with SHA-256 hashes — the hashes prove content integrity but not temporal priority (see above).</li>
+<li><strong>Any future claim of prospective prediction</strong> — until the timestamp moves to the prediction side, no claim of "registered before the data" has cryptographic backing.</li>
+</ul>
+
+<p>To be clear: the dome author may well have written these predictions before the data arrived. We are not claiming fraud. We are saying the <em>proof structure</em> doesn't prove what it claims to prove. The fix described above would resolve this. Until then, the cryptographic infrastructure — however technically impressive — does not demonstrate temporal priority.</p>
+
+${sectionNav('killshots', 'Kill Shots', 'predictions', 'Predictions Analysis')}
 
 </div>
 
@@ -1351,7 +1431,7 @@ ${renderSectionFromJson('part6', context, winsByVerdict, wins, tally, sectionNav
 
 ${renderPredictionPanels(predictions)}
 
-${sectionNav('killshots', 'Kill Shots', 'falsify', 'External Tests')}
+${sectionNav('timestamp', 'Timestamp Error', 'falsify', 'External Tests')}
 
 </div>
 

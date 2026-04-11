@@ -9,6 +9,18 @@ A scientific critical review of the "Ovoid Cavity Cosmological Model" (ECM V51.1
 Published at: https://funwithscience-org.github.io/dome-model-review/
 Repository: https://github.com/funwithscience-org/dome-model-review
 
+## Key Terminology
+
+### The Canary (a.k.a. Honey Trap)
+
+The dome author uses OpenTimestamps (OTS) to claim his predictions are genuinely prospective — timestamped before confirming data arrived. **He is timestamping the wrong side.** OTS anchors `status_history.json`, which contains *observations and results*, not the predictions themselves. The predictions live in `monitor.py` source code and `docs/model.html`, which are only git-versioned (mutable). A timestamped prediction means timestamping **the prediction**, separately, before the data arrives. He timestamps the answer sheet, not the question.
+
+We deliberately surface this error on our site (Timestamp Error tab, with cross-references from Overview, Section 1.4, and Part 6) so the dome author can find it. When he fixes it — by separating prediction documents from observation documents and timestamping them independently — that confirms he is reading our review and reactively patching his methodology. **This is the canary.** The poller monitors for this fix.
+
+All agents must understand: "canary" = the OTS wrong-side error we planted for him to find and fix. Do not conflate with the SHA-256 per-prediction hashes (which are a separate mechanism that also doesn't fix the core problem — hashing a prediction after you already have the data proves content integrity, not temporal priority). Do not speculate about whether the SHA-256 addition was a response to our review — we don't know that and it doesn't matter.
+
+The dedicated write-up lives in the **Timestamp Error tab** on the site. All references to OTS methodology errors from other tabs should link back there.
+
 ## Architecture
 
 ### Single Source of Truth
