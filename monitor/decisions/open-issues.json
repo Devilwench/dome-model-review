@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-11T13:09:02.074Z",
+  "last_updated": "2026-04-11T15:09:14.111Z",
   "issues": [
     {
       "id": "ISS-677",
@@ -74,7 +74,18 @@
       "found_at": "2026-04-10T19:10:17.202Z",
       "source": "EXP-060 integration",
       "notes": "Not urgent — existing Part 5 HTML is complete and correct via EXP-057. This is a refactoring to data-driven counts. Lower priority than content work."
+    },
+    {
+      "id": "ISS-727",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "open",
+      "description": "SEC-2.1 STRUCTURAL WEAKNESS: Section front-loads weakest argument (~22 Hz avg) and buries strongest argument (supremum impossibility: H(r) ≤ 8537 km, so 9572 km and 9086 km are mathematically impossible). Curmudgeon recommends: lead with supremum impossibility, then formula-switching critique, then use H_eff integrals as supplementary detail. Also: the monotonicity argument (f_QW(r) is monotonically increasing from 8.77 Hz to 89.5 Hz, equals 7.83 Hz at NO real radius) is stronger than any averaging. Q-factor argument still absent: Schumann Q ≈ 4-6 requires lossy ionospheric boundary, copper dome gives Q >> 100. Source: curmudgeon Cycle 2 review of SEC-2.1.",
+      "found_by": "curmudgeon-cycle2",
+      "found_at": "2026-04-11T15:08:04.194Z",
+      "source": "monitor/curmudgeon/reviews/SEC-2.1.c2.json"
     }
   ],
-  "next_id": 726
+  "next_id": 728
 }

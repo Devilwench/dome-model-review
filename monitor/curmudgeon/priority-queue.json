@@ -128,9 +128,26 @@
           "PROS_008": "standard_physics"
         }
       }
+    },
+    {
+      "queue_id": 30,
+      "target_type": "proposal",
+      "target_id": "EXP-050",
+      "reason": "EXP-050 revision 2 submitted (2026-04-11). Curmudgeon first gate (2026-04-10) returned ACCEPT_WITH_MODIFICATIONS with 7 blockers. Analyst has addressed all 7 blockers in revision 2 (EXP-050-revision2.json + EXP-050-numerics.json). Second gate pass required before decider integrates as section prose. ISS-696 blocks on this.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-11T15:08:13.418Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-050-revision2.json",
+        "numerics_file": "monitor/analyst/expansions/EXP-050-numerics.json",
+        "related_issues": [
+          "ISS-696"
+        ],
+        "human_note": "NOTE-2026-04-09-cat005 — two-phase workflow: proposal -> curmudgeon -> prose",
+        "gate_cycle": 2
+      }
     }
   ],
-  "next_id": 30,
+  "next_id": 31,
   "history": [
     {
       "queue_id": 1,

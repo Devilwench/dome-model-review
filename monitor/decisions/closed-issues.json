@@ -8421,6 +8421,19 @@
       "fixed_at": "2026-04-11T12:08:51.943Z",
       "fixed_by": "expansion-integration",
       "fixed_note": "EXP-071 integrated: FAIL-004 paragraph replaced with quantitative AAO data in SEC-6.5"
+    },
+    {
+      "id": "ISS-726",
+      "win_id": null,
+      "severity": "major",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "SEC-2.1 ARITHMETIC ERROR: Section says H(15000) ≈ 1,270 km and equatorial f ≈ 59 Hz. Correct values: H(15000) = 8537 × e^(−1.74) = 8537 × 0.17552 = 1,498 km → f = 300000/(4×1498) ≈ 50 Hz. The 15.2% error propagates to the frequency. Additionally, ~22 Hz best estimate is claimed to come from \"averaging pole and equatorial heights\" — but simple avg of heights gives 14.9 Hz, simple avg of freqs gives 29 Hz. The 22.6 Hz actually comes from the linear radial integral H_eff = H₀·(L/R)·(1−exp(−R/L)) ≈ 3,316 km — valid physics but not described. These errors allow dome defenders to dismiss the entire section. Source: curmudgeon Cycle 2 review of SEC-2.1.",
+      "found_by": "curmudgeon-cycle2",
+      "found_at": "2026-04-11T15:08:04.194Z",
+      "source": "monitor/curmudgeon/reviews/SEC-2.1.c2.json",
+      "fixed_at": "2026-04-11T15:09:14.111Z",
+      "fixed_by": "decider-self-apply"
     }
   ]
 }
