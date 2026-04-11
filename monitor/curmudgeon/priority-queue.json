@@ -19,8 +19,40 @@
     "decider",
     "tinker"
   ],
-  "queue": [],
-  "next_id": 23,
+  "queue": [
+    {
+      "queue_id": 23,
+      "target_type": "section-new",
+      "target_id": "part6-sha256-recycling",
+      "reason": "EXP-068 integrated: SHA-256 Recycling section inserted into Part 6 — new content needs fresh attack",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-11T11:13:47.054Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-068.json",
+        "related_issues": [
+          "ISS-703",
+          "ISS-707"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 24,
+      "target_type": "section-rewrite",
+      "target_id": "predictions-catalog",
+      "reason": "EXP-066 integrated: 86 predictions classified in predictions.json (Wave 1/2/3 complete) — new verdicts need review",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-11T11:13:47.054Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/PRED-assessment-*.json (batch)",
+        "related_issues": [
+          "ISS-700"
+        ],
+        "human_note": null
+      }
+    }
+  ],
+  "next_id": 25,
   "history": [
     {
       "queue_id": 1,

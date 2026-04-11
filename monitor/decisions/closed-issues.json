@@ -8317,6 +8317,80 @@
       "fixed_at": "2026-04-11T10:47:15.309Z",
       "fixed_by": "decider-verification",
       "fix_details": "Verified current SEC-2b.7 text already contains specific timestamps (confirmed live 2026-04-10T18:12 UTC, 404 by 2026-04-11T07:14 UTC, ~13 hour window). The partial P1 patch fully resolved the imprecision. Closing."
+    },
+    {
+      "id": "ISS-700",
+      "win_id": null,
+      "severity": "major",
+      "category": "content-update",
+      "status": "fixed",
+      "description": "PREDICTIONS CATALOG: Analyst Mode 0 priority — catalog all ~50 new prospective predictions (registered 2026-03-21 to 2026-04-04) into data/predictions.json. Each entry needs: id, claim, category, outcome, prospective (boolean), testability, derivation, test_window (with closes date), related_wins, registration_date, crypto_hash, restates_win (WIN ID or null), data_predates_registration (boolean), is_genuinely_prospective (boolean). CRITICAL: Many predictions recycle confirmed WINs with fresh SHA-256 timestamps — known: PRED-095=WIN-068, PRED-072=WIN-042, PRED-090 refs WIN-066, PRED-087 mirrors WIN-076, PRED-074 pre-reg data. Distinguish genuinely prospective from timestamped retrodictions.",
+      "found_by": "decider-human-note",
+      "found_at": "2026-04-10T15:14:35Z",
+      "source": "NOTE-2026-04-10-50-new-predictions + NOTE-2026-04-10-sha256-recycling",
+      "analyst_priority": "MODE_0",
+      "notes": "\n[2026-04-10] Wave 1 classification complete (analyst proposal ISS-700-status): 86 entries in predictions.json now have entry_type, author_status, our_verdict. 36 newly classified: 2 genuinely prospective, 28 data-predates, 6 unfalsifiable model params. Waves 2 (15 genuinely prospective writeups) and 3 (11 recycled + ~40 backtested writeups + Part 6 prose) remain. Status kept assigned-analyst.",
+      "fixed_at": "2026-04-11T11:13:33.782Z",
+      "fixed_by": "expansion-integration",
+      "fix_details": "EXP-066 integrated: 86 entries in predictions.json classified via Wave 1/2/3 assessments"
+    },
+    {
+      "id": "ISS-702",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "content-update",
+      "status": "fixed",
+      "description": "UPDATE PART 6 PROSE: The dome author added SHA-256 crypto timestamps to new predictions — but analysis shows these are mostly recycled WINs with fresh timestamps, not genuinely prospective predictions. Section should: (1) note the SHA-256 methodology shift and its limitations (no independent verification mechanism), (2) explain that timestamps are real but predictions are largely post-hoc, (3) contrast with genuinely prospective predictions, (4) use {{PRED_*}} placeholders for counts (infrastructure ready). Cross-refs: EXP-053/054, data/predictions.json (populate first).",
+      "found_by": "decider-human-note",
+      "found_at": "2026-04-10T15:14:35Z",
+      "source": "NOTE-2026-04-10-50-new-predictions",
+      "depends_on": "ISS-700",
+      "notes": "\n[2026-04-10] Part 6 prose update blocked on Wave 3 (analyst proposal ISS-702-status). Key finding already identified: author's \"What Prospective Means\" framework concedes backtested vs prospective distinction. 57/86 entries are author-labeled backtested. PRED-090 confirmed as post-hoc retrodiction. By author's own standard ~93% of 69 WINs are backtested. Prose will quote author's own framework once Wave 3 writeups complete. Status kept assigned-analyst.",
+      "fixed_at": "2026-04-11T11:13:33.782Z",
+      "fixed_by": "expansion-integration",
+      "fix_details": "EXP-066 integrated + EXP-068 SHA-256 section added to Part 6"
+    },
+    {
+      "id": "ISS-703",
+      "win_id": null,
+      "severity": "major",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "SHA-256 RECYCLING FORENSICS: The dome April 4 batch of ~28 \"new prospective\" predictions recycle already-confirmed WINs with fresh SHA-256 timestamps. Need: (1) curmudgeon forensic analysis of git commit timeline for April 4 batch — verify whether commits actually landed April 4 or were backdated; (2) per-prediction restates_win classification; (3) key argument: author responded to our timestamping critique by adding crypto envelopes around post-hoc content. Canary trap opentimestamps-provenance is probable_trigger.",
+      "found_by": "human-note",
+      "found_at": "2026-04-10T15:14:35Z",
+      "source": "NOTE-2026-04-10-sha256-recycling",
+      "assigned_at": "2026-04-11T06:10:09.762Z",
+      "assigned_to": "EXP-068",
+      "fixed_at": "2026-04-11T11:13:33.782Z",
+      "fixed_by": "expansion-integration",
+      "fix_details": "EXP-068 integrated: SHA-256 Recycling section inserted into Part 6 before STEELMAN-01"
+    },
+    {
+      "id": "ISS-707",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "fixed",
+      "description": "EXP-054 OPENTIMESTAMPS GAP: The batch appended post-hoc sentences claim the dome's definition is \"unverifiable\" because monitor.py hardcodes targets. But 5 self-declared PROSPECTIVE WINs (035-039, weekly confirmations) claim the prediction was registered via OTS before data arrival. The post-hoc rebuttal must address the OTS claim directly rather than relying on monitor.py evidence that doesn't apply to these WINs. Related to Section 3.1b's existing OTS gap.",
+      "win_ids_affected": [
+        "035",
+        "036",
+        "037",
+        "038",
+        "039"
+      ],
+      "found_by": "curmudgeon-cycle2-EXP-054-batch",
+      "found_at": "2026-04-10T18:12:38.706Z",
+      "source": "curmudgeon/reviews/EXP-054-batch.c2.json",
+      "notes": "This is a subset of the wider OTS/SHA-256 investigation (ISS-703). The specific action needed: craft a different post-hoc rebuttal for OTS-claiming WINs that addresses the timestamp chain rather than the monitor.py hardcoding argument. Route to analyst as addendum to EXP-054 or new EXP. Blocked on ISS-703 SHA-256 forensics.",
+      "related_issues": [
+        "ISS-703"
+      ],
+      "expansion_item": "EXP-062",
+      "fixed_at": "2026-04-11T11:13:33.782Z",
+      "fixed_by": "expansion-integration",
+      "fix_details": "EXP-068 integrated: OTS gap analysis included in SHA-256 section"
     }
   ]
 }
