@@ -179,25 +179,24 @@ console.log('mode:',pq.mode,'| queue_depth:',pq.queue.length,'| current_interval
 "
 ```
 
-### Step E4: Apply the mode rules
+### Step E4: Determine schedule changes needed (metadata only)
 
-**If `mode === "bau"`:** Do nothing. Curmudgeon stays on whatever schedule it has. Items in the queue (if any) will be drained at the normal cadence. Skip to Step E5 (logging only).
+Evaluate mode rules and update `priority-queue.json` metadata. **Do NOT call `update_scheduled_task` here** — those API calls require human approval and will block the run. Schedule API calls happen in Step E6 (the very last thing the decider does).
+
+**If `mode === "bau"`:** No schedule changes needed. Skip to Step E5.
 
 **If `mode === "churn-and-burn"` AND `queue.length > 0`:**
-- If `curmudgeon_current_interval_minutes !== curmudgeon_fast_interval_minutes` (i.e. we haven't already bumped), call `mcp__scheduled-tasks__update_scheduled_task` on the `dome-curmudgeon` task to set its interval to 30 minutes.
-- If `analyst_current_interval_minutes !== analyst_fast_interval_minutes`, call `mcp__scheduled-tasks__update_scheduled_task` on `dome-analyst` to set its interval to 30 minutes.
-- If `decider_current_interval_minutes !== decider_fast_interval_minutes`, call `mcp__scheduled-tasks__update_scheduled_task` on `dome-decider` to set its interval to 60 minutes.
+- Check if any of the three agents need bumping to fast intervals (curmudgeon→30min, analyst→30min, decider→60min).
 - Update `priority-queue.json`: set the corresponding `schedule_state.*_current_interval_minutes` fields, `last_schedule_change = <ISO>`, `last_schedule_change_by = "decider"`.
+- Set a flag for Step E6: `schedule_action = "bump_to_fast"` with a list of which agents need bumping.
 - Log `churn_schedule_bumped` in the daily report.
 
-**If `mode === "churn-and-burn"` AND `queue.length === 0`:** The queue has been drained. Auto-restore ALL three Opus agents and auto-flip:
-- If `curmudgeon_current_interval_minutes !== curmudgeon_default_interval_minutes`, call `mcp__scheduled-tasks__update_scheduled_task` on `dome-curmudgeon` to restore interval to 240 minutes (4h).
-- If `analyst_current_interval_minutes !== analyst_default_interval_minutes`, call `mcp__scheduled-tasks__update_scheduled_task` on `dome-analyst` to restore interval to 120 minutes (2h).
-- If `decider_current_interval_minutes !== decider_default_interval_minutes`, call `mcp__scheduled-tasks__update_scheduled_task` on `dome-decider` to restore interval to 240 minutes (4h).
-- Update `priority-queue.json`: set `mode = "bau"`, `mode_set_by = "decider-auto-restore"`, `mode_set_at = <ISO>`, set all three `*_current_interval_minutes` to their defaults, `last_schedule_change = <ISO>`, `last_schedule_change_by = "decider"`.
+**If `mode === "churn-and-burn"` AND `queue.length === 0`:** The queue has been drained. Prepare auto-restore:
+- Update `priority-queue.json`: set `mode = "bau"`, `mode_set_by = "decider-auto-restore"`, `mode_set_at = <ISO>`, set all three `*_current_interval_minutes` to their defaults (curmudgeon→240, analyst→120, decider→240), `last_schedule_change = <ISO>`, `last_schedule_change_by = "decider"`.
+- Set a flag for Step E6: `schedule_action = "restore_to_bau"` with a list of which agents need restoring.
 - Log `churn_complete_auto_restore` in the daily report.
 
-**Self-healing invariant:** The system can never get stuck in fast mode. Once the queue drains, the next decider run restores BAU for ALL three Opus agents. If something weird happens and you see `mode === "churn-and-burn"` with an empty queue and schedules already at BAU defaults, just flip mode back to bau without touching the scheduler.
+**Self-healing invariant:** The system can never get stuck in fast mode. Once the queue drains, the next decider run restores BAU for ALL three Opus agents. If something weird happens and you see `mode === "bau"` with schedules still at fast intervals, set the flag for Step E6 to restore them.
 
 ### Step E5: Log queue state in daily report
 
@@ -211,6 +210,20 @@ Always include in the daily report:
   "action_taken": "none" | "bumped_to_fast" | "auto_restored_to_bau" | "mode_toggled_from_human_note"
 }
 ```
+
+### Step E6: Apply schedule changes (MUST BE LAST)
+
+**This step runs AFTER all commits, pushes, and reporting are complete.** The `update_scheduled_task` API calls require human approval in the Cowork UI, which blocks the run. By placing them last, all real work is already done and pushed before the block.
+
+If Step E4 set `schedule_action = "bump_to_fast"`:
+- For each agent that needs bumping, call `mcp__scheduled-tasks__update_scheduled_task` to set the fast interval.
+
+If Step E4 set `schedule_action = "restore_to_bau"`:
+- Call `mcp__scheduled-tasks__update_scheduled_task` on `dome-curmudgeon` to restore to 240 minutes (4h).
+- Call `mcp__scheduled-tasks__update_scheduled_task` on `dome-analyst` to restore to 120 minutes (2h).
+- Call `mcp__scheduled-tasks__update_scheduled_task` on `dome-decider` to restore to 240 minutes (4h).
+
+If Step E4 set no flag, skip this step entirely.
 
 ### How to push items onto the queue
 
