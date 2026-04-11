@@ -523,7 +523,7 @@ details .ks-summary::marker{display:none}
 details .ks-summary:hover{background:color-mix(in srgb,var(--accent) 8%,var(--card-bg))}
 details .ks-summary .ks-tldr{margin:.4rem 0 0;font-style:italic;color:#666;font-size:.92rem;line-height:1.4}
 @media(prefers-color-scheme:dark){details .ks-summary .ks-tldr{color:#aaa}}
-details .ks-summary::after{content:'▸ expand';float:right;font-size:.75rem;color:var(--accent);font-weight:600;margin-top:.3rem;letter-spacing:.03em}
+details .ks-summary::after{content:'▸ expand';display:block;font-size:.75rem;color:var(--accent);font-weight:600;margin-top:.5rem;letter-spacing:.03em}
 details[open] .ks-summary::after{content:'▾ collapse'}
 details .ks-detail{padding:.6rem 1.2rem 1.2rem;border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;background:var(--bg);margin-bottom:1.5rem}
 details[open] .ks-summary{border-radius:6px 6px 0 0;margin-bottom:0;border-bottom:none}
