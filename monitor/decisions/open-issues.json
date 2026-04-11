@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-11T10:38:33.577Z",
+  "last_updated": "2026-04-11T10:42:07.830Z",
   "issues": [
     {
       "id": "ISS-677",
@@ -136,46 +136,16 @@
       "notes": "Not urgent — existing Part 5 HTML is complete and correct via EXP-057. This is a refactoring to data-driven counts. Lower priority than content work."
     },
     {
-      "id": "ISS-720",
-      "win_id": null,
-      "severity": "major",
-      "category": "causal_inference",
-      "status": "open",
-      "description": "SEC-2b.7 CAUSAL INFERENCE: The endpoint removal paragraph states \"The removal is itself revealing: the endpoint was taken down shortly after this review documented its scoring pathologies.\" This implies the dome removed results.json BECAUSE of our review — a causal inference without evidence. We criticize the dome for post-hoc causal inference; applying the same standard to ourselves requires stating temporal facts only and letting readers draw conclusions.",
-      "source": "curmudgeon",
-      "found_by": "curmudgeon",
-      "found_date": "2026-04-11",
-      "section": "part2b",
-      "review_file": "SEC-2b.7-rewrite.c2.json",
-      "found_at": "2026-04-11T09:08:09.216Z"
-    },
-    {
-      "id": "ISS-721",
-      "win_id": null,
-      "severity": "major",
-      "category": "citation",
-      "status": "open",
-      "description": "SEC-2b.7 SCORING CRITERION UNCITED: The text states \"results.json defines a pass as direction_correct AND snr_sufficient\" as fact without citing its source. ISS-705-verification.json independently confirmed these are actual field names in the live data — cite this. Current text gives dome defenders an \"you inferred this\" attack surface.",
-      "source": "curmudgeon",
-      "found_by": "curmudgeon",
-      "found_date": "2026-04-11",
-      "section": "part2b",
-      "review_file": "SEC-2b.7-rewrite.c2.json",
-      "found_at": "2026-04-11T09:08:09.216Z"
-    },
-    {
       "id": "ISS-722",
       "win_id": null,
       "severity": "moderate",
       "category": "factual_error",
       "status": "open",
-      "description": "SEC-2b.7 TIMING IMPRECISION: \"between 2026-04-10 and 2026-04-11\" is imprecise. ISS-705-verification.json shows endpoint live at 2026-04-10T18:12 UTC; ISS-715-finding.json shows 404 by 2026-04-11T07:14 UTC. The 13-hour removal window should be stated precisely to match the evidential standard we hold the dome to.",
+      "description": "SEC-2b.7 TIMING IMPRECISION: \"between 2026-04-10 and 2026-04-11\" vague. Confirmed live 2026-04-10T18:12 UTC, 404 by 2026-04-11T07:14 UTC (13h window). Partially addressed in P1 patch.",
       "source": "curmudgeon",
       "found_by": "curmudgeon",
       "found_date": "2026-04-11",
-      "section": "part2b",
-      "review_file": "SEC-2b.7-rewrite.c2.json",
-      "found_at": "2026-04-11T09:08:09.216Z"
+      "found_at": "2026-04-11T10:42:07.830Z"
     },
     {
       "id": "ISS-723",
@@ -183,13 +153,11 @@
       "severity": "moderate",
       "category": "missing_argument",
       "status": "assigned-analyst",
-      "description": "SEC-2b.7 W001 SIGN-FLIP MISSED: ISS-705-verification.json reveals W001 predicted -2.1 nT but observed +3.73 nT — the SIGN is wrong, yet classified as below_detection_threshold rather than falsified. The section currently frames W001 as a non-detection excluded from failure denominator but misses the stronger point: the scoring rules have no sign-flip failure category. A directional miss is classified as non-detection. Analyst should add a paragraph documenting this.",
+      "description": "SEC-2b.7 W001 SIGN-FLIP MISSED: W001 predicted -2.1 nT, observed +3.73 nT — sign wrong, classified below_detection_threshold. Needs analyst expansion paragraph.",
       "source": "curmudgeon",
       "found_by": "curmudgeon",
       "found_date": "2026-04-11",
-      "section": "part2b",
-      "review_file": "SEC-2b.7-rewrite.c2.json",
-      "found_at": "2026-04-11T09:08:09.216Z"
+      "found_at": "2026-04-11T10:42:07.830Z"
     }
   ],
   "next_id": 725
