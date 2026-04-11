@@ -130,24 +130,24 @@
       }
     },
     {
-      "queue_id": 30,
+      "queue_id": 31,
       "target_type": "proposal",
-      "target_id": "EXP-050",
-      "reason": "EXP-050 revision 2 submitted (2026-04-11). Curmudgeon first gate (2026-04-10) returned ACCEPT_WITH_MODIFICATIONS with 7 blockers. Analyst has addressed all 7 blockers in revision 2 (EXP-050-revision2.json + EXP-050-numerics.json). Second gate pass required before decider integrates as section prose. ISS-696 blocks on this.",
+      "target_id": "EXP-050-r2",
+      "reason": "EXP-050 revision 2 second gate pass. Curmudgeon Cycle 1 returned ACCEPT_WITH_MODIFICATIONS (7 blockers). Analyst has addressed all 7 in revision 2 (EXP-050-revision2.json + EXP-050-numerics.json). Write review to reviews/EXP-050-r2.json. Existing review monitor/curmudgeon/reviews/EXP-050-proposal.c2.json is Cycle 1 gate only. ISS-696 blocks on this second gate.",
       "pushed_by": "decider",
-      "pushed_at": "2026-04-11T15:08:13.418Z",
+      "pushed_at": "2026-04-11T15:11:56.755Z",
       "context_hints": {
         "source_file": "monitor/analyst/expansions/EXP-050-revision2.json",
         "numerics_file": "monitor/analyst/expansions/EXP-050-numerics.json",
+        "cycle1_review": "monitor/curmudgeon/reviews/EXP-050-proposal.c2.json",
         "related_issues": [
           "ISS-696"
         ],
-        "human_note": "NOTE-2026-04-09-cat005 — two-phase workflow: proposal -> curmudgeon -> prose",
         "gate_cycle": 2
       }
     }
   ],
-  "next_id": 31,
+  "next_id": 32,
   "history": [
     {
       "queue_id": 1,
@@ -317,6 +317,13 @@
       "target_id": "EXP-050",
       "target_type": "proposal",
       "popped_at": "2026-04-11T12:13:05.324Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 30,
+      "target_id": "EXP-050",
+      "target_type": "proposal",
+      "popped_at": "2026-04-11T15:11:38.796Z",
       "popped_by": "decider"
     }
   ],
