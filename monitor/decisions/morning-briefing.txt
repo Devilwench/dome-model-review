@@ -1,59 +1,53 @@
 MORNING BRIEFING — 2026-04-11
-Generated: 2026-04-11T06:12:00Z
-Curmudgeon reviews processed this run: 0 (no new pending reviews)
-Previous decider run: 2026-04-11T05:00:00Z
+Generated: 2026-04-11T08:10:00Z
+Curmudgeon reviews processed this run: 1 batch (Wave 3b: 21 prediction verdicts)
+Previous decider run: 2026-04-11T07:12:11.991Z
 
 SITE HEALTH
-  Integrity: WARN (2026-04-10) — 99 failures all in predictions schema (known).
-             Core WIN/HTML/link/tab tests pass. No structural regressions.
-  Build: PASS — 2969/2969 tests pass after this run's patches.
-  Published: https://funwithscience-org.github.io/dome-model-review/
+  Dome site: stable, V51.1, 69 WINs — 8th consecutive quiet poll
+  Integrity: WARN (pre-existing false positives only). 2989 tests pass.
+  Build: passing. results.json confirmed 404 on all URL variants.
 
 EXTERNAL STATUS
-  Dome site changes: None detected this run.
-  Threat level: NONE
+  Dome changes: none this cycle. All 13 commits automated (monitor.py/pull_data.py).
+  New threat: none. results.json removal is notable but expected per analyst.
 
-INTERNAL STATUS (post-run)
-  Open issues: 10 (was 13 before this run — closed 3)
-  Severity: 0 critical | 3 major | 4 moderate | 3 minor
-  Closed this run: ISS-711, ISS-712, ISS-709 (3 issues)
+INTERNAL STATUS
+  New issues created: 4 (ISS-716 patched; ISS-717/718/719 pending-human verdicts)
+  Issues closed: 2 (ISS-715 as wontfix duplicate; ISS-716 fixed)
+  Open issues: 13 | Pending-human: 3 | Assigned-analyst: 5
 
-PATCHES SELF-APPLIED
-  1. SEC-6.4 WIN-024 [ISS-711/712 via EXP-067]:
-     - Changed WIN-024 subheading from "false correlation" to "false causal
-       attribution" (aligns with relabels_standard=false code_analysis tag)
-     - Added new closing paragraph preemptively addressing the relabeling
-       critique ("any theory should reproduce known observations") — now
-       explicitly acknowledged as fair before explaining why hollow relabeling
-       is different from legitimate re-explanation; WIN-064 featured as
-       exemplar of geometric incompatibility
-     - Fixed showTab pointer to 'wins' tab
-     - Inlined CA_NONRELABEL=21 (count of non-relabeling WINs)
-  2. SEC-2b.7 W004 namespace [ISS-709]:
-     - Added clarifying note: results.json uses its own W-number namespace
-       distinct from wins-page sidebar; prediction values confirm eclipse
-       identity for W004
+TOP 3 PRIORITY ACTIONS FOR HUMAN
 
-EXPANSION PIPELINE
-  EXP-067: INTEGRATED (SEC-6.4). Pushed to curmudgeon priority queue.
-  EXP-068: CREATED (ISS-703 SHA-256 forensics, major). Assigned to analyst.
-  EXP-065, 066: Previously pending (check analyst queue for status)
+  1. ⚠️ VERDICT DECISIONS NEEDED (ISS-717/718/719):
+     Curmudgeon found 3 prediction verdicts that are too lenient:
+     - W019 NMP drift: "standard_physics" → should be "falsified" (author REFINED = core claim failed)
+     - W020 Roaring 40s: "unfalsifiable" → should be "falsified" (≥3% threshold not met by author's own admission)
+     - PRED-NEW-002: "unfalsifiable" → should be "standard_physics" (9.2 km/s matches P-wave seismology)
+     These are in data/predictions.json. Cannot self-apply verdict changes. Human must edit and commit.
 
-CURMUDGEON QUEUE
-  Mode: CHURN-AND-BURN | Depth: 2 items
-  Queue: PRED-batch-2026-04-10-wave3, part6
-  Schedule: 30 min interval (already at fast cadence)
-  Action: None — system already at full speed
+  2. 📋 ANALYST BACKLOG (ISS-700/702):
+     Predictions catalog Wave 2-3 in progress. 15 genuinely prospective writeups and
+     Part 6 prose update pending analyst completion. No action needed from human now.
 
-TOP 3 PRIORITY ACTIONS
-  1. ANALYST: EXP-068 — SHA-256 recycling forensics on April 4 batch
-     (ISS-703, major). Check git commit timeline, classify restates_win
-     per prediction, write prose argument about crypto-envelope response
-     to our timestamping critique.
-  2. ANALYST: ISS-700/702 Waves 2-3 — Write individual prediction
-     writeups for 15 genuinely prospective entries and update Part 6
-     prose (backed by author's own "What Prospective Means" concession).
-  3. HUMAN: ISS-710 — Decision needed on expanding meta keywords tag for
-     rebrand resistance (requires generate-html.js change; social draft
-     ready at monitor/social/drafts/rebrand-resistance-strategy.md).
+  3. 🔧 PIPELINE CLEANUP:
+     ISS-693 (workspace-only analyst files) and EXP-050 (needs-revision) remain unresolved.
+     FUSE prevents deletion of processed proposal files — they're _processed in git and
+     will not trigger false positives on future runs (deleted from git this session).
 
+CURMUDGEON PROGRESS
+  Mode: churn-and-burn | Queue depth: 2 | Interval: 30 min
+  Queue: PRED-batch-2026-04-11, part2b-sec-2b.7
+  Popped this run: 2 (part6, part6-6.5 — reviews existed)
+  Cross-cutting finding: "REFINED" author status = prediction failed; W019/W020 undercounted failures
+
+CODE ANALYSIS TAG STATUS
+  CA_REVIEWED: {{CA_REVIEWED}} | CA_PENDING: {{CA_PENDING}} (computed at build time)
+  No new code analysis tags pending sync this run.
+
+NOTABLE SELF-APPLY THIS RUN
+  ✅ SEC-2b.7: Added temporal note — results.json endpoint removed circa 2026-04-11;
+     removal noted as itself revealing (dome removed scoreboard after we documented its pathologies)
+  ✅ PRED-094/099/100: restates_win fields populated (WIN-001, WIN-065, WIN-056)
+  ✅ expansion-tracker next_id self-healed (69→70)
+  ✅ Proposal files deleted from git (FUSE prevents workspace deletion)

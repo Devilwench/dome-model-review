@@ -21,37 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 19,
-      "target_type": "section-rewrite",
-      "target_id": "part6",
-      "reason": "Expansion EXP-067 integrated — SEC-6.4 WIN-024 taxonomy fix + relabeling defense paragraph. Rewritten content needs fresh curmudgeon attack.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-11T06:09:58.177Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-067.json",
-        "related_issues": [
-          "ISS-711",
-          "ISS-712"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 20,
-      "target_type": "section-rewrite",
-      "target_id": "part6-6.5",
-      "reason": "SEC-6.5 major rewrite: replaced W021 with W024 in the dome 4 failures list, corrected 0-Falsified misquote, added W021 as 5th uncounted failure, fixed W021 geometry claim (overpredicts not underpredicts). Verify corrected argument is coherent and internally consistent with Section 6.6.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-11T07:09:39.139Z",
-      "context_hints": {
-        "source_file": "data/sections.json (part6)",
-        "related_issues": [
-          "ISS-713"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 21,
       "target_type": "prediction-batch",
       "target_id": "PRED-batch-2026-04-11",
@@ -238,6 +207,20 @@
       "target_id": "PRED-batch-2026-04-10-wave3",
       "target_type": "prediction-batch",
       "popped_at": "2026-04-11T07:09:10.532Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 19,
+      "target_id": "part6",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-11T08:08:47.084Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 20,
+      "target_id": "part6-6.5",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-11T08:08:47.084Z",
       "popped_by": "decider"
     }
   ],
