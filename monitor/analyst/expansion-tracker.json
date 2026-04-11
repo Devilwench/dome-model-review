@@ -1248,6 +1248,16 @@
       "integration_mode": "section-prose + prediction-fields",
       "integrated_at": "2026-04-11T13:08:26.002Z",
       "integration_notes": "Added detail_reasoning to 8 PROS entries in predictions.json; added Section 6.11 to sections.json (part6); added PROS_TOTAL/PROS_PROMOTED/PROS_SUSPENDED placeholders to generate-html.js"
+    },
+    {
+      "id": "EXP-074",
+      "category": "pipeline_architecture",
+      "description": "Mode 5 design proposal: Prospective Bucket Monitor — automated detection of new PROS items, status transitions, and hit-rate computation",
+      "status": "complete",
+      "issue_ref": "ISS-677",
+      "created_at": "2026-04-11T14:30:00Z",
+      "completed_at": "2026-04-11T14:30:00Z",
+      "output_file": "monitor/analyst/expansions/EXP-074.json"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
