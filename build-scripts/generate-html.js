@@ -445,6 +445,7 @@ td.v-notdemo{background:var(--notdemo);font-weight:700}
 .tally{background:var(--card-bg);padding:.8rem 1rem;border-left:4px solid var(--accent);margin:1rem 0;font-size:.95rem}
 .evidence{background:var(--card-bg);border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;margin:.8rem 0}
 .evidence p{margin:.4rem 0}
+.pred-meta{font-size:.85rem;color:#888;margin:.2rem 0 .6rem}
 .verdict-tag{display:inline-block;padding:.15rem .5rem;border-radius:3px;font-weight:700;font-size:.85rem;margin:.3rem 0;border-left:3px solid transparent}
 .vt-refuted{background:var(--refuted);border-left-color:var(--refuted-solid)}.vt-std{background:var(--stdmodel);border-left-color:var(--stdmodel-solid)}.vt-selfcon{background:var(--selfcon);border-left-color:var(--selfcon-solid)}.vt-misleading{background:var(--misleading);border-left-color:var(--misleading-solid)}.vt-unfalsifiable{background:var(--unfalsifiable);border-left-color:var(--unfalsifiable-solid)}.vt-notdemo{background:var(--notdemo);border-left-color:var(--notdemo-solid)}
 .ca-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0 .2rem;padding:.5rem 0 0;border-top:1px solid var(--border)}
@@ -643,6 +644,173 @@ function sectionNav(prevTab, prevLabel, nextTab, nextLabel) {
   if (nextTab) html += `<a href="#" onclick="showTab('${nextTab}');window.scrollTo(0,0);return false" class="nav-next">${nextLabel} →</a>`;
   else html += '<span></span>';
   html += '</div>';
+  return html;
+}
+
+// ════ PREDICTION PANELS ════
+
+const PRED_VERDICT_CLASSES = {
+  'standard_physics': 'vt-std',
+  'recycled': 'vt-misleading',
+  'falsified': 'vt-refuted',
+  'unfalsifiable': 'vt-unfalsifiable',
+  'pending': 'vt-notdemo',
+};
+
+const PRED_VERDICT_LABELS = {
+  'standard_physics': 'Standard Physics',
+  'recycled': 'Recycled from WIN',
+  'falsified': 'Falsified',
+  'unfalsifiable': 'Unfalsifiable',
+  'pending': 'Pending',
+};
+
+const PRED_TD_CLASSES = {
+  'standard_physics': 'v-std',
+  'recycled': 'v-misleading',
+  'falsified': 'v-refuted',
+  'unfalsifiable': 'v-unfalsifiable',
+  'pending': 'v-notdemo',
+};
+
+function formatPredictionDetail(pred) {
+  if (!pred.detail_reasoning && !pred.claim) return '';
+
+  const verdict = pred.our_verdict || 'pending';
+  const verdictClass = PRED_VERDICT_CLASSES[verdict] || '';
+  const verdictLabel = PRED_VERDICT_LABELS[verdict] || verdict;
+  const anchorId = 'pred-' + pred.id.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+  let html = `<div class="evidence" id="${anchorId}">\n`;
+  html += `<h3>${escapeHtml(pred.id)}: ${escapeHtml(pred.claim || 'No claim text')}</h3>\n`;
+
+  // Metadata line
+  const meta = [];
+  if (pred.category) meta.push(`<strong>Category:</strong> ${escapeHtml(pred.category)}`);
+  if (pred.registration_date) meta.push(`<strong>Registered:</strong> ${escapeHtml(pred.registration_date)}`);
+  if (pred.test_window) meta.push(`<strong>Test window:</strong> ${escapeHtml(typeof pred.test_window === 'string' ? pred.test_window : pred.test_window.closes || 'open')}`);
+  if (pred.author_status) meta.push(`<strong>Author status:</strong> ${escapeHtml(pred.author_status)}`);
+  if (meta.length) {
+    html += `<p class="pred-meta">${meta.join(' · ')}</p>\n`;
+  }
+
+  // Restates WIN cross-reference
+  if (pred.restates_win) {
+    // Normalize: strip "WIN-" prefix if present, get bare number
+    const rawWin = String(pred.restates_win).replace(/^WIN-/i, '');
+    const winId = rawWin.padStart(3, '0');
+    html += `<p><strong>Restates:</strong> <a href="#win${winId}" onclick="showTab('wins');return false">WIN-${escapeHtml(winId)}</a></p>\n`;
+  }
+
+  // Verdict tag + reasoning
+  if (pred.detail_reasoning) {
+    html += `<p><span class="verdict-tag ${verdictClass}">${escapeHtml(verdictLabel).toUpperCase()}</span> ${escapeHtml(pred.detail_reasoning)}</p>\n`;
+  } else if (verdict !== 'pending') {
+    html += `<p><span class="verdict-tag ${verdictClass}">${escapeHtml(verdictLabel).toUpperCase()}</span></p>\n`;
+  } else {
+    html += `<p><span class="verdict-tag vt-notdemo">AWAITING ASSESSMENT</span></p>\n`;
+  }
+
+  html += `</div>\n`;
+  return html;
+}
+
+function formatPredictionTableRow(pred) {
+  const verdict = pred.our_verdict || 'pending';
+  const tdClass = PRED_TD_CLASSES[verdict] || '';
+  const verdictLabel = PRED_VERDICT_LABELS[verdict] || verdict;
+  const anchorId = 'pred-' + pred.id.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  const restatesDisplay = pred.restates_win
+    ? 'WIN-' + String(pred.restates_win).replace(/^WIN-/i, '').padStart(3, '0')
+    : '';
+  return `<tr><td><a href="#${anchorId}">${escapeHtml(pred.id)}</a></td><td>${escapeHtml(pred.claim || '')}</td><td class="${tdClass}">${escapeHtml(verdictLabel)}</td><td>${escapeHtml(restatesDisplay)}</td></tr>`;
+}
+
+function renderPredictionPanels(predictions) {
+  const entries = predictions.entries || [];
+
+  // Split into tombstone (genuinely prospective) vs mined
+  const tombstone = entries.filter(e =>
+    e.is_genuinely_prospective === true &&
+    (e.entry_type === 'prediction' || e.entry_type === 'tracking')
+  );
+  const mined = entries.filter(e =>
+    e.is_genuinely_prospective !== true &&
+    (e.entry_type === 'prediction' || e.entry_type === 'tracking')
+  );
+  // Operational items (data_watch, manual_test) — shown as a collapsed list
+  const operational = entries.filter(e =>
+    e.entry_type === 'data_watch' || e.entry_type === 'manual_test'
+  );
+
+  // Compute verdict tallies for each group
+  function tallyVerdicts(arr) {
+    const t = {};
+    arr.forEach(e => {
+      const v = e.our_verdict || 'pending';
+      t[v] = (t[v] || 0) + 1;
+    });
+    return t;
+  }
+
+  const tombstoneTally = tallyVerdicts(tombstone);
+  const minedTally = tallyVerdicts(mined);
+
+  let html = '';
+
+  // ── Tombstone Predictions ──
+  html += `<h2 id="pred-tombstone">The Dome's Official Prospective Predictions</h2>\n`;
+  html += `<p>The dome's predictions page designates ${tombstone.length} entries as genuinely prospective — predictions registered <em>before</em> the data comes in. These are the strongest category: if even one produces a novel, verified result that standard physics cannot explain, the dome model would earn real scientific credibility. Below we assess each one.</p>\n`;
+
+  // Tombstone summary scorecard
+  html += `<div class="scorecard" style="grid-template-columns:repeat(${Object.keys(tombstoneTally).length},1fr)">\n`;
+  for (const [v, count] of Object.entries(tombstoneTally)) {
+    const label = PRED_VERDICT_LABELS[v] || v;
+    html += `<div class="sc-card sc-sm" style="border-left:4px solid var(--${v === 'standard_physics' ? 'stdmodel' : v === 'recycled' ? 'misleading' : v === 'falsified' ? 'refuted' : v === 'unfalsifiable' ? 'unfalsifiable' : 'notdemo'}-solid)">\n`;
+    html += `<div class="sc-number">${count}</div>\n<div class="sc-label">${escapeHtml(label)}</div>\n</div>\n`;
+  }
+  html += `</div>\n`;
+
+  // Tombstone table
+  html += `<table><thead><tr><th>ID</th><th>Claim</th><th>Our Verdict</th><th>Restates</th></tr></thead><tbody>\n`;
+  html += tombstone.map(formatPredictionTableRow).join('\n');
+  html += `\n</tbody></table>\n`;
+
+  // Tombstone detail panels
+  html += tombstone.map(formatPredictionDetail).join('\n');
+
+  // ── Mined Predictions ──
+  html += `<h2 id="pred-mined">Extracted Predictions — Registered After the Data</h2>\n`;
+  html += `<p>Beyond the dome's official prospective set, the predictions page contains ${mined.length} additional entries that we extracted and assessed independently. Most were registered <em>after</em> the relevant data was already published, restating existing WINs under new prediction IDs — what we classify as "recycled." Others are standard physics results repackaged as dome predictions. A prediction registered after its outcome is known is not a prediction; it is a postdiction.</p>\n`;
+
+  // Mined summary scorecard
+  html += `<div class="scorecard" style="grid-template-columns:repeat(${Object.keys(minedTally).length},1fr)">\n`;
+  for (const [v, count] of Object.entries(minedTally)) {
+    const label = PRED_VERDICT_LABELS[v] || v;
+    html += `<div class="sc-card sc-sm" style="border-left:4px solid var(--${v === 'standard_physics' ? 'stdmodel' : v === 'recycled' ? 'misleading' : v === 'falsified' ? 'refuted' : v === 'unfalsifiable' ? 'unfalsifiable' : 'notdemo'}-solid)">\n`;
+    html += `<div class="sc-number">${count}</div>\n<div class="sc-label">${escapeHtml(label)}</div>\n</div>\n`;
+  }
+  html += `</div>\n`;
+
+  // Mined table
+  html += `<table><thead><tr><th>ID</th><th>Claim</th><th>Our Verdict</th><th>Restates</th></tr></thead><tbody>\n`;
+  html += mined.map(formatPredictionTableRow).join('\n');
+  html += `\n</tbody></table>\n`;
+
+  // Mined detail panels
+  html += mined.map(formatPredictionDetail).join('\n');
+
+  // ── Operational Tracking ──
+  if (operational.length > 0) {
+    html += `<h2 id="pred-operational">Operational Tracking Items</h2>\n`;
+    html += `<p>These ${operational.length} entries are not predictions in the scientific sense — they are data watches and manual tests that monitor ongoing phenomena relevant to the dome's claims. They are listed here for completeness.</p>\n`;
+    html += `<table><thead><tr><th>ID</th><th>Type</th><th>Description</th></tr></thead><tbody>\n`;
+    operational.forEach(e => {
+      html += `<tr><td>${escapeHtml(e.id)}</td><td>${escapeHtml(e.entry_type)}</td><td>${escapeHtml(e.claim || '')}</td></tr>\n`;
+    });
+    html += `</tbody></table>\n`;
+  }
+
   return html;
 }
 
@@ -1117,6 +1285,8 @@ ${sectionNav('pages', 'Live Power Dashboard', 'predictions', 'Predictions Analys
 <div class="tab-content" id="predictions">
 
 ${renderSectionFromJson('part6', context, winsByVerdict, wins, tally, sectionNav)}
+
+${renderPredictionPanels(predictions)}
 
 ${sectionNav('killshots', 'Kill Shots', 'falsify', 'External Tests')}
 

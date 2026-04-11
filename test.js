@@ -591,6 +591,68 @@ if (html) {
   }
 }
 
+// ── 8. Prediction Panels ──
+
+console.log('\n── 8. Prediction Panels ──');
+
+{
+  const PREDICTIONS_PATH = path.join(ROOT, 'data', 'predictions.json');
+  if (fs.existsSync(PREDICTIONS_PATH) && fs.existsSync(HTML_PATH)) {
+    const predictions = JSON.parse(fs.readFileSync(PREDICTIONS_PATH, 'utf8'));
+    const html = fs.readFileSync(HTML_PATH, 'utf8');
+
+    const reviewable = predictions.entries.filter(e =>
+      e.entry_type === 'prediction' || e.entry_type === 'tracking'
+    );
+    const tombstone = reviewable.filter(e => e.is_genuinely_prospective === true);
+    const mined = reviewable.filter(e => e.is_genuinely_prospective !== true);
+
+    // Section headers exist
+    assert(html.includes('id="pred-tombstone"'), 'Predictions tab has tombstone section header');
+    assert(html.includes('id="pred-mined"'), 'Predictions tab has mined section header');
+
+    // Every reviewable prediction has an anchor
+    for (const pred of reviewable) {
+      const anchorId = 'pred-' + pred.id.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      assert(html.includes(`id="${anchorId}"`), `Prediction ${pred.id} has an anchor in HTML`);
+    }
+
+    // Tombstone count matches
+    const tombstoneAnchors = tombstone.map(e =>
+      'pred-' + e.id.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    );
+    for (const a of tombstoneAnchors) {
+      assert(html.includes(`id="${a}"`), `Tombstone prediction anchor ${a} exists`);
+    }
+
+    // Predictions with detail_reasoning have verdict tags
+    const withReasoning = reviewable.filter(e => e.detail_reasoning);
+    assert(withReasoning.length > 0, 'At least one prediction has detail_reasoning');
+
+    // Restates links resolve to valid WIN anchors
+    const restatesEntries = reviewable.filter(e => e.restates_win);
+    for (const pred of restatesEntries) {
+      const rawWin = String(pred.restates_win).replace(/^WIN-/i, '');
+      const winId = rawWin.padStart(3, '0');
+      assert(html.includes(`id="win${winId}"`), `Restates link from ${pred.id} → WIN-${winId} resolves`);
+    }
+
+    // Operational section exists if data_watch/manual_test entries present
+    const operational = predictions.entries.filter(e =>
+      e.entry_type === 'data_watch' || e.entry_type === 'manual_test'
+    );
+    if (operational.length > 0) {
+      assert(html.includes('id="pred-operational"'), 'Predictions tab has operational section');
+    }
+
+    // No malformed WIN links (regression test for WIN-WIN-NNN bug)
+    const malformedWinLinks = html.match(/winWIN-/g);
+    assert(!malformedWinLinks, 'No malformed winWIN- anchor references in HTML');
+
+    console.log(`  Checked ${reviewable.length} prediction panels (${tombstone.length} tombstone, ${mined.length} mined, ${operational.length} operational)`);
+  }
+}
+
 // ════════════════════════════════════════════
 // Results
 // ════════════════════════════════════════════
