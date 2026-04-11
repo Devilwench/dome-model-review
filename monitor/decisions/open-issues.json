@@ -3,31 +3,6 @@
   "last_updated": "2026-04-11T05:27:57.877Z",
   "issues": [
     {
-      "id": "ISS-442",
-      "win_id": null,
-      "severity": "major",
-      "category": "verdict",
-      "status": "pending-human",
-      "found_by": "curmudgeon-hol-taxonomy",
-      "found_at": "2026-04-07T12:00:00Z",
-      "description": "VERDICT CATEGORY OVERLOAD: 'Misleading' verdict conflates 4 distinct failure modes: (1) data misrepresentation, (2) duplication/redundancy, (3) non-discrimination (observation explained by multiple models equally), (4) circular derivation. 23 WINs under one label implies systematic dishonesty, but many are simply non-discriminating observations. Consider subcategory 'Non-Discriminating' or move non-discriminating WINs to 'Std Model Explains'. Affects verdict taxonomy coherence and reviewer's interpretation of dome author intent.",
-      "source": "curmudgeon-hol-taxonomy",
-      "found_date": "2026-04-07",
-      "rationale_for_deferral": "Verdict taxonomy restructuring requires human editorial decision on subcategory definitions"
-    },
-    {
-      "id": "ISS-675",
-      "win_id": null,
-      "severity": "minor",
-      "category": "security",
-      "status": "pending-human",
-      "found_by": "human-session",
-      "found_at": "2026-04-09T07:43:16.111Z",
-      "description": "GitHub PAT stored on disk in workspace FUSE mount at .workspace-sync-token (gitignored, chmod 600). Required so the dome-workspace-sync agent — which runs in its own ephemeral session at a different path — can authenticate pushes without depending on dome-review-clean existing in its session. File is local-only (never committed, verified via git check-ignore and git ls-files), so threat surface is limited to processes running as the workspace user on this machine. Cleanup options to consider when convenient: (a) replace static PAT with a short-lived GitHub App installation token minted on demand, (b) move secret to an OS keychain / credential helper that the agent can call into instead of a flat file, (c) at minimum, rotate the PAT periodically and document the rotation procedure (update .workspace-sync-token AND dome-review-clean/.git/config remote URL, then revoke old PAT). Not urgent — file is not exposed beyond the local VM workspace.",
-      "source": "workspace-sync credential setup, 2026-04-09",
-      "rationale_for_deferral": "Secure credential storage requires human decision on approach (GitHub App vs keychain vs rotation policy)"
-    },
-    {
       "id": "ISS-677",
       "win_id": null,
       "severity": "moderate",
@@ -169,19 +144,19 @@
       "found_at": "2026-04-10T21:06:49.390Z",
       "source": "monitor/curmudgeon/reviews/SEC-2b.7.c2.json",
       "blocker": false,
-      "notes": "Curmudgeon Cycle 2 flagged as blocker — do not publish section 2b.7 until verified. Two hypotheses: (a) results.json uses different W-number namespace than wins page (W004 in results.json IS the eclipse despite wins-page W004 being noise-floor); (b) analyst misidentified the entry. Check results.json W004 entry title and prediction field (-10 ± 2 nT matches WIN-025 BOU baseline, not -22.24 nT noise-floor).\n[2026-04-11] W004/WIN-025 verification: section 2b.7 cites prediction \"-10 ± 2 nT and observation -17.6 nT (sigma_distance 3.8)\" for the W004 entry. WIN-025 is the 2024 Eclipse 9-Station test at BOU station (-10 ± 2 nT). Raw-text/02-wins.txt lists wins-page W004 as \"Noise Floor Limit (-22.24 nT)\" — a different namespace. Curmudgeon hypothesis (a) confirmed: results.json uses its own W-numbering distinct from the wins-page sidebar. The prediction values (-10 ± 2 nT) unambiguously identify the eclipse, not the noise-floor. live results.json fetch returned 404 (URL may have changed). Section mapping appears correct based on internal evidence. Blocker downgraded to minor. Recommend: add a clarifying note to the section text distinguishing results.json W-numbers from wins-page W-numbers."
+      "notes": "Curmudgeon Cycle 2 flagged as blocker — do not publish section 2b.7 until verified. Two hypotheses: (a) results.json uses different W-number namespace than wins page (W004 in results.json IS the eclipse despite wins-page W004 being noise-floor); (b) analyst misidentified the entry. Check results.json W004 entry title and prediction field (-10 ± 2 nT matches WIN-025 BOU baseline, not -22.24 nT noise-floor).\n[2026-04-11] W004/WIN-025 verification: section 2b.7 cites prediction \"-10 ± 2 nT and observation -17.6 nT (sigma_distance 3.8)\" for the W004 entry. WIN-025 is the 2024 Eclipse 9-Station test at BOU station (-10 ± 2 nT). Raw-text/02-wins.txt lists wins-page W004 as \"Noise Floor Limit (-22.24 nT)\" — a different namespace. Curmudgeon hypothesis (a) confirmed: results.json uses its own W-numbering distinct from the wins-page sidebar. The prediction values (-10 ± 2 nT) unambiguously identify the eclipse, not the noise-floor. live results.json fetch returned 404 (URL may have changed). Section mapping appears correct based on internal evidence. Blocker downgraded to minor. Recommend: add a clarifying note to the section text distinguishing results.json W-numbers from wins-page W-numbers.\n[2026-04-11] Human review: not a human decision — decider can patch a clarifying note into SEC-2b.7 distinguishing results.json W-numbers from wins-page W-numbers. Reassigned to normal pipeline."
     },
     {
       "id": "ISS-710",
       "win_id": null,
       "severity": "minor",
       "category": "infrastructure",
-      "status": "open",
+      "status": "approved",
       "description": "SOCIAL: Keywords meta tag expansion for rebrand-resistance. Social analyst recommends expanding keywords meta tag to include ECM alternative names (Ovoid Cavity Model, Closed Toroidal Ovoid, dome cosmology) and numerical fingerprints (20015 km, 8537 km, firmament height) to survive potential model rename. See monitor/social/drafts/rebrand-resistance-strategy.md for full strategy.",
       "found_by": "social-analyst",
       "found_at": "2026-04-10T22:08:18.885Z",
       "source": "monitor/social/drafts/rebrand-resistance-strategy.md",
-      "notes": "Social draft action_needed: decide whether to expand keywords meta tag. Not deployed — needs human approval before committing to docs/."
+      "notes": "Social draft action_needed: decide whether to expand keywords meta tag. Not deployed — needs human approval before committing to docs/.\n[2026-04-11] Human approved: go ahead with keywords meta tag expansion for rebrand resistance."
     },
     {
       "id": "ISS-711",
