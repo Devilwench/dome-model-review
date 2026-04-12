@@ -1,65 +1,56 @@
 MORNING BRIEFING — 2026-04-13
-Generated: 2026-04-13T00:00:00Z
-Curmudgeon reviews processed this run: 0 (digest empty)
-Previous decider run: 2026-04-12T23:55:00Z
+Generated: 2026-04-13T14:30:00Z
+Curmudgeon reviews processed this run: 3 (SEC-1.8.1-EXP127, SEC-1.3, SEC-1.4)
+Previous decider run: 2026-04-12T23:55Z
 
-══════════════════════════════════════════
 SITE HEALTH
-══════════════════════════════════════════
-Dome site: QUIET (11th consecutive quiet poll). No changes detected.
-  - Version: V51.1 (unchanged)
-  - WIN count: 69 (unchanged)
-  - Canary: NOT triggered (OTS methodology unchanged)
+  Build: PASS (3297 tests passed, 0 failed)
+  Integrity: not run this cycle
+  HTML file: 1033.2 KB
 
-Integrity: Pre-existing failures carried from prior runs:
-  - data_prose_consistency FAIL (pre-existing)
-  - priority_queue_coupling FAIL (pre-existing)
-  - workspace_sync_skip_log FAIL (pre-existing)
-  - build_reproducibility FAIL (pre-existing)
-  None new this run. Tests: 3297 passed, 0 failed ✅
+EXTERNAL STATUS
+  Dome changes: none detected
+  Canary status: not triggered
 
-══════════════════════════════════════════
-THIS RUN
-══════════════════════════════════════════
-✅ Integrated EXP-086: Full rewrite of SEC-6.1 "Zero Fitted Parameters"
-   - Corrects two-pole formula (r_N ≠ r_S — terms do NOT simplify to 127,228)
-   - Both formula versions now addressed: single-pole 60,000 nT + two-pole 62,376/64,852 nT
-   - 7+ hidden parameters audited and named explicitly
-   - κ tautology added: "predicted" 1.67 and "observed" 1.677 both trace to same eclipse events
-   - λ_g narrower defense addressed: H_0 = 8,537 km differs 12.1% from Schumann-derived 9,572 km
-   - "Fitted then locked ≠ derived then tested" distinction made explicit
-   - Closed: ISS-762, ISS-772
+CRITICAL FINDING — FABRICATED CITATIONS CORRECTED
+  OPEN-007 does not exist in dome's open problem list (only OPEN-001/003/004/006 active).
+  Three live references were fabricated: WIN-051, WIN-059, part9 conclusions.
+  All corrected this run (ISS-848). Underlying arguments are factually accurate.
+  Analyst attention items filed: verify WIN-051 and WIN-059 revised evidence is sufficient.
 
-✅ Processed proposal: proposal-ISS-762-resolution.json
+PATCHES APPLIED (7 self-applied, all passing tests)
+  ISS-848 (CRITICAL): Removed fabricated OPEN-007 from WIN-051, WIN-059, part9
+  ISS-849 (MAJOR):    SEC-1.3 TLDR: JPL ephemerides → IGRF (documented dependency)
+  ISS-851 (MAJOR):    SEC-1.4: Git timestamp nuance (detective vs preventive controls)
+  ISS-852 (MAJOR):    SEC-1.4: Eclipse 2026 pre-emption + WIN-012 κ=1.67 caveat
+  ISS-853 (MODERATE): SEC-1.4: SHA-256 hashes mentioned (content integrity ≠ temporal priority)
+  ISS-854 (MODERATE): Bundled with ISS-852
+  ISS-857 (MODERATE): EXP-087 eval-guide section applied
 
-══════════════════════════════════════════
-CURMUDGEON QUEUE
-══════════════════════════════════════════
-Mode: BAU | Depth: 9 | Interval: 240 min (correct)
-Queue: part1-section-1-8-1, SEC-5-post-EXP082, SEC-1.1-post-fix, part1,
-       SEC-1.8-post-EXP129, SEC-killshots-rating-key, PRED-batch-EXP-085-2026-04-12,
-       SEC-2b.7-post-EXP137, SEC-6.1-post-EXP086 (NEW this run)
-Schedule action: none needed
+EXP-087 INTEGRATED
+  New section: Verdict Assignment Criteria (eg-verdicts) added to Evaluation Guide tab.
+  Verdict-legend Misleading definition updated: now includes count inflation.
+  EXP-110 marked no-op (duplicate of EXP-087 work). ISS-765 closed.
 
-══════════════════════════════════════════
-ISSUE TRACKER
-══════════════════════════════════════════
-Open: 52 (34 major, 16 moderate, 2 minor)
-Closed this run: 2 (ISS-762, ISS-772)
-Pending-human: ISS-844 (WIN-025 verdict), ISS-845 (WIN-010/SEC-1.8 verdict)
+NEW OPEN WORK
+  EXP-142: SEC-1.3 full rewrite needed (analyst) — TLDR/body disconnect, no dome vs globe comparison
+  EXP-143: Defense neutralization for n(r) scope argument (curmudgeon queue first, then analyst)
+  ISS-855: EXP-127 wrong n(r) values — fix before eclipse section re-integration
+  ISS-856: EXP-127 moon altitude framing — fix before re-integration
 
-══════════════════════════════════════════
 TOP 3 PRIORITY ACTIONS
-══════════════════════════════════════════
-1. [HUMAN] Decide WIN-025 Self-Contradicted cascade (ISS-844)
-   Should WIN-025 match the refraction cascade flip of WIN-010/WIN-068?
-   Cannot self-apply — verdict change requires human judgment.
+  1. Analyst: EXP-142 — SEC-1.3 full rewrite [medium]
+  2. Curmudgeon: Review EXP-143 (n(r) scope defense, scores 3/5) [high]
+  3. Analyst: ISS-855/856 — fix EXP-127 content before eclipse section re-integration [backlog]
 
-2. [HUMAN] Review ISS-845 WIN-010/SEC-1.8 verdict change implications
-   Both ISS-844 and ISS-845 are pending-human. A single human session can
-   clear both together (they're linked via refraction cascade).
+CURMUDGEON QUEUE
+  Mode: BAU | Depth: 9 | Schedule: 240 min intervals
+  Items: SEC-1.1-post-fix, part1, SEC-1.8-post-EXP129, SEC-killshots-rating-key,
+         PRED-batch-EXP-085-2026-04-12, SEC-2b.7-post-EXP137, SEC-6.1-post-EXP086,
+         eval-guide-eg-verdicts (NEW), EXP-143 (NEW)
 
-3. [BACKLOG] Analyst: 52 open issues remain, many assigned-analyst.
-   EXP-086 is now integrated — analyst can move to next items.
-
-══════════════════════════════════════════
+STATS
+  Total WINs: 70 (query: node -e "console.log(JSON.parse(require('fs').readFileSync('data/wins.json','utf8')).length)")
+  Open issues: 54 (net +2 after this run: 10 created, 8 closed)
+  EXP pending: 53
+  Closed issues total: 704

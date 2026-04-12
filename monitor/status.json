@@ -28,7 +28,8 @@
   "curmudgeon_queue_depth": 8,
   "build_drift_resolved": true,
   "pipeline_bugs": [],
-  "last_decider_run": "2026-04-12T22:47:43.900Z",
+  "last_decider_run": "2026-04-12T23:46:49.529Z",
   "wins_count": 70,
-  "curmudgeon_mode": "bau"
+  "curmudgeon_mode": "bau",
+  "last_updated": "2026-04-12T23:46:49.529Z"
 }
