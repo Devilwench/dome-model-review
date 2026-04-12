@@ -635,16 +635,16 @@ function formatWinDetail(win) {
     const vdTldr = win.tldr_verdict
       ? `<p class="ks-tldr">${escapeHtml(win.tldr_verdict)}</p>`
       : '';
+    const extraHtml = win.detail_extra ? `<p>${win.detail_extra}</p>\n` : '';
     if (vdTldr) {
       html += `<details class="win-section"><summary class="ks-summary"><span class="verdict-tag ${verdictShortClass}">${escapeHtml(win.verdict).toUpperCase()}</span>${vdTldr}</summary>\n`;
-      html += `<div class="ks-detail"><p>${win.detail_verdict_text}</p></div>\n</details>\n`;
+      html += `<div class="ks-detail"><p>${win.detail_verdict_text}</p>${extraHtml}</div>\n</details>\n`;
     } else {
       html += `<p><span class="verdict-tag ${verdictShortClass}">${escapeHtml(win.verdict).toUpperCase()}</span> ${win.detail_verdict_text}</p>\n`;
+      if (win.detail_extra) {
+        html += `<p>${win.detail_extra}</p>\n`;
+      }
     }
-  }
-
-  if (win.detail_extra) {
-    html += `<p>${win.detail_extra}</p>\n`;
   }
 
   // Code analysis tags
