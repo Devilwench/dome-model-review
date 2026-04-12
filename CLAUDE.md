@@ -29,36 +29,7 @@ All WIN data lives in `data/wins.json`. The HTML site and PDF are generated from
 
 ### Progressive Disclosure (UX Structure)
 
-Every prose section across all tabs is wrapped in `<details>`/`<summary>` HTML5 elements with 2–3 sentence TLDRs. This gives readers a scannable overview before they dive into detail.
-
-**CSS classes:**
-- `ps-summary`, `ps-tldr`, `ps-detail` — prose sections (parts 1–10, evaluation guide, timestamp error, references)
-- `ks-summary`, `ks-tldr`, `ks-detail` — kill-shot tests (part5) and individual prediction panels (part6 tombstone predictions)
-
-**Structure per section:**
-```html
-<details id="p7-71-0"><summary class="ps-summary">
-  <h2 style="display:inline;margin:0">7.1 Section Title</h2>
-  <p class="ps-tldr">2–3 sentence plain-language TLDR.</p>
-</summary><div class="ps-detail">
-  ...full prose content...
-</div></details>
-```
-
-**Where TLDRs live:**
-- Prose sections: embedded in `sections.json` HTML, wrapping each `<h2>` section
-- Kill shots: embedded in `sections.json` (part5), one `<details>` per test
-- WIN panels: `wins.json` has `tldr_evidence` and `tldr_verdict` fields per WIN; `formatWinDetail()` in `generate-html.js` renders each as a `<details class="win-section">` with `ks-summary`/`ks-tldr`. WINs without TLDRs fall back to old flat format.
-- Prediction panels: `predictions.json` has a `tldr` field per prediction; `formatPredictionDetail()` in `generate-html.js` renders it into `ks-tldr`
-- Evaluation Guide + Timestamp Error: inline in `generate-html.js` template
-
-**TLDR writing rules:**
-- Plain language — written for a non-science reader, not a physicist
-- 2–3 sentences max — punchline first, then why in one sentence
-- Factually accurate — but don't split hairs on nuance; the expanded detail handles that
-- Kill-shot style — lead with the verdict/key issue
-
-**Nested progressive disclosure:** Section 4.2 (Eclipse Analysis) has two levels — expanding 4.2 reveals an intro plus 6 individually collapsible subsections (4.2.1–4.2.6).
+All prose sections use `<details>`/`<summary>` with 2–3 sentence TLDRs. CSS classes: `ps-*` (prose), `ks-*` (kill-shots/predictions). Full structure docs in `reference/BUILD-AND-CHANGE.md`.
 
 ### Build Pipeline
 
@@ -85,7 +56,7 @@ The workspace mount (`/mnt/dome-model-review/`) uses a FUSE filesystem that **do
 
 **If the workspace falls out of sync**, `build.js publish` will fix it on next push. To manually sync: `cp` the files from the clean clone to the workspace.
 
-**Prompt sync gotcha:** Agent prompt files (`monitor/prompts/*.md`) are git-owned, so they only reach the FUSE workspace via `build.js publish`. If you push prompt changes to git without running a full publish, scheduled agents will keep running the **old** prompt until the next publish copies it over. When editing prompts outside of a publish cycle, always manually sync: `cp dome-review-clean/monitor/prompts/foo.md mnt/dome-model-review/monitor/prompts/foo.md`.
+**Prompt sync gotcha:** Prompt files are git-owned — pushed changes don't reach FUSE (and thus scheduled agents) without `build.js publish` or manual `cp`.
 
 ### File Ownership Rules (Phase 1)
 
@@ -137,61 +108,16 @@ Eight scheduled agents run continuously. All prompts live in `monitor/prompts/*.
 | dome-social | Daily 11 AM | Sonnet | `social.md` | Machine-readable layer, discoverability, search rankings |
 | dome-workspace-sync | Every 4h | Haiku | `workspace-sync.md` | Commits workspace-only files to git |
 
-### Data Flow
+### Data Flow (summary)
 
-```
-NEW WIN ONBOARDING (highest priority):
-Poller detects dome WIN count > our wins.json count
-         ↓
-Analyst Mode 0 → writes entries to monitor/analyst/new-wins/WIN-NNN.json
-         ↓
-Decider step 1f → commits to wins.json, adds to curmudgeon tracker,
-                   pushes to priority-queue.json, builds/tests/pushes
-         ↓
-Curmudgeon step 0b → pops next priority queue item (FIFO), reviews, exits
+**Primary loops** — each runs continuously via the scheduled agents:
 
-CURMUDGEON → DECIDER PIPELINE:
-Curmudgeon → reviews/WIN-NNN.cN.json (change-driven or priority queue)
-         ↓
-digest-reviews.js → pending-digest.json
-         ↓
-Decider reads digest → creates issues → writes patches → self-applies
-         ↓
-Decider closes fixed issues: open-issues.json → closed-issues.json
-Decider optionally → attention-inbox.json (if patches affect analyst's prior work)
-
-CURMUDGEON CHANGE DETECTION (when priority queue is empty):
-Curmudgeon compares text_fingerprint from prior reviews against current data
-         ↓
-Items with >20% field length change or verdict change → re-review
-         ↓
-If nothing changed → holistic review → spot-check
-
-EXPANSION PIPELINE:
-Decider: unpatchable issues → assigned-analyst → Analyst picks up as EXP item
-Analyst → expansion-tracker.json (status: complete) → expansions/EXP-NNN.json
-         ↓
-Decider step 2a → reads completed expansions → patches sections.json
-
-ANALYST ATTENTION INBOX:
-Decider patches content → writes to attention-inbox.json
-         ↓
-Analyst Mode 2b → checks inbox → re-examines affected content → marks resolved
-
-DEFENSE NEUTRALIZATION:
-Curmudgeon advocate_mode.defense_survives >= 3
-         ↓
-Decider → creates EXP item (category: defense)
-         ↓
-Analyst Mode 3 → writes neutralization to expansions/DEF-NNN.json
-
-SUPPORTING FLOWS:
-Human notes: human-notes.json → Agent reads on next run → acts → marks consumed
-Poller → changes/ → Analyst/Decider read these
-Integrity → integrity/report-*.json → Decider reads these
-Social → drafts to monitor/social/drafts/ (llms.txt, sitemap, etc.) → Decider reviews and commits to docs/
-Tinker reads ALL outputs → monitor/tinker/report-*.json
-```
+- **WIN onboarding:** Poller detects new dome WIN → Analyst Mode 0 writes `new-wins/WIN-NNN.json` → Decider commits to `wins.json`, queues for curmudgeon → Curmudgeon reviews
+- **Quality control:** Curmudgeon → `reviews/*.json` → `digest-reviews.js` → `pending-digest.json` → Decider creates issues, patches, self-applies → closes issues. If patch affects analyst's prior work → `attention-inbox.json` → Analyst Mode 2b re-examines.
+- **Expansions:** Decider assigns unpatchable issues → Analyst writes `expansions/EXP-NNN.json` → Decider integrates into `sections.json`
+- **Defense neutralization:** Curmudgeon `defense_survives >= 3` → Decider creates defense EXP → Analyst Mode 3 writes neutralization
+- **Predictions:** Poller detects new predictions / window closures → Analyst Mode 1b writes first assessment (`our_verdict: null` only) → Decider integrates verdicts into `predictions.json`. Poller watches for window closures; decider re-assigns for verdict update.
+- **Supporting:** Human notes → agents read on next run. Poller → `changes/`. Integrity → `integrity/report-*.json`. Social → `drafts/` → Decider commits to `docs/`. Tinker audits all outputs.
 
 ### Computed Counts (never hardcode)
 
