@@ -19,8 +19,26 @@
     "decider",
     "tinker"
   ],
-  "queue": [],
-  "next_id": 39,
+  "queue": [
+    {
+      "queue_id": 39,
+      "target_type": "section-new",
+      "target_id": "HOL-NARRATIVE",
+      "reason": "New issue ISS-767 created: Overview scorecard declares verdict before evidence — curmudgeon should adversarially review the rhetorical approach",
+      "context_hints": {
+        "source_file": "monitor/curmudgeon/reviews/HOL-NARRATIVE.json",
+        "related_issues": [
+          "ISS-767",
+          "ISS-768",
+          "ISS-771"
+        ],
+        "human_note": null
+      },
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-12T13:44:59.663Z"
+    }
+  ],
+  "next_id": 40,
   "history": [
     {
       "queue_id": 1,
