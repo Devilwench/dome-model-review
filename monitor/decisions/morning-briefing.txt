@@ -1,72 +1,66 @@
 MORNING BRIEFING — 2026-04-12
-Generated: 2026-04-12T14:30:00Z
-Curmudgeon reviews processed this run: 13 (triaged from 56 pending in digest)
-Previous decider run: 2026-04-12T11:10:59Z
+Generated: 2026-04-12T22:45:00Z
+Previous decider run: 2026-04-12T14:16:29Z
+Curmudgeon reviews processed this run: 1 (SEC-1.8.c1)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SITE HEALTH
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Integrity: FAIL → FIXED this run
-Critical: Build drift (site showed 69 WINs, data had 70) — fixed by publish.
-Major: EXP-050 queue issue — resolved (EXP-078's Section 1.8 pushed to curmudgeon queue).
-Workspace sync violations: STILL OPEN (CAT-005.json and review-state.json repeat violations).
-Progressive disclosure: 70 WINs lack tldr_evidence/tldr_verdict (backlog item).
+  Integrity: PASS — 3294 tests pass
+  Build: Clean (last built this run after EXP-080 + ISS-780 patches)
+  Published: Yes — commit a5a5889
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EXTERNAL STATUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Dome changes: NONE (2nd consecutive QUIET poll)
-AI Context page: 404 — STILL DOWN (2nd consecutive poll). Kill Shots Test 3 cites Rule 15 from this page.
-Canary traps: NOT TRIGGERED. OTS methodology error unchanged.
-WIN count on dome site: 69 claimed. Our count: 70 WINs reviewed.
+  Dome site: No changes (11 consecutive quiet polls)
+  Version: V51.1 stable, 69 WINs, 94.5% accuracy claimed
+  OTS canary: NOT TRIGGERED (canary still in place)
+  AI Context page: Still 404
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-INTERNAL STATUS (this run)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-New issues created: 8 (ISS-772 through ISS-779)
-Issues closed: 1 (ISS-773 — Cummer DOI fix, self-applied)
-Patches applied: 1 (Cummer 2000 DOI: 10.1049/ip-map:20030535 → 10.1109/8.898776 in SEC-6.2)
-Tests: 3290 passed, 0 failed
-New EXP items: 5 (EXP-091 HOL-HIERARCHY, EXP-092 KILLSHOT-GAIA, EXP-093 EXEC-SUMMARY, EXP-095 SEC-4.1 Polaris)
-EXP duplicates cleaned: 2 (EXP-090, EXP-094 marked absorbed by EXP-088)
-Curmudgeon queue: 1 item (SEC-1.8-refraction-cascade — new section needs adversarial review)
-Queue mode: BAU — intervals at defaults (240/120/240 min)
+WORK COMPLETED THIS RUN
+  ✅ EXP-080 integrated: SEC-2b.1 full rewrite (monitoring illusion)
+     - Fixed live-fetch WIN list: 4 not 6 (WIN-005, WIN-027 are hardcoded)
+     - Added direct code quotes from monitor.py commit 8e4bf9b
+     - Added adaptive tolerance detail (NMP 50% error floor)
+     - Closed ISS-747
+  ✅ ISS-780 patched: SEC-1.8 "eight orders" corrected to "more than six orders"
+     (curmudgeon math: n-1=0.235 vs Gaia limit ~1e-7 = ~6.4 orders, not 8)
+  ✅ ISS-785 closed as stale (1.7 collision already resolved by EXP-078)
+  ✅ SEC-1.8-refraction-cascade popped from queue (review SEC-1.8.c1 confirmed)
+  ✅ SEC-2b.1 pushed to curmudgeon queue for re-review
 
-Open issues: 25 total (12 major, 2 critical, 2 moderate, 2 minor, 1 wontfix)
-Current: 13 assigned-analyst, 4 open (needs patch), 1 wontfix
+NEW ISSUES CREATED (7)
+  ISS-781 (major): SEC-1.8 n(r)/Gaia chromaticity bridge missing → EXP-096
+  ISS-782 (moderate): SEC-1.8 WIN-010 flip contradicts gate 2 [NEEDS HUMAN ACTION]
+  ISS-783 (major): predictions.json all our_verdict=null → EXP-097
+  ISS-784 (major): EXHIBIT-AB coverage gap → EXP-098
+  ISS-786 (major): SEC-2.1 arithmetic error → EXP-099
+  ISS-787 (major): SEC-4.5.4 wrong sun altitude → EXP-100
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TOP 3 PRIORITY ACTIONS (human)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. REVIEW PREDICTION VERDICT CHANGES (4 changes require human approval before being applied):
-   - W019: falsified → standard_physics (NMP drift is standard geophysics)
-   - W020: falsified → unfalsifiable (Roaring 40s SAA claim)
-   - PRED-091: recycled → standard_physics (NH heat excess → WIN-066 duplicate)
-   - PRED-NEW-002: standard_physics → unfalsifiable (gravity wave 9.2 km/s in aether)
-   See monitor/analyst/expansions/PRED-assessment-{W019,W020,PRED-091,PRED-NEW-002}.json
+INTERNAL STATUS
+  Open issues: 30
+  Critical/major: ~22 (most assigned to analyst)
+  Assigned to analyst: 20+ items across EXP-080 through EXP-100
 
-2. WORKSPACE SYNC VIOLATIONS:
-   CAT-005.json being written from workspace side (git-owned — should only be written from clone).
-   review-state.json showing repeated direction-guard skips.
-   Investigate which agent is writing these from workspace side.
+TOP 3 PRIORITY ACTIONS
+  1. ⚠️  HUMAN ACTION NEEDED: Block WIN-010 verdict change from EXP-078 integration.
+     Win-010 stays "Std Model Explains". See ISS-782.
+     EXP-078 integration_note says "WIN-010 queued for human approval" —
+     curmudgeon gate 2 (SEC-1.8.c1.json) explicitly rejects this flip.
+     Do NOT approve the WIN-010 verdict change.
 
-3. 56 PENDING CURMUDGEON REVIEWS — 36 major severity:
-   This run triaged 13. The remaining 43 include many cycle-1 reviews (Apr 6-7) that need
-   staleness checks before creating issues. Key untracked major reviews remaining:
-   SEC-3.2, SEC-3.5.7, SEC-4.5.3, SEC-4.5.4, SEC-4.8, SEC-4.9, SEC-5.14, SEC-5.15, SEC-5.16.
-   All are major_rewrite or minor_edit candidates in part3/part4/part7/part8.
+  2. ANALYST: High-priority queue has 3 new major items:
+     - EXP-096: Add chromaticity bridge to SEC-1.8 n(r)/Gaia argument
+     - EXP-097: Audit all 86 predictions, assign our_verdict values
+     - EXP-098: Write Exhibit A/B analysis (dome homepage correlation charts)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  3. DECIDER (next run): ~32 major digest findings still untracked.
+     Continue batch-creating issues from the pending_reviews list.
+
 CURMUDGEON PROGRESS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Total reviews in repository: 80+ (cycle 1-3)
-Pending in digest: 56 (36 major, 16 moderate)
-Under-covered "processed" entries: 81 (have reviews but missing corresponding issues)
-Queue depth: 1 item (BAU mode)
-Mode: BAU (240 min interval)
+  Mode: BAU | Queue depth: 1 (SEC-2b.1 awaiting fresh review)
+  Next review target: SEC-2b.1 (The Monitoring Illusion — just rewritten by EXP-080)
+  Pending digest: 56 reviews (36 major, 16 moderate, 0 critical)
+  Defense-surviving (≥3): 9 items in digest (1 high, 8 moderate priority)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CODE ANALYSIS TAGS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ISS-747 (24 WINs with hardcoded validation code) and ISS-748 (post_hoc_evidence fields) remain
-assigned-analyst. Run sync-code-analysis.js when resolved.
+CODE ANALYSIS TAG STATUS
+  CA_REVIEWED, CA_HARDCODED, CA_LIVE, CA_NONE template vars: all computed from wins.json
+  No new code analysis tags this run
+

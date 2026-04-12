@@ -1368,13 +1368,14 @@
       "category": null,
       "priority": "high",
       "status": "complete",
-      "notes": "Must re-examine current monitor.py to count domains/WINs with hardcoded vs live-fetch vs no-code validation. Rewrite framing: 24 WINs use static comparison (not evidence of active validation), verify 34 with-no-code figure. Use {{CA_NONE}} and {{CA_HARDCODED}} template vars.",
+      "notes": "Fresh audit of monitor.py commit 8e4bf9b. Fixed live_fetch WIN list (4 not 6), fixed stratification (WIN-045/046/049 are hardcoded not none), added specific code examples, 39-domain vs 70-WIN gap analysis.",
       "created_at": "2026-04-12T11:12:09.374Z",
-      "completed_at": "2026-04-12T14:37:11.737Z",
+      "completed_at": "2026-04-12T14:45:01.401Z",
       "completion_note": "Analyst wrote EXP-080.json via proposal-ISS-747-resolution.json — SEC-2b.1 rewrite with corrected live-fetch WIN list, direct code quotes from commit 8e4bf9b, adaptive tolerance detail",
       "integrated": true,
       "integrated_at": "2026-04-12T14:38:09.444Z",
-      "integration_note": "Decider integrated EXP-080 replacement_html into data/sections.json part2b — fixed live-fetch list (4 not 6 WINs), added code quotes from commit 8e4bf9b, added adaptive tolerance detail, updated TLDR"
+      "integration_note": "Decider integrated EXP-080 replacement_html into data/sections.json part2b — fixed live-fetch list (4 not 6 WINs), added code quotes from commit 8e4bf9b, added adaptive tolerance detail, updated TLDR",
+      "output_file": "monitor/analyst/expansions/EXP-080.json"
     },
     {
       "id": "EXP-081",
