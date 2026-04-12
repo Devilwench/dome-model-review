@@ -110,34 +110,6 @@
       }
     },
     {
-      "queue_id": 64,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-010",
-      "reason": "Decider self-applied WIN-010 text fixes: finding, tldr_verdict, and detail_verdict_text updated to reflect Self-Contradicted verdict (n(r) makes eclipse geometry indeterminate). Was critical verdict-text mismatch (ISS-836). EXP-140 still pending for full defense neutralization.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-12T21:11:18.668Z",
-      "context_hints": {
-        "source_file": "monitor/curmudgeon/reviews/WIN-010.c3.json",
-        "related_issues": [
-          "ISS-836"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 65,
-      "target_type": "proposal",
-      "target_id": "EXP-050",
-      "reason": "EXP-050 (category-proposal-writeup, status=revision-submitted) needs curmudgeon gate 2 review before prose is written. Integrity agent flagged it uncoupled from curmudgeon queue. See EXP-050-r2.json for prior review.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-12T21:15:01.595Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-050.json",
-        "related_issues": [],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 66,
       "target_type": "prediction-batch",
       "target_id": "PRED-batch-EXP-085-2026-04-12",
@@ -170,20 +142,6 @@
   ],
   "next_id": 67,
   "history": [
-    {
-      "queue_id": 3,
-      "target_id": "part2b-2b.7",
-      "target_type": "section-new",
-      "popped_at": "2026-04-10T18:09:36.895Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 7,
-      "target_id": "EXP-054-batch",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-10T18:09:36.895Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 10,
       "target_id": "ISS-672-nr-coefficient",
@@ -533,6 +491,20 @@
       "target_id": "SEC-1.4",
       "target_type": "section",
       "popped_at": "2026-04-12T21:11:18.668Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 64,
+      "target_id": "WIN-010",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-12T21:46:21.560Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 65,
+      "target_id": "EXP-050",
+      "target_type": "proposal",
+      "popped_at": "2026-04-12T21:46:21.561Z",
       "popped_by": "decider"
     }
   ],
