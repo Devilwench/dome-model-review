@@ -51,11 +51,11 @@ fi
 
 **Read V6 map:** `monitor/v6-restructure-map.json`
 
-**Generate fresh digest:**
+**Generate fresh digest (must run from the clone, not the FUSE workspace):**
 ```bash
-node build-scripts/digest-reviews.js --workspace .
+(cd "${CLEAN_CLONE}" && node build-scripts/digest-reviews.js --workspace .)
 ```
-This writes `monitor/curmudgeon/pending-digest.json`. If unavailable, fall back to reading reviews directly.
+This writes `${CLEAN_CLONE}/monitor/curmudgeon/pending-digest.json`. If unavailable, fall back to reading reviews directly. **Critical:** the digest must be generated and read from the clone, not the FUSE workspace. The FUSE mount can serve stale `processed-reviews.json`, and pending-digest.json is classified git-owned (workspace-sync will not push it).
 
 ## Dispatcher — Priority Routing
 
@@ -84,10 +84,10 @@ Trigger: Untracked external reports exist. Someone took the time to file a repor
 
 **Priority 3 — Pending Curmudgeon Reviews**
 ```bash
-node -e "const d=JSON.parse(require('fs').readFileSync('monitor/curmudgeon/pending-digest.json','utf8'));console.log('Pending:',d.pending_count,'Critical:',d.severity_breakdown.critical,'Major:',d.severity_breakdown.major)"
+node -e "const d=JSON.parse(require('fs').readFileSync('${CLEAN_CLONE}/monitor/curmudgeon/pending-digest.json','utf8'));console.log('Pending:',d.pending_count,'Critical:',d.severity_breakdown.critical,'Major:',d.severity_breakdown.major)"
 ```
 Trigger: Digest shows pending reviews (especially critical/major).
-→ Read `monitor/prompts/reference/decider-curmudgeon.md`, execute.
+→ Read `monitor/prompts/reference/decider-curmudgeon.md`, execute. When reading full review files referenced in the digest, read them from `${CLEAN_CLONE}/monitor/curmudgeon/reviews/`.
 
 **Priority 4 — Completed Expansions**
 ```bash
