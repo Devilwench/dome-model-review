@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T08:46:51.586Z",
+  "last_updated": "2026-04-12T09:10:49.072Z",
   "issues": [
     {
       "id": "ISS-696",
@@ -58,18 +58,6 @@
       "found_at": "2026-04-10T11:30:00Z",
       "source": "monitor/curmudgeon/reviews/SEC-2b.7.c2.json",
       "notes": "API endpoint api/results.json returning 404 as of 2026-04-12 poll. Alternative: fetch results.json from dome github repo raw URL. Analyst should: (1) Fetch results.json from GitHub raw, (2) find W004 entry title, (3) if title IS eclipse test, document the W-number namespace inconsistency in section text. If title is NOT eclipse test, rewrite section 2b.7 with correct W-number."
-    },
-    {
-      "id": "ISS-734",
-      "win_id": null,
-      "severity": "minor",
-      "category": "infrastructure",
-      "status": "open",
-      "description": "Dome site ai-context page returning 404 as of 2026-04-12 poll (was previously accessible). This may affect our review if we link to that page, and could affect SEO/discoverability if our llms.txt references it. Check whether our site links to this page and update if needed. Social agent should check llms.txt for affected references.",
-      "found_by": "poller-summary-triage",
-      "found_at": "2026-04-12T12:00:00Z",
-      "source": "monitor/changes/latest-poll-summary.txt",
-      "notes": "Low priority per poll note. Social agent to check llms.txt. Also check docs/index.html for any links to john09289.github.io/ai-context or similar."
     }
   ],
   "next_id": 735

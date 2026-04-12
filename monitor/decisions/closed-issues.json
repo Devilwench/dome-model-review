@@ -8550,6 +8550,21 @@
       "notes": "Both arguments verified in raw-text/08-live-power.txt (Domain 10 criteria) and raw-text/03-predictions.txt (W020). Adding these would strengthen the goalpost-moving argument significantly. Suggest expansion item if analyst has capacity.",
       "fixed_at": "2026-04-12T08:46:51.586Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-734",
+      "win_id": null,
+      "severity": "minor",
+      "category": "infrastructure",
+      "status": "wontfix",
+      "description": "Dome site ai-context page returning 404 as of 2026-04-12 poll (was previously accessible). This may affect our review if we link to that page, and could affect SEO/discoverability if our llms.txt references it. Check whether our site links to this page and update if needed. Social agent should check llms.txt for affected references.",
+      "found_by": "poller-summary-triage",
+      "found_at": "2026-04-12T12:00:00Z",
+      "source": "monitor/changes/latest-poll-summary.txt",
+      "notes": "Low priority per poll note. Social agent to check llms.txt. Also check docs/index.html for any links to john09289.github.io/ai-context or similar.",
+      "closed_at": "2026-04-12T09:10:49.072Z",
+      "closed_by": "decider",
+      "resolution": "Confirmed: our site has no links to dome ai-context page and llms.txt does not reference it. 404 on dome site only affects dome discoverability, not our review. No action needed."
     }
   ]
 }
