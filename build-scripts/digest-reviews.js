@@ -52,22 +52,23 @@ function run() {
   let reviewFiles;
   try {
     reviewFiles = fs.readdirSync(REVIEWS_DIR)
-      .filter(f => f.startsWith('WIN-') && f.endsWith('.json'))
+      .filter(f => f.endsWith('.json'))
       .sort();
-    // For WINs with multiple cycle files (e.g., WIN-001.json and WIN-001.c2.json),
-    // keep only the latest cycle per WIN ID. Cycle 1 files have no .c suffix.
-    const latestByWin = new Map();
+    // For reviews with multiple cycle files (e.g., SEC-6.3.json and SEC-6.3.c2.json),
+    // keep only the latest cycle per base ID. Cycle 1 files have no .c suffix.
+    // Works for all prefixes: WIN-001, SEC-6.3, ISS-672-nr-coefficient, part6-FAIL-004, etc.
+    const latestById = new Map();
     for (const file of reviewFiles) {
-      const match = file.match(/^(WIN-\d+)(?:\.c(\d+))?\.json$/);
+      const match = file.match(/^(.+?)(?:\.c(\d+))?\.json$/);
       if (!match) continue;
-      const winId = match[1];
+      const baseId = match[1];
       const cycle = match[2] ? parseInt(match[2]) : 1;
-      const existing = latestByWin.get(winId);
+      const existing = latestById.get(baseId);
       if (!existing || cycle > existing.cycle) {
-        latestByWin.set(winId, { file, cycle });
+        latestById.set(baseId, { file, cycle });
       }
     }
-    reviewFiles = [...latestByWin.values()].map(v => v.file).sort();
+    reviewFiles = [...latestById.values()].map(v => v.file).sort();
   } catch (e) {
     console.error(`Cannot read reviews directory: ${REVIEWS_DIR}`);
     process.exit(1);
@@ -79,7 +80,8 @@ function run() {
   let errors = [];
 
   for (const file of reviewFiles) {
-    const winId = file.replace('.json', '');
+    // Extract base ID: "SEC-6.3.c2.json" → "SEC-6.3", "WIN-001.json" → "WIN-001"
+    const baseId = file.replace(/(?:\.c\d+)?\.json$/, '');
     const filePath = path.join(REVIEWS_DIR, file);
 
     const review = loadJSON(filePath);
@@ -89,7 +91,9 @@ function run() {
     }
 
     const entry = {
-      win_id: review.point_id || winId,
+      item_id: review.point_id || review.item_id || baseId,
+      // Keep win_id for backward compat — decider reads this field
+      win_id: review.point_id || review.item_id || baseId,
       review_file: `monitor/curmudgeon/reviews/${file}`,
       reviewed_at: review.reviewed_at || null,
       cycle: review.cycle || null,
@@ -130,8 +134,21 @@ function run() {
       // Stronger arguments count (decider may want to pull these for patches)
       stronger_arguments_count: (review.stronger_arguments || []).length,
 
+      // Advocate mode: how well the dome defender's argument survives our content.
+      // defense_survives >= 3 means a dome defender has a strong rebuttal we haven't preempted.
+      // The decider should create issues for these — they represent factual or argumentative
+      // vulnerabilities that could discredit the review if the dome author finds them.
+      defense_survives: review.advocate_mode?.defense_survives ?? null,
+      best_defense: review.advocate_mode?.best_defense
+        ? review.advocate_mode.best_defense.substring(0, 300)
+        : null,
+      preemptive_recommendation: review.advocate_mode?.preemptive_recommendation
+        ? review.advocate_mode.preemptive_recommendation.substring(0, 300)
+        : null,
+
       // Whether the full review file needs to be read for patching
-      // True if: verdict doesn't hold, has critical/major holes, or has citation failures
+      // True if: verdict doesn't hold, has critical/major holes, citation failures,
+      // or defense_survives >= 3 (dome defender has a strong rebuttal)
       needs_full_read: needsFullRead(review)
     };
 
@@ -181,11 +198,24 @@ function run() {
     }
   }
 
-  // 5. Sort pending by severity (critical first, then major, etc.)
+  // 5. Sort pending: defense_survives >= 3 floats to top (factual vulnerabilities),
+  //    then by hole severity (critical first, then major, etc.)
   const severityOrder = { critical: 0, major: 1, moderate: 2, minor: 3, none: 4 };
-  pending.sort((a, b) =>
-    (severityOrder[a.worst_severity] ?? 4) - (severityOrder[b.worst_severity] ?? 4)
-  );
+  pending.sort((a, b) => {
+    // Items with high defense_survives sort first — these are where the dome
+    // defender has a strong rebuttal we haven't preempted
+    const aDefense = a.defense_survives >= 3 ? 0 : 1;
+    const bDefense = b.defense_survives >= 3 ? 0 : 1;
+    if (aDefense !== bDefense) return aDefense - bDefense;
+    // Within the defense tier, higher defense_survives = more urgent
+    if (aDefense === 0 && bDefense === 0) {
+      if ((b.defense_survives || 0) !== (a.defense_survives || 0)) {
+        return (b.defense_survives || 0) - (a.defense_survives || 0);
+      }
+    }
+    // Then by worst severity
+    return (severityOrder[a.worst_severity] ?? 4) - (severityOrder[b.worst_severity] ?? 4);
+  });
 
   // 6. Write digest
   const digest = {
@@ -199,6 +229,11 @@ function run() {
       moderate: pending.filter(r => r.worst_severity === 'moderate').length,
       minor: pending.filter(r => r.worst_severity === 'minor').length,
       none: pending.filter(r => r.worst_severity === 'none').length
+    },
+    defense_survives_breakdown: {
+      high: pending.filter(r => r.defense_survives >= 4).length,
+      moderate: pending.filter(r => r.defense_survives === 3).length,
+      total_vulnerable: pending.filter(r => r.defense_survives >= 3).length
     },
     needs_full_read_count: pending.filter(r => r.needs_full_read).length,
     under_covered_processed: underCovered.length > 0 ? underCovered : undefined,
@@ -250,6 +285,7 @@ function needsFullRead(review) {
   const holes = review.holes_found || [];
   if (holes.some(h => h.severity === 'critical' || h.severity === 'major')) return true;
   if (review.citation_check && (review.citation_check.citations_failed || []).length > 0) return true;
+  if (review.advocate_mode && review.advocate_mode.defense_survives >= 3) return true;
   return false;
 }
 
