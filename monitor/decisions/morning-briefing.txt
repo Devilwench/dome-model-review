@@ -1,46 +1,50 @@
-DOME REVIEW DECIDER — 2026-04-12
+MORNING BRIEFING — 2026-04-12
+Generated: 2026-04-12T14:30:00Z
+Curmudgeon reviews processed this run: 0
+Previous decider run: 2026-04-11T15:11:20Z
 
-## This Run
+SITE HEALTH:
+  Build: PASS — 3286 tests, 0 failures
+  Integrity: WARN (pre-existing: 13 workspace-only files, direction-violation repeat, CLAUDE.md file map gaps)
+  Note: Integrity's EXP-050 PQ issue is STALE — EXP-050-r2 confirmed on queue (qid=31)
 
-**ISS-727 FIXED**: SEC-2.1 (Schumann Resonance) restructured for maximum rhetorical impact.
-The section previously led with the weakest argument (~22 Hz averaging) and buried the strongest
-(H(r) supremum impossibility). Now leads with:
-1. SUPREMUM IMPOSSIBILITY: The dome's own H(r) function has a maximum of 8,537 km. Its claimed
-   heights of 9,572 km and 9,086 km exceed this ceiling — mathematically impossible.
-2. MONOTONICITY BOUND: f_min = 8.77 Hz at the pole (every radius is higher). Since 7.83 < 8.77,
-   no dome geometry or spatial average can produce the observed Schumann frequency.
-3. Q-FACTOR (new): Copper dome → Q >> 100. Observed Schumann Q ≈ 4-6 (lossy ionosphere required).
-   Independent failure mode surviving any height adjustment.
-4. Formula-switching: author silently uses globe's spherical formula.
-5. Post-hoc radius: epistemically empty reconciliation strategy.
-6. Supplementary: H_eff averages (22-35 Hz) now correctly framed as "even the best-case average fails."
+EXTERNAL STATUS:
+  Dome changes: NO — 10th consecutive quiet poll
+  V51.1 stable, 69 WINs, 94.5% claimed accuracy
+  Canary (OTS wrong-side): NOT TRIGGERED — proofs/ unchanged, no provenance separation
+  API endpoints 404 (scorecard.json, results.json): pre-existing known issue, no action needed
+  AI Context page 404: LOW priority, noted
 
-**EXP-074 INTEGRATED**: Mode 5 (Prospective Bucket Monitor) now wired into the pipeline.
-- Mode 5 dispatcher block added to analyst.md (after Mode 4, before Normal analysis)
-- monitor/prompts/reference/analyst-mode5-prospective.md created (Steps 1-5 fully specified)
-- Priority 4b added to decider.md (PROS-status-change and PROS-assessment file processing)
-- First analyst Mode 5 run will populate hit-rate metrics and catch new PROS items.
+INTERNAL STATUS:
+  Open issues: 4 (ISS-693 moderate, ISS-696 major, ISS-698 wontfix, ISS-708 minor)
+  Issues closed this run: 2 (ISS-677 Mode 5 complete, ISS-727 SEC-2.1 restructuring already applied)
+  Issues created this run: 0
 
-**PRIORITY QUEUE**: Popped 1 reviewed item (part6-sha256-recycling). Queue depth: 6. Mode: BAU.
+MODE 5 AUDIT:
+  First prospective audit complete (MODE5-audit-2026-04-12.json)
+  8/8 PROS entries matched — no discrepancies
+  Hit rate: 88% apparent vs 50% genuine (2 genuinely prospective, 1 falsified PROS-003, 1 standard_physics PROS-007)
+  TLDRs added for all 8 PROS entries
+  ISS-677 CLOSED — Mode 5 fully operational
 
-**GHOST FILES**: proposal-ISS-700-status.json and proposal-ISS-702-status.json cannot be deleted
-(FUSE filesystem). Already _processed. ISS-700/702 in closed-issues as fixed. No functional impact.
+TOP 3 PRIORITY ACTIONS:
+  1. [MAJOR] ISS-696 / EXP-050: Analyst needs to deliver EXP-050-numerics.json with per-WIN re-audit
+     (refraction cascade section blocked — 7 curmudgeon blockers outstanding)
+  2. [MODERATE] ISS-693: Workspace-sync to commit remaining workspace-only analyst files
+  3. [MINOR] PRED-FIELD-2026Q2: Test window closes 2026-06-30 — poller should check TTB data when available
 
-## Open Issues (5)
+CURMUDGEON PROGRESS:
+  Queue depth: 5 items (BAU mode, 240-min cadence)
+  Next items: part2b-W001-signflip, part6-FAIL-004, SEC-6.11, PROS-batch-2026-04-11, EXP-050-r2
+  2 items popped this run (had review files)
 
-- ISS-677 [moderate] Mode 5 wired — pending first analyst run
-- ISS-693 [moderate] Workspace sync — workspace-sync agent to handle
-- ISS-696 [major] CAT-005 refraction cascade (EXP-050-r2 in curmudgeon queue)
-- ISS-698 [minor] wontfix
-- ISS-708 [minor] generate-html.js kill-shots placeholders (low priority)
+CODE ANALYSIS:
+  No new code_analysis tag updates this run.
+  Prediction assessments: 84/94 have verdict + detail_reasoning. 10 pending (test windows open).
+  PRED-093 timing context updated (G3 storm 13 days before registration).
 
-## Curmudgeon Queue (6 items, BAU)
-
-- predictions-catalog (section-rewrite)
-- part2b-W001-signflip (section-new)
-- part6-FAIL-004 (section-rewrite)
-- SEC-6.11 (section-new)
-- PROS-batch-2026-04-11 (prediction-batch)
-- EXP-050-r2 (proposal — CAT-005 refraction cascade, Cycle 2 gate)
-
-## Build: PASS (3286 tests)
+PREDICTIONS:
+  94 entries total. 12 genuinely prospective. 24 prospective (author-labeled).
+  66 pending (awaiting test window close). 1 confirmed. 4 falsified.
+  Nearest closing test window: PRED-FIELD-2026Q2 (2026-06-30)
+  High-value window: Aug 12 eclipse (PRED-095, PRED-TIER-1, PRED-TIER-3, PRED-R005) — 122 days
