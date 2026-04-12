@@ -1288,10 +1288,13 @@
       ],
       "category": "section-rewrite",
       "priority": "critical",
-      "status": "pending",
+      "status": "complete",
       "notes": "Section claims d_geo is undefined, but the dome README defines it as spherical arc distance. Remove the false undefined claim. Replace with: (1) using spherical-arc inputs in a flat-geometry model is self-contradictory — you cannot derive flat distances from dome geometry if the inputs already assume a sphere; (2) MDS with geodesic anchors then claiming the layout proves flat geometry is circular reasoning. The critique should be geometry-contradiction, not undefined-variable.",
       "created_at": "2026-04-12T09:40:24.132Z",
-      "integrated": false
+      "integrated": true,
+      "integrated_at": "2026-04-12T11:11:38.806Z",
+      "integration_mode": "no_op_confirmation",
+      "integration_notes": "All content issues from curmudgeon review already resolved by EXP-003/027/042 (integrated 2026-04-07). ISS-738 closed by analyst proposal-ISS-738-resolution.json in this run. DOCX gap tracked as ISS-742 (separate infra issue). No prose changes needed."
     },
     {
       "id": "EXP-077",
@@ -1324,8 +1327,79 @@
       "status": "pending",
       "notes": "Gate 2 cleared ACCEPT_WITH_MODIFICATIONS. Write Section 1.8 prose per conditions: 2 verdict flips (WIN-044 strong, WIN-068 moderate+Chapman secondary), 3 citation-adds (WIN-046, WIN-056, WIN-067), 3 supplementary (WIN-016, WIN-017, WIN-065). WIN-018 stays Misleading. 400 words net-new. Open with cross-ref to Section 1.5 (cascade's seasonal dimension 13-27deg vs 1.5's 6-9deg ceiling). Physical-vs-apparent position distinction must be explicit. n(r) inconsistency stated qualitatively (no specific starlight bending angle — ray_trace_needed: true). Chapman retained as secondary for WIN-068. 8-row table.",
       "created_at": "2026-04-12T10:44:59.148Z"
+    },
+    {
+      "id": "EXP-079",
+      "target": "data/sections.json part2b SEC-2b.7 — W004 identity verification + scoring criterion citation",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.7.c2.json",
+      "issue_ids": [
+        "ISS-745",
+        "ISS-746"
+      ],
+      "category": "verification",
+      "priority": "high",
+      "status": "pending",
+      "notes": "BLOCKER: Must re-fetch dome results.json and verify W004 entry fields (title, prediction values). If W004 IS eclipse test, add clarification noting W-number collision. If NOT, rewrite with correct identifier. Also cite source of direction_correct AND snr_sufficient scoring criterion. See curmudgeon gating conditions.",
+      "created_at": "2026-04-12T11:12:09.374Z"
+    },
+    {
+      "id": "EXP-080",
+      "target": "data/sections.json part2b SEC-2b.1 — code coverage 24/34/6 framing rewrite",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-4.6.1.c2.json",
+      "issue_ids": [
+        "ISS-747"
+      ],
+      "category": null,
+      "priority": "high",
+      "status": "pending",
+      "notes": "Must re-examine current monitor.py to count domains/WINs with hardcoded vs live-fetch vs no-code validation. Rewrite framing: 24 WINs use static comparison (not evidence of active validation), verify 34 with-no-code figure. Use {{CA_NONE}} and {{CA_HARDCODED}} template vars.",
+      "created_at": "2026-04-12T11:12:09.374Z"
+    },
+    {
+      "id": "EXP-081",
+      "target": "data/wins.json post_hoc fields + data/sections.json part2b SEC-2b.3 — post_hoc audit and dome classification acknowledgment",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-4.6.3.c2.json",
+      "issue_ids": [
+        "ISS-748"
+      ],
+      "category": null,
+      "priority": "high",
+      "status": "pending",
+      "notes": "CRITICAL: Audit 12 WINs tagged post_hoc=false. Cross-reference against dome raw-text classification (PROSPECTIVE vs BACKTESTED). Add post_hoc_evidence rationale to each. Section 2b.3 must acknowledge dome's own prospective/backtested distinction (9 WINs marked PROSPECTIVE on wins.html). If dome says prospective and we say post_hoc, explain why we disagree.",
+      "created_at": "2026-04-12T11:12:09.374Z"
+    },
+    {
+      "id": "EXP-082",
+      "target": "data/sections.json part5 — NMP drift rate and Test 6 Dome Says column verification",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-part5-rewrite.c2.json",
+      "issue_ids": [
+        "ISS-749"
+      ],
+      "category": null,
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Verify ~22.8 km/yr NMP 2026 drift prediction from dome formula (curmudgeon says math is wrong). Fix Test 6 Dome Says column which misrepresents the dome model.",
+      "created_at": "2026-04-12T11:12:09.374Z"
+    },
+    {
+      "id": "EXP-083",
+      "target": "data/wins.json + data/sections.json part1/part7 — n(r) coefficient defense neutralization",
+      "source": "curmudgeon-cycle2-advocate",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/ISS-672-nr-coefficient.c2.json",
+      "issue_ids": [
+        "ISS-750"
+      ],
+      "category": "defense",
+      "priority": "high",
+      "status": "pending",
+      "notes": "Defense survives=3. n(r) coefficient 0.20 in Part 1 formula, but table values (1.40, 3.24) imply different coefficient. Part 7 disc-edge value may also be wrong. Analyst Mode 3: verify n(r) formula derivation from dome source, compute values at 20,004 and 20,015 km, fix text.",
+      "created_at": "2026-04-12T11:12:09.374Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 79
+  "next_id": 84
 }

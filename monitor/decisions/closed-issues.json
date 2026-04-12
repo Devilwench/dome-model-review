@@ -8669,6 +8669,27 @@
       "fixed_at": "2026-04-12T10:47:36.498Z",
       "fixed_by": "decider-self-apply",
       "fix_details": "Added OTS cross-reference sentence to SEC-6.11 detail text to match TLDR claim"
+    },
+    {
+      "id": "ISS-738",
+      "win_id": null,
+      "section_id": "SEC-4.5.9",
+      "severity": "critical",
+      "category": "factual_error",
+      "title": "SEC-4.5.9 false claim: d_geo is NOT undefined — the dome defines it as spherical distance",
+      "description": "Section 4.5.9 states d_geo is undefined and never specified. This is false — the dome README defines d_geo as spherical arc distance. The actual critique should be that (a) claiming flat geometry while using spherical-distance inputs is self-contradictory, and (b) the model uses MDS with geodesic distances as anchors then claims the resulting layout proves flat geometry — circular reasoning. Review: SEC-4.5.9.json.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-12",
+      "status": "closed",
+      "fix_details": null,
+      "fix_date": null,
+      "found_at": "2026-04-12T09:39:29.449Z",
+      "assigned_exp": "EXP-076",
+      "assigned_at": "2026-04-12T09:40:24.132Z",
+      "resolution": "resolved_by_prior_work",
+      "closed_at": "2026-04-12T11:04:39.537Z",
+      "closed_by": "decider",
+      "close_note": "All content issues resolved by EXP-003/027/042 (integrated 2026-04-07). Section 2.9 now correctly presents V13 Finsler formula with all parameters, MDS circularity critique, corrected Christchurch comparison. DOCX gap is infrastructure; separate ISS if needed. Proposal from analyst EXP-076 / proposal-ISS-738-resolution.json."
     }
   ]
 }
