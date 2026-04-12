@@ -9297,6 +9297,24 @@
       "fixed_at": "2026-04-12T17:13:48.749Z",
       "fixed_by": "decider-staleness-close",
       "fix_details": "Text \"-17 to -21 nT\" no longer present in part6.html — already patched by previous decider run (ISS-818 commit). Staleness confirmed."
+    },
+    {
+      "id": "ISS-789",
+      "win_id": "WIN-025",
+      "severity": "major",
+      "category": "verdict",
+      "status": "closed",
+      "title": "WIN-025: Not included in Refraction Cascade despite same detail_group as WIN-010/068 — verdict decision needed",
+      "description": "WIN-010 and WIN-068 were changed to Self-Contradicted via the Refraction Cascade. WIN-025 (same detail_group WIN-010/025/068, same eclipse phenomenon) remains Std Model Explains and is absent from Section 1.8 cascade table. Curmudgeon rates this a cross-win inconsistency. Either WIN-025 must also change to Self-Contradicted (and be added to the Section 1.8 cascade table), or an explicit explanation must be given for why WIN-025 is exempt. Human decision required on verdict change. Source: WIN-068.c3.json cross_win_consistency.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-068.c3.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T15:11:50.229Z",
+      "created_at": "2026-04-12T15:11:50.229Z",
+      "notes": "If human approves WIN-025 verdict change to Self-Contradicted, also update Section 1.8 cascade table. If not, add explicit exemption explanation.",
+      "closed_at": "2026-04-12T17:21:31.906Z",
+      "closed_by": "human",
+      "resolution": "deferred — differential refraction analysis (HNOTE-DIFFREFRACT-001) may produce a stronger basis for eclipse WIN verdict changes. Holding all eclipse verdicts until that analysis completes."
     }
   ]
 }
