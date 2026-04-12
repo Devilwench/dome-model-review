@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T12:46:22.498Z",
+  "last_updated": "2026-04-12T13:14:26.113Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -162,7 +162,72 @@
       "found_by": "curmudgeon",
       "found_at": "2026-04-12T12:46:22.498Z",
       "expansion_id": "EXP-085"
+    },
+    {
+      "id": "ISS-762",
+      "win_id": null,
+      "section_id": "SEC-6.1",
+      "severity": "major",
+      "category": "factual_error",
+      "status": "assigned-analyst",
+      "description": "SEC-6.1 attacks WIN-053 formula B(r) = 62,376×exp(-r/8619) + 64,852×exp(-r/8619) as a developmental/preliminary version. Dome model page may use simpler B(r) = 60,000×exp(-r/8619) single-pole form as primary published claim (OPEN-011). Review SEC-6.1-params.c2 hole 2: coefficients may belong to a two-pole form listed as under development.",
+      "found_by": "curmudgeon-cycle2",
+      "source_review": "monitor/curmudgeon/reviews/SEC-6.1-params.c2.json",
+      "found_at": "2026-04-12T13:14:26.113Z",
+      "notes": "Need to verify which formula version is the primary published claim on dome model page vs wins page. If 60,000 is the current published formula, the attack needs to shift to target that single-pole form. Also: the two terms in the two-pole form have DIFFERENT arguments (r_N vs r_S = R - r_N) so the simplification to 127,228 is incorrect regardless."
+    },
+    {
+      "id": "ISS-763",
+      "win_id": null,
+      "section_id": "SEC-6.1",
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "open",
+      "description": "SEC-6.1 lists aetheric damping ratio (26%) and NMP deceleration constant (0.08, 55 km/yr initial rate) as \"undisclosed parameters\" but both are openly published on dome site (wins text and live power dashboard respectively). Calling them undisclosed is factually wrong — a dome defender would immediately spot this and discredit the section. Should be reframed as \"empirically fitted without dome-geometry derivation\" not \"undisclosed\".",
+      "found_by": "curmudgeon-cycle2",
+      "source_review": "monitor/curmudgeon/reviews/SEC-6.1-params.c2.json",
+      "found_at": "2026-04-12T13:14:26.113Z",
+      "suggested_patch": {
+        "file": "data/sections.json",
+        "section": "part6",
+        "find": "The model has at least these undisclosed parameters:",
+        "replace": "The model has at least these parameters fitted to observations rather than derived from dome geometry:"
+      }
+    },
+    {
+      "id": "ISS-764",
+      "win_id": null,
+      "severity": "minor",
+      "category": "data_quality",
+      "status": "open",
+      "description": "predictions.json has inconsistent restates_win format: some entries use bare IDs (\"068\", \"011\", \"043\") while others use \"WIN-NNN\" prefix (\"WIN-001\", \"WIN-065\"). Build normalizes both correctly but data is inconsistent. Should normalize all entries to bare ID format for consistency.",
+      "found_by": "curmudgeon-cycle2",
+      "source_review": "monitor/curmudgeon/reviews/predictions-catalog.c2.json",
+      "found_at": "2026-04-12T13:14:26.113Z"
+    },
+    {
+      "id": "ISS-765",
+      "win_id": null,
+      "severity": "major",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "description": "HOL-TAXONOMY (cycle 1): Inconsistent boundary between Misleading and Std Model Explains verdict categories. Seven Std Model WINs use \"Non-discriminating\" language in findings (WIN-006, 010, 020, 035, 036, 040, 060) while several Misleading WINs make essentially the same argument. Evaluation Guide needs clearer decision criterion distinguishing the two categories.",
+      "found_by": "curmudgeon-cycle1-holistic",
+      "source_review": "monitor/curmudgeon/reviews/HOLISTIC-HOL-TAXONOMY.json",
+      "found_at": "2026-04-12T13:14:26.113Z"
+    },
+    {
+      "id": "ISS-766",
+      "win_id": null,
+      "section_id": "SEC-2b.7",
+      "severity": "moderate",
+      "category": "citation",
+      "status": "open",
+      "description": "SEC-2b.7 W001 paragraph cites sigma_distance 7.3 relative to ≈0.8 nT prediction uncertainty, but the source of the 0.8 nT figure is not given. The dome's results.json sigma_distance is calculated from (obs - pred) / sigma_pred, where sigma_pred is the dome's own prediction precision. Our text should cite the exact dome-file field where this denominator comes from to prevent the dome saying our sigma calculation is wrong.",
+      "found_by": "curmudgeon-cycle2",
+      "source_review": "monitor/curmudgeon/reviews/part2b-W001-signflip.c2.json",
+      "found_at": "2026-04-12T13:14:26.113Z"
     }
   ],
-  "next_id": 762
+  "next_id": 767
 }
