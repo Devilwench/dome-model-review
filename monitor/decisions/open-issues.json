@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T11:10:59.813Z",
+  "last_updated": "2026-04-12T11:13:23.935Z",
   "issues": [
     {
       "id": "ISS-696",
@@ -101,38 +101,6 @@
         "EXP-042",
         "EXP-076"
       ]
-    },
-    {
-      "id": "ISS-743",
-      "win_id": null,
-      "severity": "critical",
-      "section": "part6",
-      "section_key": "SEC-6-recycling-pattern",
-      "category": "factual_error",
-      "status": "open",
-      "title": "part6: \"Fifteen\" hardcoded — recycled count should use {{PRED_RECYCLED}} template variable",
-      "description": "Section 6 says \"Fifteen of {{PRED_TOTAL}} catalog entries explicitly restate existing WINs\" but the actual count is 26 (from predictions.json restates_win field). The hardcoded \"Fifteen\" should use the {{PRED_RECYCLED}} template variable so the count stays current. Source: curmudgeon review part6-sha256-recycling.c2.json.",
-      "source": "curmudgeon",
-      "suggested_fix": "Replace \"Fifteen of {{PRED_TOTAL}}\" with \"{{PRED_RECYCLED}} of {{PRED_TOTAL}}\" in sections.json part6.",
-      "found_by": "decider",
-      "found_at": "2026-04-12T11:10:33.244Z",
-      "created_at": "2026-04-12T11:10:33.244Z"
-    },
-    {
-      "id": "ISS-744",
-      "win_id": null,
-      "severity": "major",
-      "section": "part6",
-      "section_key": "SEC-6-recycling-pattern",
-      "category": "factual_error",
-      "status": "open",
-      "title": "part6: \"86 entries\" hardcoded — should use {{PRED_TOTAL}} template variable",
-      "description": "Section 6 says \"the catalog lists 86 entries spanning 10 domains\" but the actual count is 94. The hardcoded \"86 entries\" should use the {{PRED_TOTAL}} template variable. Source: curmudgeon review predictions-catalog.c2.json.",
-      "source": "curmudgeon",
-      "suggested_fix": "Replace \"86 entries\" with \"{{PRED_TOTAL}} entries\" in sections.json part6.",
-      "found_by": "decider",
-      "found_at": "2026-04-12T11:10:33.244Z",
-      "created_at": "2026-04-12T11:10:33.244Z"
     },
     {
       "id": "ISS-745",
