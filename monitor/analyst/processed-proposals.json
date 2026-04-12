@@ -1,0 +1,7 @@
+{
+  "files": [
+    "proposal-ISS-700-status.json",
+    "proposal-ISS-702-status.json"
+  ],
+  "note": "Seeded with already-processed proposals that are orphaned on FUSE (cannot unlink)"
+}

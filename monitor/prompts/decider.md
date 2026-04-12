@@ -70,9 +70,17 @@ Trigger: Any new WIN files exist. Our credibility depends on covering every dome
 
 **Priority 1b — Analyst Issue Proposals** (check every run)
 ```bash
-ls monitor/analyst/issue-proposals/proposal-*.json 2>/dev/null | wc -l
+node -e "
+const fs=require('fs');
+const dir='monitor/analyst/issue-proposals/';
+const ledger='${CLEAN_CLONE}/monitor/analyst/processed-proposals.json';
+const processed=fs.existsSync(ledger)?JSON.parse(fs.readFileSync(ledger,'utf8')):{files:[]};
+const all=fs.readdirSync(dir).filter(f=>f.startsWith('proposal-')&&f.endsWith('.json'));
+const pending=all.filter(f=>!processed.files.includes(f));
+console.log(pending.length?'PROPOSALS: '+pending.length+' new':'NO NEW PROPOSALS');
+"
 ```
-Trigger: Any proposal files exist. The analyst cannot write to `open-issues.json` directly (Phase 1 single-writer rule). Instead it writes proposals to this staging directory. For each proposal file, create a formal issue in `open-issues.json` with the next ISS-NNN ID, then delete the proposal file.
+Trigger: New proposal files exist that haven't been processed yet. The analyst cannot write to `open-issues.json` directly (Phase 1 single-writer rule). Instead it writes proposals to this staging directory. For each NEW proposal, create a formal issue in `open-issues.json` with the next ISS-NNN ID, then **add the filename to the processed-proposals ledger** (`${CLEAN_CLONE}/monitor/analyst/processed-proposals.json`). **Do NOT try to delete proposal files** — FUSE cannot unlink, so deleted files reappear and get re-processed forever. The ledger is the dedup mechanism.
 
 **Priority 2 — External Reports**
 ```bash
