@@ -9,15 +9,12 @@ The dome model registers predictions at john09289.github.io/predictions. We cata
 ```bash
 node -e "
 const d=JSON.parse(require('fs').readFileSync('data/predictions.json','utf8'));
-const p=d.entries.filter(e=>(e.entry_type==='prediction'||e.entry_type==='tracking')&&(!e.our_verdict||e.our_verdict==='pending'));
-const gp=p.filter(e=>e.is_genuinely_prospective===true);
-const rest=p.filter(e=>!e.is_genuinely_prospective);
-console.log(p.length?'PREDICTION WRITEUPS: '+p.length+' remaining ('+gp.length+' genuinely prospective, '+rest.length+' other)':'ALL DONE');
-if(gp.length) console.log('WAVE 2 ACTIVE: genuinely prospective predictions first');
+const p=d.entries.filter(e=>(e.entry_type==='prediction'||e.entry_type==='tracking')&&!e.our_verdict);
+console.log(p.length?'PREDICTION WRITEUPS: '+p.length+' needing first assessment':'ALL DONE');
 "
 ```
 
-Trigger: Reviewable predictions exist with `our_verdict` null or `'pending'`.
+Trigger: Predictions exist with `our_verdict === null` (never assessed). **Do NOT trigger on `our_verdict === 'pending'`** — those were already assessed and are waiting for test window closure. The poller detects window closures; when one closes, the decider re-assigns it for verdict update.
 
 ### Wave priority
 

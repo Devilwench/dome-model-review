@@ -91,9 +91,9 @@ Trigger: Actionable pending expansions exist (excludes items with `blocked_on` f
 
 **Mode 1b — Prediction Writeups** (HIGH PRIORITY)
 ```bash
-node -e "const d=JSON.parse(require('fs').readFileSync('data/predictions.json','utf8'));const p=d.entries.filter(e=>(e.entry_type==='prediction'||e.entry_type==='tracking')&&(!e.our_verdict||e.our_verdict==='pending'));const gp=p.filter(e=>e.is_genuinely_prospective===true);console.log(p.length?'PREDICTION WRITEUPS: '+p.length+' remaining ('+gp.length+' genuinely prospective)':'ALL DONE')"
+node -e "const d=JSON.parse(require('fs').readFileSync('data/predictions.json','utf8'));const p=d.entries.filter(e=>(e.entry_type==='prediction'||e.entry_type==='tracking')&&!e.our_verdict);console.log(p.length?'PREDICTION WRITEUPS: '+p.length+' needing assessment':'ALL DONE')"
 ```
-Trigger: Reviewable predictions exist with `our_verdict` null or `'pending'`. Process 3-5 per run.
+Trigger: Predictions exist with `our_verdict === null` (never assessed). Process 3-5 per run. **Do NOT trigger on `our_verdict === 'pending'`** — those have already been assessed and are waiting for their test window to close. The poller watches for window closures; when one closes, the decider will re-assign it for verdict update.
 → Read `monitor/prompts/reference/analyst-mode1b-predictions.md`, execute that procedure.
 
 **Mode 2 — Human Notes**
