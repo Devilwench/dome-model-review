@@ -9279,6 +9279,24 @@
       "fixed_at": "2026-04-12T17:07:15.091Z",
       "fixed_by": "decider-self-apply",
       "fix_details": "Applied post_hoc_evidence fields to WIN-031 and WIN-044 per EXP-081 analyst audit. SEC-2b.3 prose already addressed all other concerns. 10 of 12 originally flagged post_hoc=false WINs had been corrected prior to this run; remaining 2 confirmed correct."
+    },
+    {
+      "id": "ISS-819",
+      "found_date": "2026-04-12",
+      "win_id": null,
+      "section_id": "SEC-6.7",
+      "severity": "moderate",
+      "category": "citation",
+      "status": "fixed",
+      "description": "SEC-6.7 (Eclipse prediction section): The '-17 to -21 nT at Ebro' attribution cannot be verified from the dome's raw predictions text. The source of this specific range for the Ebro Observatory is not cited. This is a quantitative claim central to the eclipse prediction analysis and must be traceable to a specific dome file or external source. Source: SEC-6.7.c2.json.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/SEC-6.7.c2.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T16:42:32.083Z",
+      "created_at": "2026-04-12T16:42:32.083Z",
+      "fixed_at": "2026-04-12T17:13:48.749Z",
+      "fixed_by": "decider-staleness-close",
+      "fix_details": "Text \"-17 to -21 nT\" no longer present in part6.html — already patched by previous decider run (ISS-818 commit). Staleness confirmed."
     }
   ]
 }

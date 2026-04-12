@@ -34,19 +34,6 @@
       }
     },
     {
-      "queue_id": 45,
-      "target_type": "section",
-      "target_id": "SEC-1.5",
-      "reason": "SEC-1.5 (Aetheric Refraction) needs review. Tracker has REFRACTION entry (pending) under old name. Normalized to section-1-5.",
-      "pushed_by": "human",
-      "pushed_at": "2026-04-12T16:58:16.725Z",
-      "context_hints": {
-        "source_file": null,
-        "related_issues": [],
-        "human_note": "ID normalization revealed this section was never properly reviewed."
-      }
-    },
-    {
       "queue_id": 46,
       "target_type": "section",
       "target_id": "SEC-1.7",
@@ -435,6 +422,14 @@
       "target_type": "section-rewrite",
       "popped_at": "2026-04-12T16:48:41.432Z",
       "popped_by": "decider"
+    },
+    {
+      "queue_id": 45,
+      "target_id": "SEC-1.5",
+      "target_type": "section",
+      "popped_at": "2026-04-12T17:13:48.749Z",
+      "popped_by": "decider",
+      "note": "Review file REFRACTION.json covers SEC-1.5; popped manually due to filename mismatch"
     }
   ],
   "schedule_state": {
