@@ -105,9 +105,10 @@ echo "CLAUDE.md: ${CLAUDE}L"
 ANALYST=$(cat monitor/prompts/analyst.md monitor/prompts/reference/SCIENTIFIC-CONTEXT.md monitor/prompts/reference/DATA-SCHEMAS.md monitor/prompts/reference/analyst-mode0-onboarding.md monitor/prompts/reference/analyst-mode1-expansions.md monitor/prompts/reference/analyst-mode1b-predictions.md monitor/prompts/reference/analyst-mode34-procedures.md monitor/prompts/reference/analyst-normal-analysis.md monitor/prompts/reference/analyst-infrastructure.md | wc -l)
 echo "Analyst total (excl CLAUDE.md): ${ANALYST}L, with CLAUDE.md: $((ANALYST+CLAUDE))L"
 
-# Curmudgeon: dispatcher + SCIENTIFIC-CONTEXT + DATA-SCHEMAS (no reference modules — intentionally monolithic)
-CURM=$(cat monitor/prompts/curmudgeon.md monitor/prompts/reference/SCIENTIFIC-CONTEXT.md monitor/prompts/reference/DATA-SCHEMAS.md | wc -l)
-echo "Curmudgeon total (excl CLAUDE.md): ${CURM}L, with CLAUDE.md: $((CURM+CLAUDE))L"
+# Curmudgeon: dispatcher + SCIENTIFIC-CONTEXT + DATA-SCHEMAS + conditionally-loaded change/holistic module
+CURM_DISP=$(cat monitor/prompts/curmudgeon.md monitor/prompts/reference/SCIENTIFIC-CONTEXT.md monitor/prompts/reference/DATA-SCHEMAS.md | wc -l)
+CURM_COND=$(wc -l < monitor/prompts/reference/curmudgeon-change-and-holistic.md)
+echo "Curmudgeon dispatcher+refs (excl CLAUDE.md): ${CURM_DISP}L, conditional: ${CURM_COND}L, max total: $((CURM_DISP+CURM_COND+CLAUDE))L"
 
 # Decider: dispatcher + SCIENTIFIC-CONTEXT + DATA-SCHEMAS + all decider-*.md + BUILD-AND-CHANGE
 DECIDER=$(cat monitor/prompts/decider.md monitor/prompts/reference/SCIENTIFIC-CONTEXT.md monitor/prompts/reference/DATA-SCHEMAS.md monitor/prompts/reference/decider-intake.md monitor/prompts/reference/decider-curmudgeon.md monitor/prompts/reference/decider-patches-and-selfapply.md monitor/prompts/reference/decider-reporting.md monitor/prompts/reference/BUILD-AND-CHANGE.md | wc -l)
@@ -124,7 +125,7 @@ echo "Tinker total (excl CLAUDE.md): ${TINKER}L, with CLAUDE.md: $((TINKER+CLAUD
   "claude_md_lines": 214,
   "per_agent": {
     "analyst": {"dispatcher": 164, "references": 869, "claude_md": 214, "total": 1247},
-    "curmudgeon": {"dispatcher": 409, "references": 147, "claude_md": 214, "total": 770},
+    "curmudgeon": {"dispatcher": 313, "references": 147, "conditional": 107, "claude_md": 214, "base_total": 674, "max_total": 781},
     "decider": {"dispatcher": 306, "references": 1001, "claude_md": 214, "total": 1521},
     "tinker": {"dispatcher": 126, "references": 476, "claude_md": 214, "total": 816}
   },
@@ -138,6 +139,22 @@ echo "Tinker total (excl CLAUDE.md): ${TINKER}L, with CLAUDE.md: $((TINKER+CLAUD
 - If any Opus agent's total grew >25% → flag as `major` finding
 - If CLAUDE.md itself grew >15% → flag as `major` (it multiplies across ALL agents)
 - Always note WHAT grew — dispatcher vs reference file vs CLAUDE.md — so the fix is targeted
+
+**Extraction analysis (the key question):** When you flag growth, always ask: **does this content need to be loaded every run, or could it be a conditionally-loaded reference file?** Content that's only used in one code path (e.g., a procedure that only runs when a specific priority level is reached) is a prime candidate for extraction to `monitor/prompts/reference/`. The dispatcher keeps a brief description and a "→ Read reference/foo.md" pointer; the full procedure lives in the reference file and is only loaded when needed.
+
+Examples of good extraction candidates:
+- A procedure that only fires when a queue is empty (most runs have queue items)
+- A schema or template that's only needed when writing a specific output type
+- Historical context or worked examples that help with rare edge cases
+- Validation checklists that apply to one mode but live in the dispatcher
+
+Examples of content that should STAY in the dispatcher:
+- Core identity and directives (the agent's "soul")
+- Priority routing logic (must evaluate every run)
+- Brief descriptions of each priority level (so the agent understands the hierarchy)
+- Critical rules that apply to ALL modes
+
+When recommending extraction, write a concrete PROP: which lines move, what the dispatcher pointer looks like, what the reference file is named. Don't just say "consider extracting" — make it implementable.
 
 **Baseline (2026-04-12, post-V6 refactor + change-driven architecture):** The first report after this change sets the baseline. Subsequent reports compare against it.
 
