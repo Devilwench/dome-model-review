@@ -1410,12 +1410,14 @@
       ],
       "category": null,
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "notes": "Verify ~22.8 km/yr NMP 2026 drift prediction from dome formula (curmudgeon says math is wrong). Fix Test 6 Dome Says column which misrepresents the dome model.",
       "created_at": "2026-04-12T11:12:09.374Z",
       "integrated": true,
       "integrated_at": "2026-04-12T18:37:09.000Z",
-      "integration_mode": "surgical_patches_applied"
+      "integration_mode": "surgical_patches_applied",
+      "completed_at": "2026-04-12T22:00:00Z",
+      "output_file": "monitor/analyst/expansions/EXP-082.json"
     },
     {
       "id": "EXP-083",
@@ -1443,9 +1445,15 @@
         "ISS-753"
       ],
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "ISS-753: EXP-057 introduced our_strength field (decisive/major/supportive) in kill-shots.json without formal definitions. Curmudgeon flagged: without definitions, assignments appear arbitrary. Write: (1) Formal criteria for decisive vs major vs supportive — e.g., decisive=falsifies dome model directly with hard data, major=shows internal inconsistency or strong mismatch, supportive=provides supporting evidence. (2) Add definitions to reference/DATA-SCHEMAS.md kill-shots section. (3) Add a brief explanation note at the top of the Kill Shots tab in sections.json (part5) explaining the rating system. Do NOT change any existing our_strength values — just add the definitional scaffolding. Output to expansions/EXP-084.json with replacement_html for part5 preamble addition and schema documentation.",
-      "created_at": "2026-04-12T12:23:10.936Z"
+      "created_at": "2026-04-12T12:23:10.936Z",
+      "completed_at": "2026-04-12T20:42:33.463Z",
+      "output_file": "monitor/analyst/expansions/EXP-084.json",
+      "integrated": true,
+      "integrated_at": "2026-04-12T21:10:58.282Z",
+      "integration_mode": "direct",
+      "integration_note": "Rating key inserted into part5 sections.json. DATA-SCHEMAS.md updated. KS placeholders replaced with static values (2/2/2 from kill-shots.json). Infrastructure ticket ISS-708 still open for build pipeline support of {{KS_*}} computed values."
     },
     {
       "id": "EXP-085",
@@ -1457,9 +1465,11 @@
       ],
       "category": "verification",
       "priority": "high",
-      "status": "pending",
-      "notes": "Audit all 12 entries where restates_win is set but our_verdict is not recycled. For each: (a) if the prediction directly restates a WIN claim with no additional test, change our_verdict to recycled; (b) if the entry deserves a distinct verdict (e.g. it restates a WIN claim but also introduces an independent test), either remove restates_win or document why the non-recycled verdict is correct. Include the reasoning in the entry notes field. Entries to audit: PRED-095 (pending), PRED-R002 (standard_physics), PRED-CURR-004 (unfalsifiable), PRED-CURR-008 (standard_physics), PRED-V13-004 (standard_physics) and ~7 others per ISS-761.",
-      "created_at": "2026-04-12T12:42:16.996Z"
+      "status": "complete",
+      "notes": "Audited 12 predictions with restates_win set but non-recycled verdict. Recommendation: 11→recycled, 1 (PRED-095) keeps pending (genuinely prospective with specific test thresholds). Pattern: dome inflates prediction count by repackaging its own parameters and relabeling standard physics.",
+      "created_at": "2026-04-12T12:42:16.996Z",
+      "completed_at": "2026-04-12T21:13:30.661Z",
+      "output_file": "monitor/analyst/expansions/EXP-085.json"
     },
     {
       "id": "EXP-086",
@@ -2040,20 +2050,200 @@
     },
     {
       "id": "EXP-129",
-      "target": "data/wins.json WIN-010 — full text rewrite (verdict-text mismatch + defense neutralization)",
+      "target": "data/sections.json part1 SEC-1.8 — FULL REWRITE: The Coordinate Collapse",
+      "source": "human-notes HNOTE-DIFFREFRACT-001/002/003 + HNOTE-REFRACT-RESTRUCTURE-001",
+      "curmudgeon_review": null,
+      "issue_ids": [
+        "ISS-781"
+      ],
+      "category": "rewrite",
+      "priority": "critical",
+      "status": "complete",
+      "notes": "Full Section 1.8 rewrite per human directive. Replaces cascade-table approach with coordinate-system-collapse argument. Eclipse content moves to future Section 1.9. Subsumes EXP-096 (chromaticity bridge). Ray trace computation shows 21-44% coordinate errors from dome own n(r). Aetheric scaling law revealed as implicit spherical geometry.",
+      "created_at": "2026-04-12T19:47:15.354Z",
+      "completed_at": "2026-04-12T19:47:15.354Z",
+      "output_file": "monitor/analyst/expansions/EXP-129.json",
+      "integrated": true,
+      "integrated_at": "2026-04-12T21:10:58.282Z",
+      "integration_mode": "full-section-replacement",
+      "integration_note": "Section 1.8 fully replaced with new \"Coordinate Collapse\" rewrite. Verdict changes HELD per human directive. Pushed to curmudgeon priority queue for fresh adversarial review."
+    },
+    {
+      "id": "EXP-130",
+      "target": "data/sections.json — KILLSHOT-GPS: fix +38.3 μs/day figure derivation",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-815"
+      ],
+      "category": "expansion",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "GPS kill-shot section uses combined +38.3 μs/day relativistic correction. Curmudgeon wants the derivation shown explicitly (gravitational + velocity components).",
+      "created_at": "2026-04-12T19:48:10.477Z"
+    },
+    {
+      "id": "EXP-131",
+      "target": "data/sections.json — KILLSHOT-SH: show SYD-EZE V12 error derivation (-78%)",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-816"
+      ],
+      "category": "expansion",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "Southern Hemisphere kill-shot claims -78% V12 error for SYD-EZE but derivation not shown.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-132",
+      "target": "data/wins.json — V-template mismatch for unfalsifiable/theological WINs (WIN-023, WIN-032, WIN-034)",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-820"
+      ],
+      "category": "expansion",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "Batch audit V-template not properly applied to unfalsifiable WINs.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-133",
+      "target": "data/sections.json EVAL-GUIDE — Principle 3 vs actual practice consistency",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-821"
+      ],
+      "category": "expansion",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "Evaluation Guide Principle 3 claims mainstream physics not assumed correct by default, but practice may differ.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-134",
+      "target": "data/sections.json SEC-6.x FAIL-004 — fix AAO sigma/anomaly equivalence and citation",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-822",
+        "ISS-823"
+      ],
+      "category": "expansion",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "FAIL-004 conflates AAO index σ with % anomaly, and lacks citation for +0.78σ value.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-135",
+      "target": "data/sections.json SEC-6.3 — parallel-plate Schumann critique verification",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-824"
+      ],
+      "category": "expansion",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "Curmudgeon questions whether dome parallel-plate cavity geometry assertion is correctly characterized.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-136",
+      "target": "data/predictions.json — classify PRED-TOROID-003 Schumann mode splitting",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-826"
+      ],
+      "category": "expansion",
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "Prediction currently unclassified. Needs assessment of Δf ≈ 0.336 Hz claim.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-137",
+      "target": "data/sections.json part2b — W001 sign-flip: steel-man detection threshold defense",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-827"
+      ],
+      "category": "expansion",
+      "priority": "major",
+      "status": "pending",
+      "notes": "Central 7-sigma wrong-sign argument needs steel-manning of detection threshold defense. Major severity.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-138",
+      "target": "data/sections.json SEC-4.9 — verify dome disc comparison section claims",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-828"
+      ],
+      "category": "expansion",
+      "priority": "major",
+      "status": "pending",
+      "notes": "Section claims need verification. Major severity, staleness-uncertain.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-139",
+      "target": "data/sections.json part3 SEC-3.5.1 — B(r) formula dual-variable fix",
+      "source": "decider-assigned",
+      "issue_ids": [
+        "ISS-835"
+      ],
+      "category": "expansion",
+      "priority": "high",
+      "status": "pending",
+      "notes": "Two major errors: B(r) formula uses single variable instead of two, and κ coupling attribution incorrect.",
+      "created_at": "2026-04-12T19:48:10.478Z"
+    },
+    {
+      "id": "EXP-140",
+      "target": "WIN-010 defense neutralization — eclipse geometry defense rated 3/5",
+      "source": "curmudgeon-cycle3-advocate",
       "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-010.c3.json",
       "issue_ids": [
         "ISS-836",
         "ISS-841"
       ],
       "category": "defense",
-      "priority": "critical",
+      "priority": "high",
       "status": "pending",
-      "notes": "CRITICAL: WIN-010 verdict was flipped to Self-Contradicted (via EXP-078, human-approved 2026-04-12) but detail_verdict_text still argues old Non-discriminating/Std-Model-Explains case. Analyst must: (1) rewrite detail_verdict_text to lead with refraction cascade self-contradiction argument (eclipse geometry requires definite physical sun altitude, n(r) makes this indeterminate 1,975-3,618 km range = 83% seasonal swing); (2) update finding field to Self-Contradicted summary; (3) update tldr_verdict; (4) also preempt the dome defender apparent-vs-physical eclipse geometry argument (ISS-841): show FSF calibration explicitly derives from V12 H(r)/r dome geometry requiring physical position; dome claims FSF=V12 H(r)/r in raw-text/03-predictions.txt. Duplicate paragraph has already been removed. Note: Chapman/Non-discriminating argument should be retained as secondary (it still holds), but lead with the self-contradiction.",
-      "created_at": "2026-04-12T20:42:11.823Z",
-      "integrated": false
+      "notes": "Surviving defense (3/5): dome defender argues eclipse predictions use APPARENT geometry (observed shadow position) not physical sun altitude, so n(r) indeterminacy doesn't matter. Curmudgeon preemption recommendation: show FSF calibration against V12 dome geometry explicitly requires physical sun altitude, not apparent altitude. Also needed: full WIN-010 text rewrite to fix verdict-text mismatch (verdict=Self-Contradicted but all prose says Non-discriminating).",
+      "created_at": "2026-04-12T20:09:48.990Z"
+    },
+    {
+      "id": "EXP-129",
+      "target": "data/sections.json part1 — FULL REWRITE Section 1.8: The Coordinate Collapse",
+      "source": "human-notes HNOTE-DIFFREFRACT-001/002/003 + HNOTE-REFRACT-RESTRUCTURE-001",
+      "curmudgeon_review": null,
+      "issue_ids": [],
+      "category": "section-rewrite",
+      "priority": "critical",
+      "status": "complete",
+      "notes": "Full rewrite of Section 1.8 per human directive. Old cascade (8-WIN table) replaced with coordinate system collapse argument. Eclipse arguments excluded (moving to separate section). 30 affected WINs identified. Verdict changes held per human directive. Routes to curmudgeon for review.",
+      "created_at": "2026-04-12T20:14:59.867Z",
+      "completed_at": "2026-04-12T20:14:59.867Z",
+      "output_file": "monitor/analyst/expansions/EXP-129.json",
+      "routes_to_curmudgeon_after": true
+    },
+    {
+      "id": "EXP-141",
+      "target": "data/sections.json part1 — SEC-1.7 stale WIN count (67→current) and gravity fraction",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-1.7.c1.json",
+      "issue_ids": [
+        "ISS-837"
+      ],
+      "category": "factual_error",
+      "priority": "high",
+      "status": "pending",
+      "notes": "Section 1.7 hardcodes 67 WINs (now 69-70) and 49% gravity fraction (33/67). Must recount gravity WINs including new ones and update.",
+      "created_at": "2026-04-12T20:40:33.197Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 130
+  "next_id": 141
 }
