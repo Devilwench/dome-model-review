@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T08:30:29.837Z",
+  "last_updated": "2026-04-12T08:46:51.586Z",
   "issues": [
     {
       "id": "ISS-696",
@@ -58,18 +58,6 @@
       "found_at": "2026-04-10T11:30:00Z",
       "source": "monitor/curmudgeon/reviews/SEC-2b.7.c2.json",
       "notes": "API endpoint api/results.json returning 404 as of 2026-04-12 poll. Alternative: fetch results.json from dome github repo raw URL. Analyst should: (1) Fetch results.json from GitHub raw, (2) find W004 entry title, (3) if title IS eclipse test, document the W-number namespace inconsistency in section text. If title is NOT eclipse test, rewrite section 2b.7 with correct W-number."
-    },
-    {
-      "id": "ISS-733",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "missing_argument",
-      "status": "open",
-      "description": "FAIL-004 (Section 6.5): Curmudgeon identified two stronger arguments not yet in the text: (1) Two-threshold discrepancy — dome has different criteria for same phenomenon: W020 weekly prediction uses \"500hPa ≥3% above climatology\" while Live Power Dashboard Domain 10 uses \"AAO < 0σ while SAA decay >50 nT/yr\" — threshold inconsistency is itself evidence of post-hoc adjustment; (2) Selective window-length rule — new 3-month minimum window applies only to atmospheric predictions (which fail) not magnetic ones (which pass) — asymmetric methodology by prediction type.",
-      "found_by": "curmudgeon-part6-FAIL-004.c2",
-      "found_at": "2026-04-12T15:30:00Z",
-      "source": "monitor/curmudgeon/reviews/part6-FAIL-004.c2.json",
-      "notes": "Both arguments verified in raw-text/08-live-power.txt (Domain 10 criteria) and raw-text/03-predictions.txt (W020). Adding these would strengthen the goalpost-moving argument significantly. Suggest expansion item if analyst has capacity."
     },
     {
       "id": "ISS-734",
