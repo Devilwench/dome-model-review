@@ -77,3 +77,29 @@ Writers: decider, human. Readers: analyst.
 Two files: `open-issues.json` (active) and `closed-issues.json` (archive). Decider is the sole writer. Patches are written to timestamped files (`suggested-patches-YYYY-MM-DDTHH-MM.json`). The `processed-reviews.json` ledger tracks which curmudgeon review files have been fully processed, using filenames (not bare WIN IDs) for cycle-aware dedup.
 
 Query counts: `node -e "const o=JSON.parse(require('fs').readFileSync('monitor/decisions/open-issues.json','utf8'));const c=JSON.parse(require('fs').readFileSync('monitor/decisions/closed-issues.json','utf8'));console.log('Open:',o.issues.length,'Closed:',c.issues.length)"`
+
+## kill-shots.json Schema
+
+Array of six kill-shot test entries. Each entry has:
+- id: KS-NNN identifier
+- test_name: Human-readable test name
+- dome_prediction: What the dome predicts
+- dome_claimed_globe_prediction: What the dome CLAIMS the globe predicts (often a straw man)
+- actual_globe_prediction: What standard physics actually predicts
+- dome_status: Dome's self-assessment ("Claimed Confirmed", "Pending", "Failing")
+- our_verdict: One of the six standard verdict categories
+- our_strength: Strength tier for this test's argument:
+  - "decisive": This single test, if accepted, would by itself settle the question. Binary result, no interpretive escape. (Example: KS-003 JFK-LHR has three independent discriminating tests that each independently reject the dome mechanism.)
+  - "major": Strong multi-faceted evidence requiring significant rebuttal effort, but a skilled defender could construct a non-trivial response. (Example: KS-001 Sydney-Perth has four distinct problems but a defender could argue about V13 vs V12 methodology.)
+  - "supportive": Adds corroborating weight but does not independently resolve the question. (Example: KS-004 SAA is non-discriminating — both models predict the same direction from the same data.)
+- our_finding: One-line primary finding
+- reproducibility: Assessment of independent replicability
+- kernel_of_truth: What the dome genuinely gets right
+- straw_man_identified: Boolean — does the dome misrepresent what the globe predicts?
+- straw_man_detail: If true, description of the misrepresentation
+- related_wins: Array of WIN IDs this kill-shot relates to
+- related_failures: Array of FAIL IDs
+- code_analysis: Same structure as wins.json code_analysis
+- section_anchor: HTML anchor ID for deep linking
+
+Build computes from this file: {{KS_TOTAL}}, {{KS_DECISIVE}}, {{KS_MAJOR}}, {{KS_SUPPORTIVE}}, {{KS_STRAW_MAN_COUNT}}, {{KS_WAIT_AND_SEE_COUNT}}.

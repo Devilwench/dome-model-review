@@ -21,19 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 50,
-      "target_type": "section",
-      "target_id": "SEC-1.4",
-      "reason": "SEC-1.4 (Methodology Assessment) never reviewed — old ID pattern prevented discovery.",
-      "pushed_by": "human",
-      "pushed_at": "2026-04-12T16:59:06.681Z",
-      "context_hints": {
-        "source_file": null,
-        "related_issues": [],
-        "human_note": "Introductory section, lower priority than 1.5-1.7 but still needs first review."
-      }
-    },
-    {
       "queue_id": 53,
       "target_type": "section-new",
       "target_id": "part1-section-1-8-1",
@@ -106,17 +93,66 @@
         ],
         "human_note": "HNOTE-REFRACT-RESTRUCTURE-001"
       }
+    },
+    {
+      "queue_id": 62,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-1.8",
+      "reason": "EXP-129 integrated: Section 1.8 fully rewritten as \"Coordinate Collapse\" (14.5KB, up from 10.8KB). Human-directed full restructure. Verdict changes HELD pending curmudgeon review. Fresh adversarial attack needed on new argument.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-12T21:11:18.668Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-129.json",
+        "related_issues": [],
+        "human_note": "HNOTE-DIFFREFRACT-001/002/003 + HNOTE-REFRACT-RESTRUCTURE-001"
+      }
+    },
+    {
+      "queue_id": 63,
+      "target_type": "section-new",
+      "target_id": "SEC-killshots-rating-key",
+      "reason": "EXP-084 integrated: our_strength tier definitions inserted into Kill Shots tab. Formal definitions added (decisive/major/supportive). Review for accuracy and completeness.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-12T21:11:18.668Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-084.json",
+        "related_issues": [
+          "ISS-753"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 64,
+      "target_type": "win-detail-rewrite",
+      "target_id": "WIN-010",
+      "reason": "Decider self-applied WIN-010 text fixes: finding, tldr_verdict, and detail_verdict_text updated to reflect Self-Contradicted verdict (n(r) makes eclipse geometry indeterminate). Was critical verdict-text mismatch (ISS-836). EXP-140 still pending for full defense neutralization.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-12T21:11:18.668Z",
+      "context_hints": {
+        "source_file": "monitor/curmudgeon/reviews/WIN-010.c3.json",
+        "related_issues": [
+          "ISS-836"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 65,
+      "target_type": "proposal",
+      "target_id": "EXP-050",
+      "reason": "EXP-050 (category-proposal-writeup, status=revision-submitted) needs curmudgeon gate 2 review before prose is written. Integrity agent flagged it uncoupled from curmudgeon queue. See EXP-050-r2.json for prior review.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-12T21:15:01.595Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-050.json",
+        "related_issues": [],
+        "human_note": null
+      }
     }
   ],
-  "next_id": 62,
+  "next_id": 66,
   "history": [
-    {
-      "queue_id": 9,
-      "target_id": "WIN-067",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-10T17:26:04.612Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 3,
       "target_id": "part2b-2b.7",
@@ -473,6 +509,13 @@
       "target_id": "SEC-1.8",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-12T20:11:03.897Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 50,
+      "target_id": "SEC-1.4",
+      "target_type": "section",
+      "popped_at": "2026-04-12T21:11:18.668Z",
       "popped_by": "decider"
     }
   ],

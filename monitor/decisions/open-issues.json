@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T20:44:44.670Z",
+  "last_updated": "2026-04-12T21:15:24.338Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -64,24 +64,6 @@
         "EXP-042",
         "EXP-076"
       ]
-    },
-    {
-      "id": "ISS-753",
-      "win_id": null,
-      "severity": "major",
-      "section": "part5",
-      "section_key": "EXP-057",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "title": "EXP-057-proposal: our_strength field (decisive/major/supportive) undefined — missing formal definitions",
-      "description": "EXP-057 introduces our_strength field in kill-shots but lacks formal definitions for decisive/major/supportive ratings. Without definitions, assignments appear arbitrary and dome defender can challenge on a win-by-win basis. Source: curmudgeon EXP-057-proposal.c2.json.",
-      "source": "curmudgeon",
-      "suggested_fix": "Analyst must define our_strength criteria before EXP-057 is integrated. Add definitions to DATA-SCHEMAS.md and to the kill-shots tab explanation.",
-      "found_by": "decider",
-      "found_at": "2026-04-12T11:10:59.813Z",
-      "created_at": "2026-04-12T11:10:59.813Z",
-      "assigned_at": "2026-04-12T12:23:10.950Z",
-      "expansion_id": "EXP-084"
     },
     {
       "id": "ISS-761",
@@ -822,22 +804,6 @@
       "assigned_exp": "EXP-128"
     },
     {
-      "id": "ISS-836",
-      "win_id": "WIN-010",
-      "section_id": null,
-      "severity": "critical",
-      "category": "verdict",
-      "status": "assigned-analyst",
-      "title": "WIN-010 verdict-text mismatch: verdict=Self-Contradicted but all text says Non-discriminating",
-      "description": "WIN-010 verdict was flipped to Self-Contradicted (EXP-078, approved 2026-04-12) but detail_evidence, detail_verdict_text, finding, tldr_evidence, and tldr_verdict were NOT updated. Text still argues Chapman Non-discriminating. Reader sees verdict=Self-Contradicted with evidence for a completely different verdict category. Per WIN-010.c3 curmudgeon review (cycle 3, conf 0.95). The new self-contradiction argument is: eclipse geometry requires definite solar altitude, which varies 83% seasonally due to n(r), making dome eclipse predictions indeterminate. Analyst must (1) rewrite detail_verdict_text to explain self-contradiction, (2) update finding field, (3) update both TLDRs. Also: fix duplicated paragraph in detail_evidence (duplicate starts with \"Note: the dome model's own eclipse validation\").",
-      "found_by": "curmudgeon",
-      "found_at": "2026-04-12T19:41:15.989Z",
-      "found_date": "2026-04-12",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/WIN-010.c3.json",
-      "created_at": "2026-04-12T19:41:15.989Z"
-    },
-    {
       "id": "ISS-837",
       "win_id": null,
       "section_id": "SEC-1.7",
@@ -920,7 +886,40 @@
       "found_at": "2026-04-12T20:42:11.823Z",
       "created_at": "2026-04-12T20:42:11.823Z",
       "staleness_note": "Review is from 2026-04-12T18:30:00Z — check whether WIN-002 text was patched since then"
+    },
+    {
+      "id": "ISS-844",
+      "win_id": "025",
+      "section_id": null,
+      "severity": "major",
+      "category": "verdict",
+      "status": "open",
+      "title": "WIN-025 cross-group inconsistency: WIN-010/068 now Self-Contradicted but WIN-025 (same eclipse group) still Std Model Explains",
+      "description": "WIN-010 and WIN-068 both flipped to Self-Contradicted via the refraction cascade (n(r) makes eclipse shadow geometry indeterminate). WIN-025 (2024 eclipse, same phenomenon, detail_group WIN-010/025/068) still has verdict Std Model Explains. If the refraction cascade applies to eclipse shadow geometry, it should apply equally to WIN-025. Either flip WIN-025 or add explicit explanation of why it is exempt. Per WIN-010.c3 curmudgeon review.",
+      "found_by": "curmudgeon",
+      "found_at": "2026-04-12T21:15:24.338Z",
+      "found_date": "2026-04-12",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-010.c3.json",
+      "created_at": "2026-04-12T21:15:24.338Z"
+    },
+    {
+      "id": "ISS-845",
+      "win_id": "WIN-010",
+      "section_id": "SEC-1.8",
+      "severity": "major",
+      "category": "verdict",
+      "status": "open",
+      "title": "SEC-1.8 references WIN-010 verdict flip but curmudgeon gate 2 (EXP-050-r2) rejected it",
+      "description": "The curmudgeon SEC-1.8 cycle 1 review flags that the section references WIN-010 as having its verdict changed to Self-Contradicted via the refraction cascade. However, curmudgeon gate 2 review (EXP-050-r2) explicitly rejected the WIN-010 flip on grounds that eclipse magnitude (Chapman Sq current) does not require knowing physical sun altitude. Note: this conflict is STALE for the new EXP-129 section (WIN-010 does not appear in the new Section 1.8 text). But the WIN-010 verdict itself is pending human resolution: should WIN-010 be Self-Contradicted (human approved EXP-078) or Std Model Explains (curmudgeon gate 2 rejected)? Current verdict is Self-Contradicted per EXP-078.",
+      "found_by": "curmudgeon",
+      "found_at": "2026-04-12T21:15:24.338Z",
+      "found_date": "2026-04-12",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/SEC-1.8.c1.json",
+      "staleness_note": "The new Section 1.8 (EXP-129) does NOT reference WIN-010 cascade. The conflict is about the WIN-010 verdict itself, not the section text.",
+      "created_at": "2026-04-12T21:15:24.338Z"
     }
   ],
-  "next_id": 844
+  "next_id": 846
 }

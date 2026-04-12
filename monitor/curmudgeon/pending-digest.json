@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-04-12T19:04:25.723Z",
-  "total_reviews": 146,
+  "generated_at": "2026-04-12T21:04:25.271Z",
+  "total_reviews": 150,
   "already_processed": 153,
-  "pending_count": 59,
+  "pending_count": 64,
   "severity_breakdown": {
-    "critical": 0,
-    "major": 39,
-    "moderate": 16,
+    "critical": 1,
+    "major": 42,
+    "moderate": 17,
     "minor": 0,
     "none": 4
   },
   "defense_survives_breakdown": {
     "high": 1,
-    "moderate": 9,
-    "total_vulnerable": 10
+    "moderate": 10,
+    "total_vulnerable": 11
   },
-  "needs_full_read_count": 44,
+  "needs_full_read_count": 49,
   "under_covered_processed": [
     {
       "win_id": "EXP-050-r2",
@@ -654,30 +654,6 @@
         {
           "severity": "minor",
           "summary": "The dome's claim source says 'Multiple independent MT literature sources' but names none. Our review doesn't call out this absence of citations. For a claim labeled 'Literature Peak,' the dome should be able to cite specific MT papers showing a 12 Hz peak. The absence of any specific citation from t"
-        }
-      ]
-    },
-    {
-      "win_id": "WIN-010",
-      "topic": "BOU 2017 eclipse -10.9 nT magnetic anomaly",
-      "issues_created": 0,
-      "holes_found": 4,
-      "missing_holes": [
-        {
-          "severity": "moderate",
-          "summary": "The FSF (field strength factor) variation across stations is unexplained. FSF ranges from 0.642 (Canary Islands) to 2.075 (Lerwick) — a factor of 3.2 spread. If FSF truly derives from dome geometry H(r) = 8537·exp(−r/8619), the variation should reflect differences in H(r) evaluated at different disc"
-        },
-        {
-          "severity": "moderate",
-          "summary": "The disturbed-day caveat (Kp index) is underutilized in our review. August 21, 2017 had Kp = 3-4, indicating geomagnetic storm activity. The dome acknowledges 'disturbed-day baseline' caveat but still counts this as a full WIN. If the -10.9 nT signal is partially storm-contaminated, the precise magn"
-        },
-        {
-          "severity": "minor",
-          "summary": "Our review credits Chapman (1933) with predicting 'the exact signal magnitude and geometry.' Chapman's original paper was qualitative/semi-quantitative. The quantitative prediction (magnitude ~10 nT, timing at eclipse maximum) comes from modern Ashour-Chapman models. More precisely: Chapman provided"
-        },
-        {
-          "severity": "minor",
-          "summary": "The 'signal tracks eclipse geometry not solar time' claim is non-discriminating but worth articulating. Both the standard ionospheric model and the dome model would predict geometry tracking because the cause (UV shadow) follows the eclipse geometry by definition. Any model in which the eclipse caus"
         }
       ]
     },
@@ -2166,7 +2142,7 @@
       ]
     }
   ],
-  "under_covered_count": 80,
+  "under_covered_count": 79,
   "pending_reviews": [
     {
       "item_id": "part5",
@@ -2257,6 +2233,70 @@
       "defense_survives": 4,
       "best_defense": "A fair-minded dome defender would argue: (1) 'Your NMP error math doesn't add up — you say 35 km/yr observed but cite 39.9% error, which implies ~38 km/yr. You can't even check the arithmetic while accusing me of bad math.' (2) 'Test 5 (Eclipse) is a genuinely prospective prediction with a specific ",
       "preemptive_recommendation": "Fix the three factual vulnerabilities (NMP math, Dome Says column, Polaris offset) immediately — these are where the defense has the most traction. For the eclipse prejudgment, add the 'Wait and See' discussion per the recommendation above. For the Williams citation, verify the specific 62/51 minute",
+      "needs_full_read": true
+    },
+    {
+      "item_id": "WIN-010",
+      "win_id": "WIN-010",
+      "review_file": "monitor/curmudgeon/reviews/WIN-010.c3.json",
+      "reviewed_at": "2026-04-12T17:30:00Z",
+      "cycle": 3,
+      "topic": "BOU 2017 eclipse -10.9 nT — verdict flip to Self-Contradicted, text not updated",
+      "verdict_holds": false,
+      "confidence": 0.95,
+      "recommended_action": "major_rewrite",
+      "holes": [
+        {
+          "severity": "critical",
+          "summary": "VERDICT-TEXT MISMATCH: The verdict field says 'Self-Contradicted' (flipped via EXP-078 on 2026-04-12) but detail_verdict_text still begins 'Non-discriminating: the Chapman ionospheric mechanism...' — arguing the OLD 'Std Model Explains' case. The refraction cascade self-contradiction (physical sun a",
+          "recommendation": "URGENT: Update detail_verdict_text to explain the self-contradiction. The text should retain the Chapman 'Std Model Explains' argument as secondary but lead with the EXP-078 refraction cascade: 'Self-Contradicted: The dome's eclipse geometry requires a definite physical sun altitude, but the dome's ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "major",
+          "summary": "DUPLICATED PARAGRAPH in detail_evidence. The text block starting 'Note: the dome model's own eclipse validation in monitor.py imposes a Kp < 2 quiet-day filter...' through '...not first-principles derivation from dome parameters' appears TWICE verbatim (positions 751–2033 and 2033–3314, ~1,281 chara",
+          "recommendation": "Remove the second occurrence of the duplicated paragraph. The evidence should flow: (1) Chapman mechanism, (2) no dome equation, (3) Kp filter escape clause [once], (4) FSF spread analysis [once], (5) refraction cascade cross-reference.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "major",
+          "summary": "TLDR INCONSISTENCY: Both tldr_evidence ('Eclipses cause small magnetic dips because the moon's shadow reduces ionospheric conductivity — this has been known since Chapman described it in 1933') and tldr_verdict ('The Chapman ionospheric mechanism, known for 90+ years, predicts this signal. The dome ",
+          "recommendation": "Update tldr_verdict to: 'Self-Contradicted: the dome's own refraction formula (n(r)) makes the sun's physical altitude seasonally indeterminate (1,975–3,618 km), so eclipse shadow geometry — which this WIN depends on — cannot be computed from dome parameters. The Chapman mechanism (known 90+ years) ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "major",
+          "summary": "CROSS-GROUP INCONSISTENCY: WIN-010 is in detail_group 'WIN-010/025/068'. WIN-010 and WIN-068 are both now 'Self-Contradicted' via refraction cascade, but WIN-025 (2024 eclipse, same phenomenon, same detail_group) retains verdict 'Std Model Explains'. If the refraction cascade makes eclipse shadow po",
+          "recommendation": "Either (a) flip WIN-025 to Self-Contradicted with the same refraction cascade rationale, or (b) add a note to WIN-010/068 explaining why WIN-025 is exempt. The EXP-078 table only listed WIN-068 (not WIN-010 or WIN-025), so the scope of the cascade needs clarification.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The self-contradiction argument itself needs scrutiny. EXP-078 argues that eclipse shadow position requires 'definite physical sun altitude' and n(r) makes this indeterminate. But a dome defender could argue: 'The eclipse shadow is an APPARENT phenomenon — we observe where the shadow falls, not wher",
+          "recommendation": "The detail_evidence should preempt this defense: 'The eclipse shadow is cast by the physical moon blocking physical sunlight. Shadow position depends on the physical geometry (sun, moon, ground), not the apparent geometry. Refraction shifts where an observer sees the sun, but it does not change wher",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The finding field still says 'Non-discriminating: Chapman ionospheric mechanism predicts exact signal; dome has no eclipse-magnetic coupling equation' — this is the old summary-table text consistent with Std Model Explains, not Self-Contradicted.",
+          "recommendation": "Update finding to lead with the self-contradiction: 'Self-Contradicted: dome's own n(r) makes eclipse geometry indeterminate; also non-discriminating (Chapman mechanism predicts exact signal).'",
+          "affects_summary_table": true
+        }
+      ],
+      "worst_severity": "critical",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "hardcoded",
+        "relabels_standard": true,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "WIN-010 claims the dome predicted the -10.9 nT eclipse magnetic anomaly at Boulder (BOU) in 2017. Our original verdict was 'Std Model Explains' (Chapman ionospheric mechanism, known since 1933, quanti",
+      "stronger_arguments_count": 2,
+      "defense_survives": 3,
+      "best_defense": "A dome defender's strongest rebuttal: 'Your Self-Contradicted verdict rests on the refraction cascade from Section 1.8, which argues that n(r) makes the physical sun altitude indeterminate. But the dome's eclipse predictions don't require knowing the sun's physical altitude — they use the empiricall",
+      "preemptive_recommendation": "This defense has teeth because it correctly identifies that the dome's eclipse formula doesn't explicitly compute from physical sun altitude — it uses empirical inputs. The preemption should be: 'The dome claims FSF derives from V12 H(r)/r dome geometry (raw-text/03-predictions.txt). If FSF is truly",
       "needs_full_read": true
     },
     {
@@ -3413,6 +3453,176 @@
       "code_analysis_tags": null,
       "argument_summary": "Our kill-shot section argues that Gaia measured precise parallax for 1.8 billion stars, that parallax implies distance via d=1/p, that Proxima Centauri at 4.24 ly is 4.0×10^13 km away, and that a loca",
       "stronger_arguments_count": 4,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "SEC-1.1",
+      "win_id": "SEC-1.1",
+      "review_file": "monitor/curmudgeon/reviews/SEC-1.1.c1.json",
+      "reviewed_at": "2026-04-12T23:45:00Z",
+      "cycle": 1,
+      "topic": "Section 1.1 — Overview of the Ovoid Cavity Cosmological Model",
+      "verdict_holds": true,
+      "confidence": 0.78,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "Factual arithmetic error: H(r) at equator. The section states 'At the equator (r = 15,000 km), this gives H ≈ 1,270 km.' The actual calculation: H(15000) = 8537 × exp(−15000/8619) = 8537 × 0.1754 ≈ 1,498 km. The stated value of 1,270 km actually corresponds to r ≈ 16,423 km, not 15,000 km — a ~15% e",
+          "recommendation": "Replace '1,270 km' with '1,498 km' (or '~1,500 km' for readability). Alternatively, if 1,270 km was intended for a different r value, correct the r value. The fix is a one-word edit in sections.json.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "major",
+          "summary": "TLDR hardcodes stale WIN count. The TLDR says 'The model claims 69 confirmed predictions' but {{TOTAL_WINS}} in the body text resolves to 70 (wins.json has 70 entries: WIN-001 through WIN-069 plus WIN-058b). Readers see the TLDR first. A discrepancy between the TLDR and the body count undermines tru",
+          "recommendation": "Replace the hardcoded '69' in the TLDR with either {{TOTAL_WINS}} (if the template engine supports TLDR substitution) or update it to '70'. Better yet, use a relative phrase like 'dozens of confirmed predictions' that doesn't go stale, since the body text uses the dynamic template for precision.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "B(r) formula sourcing gap. The section presents 'B(r) = 62,376×e^(−r_N/8,619) + 64,852×e^(−r_S/8,619) nT' as if this is a published dome parameter. However, this formula does NOT appear in the dome's model page (raw-text/05-model.txt), home page (raw-text/01-home.txt), or any other extracted raw-tex",
+          "recommendation": "Add a parenthetical attribution, e.g., '(introduced in V51.0)' after the B(r) formula, or cite the specific dome page/repository location. This also helps readers understand the model's evolution — the two-pole formula replaced V50.6's single-pole model.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "TLDR editorial framing is dismissive. The TLDR ends with 'the review structure, not the geometry, is what makes it interesting to evaluate.' This is an editorial judgment that (a) appears before any evidence is presented, (b) signals we've already concluded the geometry doesn't matter, and (c) could",
+          "recommendation": "Replace the final TLDR sentence with something descriptively accurate, e.g., 'This review examines each claim against published data and the model's own internal consistency.' or 'The following sections evaluate every claimed prediction against independent data.' The editorial judgment can live in P",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "minor",
+          "summary": "'Ring magnet' attribution. The section says 'This circulation is topologically identical to a ring magnet.' The dome's raw text does not use the phrase 'ring magnet' — it describes a toroidal flow pattern but uses terms like 'Closed Toroidal Ovoid' and 'aetheric medium circulation.' Our characteriza",
+          "recommendation": "Minor wording change: 'This circulation is topologically identical to what physicists call a ring magnet' or add a parenthetical '(our characterization — the dome calls it a \"Closed Toroidal Ovoid\")'. Low priority.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Missing 'below detection' nuance. The section says the dome claims '{{TOTAL_WINS}} confirmed predictions and zero falsifications.' The dome's home page distinguishes between 'Falsified' (0) and 'Below Detection' (2), treating the latter as noise-limited null results rather than model failures. While",
+          "recommendation": "Add a brief parenthetical: '...zero falsifications (with two results classified as \"below detection threshold\").' This shows completeness and fairness — we're not hiding anything the dome says.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [],
+      "code_analysis_tags": null,
+      "argument_summary": "Section 1.1 is a descriptive overview that introduces the dome model's geometry, key parameters, and claim count. It presents the dome's architecture (elliptical disc, toroidal ovoid cavity, copper/br",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "SEC-1.2",
+      "win_id": "SEC-1.2",
+      "review_file": "monitor/curmudgeon/reviews/SEC-1.2.c1.json",
+      "reviewed_at": "2026-04-12T19:45:00.000Z",
+      "cycle": 1,
+      "topic": "How It Differs from Classic Flat Earth",
+      "verdict_holds": true,
+      "confidence": 0.8,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "TLDR attributes 'spherical harmonics' to the dome model. The term 'spherical harmonic' appears NOWHERE on the dome site (john09289.github.io/predictions/model.html), nor in any of the dome's raw text files (01-home.txt through 08-live-power.txt). The dome model does not use spherical harmonics. This",
+          "recommendation": "Remove 'spherical harmonics' from the TLDR. The dome's actual mathematical apparatus is already impressive enough without embellishment: Finsler metrics, exponential height functions, quadratic distance laws, coordinate transformations. List those instead.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "TLDR says 'dielectric coupling constants' — this is a mashup of two separate dome concepts. The dome model uses (a) 'dielectric pressure/interaction' (in the live-power context) and (b) a 'magnetic-gravity coupling constant' (WIN-012, 1.67 nT/uGal). But 'dielectric coupling constants' as a unified t",
+          "recommendation": "Replace 'dielectric coupling constants' with something more precise. Options: 'magnetic-gravity coupling constants' (what the dome actually uses) or 'aetheric dielectric parameters' (closer to the dome's language). Or simply say 'coupling constants and dielectric parameters' to separate the two conc",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Cross-reference link text says 'Section 1b' but links to #section-1-5 (Section 1.5: Aetheric Refraction). The display text 'Section 1b' is confusing because Part 1b is a separate section (Version Change Analysis, V50.6→V51.0). A reader clicking 'Section 1b' expects Part 1b, not Section 1.5. The anch",
+          "recommendation": "Change link text from 'Section 1b' to 'Section 1.5' to match the actual section numbering.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Body text claims 'Finsler geometry corrections (a non-standard geometry correction for eccentricity 0.66)' — this parenthetical oversimplifies. Finsler geometry is not merely 'a correction for eccentricity'; it's a class of differential geometry where the metric tensor depends on direction as well a",
+          "recommendation": "Rephrase to: 'Finsler geometry (a non-standard differential geometry framework that the model uses for position-dependent distance corrections, with eccentricity parameter 0.66)'. This is more accurate to both the mathematical concept and the dome's usage.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Raw-text extraction (V50.6) is stale — the dome site is now V51.0/V51.1. The raw-text files contain no mention of Finsler, Hildegard, toroidal, or Scivias, but the live V51.0 site does. This means our review text is citing features from the live site that our archived raw-text can't support. Not a s",
+          "recommendation": "Update raw-text/ archive to V51.0/V51.1 when possible. This is a pipeline issue, not a section 1.2 fix.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [],
+      "code_analysis_tags": null,
+      "argument_summary": "Section 1.2 introduces the dome model's key differentiators from classic flat-earth: mathematical formalism (Finsler metrics, exponentially varying firmament height, quadratic southern distance law), ",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "SEC-1.7",
+      "win_id": "SEC-1.7",
+      "review_file": "monitor/curmudgeon/reviews/SEC-1.7.c1.json",
+      "reviewed_at": "2026-04-12T21:15:00Z",
+      "cycle": 1,
+      "topic": "The Gravity Paradox — first adversarial review",
+      "verdict_holds": true,
+      "confidence": 0.82,
+      "recommended_action": "major_rewrite",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "Hardcoded WIN count '67' appears three times in the section body ('across the dome's 67 WINs', 'one-third of the 67 WINs', etc.). The current WIN count is 70 (and rising). This violates the project's own cardinal rule: never hardcode a number that can be derived from data. A dome defender can point ",
+          "recommendation": "Replace all instances of '67' with {{TOTAL_WINS}} template variable. The heading '49%' should also be computed dynamically or removed since the denominator is changing.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "major",
+          "summary": "Fraction mismatch in concluding paragraph. The section heading says 'Gravity Pervades 49% of the Model's Predictions' (correct: 33/67 ≈ 49%). But the closing summary says 'Roughly one-third of the 67 WINs make explicit gravity claims' — 14/67 = 20.9%, which is roughly one-fifth, not one-third. It th",
+          "recommendation": "Fix fractions to match the data: 14 out of N WINs (~21%) make explicit gravity claims; 33 out of N (~49%) depend on gravitational physics directly or indirectly. Or rephrase: 'roughly one in five WINs makes explicit gravity claims; roughly half depend on gravitational physics.' Remove the 'one-third",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Broken cross-reference tab link. The paragraph references Part 2b with onclick='showTab(\"pages\")' but Part 2b is on the 'selftest' tab (confirmed by v6-restructure-map.json tab_ids: part2b → selftest). The 'pages' tab is Part 4 (Live Power Dashboard). Clicking this link would navigate to the wrong t",
+          "recommendation": "Change showTab('pages') to showTab('selftest') in the Part 2b link in the final paragraph.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The ~19 indirect-gravity WINs are not enumerated. The section asserts '~19 WINs rely on gravity indirectly' but never lists them. A defender could dispute the count — arguing some of those 19 don't actually require gravity — and the reader has no way to verify the claim. This is the same vagueness w",
+          "recommendation": "Either enumerate the 19 indirect WINs (in a collapsible detail block to avoid clutter) or provide the criteria used to classify them (e.g., 'any WIN whose underlying phenomenon requires hydrostatic equilibrium, orbital mechanics, or gravitational potential'). Even a footnote listing WIN numbers woul",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Exponential calculation imprecision. Section says exp(−20015/8619) ≈ 0.095. Actual value is 0.0981 — a 3.3% discrepancy. This makes the 'factor of 150' claim slightly understated (actual factor ≈ 170). Not a material error but imprecise for a review that emphasizes numerical rigor.",
+          "recommendation": "Use 0.098 (or 'roughly 10%') and update the factor to 'approximately 170×' or 'more than 150×'.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Section says WGS84 constants 'describe the centrifugal acceleration and mass distribution of a rotating sphere, not a flat disc.' WGS84 models an oblate rotating spheroid (equatorial radius 6,378.1 km, polar radius 6,356.8 km), not a sphere. Section 1.3 correctly states 'oblate spheroid.' Using 'sph",
+          "recommendation": "Change 'rotating sphere' to 'rotating oblate spheroid' for consistency with Section 1.3.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [
+        "Part 2b cross-reference uses wrong tab (showTab('pages') should be showTab('selftest'))"
+      ],
+      "code_analysis_tags": null,
+      "argument_summary": "Section 1.7 argues that the dome model uses gravitational physics in ~49% of its predictions but has no gravity theory. It borrows WGS-84 constants wholesale, applies them to flat-disc coordinates, an",
+      "stronger_arguments_count": 2,
       "defense_survives": null,
       "best_defense": null,
       "preemptive_recommendation": null,
@@ -5031,6 +5241,72 @@
       "best_defense": null,
       "preemptive_recommendation": null,
       "needs_full_read": false
+    },
+    {
+      "item_id": "SEC-1.6",
+      "win_id": "SEC-1.6",
+      "review_file": "monitor/curmudgeon/reviews/SEC-1.6.c1.json",
+      "reviewed_at": "2026-04-12T19:30:00Z",
+      "cycle": 1,
+      "topic": "The Dielectric Foundation — first adversarial review",
+      "verdict_holds": true,
+      "confidence": 0.78,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "Wang et al. (2000) value discrepancy: Section states '−6.5 μGal' as the Mohe measurement. The actual Wang et al. paper reports the anomaly as 7.0±2.7 μGal (two valleys of ~6–7 μGal at first and last contacts). The dome's own source says '6.5 uGal' without the sign. While −6.5 is within the reported ",
+          "recommendation": "Change '−6.5 μGal' to '~7 μGal (reported as 7.0±2.7 μGal by Wang et al.)' or cite the exact figure from the paper. Note that the dome itself uses 6.5, which is within the error bar but not the central value.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Monte Carlo and AI percentile claims are unsourced. The section states '37% of random samples exceed AI = 1.15' for red noise and '48% exceed it' for GRACE L1A-colored noise. These are presented as facts but no citation, simulation code, or methodology is provided. A dome defender could dismiss thes",
+          "recommendation": "Either (a) add a citation to a published paper on spurious asymmetry indices in colored noise, (b) include the simulation methodology in a footnote or appendix, or (c) soften the language to 'statistical simulations suggest that a significant fraction of random samples...' with a pointer to the anal",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The 'simultaneity required' argument for coupling constants is philosophically incomplete. We assert that a coupling constant requires simultaneous measurement of both coupled quantities at the same location. A smart defender could counter with examples: the fine structure constant α was extracted f",
+          "recommendation": "Reframe from 'simultaneous measurement is required' to: 'Cross-event derivation of coupling constants is valid only when (a) a theoretical model predicts the constant should be universal, OR (b) multiple independent measurements converge on the same value. The dome provides neither: no geometric der",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Sun et al. (2010) citation could not be independently verified via web search. While the study likely exists (multiple Chinese SG studies are documented), the specific paper referenced — five-station Chinese SG network during the 2009 eclipse — was not found in accessible databases. If this citation",
+          "recommendation": "Verify the exact citation: author names, journal, year, and DOI. If it's Sun H.P. et al. in Chinese Journal of Geophysics or similar, add the DOI. If the paper cannot be verified, replace with a more readily citeable null result.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "BOU 2017 eclipse magnetic anomaly value of −10.9 nT lacks a direct citation. The section uses this as a key input to κ but doesn't cite the specific INTERMAGNET data product or paper that reports this value. We know it comes from the dome's own source material, but if it's the dome's measurement (no",
+          "recommendation": "Clarify whether −10.9 nT is the dome's cited value from INTERMAGNET BOU data or an independently published measurement. If the former, frame it as 'the dome claims −10.9 nT from BOU data' rather than presenting it as an established fact.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "No falsification threshold for r stated. We say r = 0.992 is 'consistent with noise' during a G5 storm, but never specify what r value WOULD constitute evidence of genuine coupling. This creates a mild asymmetry — we criticize the dome for unfalsifiable claims while making our own unfalsifiable stat",
+          "recommendation": "Consider adding: 'A meaningful test would require pre-specifying the time window, events, and minimum r threshold before examining the data — the standard protocol the dome does not follow.'",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "PRED-KAPPA-001 is discussed in the section but does not appear in predictions.json. This means the prediction catalog tab may not cover it, creating a gap between what Section 1.6 discusses and what the Predictions Analysis tab tracks.",
+          "recommendation": "Either add PRED-KAPPA-001 to predictions.json as a 'mined' prediction with verdict 'recycled' or 'standard_physics', or note in the section that it's covered here rather than in the predictions catalog.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [
+        "Wang et al. reported 7.0±2.7 μGal, not −6.5 μGal — value is approximately correct but imprecise. The dome itself uses 6.5, so our review may be following the dome's cited value rather than the paper's."
+      ],
+      "code_analysis_tags": null,
+      "argument_summary": "Section 1.6 examines the dome's 'Dielectric Foundation' — four pillars: (1) the coupling constant κ = 1.672 nT/μGal, (2) Exhibit A (2003 Bedrock Audit with r=0.992 and AI=1.152), (3) Exhibit B (GRACE ",
+      "stronger_arguments_count": 4,
+      "defense_survives": 0,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
     },
     {
       "item_id": "SEC-3.5.3",

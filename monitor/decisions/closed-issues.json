@@ -9500,6 +9500,46 @@
       "created_at": "2026-04-12T18:14:29.438Z",
       "fixed_at": "2026-04-12T20:44:44.670Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-753",
+      "win_id": null,
+      "severity": "major",
+      "section": "part5",
+      "section_key": "EXP-057",
+      "category": "missing_argument",
+      "status": "fixed",
+      "title": "EXP-057-proposal: our_strength field (decisive/major/supportive) undefined — missing formal definitions",
+      "description": "EXP-057 introduces our_strength field in kill-shots but lacks formal definitions for decisive/major/supportive ratings. Without definitions, assignments appear arbitrary and dome defender can challenge on a win-by-win basis. Source: curmudgeon EXP-057-proposal.c2.json.",
+      "source": "curmudgeon",
+      "suggested_fix": "Analyst must define our_strength criteria before EXP-057 is integrated. Add definitions to DATA-SCHEMAS.md and to the kill-shots tab explanation.",
+      "found_by": "decider",
+      "found_at": "2026-04-12T11:10:59.813Z",
+      "created_at": "2026-04-12T11:10:59.813Z",
+      "assigned_at": "2026-04-12T12:23:10.950Z",
+      "expansion_id": "EXP-084",
+      "fixed_at": "2026-04-12T21:11:27.747Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "EXP-084 integrated: our_strength tier definitions (decisive/major/supportive) inserted into Kill Shots tab (part5 sections.json). DATA-SCHEMAS.md also updated."
+    },
+    {
+      "id": "ISS-836",
+      "win_id": "WIN-010",
+      "section_id": null,
+      "severity": "critical",
+      "category": "verdict",
+      "status": "fixed",
+      "title": "WIN-010 verdict-text mismatch: verdict=Self-Contradicted but all text says Non-discriminating",
+      "description": "WIN-010 verdict was flipped to Self-Contradicted (EXP-078, approved 2026-04-12) but detail_evidence, detail_verdict_text, finding, tldr_evidence, and tldr_verdict were NOT updated. Text still argues Chapman Non-discriminating. Reader sees verdict=Self-Contradicted with evidence for a completely different verdict category. Per WIN-010.c3 curmudgeon review (cycle 3, conf 0.95). The new self-contradiction argument is: eclipse geometry requires definite solar altitude, which varies 83% seasonally due to n(r), making dome eclipse predictions indeterminate. Analyst must (1) rewrite detail_verdict_text to explain self-contradiction, (2) update finding field, (3) update both TLDRs. Also: fix duplicated paragraph in detail_evidence (duplicate starts with \"Note: the dome model's own eclipse validation\").",
+      "found_by": "curmudgeon",
+      "found_at": "2026-04-12T19:41:15.989Z",
+      "found_date": "2026-04-12",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-010.c3.json",
+      "created_at": "2026-04-12T19:41:15.989Z",
+      "fixed_at": "2026-04-12T21:11:27.747Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Decider applied text fixes: finding, tldr_verdict, and detail_verdict_text all updated to reflect Self-Contradicted verdict. Note: EXP-140 still pending for full defense neutralization (apparent vs physical eclipse geometry)."
     }
   ]
 }
