@@ -19,8 +19,22 @@
     "decider",
     "tinker"
   ],
-  "queue": [],
-  "next_id": 44,
+  "queue": [
+    {
+      "queue_id": 44,
+      "target_type": "section",
+      "target_id": "SEC-1.6",
+      "reason": "Section 1.6 (Dielectric Foundation) was never reviewed — ID mismatch (old id=dielectric) prevented discovery. Now normalized to section-1-6. Needs first adversarial review.",
+      "pushed_by": "human",
+      "pushed_at": "2026-04-12T16:57:52.407Z",
+      "context_hints": {
+        "source_file": null,
+        "related_issues": [],
+        "human_note": "ID was just normalized from dielectric to section-1-6. First-ever curmudgeon review of this section."
+      }
+    }
+  ],
+  "next_id": 45,
   "history": [
     {
       "queue_id": 1,
