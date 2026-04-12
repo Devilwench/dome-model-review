@@ -1274,7 +1274,10 @@
       "priority": "major",
       "status": "pending",
       "notes": "The section claims two exponentials with the same decay constant collapse to a single exponential. This is FALSE when r_N != r_S. The valid critique is: (1) only 3 free parameters (A, C, lambda), all fitted to data with no dome-geometry derivation; (2) coefficients 62,376 and 64,852 nT have no derivation; (3) cannot reproduce IGRF multipolar structure. Replace the algebraic-collapse argument with the parameter-fitting critique. Also fix r_S parameterization clarification.",
-      "created_at": "2026-04-12T09:40:24.132Z"
+      "created_at": "2026-04-12T09:40:24.132Z",
+      "integrated": true,
+      "integrated_at": "2026-04-12T10:15:23.377Z",
+      "integration_mode": "section_rewrite"
     },
     {
       "id": "EXP-076",
@@ -1287,9 +1290,28 @@
       "priority": "critical",
       "status": "pending",
       "notes": "Section claims d_geo is undefined, but the dome README defines it as spherical arc distance. Remove the false undefined claim. Replace with: (1) using spherical-arc inputs in a flat-geometry model is self-contradictory — you cannot derive flat distances from dome geometry if the inputs already assume a sphere; (2) MDS with geodesic anchors then claiming the layout proves flat geometry is circular reasoning. The critique should be geometry-contradiction, not undefined-variable.",
-      "created_at": "2026-04-12T09:40:24.132Z"
+      "created_at": "2026-04-12T09:40:24.132Z",
+      "integrated": false
+    },
+    {
+      "id": "EXP-077",
+      "target": "data/sections.json SEC-2b.7 (part2b) — 91% null-scoreboard insertion + Finlay replacement",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.7.json (analyst verification run, not curmudgeon)",
+      "issue_ids": [
+        "ISS-732"
+      ],
+      "category": "section-rewrite",
+      "priority": "critical",
+      "status": "complete",
+      "notes": "Content from workspace EXP-075.json (W004/WIN-025 identity verification + 32/35 null-entry discovery). Integrated this run. Note: workspace EXP-075 ID collided with git EXP-075 (SEC-6.8 target) — allocated EXP-077 retroactively to preserve audit trail.",
+      "created_at": "2026-04-12T09:29:46.656Z",
+      "completed_at": "2026-04-12T09:29:46.656Z",
+      "output_file": "monitor/analyst/expansions/EXP-075.json",
+      "integrated": true,
+      "integrated_at": "2026-04-12T10:17:45.145Z",
+      "integration_mode": "section_rewrite_14_patches"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 77
+  "next_id": 78
 }

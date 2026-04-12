@@ -21,21 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 28,
-      "target_type": "section-new",
-      "target_id": "SEC-6.11",
-      "reason": "EXP-073 integrated — Section 6.11 (Prospective Bucket analysis) added to Part 6. New content needs adversarial review.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-11T13:08:33.062Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-073.json",
-        "related_issues": [
-          "ISS-677"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 31,
       "target_type": "proposal",
       "target_id": "EXP-050-r2",
@@ -51,9 +36,24 @@
         ],
         "gate_cycle": 2
       }
+    },
+    {
+      "queue_id": 34,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-6.11",
+      "reason": "SEC-6.11 patched: misquote fixed, PROS-007 engagement added, 9-vs-8 count discrepancy exploited, 0-for-2 reframing. Patched content needs fresh attack.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-12T10:15:23.377Z",
+      "context_hints": {
+        "source_file": null,
+        "related_issues": [
+          "ISS-741"
+        ],
+        "human_note": null
+      }
     }
   ],
-  "next_id": 32,
+  "next_id": 35,
   "history": [
     {
       "queue_id": 1,
@@ -266,6 +266,38 @@
       "target_type": "section-rewrite",
       "popped_at": "2026-04-12T07:14:17.316Z",
       "popped_by": "decider"
+    },
+    {
+      "queue_id": 32,
+      "target_id": "SEC-2b.7",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-12T10:15:35.702Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 33,
+      "target_id": "SEC-6.8",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-12T10:15:35.703Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 28,
+      "target_type": "section-new",
+      "target_id": "SEC-6.11",
+      "reason": "EXP-073 integrated — Section 6.11 (Prospective Bucket analysis) added to Part 6. New content needs adversarial review.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-11T13:08:33.062Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-073.json",
+        "related_issues": [
+          "ISS-677"
+        ],
+        "human_note": null
+      },
+      "popped_at": "2026-04-12T10:16:13.434Z",
+      "popped_by": "decider-dedup",
+      "note": "Removed: section already reviewed in cycle 2 before this queue item could be processed. Replaced by section-rewrite item 34 post-patch."
     }
   ],
   "schedule_state": {
