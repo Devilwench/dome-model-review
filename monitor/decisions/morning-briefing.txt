@@ -1,71 +1,47 @@
 MORNING BRIEFING — 2026-04-12
-Generated: 2026-04-12T16:00:00Z
-Curmudgeon reviews processed this run: 2 (part6-FAIL-004 Cycle 2, SEC-2b.7 Cycle 2)
-Previous decider run: 2026-04-12T08:05:30Z
+Generated: 2026-04-12T08:48:00Z
+Curmudgeon reviews processed this run: 0
+Previous decider run: 2026-04-12T08:31:54Z
 
-═══════════════════════════════════════════════════════════
-SITE HEALTH
-═══════════════════════════════════════════════════════════
-Integrity: FAIL → FIXED THIS RUN
-  - CRITICAL build drift fixed: wins.json had 70 entries (WIN-058b) but
-    published HTML showed 69. Rebuilt and published this run.
-  - All 3286 tests pass after rebuild.
-  - Pre-existing WARNs: workspace-only files, direction violations, CLAUDE.md
-    gap — these persist but are non-functional.
+SITE HEALTH: PASS (after this run's rebuild)
+  - Build drift RESOLVED: site rebuilt with 70 WINs, 3286 tests pass
+  - Integrity previous cycle reported critical drift — now cleared
+  - Phantom tracker entry EXP-066 is benign (batch output type, already integrated)
 
-═══════════════════════════════════════════════════════════
-EXTERNAL STATUS
-═══════════════════════════════════════════════════════════
-Dome changes: No substantive changes (10th consecutive quiet poll)
-Dome version: V51.1, 69 WINs, 94.5% accuracy (unchanged)
-Canary traps: NOT TRIGGERED (OTS still on wrong side)
-New from poll: AI Context page returned 404 — may have been removed.
-  API endpoints (api/results.json, api/scorecard.json) still 404.
+EXTERNAL STATUS: QUIET (10th consecutive)
+  - Dome V51.1 unchanged: 69 WINs, 94.5% accuracy, all parameters stable
+  - AI Context page (ai-context) returns 404 as of today — may have been removed
+  - Canary trap: NOT triggered. OTS methodology unchanged, no prediction-only timestamps.
 
-═══════════════════════════════════════════════════════════
-INTERNAL STATUS — THIS RUN
-═══════════════════════════════════════════════════════════
-Issues created: 3 (ISS-732 critical, ISS-733 moderate, ISS-734 minor)
-Patches applied: 1 (FAIL-004 AAO/500hPa clarification — self-applied)
-Issues closed: 0 (no issues resolved this run beyond patch)
+INTERNAL ISSUES (5 open):
+  - CRITICAL (1): ISS-732 — SEC-2b.7 W004/WIN-025 identity (assigned-analyst)
+  - MAJOR (1): ISS-696 — CAT-005 refraction cascade; EXP-050-r2 awaiting curmudgeon
+  - MINOR (3): ISS-708 (kill-shots template), ISS-734 (ai-context 404)
 
-Open issues (post-run): 6
-  ISS-696 (major, assigned-analyst): EXP-050 refraction cascade
-  ISS-698 (minor, wontfix): External report #1 — positive feedback
-  ISS-708 (minor, open): EXP-060 pipeline — kill-shots.json placeholders
-  ISS-732 (CRITICAL, assigned-analyst): SEC-2b.7 W004/WIN-025 identity unverified
-  ISS-733 (moderate, open): FAIL-004 stronger arguments not yet added
-  ISS-734 (minor, open): Dome AI Context page 404
+PATCHES APPLIED THIS RUN:
+  ✅ ISS-733 CLOSED — FAIL-004 two stronger arguments added to Section 6.5:
+    (1) Two-threshold discrepancy: W020 uses 500hPa ≥3% while Domain 10 uses
+        AAO < 0σ / SAA decay >50 nT/yr — incompatible metrics for same phenomenon
+    (2) Asymmetric window rule: 3-month minimum enforced only against atmospheric
+        predictions (which failed), not magnetic ones (which passed)
 
-═══════════════════════════════════════════════════════════
-TOP 3 PRIORITY ACTIONS FOR HUMAN
-═══════════════════════════════════════════════════════════
-1. [CRITICAL — ISS-732] SEC-2b.7 W004/WIN-025 identity verification
-   The "two scoreboards disagree on the same observation" argument is the
-   centerpiece of Section 2b.7. Curmudgeon confirmed: dome wins page defines
-   W004 as "Noise Floor Limit" (empirical baseline), NOT the eclipse test.
-   The API endpoint (api/results.json) is 404. Analyst must fetch from:
-   https://raw.githubusercontent.com/john09289/predictions/main/api/results.json
-   (or equivalent GitHub raw URL) and check the W004 entry title.
-   If the mapping is wrong, Section 2b.7 needs a rewrite — do NOT publish the
-   current version as definitive.
+TOP 3 PRIORITY ACTIONS:
+  1. [IMMEDIATE] ISS-732: Analyst re-fetch results.json — verify W004/WIN-025 identity
+     in SEC-2b.7. Critical issue, cannot self-apply without verified data.
+  2. [NEXT SESSION] Curmudgeon: review EXP-050-r2 (refraction cascade proposal, r2)
+     All 7 blocker issues were addressed in revision 2.
+  3. [NEXT SESSION] Analyst: ISS-700 waves 2/3 — MT/DW prediction assessments +
+     Part 6 prose update (ISS-702). 10 predictions still lack our_verdict.
 
-2. [MAJOR — ISS-696] EXP-050 refraction cascade
-   Analyst needs to submit EXP-050-numerics.json and the revised proposal
-   renumbered from Section 1.7 to Section 1.8 (1.7 is occupied by Gravity Paradox).
-   Curmudgeon gate returned ACCEPT_WITH_MODIFICATIONS with 7 blockers.
+CURMUDGEON PROGRESS:
+  - Queue depth: 2 (SEC-6.11 section-new, EXP-050-r2 proposal)
+  - Mode: BAU (240-min interval)
+  - 69 total WINs in tracker, 0 pending reviews in digest
 
-3. [MODERATE — ISS-733] FAIL-004 stronger arguments
-   Curmudgeon identified two compelling additions:
-   (a) Two-threshold discrepancy: W020 weekly uses "500hPa ≥3%" while Domain 10
-       dashboard uses "AAO < 0σ while SAA decay >50 nT/yr" — inconsistent thresholds
-       for the same phenomenon suggests post-hoc adjustment.
-   (b) Selective window rule: 3-month minimum applies only to atmospheric (failing)
-       predictions, not magnetic (passing) ones — structural asymmetry.
-   Both verified in raw-text files. Could be added without major restructuring.
+PREDICTION ASSESSMENTS:
+  - 80 assessment files on disk, all previously applied
+  - 10 predictions (MT/DW series) lack our_verdict — no assessment files yet
+  - 84/94 predictions have our_verdict
 
-═══════════════════════════════════════════════════════════
-CURMUDGEON PROGRESS
-═══════════════════════════════════════════════════════════
-Mode: BAU | Queue depth: 2 (SEC-6.11, EXP-050-r2) | Cadence: 240 min
-Next scheduled: SEC-6.11 (Prospective Bucket analysis review)
+CODE ANALYSIS TAGS: Pending sync check — run `node build-scripts/sync-code-analysis.js`
+  to verify any unsynced tags from curmudgeon reviews.
