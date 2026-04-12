@@ -36,7 +36,7 @@ For each completed/revised expansion not yet integrated:
    - **wins.json target** (mentions "WIN-NNN", detail fields): May use `replacement_detail_evidence`, `insertion_1`/`insertion_2` (targeted insertions with anchors), or `replacement_html` for full field replacement.
    - **Route patches correctly.** `"file": "wins.json"` or `"file": "sections.json"` so apply-patches.js routes correctly.
 
-5. **Mark expansion `"integrated": true`** with `integrated_at` timestamp.
+5. **Mark expansion `"status": "complete"` AND `"integrated": true`** with `integrated_at` timestamp. Both fields MUST be set together — `integrated: true` with `status: "pending"` will cause the analyst to re-do work you already applied. If you are creating an EXP item and self-integrating it in the same run (e.g., you can apply the fix directly), set `status: "complete", integrated: true` from the start — do NOT leave it `status: "pending"` or the analyst will pick it up.
 
 6. **Push the rewritten target to the curmudgeon priority queue.** An integrated expansion means a section or WIN just got materially rewritten — curmudgeon needs to re-attack the new text with fresh eyes before it accumulates readers. Pick the target_type that matches:
    - sections.json full replacement → `section-rewrite`
