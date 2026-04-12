@@ -142,7 +142,18 @@
     "EXP-050-r2.json",
     "SEC-6.5.c2.json",
     "SEC-3.1b.c2.json",
-    "SEC-6.3.c2.json"
+    "SEC-6.3.c2.json",
+    "SEC-3.5.5.json",
+    "SEC-3.5.6.json",
+    "SEC-3.5.8.json",
+    "SEC-4.5.9.json",
+    "SEC-4.6.1.json",
+    "SEC-4.6.3.json",
+    "SEC-6.8.c2.json",
+    "SEC-2b.7.c2.json",
+    "part6-sha256-recycling.c2.json",
+    "predictions-catalog.c2.json",
+    "ISS-703-sha256-forensics.json"
   ],
   "section_reviews_processed": [
     "SEC-3.1.json",

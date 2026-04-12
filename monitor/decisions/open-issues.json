@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T13:16:13.179Z",
+  "last_updated": "2026-04-12T13:43:31.248Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -209,7 +209,92 @@
       "found_by": "curmudgeon-cycle2",
       "source_review": "monitor/curmudgeon/reviews/part2b-W001-signflip.c2.json",
       "found_at": "2026-04-12T13:14:26.113Z"
+    },
+    {
+      "id": "ISS-767",
+      "win_id": null,
+      "severity": "major",
+      "section": "part5",
+      "section_key": "part5",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "title": "HOL-NARRATIVE: Overview scorecard declares 0 Actual Wins before presenting evidence",
+      "description": "HOL-NARRATIVE cycle 1: The Overview scorecard declares \"0 Actual Wins\" before the reader has seen any evidence. A dome defender will immediately object: \"They decided the verdict before the trial.\" The scorecard is a conclusion, not an introduction. Consider restructuring to present evidence first (brief summary of methodology) before the verdict, or reframe the scorecard as \"our interim finding after reviewing all claims\" with a direct link to the Methodology tab.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T13:43:10.089Z",
+      "created_at": "2026-04-12T13:43:10.089Z",
+      "assigned_exp": "EXP-088",
+      "assigned_at": "2026-04-12T13:43:31.248Z"
+    },
+    {
+      "id": "ISS-768",
+      "win_id": null,
+      "severity": "major",
+      "section": "part5",
+      "section_key": "part5",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "title": "HOL-STRESSTEST: No explicit success category defined — what would a genuine dome WIN look like?",
+      "description": "HOL-STRESSTEST cycle 1: The review defines what disqualifies a WIN but never operationalizes what WOULD constitute a genuine win. If the dome model produced a genuinely discriminating prediction, would we recognize it? The Evaluation Guide defines the standard, but no WIN has ever been shown to meet it, and we never explicitly tell the reader what evidence would change our verdict. This makes the review vulnerable to \"moving the goalposts\" accusations.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T13:43:10.089Z",
+      "created_at": "2026-04-12T13:43:10.089Z",
+      "assigned_exp": "EXP-088",
+      "assigned_at": "2026-04-12T13:43:31.248Z"
+    },
+    {
+      "id": "ISS-769",
+      "win_id": null,
+      "severity": "major",
+      "section": "part2b",
+      "section_key": "part2b",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "title": "HOL-COMPLETENESS: Part 4.6 (SEC-2b) code analysis gives aggregate stats but zero specific WIN examples",
+      "description": "HOL-COMPLETENESS cycle 1: Part 4.6 presents statistics (24 hardcoded, 34 no validation, 6 live-fetch) but never names a single WIN as illustration. A dome defender asks: \"Show me one.\" We cannot without a lookup. Every aggregate claim should be backed by at least one named example: e.g., \"WIN-031 has hardcoded value 97.0% for the passing rate\" or \"WIN-007 has no monitoring code at all.\" Source: curmudgeon HOL-COMPLETENESS.json.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T13:43:10.089Z",
+      "created_at": "2026-04-12T13:43:10.089Z",
+      "assigned_exp": "EXP-089",
+      "assigned_at": "2026-04-12T13:43:31.248Z"
+    },
+    {
+      "id": "ISS-770",
+      "win_id": null,
+      "severity": "major",
+      "section": "part6",
+      "section_key": "part6",
+      "category": "content_quality",
+      "status": "assigned-analyst",
+      "title": "HOL-REDUNDANCY: Eclipse/Chapman argument restated in 6+ separate locations with inconsistent detail",
+      "description": "HOL-REDUNDANCY cycle 1: The eclipse/Chapman argument (that the dome's eclipse prediction is explained by the Chapman mechanism) appears in at least 6 places: WIN-036-038, Section 6.1, Section 4.5, and kill-shot tests. Each repetition has slightly different detail and phrasing, creating both bloat and inconsistency risk. A definitive treatment should live in one canonical location (probably Section 6.x or the kill-shots) with brief cross-references elsewhere.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T13:43:10.089Z",
+      "created_at": "2026-04-12T13:43:10.089Z",
+      "assigned_exp": "EXP-089",
+      "assigned_at": "2026-04-12T13:43:31.248Z"
+    },
+    {
+      "id": "ISS-771",
+      "win_id": null,
+      "severity": "major",
+      "section": "part5",
+      "section_key": "part5",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "title": "HOL-STRESSTEST: Std Model Explains (24%) conflates two distinct situations — globe-compatible vs globe-predicted",
+      "description": "HOL-STRESSTEST hole 1: The \"Std Model Explains\" verdict conflates: (a) dome prediction matches observation AND matches standard physics prediction (dome and globe predict same — no discrimination possible), and (b) dome prediction matches observation but standard physics ALSO explains it via a different mechanism (dome is compatible but not uniquely supported). These are different epistemic situations and should be clearly distinguished to avoid a defender claiming our taxonomy is unfair.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T13:43:10.089Z",
+      "created_at": "2026-04-12T13:43:10.089Z",
+      "assigned_exp": "EXP-088",
+      "assigned_at": "2026-04-12T13:43:31.248Z"
     }
   ],
-  "next_id": 767
+  "next_id": 772
 }
