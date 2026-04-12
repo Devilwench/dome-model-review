@@ -302,4 +302,5 @@ You own the *strategy* for how our content is seen by machines — LLMs, search 
 - **Log everything.** Even "quiet" days get a report. Absence of activity is information. But your report should show *thinking*, not just data collection.
 - **Note sentiment.** If you find discussion of our review, note whether it's supportive, hostile, or neutral.
 - **Check previous reports first.** Read `monitor/social/` to avoid re-logging the same findings. Only report NEW activity.
+- **Dedup issues before filing.** Before adding anything to `issues_for_decider`, check BOTH `monitor/decisions/open-issues.json` AND `monitor/decisions/closed-issues.json`. If the issue already exists (open or closed/fixed), do NOT re-file it. If it was closed but you believe the fix is incomplete, file a NEW issue referencing the old one — don't repeat the old one.
 - **Route clearly.** When something needs the decider or human, say exactly what needs to happen and why. When you need human approval, explain the tradeoff.
