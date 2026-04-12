@@ -1,71 +1,33 @@
 MORNING BRIEFING — 2026-04-12
-Generated: 2026-04-12T23:30:00Z
-Curmudgeon reviews processed this run: 2 (WIN-068.c3, WIN-058b.c1)
-Previous decider run: 2026-04-12T14:44:00.266Z
+Generated: 2026-04-12T15:50:00Z
+Curmudgeon reviews processed this run: 6 reviews triaged (SEC-2b.1.c2, SEC-6.7.c2, SEC-6.2.c2, part2b-W001-signflip.c2, SEC-3.5.1.c1, SEC-3.2.c1). 53 cycle-1 reviews (Apr 6) cleared via staleness gate — multiple entries confirmed stale.
+Previous decider run: 2026-04-12T15:18:43Z
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SITE HEALTH: PASS (3294 tests)
-EXTERNAL: QUIET — 11th consecutive quiet poll
-OPEN ISSUES: 31 (2 critical, 23 major)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SITE HEALTH: PASS
+- Test suite: 3294/3294 passing
+- Build: HTML rebuilt and pushed. 70 WINs.
+- Integrity: Morning integrity report (09:12) flagged build drift (already resolved by prior runs) and phantom EXPs (EXP-058/061/066 are actually complete+integrated, not phantom — integrity reads tracker vs disk differently).
 
-PATCHES APPLIED THIS RUN: 8 patches to 2 WINs + 1 section
-  WIN-068: finding + tldr_evidence + tldr_verdict rewritten for Self-Contradicted verdict
-    (Refraction Cascade now visible in quick-view fields; EXP-101 assigned for detail rewrite)
-  WIN-058b: κ 1.672→1.677 (transcription error), r=0.91→0.992 in TLDR, Section 1.6 ref fixed
-  sections.json part5: Kill Shots Test 3 — note that AI Context page 404 since 2026-04-11
+EXTERNAL STATUS: QUIET
+- Dome site V51.1 stable. 11th consecutive quiet poll. 69 dome WINs. No changes.
+- No new external reports.
 
-ISSUES THIS RUN:
-  Created: 6 (ISS-788 through ISS-793)
-  Closed: 5 (ISS-790, ISS-793, ISS-792, ISS-778, ISS-777 stale)
-  Assigned to analyst: ISS-788 (WIN-068 detail rewrite → EXP-101), ISS-791 (Monte Carlo → EXP-102)
-  Pending human: ISS-789 (WIN-025 cascade decision)
+INTERNAL STATUS: 6 new issues, 1 patch applied
+- ISS-795 (FIXED): SEC-6.7 corrected 'seven stations' → 'nine stations (E001-E009)'. Strengthens critique.
+- ISS-797 (OPEN, investigate): SEC-6.1 κ coupling constant may be attributed to wrong event (Halloween storm vs. WIN-012 Pacific eclipse). Read raw-text for WIN-012 to verify.
+- ISS-799 (OPEN, patchable): SEC-6.2 'suspiciously close' framing should be 'by construction' — mathematical identity, not coincidence.
+- ISS-794 → EXP-103: SEC-2b.1 hardcoded stratification counts need verification against current wins.json.
+- ISS-796 → EXP-105: part2b W001 sign-flip argument needs steel-man defense and noise floor value.
+- ISS-798 → EXP-104: SEC-3.2/3.5.7 missing dome's four model-discriminating eclipse tests (E-PRED-A-D).
+- curmudgeon/tracker.json total_items fixed 69→70 (was stale).
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-URGENT — NEEDS HUMAN DECISION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOP 3 PRIORITY ACTIONS FOR HUMAN:
+1. ISS-789: WIN-025 cascade verdict — same detail_group as WIN-010/068 but not cascaded. Does the refraction cascade apply? Human decision.
+2. ISS-782: WIN-010 cascade flip verdict — integration notes list as pending human decision. Eclipse magnetic ≠ eclipse position; curmudgeon contested.
+3. ISS-739: generate-html.js PRED_STD_RELABEL field name fix — infrastructure change (cannot self-apply).
 
-1. ISS-789: WIN-025 CASCADE INCONSISTENCY
-   WIN-010 and WIN-068 were changed to Self-Contradicted via Refraction Cascade.
-   WIN-025 (2024 9-station eclipse confirmation, same detail_group WIN-010/025/068)
-   remains Std Model Explains and is ABSENT from Section 1.8 cascade table.
-   A dome defender will immediately ask: "Why does the cascade apply to -010 and -068 but not -025?"
-   Decision needed: Change WIN-025 verdict to Self-Contradicted and add to cascade table? Or explain exemption?
-   → See ISS-789 for full context.
+CURMUDGEON PROGRESS: BAU mode, queue depth 0. 153 reviews complete historically, 59 pending in digest. Many cycle-1 reviews (Apr 6) are partially stale given subsequent patches — the curmudgeon is picking up cycle-2 rewrites which are fresher.
 
-2. ISS-782 (from prior run): WIN-010 cascade flip still contested
-   Curmudgeon SEC-1.8.c1 says WIN-010 flip should be BLOCKED (eclipse MAGNITUDE, not shadow POSITION).
-   But WIN-010 is currently Self-Contradicted. Human should confirm whether WIN-010 stays Self-Contradicted
-   or reverts to Std Model Explains. This connects to ISS-789 (WIN-025 decision).
-   → See ISS-782 for full context.
+CODE ANALYSIS TAGS: 67 WINs reviewed for code_analysis tags. sync-code-analysis.js has pending updates. Recommend: node build-scripts/sync-code-analysis.js --apply to push tag updates to wins.json.
 
-3. ISS-739 (ongoing): generate-html.js PRED_STD_RELABEL field name fix (infrastructure)
-   The filter uses derivation === 'standard_physics' but the correct field is derived_from_standard.
-   Build computes wrong count for stdRelabel placeholder. Human or tinker action needed.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TOP 3 PRIORITY ACTIONS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-1. [HUMAN] WIN-025 verdict decision (ISS-789) — most urgently exploitable inconsistency
-2. [ANALYST] EXP-101: WIN-068 detail_evidence + detail_verdict_text major rewrite
-   Must include Refraction Cascade argument. Finding + TLDRs already patched this run.
-3. [ANALYST] EXP-097: Predictions audit — 94 entries, 93 with our_verdict=null
-   Eclipse window August 12, 2026 is 122 days away. Some predictions need verdicts now.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CURMUDGEON PROGRESS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Queue depth: 0 (drained from 2)
-Mode: BAU (240 min interval)
-56 reviews in pending digest (0 critical, 36 major, 16 moderate, 4 none)
-Under-covered processed reviews: 81 WINs marked processed but have holes with no issues
-Schedule: No action needed (BAU mode, queue empty)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CODE ANALYSIS TAGS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-WIN-068 code_analysis_tags updated in WIN-068.c3.json (monitoring=none, relabels_standard=true,
-post_hoc=true, derives_from_dome=false). Apply: node build-scripts/sync-code-analysis.js --apply
+PREDICTIONS: 84/94 predictions have our_verdict set. 10 null (MT-005, DW-001-006, MT-001-003) awaiting EXP-097 analyst audit.

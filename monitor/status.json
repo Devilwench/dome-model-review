@@ -1,32 +1,32 @@
 {
-  "last_run": "2026-04-12T14:44:00.266Z",
+  "last_run": "2026-04-12T15:48:10.673Z",
   "last_agent": "decider",
   "run_type": "Scheduled decider run",
-  "mode": "EXP-080 integration + SEC-1.8 fixes + new issues triage",
+  "mode": "6 new issues + 3 new EXPs + SEC-6.7 station count patch + staleness gate triage",
   "status": "complete",
   "changes_pending_analysis": 0,
   "consecutive_quiet_polls": 11,
   "prev_decider_run": {
-    "at": "2026-04-12T10:19:10.672Z",
-    "note": "Self-apply: EXP-075 SEC-2b.7 + EXP-076 SEC-6.8 + SEC-6.11 fixes (14 patches)"
+    "at": "2026-04-12T15:18:43.606Z",
+    "note": "WIN-068/058b TLDR patches + 6 new issues + 2 new EXPs"
   },
   "patches_applied_this_run": {
     "wins": 0,
-    "sections": 2,
+    "sections": 1,
     "infrastructure": 0,
     "prompt_files": 0,
-    "data_files": 2
+    "data_files": 0
   },
-  "issues_closed_this_run": 3,
+  "issues_closed_this_run": 2,
   "issues_deferred_this_run": 0,
-  "issues_created_this_run": 8,
-  "open_issues": 30,
+  "issues_created_this_run": 6,
+  "open_issues": 31,
   "closed_issues": 642,
   "issues_assigned_analyst": 20,
   "issues_pending_human": 1,
-  "curmudgeon_cycle": "bau — queue depth 1 (SEC-2b.1 awaiting review)",
+  "curmudgeon_cycle": "bau — queue depth 0 (empty)",
   "curmudgeon_last_review": "EXP-050-r2 gate 2 (ACCEPT_WITH_MODIFICATIONS) + SEC-6.11.c2",
-  "curmudgeon_queue_depth": 1,
+  "curmudgeon_queue_depth": 0,
   "pipeline_bugs": [
     "FUSE prevents deletion of processed proposal files (ISS-700/702-status.json) — already _processed, no functional impact"
   ],
@@ -34,20 +34,23 @@
   "integrity_status": "PASS — 3294 tests pass",
   "dome_site_status": "ACTIVE — V51.1 stable. 69 WINs, 94.5% accuracy. 11th consecutive quiet poll.",
   "build_needed": false,
-  "build_note": "Built this run (EXP-080 + ISS-780 patches). 3294 tests pass.",
+  "build_note": "Built this run. 3294 tests pass.",
   "human_notes_status": "0 pending notes",
   "priority_for_human": [
-    "ISS-782: Block WIN-010 verdict change from EXP-078 — gate 2 rejected this flip. WIN-010 stays Std Model Explains.",
+    "ISS-789: WIN-025 cascade verdict decision (same detail_group as WIN-010/068 but not cascaded)",
+    "ISS-782: WIN-010 cascade flip contested by curmudgeon (eclipse magnitude not position)",
     "ISS-739: generate-html.js PRED_STD_RELABEL field name fix (infrastructure)",
-    "EXP-097: predictions.json all our_verdict=null — analyst needs to audit 86 entries"
+    "EXP-097: predictions.json 10 remaining our_verdict=null — analyst auditing"
   ],
-  "queue_depth": 1,
-  "last_updated": "2026-04-12T14:44:00.266Z",
+  "queue_depth": 0,
+  "last_updated": "2026-04-12T15:48:10.673Z",
   "last_run_agent": "dome-decider",
-  "last_run_at": "2026-04-12T14:44:00.266Z",
+  "last_run_at": "2026-04-12T15:48:10.673Z",
   "last_run_summary": "EXP-080 SEC-2b.1 rewrite integrated (fixed 4 not 6 live-fetch WINs, added commit 8e4bf9b code quotes). ISS-780 patched (six not eight orders). 7 new issues ISS-781-787, 5 new EXPs 096-100. Queue: popped SEC-1.8, pushed SEC-2b.1.",
   "last_decider_run": {
     "at": "2026-04-12T14:44:00.266Z",
     "note": "EXP-080 SEC-2b.1 rewrite + ISS-780 patch + 7 new issues + 5 new EXPs"
-  }
+  },
+  "issues_assigned_analyst_this_run": 3,
+  "issues_pending_human_this_run": 0
 }
