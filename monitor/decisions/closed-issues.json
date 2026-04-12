@@ -8989,6 +8989,19 @@
       },
       "fixed_at": "2026-04-12T13:16:13.179Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-764",
+      "win_id": null,
+      "severity": "minor",
+      "category": "data_quality",
+      "status": "fixed",
+      "description": "predictions.json has inconsistent restates_win format: some entries use bare IDs (\"068\", \"011\", \"043\") while others use \"WIN-NNN\" prefix (\"WIN-001\", \"WIN-065\"). Build normalizes both correctly but data is inconsistent. Should normalize all entries to bare ID format for consistency.",
+      "found_by": "curmudgeon-cycle2",
+      "source_review": "monitor/curmudgeon/reviews/predictions-catalog.c2.json",
+      "found_at": "2026-04-12T13:14:26.113Z",
+      "fixed_at": "2026-04-12T13:44:25.594Z",
+      "fixed_by": "decider-self-apply"
     }
   ]
 }
