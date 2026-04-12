@@ -118,9 +118,10 @@ CLAUDE.md is the single most important document in the project — every new ses
 - Are any version numbers, counts, or descriptions hardcoded when they should be computed?
 
 **Performance checks (tokens cost money):**
-- Total CLAUDE.md size in tokens. Track this over time in your report.
+- Total CLAUDE.md size in lines and estimated tokens. Track over time.
+- Per-agent total context load (dispatcher + reference files + CLAUDE.md). See `tinker-cost-engineering.md` Step 4 for the measurement script and alert thresholds. Flag any Opus agent whose total grew >10% since last report.
 - For each major section, which agents actually need it? Flag sections that are read by 8 agents but needed by ≤2.
-- Flag content that could move to `monitor/prompts/reference/` (version history, operator runbooks, session setup, parked content) without breaking any agent's decision-making.
+- Flag content that could move to `monitor/prompts/reference/` without breaking any agent's decision-making.
 - Flag content that is duplicated between CLAUDE.md and individual agent prompts.
 
-**Output:** Include a `claude_md_audit` section in your report with accuracy findings and a token budget breakdown.
+**Output:** Include a `claude_md_audit` section in your report with accuracy findings, a `context_load` section with per-agent totals and trend alerts.

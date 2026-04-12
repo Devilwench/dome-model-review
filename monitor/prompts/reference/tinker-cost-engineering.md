@@ -90,7 +90,58 @@ Include in your report:
 }
 ```
 
-## Step 4: Audit Yourself and Track Conversions
+## Step 4: Per-Agent Context Load Tracking (Bloat Watch)
+
+Every agent reads CLAUDE.md + its dispatcher prompt + some set of reference files. A major refactor (V6, 2026-04-07) dramatically reduced prompt sizes. **We need to make sure we don't creep back.**
+
+**Each Mode 3 run, compute the TOTAL context load for each Opus agent:**
+
+```bash
+# Per-agent total context load (lines). Adjust if agents gain/lose reference files.
+CLAUDE=$(wc -l < CLAUDE.md)
+echo "CLAUDE.md: ${CLAUDE}L"
+
+# Analyst: dispatcher + SCIENTIFIC-CONTEXT + DATA-SCHEMAS + all analyst-mode*.md + analyst-infrastructure.md
+ANALYST=$(cat monitor/prompts/analyst.md monitor/prompts/reference/SCIENTIFIC-CONTEXT.md monitor/prompts/reference/DATA-SCHEMAS.md monitor/prompts/reference/analyst-mode0-onboarding.md monitor/prompts/reference/analyst-mode1-expansions.md monitor/prompts/reference/analyst-mode1b-predictions.md monitor/prompts/reference/analyst-mode34-procedures.md monitor/prompts/reference/analyst-normal-analysis.md monitor/prompts/reference/analyst-infrastructure.md | wc -l)
+echo "Analyst total (excl CLAUDE.md): ${ANALYST}L, with CLAUDE.md: $((ANALYST+CLAUDE))L"
+
+# Curmudgeon: dispatcher + SCIENTIFIC-CONTEXT + DATA-SCHEMAS (no reference modules — intentionally monolithic)
+CURM=$(cat monitor/prompts/curmudgeon.md monitor/prompts/reference/SCIENTIFIC-CONTEXT.md monitor/prompts/reference/DATA-SCHEMAS.md | wc -l)
+echo "Curmudgeon total (excl CLAUDE.md): ${CURM}L, with CLAUDE.md: $((CURM+CLAUDE))L"
+
+# Decider: dispatcher + SCIENTIFIC-CONTEXT + DATA-SCHEMAS + all decider-*.md + BUILD-AND-CHANGE
+DECIDER=$(cat monitor/prompts/decider.md monitor/prompts/reference/SCIENTIFIC-CONTEXT.md monitor/prompts/reference/DATA-SCHEMAS.md monitor/prompts/reference/decider-intake.md monitor/prompts/reference/decider-curmudgeon.md monitor/prompts/reference/decider-patches-and-selfapply.md monitor/prompts/reference/decider-reporting.md monitor/prompts/reference/BUILD-AND-CHANGE.md | wc -l)
+echo "Decider total (excl CLAUDE.md): ${DECIDER}L, with CLAUDE.md: $((DECIDER+CLAUDE))L"
+
+# Tinker: dispatcher + all tinker-*.md + all reference files (reads everything)
+TINKER=$(cat monitor/prompts/tinker.md monitor/prompts/reference/tinker-pipeline-health.md monitor/prompts/reference/tinker-infrastructure.md monitor/prompts/reference/tinker-cost-engineering.md monitor/prompts/reference/tinker-proposals-and-fixes.md | wc -l)
+echo "Tinker total (excl CLAUDE.md): ${TINKER}L, with CLAUDE.md: $((TINKER+CLAUDE))L"
+```
+
+**Report these in a `context_load` section:**
+```json
+"context_load": {
+  "claude_md_lines": 214,
+  "per_agent": {
+    "analyst": {"dispatcher": 164, "references": 869, "claude_md": 214, "total": 1247},
+    "curmudgeon": {"dispatcher": 409, "references": 147, "claude_md": 214, "total": 770},
+    "decider": {"dispatcher": 306, "references": 1001, "claude_md": 214, "total": 1521},
+    "tinker": {"dispatcher": 126, "references": 476, "claude_md": 214, "total": 816}
+  },
+  "trend": "STABLE|GROWING|SHRINKING compared to last report",
+  "alerts": ["List any agent whose total grew >10% since last report"]
+}
+```
+
+**Bloat alerts:**
+- If any Opus agent's total context load grew >10% since the last report → flag as `moderate` finding
+- If any Opus agent's total grew >25% → flag as `major` finding
+- If CLAUDE.md itself grew >15% → flag as `major` (it multiplies across ALL agents)
+- Always note WHAT grew — dispatcher vs reference file vs CLAUDE.md — so the fix is targeted
+
+**Baseline (2026-04-12, post-V6 refactor + change-driven architecture):** The first report after this change sets the baseline. Subsequent reports compare against it.
+
+## Step 5: Audit Yourself and Track Conversions
 
 **You are not exempt.** Track your own no-op rate, module growth, and proposal implementation rate.
 
