@@ -82,6 +82,31 @@ Use hand-written JSON only when the content is short and obviously correct. For 
 
 7. **Mark item complete** in tracker (`status: "complete"`, `completed_at`, `output_file` path). Only do this AFTER step 6 validation passed.
 
+## Progressive Disclosure Format (mandatory for all replacement_html)
+
+All `replacement_html` output MUST use the site's progressive disclosure wrapper. **Do not write bare `<h2>` tags or ad-hoc `<details>` structures.** The canonical format is:
+
+```html
+<details id="unique-id"><summary class="ps-summary"><h2>N.N Section Title</h2><p class="ps-tldr">2–3 sentence plain-language TLDR. Punchline first, then why in one sentence.</p></summary><div class="ps-detail">
+...full prose content here...
+</div></details>
+```
+
+**Checklist — every expansion that writes or replaces a section must have:**
+- `<details id="...">` — unique, slug-style ID (e.g., `section-1-8`, `p2-self-contradictions`)
+- `<summary class="ps-summary">` — not `ps-cascade`, not bare `<summary>`
+- `<h2>` inside the `<summary>`, before the TLDR
+- `<p class="ps-tldr">` — the TLDR paragraph, inside `<summary>`, after the `<h2>`
+- `<div class="ps-detail">` — wraps ALL body content after `</summary>`
+- Closing `</div></details>` at the end
+- No `open` attribute on `<details>` (sections start collapsed)
+
+**For replacement patches to existing sections:** keep the existing `<details id="...">` and classes. Only change content inside `<div class="ps-detail">` and update the `<p class="ps-tldr">` if the argument changed.
+
+**For new section insertions:** write the full wrapper. Copy an adjacent section's structure if unsure.
+
+See `reference/BUILD-AND-CHANGE.md` "Progressive Disclosure" section for the complete spec including CSS classes, TLDR writing rules, and nested disclosure patterns.
+
 ## What Makes a Good Expansion
 
 - **Engage with the dome's actual claim**, not a strawman. Read their page.

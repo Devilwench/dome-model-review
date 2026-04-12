@@ -51,15 +51,23 @@ For each completed/revised expansion not yet integrated:
    - **Log in daily report:** "Routed EXP-NNN (CAT-NNN proposal package) to curmudgeon priority queue for review. ISS-NNN blocked on curmudgeon signoff. No section prose written — that comes in a follow-up EXP after curmudgeon review."
    - Move to the next expansion. Do not continue with steps 3–4 below for category-proposal-writeup items.
 
-4. **Determine target type** from the expansion's `target` and output structure (for normal expansion items):
+4. **Validate progressive disclosure format** before integrating any `replacement_html` that contains a section (has `<h2>` tags). The correct structure is:
+   ```html
+   <details id="..."><summary class="ps-summary"><h2>Title</h2><p class="ps-tldr">TLDR</p></summary><div class="ps-detail">
+   ...content...
+   </div></details>
+   ```
+   **Quick check:** If the `replacement_html` has `<h2>` outside of `<summary>`, uses wrong classes (e.g., `ps-cascade`), has bare `<summary>` without `class="ps-summary"`, or is missing `<div class="ps-detail">` — **fix the format before integrating.** Wrap the content in the correct structure. Do not integrate malformed HTML that will break the site's progressive disclosure UX. If the content is otherwise good, reformat it yourself rather than bouncing it back to the analyst.
+
+5. **Determine target type** from the expansion's `target` and output structure (for normal expansion items):
    - **sections.json replacement** (target mentions "Section"/"Part", has `replacement_html`): Write find/replace patch swapping old text for analyst's replacement. For full replacements, find unique opening/closing strings.
    - **sections.json insertion** (has `integration_mode: "insert_after"` with `anchor`): Find end of anchor section, insert new block before next `<h2>`. Check dependencies first.
    - **wins.json target** (mentions "WIN-NNN", detail fields): May use `replacement_detail_evidence`, `insertion_1`/`insertion_2` (targeted insertions with anchors), or `replacement_html` for full field replacement.
    - **Route patches correctly.** `"file": "wins.json"` or `"file": "sections.json"` so apply-patches.js routes correctly.
 
-5. **Mark expansion `"status": "complete"` AND `"integrated": true`** with `integrated_at` timestamp. Both fields MUST be set together — `integrated: true` with `status: "pending"` will cause the analyst to re-do work you already applied. If you are creating an EXP item and self-integrating it in the same run (e.g., you can apply the fix directly), set `status: "complete", integrated: true` from the start — do NOT leave it `status: "pending"` or the analyst will pick it up.
+6. **Mark expansion `"status": "complete"` AND `"integrated": true`** with `integrated_at` timestamp. Both fields MUST be set together — `integrated: true` with `status: "pending"` will cause the analyst to re-do work you already applied. If you are creating an EXP item and self-integrating it in the same run (e.g., you can apply the fix directly), set `status: "complete", integrated: true` from the start — do NOT leave it `status: "pending"` or the analyst will pick it up.
 
-6. **Push the rewritten target to the curmudgeon priority queue.** An integrated expansion means a section or WIN just got materially rewritten — curmudgeon needs to re-attack the new text with fresh eyes before it accumulates readers. Pick the target_type that matches:
+7. **Push the rewritten target to the curmudgeon priority queue.** An integrated expansion means a section or WIN just got materially rewritten — curmudgeon needs to re-attack the new text with fresh eyes before it accumulates readers. Pick the target_type that matches:
    - sections.json full replacement → `section-rewrite`
    - sections.json new insertion → `section-new`
    - wins.json `replacement_detail_evidence` or `replacement_html` → `win-detail-rewrite`
@@ -78,7 +86,7 @@ if(!existing){
 "
 ```
 
-7. **Close related issues — do NOT skip.** For each issue ID in `issue_ids`, move from open-issues.json to closed-issues.json with `status: "fixed"`, `fixed_by: "expansion-integration"`. Verify removal. Unclosed issues become zombies.
+8. **Close related issues — do NOT skip.** For each issue ID in `issue_ids`, move from open-issues.json to closed-issues.json with `status: "fixed"`, `fixed_by: "expansion-integration"`. Verify removal. Unclosed issues become zombies.
 
 ## Step 2b: Yeet Scan (EVERY run)
 
