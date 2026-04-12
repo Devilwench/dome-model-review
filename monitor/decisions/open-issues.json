@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T14:41:49.656Z",
+  "last_updated": "2026-04-12T15:12:18.063Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -327,20 +327,6 @@
       "assigned_exp": "EXP-093"
     },
     {
-      "id": "ISS-777",
-      "win_id": null,
-      "section_id": "SEC-2b.7",
-      "severity": "major",
-      "category": "factual_error",
-      "status": "open",
-      "description": "SEC-2b.7-rewrite.c2: New paragraph says dome \"appears to have removed\" structured scoreboard between 2026-04-10 and 2026-04-11 without citing specific archived before/after state. Unverified claim. Also: \"direction of agreement\" is non-standard terminology not clearly explained.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-2b.7-rewrite.c2.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T14:13:05.021Z",
-      "created_at": "2026-04-12T14:13:05.021Z"
-    },
-    {
       "id": "ISS-778",
       "win_id": null,
       "section_id": "part5",
@@ -462,7 +448,94 @@
       "found_at": "2026-04-12T14:41:08.033Z",
       "created_at": "2026-04-12T14:41:08.033Z",
       "expansion_id": "EXP-100"
+    },
+    {
+      "id": "ISS-788",
+      "win_id": "WIN-068",
+      "severity": "critical",
+      "category": "factual_error",
+      "status": "assigned-analyst",
+      "title": "WIN-068: Verdict says Self-Contradicted but all text says Std Model Explains — major rewrite needed",
+      "description": "WIN-068 verdict badge is Self-Contradicted (from EXP-078 Refraction Cascade) but detail_evidence, detail_verdict_text, finding, tldr_evidence, and tldr_verdict all describe a Std Model Explains argument. The Refraction Cascade — the actual basis for the Self-Contradicted verdict — appears nowhere in WIN-068 own entry text. A dome defender will immediately see the badge and text disagree. Source: WIN-068.c3.json.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-068.c3.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T15:11:50.229Z",
+      "created_at": "2026-04-12T15:11:50.229Z",
+      "expansion_id": "EXP-101"
+    },
+    {
+      "id": "ISS-789",
+      "win_id": "WIN-025",
+      "severity": "major",
+      "category": "verdict",
+      "status": "pending-human",
+      "title": "WIN-025: Not included in Refraction Cascade despite same detail_group as WIN-010/068 — verdict decision needed",
+      "description": "WIN-010 and WIN-068 were changed to Self-Contradicted via the Refraction Cascade. WIN-025 (same detail_group WIN-010/025/068, same eclipse phenomenon) remains Std Model Explains and is absent from Section 1.8 cascade table. Curmudgeon rates this a cross-win inconsistency. Either WIN-025 must also change to Self-Contradicted (and be added to the Section 1.8 cascade table), or an explicit explanation must be given for why WIN-025 is exempt. Human decision required on verdict change. Source: WIN-068.c3.json cross_win_consistency.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-068.c3.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T15:11:50.229Z",
+      "created_at": "2026-04-12T15:11:50.229Z",
+      "notes": "If human approves WIN-025 verdict change to Self-Contradicted, also update Section 1.8 cascade table. If not, add explicit exemption explanation."
+    },
+    {
+      "id": "ISS-790",
+      "win_id": "WIN-058b",
+      "severity": "major",
+      "category": "factual_error",
+      "status": "open",
+      "title": "WIN-058b: TLDR says r = 0.91 but detail_evidence says r = 0.992 — TLDR has phantom r-value",
+      "description": "WIN-058b tldr_evidence says the same-day data shows r = 0.91, but detail_evidence says Exhibit A claims r = 0.992 for the same 2003 Halloween storm data. The r = 0.91 value appears nowhere in the detailed text. Readers who only see the collapsed TLDR get a different number from readers who expand details. Patch: change TLDR r = 0.91 to r = 0.992. Source: WIN-058b.c1.json.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-058b.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T15:11:50.229Z",
+      "created_at": "2026-04-12T15:11:50.229Z"
+    },
+    {
+      "id": "ISS-791",
+      "win_id": "WIN-058b",
+      "severity": "major",
+      "category": "factual_error",
+      "status": "assigned-analyst",
+      "title": "WIN-058b: Monte Carlo range r = 0.44-0.69 is likely too low — needs SNR-aware simulation",
+      "description": "WIN-058b claims Monte Carlo simulation gives r = 0.44-0.69 for shared storm envelope. Curmudgeon quantitative verification: at SNR=3.3 (G5 storm level), expected r ~ 0.91. The stated range implies noise-dominated signals. A dome defender could use our own simulation to argue the excess correlation proves kappa. Analyst must re-derive with appropriate G5-storm SNR parameters. Source: WIN-058b.c1.json.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-058b.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T15:11:50.229Z",
+      "created_at": "2026-04-12T15:11:50.229Z",
+      "expansion_id": "EXP-102"
+    },
+    {
+      "id": "ISS-792",
+      "win_id": "WIN-058b",
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "open",
+      "title": "WIN-058b: Forward reference to Section 1.6 (Dielectric Foundation) which does not exist",
+      "description": "WIN-058b detail_evidence says dielectric coupling analysis will appear in Section 1.6 (Dielectric Foundation) when completed. No such section exists in sections.json (section keys go part1, part1b, part2... with no part1.6). Dielectric content exists in part7 (External Tests) as the Exhibit A/B analysis. The forward reference should point to Part 7 or be updated to reflect actual site structure. Source: WIN-058b.c1.json.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-058b.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T15:11:50.229Z",
+      "created_at": "2026-04-12T15:11:50.229Z"
+    },
+    {
+      "id": "ISS-793",
+      "win_id": "WIN-058b",
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "open",
+      "title": "WIN-058b: κ = 1.672 is a transcription error — actual computation 10.9/6.5 = 1.677",
+      "description": "WIN-058b uses κ = 1.672 but the actual computation from dome data is 10.9/6.5 = 1.6769, which rounds to 1.677. The dome uses 1.67 (2 decimal places). Our value 1.672 does not match any correct rounding. This is a transcription error that weakens our credibility on precision claims. Patch: change 1.672 to 1.677 in detail_evidence and tldr_evidence. Source: WIN-058b.c1.json.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-058b.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T15:11:50.229Z",
+      "created_at": "2026-04-12T15:11:50.229Z"
     }
   ],
-  "next_id": 788
+  "next_id": 794
 }

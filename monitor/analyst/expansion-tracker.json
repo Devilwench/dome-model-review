@@ -1661,8 +1661,36 @@
       "status": "pending",
       "notes": "Section uses 8,537 km (apparent altitude) where physical altitude should be used for the geometric argument. Correct the value and clarify apparent vs physical distinction per Section 1.8 framework. See SEC-4.5.4 digest entry.",
       "created_at": "2026-04-12T14:41:27.427Z"
+    },
+    {
+      "id": "EXP-101",
+      "target": "data/wins.json WIN-068 — major rewrite of detail_evidence and detail_verdict_text to include Refraction Cascade argument",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-068.c3.json",
+      "issue_ids": [
+        "ISS-788"
+      ],
+      "category": null,
+      "priority": "critical",
+      "status": "pending",
+      "notes": "WIN-068 verdict is Self-Contradicted but all text (detail_evidence, detail_verdict_text, finding, TLDRs) describes Std Model Explains. Need to add explicit refraction cascade argument to detail_evidence: dome sun-altitude split makes physical sun position indeterminate (1,975-3,618 km by season), so it cannot specify eclipse shadow geometry across 39 eclipses. Also add preemptive text for apparent-vs-physical defense (dome mechanism is physical field blockage not photoionization, so apparent shadow tracking does not save the claim). Consider using stronger argument: dome 2026 eclipse predictions (E001-E009) explicitly use H(r)-derived FSF, the same function whose seasonal indeterminacy the cascade documents. Decider has already patched finding field and TLDRs as quick fixes — analyst should only rewrite detail_evidence and detail_verdict_text. Preserve existing Chapman (1933) and post-hoc content, just add cascade material.",
+      "created_at": "2026-04-12T15:12:09.727Z"
+    },
+    {
+      "id": "EXP-102",
+      "target": "data/wins.json WIN-058b — fix Monte Carlo correlation range r = 0.44-0.69 with SNR-aware simulation",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-058b.c1.json",
+      "issue_ids": [
+        "ISS-791"
+      ],
+      "category": null,
+      "priority": "high",
+      "status": "pending",
+      "notes": "WIN-058b Monte Carlo range r = 0.44-0.69 is too low for G5 storm SNR. At SNR=3.3 (appropriate for extreme geomagnetic event), expected r approaches 0.91. The stated range implies noise-dominated signals which undermines our argument. Re-derive with shared storm-envelope model using appropriate G5-level SNR. If the corrected range overlaps with the dome-claimed r = 0.96/0.992, the argument changes significantly. New range should be cited with explicit SNR assumption. If corrected range still clearly below dome claim, just fix the numbers. If range overlaps, restructure argument around the correlation-without-causation point instead.",
+      "created_at": "2026-04-12T15:12:09.727Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 101
+  "next_id": 103
 }

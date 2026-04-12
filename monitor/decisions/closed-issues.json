@@ -9082,6 +9082,23 @@
       "fixed_at": "2026-04-12T14:41:49.656Z",
       "fixed_by": "decider-staleness-check",
       "fix_details": "Stale: EXP-078 integrated Section 1.8 (Refraction Cascade) correctly. Section 1.7 = The Gravity Paradox, Section 1.8 = Refraction Cascade — no collision. The 1.7 collision in EXP-050 proposal was resolved when EXP-078 used 1.8 instead."
+    },
+    {
+      "id": "ISS-777",
+      "win_id": null,
+      "section_id": "SEC-2b.7",
+      "severity": "major",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "SEC-2b.7-rewrite.c2: New paragraph says dome \"appears to have removed\" structured scoreboard between 2026-04-10 and 2026-04-11 without citing specific archived before/after state. Unverified claim. Also: \"direction of agreement\" is non-standard terminology not clearly explained.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/SEC-2b.7-rewrite.c2.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T14:13:05.021Z",
+      "created_at": "2026-04-12T14:13:05.021Z",
+      "fixed_at": "2026-04-12T15:12:18.063Z",
+      "fixed_by": "decider-stale",
+      "fix_details": "Staleness gate: The curmudgeon flagged appears to have removed language but current sections.json uses precise timestamp language (confirmed live at 2026-04-10T18:12 UTC, returned 404 by 2026-04-11T07:14 UTC). The direction of agreement terminology also not present in current text. Both issues resolved by prior patches. Closing as stale."
     }
   ]
 }
