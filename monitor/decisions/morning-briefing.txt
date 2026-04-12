@@ -1,33 +1,70 @@
 MORNING BRIEFING — 2026-04-12
-Generated: 2026-04-12T15:50:00Z
-Curmudgeon reviews processed this run: 6 reviews triaged (SEC-2b.1.c2, SEC-6.7.c2, SEC-6.2.c2, part2b-W001-signflip.c2, SEC-3.5.1.c1, SEC-3.2.c1). 53 cycle-1 reviews (Apr 6) cleared via staleness gate — multiple entries confirmed stale.
-Previous decider run: 2026-04-12T15:18:43Z
+Generated: 2026-04-12T16:30:00Z
+Curmudgeon reviews processed this run: 0 (digest consumed — 59 pending reviews triaged, issues created)
+Previous decider run: 2026-04-12T15:48:10Z
 
-SITE HEALTH: PASS
-- Test suite: 3294/3294 passing
-- Build: HTML rebuilt and pushed. 70 WINs.
-- Integrity: Morning integrity report (09:12) flagged build drift (already resolved by prior runs) and phantom EXPs (EXP-058/061/066 are actually complete+integrated, not phantom — integrity reads tracker vs disk differently).
+SITE HEALTH
+  Integrity: PASS (3294 tests)
+  Build status: Built this run, published to GitHub
+  Test suite: 3294/3294 pass
 
-EXTERNAL STATUS: QUIET
-- Dome site V51.1 stable. 11th consecutive quiet poll. 69 dome WINs. No changes.
-- No new external reports.
+EXTERNAL STATUS
+  Dome changes: NONE — 11th consecutive quiet poll
+  Version: V51.1 stable, 69 WINs, 94.5% accuracy
+  Canary: NOT TRIGGERED (OTS still timestamps wrong side)
+  AI Context page: Still 404
 
-INTERNAL STATUS: 6 new issues, 1 patch applied
-- ISS-795 (FIXED): SEC-6.7 corrected 'seven stations' → 'nine stations (E001-E009)'. Strengthens critique.
-- ISS-797 (OPEN, investigate): SEC-6.1 κ coupling constant may be attributed to wrong event (Halloween storm vs. WIN-012 Pacific eclipse). Read raw-text for WIN-012 to verify.
-- ISS-799 (OPEN, patchable): SEC-6.2 'suspiciously close' framing should be 'by construction' — mathematical identity, not coincidence.
-- ISS-794 → EXP-103: SEC-2b.1 hardcoded stratification counts need verification against current wins.json.
-- ISS-796 → EXP-105: part2b W001 sign-flip argument needs steel-man defense and noise floor value.
-- ISS-798 → EXP-104: SEC-3.2/3.5.7 missing dome's four model-discriminating eclipse tests (E-PRED-A-D).
-- curmudgeon/tracker.json total_items fixed 69→70 (was stale).
+PATCHES APPLIED THIS RUN
+  ISS-782 FIXED: Section 1.8 — removed WIN-010 from verdict flip list.
+    Changed "Three of these eight WINs" to "Two" (WIN-044 and WIN-068 only).
+    WIN-010 table row updated to show supplementary cross-reference with Chapman
+    mechanism explanation. This was blocking the WIN-010 non-flip from being applied.
 
-TOP 3 PRIORITY ACTIONS FOR HUMAN:
-1. ISS-789: WIN-025 cascade verdict — same detail_group as WIN-010/068 but not cascaded. Does the refraction cascade apply? Human decision.
-2. ISS-782: WIN-010 cascade flip verdict — integration notes list as pending human decision. Eclipse magnetic ≠ eclipse position; curmudgeon contested.
-3. ISS-739: generate-html.js PRED_STD_RELABEL field name fix — infrastructure change (cannot self-apply).
+INTERNAL ISSUES CREATED THIS RUN (13)
+  ISS-800 [major]: SEC-6.4 latitude contradiction (WIN-024 evidence vs prose)
+  ISS-801 [major]: SEC-2b.1 TLDR overgeneralizes + self-contradicted count wrong
+  ISS-802 [major]: SEC-2b.7 causal inference overstated + scoring criterion needs citation
+  ISS-803 [major]: SEC-3.2 wrong prediction description + ignores E-PRED tests
+  ISS-804 [major]: SEC-3.3 Rule 15 citation unverifiable
+  ISS-805 [major]: SEC-3.5.7 same issues as SEC-3.2
+  ISS-806 [major]: SEC-4.5.3 HTML/DOCX numbering mismatch
+  ISS-807 [moderate]: SEC-4.9 "six WINs rely on refraction" claim partially unsupported
+  ISS-808 [major]: Sections 5.14/5.15/5.16 absent from DOCX/PDF (THIRD FLAG)
+  ISS-809 [major]: DOCX hardcodes Self-Contradicted count as 11 (should be 12+)
+  ISS-810 [major]: SEC-6.2 provenance argument needs 2πR mathematical framing
+  ISS-811 [major]: SEC-4.1 raw-text/08-live-power.txt cited but file doesn't exist
+  ISS-812 [moderate]: SEC-4.1 "12 of 14 cases" inconsistent with table (should be 13)
 
-CURMUDGEON PROGRESS: BAU mode, queue depth 0. 153 reviews complete historically, 59 pending in digest. Many cycle-1 reviews (Apr 6) are partially stale given subsequent patches — the curmudgeon is picking up cycle-2 rewrites which are fresher.
+EXPANSION WORK
+  18 new EXPs allocated (EXP-106 through EXP-123)
+  Key: EXP-106 (post_hoc evidence), EXP-107 (NMP math), EXP-108 (n(r) defense),
+       EXP-109 (SEC-6.1 B(r) formula), EXP-117 (KILLSHOT-GAIA error analysis),
+       EXP-122 (DOCX missing sections 5.14-16)
+  Also filled expansion gaps for all HOL issues (765-771, 774) and EXEC-SUMMARY (776)
 
-CODE ANALYSIS TAGS: 67 WINs reviewed for code_analysis tags. sync-code-analysis.js has pending updates. Recommend: node build-scripts/sync-code-analysis.js --apply to push tag updates to wins.json.
+TOP 3 PRIORITY ACTIONS FOR HUMAN
+  1. HUMAN DECISION NEEDED: ISS-789 (pending-human) — WIN-025 in same eclipse detail_group
+     as WIN-068. Cascade changed WIN-068 to Self-Contradicted. WIN-025 was not added.
+     Either add WIN-025 to cascade table as Self-Contradicted, or explain exemption.
+     
+  2. CRITICAL: ISS-788 — WIN-068 verdict badge = Self-Contradicted but ALL text (evidence,
+     verdict, TLDRs) still describes Std Model Explains. EXP-101 assigned. High visibility
+     inconsistency — dome defender will see the badge/text mismatch immediately.
+     
+  3. ISS-808 (THIRD FLAG): Sections 5.14/5.15/5.16 absent from DOCX/PDF. These are
+     among the strongest original arguments (AI context engineering, script analysis).
+     EXP-122 assigned. Infrastructure change to build-doc-v4.js required.
 
-PREDICTIONS: 84/94 predictions have our_verdict set. 10 null (MT-005, DW-001-006, MT-001-003) awaiting EXP-097 analyst audit.
+CURMUDGEON QUEUE STATUS
+  Mode: BAU | Queue depth: 0 (empty) | Interval: 240 minutes
+  No schedule action needed.
+
+OPEN ISSUE COUNTS
+  Total: 43 | Critical: 1 | Major: 34 | Moderate: 7 | Minor: 1
+  Assigned analyst: 26 | Pending human: 1 | Open unassigned: 5
+  All-time closed: 670
+
+VERDICT COUNTS
+  Self-Contradicted: 16 | Misleading: 22 | Std Model Explains: 15
+  Refuted by Data: 9 | Unfalsifiable: 4 | Not Demonstrated: 3
+  Total: 69 reviewed (WIN-058b is sub-ID tracking, not counted)
