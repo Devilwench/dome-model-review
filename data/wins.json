@@ -191,7 +191,7 @@
   {
     "id": "010",
     "claim": "BOU 2017 eclipse -10.9 nT",
-    "verdict": "Std Model Explains",
+    "verdict": "Self-Contradicted",
     "finding": "Non-discriminating: Chapman ionospheric mechanism predicts exact signal; dome has no eclipse-magnetic coupling equation",
     "new_in_v51": false,
     "detail_claim": "Boulder (BOU) station observed −10.9 nT anomaly during 2017 eclipse.",
@@ -207,7 +207,16 @@
       "reviewed": true
     },
     "tldr_evidence": "Eclipses cause small magnetic dips because the moon's shadow reduces ionospheric conductivity — this has been known since Chapman described it in 1933. The dome's observed -10.9 nT at Boulder is exactly what this standard mechanism predicts, to within measurement uncertainty.",
-    "tldr_verdict": "The Chapman ionospheric mechanism, known for 90+ years, predicts this signal. The dome adds no new physics — it just relabels the same explanation."
+    "tldr_verdict": "The Chapman ionospheric mechanism, known for 90+ years, predicts this signal. The dome adds no new physics — it just relabels the same explanation.",
+    "verdict_history": [
+      {
+        "from": "Std Model Explains",
+        "to": "Self-Contradicted",
+        "reason": "EXP-078 Refraction Cascade: same eclipse geometry paradox as WIN-068 (single-event BOU 2017 case)",
+        "approved_by": "human",
+        "date": "2026-04-12"
+      }
+    ]
   },
   {
     "id": "011",
@@ -905,7 +914,7 @@
   {
     "id": "044",
     "claim": "Firmament Scaling Function from V12 geometry",
-    "verdict": "Misleading",
+    "verdict": "Self-Contradicted",
     "finding": "Internal model derivation claimed as confirmed WIN before observational test (eclipse August 2026); tests self-consistency, not truth",
     "new_in_v51": true,
     "detail_claim": "Firmament Scaling Function (FSF) derives from Version 12 dome geometry.",
@@ -921,7 +930,16 @@
       "reviewed": true
     },
     "tldr_evidence": "This formula is derived from the dome's own assumed parameters — cavity height and disc shape. When a model derives a number from its own assumptions, that tests internal consistency, not truth. Real predictions need to match independent external data, not the model's own inputs.",
-    "tldr_verdict": "Internal model derivations test consistency, not truth. This doesn't discriminate the dome from any other model."
+    "tldr_verdict": "Internal model derivations test consistency, not truth. This doesn't discriminate the dome from any other model.",
+    "verdict_history": [
+      {
+        "from": "Misleading",
+        "to": "Self-Contradicted",
+        "reason": "EXP-078 Refraction Cascade: FSF derived from H(r); seasonal physical altitude (1,975-3,618 km) makes derivation indeterminate",
+        "approved_by": "human",
+        "date": "2026-04-12"
+      }
+    ]
   },
   {
     "id": "045",
@@ -1430,7 +1448,7 @@
   {
     "id": "068",
     "claim": "Eclipse magnetic ensemble (39 eclipses)",
-    "verdict": "Std Model Explains",
+    "verdict": "Self-Contradicted",
     "finding": "Triple-counts WIN-010/WIN-025; Chapman Sq mechanism (1933) explains all; dome provides no magnitude derivation",
     "new_in_v51": true,
     "detail_claim": "Ensemble analysis of 207 geomagnetic manifestations from 100 INTERMAGNET observatories across 39 solar eclipses (1991–2016) shows statistically significant magnetic field changes during eclipses. The dome model claims this confirms 'firmament-plate dielectric boundary shading' via the pressurized toroidal cavity's induction gradient.",
@@ -1446,7 +1464,16 @@
       "reviewed": true
     },
     "tldr_evidence": "Kim & Chang (2018) documented real geomagnetic variations during 39 eclipses. But the eclipse-induced magnetic effect has been explained by ionospheric conductivity reduction since Chapman (1933). The dome cites a real paper but relabels a 93-year-old standard explanation.",
-    "tldr_verdict": "Eclipse geomagnetic effects have been standard physics since 1933 — 93 years before the dome claimed them. The dome relabels Chapman's mechanism without adding new physics."
+    "tldr_verdict": "Eclipse geomagnetic effects have been standard physics since 1933 — 93 years before the dome claimed them. The dome relabels Chapman's mechanism without adding new physics.",
+    "verdict_history": [
+      {
+        "from": "Std Model Explains",
+        "to": "Self-Contradicted",
+        "reason": "EXP-078 Refraction Cascade: eclipse shadow positions require definite physical sun altitude; cascade makes it indeterminate across 39 eclipses",
+        "approved_by": "human",
+        "date": "2026-04-12"
+      }
+    ]
   },
   {
     "id": "069",
