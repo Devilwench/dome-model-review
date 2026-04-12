@@ -1238,7 +1238,7 @@ ${CSS}
 </div>
 <div class="bn-item">
 <span class="bn-date">2026-04-10</span>
-<span class="bn-text"><strong>${context.predCounts.total} Predictions Cataloged — ${context.predCounts.deadOnArrival} Are Dead on Arrival.</strong> We datamined every testable claim from the dome's predictions page. Of ${context.predCounts.total} entries: ${context.predCounts.stdRelabel} are standard physics relabeled as dome predictions, ${context.predCounts.ourFalsified} are already falsified by hard data, ${context.predCounts.ourRecycled} recycle existing WINs, and ${context.predCounts.ourUnfalsifiable} are untestable. <a href="#part6" onclick="showTab('predictions');return false">See the full catalog →</a></span>
+<span class="bn-text"><strong>${context.predCounts.total} Predictions Cataloged — ${context.predCounts.deadOnArrival} Are Dead on Arrival.</strong> We datamined every testable claim from the dome's predictions page. Of ${context.predCounts.total} entries: ${context.predCounts.stdRelabel} are standard physics relabeled as dome predictions, ${context.predCounts.ourFalsified} are already falsified by hard data, ${context.predCounts.ourRecycled} recycle existing WINs, and ${context.predCounts.ourUnfalsifiable} are untestable. <a href="#pred-mined" onclick="showTab('predictions');return false">See the full catalog →</a></span>
 </div>
 </div>
 
