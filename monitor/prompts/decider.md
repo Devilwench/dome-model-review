@@ -209,24 +209,19 @@ console.log('mode:',pq.mode,'| queue_depth:',pq.queue.length,'| current_interval
 "
 ```
 
-### Step E4: Determine schedule changes needed (metadata only)
+### Step E4: Check for schedule mismatches (flag only — never auto-change)
 
-Evaluate mode rules and update `priority-queue.json` metadata. **Do NOT call `update_scheduled_task` here** — those API calls require human approval and will block the run. Schedule API calls happen in Step E6 (the very last thing the decider does).
+**Do NOT call `update_scheduled_task`.** Those API calls require human approval, block the run, and have jammed the decider in the past. Schedule changes are human-only.
 
-**If `mode === "bau"`:** No schedule changes needed. Skip to Step E5.
+Instead, detect mismatches and flag them in the daily report:
 
-**If `mode === "churn-and-burn"` AND `queue.length > 0`:**
-- Check if any of the three agents need bumping to fast intervals (curmudgeon→30min, analyst→30min, decider→60min).
-- Update `priority-queue.json`: set the corresponding `schedule_state.*_current_interval_minutes` fields, `last_schedule_change = <ISO>`, `last_schedule_change_by = "decider"`.
-- Set a flag for Step E6: `schedule_action = "bump_to_fast"` with a list of which agents need bumping.
-- Log `churn_schedule_bumped` in the daily report.
+**If `mode === "churn-and-burn"` AND `queue.length === 0`:** The queue has been drained. Flip mode to BAU in `priority-queue.json` metadata:
+- Set `mode = "bau"`, `mode_set_by = "decider-auto-restore"`, `mode_set_at = <ISO>`, set all `*_current_interval_minutes` to their defaults (curmudgeon→240, analyst→120, decider→240).
+- **Do NOT call `update_scheduled_task`.** Log `schedule_action_needed: "restore_to_bau"` in the daily report so the human knows to update schedules.
 
-**If `mode === "churn-and-burn"` AND `queue.length === 0`:** The queue has been drained. Prepare auto-restore:
-- Update `priority-queue.json`: set `mode = "bau"`, `mode_set_by = "decider-auto-restore"`, `mode_set_at = <ISO>`, set all three `*_current_interval_minutes` to their defaults (curmudgeon→240, analyst→120, decider→240), `last_schedule_change = <ISO>`, `last_schedule_change_by = "decider"`.
-- Set a flag for Step E6: `schedule_action = "restore_to_bau"` with a list of which agents need restoring.
-- Log `churn_complete_auto_restore` in the daily report.
+**If `mode === "bau"` AND any `*_current_interval_minutes` is below default:** Log `schedule_action_needed: "restore_to_bau"` — schedules are still fast but mode says BAU. Human should restore.
 
-**Self-healing invariant:** The system can never get stuck in fast mode. Once the queue drains, the next decider run restores BAU for ALL three Opus agents. If something weird happens and you see `mode === "bau"` with schedules still at fast intervals, set the flag for Step E6 to restore them.
+**If `mode === "churn-and-burn"` AND `queue.length > 0` AND any schedule is at BAU intervals:** Log `schedule_action_needed: "bump_to_fast"` — human should bump schedules for throughput.
 
 ### Step E5: Log queue state in daily report
 
@@ -241,19 +236,9 @@ Always include in the daily report:
 }
 ```
 
-### Step E6: Apply schedule changes (MUST BE LAST)
+### Step E6: REMOVED
 
-**This step runs AFTER all commits, pushes, and reporting are complete.** The `update_scheduled_task` API calls require human approval in the Cowork UI, which blocks the run. By placing them last, all real work is already done and pushed before the block.
-
-If Step E4 set `schedule_action = "bump_to_fast"`:
-- For each agent that needs bumping, call `mcp__scheduled-tasks__update_scheduled_task` to set the fast interval.
-
-If Step E4 set `schedule_action = "restore_to_bau"`:
-- Call `mcp__scheduled-tasks__update_scheduled_task` on `dome-curmudgeon` to restore to 240 minutes (4h).
-- Call `mcp__scheduled-tasks__update_scheduled_task` on `dome-analyst` to restore to 120 minutes (2h).
-- Call `mcp__scheduled-tasks__update_scheduled_task` on `dome-decider` to restore to 240 minutes (4h).
-
-If Step E4 set no flag, skip this step entirely.
+Schedule changes are human-only. The decider NEVER calls `update_scheduled_task` — it jams the run waiting for approval. Step E4 flags mismatches in the daily report; the human acts on them.
 
 ### How to push items onto the queue
 

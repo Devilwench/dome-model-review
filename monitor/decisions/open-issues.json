@@ -3,20 +3,6 @@
   "last_updated": "2026-04-12T07:14:17.293Z",
   "issues": [
     {
-      "id": "ISS-693",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "infrastructure",
-      "description": "Workspace-only analyst files not committed to git (partially resolved 2026-04-10: EXP-059, ISS-672-research now in git). Remaining workspace-only files are supplemental working notes (analysis summaries, research memos, cascade analysis) — lower risk than pipeline EXP outputs.",
-      "source": "integrity",
-      "found_date": "2026-04-09",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null,
-      "found_by": "integrity-agent",
-      "notes": " [2026-04-09] workspace-sync agent should commit these files. Decider cannot commit workspace-only files directly (FUSE filesystem ownership rules). [2026-04-10] Decider rescued EXP-059.json and ISS-672-research.json (critical expansion files). Workspace-sync agent should handle remaining files on next run."
-    },
-    {
       "id": "ISS-696",
       "win_id": null,
       "severity": "major",
