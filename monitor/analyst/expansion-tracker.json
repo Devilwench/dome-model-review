@@ -1367,9 +1367,14 @@
       ],
       "category": null,
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Must re-examine current monitor.py to count domains/WINs with hardcoded vs live-fetch vs no-code validation. Rewrite framing: 24 WINs use static comparison (not evidence of active validation), verify 34 with-no-code figure. Use {{CA_NONE}} and {{CA_HARDCODED}} template vars.",
-      "created_at": "2026-04-12T11:12:09.374Z"
+      "created_at": "2026-04-12T11:12:09.374Z",
+      "completed_at": "2026-04-12T14:37:11.737Z",
+      "completion_note": "Analyst wrote EXP-080.json via proposal-ISS-747-resolution.json — SEC-2b.1 rewrite with corrected live-fetch WIN list, direct code quotes from commit 8e4bf9b, adaptive tolerance detail",
+      "integrated": true,
+      "integrated_at": "2026-04-12T14:38:09.444Z",
+      "integration_note": "Decider integrated EXP-080 replacement_html into data/sections.json part2b — fixed live-fetch list (4 not 6 WINs), added code quotes from commit 8e4bf9b, added adaptive tolerance detail, updated TLDR"
     },
     {
       "id": "EXP-081",
@@ -1587,8 +1592,76 @@
       "notes": "Read current part4 SEC-4.1 text. Identify: (1) What the table says for Polaris. (2) What the bottom-line paragraph says. (3) Which is correct based on dome geometry. Fix the contradiction. Also: verify the \"no raw text of dome's live power page\" claim — raw-text/08-live-power.txt now EXISTS, so that hole is stale. Source: SEC-3.1.json",
       "status": "pending",
       "created_at": "2026-04-12T14:13:05.021Z"
+    },
+    {
+      "id": "EXP-096",
+      "target": "data/sections.json part1 SEC-1.8 — add chromaticity bridge to n(r)/Gaia argument",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-1.8.c1.json",
+      "issue_ids": [
+        "ISS-781"
+      ],
+      "category": null,
+      "priority": "high",
+      "status": "pending",
+      "notes": "Add 2-3 sentence chromaticity bridge: n(r) is dispersive (varies with wavelength), so if it were real, Gaia would detect wavelength-dependent color shifts in stellar positions that are not observed. This closes the \"systematic offset\" loophole. See SEC-1.8.c1.json hole 3 for recommended phrasing.",
+      "created_at": "2026-04-12T14:41:27.427Z"
+    },
+    {
+      "id": "EXP-097",
+      "target": "data/predictions.json — audit all entries, assign our_verdict for recycled/standard_physics/unfalsifiable",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/ISS-703-sha256-forensics.json",
+      "issue_ids": [
+        "ISS-783"
+      ],
+      "category": null,
+      "priority": "high",
+      "status": "pending",
+      "notes": "All 86 prediction entries have our_verdict=null. Analyst must apply verdicts: recycled (if prediction restates a WIN), standard_physics (if explained by globe), unfalsifiable (if untestable), pending (if testable and open). Cross-reference with restates_win field for recycled detection. This unlocks the predictions tab category statistics.",
+      "created_at": "2026-04-12T14:41:27.427Z"
+    },
+    {
+      "id": "EXP-098",
+      "target": "data/sections.json — new EXHIBIT-AB section: Aetheric Influence Index correlation analysis",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/EXHIBIT-AB.json",
+      "issue_ids": [
+        "ISS-784"
+      ],
+      "category": null,
+      "priority": "high",
+      "status": "pending",
+      "notes": "Write analysis of dome's Exhibit A (AI index correlation r=0.992) and Exhibit B (magnetic field measurements). Explain why high r-squared does not validate the dome geometry (overfitting, circular measurement), address the AI=1.152 claim. This is the dome's most prominent homepage feature and we have no rebuttal. Determine correct tab placement (Part 2 self-contradictions or Part 3 wins review).",
+      "created_at": "2026-04-12T14:41:27.427Z"
+    },
+    {
+      "id": "EXP-099",
+      "target": "data/sections.json part2 SEC-2.1 — fix arithmetic error in equatorial cavity height",
+      "source": "curmudgeon",
+      "issue_ids": [
+        "ISS-786"
+      ],
+      "category": null,
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Verify H(r) formula at r=15,000 km. Correct arithmetic in equatorial height section. Ensure stated conclusions follow from corrected numbers. See SEC-2.1 digest entry for details.",
+      "created_at": "2026-04-12T14:41:27.427Z"
+    },
+    {
+      "id": "EXP-100",
+      "target": "data/sections.json part4 SEC-4.5.4 — fix wrong sun altitude (apparent vs physical)",
+      "source": "curmudgeon",
+      "issue_ids": [
+        "ISS-787"
+      ],
+      "category": null,
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Section uses 8,537 km (apparent altitude) where physical altitude should be used for the geometric argument. Correct the value and clarify apparent vs physical distinction per Section 1.8 framework. See SEC-4.5.4 digest entry.",
+      "created_at": "2026-04-12T14:41:27.427Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 96
+  "next_id": 101
 }

@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T14:14:19.968Z",
+  "last_updated": "2026-04-12T14:41:49.656Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -64,23 +64,6 @@
         "EXP-042",
         "EXP-076"
       ]
-    },
-    {
-      "id": "ISS-747",
-      "win_id": null,
-      "severity": "critical",
-      "section": "part2b",
-      "section_key": "SEC-2b.1",
-      "category": "factual_error",
-      "status": "assigned-analyst",
-      "title": "SEC-4.6.1: Code coverage framing obscures actual problem — 24/34/6 split mischaracterized",
-      "description": "24 WINs described as having hardcoded validation code — but this implies 24 WINs have monitoring code demonstrating claims are wrong. The actual issue is that hardcoded monitoring doesn't fetch live data. Also, claim that 34 WINs have \"no validation code at all\" is very strong — needs verification against current monitor.py (dome has 69+ WINs, 34 with no code would be ~50%). Source: curmudgeon SEC-4.6.1.c2.json.",
-      "source": "curmudgeon",
-      "suggested_fix": "Analyst must re-examine current monitor.py to count domains/WINs accurately. Rewrite framing to say 24 WINs use hardcoded comparison (static vs. static) rather than implying active validation.",
-      "found_by": "decider",
-      "found_at": "2026-04-12T11:10:33.244Z",
-      "created_at": "2026-04-12T11:10:33.244Z",
-      "assigned_exp": "EXP-080"
     },
     {
       "id": "ISS-748",
@@ -385,7 +368,101 @@
       "found_at": "2026-04-12T14:13:05.021Z",
       "created_at": "2026-04-12T14:13:05.021Z",
       "assigned_exp": "EXP-095"
+    },
+    {
+      "id": "ISS-781",
+      "win_id": null,
+      "severity": "major",
+      "section": "part1",
+      "section_key": "SEC-1.8",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "title": "SEC-1.8: n(r)/Gaia argument missing chromaticity bridge — dome can argue systematic offset",
+      "description": "The n(r)/Gaia argument in Section 1.8 is vulnerable to: \"If n(r) bends ALL light uniformly, Gaia sees self-consistent positions even though they differ from true positions — differential measurements are unchanged.\" The fatal counter (chromatic dispersion: n varies with wavelength, but Gaia detects wavelength-dependent color shifts that ARE NOT observed) is not in the section. Without the chromaticity bridge, a dome defender can dismiss the entire Gaia kill-shot. Source: SEC-1.8.c1.json hole 3.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/SEC-1.8.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T14:41:08.033Z",
+      "created_at": "2026-04-12T14:41:08.033Z",
+      "assigned_exp": "EXP-096"
+    },
+    {
+      "id": "ISS-782",
+      "win_id": null,
+      "severity": "moderate",
+      "section": "part1",
+      "section_key": "SEC-1.8",
+      "category": "factual_error",
+      "status": "open",
+      "title": "SEC-1.8: WIN-010 verdict flip contradicts curmudgeon gate 2 adjudication — do not flip",
+      "description": "Section 1.8 integration notes list WIN-010 as a pending verdict change (from Std Model Explains to Self-Contradicted). Curmudgeon SEC-1.8.c1.json explicitly states WIN-010 flip was already rejected at gate 2 (EXP-050-r2 review): WIN-010 is about eclipse magnetic MAGNITUDE (Chapman Sq ionospheric mechanism), not shadow POSITION. The cascade argument does not apply. The pending verdict change for WIN-010 should be blocked/cancelled. WIN-010 should remain Std Model Explains with a supplementary cross-reference only. Source: SEC-1.8.c1.json hole 1.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/SEC-1.8.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T14:41:08.033Z",
+      "created_at": "2026-04-12T14:41:08.033Z",
+      "notes": "This issue blocks the WIN-010 verdict change from being applied by the human. The integration_note in EXP-078 says \"queued for human approval\" — this issue clarifies it should NOT be approved."
+    },
+    {
+      "id": "ISS-783",
+      "win_id": null,
+      "severity": "major",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "title": "predictions.json: 86 entries all have our_verdict=null — recycling/standard_physics detection non-functional",
+      "description": "Curmudgeon ISS-703-sha256-forensics review found that predictions.json currently has our_verdict=null for all 86 entries. The recycling detection logic (comparing predictions to WIN verdicts) cannot function without verdicts. The predictions tab analysis claims to show how many predictions are recycled, standard physics, etc. — but these categories are all 0. This is a major data gap. Analyst must audit all predictions, apply our_verdict values (recycled/standard_physics/unfalsifiable/pending/etc.) using the established verdict framework. Source: ISS-703-sha256-forensics digest entry.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T14:41:08.033Z",
+      "created_at": "2026-04-12T14:41:08.033Z",
+      "expansion_id": "EXP-097"
+    },
+    {
+      "id": "ISS-784",
+      "win_id": null,
+      "severity": "major",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "title": "EXHIBIT-AB: Evidence Exhibits A & B have no analysis — dome's most prominent home-page feature unaddressed",
+      "description": "Curmudgeon EXHIBIT-AB review found a major coverage gap: Exhibits A and B (the dome's correlation charts for \"Aetheric Influence Index\" and magnetic field measurements) are the most prominent feature on the dome's home page, but our review has no dedicated section addressing them. A visitor seeing the site for the first time sees these charts. The statistical claims (r = 0.992, AI = 1.152) are unaddressed. This is our biggest blind spot — a dome defender can point to Exhibits A/B as independent validation and we have nothing to say. Analyst must write a dedicated analysis section. Source: EXHIBIT-AB digest entry.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T14:41:08.033Z",
+      "created_at": "2026-04-12T14:41:08.033Z",
+      "expansion_id": "EXP-098"
+    },
+    {
+      "id": "ISS-786",
+      "win_id": null,
+      "severity": "major",
+      "section": "part2",
+      "section_key": "SEC-2.1",
+      "category": "factual_error",
+      "status": "assigned-analyst",
+      "title": "SEC-2.1: Arithmetic error in equatorial cavity height calculation",
+      "description": "Curmudgeon SEC-2.1 digest review found an arithmetic error in the equatorial height calculation. The section states H(r) at r=15,000 km but the computation is wrong. Analyst must verify the H(r) formula with correct values, fix the arithmetic, and ensure the stated conclusion (8.7 Hz minimum) follows from corrected numbers. Source: SEC-2.1 digest entry, action: major_rewrite.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T14:41:08.033Z",
+      "created_at": "2026-04-12T14:41:08.033Z",
+      "expansion_id": "EXP-099"
+    },
+    {
+      "id": "ISS-787",
+      "win_id": null,
+      "severity": "major",
+      "section": "part4",
+      "section_key": "SEC-4.5.4",
+      "category": "factual_error",
+      "status": "assigned-analyst",
+      "title": "SEC-4.5.4: Wrong sun altitude value in HTML section — states 8,537 km (apparent) not physical",
+      "description": "Curmudgeon SEC-4.5.4 digest review found the HTML section uses the wrong sun altitude. The section says \"A local sun at fixed height H ≈ 8,537 km\" but 8,537 km is the apparent altitude. The dome model assigns the sun a different physical altitude (< 4,200 km per the refraction cascade). The correct value to use depends on whether the section is analyzing apparent or physical coordinates, and the text is ambiguous/wrong. Analyst must correct. Source: SEC-4.5.4 digest entry.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-12T14:41:08.033Z",
+      "created_at": "2026-04-12T14:41:08.033Z",
+      "expansion_id": "EXP-100"
     }
   ],
-  "next_id": 780
+  "next_id": 788
 }
