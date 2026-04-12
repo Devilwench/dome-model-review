@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-04-12T19:45:00.000Z",
+  "report_date": "2026-04-12",
+  "run_mode": "scheduled-decider",
+  "curmudgeon_reviews_processed": [
+    "part6-sha256-recycling.c2",
+    "predictions-catalog.c2",
+    "SEC-6.1-params.c2 (verified: WIN-012 misattribution already resolved in current sections.json)"
+  ],
+  "patches_applied": [
+    {
+      "patch_id": "EXP-078-section-1.8",
+      "description": "New Section 1.8 Refraction Cascade appended to part1",
+      "issues_closed": ["ISS-696", "ISS-752"],
+      "issues_created": ["ISS-754", "ISS-755", "ISS-756"],
+      "verdict_changes_pending": ["WIN-044", "WIN-068", "WIN-010"]
+    },
+    {
+      "patch_id": "EXP-078-citation-adds",
+      "description": "6 citation additions to WIN detail_evidence (046,056,067,016,065)"
+    },
+    {
+      "patch_id": "domain-count-fix",
+      "description": "sections.json part6: 10 domains → 12 categories",
+      "issues_closed": []
+    }
+  ],
+  "issues_created_this_run": ["ISS-754", "ISS-755", "ISS-756", "ISS-757", "ISS-758"],
+  "issues_closed_this_run": ["ISS-696", "ISS-752"],
+  "issue_tracker": {
+    "open": 18,
+    "closed": 647,
+    "pending_human": 3,
+    "assigned_analyst": 6
+  },
+  "pipeline_status": {
+    "poller": "Quiet (11th consecutive quiet poll). Dome site unchanged.",
+    "analyst": "6 pending EXP items (EXP-079 through EXP-083, EXP-064). No new WINs. Proposal ISS-696 processed.",
+    "curmudgeon": "BAU mode. Queue depth 1 (SEC-1.8 new section). 66 pending digest entries."
+  },
+  "external_changes": {
+    "dome_site_changes": "no changes",
+    "threat_level": "none",
+    "canary_status": "not_triggered"
+  },
+  "curmudgeon_queue": {
+    "mode": "bau",
+    "depth": 1,
+    "items": ["SEC-1.8"],
+    "current_schedule_interval_minutes": 240,
+    "action_taken": "none",
+    "popped_this_run": ["part6"]
+  },
+  "exp_078_integration": {
+    "status": "complete",
+    "sections_added": ["Section 1.8 Refraction Cascade"],
+    "citation_additions": ["WIN-046", "WIN-056", "WIN-067", "WIN-016", "WIN-065"],
+    "verdict_changes_pending_human": {
+      "WIN-044": {"from": "Misleading", "to": "Self-Contradicted", "confidence": "strong"},
+      "WIN-068": {"from": "Std Model Explains", "to": "Self-Contradicted", "confidence": "moderate"},
+      "WIN-010": {"from": "Std Model Explains", "to": "Self-Contradicted", "confidence": "moderate"}
+    }
+  },
+  "internal_issues": [
+    {
+      "issue_id": "ISS-757",
+      "win_id": null,
+      "severity": "major",
+      "category": "factual_error",
+      "description": "SHA-256 section says 7 restate WINs in April 4 batch; PRED-091 and PRED-SLIP-001 also have restates_win but are not mentioned",
+      "source": "curmudgeon",
+      "status": "new"
+    },
+    {
+      "issue_id": "ISS-758",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "data_quality",
+      "description": "predictions.json _meta.computed_counts stale (86 total, wrong prospective/pending counts)",
+      "source": "curmudgeon",
+      "status": "new"
+    }
+  ],
+  "recommended_actions": [
+    {
+      "priority": 1,
+      "action": "Review and approve/reject verdict changes ISS-754/755/756 (WIN-044, WIN-068, WIN-010 cascade flips). Patch file: monitor/decisions/suggested-patches-2026-04-12T19-00.json",
+      "urgency": "next_session"
+    },
+    {
+      "priority": 2,
+      "action": "Verify ISS-751 status — WIN-012 misattribution in SEC-6.1 may already be resolved (current text shows WIN-053 correctly). Close as wontfix if confirmed.",
+      "urgency": "next_session"
+    },
+    {
+      "priority": 3,
+      "action": "Analyst to pick up EXP-079 through EXP-083 (ISS-745 through ISS-750) — major/critical issues with SEC-2b.7, code coverage, post_hoc fields, NMP drift, n(r) coefficient.",
+      "urgency": "backlog"
+    }
+  ],
+  "build_status": {
+    "tests": "3288 passed, 0 failed",
+    "site_size_kb": 1002.2,
+    "last_build": "2026-04-12T19:40:00.000Z"
+  }
+}

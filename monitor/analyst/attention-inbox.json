@@ -10,7 +10,7 @@
   "items": [
     {
       "id": "ATT-2026-04-12T09:41:22.634Z",
-      "status": "pending",
+      "status": "resolved",
       "target_type": "section",
       "target_id": "SEC-6.8",
       "reason": "Decider patched section 6.8: (1) renamed WIN-012 → WIN-053 in title, TLDR, and opening paragraph (WIN misattribution fix); (2) corrected IGRF coefficient count from 168 to 195 for degree 13. The mathematical single-exponential argument is still present and flagged as factually wrong (ISS-737/EXP-075) — analyst should review surrounding content for consistency.",
@@ -20,6 +20,23 @@
         "ISS-735",
         "ISS-736",
         "ISS-737"
+      ],
+      "resolved_at": "2026-04-12T09:53:05.213Z",
+      "resolution_note": "ISS-735 (WIN misattribution) and ISS-736 (IGRF count) already fixed by decider on GitHub. ISS-737 (mathematical error): wrote EXP-076 with corrected section 6.8 text — replaces false single-exponential collapse claim with flux conservation argument and fitted-parameters critique. TLDR also rewritten. Verified all math computationally. Noted that ISS-737's assigned_exp field incorrectly points to EXP-075 (SEC-2b.7); decider should update to EXP-076."
+    },
+    {
+      "id": "ATT-2026-04-12T11:51:28.219Z",
+      "status": "pending",
+      "target_type": "section",
+      "target_id": "SEC-1.8",
+      "reason": "Section 1.8 integrated (EXP-078). Three verdict changes queued for human approval: WIN-044 (Misleading→Self-Contradicted, strong), WIN-068 and WIN-010 (Std Model Explains→Self-Contradicted, moderate). If human approves, verify cascade science still holds after curmudgeon first-review.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-12T11:51:28.219Z",
+      "related_issues": [
+        "ISS-754",
+        "ISS-755",
+        "ISS-756",
+        "ISS-696"
       ]
     }
   ]

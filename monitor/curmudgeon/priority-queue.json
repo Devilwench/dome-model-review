@@ -21,22 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 35,
-      "target_type": "section-rewrite",
-      "target_id": "part6",
-      "reason": "Decider patched ISS-743 and ISS-744: replaced hardcoded Fifteen/86 with template vars {{PRED_RECYCLED}}/{{PRED_TOTAL}}. Minor prose fix — spot check template variable integration is correct.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-12T11:13:58.420Z",
-      "context_hints": {
-        "source_file": "monitor/decisions/suggested-patches-2026-04-12T11-12.json",
-        "related_issues": [
-          "ISS-743",
-          "ISS-744"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 36,
       "target_type": "section-new",
       "target_id": "SEC-1.8",
@@ -315,6 +299,13 @@
       "target_id": "SEC-6.11",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-12T10:45:13.849Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 35,
+      "target_id": "part6",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-12T11:49:47.765Z",
       "popped_by": "decider"
     }
   ],
