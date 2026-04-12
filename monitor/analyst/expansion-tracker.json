@@ -1404,8 +1404,21 @@
       "status": "pending",
       "notes": "Defense survives=3. n(r) coefficient 0.20 in Part 1 formula, but table values (1.40, 3.24) imply different coefficient. Part 7 disc-edge value may also be wrong. Analyst Mode 3: verify n(r) formula derivation from dome source, compute values at 20,004 and 20,015 km, fix text.",
       "created_at": "2026-04-12T11:12:09.374Z"
+    },
+    {
+      "id": "EXP-084",
+      "target": "Kill-shots tab: add formal definitions for our_strength field (decisive/major/supportive) to DATA-SCHEMAS.md and kill-shots tab explanation",
+      "source": "decider-yeet-ISS-753",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/EXP-057-proposal.c2.json",
+      "issue_ids": [
+        "ISS-753"
+      ],
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "ISS-753: EXP-057 introduced our_strength field (decisive/major/supportive) in kill-shots.json without formal definitions. Curmudgeon flagged: without definitions, assignments appear arbitrary. Write: (1) Formal criteria for decisive vs major vs supportive — e.g., decisive=falsifies dome model directly with hard data, major=shows internal inconsistency or strong mismatch, supportive=provides supporting evidence. (2) Add definitions to reference/DATA-SCHEMAS.md kill-shots section. (3) Add a brief explanation note at the top of the Kill Shots tab in sections.json (part5) explaining the rating system. Do NOT change any existing our_strength values — just add the definitional scaffolding. Output to expansions/EXP-084.json with replacement_html for part5 preamble addition and schema documentation.",
+      "created_at": "2026-04-12T12:23:10.936Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 84
+  "next_id": 85
 }
