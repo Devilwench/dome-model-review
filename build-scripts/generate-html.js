@@ -1014,9 +1014,9 @@ function main() {
     confirmed: predEntries.filter(e => e.author_status === 'confirmed').length,
     falsified: predEntries.filter(e => e.author_status === 'falsified').length,
     expired: predEntries.filter(e => e.author_status === 'expired').length,
-    stdRelabel: predEntries.filter(e => e.derivation === 'standard_physics').length,
+    stdRelabel: predEntries.filter(e => e.our_verdict === 'standard_physics').length,
     testable: predEntries.filter(e => e.testability === 'testable').length,
-    domeDerived: predEntries.filter(e => e.derivation === 'dome_geometry').length,
+    domeDerived: predEntries.filter(e => e.our_verdict === 'dome_geometry').length,
     recycled: predEntries.filter(e => e.restates_win != null).length,
     genuinelyProspective: predEntries.filter(e =>
       e.is_genuinely_prospective === true &&
