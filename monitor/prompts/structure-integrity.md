@@ -92,6 +92,7 @@ All prose sections should be wrapped in `<details>`/`<summary>` with TLDRs. Spot
 - Every `<h2>` inside a tab (except tab-level `<h1>` headings and the overview scorecard) should be inside a `<details>` with `ps-summary` or `ks-summary` class.
 - Every `<summary>` should contain a `<p>` with `ps-tldr` or `ks-tldr` class.
 - No empty TLDRs (the `<p class="ps-tldr">` should have text content).
+- WIN panels: spot-check that WINs in `wins.json` have `tldr_evidence` and `tldr_verdict` fields. In the rendered HTML, each WIN's Evidence and Verdict sections should be inside `<details class="win-section">` with `ks-summary`/`ks-tldr` classes.
 - Prediction panels in `predictions.json`: check that genuinely prospective predictions have a `tldr` field.
 - Severity: Missing TLDR structure = **moderate** (content works but UX regresses). Empty/broken TLDR = **major**.
 

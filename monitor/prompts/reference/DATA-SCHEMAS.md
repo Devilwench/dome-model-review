@@ -13,7 +13,9 @@ Each entry has:
 - `detail_claim`: Full claim description (plain text, gets HTML-escaped)
 - `detail_evidence`: Scientific rebuttal (HTML allowed — contains links, sub/sup tags)
 - `detail_verdict_text`: Verdict reasoning (HTML allowed)
-- `detail_extra`: Optional additional analysis (HTML allowed, can be null)
+- `detail_extra`: Optional additional analysis (HTML allowed, can be null). Rendered inside the verdict collapsible when TLDRs are present.
+- `tldr_evidence`: 2–3 sentence plain-language summary of the evidence — **rendered in the collapsed Evidence bar** (visible before expanding). Punchline first, for non-science readers. Falls back to old flat format if absent.
+- `tldr_verdict`: 2–3 sentence plain-language summary of the verdict — **rendered in the collapsed Verdict bar** alongside the verdict badge. Same writing rules as `tldr_evidence`.
 - `detail_group`: Optional grouping key for related WINs (e.g., "WIN-045/046/049/050/051")
 - `code_analysis`: Structural tags populated by curmudgeon review (null if not yet reviewed):
   - `monitoring`: "hardcoded" | "live_fetch" | "none" — what monitor.py actually does for this WIN

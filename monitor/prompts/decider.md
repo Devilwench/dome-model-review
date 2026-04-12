@@ -260,7 +260,8 @@ All prose sections are wrapped in `<details>`/`<summary>` with TLDRs (see CLAUDE
 
 - **Patches to section prose in `sections.json`:** The content is inside `<div class="ps-detail">` blocks. The TLDR is in the preceding `<p class="ps-tldr">` tag. If a patch materially changes a section's argument, check whether the TLDR needs updating too.
 - **Patches to prediction entries in `predictions.json`:** Include a `tldr` field (2–3 sentences, plain language) when adding or modifying predictions. Existing predictions without a `tldr` fall back to `detail_reasoning` in the rendered output.
-- **New WIN onboarding:** When integrating new WINs that create or modify sections, ensure the section gets a `<details>` wrapper with TLDR. Follow the pattern in CLAUDE.md.
+- **Patches to WIN entries in `wins.json`:** Each WIN has `tldr_evidence` and `tldr_verdict` fields. These render as collapsible Evidence and Verdict panels with the TLDRs visible when collapsed. If a patch changes the evidence or verdict text, check whether the corresponding TLDR still accurately summarizes it.
+- **New WIN onboarding:** When integrating new WINs, include `tldr_evidence` and `tldr_verdict` fields (2–3 sentences each, plain language, punchline first). Also ensure the section gets a `<details>` wrapper with TLDR. Follow the pattern in CLAUDE.md.
 - **Curmudgeon reviews flagging TLDR errors:** These are major severity — fix them promptly. TLDR imprecision flagged as minor can be batched.
 
 ## Critical Rules

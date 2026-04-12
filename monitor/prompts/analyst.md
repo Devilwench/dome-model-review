@@ -135,7 +135,7 @@ If Mode 0 completed, also check for Modes 1-4 and normal analysis — Mode 0 doe
 All prose sections are wrapped in `<details>`/`<summary>` with 2–3 sentence TLDRs (see CLAUDE.md "Progressive Disclosure" section for full architecture). When you write or review content, be aware:
 
 - **Expansions that modify section prose** must also check the TLDR wrapping it. If your patch changes the thrust of a section, the TLDR may need updating too. Include TLDR patch text in your expansion output when relevant.
-- **New WIN analyses** (Mode 0): The decider will handle TLDR integration, but flag if the new WIN materially changes a section's overall argument.
+- **New WIN analyses** (Mode 0): When writing a new WIN, include `tldr_evidence` and `tldr_verdict` fields in the new-win JSON. Each is 2–3 sentences, plain language, punchline first — the evidence TLDR summarizes what the data shows, the verdict TLDR summarizes why the claim fails. The decider will handle section-level TLDR integration if the new WIN changes a section's overall argument.
 - **Prediction writeups** (Mode 1b): When writing `detail_reasoning` for predictions, also write a `tldr` field — 2–3 sentences, plain language, punchline first. The TLDR is for a non-science reader; the `detail_reasoning` is for someone who wants the full picture.
 - **TLDR review standard:** Fix factual errors. Don't split hairs on nuance — the expanded detail handles that. The point is layman readability, not precision to the last qualifier.
 

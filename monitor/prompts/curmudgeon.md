@@ -350,6 +350,7 @@ Every prose section and prediction panel is now wrapped in `<details>`/`<summary
 - **Don't split hairs.** The TLDR is for a non-science reader — it simplifies by design. Only flag if the simplification is actually wrong, not just imprecise. "The dome's coordinate system fails on long distances" is fine for a TLDR even if the detail is more nuanced. "The dome's coordinate system has never been tested" would be wrong because it HAS been tested — it just fails.
 - **Severity:** TLDR factual errors are **major** (readers see TLDRs first and may not expand). TLDR imprecision that doesn't mislead is **minor** at most.
 - **Prose sections:** TLDRs live inside `sections.json` in the `<summary>` tag wrapping each `<h2>`. Patch proposals should include TLDR fix text.
+- **WIN panels:** Each WIN in `wins.json` has `tldr_evidence` and `tldr_verdict` fields. These render as collapsible Evidence and Verdict sections — the TLDRs are what readers see before clicking expand. When reviewing a WIN, read both TLDRs against the expanded content. A TLDR that contradicts the evidence/verdict it summarizes is **major**.
 - **Predictions:** TLDRs live in the `tldr` field in `predictions.json`. If you're reviewing a prediction and the `tldr` is missing, note it but don't block on it — the analyst writes them in Mode 1b.
 
 ## Severity Guidelines

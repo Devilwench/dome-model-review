@@ -48,6 +48,7 @@ Every prose section across all tabs is wrapped in `<details>`/`<summary>` HTML5 
 **Where TLDRs live:**
 - Prose sections: embedded in `sections.json` HTML, wrapping each `<h2>` section
 - Kill shots: embedded in `sections.json` (part5), one `<details>` per test
+- WIN panels: `wins.json` has `tldr_evidence` and `tldr_verdict` fields per WIN; `formatWinDetail()` in `generate-html.js` renders each as a `<details class="win-section">` with `ks-summary`/`ks-tldr`. WINs without TLDRs fall back to old flat format.
 - Prediction panels: `predictions.json` has a `tldr` field per prediction; `formatPredictionDetail()` in `generate-html.js` renders it into `ks-tldr`
 - Evaluation Guide + Timestamp Error: inline in `generate-html.js` template
 
