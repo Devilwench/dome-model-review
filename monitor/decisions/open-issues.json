@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T20:10:39.973Z",
+  "last_updated": "2026-04-12T20:44:44.670Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -788,22 +788,6 @@
       "created_at": "2026-04-12T18:14:29.438Z"
     },
     {
-      "id": "ISS-831",
-      "win_id": null,
-      "section_id": "SEC-2b.1",
-      "severity": "moderate",
-      "category": "factual_error",
-      "status": "open",
-      "title": "SEC-2b.1 accuracy arithmetic stale: 67 WINs and 5 uncounted-failures need updating",
-      "description": "SEC-2b.1 uses \"67/(67+4+5) ≈ 88.2%\" for dome accuracy arithmetic. The dome now claims 69 WINs (not 67). uncounted-failures.json has 8 entries (not 5). Both hardcoded numbers are stale. This is in the \"monitoring dashboard accuracy\" paragraph.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-2b.1.c2.json",
-      "found_date": "2026-04-12",
-      "found_by": "decider",
-      "found_at": "2026-04-12T18:14:29.438Z",
-      "created_at": "2026-04-12T18:14:29.438Z"
-    },
-    {
       "id": "ISS-832",
       "win_id": "058",
       "section_id": null,
@@ -899,9 +883,44 @@
       "found_date": "2026-04-12",
       "source": "curmudgeon",
       "source_review": "monitor/curmudgeon/reviews/WIN-010.c3.json",
-      "defense_exp": "EXP-140",
-      "created_at": "2026-04-12T20:09:48.990Z"
+      "defense_exp": "EXP-129",
+      "created_at": "2026-04-12T20:09:48.990Z",
+      "expansion_id": "EXP-129",
+      "updated_at": "2026-04-12T20:42:11.823Z"
+    },
+    {
+      "id": "ISS-842",
+      "win_id": null,
+      "section_id": "SEC-1.8",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "open",
+      "title": "SEC-1.8 missing chromaticity bridge for Gaia argument",
+      "description": "SEC-1.8 Gaia paragraph argues n(r)>>1 invalidates Gaia astrometry but does not mention that refraction is chromatic. A smart dome defender could argue: \"if n(r) bends ALL light uniformly, Gaia sees self-consistent positions even through the medium.\" The preemption needed: refraction is inherently chromatic (Kramers-Kronig relation: any n>1 medium must be dispersive). Gaia measures positions at multiple wavelengths simultaneously; a chromatic medium would produce wavelength-dependent position offsets detectable in the data. The dome's n(r) specification provides no dispersion function, making its medium physically impossible AND Gaia's achromatic catalog a direct falsification.",
+      "found_by": "curmudgeon",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/SEC-1.8.c1.json",
+      "found_date": "2026-04-12",
+      "found_at": "2026-04-12T20:42:11.823Z",
+      "created_at": "2026-04-12T20:42:11.823Z"
+    },
+    {
+      "id": "ISS-843",
+      "win_id": "WIN-002",
+      "section_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "open",
+      "title": "WIN-002 H(r) heights cross-reference: three cited values need dome-source verification",
+      "description": "WIN-002.c3 curmudgeon review: Section text states dome evolution page lists three heights H(r) harmonizes (9,086 km, 9,572 km, and one other). Curmudgeon flagged that these values and their dome-source citations need verification against the dome evolution page and raw-text files. Ensure the values cited in WIN-002 evidence match what the dome actually claims in its published documentation. May be stale — verify before deep investigation.",
+      "found_by": "curmudgeon",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-002.c3.json",
+      "found_date": "2026-04-12",
+      "found_at": "2026-04-12T20:42:11.823Z",
+      "created_at": "2026-04-12T20:42:11.823Z",
+      "staleness_note": "Review is from 2026-04-12T18:30:00Z — check whether WIN-002 text was patched since then"
     }
   ],
-  "next_id": 842
+  "next_id": 844
 }
