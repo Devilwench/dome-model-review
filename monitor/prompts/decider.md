@@ -145,54 +145,56 @@ Check `monitor/decisions/human-notes.json` for any unconsumed note with `action:
 ```bash
 node -e "
 const fs=require('fs');
-const pq=JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
-const notes=JSON.parse(fs.readFileSync('monitor/decisions/human-notes.json','utf8'));
+const CLONE='${CLEAN_CLONE}';
+const pq=JSON.parse(fs.readFileSync(CLONE+'/monitor/curmudgeon/priority-queue.json','utf8'));
+const notes=JSON.parse(fs.readFileSync(CLONE+'/monitor/decisions/human-notes.json','utf8'));
 const pending=(notes.notes||notes).find(n=>n.status==='pending'&&n.action==='set_curmudgeon_mode');
 if(pending){
   pq.mode=pending.mode;
   pq.mode_set_by='human';
   pq.mode_set_at=new Date().toISOString();
-  fs.writeFileSync('monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
+  fs.writeFileSync(CLONE+'/monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
   pending.status='consumed';
   pending.consumed_at=new Date().toISOString();
-  fs.writeFileSync('monitor/decisions/human-notes.json',JSON.stringify(notes,null,2));
+  fs.writeFileSync(CLONE+'/monitor/decisions/human-notes.json',JSON.stringify(notes,null,2));
   console.log('Mode set to:',pending.mode);
 }
 "
 ```
 
-### Step E2: Pop reviewed items from the queue
+### Step E2: Pop reviewed items from the queue (MANDATORY — always run this)
 
-The curmudgeon does NOT modify `priority-queue.json` (single-writer rule). Instead, it writes review files to `monitor/curmudgeon/reviews/`. The decider pops items whose review files exist. This is the ONLY place queue items are removed.
+The curmudgeon does NOT modify `priority-queue.json` (single-writer rule). Instead, it writes review files to `monitor/curmudgeon/reviews/`. The decider pops items whose review files exist. This is the ONLY place queue items are removed. **You MUST run this script every run, even if you did no other work.**
+
+**Important path note:** Read the review file listing from the **FUSE workspace** (where curmudgeon writes them), not the clone (workspace-sync may not have pushed them yet). Read/write `priority-queue.json` from the **clone** (git-owned).
 
 ```bash
 node -e "
 const fs=require('fs');
-const path=require('path');
-const pq=JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
-const reviews=fs.readdirSync('monitor/curmudgeon/reviews/');
+const CLONE='${CLEAN_CLONE}';
+const WORKSPACE=process.cwd(); // FUSE workspace — where curmudgeon writes reviews
+const pq=JSON.parse(fs.readFileSync(CLONE+'/monitor/curmudgeon/priority-queue.json','utf8'));
+// Read reviews from FUSE workspace (curmudgeon writes here; clone may lag behind workspace-sync)
+const reviews=fs.readdirSync(WORKSPACE+'/monitor/curmudgeon/reviews/');
 const before=pq.queue.length;
 if(!pq.history) pq.history=[];
 // Check each queue item — if a review file exists for it, pop it
 pq.queue=pq.queue.filter(item=>{
-  // Build search patterns from target_id
   const tid=item.target_id;
-  // For sections like 'part3-3.1b', curmudgeon writes 'SEC-3.1b*.json'
   const secMatch=tid.match(/^part(\d+[a-z]?)-(.+)$/);
   const searchTerms=[tid];
   if(secMatch) searchTerms.push('SEC-'+secMatch[2]);
   const hasReview=reviews.some(f=>searchTerms.some(t=>f.includes(t)));
   if(hasReview){
     pq.history.push({queue_id:item.queue_id,target_id:tid,target_type:item.target_type,popped_at:new Date().toISOString(),popped_by:'decider'});
-    return false; // remove from queue
+    return false;
   }
-  return true; // keep in queue
+  return true;
 });
-// Trim history to 50
 if(pq.history.length>50) pq.history=pq.history.slice(-50);
 const after=pq.queue.length;
+fs.writeFileSync(CLONE+'/monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
 if(before!==after){
-  fs.writeFileSync('monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
   console.log('Popped '+(before-after)+' reviewed items. Queue: '+before+' -> '+after);
 }else{
   console.log('No items to pop. Queue depth: '+after);
@@ -204,7 +206,7 @@ if(before!==after){
 
 ```bash
 node -e "
-const pq=JSON.parse(require('fs').readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+const pq=JSON.parse(require('fs').readFileSync('${CLEAN_CLONE}/monitor/curmudgeon/priority-queue.json','utf8'));
 console.log('mode:',pq.mode,'| queue_depth:',pq.queue.length,'| current_interval_min:',pq.schedule_state.curmudgeon_current_interval_minutes);
 "
 ```
@@ -247,7 +249,8 @@ When you onboard a new WIN (Step 1f), integrate a rewritten section (Step 2a), o
 ```bash
 node -e "
 const fs=require('fs');
-const pq=JSON.parse(fs.readFileSync('monitor/curmudgeon/priority-queue.json','utf8'));
+const CLONE='${CLEAN_CLONE}';
+const pq=JSON.parse(fs.readFileSync(CLONE+'/monitor/curmudgeon/priority-queue.json','utf8'));
 pq.queue.push({
   queue_id: pq.next_id++,
   target_type: 'win-new',           // or win-detail-rewrite, section-new, section-rewrite, proposal, killshot-new, killshot-rewrite
@@ -261,7 +264,7 @@ pq.queue.push({
     human_note: null
   }
 });
-fs.writeFileSync('monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
+fs.writeFileSync(CLONE+'/monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
 "
 ```
 
