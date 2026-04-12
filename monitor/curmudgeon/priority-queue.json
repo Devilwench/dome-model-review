@@ -35,9 +35,29 @@
         ],
         "human_note": null
       }
+    },
+    {
+      "queue_id": 36,
+      "target_type": "section-new",
+      "target_id": "SEC-1.8",
+      "reason": "EXP-078 integrated — Section 1.8 Refraction Cascade new prose needs fresh adversarial review. Three verdict changes (WIN-044/068/010) pending human approval.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-12T11:44:21.412Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-078.json",
+        "related_issues": [
+          "ISS-696"
+        ],
+        "human_note": null,
+        "pending_verdicts": [
+          "WIN-044 Misleading→Self-Contradicted",
+          "WIN-068 Std Model Explains→Self-Contradicted",
+          "WIN-010 Std Model Explains→Self-Contradicted"
+        ]
+      }
     }
   ],
-  "next_id": 36,
+  "next_id": 37,
   "history": [
     {
       "queue_id": 1,

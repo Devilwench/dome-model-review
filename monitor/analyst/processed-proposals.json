@@ -2,7 +2,9 @@
   "files": [
     "proposal-ISS-700-status.json",
     "proposal-ISS-702-status.json",
-    "proposal-ISS-738-resolution.json"
+    "proposal-ISS-738-resolution.json",
+    "proposal-ISS-696-resolution.json"
   ],
-  "note": "Seeded with already-processed proposals that are orphaned on FUSE (cannot unlink)"
+  "note": "Seeded with already-processed proposals that are orphaned on FUSE (cannot unlink)",
+  "last_updated": "2026-04-12T11:44:21.412Z"
 }

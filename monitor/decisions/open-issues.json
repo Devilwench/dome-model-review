@@ -1,29 +1,7 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-12T11:13:23.935Z",
+  "last_updated": "2026-04-12T11:44:41.472Z",
   "issues": [
-    {
-      "id": "ISS-696",
-      "win_id": null,
-      "severity": "major",
-      "category": "content-update",
-      "description": "CAT-005 proposal: Analyst proposes new section \"V51.1 Refraction Cascade: How One Parameter Fix Breaks Everything\" covering 12+ affected WINs. Cascade failure analysis shows refraction needed is 13-27 degrees vs 0.03 degrees real. Human must decide: approve as new section (Part 2 or Section 7 extension), reject, or integrate as individual WIN patches.",
-      "source": "analyst",
-      "found_date": "2026-04-09",
-      "status": "assigned-analyst",
-      "fix_details": null,
-      "fix_date": null,
-      "found_by": "analyst-cat-005",
-      "assigned_to": "analyst-EXP-050-revision",
-      "human_decision": "Approved as new section under The Model tab (option a). New code_analysis sub-category tag requested for cascade-affected WINs. Analyst to write recommended proposal package — route to curmudgeon before fleshing out prose. See CAT-005.json human_decision block.",
-      "decided_at": "2026-04-09T17:55:00Z",
-      "decided_by": "steve",
-      "gate_returned_at": "2026-04-10T17:24:31.995Z",
-      "gate_returned_reason": "Curmudgeon gate (2026-04-10): ACCEPT_WITH_MODIFICATIONS — 7 blockers. Analyst must produce EXP-050-numerics.json, re-audit WIN flip table (per-WIN re-read required), withdraw cascade_dependent tag, use structural title, renumber to Section 1.8. Resubmit for second gate pass.",
-      "assigned_exp": "EXP-078",
-      "gate2_cleared_at": "2026-04-12T10:45:02.859Z",
-      "gate2_conditions": "WIN-018 flip rejected; WIN-044+WIN-068 flips approved; 8-row table; 400 words net-new; physical-vs-apparent distinction explicit"
-    },
     {
       "id": "ISS-698",
       "win_id": null,
@@ -221,22 +199,6 @@
       "created_at": "2026-04-12T11:10:59.813Z"
     },
     {
-      "id": "ISS-752",
-      "win_id": null,
-      "severity": "major",
-      "section": "part1",
-      "section_key": "EXP-050",
-      "category": "factual_error",
-      "status": "open",
-      "title": "EXP-050-proposal: Section 1.7 number collision; 4 of 12 verdict flips do not survive scrutiny",
-      "description": "EXP-050 proposal assigns section 1.7 but that number already exists (The Gravity Paradox). Also 4 of 12 proposed verdict flips (WIN-018, WIN-019, WIN-004, WIN-010) need re-examination as they depend on the dome's own prospective classification or storm contamination disputes. Source: curmudgeon EXP-050-proposal.c2.json.",
-      "source": "curmudgeon",
-      "suggested_fix": "Reassign to section 1.8 or later. Remove or substantially revise the 4 disputed verdict flips before integrating proposal. Analyst must revisit.",
-      "found_by": "decider",
-      "found_at": "2026-04-12T11:10:59.813Z",
-      "created_at": "2026-04-12T11:10:59.813Z"
-    },
-    {
       "id": "ISS-753",
       "win_id": null,
       "severity": "major",
@@ -251,7 +213,55 @@
       "found_by": "decider",
       "found_at": "2026-04-12T11:10:59.813Z",
       "created_at": "2026-04-12T11:10:59.813Z"
+    },
+    {
+      "id": "ISS-754",
+      "win_id": "WIN-044",
+      "severity": "major",
+      "category": "verdict_change",
+      "status": "pending-human",
+      "title": "EXP-078 verdict change: WIN-044 Misleading → Self-Contradicted (strong confidence)",
+      "description": "EXP-078 Refraction Cascade analysis proposes WIN-044 verdict change from Misleading to Self-Contradicted. FSF derived from H(r); seasonal physical altitude (1,975-3,618 km) makes derivation indeterminate.",
+      "source": "decider",
+      "found_by": "analyst-EXP-078",
+      "found_at": "2026-04-12T11:44:41.472Z",
+      "created_at": "2026-04-12T11:44:41.472Z",
+      "created_by": "decider",
+      "patch_file": "monitor/decisions/suggested-patches-2026-04-12T19-00.json",
+      "requires_human_approval": true
+    },
+    {
+      "id": "ISS-755",
+      "win_id": "WIN-068",
+      "severity": "major",
+      "category": "verdict_change",
+      "status": "pending-human",
+      "title": "EXP-078 verdict change: WIN-068 Std Model Explains → Self-Contradicted (moderate confidence)",
+      "description": "EXP-078 Refraction Cascade analysis proposes WIN-068 verdict change from Std Model Explains to Self-Contradicted. Eclipse shadow positions require definite physical sun altitude; cascade makes it indeterminate across 39 eclipses.",
+      "source": "decider",
+      "found_by": "analyst-EXP-078",
+      "found_at": "2026-04-12T11:44:41.472Z",
+      "created_at": "2026-04-12T11:44:41.472Z",
+      "created_by": "decider",
+      "patch_file": "monitor/decisions/suggested-patches-2026-04-12T19-00.json",
+      "requires_human_approval": true
+    },
+    {
+      "id": "ISS-756",
+      "win_id": "WIN-010",
+      "severity": "major",
+      "category": "verdict_change",
+      "status": "pending-human",
+      "title": "EXP-078 verdict change: WIN-010 Std Model Explains → Self-Contradicted (moderate confidence)",
+      "description": "EXP-078 Refraction Cascade analysis proposes WIN-010 verdict change from Std Model Explains to Self-Contradicted. Same eclipse geometry paradox as WIN-068 (single-event BOU 2017 case).",
+      "source": "decider",
+      "found_by": "analyst-EXP-078",
+      "found_at": "2026-04-12T11:44:41.472Z",
+      "created_at": "2026-04-12T11:44:41.472Z",
+      "created_by": "decider",
+      "patch_file": "monitor/decisions/suggested-patches-2026-04-12T19-00.json",
+      "requires_human_approval": true
     }
   ],
-  "next_id": 754
+  "next_id": 757
 }
