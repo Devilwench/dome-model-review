@@ -1303,11 +1303,11 @@ ${CSS}
 <li><a href="#evaluation-guide" onclick="showTab('evaluate');return false">Evaluation Guide: How to Assess This Review</a></li>
 <li><a href="#part1" onclick="showTab('model');return false">Part 1: What Is the Ovoid Cavity Cosmological Model?</a>
 <ul>
-<li><a href="#p1-overview" onclick="showTab('model');return false">1.1 Overview</a></li>
-<li><a href="#p1-flatearth" onclick="showTab('model');return false">1.2 How It Differs from Classic Flat Earth</a></li>
-<li><a href="#p1-globe" onclick="showTab('model');return false">1.3 How It Differs from the Globe Model</a></li>
-<li><a href="#p1-method" onclick="showTab('model');return false">1.4 Methodology Assessment</a></li>
-<li><a href="#p1-refraction" onclick="showTab('model');return false">1.5 Aetheric Refraction: The Model's Universal Correction Factor</a></li>
+<li><a href="#section-1-1" onclick="showTab('model');return false">1.1 Overview</a></li>
+<li><a href="#section-1-2" onclick="showTab('model');return false">1.2 How It Differs from Classic Flat Earth</a></li>
+<li><a href="#section-1-3" onclick="showTab('model');return false">1.3 How It Differs from the Globe Model</a></li>
+<li><a href="#section-1-4" onclick="showTab('model');return false">1.4 Methodology Assessment</a></li>
+<li><a href="#section-1-5" onclick="showTab('model');return false">1.5 Aetheric Refraction: The Model's Universal Correction Factor</a></li>
 </ul></li>
 <li><a href="#part1b" onclick="showTab('model');return false">Part 1b: Version Change Analysis (V50.6 → V51.0)</a></li>
 <li><a href="#part2" onclick="showTab('selftest');return false">Part 2: Self-Contradictions — The Dome's Own Geometry Refutes Its Claims</a></li>
