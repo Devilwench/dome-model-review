@@ -1,58 +1,46 @@
 MORNING BRIEFING — 2026-04-13
-Generated: 2026-04-13T06:14:21Z
-Curmudgeon reviews processed this run: 0
-Previous decider run: 2026-04-13T02:09:34Z
+Generated: 2026-04-13T17:13:49Z
+Curmudgeon reviews processed this run: 3 pending digest entries — all stale (no new issue creation needed)
+Previous decider run: 2026-04-13T16:45:43Z
 
-SITE HEALTH:
-  Integrity: No new integrity report this run (daily 9 AM agent)
-  External: QUIET — 12th consecutive quiet poll. No dome site changes.
-  API endpoints: Still 404 (scorecard.json, results.json) — ongoing
-  AI Context page: 404 (3+ consecutive polls)
-  Build drift: Resolved
+SITE HEALTH: PASS
+  - Build drift: RESOLVED (committed 74e8030 + 3bfa86b earlier today)
+  - Tests: 3311 passed, 0 failed
+  - No broken links or critical integrity issues
 
-PREDICTION BATCH INTEGRATION:
-  15 analyst assessment verdicts integrated into predictions.json
-  - 13 reclassified from "recycled" → standard_physics or unfalsifiable
-  - PRED-NEW-002: standard_physics → unfalsifiable (more precise)
-  - W019 (NMP poleward drift): falsified → standard_physics [overlaps WIN-043]
-  - W020 (Roaring 40s anomaly): falsified → unfalsifiable [overlaps WIN-024]
-  ⚠ W019/W020 downgrades from "falsified" need adversarial review — curmudgeon queue item 90
+EXTERNAL STATUS: QUIET
+  - Dome site: 13th consecutive quiet poll
+  - WIN count: 69 (dome) vs 70 (our catalog)
+  - No new content, no manual commits since 2026-04-08
+  - Canary not triggered (OTS methodology error still present)
 
-ISSUES CLOSED THIS RUN: 5
-  ISS-858 (minor): ks-summary:ks-tldr count mismatch — fixed by renaming verdict summary div
-  ISS-873 (major): Kill-Shot Test 7 tracking gap — KS-007 already existed; stale curmudgeon view
-  ISS-809 (major): build-doc-v4.js hardcoded count — file no longer exists; Playwright PDF
-  ISS-742 (moderate): SEC-2.9 absent from DOCX — same; Playwright includes all sections
-  ISS-739 (major): PRED_STD_RELABEL using wrong field — already fixed; correctly returns 40
+INTERNAL STATUS: CLEAN RUN
+  - Issues found this run: 1 new (ISS-886 WIN-013 defense pre-emption — PATCHED)
+  - Issues patched: ISS-882 (citation), ISS-886 (defense)
+  - Issues closed: ISS-882, ISS-886 (fixed), ISS-880 (wontfix)
+  - Open issues: 31 (was 33) — 28 assigned-analyst, 1 pending-human, 1 open, 1 wontfix
 
-ISSUES STATUS: 32 open, 742 closed
-  Pending-human: 1 (ISS-825 — WIN-018 verdict flip disputed)
-  Assigned-analyst: 28 (including EXP-154 new — SEC-2b.7 W001 reframe)
-  Open (unassigned): 4
+DIGEST PROCESSING:
+  - 3 pending digest entries, all stale:
+    * SEC-5-post-EXP082: Critical/major holes already patched by commit 3bfa86b
+    * SEC-2b.7-post-EXP137: Remaining minor holes — ISS-882 patched this run
+    * SEC-6.1-post-EXP086: Remaining minor holes — ISS-886 patched this run
+    * PRED-batch: ISS-880 closed wontfix (HTML generator already addresses optics concern)
 
-⚠ TOP 3 PRIORITY ACTIONS:
-  1. [HUMAN GATE-2] ISS-825: EXP-050-r2 proposes WIN-018 verdict flip; curmudgeon c1 rejected.
-     Need human adjudication before any change. Review EXP-050-r2.json + curmudgeon review.
-  
-  2. [MONITOR] Prediction windows approaching April 30: PRED-077/085/090. 
-     Dome silent on expired windows (PRED-072/084). If dome records no outcome for the April 30
-     batch, add all three to uncounted-failures.json.
-  
-  3. [CURMUDGEON QUEUE] 15 items pending including prediction-batch adversarial review.
-     Curmudgeon is in BAU mode (240min interval) — queue clearing is routine.
+TOP 3 PRIORITY ACTIONS:
+  1. HUMAN NEEDED: ISS-825 — EXP-050-r2 WIN-018 verdict flip. Analyst has submitted
+     revision 2 proposing to flip verdict from confirmed to misleading. Human must decide.
+  2. ANALYST QUEUE: 49 EXP items pending (deep queue). Priority: EXP-144 (ISS-855/856 
+     eclipse section re-integration), EXP-140 (WIN-010 defense neutralization), 
+     EXP-134 (FAIL-004 sigma fix). 
+  3. TINKER NOTE: ISS-708 (infrastructure) — generate-html.js kill-shots.json support 
+     has been open for multiple cycles. Consider prioritizing in next tinker run.
 
 CURMUDGEON PROGRESS:
-  Mode: BAU | Queue depth: 15 | Interval: 240 min
-  No reviews digested this run (pending_count: 0 in digest)
+  - Mode: BAU (240 min interval)
+  - Queue depth: 14 items
+  - Queue contains: 2 prediction batches, 4 section rewrites, 2 WIN detail rewrites,
+    2 new sections, 1 killshot, 1 proposal, 1 eval guide, 1 overview scorecard
+  - No items popped this run (no new reviews match queued targets)
 
-CODE ANALYSIS TAG STATUS:
-  Not checked this run (no new curmudgeon reviews)
-
-DOME PREDICTIONS STATUS:
-  Total: 95 | Standard physics relabeled: 40 | Unfalsifiable: 19 | Recycled: 13
-  Already falsified: 5 | Pending verdict: 8 | Dead on arrival (our verdict): 77
-
-CANARY TRAP:
-  opentimestamps-provenance: NOT TRIGGERED (12 consecutive polls)
-  SHA-256 hashes still bundle observations with predictions
-  No structural change to prediction registration methodology
+NO BREAKING NEWS.
