@@ -1521,9 +1521,13 @@
       ],
       "category": null,
       "priority": "major",
-      "status": "pending",
+      "status": "complete",
       "notes": "HOL-NARRATIVE: Overview scorecard declares verdict before evidence — restructure or add framing. HOL-STRESSTEST: no explicit success category (what would a genuine dome WIN look like?) and Std Model Explains conflates two distinct epistemic situations. All three require careful rewording of the evaluation guide and overview.",
-      "created_at": "2026-04-12T13:43:31.234Z"
+      "created_at": "2026-04-12T13:43:31.234Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T00:11:08.367Z",
+      "integration_mode": "decider-self-apply-with-generate-html-edit",
+      "integration_notes": "P1+P2 applied to sections.json (scorecard reframe + framing paragraph). P3 (falsifiability section) + P4 (std model clarification) applied directly to generate-html.js as content edits."
     },
     {
       "id": "EXP-089",

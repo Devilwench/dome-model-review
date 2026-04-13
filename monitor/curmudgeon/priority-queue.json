@@ -172,9 +172,26 @@
         "related_issues": [],
         "human_note": null
       }
+    },
+    {
+      "queue_id": 73,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-overview-scorecard",
+      "reason": "EXP-088 integrated: scorecard reframe + falsifiability section added to evaluate tab. Curmudgeon should verify: (1) scorecard-framing language not defensive/hedging; (2) falsifiability conditions are genuinely falsifiable; (3) eclipse pre-commitment range logic is correct; (4) std model clarification does not overconcede.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T00:11:26.314Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-088.json",
+        "related_issues": [
+          "ISS-767",
+          "ISS-768",
+          "ISS-771"
+        ],
+        "human_note": null
+      }
     }
   ],
-  "next_id": 73,
+  "next_id": 74,
   "history": [
     {
       "queue_id": 15,
