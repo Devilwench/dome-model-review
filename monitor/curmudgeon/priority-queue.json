@@ -21,24 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 70,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-6.1-post-EXP086",
-      "reason": "EXP-086 integrated — full SEC-6.1 rewrite (two-pole formula correction, 7-parameter hidden-param audit, kappa tautology, lambda_g defense addressed). Previous review was of OLD content. New content needs fresh attack.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-12T23:07:51.681Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-086.json",
-        "related_issues": [
-          "ISS-762",
-          "ISS-772"
-        ],
-        "human_note": null,
-        "section_key": "part6",
-        "section_id": "SEC-6.1"
-      }
-    },
-    {
       "queue_id": 71,
       "target_type": "section-new",
       "target_id": "eval-guide-eg-verdicts",
@@ -306,39 +288,10 @@
           "W020": "unfalsifiable"
         }
       }
-    },
-    {
-      "queue_id": 90,
-      "target_type": "section-new",
-      "target_id": "SEC-1.8",
-      "reason": "EXP-078 integrated — new Section 1.8 (Coordinate Collapse / Refraction Cascade) needs fresh adversarial review before it accumulates readers",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T16:23:49.504Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-078.json",
-        "related_issues": [
-          "ISS-696"
-        ],
-        "human_note": null
-      }
     }
   ],
   "next_id": 91,
   "history": [
-    {
-      "queue_id": 23,
-      "target_id": "part6-sha256-recycling",
-      "target_type": "section-new",
-      "popped_at": "2026-04-12T03:09:00.656Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 24,
-      "target_id": "predictions-catalog",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-12T03:09:00.656Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 26,
       "target_id": "part2b-W001-signflip",
@@ -687,6 +640,20 @@
       "target_id": "SEC-1.1",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-13T05:12:09.495Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 70,
+      "target_id": "SEC-6.1-post-EXP086",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T16:25:03.591Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 90,
+      "target_id": "SEC-1.8",
+      "target_type": "section-new",
+      "popped_at": "2026-04-13T16:25:03.592Z",
       "popped_by": "decider"
     }
   ],
