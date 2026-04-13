@@ -10994,6 +10994,28 @@
       "fixed_at": "2026-04-13T21:02:05.928Z",
       "fixed_by": "human-decision",
       "resolution_note": "Superseded by Section 1.8 coordinate collapse rewrite. WIN-018 verdict will be re-evaluated as part of analyst formal verdict recommendations per HNOTE-REFRACT-TABLE-001."
+    },
+    {
+      "id": "ISS-841",
+      "win_id": "WIN-010",
+      "section_id": null,
+      "severity": "major",
+      "category": "defense",
+      "status": "fixed",
+      "title": "WIN-010 defense neutralization: apparent-vs-physical eclipse geometry argument (3/5 rating)",
+      "description": "Cycle 3 curmudgeon found: dome defender can argue eclipse shadow is APPARENT phenomenon — observed shadow position does not require knowing physical sun altitude. This defense has teeth (rating 3/5) because dome eclipse formula uses empirical FSF inputs not physical altitude directly. Analyst (Mode 3) must neutralize by: showing FSF calibration explicitly derives from V12 H(r)/r dome geometry which requires physical position. ISS-836 (text rewrite) already closed by decider. EXP-140 is the expansion for defense neutralization only.",
+      "found_by": "curmudgeon",
+      "found_at": "2026-04-12T20:09:48.990Z",
+      "found_date": "2026-04-12",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-010.c3.json",
+      "defense_exp": "EXP-140",
+      "created_at": "2026-04-12T20:09:48.990Z",
+      "expansion_id": "EXP-140",
+      "updated_at": "2026-04-12T21:41:25.662Z",
+      "fixed_at": "2026-04-13T21:11:44.922Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "EXP-140: defense accepted (eclipse uses apparent geometry, not physical altitude). Patches applied to WIN-010 and WIN-068: removed Self-Contradicted framing, replaced with Std Model Explains arguments (Chapman 1933, circular calibration, FSF empirical, Kp asymmetry, triple-counting, post-hoc)."
     }
   ]
 }

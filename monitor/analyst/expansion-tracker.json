@@ -2386,7 +2386,10 @@
       "priority": "high",
       "status": "pending",
       "notes": "Surviving defense (3/5): dome defender argues eclipse predictions use APPARENT geometry (observed shadow position) not physical sun altitude, so n(r) indeterminacy doesn't matter. Curmudgeon preemption recommendation: show FSF calibration against V12 dome geometry explicitly requires physical sun altitude, not apparent altitude. Also needed: full WIN-010 text rewrite to fix verdict-text mismatch (verdict=Self-Contradicted but all prose says Non-discriminating).",
-      "created_at": "2026-04-12T20:09:48.990Z"
+      "created_at": "2026-04-12T20:09:48.990Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T21:11:44.922Z",
+      "integration_mode": "direct-patch"
     },
     {
       "id": "EXP-141",

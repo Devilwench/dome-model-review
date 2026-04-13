@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T21:02:05.928Z",
+  "last_updated": "2026-04-13T21:11:44.922Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -280,25 +280,6 @@
       "staleness_note": "WIN references appear already fixed in wins.json (say Section 2.2 linking to #part2). Focus on DOCX section numbering.",
       "assigned_at": "2026-04-13T04:42:53.456Z",
       "assigned_to": "EXP-152"
-    },
-    {
-      "id": "ISS-841",
-      "win_id": "WIN-010",
-      "section_id": null,
-      "severity": "major",
-      "category": "defense",
-      "status": "assigned-analyst",
-      "title": "WIN-010 defense neutralization: apparent-vs-physical eclipse geometry argument (3/5 rating)",
-      "description": "Cycle 3 curmudgeon found: dome defender can argue eclipse shadow is APPARENT phenomenon — observed shadow position does not require knowing physical sun altitude. This defense has teeth (rating 3/5) because dome eclipse formula uses empirical FSF inputs not physical altitude directly. Analyst (Mode 3) must neutralize by: showing FSF calibration explicitly derives from V12 H(r)/r dome geometry which requires physical position. ISS-836 (text rewrite) already closed by decider. EXP-140 is the expansion for defense neutralization only.",
-      "found_by": "curmudgeon",
-      "found_at": "2026-04-12T20:09:48.990Z",
-      "found_date": "2026-04-12",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/WIN-010.c3.json",
-      "defense_exp": "EXP-140",
-      "created_at": "2026-04-12T20:09:48.990Z",
-      "expansion_id": "EXP-140",
-      "updated_at": "2026-04-12T21:41:25.662Z"
     },
     {
       "id": "ISS-850",
@@ -589,7 +570,52 @@
       "found_by": "decider",
       "found_at": "2026-04-13T20:42:29.310Z",
       "created_at": "2026-04-13T20:42:29.310Z"
+    },
+    {
+      "id": "ISS-907",
+      "win_id": null,
+      "section_id": "eg-falsifiability",
+      "severity": "major",
+      "category": "factual_error",
+      "status": "open",
+      "title": "eg-falsifiability Condition 1: claims 4 WINs attempt dome derivation but data shows only 2",
+      "description": "The falsifiability section (eg-falsifiability Condition 1) claims \"only 4 of N claims even attempt a dome-geometry derivation (WIN-020, WIN-044, WIN-057, WIN-058).\" However, wins.json code_analysis tags show derives_from_dome=true for only WIN-044 and WIN-057. WIN-020 (Lunar 18.6-yr cycle) and WIN-058 (Unified angular coordinate) are tagged derives_from_dome=false. The prose says 4 but the data says 2. A dome defender who checks our data files will find this inconsistency and use it to undermine the falsifiability framework. Fix: either (a) update WIN-020 and WIN-058 code_analysis.derives_from_dome tags if they do attempt dome derivation, or (b) correct the text to say \"only 2 of N claims.\" Note: content is in generate-html.js (infrastructure), so this requires a human or analyst to update the template.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-13T21:11:44.922Z",
+      "created_at": "2026-04-13T21:11:44.922Z",
+      "source_review": "monitor/curmudgeon/reviews/SEC-overview-scorecard.c3.json"
+    },
+    {
+      "id": "ISS-908",
+      "win_id": null,
+      "section_id": "KILLSHOT-GAIA-v2",
+      "severity": "moderate",
+      "category": "citation",
+      "status": "open",
+      "title": "KILLSHOT-GAIA: star table labeled \"Gaia observations\" but Sirius/Vega/Betelgeuse/Deneb values are Hipparcos",
+      "description": "The stellar parallax kill-shot table is labeled \"Gaia observations\" but at least 4 of 5 parallax values appear to be from Hipparcos (van Leeuwen 2007), not Gaia DR3. Sirius (379.21 ± 1.58 mas), Vega (130.23 ± 0.36 mas), Betelgeuse (4.51 ± 0.80 mas), and Deneb (1.01 ± 0.22 mas) are all in the bright-star regime where Gaia standard astrometric pipeline cannot measure reliably due to CCD saturation. These values match the Hipparcos new reduction catalog. Only Proxima Centauri (768.07 ± 0.05 mas) is clearly from Gaia DR3. Fix: either (a) change table header to \"Observed parallax (Gaia DR3 / Hipparcos)\" and note source per star, or (b) replace bright-star entries with fainter Gaia-only stars (Barnard's Star 546.98 mas, 61 Cygni A 287.18 mas, Ross 154 336.72 mas). Option (b) is stronger — eliminates the attack surface and gives even more extreme sigma values. Content is in sections.json part5.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-13T21:11:44.922Z",
+      "created_at": "2026-04-13T21:11:44.922Z",
+      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA-v2.c2.json"
+    },
+    {
+      "id": "ISS-909",
+      "win_id": null,
+      "section_id": "KILLSHOT-GAIA-v2",
+      "severity": "minor",
+      "category": "citation",
+      "status": "open",
+      "title": "KILLSHOT-GAIA: \"Throop et al. 2020\" attribution incorrect — New Horizons parallax led by Tod Lauer",
+      "description": "The New Horizons parallax experiment citation is attributed to \"Throop et al. 2020\" but the experiment was led by Tod Lauer (NOIRLab/NSF), not Henry Throop. Throop was a team member. Fix: change to \"Lauer et al. 2020\" or \"NASA/New Horizons team (2020)\". Content is in sections.json part5.",
+      "source": "curmudgeon",
+      "found_by": "decider",
+      "found_at": "2026-04-13T21:11:44.922Z",
+      "created_at": "2026-04-13T21:11:44.922Z",
+      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA-v2.c2.json"
     }
   ],
-  "next_id": 907
+  "next_id": 910
 }
