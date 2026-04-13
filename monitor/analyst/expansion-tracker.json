@@ -2105,10 +2105,8 @@
       "category": "expansion",
       "notes": "HTML 4.5.3 is Gravity/Rim section but DOCX 4.5.3 is Solar Angular Diameter. Align numbering and add missing H(r) quantitative content to HTML.",
       "created_at": "2026-04-12T16:11:49.882Z",
-      "integrated": true,
-      "integrated_at": "2026-04-13T22:12:51.330Z",
-      "integration_mode": "section-rewrite",
-      "note": "Integrated via commit a5c763d. Section 2.3 rewritten with dome gravity dilemma framing."
+      "completed_at": "2026-04-13T21:44:28.399Z",
+      "output_file": "monitor/analyst/expansions/EXP-121.json"
     },
     {
       "id": "EXP-122",
@@ -2129,10 +2127,15 @@
         "ISS-810"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Lead with 2πR relationship (40,030 = 2π × 6,381.7 km to 0.06%) rather than \"close to 40,075 km\". Add exact calculation showing dome converged to globe-derived value within its own stated precision.",
-      "created_at": "2026-04-12T16:11:49.882Z"
+      "created_at": "2026-04-12T16:11:49.882Z",
+      "completed_at": "2026-04-13T22:11:49.775Z",
+      "output_file": "monitor/analyst/expansions/EXP-123.json",
+      "integrated": true,
+      "integrated_at": "2026-04-13T22:35:57.550Z",
+      "integration_mode": "section-replacement"
     },
     {
       "id": "EXP-124",
@@ -2594,9 +2597,24 @@
         "ISS-766"
       ],
       "created_at": "2026-04-13T06:11:28.134Z"
+    },
+    {
+      "id": "EXP-155",
+      "target": "data/sections.json EVAL-GUIDE eg-verdicts — consistency fixes: false-dilemma/WIN-054, count-inflation asymmetry, boundary worked examples, intent language",
+      "issue_ids": [
+        "ISS-892",
+        "ISS-893",
+        "ISS-894",
+        "ISS-899"
+      ],
+      "priority": "major",
+      "status": "pending",
+      "category": "expansion",
+      "notes": "Four related curmudgeon findings about eval-guide verdict criteria section. Core issues: (1) false-dilemma framing inconsistent with WIN-054, (2) count-inflation standard applies to our own review, (3) need harder boundary worked examples, (4) intent-implying language.",
+      "created_at": "2026-04-13T21:39:56.612Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 155,
+  "next_id": 156,
   "total_items": 153
 }

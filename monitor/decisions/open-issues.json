@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T22:13:38.998Z",
+  "last_updated": "2026-04-13T22:42:16.277Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -61,23 +61,6 @@
       "found_at": "2026-04-12T16:10:25.013Z",
       "created_at": "2026-04-12T16:10:25.013Z",
       "expansion_id": "EXP-122"
-    },
-    {
-      "id": "ISS-810",
-      "found_date": "2026-04-12",
-      "win_id": null,
-      "section_id": "SEC-6.2",
-      "severity": "major",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "title": "SEC-6.2: Provenance argument needs stronger mathematical framing",
-      "description": "SEC-6.2 (SEC-6.2.c2.json): Section frames the argument as '40,030 km is suspiciously close to 40,075 km — Earth's equatorial circumference.' A dome defender can say 'those are 45 km apart, that's not suspicious.' The stronger argument leads with the 2πR relationship: 40,030 = 2π × 6,381.7 km to within 0.06%, which is well within the dome's own stated measurement precision. The dome has converged on a globe-derived number to within its own uncertainty. Source: SEC-6.2.c2.json.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-6.2.c2.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T16:10:25.013Z",
-      "created_at": "2026-04-12T16:10:25.013Z",
-      "expansion_id": "EXP-123"
     },
     {
       "id": "ISS-815",
@@ -312,38 +295,6 @@
       "assigned_at": "2026-04-13T19:43:55.798Z"
     },
     {
-      "id": "ISS-895",
-      "win_id": null,
-      "severity": "minor",
-      "category": "citation",
-      "status": "open",
-      "source": "curmudgeon",
-      "found_by": "decider",
-      "found_at": "2026-04-13T19:43:29.090Z",
-      "created_at": "2026-04-13T19:43:29.090Z",
-      "fix_details": null,
-      "fix_date": null,
-      "description": "KILLSHOT-GAIA (part5): New Horizons parallax values (32.4 and 15.7 arcsec) could not be independently verified by back-of-envelope calculation. Simple computation gives ~36 arcsec for Proxima and ~20 arcsec for Wolf 359 at 7.0 billion km baseline. The NASA press release (cited) reportedly gives ~31.5 arcsec. Verify the exact published values and correct if wrong. Curmudgeon: consider adding parenthetical noting these are from the NASA press release with direct link.",
-      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA-v2.c2.json",
-      "section": "part5"
-    },
-    {
-      "id": "ISS-896",
-      "win_id": null,
-      "severity": "minor",
-      "category": "factual_error",
-      "status": "open",
-      "source": "curmudgeon",
-      "found_by": "decider",
-      "found_at": "2026-04-13T19:43:29.090Z",
-      "created_at": "2026-04-13T19:43:29.090Z",
-      "fix_details": null,
-      "fix_date": null,
-      "description": "KILLSHOT-GAIA (part5): The refraction escape hatch paragraph claims \"angular displacements (~25° at mid-elevation)\" but this is an order-of-magnitude estimate that depends on viewing geometry. For n=1.44 at a flat boundary, refraction angle is geometry-specific, not a single value. Curmudgeon: specify the geometry more precisely or replace the ~25° estimate with a better-defined example.",
-      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA-v2.c2.json",
-      "section": "part5"
-    },
-    {
       "id": "ISS-897",
       "win_id": null,
       "severity": "moderate",
@@ -426,7 +377,22 @@
       "created_at": "2026-04-13T20:42:29.310Z",
       "staleness_note": "Content in generate-html.js — see EXP-133 for EVAL-GUIDE work",
       "expansion_id": "EXP-133"
+    },
+    {
+      "id": "ISS-910",
+      "win_id": null,
+      "section_id": "eval-guide-eg-verdicts",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "title": "Eval guide primary-issue rule: Self-Contradicted vs Misleading priority case not covered",
+      "description": "The primary-issue rule (eval-guide-eg-verdicts Condition 4) covers Refuted vs Std Model but not the harder boundary: (a) Self-Contradicted AND Misleading — curmudgeon says Self-Contradicted should win because even with correct data the math fails; (b) Multiple verdicts possible for same claim. Adding a second worked example covering Self-Contradicted priority would strengthen the methodology section and pre-empt a common dome-defender attack. Source: eval-guide-eg-verdicts.c1.json hole 4.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/eval-guide-eg-verdicts.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-13T22:40:19.014Z",
+      "created_at": "2026-04-13T22:40:19.014Z"
     }
   ],
-  "next_id": 910
+  "next_id": 913
 }

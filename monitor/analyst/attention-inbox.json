@@ -276,5 +276,17 @@
     "related_issues": [
       "ISS-841"
     ]
+  },
+  {
+    "id": "ATT-2026-04-13T22:41:15.253Z",
+    "status": "pending",
+    "target_type": "section",
+    "target_id": "SEC-6.2",
+    "reason": "EXP-123 integrated: SEC-6.2 fully rewritten to lead with 2πR relationship (40,030 = 2π × 6,371.0 km, 170m match) instead of weaker equatorial circumference comparison. Algebraic tautology spelled out. Cummer DOI corrected (IET → IEEE TAP 10.1109/8.898776). Velocity rounding flagged (1.5739c computed vs 1.574c claimed). Verify the new argument structure is scientifically sound and internally consistent with Section 2.9 cross-references.",
+    "pushed_by": "decider",
+    "pushed_at": "2026-04-13T22:41:15.253Z",
+    "related_issues": [
+      "ISS-810"
+    ]
   }
 ]

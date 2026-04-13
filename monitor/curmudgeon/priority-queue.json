@@ -21,23 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 80,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-5-post-ISS860-861-862",
-      "reason": "ISS-860/861/862 applied: fixed fabricated 30% threshold in verdict paragraph, deleted duplicate sentence, corrected dome-says-PASS opening. Re-attack with fresh eyes.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T03:13:18.523Z",
-      "context_hints": {
-        "source_file": "monitor/decisions/applied-patches/suggested-patches-2026-04-13T06-00.json",
-        "related_issues": [
-          "ISS-860",
-          "ISS-861",
-          "ISS-862"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 81,
       "target_type": "win-detail-rewrite",
       "target_id": "WIN-065-post-ISS863",
@@ -325,22 +308,8 @@
       }
     }
   ],
-  "next_id": 104,
+  "next_id": 105,
   "history": [
-    {
-      "queue_id": 37,
-      "target_id": "SEC-2b.7",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-12T12:42:56.564Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 38,
-      "target_id": "SEC-6.4",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-12T12:42:56.564Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 39,
       "target_id": "HOL-NARRATIVE",
@@ -678,6 +647,20 @@
       "target_id": "WIN-068",
       "target_type": "win-detail-rewrite",
       "popped_at": "2026-04-13T21:11:54.376Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 80,
+      "target_id": "SEC-5-post-ISS860-861-862",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T22:41:28.256Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 104,
+      "target_id": "SEC-6.2",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T22:41:28.257Z",
       "popped_by": "decider"
     }
   ],

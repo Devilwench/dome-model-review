@@ -1,74 +1,48 @@
 MORNING BRIEFING — 2026-04-13
-Generated: 2026-04-13T22:20:00Z
-Curmudgeon reviews processed this run: 4 (SEC-overview-scorecard.c3, eval-guide-eg-verdicts.c1, KILLSHOT-GAIA-v2.c2, EXP-143-proposal.c2)
-Previous decider run: 2026-04-13T21:45:00Z (run 4 — EXP-121 integration + 5 issue closures)
+Generated: 2026-04-13T22:45:00Z
+Decider run: 6 (automated)
+Previous run: 2026-04-13 run 5
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SITE HEALTH
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Integrity: FAIL (3 issues)
-  - build_reproducibility: docs/index.html ~3654 diff lines from last committed HTML
-    → Run: node build.js publish (next decider run or manually)
-  - digest_coverage: 14 unprocessed reviews in tracking
-  - priority_queue_coupling: EXP-050 category-proposal-writeup in 'revision' state, not in queue
+  Integrity agent: not run this cycle
+  Build status: ✅ 3311 tests passing
+  Last publish: pending this run
 
-Tests: 3311 passed, 0 failed ✓
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EXTERNAL STATUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Dome changes: NONE (13th consecutive quiet poll)
-WIN count: 69 (our review covers 70, including one not yet on dome site)
-Version: V51.1 (unchanged since April 8)
-Canary: NOT triggered — OTS error still unaddressed on dome site
-Last substantive dome commit: April 8 (AI onboarding infrastructure — "Build live AI backend")
+  Dome site changes: none detected
+  Threat level: none
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-INTERNAL STATUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Issues: 26 open (0 critical, 6 major, 16 moderate, 4 minor)
-  - 21 assigned to analyst (EXP-133, EXP-155, EXP-149, others)
-  - 4 open/unassigned
-  - 1 wontfix (ISS-698)
+EXPANSION INTEGRATION
+  EXP-123 (SEC-6.2 — disc diameter provenance) ✅ INTEGRATED
+    - Leads with 2πR relationship: 40,030 = 2π × 6,371.0 km to 170m (0.0004%)
+    - Algebraic tautology spelled out: v = D/T = 2πR/T = C/T
+    - Cummer 2000 DOI corrected: IET → IEEE TAP (10.1109/8.898776)
+    - Velocity rounding flagged: 1.5739c computed vs 1.574c claimed (0.13% inflation)
+    - ISS-810 closed. Pushed to curmudgeon queue for review.
 
-Actions taken this run:
-  ✅ EXP-121 marked integrated (SEC-2.3 Gravity rewrite, commit a5c763d)
-  ✅ 6 duplicate issues closed (ISS-891/892/893/899/905/906)
-  ✅ ISS-901 fixed: scorecard sublabel tightened (81→24 words)
-  → Curmudgeon queue: +1 item (scorecard sublabel). Depth now 17.
+PATCHES SELF-APPLIED (2)
+  ISS-912: part7 Proxima parallax corrected ~31.5 → 32.4 arcsec (per NASA press release)
+  ISS-896: Refraction geometry specified — ~28° at 40° from zenith, TIR beyond 44°
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TOP 3 PRIORITIES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. ⚠️  OVERDUE PREDICTIONS: PRED-072, PRED-084, PRED-093 deadlines passed April 8-11.
-   Dome site has not recorded outcomes. Especially PRED-093 (Schumann suppression during
-   G3+ storm): poller confirms a G3+ event occurred ~April 8-9. Check NOAA/NGDC data.
-   If storm occurred and Schumann didn't drop >30%, verdict should be updated.
-   ISS-897 is open for this.
+CURMUDGEON REVIEWS PROCESSED (4)
+  SEC-overview-scorecard.c3: Major stale (derives_from_dome count already fixed), ISS-900 tracked (eclipse window)
+  eval-guide-eg-verdicts.c1: ISS-902/903/904 existing; ISS-910 new (primary-issue rule gap); ISS-911 stale
+  KILLSHOT-GAIA-v2.c2: Table header stale, Throop stale, ISS-895/896 patched and closed
+  EXP-143-proposal.c2: Blocked pending proposal — no action
 
-2. 🔧 RUN NODE BUILD.JS PUBLISH: docs/index.html has drifted ~3654 lines from committed
-   version (multiple runs applied patches but didn't rebuild + commit HTML together).
-   This doesn't affect correctness (HTML is regenerated fresh at each build) but the
-   integrity agent flags it every run. A publish cycle will resync.
+NEW ISSUES (net: +1 real after closures)
+  ISS-910: eval-guide missing Self-Contradicted vs Misleading primary-issue example (moderate)
+  ISS-912: part7 wrong NH Proxima value — SELF-APPLIED & CLOSED
+  ISS-911: eval-guide TLDR inconsistency — STALE, CLOSED
+  ISS-895, ISS-896: Gaia killshot holes — PATCHED & CLOSED
 
-3. 📋 EXP-133 + EXP-155: Verdict Assignment Criteria section needs 4 fixes
-   (false-dilemma/WIN-054, count-inflation asymmetry, intent language, better examples).
-   Both expansions are pending. Priority: major for ISS-902, moderate for the others.
+OPEN ISSUES: 24 | CLOSED: 789
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOP PRIORITY ACTIONS
+  1. EXP-133 (eval guide expansion) still pending — covers ISS-821/902/903/904/900/901 + new ISS-910
+  2. EXP-143 (n(r) scope defense neutralization) needs analyst write-up
+  3. ISS-897 (PRED-093 expired window — G3+ storm April 8-9) — analyst should check SR data
+
 CURMUDGEON QUEUE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Mode: BAU | Depth: 17 | Interval: 240 min (4h)
-No schedule mismatch. No churn-and-burn needed.
-Notable queue items:
-  - SEC-2.3-post-EXP121 (gravity dilemma rewrite — fresh attack needed)
-  - eg-falsifiability-derives-fix (falsifiability section fixed, needs fresh review)
-  - KILLSHOT-GAIA-table-citation-fix (parallax kill-shot updated, needs review)
-  - part1-scorecard-sublabel-fix (NEW this run — sublabel tightened)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CODE ANALYSIS TAG STATUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-No new code_analysis updates this run.
-KILLSHOT-GAIA-v2.c2.json confirmed: WIN-017 code_analysis tags correct
-(monitoring: none, relabels_standard: true, post_hoc: true, derives_from_dome: true).
+  Mode: BAU | Depth: 16 | Interval: 240 min
+  No schedule changes needed
