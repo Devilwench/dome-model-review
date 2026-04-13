@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T04:38:35.205Z",
+  "last_updated": "2026-04-13T04:43:00.967Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -481,7 +481,7 @@
       "section_id": null,
       "severity": "moderate",
       "category": "verdict",
-      "status": "open",
+      "status": "assigned-analyst",
       "title": "WIN-058 verdict: 'Misleading' may not fit — not cherry-picked/duplicated/circular",
       "description": "HOLISTIC-HOL-TAXONOMY C2: WIN-058 (Unified angular coordinate θ = −lonE) verdict is Misleading but the finding is not cherry-picking/duplicating/circularity — it's that the dome fixed a broken proxy and claims it as a discovery. A more accurate verdict might be \"Not Demonstrated\" (no claim beyond coordinate definition) or \"Std Model Explains\" (it just IS geographic longitude). Needs human adjudication.",
       "source": "curmudgeon",
@@ -489,7 +489,9 @@
       "found_date": "2026-04-12",
       "found_by": "decider",
       "found_at": "2026-04-12T18:14:29.438Z",
-      "created_at": "2026-04-12T18:14:29.438Z"
+      "created_at": "2026-04-12T18:14:29.438Z",
+      "assigned_at": "2026-04-13T04:42:53.472Z",
+      "assigned_to": "EXP-153"
     },
     {
       "id": "ISS-835",
@@ -531,7 +533,7 @@
       "section_id": "SEC-4.5.2",
       "severity": "major",
       "category": "factual_error",
-      "status": "open",
+      "status": "assigned-analyst",
       "title": "SEC-4.5.2 cross-reference error: WIN-045/046/049/050/051 reference wrong section number",
       "description": "SEC-4.5.2 curmudgeon review found: (1) WIN-045/046/049/050/051 WIN text may reference stale section numbers but current wins.json shows Section 2.2 (correct post-V6). (2) DOCX/HTML section numbering mismatch: HTML section is 2.2 but DOCX uses 4.5.4 numbering, creating inconsistency between formats. This is the same HTML/DOCX mismatch pattern as ISS-806 for SEC-4.5.3. Also flagged: tidal force scaling uses 1/r² (gravitational force) when tidal differential force should be 1/r³ — may need clarification note in section prose. Staleness note: WIN cross-refs appear already updated to 2.2; DOCX number mismatch is the live issue.",
       "found_by": "curmudgeon",
@@ -539,7 +541,9 @@
       "found_date": "2026-04-12",
       "source": "curmudgeon",
       "created_at": "2026-04-12T19:41:15.989Z",
-      "staleness_note": "WIN references appear already fixed in wins.json (say Section 2.2 linking to #part2). Focus on DOCX section numbering."
+      "staleness_note": "WIN references appear already fixed in wins.json (say Section 2.2 linking to #part2). Focus on DOCX section numbering.",
+      "assigned_at": "2026-04-13T04:42:53.456Z",
+      "assigned_to": "EXP-152"
     },
     {
       "id": "ISS-841",
@@ -596,20 +600,6 @@
       "created_at": "2026-04-12T21:15:24.338Z",
       "pending_human_reason": "Verdict conflict: WIN-010 Self-Contradicted (per human-approved EXP-078) vs curmudgeon gate 2 rejection. Human must confirm which prevails. EXP-129 no longer references WIN-010 cascade.",
       "pending_since": "2026-04-12T21:43:21.046Z"
-    },
-    {
-      "id": "ISS-847",
-      "win_id": null,
-      "section_id": "SEC-1.1",
-      "severity": "moderate",
-      "category": "citation",
-      "description": "SEC-1.1 presents B(r) = 62,376×e^(−r_N/8,619) + 64,852×e^(−r_S/8,619) nT without attributing it to the dome's V51.0 toroidal upgrade. This formula does not appear in V50.6 raw-text files. A dome defender could argue we are attributing a formula they haven't published in the form we cite. Should add parenthetical \"(introduced in V51.0, from the dome's V51.0 repository)\" after the formula. From SEC-1.1.c1 curmudgeon review.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-12",
-      "found_at": "2026-04-12T22:42:36.577Z",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null
     },
     {
       "id": "ISS-850",

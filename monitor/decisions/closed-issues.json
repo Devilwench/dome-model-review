@@ -10188,6 +10188,22 @@
       "fixed_at": "2026-04-13T04:38:35.205Z",
       "fixed_by": "no-op-already-present",
       "fix_details": "EXP-097 confirmed 85/95 predictions have non-null verdicts; 10 null entries are correct ongoing test items"
+    },
+    {
+      "id": "ISS-847",
+      "win_id": null,
+      "section_id": "SEC-1.1",
+      "severity": "moderate",
+      "category": "citation",
+      "description": "SEC-1.1 presents B(r) = 62,376×e^(−r_N/8,619) + 64,852×e^(−r_S/8,619) nT without attributing it to the dome's V51.0 toroidal upgrade. This formula does not appear in V50.6 raw-text files. A dome defender could argue we are attributing a formula they haven't published in the form we cite. Should add parenthetical \"(introduced in V51.0, from the dome's V51.0 repository)\" after the formula. From SEC-1.1.c1 curmudgeon review.",
+      "source": "curmudgeon",
+      "found_date": "2026-04-12",
+      "found_at": "2026-04-12T22:42:36.577Z",
+      "status": "wontfix",
+      "fix_details": "Duplicate of ISS-869 (already assigned to EXP-150). Both describe missing B(r) formula version attribution in SEC-1.1. ISS-869/EXP-150 will address this.",
+      "fix_date": null,
+      "fixed_at": "2026-04-13T04:43:00.967Z",
+      "fixed_by": "decider-duplicate"
     }
   ]
 }

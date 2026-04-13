@@ -2444,8 +2444,34 @@
       "status": "pending",
       "notes": "ISS-870: Verify \"V13 optimization\" claim against dome site and raw-text/ archives. ISS-871: Verify \"6.2% RMSE on cross-equatorial routes\" — dome V12 page shows 25-78%, V13 may have improved but needs confirmation. If unverifiable, soften claim to \"reportedly\" or note limitation.",
       "created_at": "2026-04-13T04:20:24.222Z"
+    },
+    {
+      "id": "EXP-152",
+      "target": "data/sections.json part4 SEC-4.5.2 — fix stale tidal section references and verify WIN-045/046/049/050/051 verdict text accuracy",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-4.5.2.json",
+      "issue_ids": [
+        "ISS-838"
+      ],
+      "priority": "high",
+      "status": "pending",
+      "notes": "Curmudgeon found: (1) WIN-045/046/049/050/051 WIN text may reference stale section numbers after V6 restructure; (2) possible accuracy issues in tidal WIN verdict text. Verify current WIN text has correct section refs (e.g., Part 2 not Part 4.5), and ensure tidal WIN verdicts accurately reflect self-contradiction analysis from SEC-2 framework.",
+      "created_at": "2026-04-13T04:42:53.456Z"
+    },
+    {
+      "id": "EXP-153",
+      "target": "data/wins.json WIN-058 — strengthen finding to explicitly challenge circular angular coordinate claim",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/HOLISTIC-HOL-TAXONOMY.c2.json",
+      "issue_ids": [
+        "ISS-832"
+      ],
+      "priority": "medium",
+      "status": "pending",
+      "notes": "WIN-058 verdict is Misleading but curmudgeon c2 found the finding text does not specifically challenge the angular coordinate rule (theta = -lonE). Finding should explain why this is a relabeling: existing navigation conventions already use longitude; the dome renaming adds no predictive content. Research whether any dome prediction uses theta=-lonE in a way that standard spherical coordinates cannot reproduce.",
+      "created_at": "2026-04-13T04:42:53.472Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 152
+  "next_id": 154
 }

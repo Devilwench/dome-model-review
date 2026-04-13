@@ -1,58 +1,54 @@
 MORNING BRIEFING — 2026-04-13
-Generated: 2026-04-13T19:35:00Z
-Previous decider run: 2026-04-12T14:41:08Z
+Generated: 2026-04-13T10:40:00Z
+Curmudgeon reviews processed this run: 0 (digest was clear)
+Previous decider run: (first run of this session)
 
-══════════════════════════════════════════════════════
-SITE HEALTH: PASS (3311 tests, 0 failures)
-══════════════════════════════════════════════════════
+SITE HEALTH: PARTIAL PASS
+  - Test suite: 3309 passed, 0 failed ✅
+  - Integrity agent (2026-04-12): FAIL — data/prose mismatch (70 WINs in data, 69 in HTML)
+    → This is build drift from a prior run. Fresh build today shows 70 WINs correctly.
+  - Known mismatches: 225 ks-summary vs 224 ks-tldr (ISS-858)
 
-EXTERNAL STATUS
-  Dome site changes: not checked this run (poller handles)
-  Threat level: none
+EXTERNAL STATUS: No dome site changes since 2026-04-08
+  - Last change: Steelman Evidence Ladder, Australia Validation, killshot.html
+  - Suggests dome author is studying critical methodology (steelman framing)
+  - Canary (OTS wrong-side error) NOT triggered
 
-INTERNAL STATUS
-  Open issues: 55 (30 major, 21 moderate, 4 minor)
-  Issues created this run: 6 (ISS-867 through ISS-872)
-  Issues closed this run: 1 (ISS-787 — SEC-2.4 solar diameter)
-  Issues assigned-analyst: ISS-867 → EXP-149
+INTERNAL STATUS: 7 expansions integrated, 3 issues closed, 4 issues closed/wontfix
+  - EXP-103 APPLIED: SEC-2b.1 stratification paragraph corrected
+      - Self-Contradicted count: 9 → 8 (correct WIN IDs now: 044/050/051/053/056/061/067/068)
+      - Full verdict breakdown added (15 Misleading, 11 SME, 3 RBD, 2 ND, 2 Unfalsifiable)
+      - Hardcoded contrast paragraph: dome actively monitors 8 SC WINs with hardcoded checks
+      - TLDR: 50% error floor scoped to NMP Drift Rate domain only
+  - EXP-096/097/098/099/100/102: All already integrated in prior cycles (no-op confirmations)
+  - ISS-801, ISS-866, ISS-783: Closed as fixed/no-op
+  - ISS-847: Closed as duplicate of ISS-869/EXP-150
+  - ISS-838, ISS-832: Yeeted to analyst (EXP-152, EXP-153)
 
-PATCHES APPLIED (8 patches, 0 failed)
-  ✅ SEC-2.4 (EXP-100): Full section rewrite — correct 52% geometry, W021 smoking gun
-     argument, refraction escape hatch preempted, Greenwich/SDO citations added
-  ✅ SEC-1.8 (EXP-096): Chromaticity bridge paragraph inserted
-  ✅ SEC-1.1 TLDR: Fixed grammatical error (— but This → . This)
-  ✅ SEC-1.8: Added lower-bound parenthetical to 15° refraction estimate
-  ✅ SEC-5 kill-shots: Added parenthetical to Decisive definition
-  ✅ SEC-5 kill-shots: Softened Wait-and-See to "currently evaluable"
-  ✅ part1 coefficient: "calibration routes" → "tested routes"
-  ✅ kill-shots.json: Added KS-007 (Stellar Parallax / Gaia DR3, decisive)
+ISSUE TRACKER:
+  - Open: 45 (was 49 before this run)
+  - Critical: 0, Major: 24, Moderate: 18, Minor: 3
+  - Assigned to analyst: 34 | Pending human: 2 | Unassigned: 8 | Wontfix: 1
+  
+INFRASTRUCTURE ISSUES NEEDING HUMAN ATTENTION:
+  🔴 ISS-739 [MAJOR]: generate-html.js counts stdRelabel via wrong derivation field
+     → May cause incorrect scorecard stats. Cannot be auto-patched.
+  🔴 ISS-809 [MAJOR]: build-doc-v4.js hardcodes Self-Contradicted count as '11' (now 16)
+     → DOCX/PDF output shows wrong verdict count.
+  🟡 ISS-742 [MODERATE]: build-doc-v4.js DOCX missing Section 2.9 content
+  🟡 ISS-858 [MINOR]: 225 ks-summary vs 224 ks-tldr (one panel missing TLDR, growing)
 
-STALE DIGEST ENTRIES (already fixed before review):
-  ✗ SEC-5 H1 critical: 30% threshold already → >50% in current text
-  ✗ SEC-5 H2 major: Duplicate sentence already removed
-  ✗ SEC-1.8 H1 major: WIN-065 already uses correct n(r) formula
-  ✗ SEC-1.8 H2 moderate: "exactly as" phrase already changed
+CURMUDGEON QUEUE:
+  - Mode: BAU | Depth: 14 | Interval: 240 min
+  - No schedule action needed (BAU mode, BAU intervals)
 
-CURMUDGEON PROGRESS
-  Queue depth: 14 items (BAU mode, 240min interval)
-  5 reviews processed this run
-  No churn-and-burn needed
+ANALYST QUEUE:
+  - 47 pending expansion items (large queue)
+  - Consider temporary analyst schedule increase to clear backlog
 
-TOP 3 PRIORITY ACTIONS
-  1. [NEXT SESSION] Verify ISS-872: historical NMP deceleration rate "~1 km/yr/yr" in
-     Test 6 TLDR — check IGRF-14/NOAA data. If wrong, patch the TLDR.
-  2. [NEXT SESSION] Verify ISS-871: 6.2% RMSE figure on dome coordinate page — check
-     current raw-text/ or live site. Soften if unverifiable.
-  3. [BACKLOG] ISS-869: add V51.0 introduction note to SEC-1.1 B(r) formula.
+TOP 3 PRIORITY ACTIONS FOR HUMAN:
+  1. Fix ISS-739: generate-html.js stdRelabel counting (wrong derivation field = wrong scorecard)
+  2. Fix ISS-809: build-doc-v4.js hardcoded Self-Contradicted count '11' → compute from data
+  3. Review dome's new steelman Evidence Ladder and killshot.html page — assess if it 
+     addresses any of our kill-shots directly (analyst should write a review)
 
-BREAKING NEWS CANDIDATE
-  💥 "Dome's Moon Prediction Proves Our Sun Prediction False: Selective Geometry"
-  The dome's W021 predicts >2% moon angular diameter variation from local geometry,
-  but makes no parallel prediction for the sun — where solar diameter constancy (0.01%)
-  would falsify the same geometry. The dome applies the geometric argument selectively:
-  where it "works" (moon), not where it fails (sun). See updated SEC-2.4 (Self-Test tab).
-  → This is a NEW argument not previously on our site. Recommend adding to Latest Findings.
-
-SCHEDULE STATUS
-  mode: bau | interval: 240min | no mismatch
-  schedule_action_needed: null
