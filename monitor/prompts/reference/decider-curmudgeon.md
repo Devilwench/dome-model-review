@@ -188,6 +188,8 @@ console.log('allocated EXP-'+String(nextNum).padStart(3,'0')+' (next_id now '+t.
 
 Analyst picks these up in Mode 3. Tag `category: "defense"` so analyst applies neutralization procedure.
 
+**Do NOT push defense EXP items to the curmudgeon priority queue at creation time.** The analyst hasn't written the content yet — there's nothing for curmudgeon to review. The queue push happens later, at step 7, when the analyst has produced output and you integrate it. Creating the EXP tracker entry + open issue is sufficient to route the work to the analyst.
+
 ## Issue Closure
 
 When patches self-apply and pass tests: move from open-issues.json to closed-issues.json with `status: "fixed"`, `fixed_by: "decider-self-apply"`. For verdict-change patches: mark `status: "pending-human"`.
