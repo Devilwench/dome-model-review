@@ -21,27 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 77,
-      "target_type": "prediction-batch",
-      "target_id": "PRED-batch-updates-2026-04-13",
-      "reason": "Prediction reasoning updated with new G3 storm intelligence: PRED-FIELD-2026Q2 (INTERMAGNET data now available for Q1 2026), PRED-SR-SUPPRESS (G3 March 20-22 preceded registration by 1-3 days, undermining prospective claim), PRED-093 (same G3 context, 13 days before registration). Spot-check: are these timing concerns properly weighted? Is the prospective credibility concern proportionate?",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T01:40:22.059Z",
-      "context_hints": {
-        "prediction_ids": [
-          "PRED-FIELD-2026Q2",
-          "PRED-SR-SUPPRESS",
-          "PRED-093"
-        ],
-        "assessment_files": [
-          "PRED-assessment-PRED-FIELD-2026Q2-update.json",
-          "PRED-assessment-PRED-SR-SUPPRESS-update.json",
-          "PRED-assessment-PRED-093-update.json"
-        ],
-        "verdicts_set": "all remain pending; reasoning updated with timing concerns"
-      }
-    },
-    {
       "queue_id": 78,
       "target_type": "section-new",
       "target_id": "part1-evidence-roadmap",
@@ -333,13 +312,6 @@
   ],
   "next_id": 100,
   "history": [
-    {
-      "queue_id": 31,
-      "target_id": "EXP-050-r2",
-      "target_type": "proposal",
-      "popped_at": "2026-04-12T10:45:13.849Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 34,
       "target_id": "SEC-6.11",
@@ -684,6 +656,13 @@
       "target_id": "SEC-2b.1-post-EXP089",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-13T19:48:05.610Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 77,
+      "target_id": "PRED-batch-updates-2026-04-13",
+      "target_type": "prediction-batch",
+      "popped_at": "2026-04-13T20:13:12.604Z",
       "popped_by": "decider"
     }
   ],

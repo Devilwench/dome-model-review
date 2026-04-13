@@ -1,49 +1,54 @@
-MORNING BRIEFING — 2026-04-13
-Generated: 2026-04-13T19:11:53Z
-Curmudgeon reviews processed this run: 0
-Previous decider run: 2026-04-13T18:42:41Z (3 prediction patches, 6 issues, EXP-062/064 unblocked, build drift resolved)
+MORNING BRIEFING — 2026-04-13 (Run 3)
+Generated: 2026-04-13T20:12:00Z
+Curmudgeon reviews processed this run: 4 (all stale or pre-tracked)
+Previous decider run: 2026-04-13T19:48:28Z
 
-SITE HEALTH
-  Integrity: RESOLVED — build drift fixed this run (3311 tests passed, HTML rebuilt)
-  Build: docs/index.html current as of this commit
-  EXP-050 priority_queue_coupling flag: false positive (EXP-050 already integrated)
+SITE HEALTH: OK
+  Build: current (published this session)
+  Test suite: 3311 passed, 0 failed
+  Dome site: QUIET — 13th consecutive unchanged poll
+  Canary: not triggered
 
-EXTERNAL STATUS
-  Dome changes: NONE (13th consecutive quiet poll)
-  Canary (OTS provenance): NOT TRIGGERED
-  Version: V51.1 (unchanged), WIN count: 69 (unchanged)
+INTEGRATION COMPLETE: Section 1.9 (Differential Refraction: Eclipse Geometry Trap)
+  EXP-144 integrated into part1 after Section 1.8
+  Argument: n(r) medium bends ALL light regardless of source. Moon at r~10,000km
+  traverses n=1.44 medium (glass-strength). Dome has no moon refraction formula.
+  Nine eclipse WINs rest on geometry the dome cannot compute.
+  Eclipse shadow requires PHYSICAL position overlap — not apparent alignment.
+  Dilemma: keep straight-line geometry (contradicts n(r)) or compute through n(r)
+  (requires unknown moon physical altitude). Both options are fatal.
+  Queued for curmudgeon review (queue_id 99).
 
-INTERNAL STATUS
-  Patches applied: 1 (SEC-6.7 eclipse paragraph → cross-ref to Section 4.2)
-  Issues closed: 1 (ISS-770)
-  Issues open: 28
-  Expansions integrated: 15 (14 no-op confirmations + 1 actual patch)
-  Issue proposals processed: 1 (proposal-ISS-770-resolution.json)
+ISSUES THIS RUN:
+  5 closed: ISS-813, ISS-814, ISS-835 (analyst-confirmed stale); ISS-855, ISS-856 (EXP-144)
+  1 created: ISS-899 (moderate) — eval-guide "actively mishandle" language implies intent
+  Open: 31 total (0 critical, 9 major, 18 moderate, 4 minor)
 
-TOP 3 PRIORITY ACTIONS
-  1. [NEXT SESSION] PRED-093 — test window expired 2026-04-08, our_verdict still pending.
-     Assign to analyst for verdict disposition.
-  2. [MONITOR] PRED-077, PRED-085, PRED-090 — all close April 30.
-     Three predictions approaching deadline in 17 days.
-  3. [BACKLOG] Curmudgeon queue at 12 items, BAU cadence (240min).
-     No mode change needed.
+EXPANSIONS: 
+  EXP-128, EXP-139: no-op (SEC-6.1 already patched directly)
+  EXP-143: superseded by EXP-144 (same defense neutralization)
+  EXP-144: INTEGRATED ✅
 
-CURMUDGEON PROGRESS
-  Mode: BAU | Queue depth: 12 | Interval: 240min
-  Popped this run: 2 (had existing reviews)
-  Queue items: KILLSHOT-GAIA-v2, SEC-2b.1-post-EXP089, PRED-batch-updates-2026-04-13,
-    part1-evidence-roadmap, SEC-5-post-ISS860-861-862, WIN-065-post-ISS863,
-    SEC-1.8-post-ISS864, SEC-2.4, WIN-058b-post-EXP102, SEC-8.11,
-    PRED-batch-2026-04-13, EXP-062-batch
+PROPOSALS PROCESSED: 5 new proposals (ISS-813/814/835/855/856 resolutions)
 
-CODE ANALYSIS TAG STATUS
-  No new code_analysis_tags this run.
+STALE REVIEW NOTE:
+  All 4 curmudgeon reviews had stale holes — previous rapid patching cycle resolved
+  the major issues before the reviews were written. Good sign: the pipeline is 
+  keeping up with curmudgeon findings faster than the curmudgeon can re-review.
 
-PREDICTION EXPIRATIONS (action needed)
-  PRED-093 (G3+ SR suppression): expired ~2026-04-08, our_verdict still pending
-  PRED-072, PRED-084: expired April 11, both already have our_verdict=standard_physics
-  → Dome continues pattern of silent non-acknowledgment of failed predictions
+TOP 3 ACTIONS FOR HUMAN:
+  1. WATCH: PRED-077, PRED-085, PRED-090 expire April 30 (17 days). Coordinate
+     with analyst to assess verdicts after deadline.
+  2. NOTE: 9 open major issues all assigned-analyst. Analyst queue is deep.
+     Consider bumping analyst interval temporarily if throughput lags.
+  3. REVIEW: Section 1.9 breaking news candidate (eclipse geometry trap) — 
+     strong candidate for Latest Findings section. Link: #section-1-9 (model tab).
 
-NOTE: SEC-6.7 patch applied — Chapman mechanism re-derivation replaced with cross-ref
-to Section 4.2. Attention item written for analyst to verify the shortened text still
-correctly represents the non-discrimination argument.
+CURMUDGEON QUEUE: mode=bau, depth=16, interval=240min
+  Next up: part1-evidence-roadmap, SEC-5-post-ISS860-861-862, WIN-065-post-ISS863
+
+EXPIRED PREDICTIONS (silent failures growing):
+  PRED-072 (TTB midnight), PRED-084 (deep P-wave shadow), PRED-093 (G3+ SR suppression)
+  All expired 2026-04-08 to 2026-04-11. Dome site shows no acknowledgment.
+  Pattern: dome silently lets failures age. Count: 3 new silent failures.
+
