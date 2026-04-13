@@ -21,23 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 73,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-overview-scorecard",
-      "reason": "EXP-088 integrated: scorecard reframe + falsifiability section added to evaluate tab. Curmudgeon should verify: (1) scorecard-framing language not defensive/hedging; (2) falsifiability conditions are genuinely falsifiable; (3) eclipse pre-commitment range logic is correct; (4) std model clarification does not overconcede.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T00:11:26.314Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-088.json",
-        "related_issues": [
-          "ISS-767",
-          "ISS-768",
-          "ISS-771"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 75,
       "target_type": "killshot-new",
       "target_id": "KILLSHOT-GAIA-v2",
@@ -281,39 +264,10 @@
         ],
         "human_note": null
       }
-    },
-    {
-      "queue_id": 92,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-6.7",
-      "reason": "EXP-114 integrated: eclipse paragraph tightened to cross-ref Section 4.2 instead of re-deriving Chapman mechanism. Fresh curmudgeon attack on new text needed.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T19:08:04.837Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-114.json",
-        "related_issues": [
-          "ISS-770"
-        ],
-        "human_note": null
-      }
     }
   ],
   "next_id": 93,
   "history": [
-    {
-      "queue_id": 27,
-      "target_id": "part6-FAIL-004",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-12T07:14:17.316Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 32,
-      "target_id": "SEC-2b.7",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-12T10:15:35.702Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 33,
       "target_id": "SEC-6.8",
@@ -662,6 +616,20 @@
       "target_id": "EXP-143",
       "target_type": "proposal",
       "popped_at": "2026-04-13T18:16:37.577Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 73,
+      "target_id": "SEC-overview-scorecard",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T19:10:52.504Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 92,
+      "target_id": "SEC-6.7",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T19:10:52.505Z",
       "popped_by": "decider"
     }
   ],
