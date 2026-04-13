@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T04:43:00.967Z",
+  "last_updated": "2026-04-13T05:13:45.995Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -145,23 +145,6 @@
       "expansion_id": "EXP-105"
     },
     {
-      "id": "ISS-803",
-      "found_date": "2026-04-12",
-      "win_id": null,
-      "section_id": "SEC-3.2",
-      "severity": "major",
-      "category": "factual_error",
-      "status": "assigned-analyst",
-      "title": "SEC-3.2: Wrong prediction description + ignores E-PRED-A through E-PRED-D model tests",
-      "description": "SEC-3.2 (SEC-3.2.json): (1) The -17 to -21 nT prediction range is oversimplified; dome has a dual-baseline per-station system (9 per-station predictions). (2) Section completely ignores dome's four model-discriminating tests E-PRED-A through E-PRED-D; E-PRED-B (Hartland FSF-based relative prediction) is particularly significant. Source: SEC-3.2.json.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-3.2.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T16:10:25.013Z",
-      "created_at": "2026-04-12T16:10:25.013Z",
-      "expansion_id": "EXP-104"
-    },
-    {
       "id": "ISS-804",
       "found_date": "2026-04-12",
       "win_id": null,
@@ -177,23 +160,6 @@
       "found_at": "2026-04-12T16:10:25.013Z",
       "created_at": "2026-04-12T16:10:25.013Z",
       "expansion_id": "EXP-120"
-    },
-    {
-      "id": "ISS-805",
-      "found_date": "2026-04-12",
-      "win_id": null,
-      "section_id": "SEC-3.5.7",
-      "severity": "major",
-      "category": "factual_error",
-      "status": "assigned-analyst",
-      "title": "SEC-3.5.7: Wrong prediction description + ignores E-PRED model tests",
-      "description": "SEC-3.5.7 (SEC-3.5.7.json): Same issues as SEC-3.2 — (1) -17 to -21 nT range is oversimplified for the dome's dual-baseline per-station prediction system. (2) Section ignores E-PRED-A through E-PRED-D discriminating tests. E-PRED-B specifically predicts Hartland (80% coverage, FSF 1.471) will show stronger signal than Ebro, which the Chapman mechanism also predicts differently. Source: SEC-3.5.7.json.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-3.5.7.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T16:10:25.013Z",
-      "created_at": "2026-04-12T16:10:25.013Z",
-      "expansion_id": "EXP-104"
     },
     {
       "id": "ISS-806",
@@ -655,20 +621,6 @@
       "created_at": "2026-04-13T00:14:07.655Z"
     },
     {
-      "id": "ISS-865",
-      "found_at": "2026-04-13T03:10:06.273Z",
-      "found_date": "2026-04-13",
-      "win_id": null,
-      "section_id": "SEC-1.8-part1",
-      "severity": "moderate",
-      "category": "missing_argument",
-      "status": "open",
-      "description": "SEC-1.8 states \"A medium 920× stronger shifts the same star by of order 15°\" using linear scaling. This is a reasonable lower bound but linear scaling may not hold for bulk media with gradient structure. Curmudgeon recommends adding a parenthetical: \"of order 15° (a conservative lower bound — the actual deflection depends on the gradient structure of the medium, but even a linear estimate at this refractive index vastly exceeds observed stellar positions).\" Source: SEC-1.8-post-EXP129.c2.json.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-1.8-post-EXP129.c2.json",
-      "found_by": "decider-from-curmudgeon-c2"
-    },
-    {
       "id": "ISS-867",
       "win_id": null,
       "severity": "moderate",
@@ -685,56 +637,20 @@
       "expansion_id": "EXP-149"
     },
     {
-      "id": "ISS-869",
+      "id": "ISS-873",
       "win_id": null,
-      "severity": "moderate",
-      "section": "part1",
-      "section_key": "SEC-1.1",
-      "category": "sourcing_gap",
-      "status": "assigned-analyst",
-      "title": "SEC-1.1: B(r) formula sourcing gap — \"introduced in V51.0\" not cited",
-      "description": "The two-pole formula B(r) = 62,376×e^(−r_N/8,619) + 64,852×e^(−r_S/6,982) is presented without noting when it was introduced. Should add parenthetical noting V51.0 introduction, or update raw-text/ to capture current dome site. Carried from c1 review.",
+      "section_id": "SEC-5.1",
+      "severity": "major",
+      "category": "missing_argument",
+      "status": "open",
+      "title": "Kill-shot rating key mismatch: Test 7 (Stellar Parallax) appears in summary but has no KS-007 entry",
+      "description": "Kill-Shot Test 7 (Stellar Parallax/Gaia DR3) appears in the kill-shots section HTML and rating table, but there is no corresponding KS-007 entry. Rating key counts (2+2+2=6 tests) do not match 7 tests displayed. This inconsistency is visible to defenders. Need either: (a) add KS-007 entry to kill-shots data, or (b) explicit exclusion note explaining why Test 7 is shown separately. Source: curmudgeon alerts 2026-04-13.",
       "source": "curmudgeon",
       "found_by": "decider",
-      "found_at": "2026-04-13T03:42:38.209Z",
-      "created_at": "2026-04-13T03:42:38.209Z",
-      "assigned_at": "2026-04-13T04:20:24.222Z",
-      "assigned_to": "EXP-150"
-    },
-    {
-      "id": "ISS-870",
-      "win_id": null,
-      "severity": "moderate",
-      "section": "part1",
-      "section_key": "SEC-1-coeff",
-      "category": "sourcing_gap",
-      "status": "assigned-analyst",
-      "title": "part1 coefficient section: V13 sourcing gap — \"V13 optimization\" not confirmed in raw-text",
-      "description": "The coefficient section states the model page describes the 0.20 coefficient as a \"V13 optimization\" but our raw-text/ files may not confirm current dome site nomenclature. Either update raw text to capture V13 confirmation, or soften to \"per the current model page\" without specific version attribution.",
-      "source": "curmudgeon",
-      "found_by": "decider",
-      "found_at": "2026-04-13T03:42:38.209Z",
-      "created_at": "2026-04-13T03:42:38.209Z",
-      "assigned_at": "2026-04-13T04:20:24.222Z",
-      "assigned_to": "EXP-151"
-    },
-    {
-      "id": "ISS-871",
-      "win_id": null,
-      "severity": "moderate",
-      "section": "part1",
-      "section_key": "SEC-1-coeff",
-      "category": "factual_error",
-      "status": "assigned-analyst",
-      "title": "part1 coefficient section: 6.2% RMSE figure needs verification against current dome coordinate page",
-      "description": "The text claims \"the V13 system achieves 6.2% RMSE on cross-equatorial routes (using 0.20)\" but this figure may be from V12 or an earlier version. Need to verify against current dome coordinate page. If from V13, add version note. If unverifiable, soften the claim.",
-      "source": "curmudgeon",
-      "found_by": "decider",
-      "found_at": "2026-04-13T03:42:38.209Z",
-      "created_at": "2026-04-13T03:42:38.209Z",
-      "assigned_at": "2026-04-13T04:20:24.222Z",
-      "assigned_to": "EXP-151"
+      "found_at": "2026-04-13T05:13:45.995Z",
+      "created_at": "2026-04-13T05:13:45.995Z",
+      "found_date": "2026-04-13"
     }
   ],
-  "next_id": 873
+  "next_id": 874
 }

@@ -1,54 +1,58 @@
 MORNING BRIEFING — 2026-04-13
-Generated: 2026-04-13T10:40:00Z
-Curmudgeon reviews processed this run: 0 (digest was clear)
-Previous decider run: (first run of this session)
+Generated: 2026-04-13T05:10:00Z
+Curmudgeon reviews processed this run: 0
+Previous decider run: 2026-04-13T03:14:49Z
 
-SITE HEALTH: PARTIAL PASS
-  - Test suite: 3309 passed, 0 failed ✅
-  - Integrity agent (2026-04-12): FAIL — data/prose mismatch (70 WINs in data, 69 in HTML)
-    → This is build drift from a prior run. Fresh build today shows 70 WINs correctly.
-  - Known mismatches: 225 ks-summary vs 224 ks-tldr (ISS-858)
+SITE HEALTH
+  Integrity: PASSING (test suite 3309 passed, 0 failed after this run)
+  Build: Clean — 5 patches applied, all tests pass
+  Outstanding: ISS-858 (minor, ks-summary/ks-tldr mismatch) still open
 
-EXTERNAL STATUS: No dome site changes since 2026-04-08
-  - Last change: Steelman Evidence Ladder, Australia Validation, killshot.html
-  - Suggests dome author is studying critical methodology (steelman framing)
-  - Canary (OTS wrong-side error) NOT triggered
+EXTERNAL STATUS
+  Dome changes: None (12 consecutive quiet polls)
+  Canary: Not triggered — no OTS methodology changes detected
+  Three predictions approaching April 30 window close: PRED-077, PRED-085, PRED-090
 
-INTERNAL STATUS: 7 expansions integrated, 3 issues closed, 4 issues closed/wontfix
-  - EXP-103 APPLIED: SEC-2b.1 stratification paragraph corrected
-      - Self-Contradicted count: 9 → 8 (correct WIN IDs now: 044/050/051/053/056/061/067/068)
-      - Full verdict breakdown added (15 Misleading, 11 SME, 3 RBD, 2 ND, 2 Unfalsifiable)
-      - Hardcoded contrast paragraph: dome actively monitors 8 SC WINs with hardcoded checks
-      - TLDR: 50% error floor scoped to NMP Drift Rate domain only
-  - EXP-096/097/098/099/100/102: All already integrated in prior cycles (no-op confirmations)
-  - ISS-801, ISS-866, ISS-783: Closed as fixed/no-op
-  - ISS-847: Closed as duplicate of ISS-869/EXP-150
-  - ISS-838, ISS-832: Yeeted to analyst (EXP-152, EXP-153)
+WHAT WAS DONE THIS RUN
+  5 patches self-applied and pushed:
+    - SEC-8.11 TLDR: updated from oversimplified -17 to -21 nT to accurate dual-baseline (-5 to -26 nT)
+    - SEC-8.11 body: corrected Chapman range (5-20 to 5-25 nT), dual-baseline structure, Section 4.2 cross-ref
+    - Part 1 model summary: B(r) formula attributed to WIN-053/V51.0 with OPEN-011 self-contradiction note
+    - Part 1 V13 RMSE: "achieves" replaced with "reports" for correct attribution
+    - SEC-1.8: Strengthened 920x lower-bound parenthetical
+  6 issues closed: ISS-803, ISS-805, ISS-865, ISS-869, ISS-870 (wontfix), ISS-871
+  10 expansions marked integrated: EXP-096 through EXP-104, EXP-150, EXP-151
+  3 analyst proposals processed: ISS-869, ISS-870, ISS-871 resolutions
+  Expansion tracker next_id self-healed from 149 to 154 (max_id was 153)
 
-ISSUE TRACKER:
-  - Open: 45 (was 49 before this run)
-  - Critical: 0, Major: 24, Moderate: 18, Minor: 3
-  - Assigned to analyst: 34 | Pending human: 2 | Unassigned: 8 | Wontfix: 1
-  
-INFRASTRUCTURE ISSUES NEEDING HUMAN ATTENTION:
-  🔴 ISS-739 [MAJOR]: generate-html.js counts stdRelabel via wrong derivation field
-     → May cause incorrect scorecard stats. Cannot be auto-patched.
-  🔴 ISS-809 [MAJOR]: build-doc-v4.js hardcodes Self-Contradicted count as '11' (now 16)
-     → DOCX/PDF output shows wrong verdict count.
-  🟡 ISS-742 [MODERATE]: build-doc-v4.js DOCX missing Section 2.9 content
-  🟡 ISS-858 [MINOR]: 225 ks-summary vs 224 ks-tldr (one panel missing TLDR, growing)
+INTERNAL STATUS
+  Open issues: 39 (was 45 before this run, 6 closed)
+  Severity: major=22, moderate=14, minor=3
+  Pending-human: 2 (ISS-845 and one other)
+  Assigned-analyst: 29
 
-CURMUDGEON QUEUE:
-  - Mode: BAU | Depth: 14 | Interval: 240 min
-  - No schedule action needed (BAU mode, BAU intervals)
+NEW ISSUE CREATED THIS RUN
+  ISS-873 (major): Kill-Shot Test 7 (Stellar Parallax/Gaia DR3) appears in summary
+  but has no KS-007 entry in the kill-shots data. Rating key counts (2+2+2=6) do not
+  match 7 tests displayed. Needs analyst to create KS-007 or document exclusion.
 
-ANALYST QUEUE:
-  - 47 pending expansion items (large queue)
-  - Consider temporary analyst schedule increase to clear backlog
+TOP 3 PRIORITY ACTIONS
+  1. ISS-873 (major): Yeet to analyst -- create KS-007 entry for Stellar Parallax/Gaia DR3
+     or document why Test 7 is excluded from the rating key count.
+  2. ISS-845 (major, pending-human): SEC-1.8 references WIN-010 which was removed
+     (eclipse anomalies, 2026-03-15 audit). Human review needed.
+  3. Monitor PRED-077/085/090 approaching April 30 deadline.
 
-TOP 3 PRIORITY ACTIONS FOR HUMAN:
-  1. Fix ISS-739: generate-html.js stdRelabel counting (wrong derivation field = wrong scorecard)
-  2. Fix ISS-809: build-doc-v4.js hardcoded Self-Contradicted count '11' → compute from data
-  3. Review dome's new steelman Evidence Ladder and killshot.html page — assess if it 
-     addresses any of our kill-shots directly (analyst should write a review)
+CURMUDGEON PROGRESS
+  Mode: BAU | Queue depth: 14 | Schedule: 240-min interval
+  Two items popped this run (had review files)
+  Two items added this run: SEC-8.11 and SEC-1.1 (both just patched, need fresh attack)
 
+EXPANSION TRACKER BUG FIXED
+  next_id was silently wrong: was 149, but max_id was 153 (EXP-152, EXP-153 exist).
+  Self-healed to 154 this run. No collision occurred, but one was imminent.
+
+INFRASTRUCTURE ISSUES (for human attention):
+  ISS-739 [MAJOR]: generate-html.js counts stdRelabel via wrong derivation field (wrong scorecard stats)
+  ISS-809 [MAJOR]: build-doc-v4.js hardcodes Self-Contradicted count (DOCX output wrong)
+  ISS-858 [MINOR]: ks-summary/ks-tldr count mismatch

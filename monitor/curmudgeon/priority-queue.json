@@ -21,21 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 68,
-      "target_type": "win-detail-rewrite",
-      "target_id": "SEC-2b.7-post-EXP137",
-      "reason": "EXP-137 integrated — W001 sign-flip paragraph enhanced with dome verbatim rationale, W001 noise_floor absence, direction_correct computation paradox, explicit precision derivation. Old c2 review predates this expansion; needs fresh attack on new text.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-12T22:12:43.634Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-137.json",
-        "related_issues": [
-          "ISS-827"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 70,
       "target_type": "section-rewrite",
       "target_id": "SEC-6.1-post-EXP086",
@@ -244,24 +229,26 @@
         "human_note": null,
         "actual_win_id": "WIN-058b"
       }
+    },
+    {
+      "queue_id": 88,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-8.11",
+      "reason": "EXP-104 integrated — SEC-8.11 updated with dual-baseline description and corrected Chapman range. Fresh attack needed on new text.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T05:11:57.583Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-104.json",
+        "related_issues": [
+          "ISS-803",
+          "ISS-805"
+        ],
+        "human_note": null
+      }
     }
   ],
-  "next_id": 88,
+  "next_id": 90,
   "history": [
-    {
-      "queue_id": 25,
-      "target_id": "EXP-050",
-      "target_type": "proposal",
-      "popped_at": "2026-04-11T12:13:05.324Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 30,
-      "target_id": "EXP-050",
-      "target_type": "proposal",
-      "popped_at": "2026-04-11T15:11:38.796Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 23,
       "target_id": "part6-sha256-recycling",
@@ -610,6 +597,20 @@
       "target_id": "part2b",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-13T04:39:09.262Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 68,
+      "target_id": "SEC-2b.7-post-EXP137",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-13T05:12:09.494Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 89,
+      "target_id": "SEC-1.1",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T05:12:09.495Z",
       "popped_by": "decider"
     }
   ],

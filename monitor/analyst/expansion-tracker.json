@@ -1676,10 +1676,11 @@
       "output_file": "monitor/analyst/expansions/EXP-096.json",
       "completion_notes": "Chromaticity bridge already present in SEC-1.8 body text. Enhancement patch written to add explicit cross-reference in other-side defense section.",
       "integrated": true,
-      "integrated_at": "2026-04-13T04:38:23.726Z",
+      "integrated_at": "2026-04-13T05:11:36.022Z",
       "integrated_by": "decider",
-      "integration_mode": "no_op_confirmation",
-      "integration_notes": "Chromaticity bridge paragraph already present in other-side section of SEC-1.8 at integration time. ISS-866 (missing other-side defense) can be closed — text already addresses it."
+      "integration_mode": "already_present",
+      "integration_notes": "Chromaticity bridge paragraph already present in other-side section of SEC-1.8 at integration time. ISS-866 (missing other-side defense) can be closed — text already addresses it.",
+      "integration_note": "Chromaticity bridge already applied in prior run"
     },
     {
       "id": "EXP-097",
@@ -1698,10 +1699,11 @@
       "output_file": "monitor/analyst/expansions/EXP-097.json",
       "completion_notes": "Already implemented — 85/95 entries have verdicts. 10 null-verdict items are ongoing manual_test/data_watch with correct null state.",
       "integrated": true,
-      "integrated_at": "2026-04-13T04:38:23.726Z",
+      "integrated_at": "2026-04-13T05:11:36.022Z",
       "integrated_by": "decider",
       "integration_mode": "no_op_confirmation",
-      "integration_notes": "85/95 predictions already have non-null verdicts. 10 null entries are correct (ongoing data_watch/manual_test). ISS-783 resolved."
+      "integration_notes": "85/95 predictions already have non-null verdicts. 10 null entries are correct (ongoing data_watch/manual_test). ISS-783 resolved.",
+      "integration_note": "Already implemented: prediction verdicts already populated"
     },
     {
       "id": "EXP-098",
@@ -1717,9 +1719,10 @@
       "notes": "Write analysis of dome's Exhibit A (AI index correlation r=0.992) and Exhibit B (magnetic field measurements). Explain why high r-squared does not validate the dome geometry (overfitting, circular measurement), address the AI=1.152 claim. This is the dome's most prominent homepage feature and we have no rebuttal. Determine correct tab placement (Part 2 self-contradictions or Part 3 wins review).",
       "created_at": "2026-04-12T14:41:27.427Z",
       "integrated": true,
-      "integrated_at": "2026-04-13T04:38:23.726Z",
+      "integrated_at": "2026-04-13T05:11:36.022Z",
       "integration_mode": "no_op_confirmation",
-      "integration_notes": "Section 7.12 (Evidence Exhibits A and B) already exists and covers r=0.992, AI=1.152, kappa circularity."
+      "integration_notes": "Section 7.12 (Evidence Exhibits A and B) already exists and covers r=0.992, AI=1.152, kappa circularity.",
+      "integration_note": "Already implemented: Section 7.12 already exists"
     },
     {
       "id": "EXP-099",
@@ -1734,9 +1737,10 @@
       "notes": "Verify H(r) formula at r=15,000 km. Correct arithmetic in equatorial height section. Ensure stated conclusions follow from corrected numbers. See SEC-2.1 digest entry for details.",
       "created_at": "2026-04-12T14:41:27.427Z",
       "integrated": true,
-      "integrated_at": "2026-04-13T04:38:23.726Z",
+      "integrated_at": "2026-04-13T05:11:36.022Z",
       "integration_mode": "no_op_confirmation",
-      "integration_notes": "SEC-2.1 restructured since curmudgeon review. Old arithmetic errors removed. Supremum argument with monotonicity proof and Q-factor already in place."
+      "integration_notes": "SEC-2.1 restructured since curmudgeon review. Old arithmetic errors removed. Supremum argument with monotonicity proof and Q-factor already in place.",
+      "integration_note": "Already resolved: arithmetic errors fixed in prior rewrite"
     },
     {
       "id": "EXP-100",
@@ -1751,10 +1755,11 @@
       "notes": "Section uses 8,537 km (apparent altitude) where physical altitude should be used for the geometric argument. Correct the value and clarify apparent vs physical distinction per Section 1.8 framework. See SEC-4.5.4 digest entry.",
       "created_at": "2026-04-12T14:41:27.427Z",
       "integrated": true,
-      "integrated_at": "2026-04-13T04:38:23.726Z",
+      "integrated_at": "2026-04-13T05:11:36.022Z",
       "integrated_by": "decider",
-      "integration_mode": "no_op_confirmation",
-      "integration_notes": "SEC-2.4 (formerly SEC-4.5.4) already uses correct sun altitude 5,733km. All curmudgeon recommendations addressed."
+      "integration_mode": "already_present",
+      "integration_notes": "SEC-2.4 (formerly SEC-4.5.4) already uses correct sun altitude 5,733km. All curmudgeon recommendations addressed.",
+      "integration_note": "Already applied: SEC-2.4 replacement_html already in sections.json"
     },
     {
       "id": "EXP-101",
@@ -1789,9 +1794,10 @@
       "notes": "WIN-058b Monte Carlo range r = 0.44-0.69 is too low for G5 storm SNR. At SNR=3.3 (appropriate for extreme geomagnetic event), expected r approaches 0.91. The stated range implies noise-dominated signals which undermines our argument. Re-derive with shared storm-envelope model using appropriate G5-level SNR. If the corrected range overlaps with the dome-claimed r = 0.96/0.992, the argument changes significantly. New range should be cited with explicit SNR assumption. If corrected range still clearly below dome claim, just fix the numbers. If range overlaps, restructure argument around the correlation-without-causation point instead.",
       "created_at": "2026-04-12T15:12:09.727Z",
       "integrated": true,
-      "integrated_at": "2026-04-13T04:38:23.726Z",
-      "integration_mode": "no_op_confirmation",
-      "integration_notes": "WIN-058b already has updated Monte Carlo (r>0.96 at SNR>=5), corrected kappa=1.677, and updated tldr_evidence at integration time."
+      "integrated_at": "2026-04-13T05:11:36.022Z",
+      "integration_mode": "already_present",
+      "integration_notes": "WIN-058b already has updated Monte Carlo (r>0.96 at SNR>=5), corrected kappa=1.677, and updated tldr_evidence at integration time.",
+      "integration_note": "Already applied: WIN-058b claim/finding/tldr already updated"
     },
     {
       "id": "EXP-103",
@@ -1806,9 +1812,10 @@
       "notes": "Verify all hardcoded counts (9 self-contradicted, 12 misleading) against current wins.json data for unmonitored WINs subset. Fix TLDR to accurately characterize which live-fetch WINs use 50% error floors vs other tolerances. Verify the {{CA_HARDCODED}} template variable description is accurate in context.",
       "created_at": "2026-04-12T15:44:26.444Z",
       "integrated": true,
-      "integrated_at": "2026-04-13T04:38:23.726Z",
-      "integration_mode": "sections_patch",
-      "integration_notes": "Applied 2 patches to data/sections.json part2b: (1) TLDR 50% error floor scoped to NMP Drift Rate domain; (2) stratification paragraph corrected (SC count 9→8, correct WIN list, added full verdict breakdown, stronger hardcoded contrast paragraph). All counts verified against current wins.json. 3309 tests pass."
+      "integrated_at": "2026-04-13T05:11:36.022Z",
+      "integration_mode": "already_present",
+      "integration_notes": "Applied 2 patches to data/sections.json part2b: (1) TLDR 50% error floor scoped to NMP Drift Rate domain; (2) stratification paragraph corrected (SC count 9→8, correct WIN list, added full verdict breakdown, stronger hardcoded contrast paragraph). All counts verified against current wins.json. 3309 tests pass.",
+      "integration_note": "Both patches already applied: TLDR and stratification paragraph updated"
     },
     {
       "id": "EXP-104",
@@ -1822,7 +1829,11 @@
       "priority": "major",
       "status": "pending",
       "notes": "Both sections critique eclipse predictions without mentioning dome's four model-discriminating tests (E-PRED-A through E-PRED-D). E-PRED-B predicts north vs south station asymmetry based on toroidal field — the only internally coherent discriminating test. Also: verify -17 to -21 nT range against dome raw text (may be oversimplified). Fix WIN-025/WIN-010 removal characterization. Source: curmudgeon SEC-3.2.json + SEC-3.5.7.json.",
-      "created_at": "2026-04-12T15:44:26.444Z"
+      "created_at": "2026-04-12T15:44:26.444Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T05:11:36.022Z",
+      "integration_mode": "integration",
+      "integration_note": "Applied PATCH-1 and PATCH-2 to part8 SEC-8.11. PATCH-3 already applied."
     },
     {
       "id": "EXP-105",
@@ -2430,7 +2441,11 @@
       "priority": "low",
       "status": "pending",
       "notes": "Add parenthetical noting when B(r) two-pole formula was introduced (V51.0). Cross-check raw-text/ archives for V50.6 vs V51.0 content.",
-      "created_at": "2026-04-13T04:20:24.222Z"
+      "created_at": "2026-04-13T04:20:24.222Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T05:11:36.022Z",
+      "integration_mode": "integration",
+      "integration_note": "Applied B(r) formula version attribution to part1 (ISS-869)"
     },
     {
       "id": "EXP-151",
@@ -2443,7 +2458,11 @@
       "priority": "medium",
       "status": "pending",
       "notes": "ISS-870: Verify \"V13 optimization\" claim against dome site and raw-text/ archives. ISS-871: Verify \"6.2% RMSE on cross-equatorial routes\" — dome V12 page shows 25-78%, V13 may have improved but needs confirmation. If unverifiable, soften claim to \"reportedly\" or note limitation.",
-      "created_at": "2026-04-13T04:20:24.222Z"
+      "created_at": "2026-04-13T04:20:24.222Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T05:11:36.022Z",
+      "integration_mode": "integration",
+      "integration_note": "Applied achieves->reports wording fix to part1 (ISS-871); ISS-870 closed wontfix"
     },
     {
       "id": "EXP-152",
