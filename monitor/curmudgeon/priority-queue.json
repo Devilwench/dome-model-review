@@ -306,9 +306,39 @@
         ],
         "human_note": null
       }
+    },
+    {
+      "queue_id": 105,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-2.3",
+      "reason": "EXP-121 integrated: Section 2.3 fully rewritten with improved WGS84-disguise framing, explicit H(r) and g(r) values, and pole-to-pole symmetry argument. Fresh adversarial review needed.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T23:13:45.147Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-121.json",
+        "related_issues": [
+          "ISS-806"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 106,
+      "target_type": "section-new",
+      "target_id": "SEC-7.1-antarctic",
+      "reason": "EXP-126 integrated: Antarctic circumnavigation (factor-of-8 discrepancy) paragraph inserted into Section 7.1. New argument needs adversarial review — especially the pre-GPS expedition evidence and dome v22 quote.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T23:13:45.147Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-126.json",
+        "related_issues": [
+          "ISS-817"
+        ],
+        "human_note": null
+      }
     }
   ],
-  "next_id": 105,
+  "next_id": 107,
   "history": [
     {
       "queue_id": 39,

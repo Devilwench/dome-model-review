@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-13T21:34:00.151Z",
+  "generated_at": "2026-04-13T23:04:00.357Z",
   "total_reviews": 165,
   "already_processed": 231,
   "pending_count": 4,
@@ -3752,9 +3752,13 @@
     {
       "win_id": "WIN-054",
       "topic": "El Gordo cluster impossibility — non-discriminating cherry-picking",
-      "issues_created": 2,
+      "issues_created": 1,
       "holes_found": 9,
       "missing_holes": [
+        {
+          "severity": "critical",
+          "summary": "MISSING RESEARCH FOUNDATION: Cycle 1 identified unverified Kim et al. 2022 citation. We cite Kim et al. (2023, ApJ 954?) as evidence that modern simulations accommodate massive clusters. But: (1) We never confirmed the exact title/doi. (2) We never read the paper to verify it addresses El Gordo. (3)"
+        },
         {
           "severity": "major",
           "summary": "THE FINDING CONFLATES TWO SEPARATE CRITIQUES: The finding says El Gordo is 'a genuine 6.2σ ΛCDM anomaly' AND 'non-discriminating cherry-picking.' These are not compatible. If El Gordo is genuinely anomalous, the dome is identifying a real problem (not cherry-picking). If it's cherry-picking, then El"

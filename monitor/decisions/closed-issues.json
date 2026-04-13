@@ -11343,6 +11343,44 @@
       "fixed_at": "2026-04-13T22:42:16.277Z",
       "fixed_by": "staleness-resolution",
       "fix_details": "TLDR already says \"the failure that would persist even if others were corrected takes priority\" in generate-html.js line 1383. Fix was applied by prior decider run (queue item eg-verdicts-passive-tldr-fix)."
+    },
+    {
+      "id": "ISS-817",
+      "found_date": "2026-04-12",
+      "win_id": null,
+      "section_id": "KILLSHOT-SH",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "fixed",
+      "description": "KILLSHOT-SH (Southern Hemisphere kill-shot): The 126,000 km Antarctic circumnavigation argument (flat-earth disc circumference cannot be reconciled with observed flight times) is mentioned in CLAUDE.md and SESSION-CONTEXT as a key kill-shot but is absent from the kill-shot section. This is one of the most concrete, easily-verified arguments against the dome model. Should be added to the section. Source: KILLSHOT-SH.json cycle 1.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-SH.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T16:42:32.083Z",
+      "created_at": "2026-04-12T16:42:32.083Z",
+      "assigned_at": "2026-04-12T16:44:18.963Z",
+      "expansion_id": "EXP-126",
+      "fixed_at": "2026-04-13T23:13:27.101Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "EXP-126 integrated: Antarctic circumnavigation paragraph (~1,615 chars) inserted into Section 7.1 after 3rd paragraph. Factor-of-8 discrepancy between dome rim circumference and measured circumnavigation now documented."
+    },
+    {
+      "id": "ISS-910",
+      "win_id": null,
+      "section_id": "eval-guide-eg-verdicts",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "wontfix",
+      "title": "Eval guide primary-issue rule: Self-Contradicted vs Misleading priority case not covered",
+      "description": "The primary-issue rule (eval-guide-eg-verdicts Condition 4) covers Refuted vs Std Model but not the harder boundary: (a) Self-Contradicted AND Misleading — curmudgeon says Self-Contradicted should win because even with correct data the math fails; (b) Multiple verdicts possible for same claim. Adding a second worked example covering Self-Contradicted priority would strengthen the methodology section and pre-empt a common dome-defender attack. Source: eval-guide-eg-verdicts.c1.json hole 4.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/eval-guide-eg-verdicts.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-13T22:40:19.014Z",
+      "created_at": "2026-04-13T22:40:19.014Z",
+      "fixed_at": "2026-04-13T23:13:27.101Z",
+      "fixed_by": "decider-dedup",
+      "fix_details": "Duplicate of ISS-894 (same issue: primary-issue rule boundary case for Self-Contradicted vs Misleading, assigned EXP-155). Closing as wontfix-duplicate."
     }
   ]
 }

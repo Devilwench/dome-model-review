@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T18:37:56.307Z",
+  "last_updated": "2026-04-13T23:15:02.097Z",
   "processed": [
     "WIN-033.json",
     "WIN-052.json",
@@ -231,7 +231,11 @@
     "part1-coeff-EXP083.c3.json",
     "PRED-batch-EXP-085-2026-04-12.json",
     "SEC-2b.7-post-EXP137.c3.json",
-    "SEC-6.1-post-EXP086.c3.json"
+    "SEC-6.1-post-EXP086.c3.json",
+    "SEC-overview-scorecard.c3.json",
+    "eval-guide-eg-verdicts.c1.json",
+    "KILLSHOT-GAIA-v2.c2.json",
+    "EXP-143-proposal.c2.json"
   ],
   "section_reviews_processed": [
     "SEC-3.1.json",
