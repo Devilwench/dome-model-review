@@ -21,22 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 57,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-1.1-post-fix",
-      "reason": "H(r) arithmetic corrected (1,270→1,498 km) and TLDR hardcoded 69→{{TOTAL_WINS}}. Review the fixed content.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-12T18:39:42.000Z",
-      "context_hints": {
-        "source_file": null,
-        "related_issues": [
-          "ISS-833",
-          "ISS-834"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 58,
       "target_type": "section-rewrite",
       "target_id": "part1",
@@ -193,20 +177,6 @@
   ],
   "next_id": 74,
   "history": [
-    {
-      "queue_id": 15,
-      "target_id": "WIN-032",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-10T19:10:59.435Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 16,
-      "target_id": "WIN-034",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-10T19:10:59.435Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 12,
       "target_id": "ISS-703-sha256-forensics",
@@ -565,6 +535,13 @@
       "popped_at": "2026-04-12T23:44:23.240Z",
       "popped_by": "decider",
       "note": "Manual pop: review file SEC-1.8.1-EXP127.c1.json exists but naming mismatch prevented auto-pop. Review processed this run."
+    },
+    {
+      "queue_id": 57,
+      "target_id": "SEC-1.1-post-fix",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T00:12:24.920Z",
+      "popped_by": "decider"
     }
   ],
   "schedule_state": {

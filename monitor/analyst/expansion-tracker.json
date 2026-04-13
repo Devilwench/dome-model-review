@@ -2274,8 +2274,22 @@
       "status": "pending",
       "notes": "Advocate defense (defense_survives=3): dome can argue refraction fix is scoped only to the sun (moon is below firmament at r~10,000km, H~2,673km, so no refraction fix needed for moon). Counter: n(r) is a property of the medium, not the object. Snell's law bends all light regardless of source. Even if dome did not APPLY a correction to the moon, the medium still bends moonlight. Must add explicit preemptive counter to Section 1.5 or the future eclipse section: address (1) n(r) is a medium property; (2) angular dependence absence — n(r) is a scalar function of r with no elevation-angle dependence; (3) empirical eclipse success argument does not validate a framework with undetermined moon physics.",
       "created_at": "2026-04-12T23:43:45.442Z"
+    },
+    {
+      "id": "EXP-144",
+      "target": "EXP-127 re-integration as new eclipse section — fix n(r) values and reframe moon altitude argument",
+      "source": "curmudgeon-c1-SEC-1.8.1-EXP127",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-1.8.1-EXP127.c1.json",
+      "issue_ids": [
+        "ISS-855",
+        "ISS-856"
+      ],
+      "priority": "high",
+      "status": "pending",
+      "notes": "Per human note HNOTE-REFRACT-RESTRUCTURE-001, eclipse differential refraction becomes a SEPARATE section (not under 1.8). Two issues with pending EXP-127 content before re-integration: (1) ISS-855: Wrong n(r) values — fix equatorial ring label (r=14,105km is reflection param, not equator; equator=r~10,008km, n=1.44; ice wall n=2.84, not 3.49). (2) ISS-856: Reframe moon altitude argument from dome ADMISSION (via now-removed OPEN-007 citation) to logical DEDUCTION from first principles: IF n(r) distorts apparent altitude of any object, THEN moonlight traversing the same medium is also refracted (Snell does not distinguish targets). Add preemptive counter to dome defense that refraction fix is scoped to sun only. Best version: physical shadow blocking requires physical positions, not apparent positions — even if dome argues moon does not need an optical correction, physical shadow geometry is still contaminated by medium.",
+      "created_at": "2026-04-13T00:14:07.655Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 144
+  "next_id": 145
 }

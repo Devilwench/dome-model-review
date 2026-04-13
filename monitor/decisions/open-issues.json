@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T00:11:17.445Z",
+  "last_updated": "2026-04-13T00:14:07.655Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -803,11 +803,13 @@
       "section_id": "EXP-127-pending",
       "severity": "major",
       "category": "factual_error",
-      "status": "open",
+      "status": "assigned-analyst",
       "description": "EXP-127 differential refraction content (pending re-integration): wrong n(r) values. Claims equatorial ring (r≈14,105km) n=1.40 and ice wall n=3.49. Correct values: equator (r≈10,008km) n=1.44, ice wall (r=20,015km) n=2.84. r=14,105km is the reflection parameter, not the equator. Must fix before re-integrating EXP-127 content as separate section.",
       "source": "curmudgeon",
       "found_by": "curmudgeon-c1-SEC-1.8.1-EXP127",
-      "found_at": "2026-04-12T23:43:17.745Z"
+      "found_at": "2026-04-12T23:43:17.745Z",
+      "assigned_exp": "EXP-144",
+      "assigned_at": "2026-04-13T00:14:07.655Z"
     },
     {
       "id": "ISS-856",
@@ -815,12 +817,26 @@
       "section_id": "EXP-127-pending",
       "severity": "major",
       "category": "missing_argument",
-      "status": "open",
+      "status": "assigned-analyst",
       "description": "EXP-127 content frames moon altitude argument as dome ADMISSION (via fabricated OPEN-007) rather than logical DEDUCTION from first principles. Must reframe: IF n(r) distorts sun apparent altitude, THEN Snell's law (which does not distinguish targets) also distorts moonlight, making physical moon altitude undetermined. Add preemptive counter to dome defense that refraction fix is scoped to sun only: the medium does not ask which object is the source.",
       "source": "curmudgeon",
       "found_by": "curmudgeon-c1-SEC-1.8.1-EXP127",
-      "found_at": "2026-04-12T23:43:17.745Z"
+      "found_at": "2026-04-12T23:43:17.745Z",
+      "assigned_exp": "EXP-144",
+      "assigned_at": "2026-04-13T00:14:07.655Z"
+    },
+    {
+      "id": "ISS-858",
+      "win_id": null,
+      "severity": "minor",
+      "category": "missing_argument",
+      "status": "open",
+      "description": "Site has 223 ks-summary elements but only 222 ks-tldr elements — one WIN or kill-shot panel is missing a TLDR in its Evidence or Verdict collapsible. Integrity check (progressive_disclosure) flagged this persistently. Identify and add the missing tldr_evidence or tldr_verdict field.",
+      "source": "integrity",
+      "found_by": "decider",
+      "found_at": "2026-04-13T00:14:07.655Z",
+      "created_at": "2026-04-13T00:14:07.655Z"
     }
   ],
-  "next_id": 858
+  "next_id": 859
 }
