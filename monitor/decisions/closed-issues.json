@@ -1,6 +1,6 @@
 {
   "description": "Archived closed issues. Decider does not need to read this file.",
-  "last_updated": "2026-04-13T05:37:56.183Z",
+  "last_updated": "2026-04-13T18:14:20.207Z",
   "issues": [
     {
       "id": "ISS-001",
@@ -10720,6 +10720,57 @@
       "fix_date": null,
       "fixed_at": "2026-04-13T17:12:17.232Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-766",
+      "win_id": null,
+      "section_id": "SEC-2b.7",
+      "severity": "moderate",
+      "category": "citation",
+      "status": "fixed",
+      "description": "SEC-2b.7 W001 paragraph cites sigma_distance 7.3 relative to ≈0.8 nT prediction uncertainty, but the source of the 0.8 nT figure is not given. The dome's results.json sigma_distance is calculated from (obs - pred) / sigma_pred, where sigma_pred is the dome's own prediction precision. Our text should cite the exact dome-file field where this denominator comes from to prevent the dome saying our sigma calculation is wrong.",
+      "found_by": "curmudgeon-cycle2",
+      "source_review": "monitor/curmudgeon/reviews/part2b-W001-signflip.c2.json",
+      "found_at": "2026-04-12T13:14:26.113Z",
+      "assigned_at": "2026-04-13T06:11:28.131Z",
+      "assignment_note": "Curmudgeon review (c2) found 4 holes: sigma_distance/SNR conflation, missing noise floor value, unpreempted dome defense, imprecise overrides language. Requires structural reframe: stop claiming 7-sigma detection of wrong answer; instead argue predictions are unfalsifiable-by-construction because designed to sit below noise floor. See reviews/part2b-W001-signflip.c2.json for full recommendation.",
+      "fixed_at": "2026-04-13T18:14:20.207Z",
+      "fixed_by": "EXP-137-integration",
+      "fix_note": "Staleness: 0.8 nT figure source now provided via precision derivation in EXP-137 rewrite text"
+    },
+    {
+      "id": "ISS-881",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "SEC-6.1 WIN-053 paragraph: IGRF-13 north polar field range may be imprecise. Current text says \"~58,000–62,000 nT at the north\" but IGRF-13 (2020 epoch) at the North Magnetic Pole is closer to ~55,000–60,000 nT. Key implication: the dome coefficient 62,376 nT may be above the entire observed range, strengthening the fitted-parameter argument. Requires factual verification against actual IGRF-13 tables before patching.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-13",
+      "status": "fixed",
+      "review_file": "monitor/curmudgeon/reviews/SEC-6.1-post-EXP086.c3.json",
+      "section_key": "part6",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-13T18:14:20.207Z",
+      "fixed_by": "decider-self-apply",
+      "fix_note": "IGRF range corrected: ~55,000-60,000 nT at north"
+    },
+    {
+      "id": "ISS-887",
+      "win_id": null,
+      "section_id": "SEC-2b.7",
+      "severity": "minor",
+      "category": "citation",
+      "status": "fixed",
+      "description": "SEC-2b.7 W004 noise floor proxy: \"sets the measurement scale\" should add cross-station qualifier. W004's 4.4 nT is from a different observation (2024 Eclipse replication) at different stations. Text should clarify the argument holds at any noise floor exceeding 2.1 nT, not just at the W004-specific value.",
+      "found_by": "curmudgeon-cycle3",
+      "source_review": "monitor/curmudgeon/reviews/SEC-2b.7-post-EXP137.c3.json",
+      "found_at": "2026-04-13T18:12:45.725Z",
+      "created_at": "2026-04-13T18:12:45.725Z",
+      "fixed_at": "2026-04-13T18:14:20.207Z",
+      "fixed_by": "decider-self-apply",
+      "fix_note": "W004 cross-station qualifier added to SEC-2b.7"
     }
   ]
 }

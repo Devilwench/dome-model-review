@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T17:12:17.232Z",
+  "last_updated": "2026-04-13T18:14:20.207Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -27,20 +27,6 @@
       "found_at": "2026-04-10T19:10:17.202Z",
       "source": "EXP-060 integration",
       "notes": "Not urgent — existing Part 5 HTML is complete and correct via EXP-057. This is a refactoring to data-driven counts. Lower priority than content work."
-    },
-    {
-      "id": "ISS-766",
-      "win_id": null,
-      "section_id": "SEC-2b.7",
-      "severity": "moderate",
-      "category": "citation",
-      "status": "assigned-analyst",
-      "description": "SEC-2b.7 W001 paragraph cites sigma_distance 7.3 relative to ≈0.8 nT prediction uncertainty, but the source of the 0.8 nT figure is not given. The dome's results.json sigma_distance is calculated from (obs - pred) / sigma_pred, where sigma_pred is the dome's own prediction precision. Our text should cite the exact dome-file field where this denominator comes from to prevent the dome saying our sigma calculation is wrong.",
-      "found_by": "curmudgeon-cycle2",
-      "source_review": "monitor/curmudgeon/reviews/part2b-W001-signflip.c2.json",
-      "found_at": "2026-04-12T13:14:26.113Z",
-      "assigned_at": "2026-04-13T06:11:28.131Z",
-      "assignment_note": "Curmudgeon review (c2) found 4 holes: sigma_distance/SNR conflation, missing noise floor value, unpreempted dome defense, imprecise overrides language. Requires structural reframe: stop claiming 7-sigma detection of wrong answer; instead argue predictions are unfalsifiable-by-construction because designed to sit below noise floor. See reviews/part2b-W001-signflip.c2.json for full recommendation."
     },
     {
       "id": "ISS-770",
@@ -492,20 +478,31 @@
       "expansion_id": "EXP-149"
     },
     {
-      "id": "ISS-881",
+      "id": "ISS-888",
       "win_id": null,
-      "severity": "moderate",
-      "category": "factual_error",
-      "description": "SEC-6.1 WIN-053 paragraph: IGRF-13 north polar field range may be imprecise. Current text says \"~58,000–62,000 nT at the north\" but IGRF-13 (2020 epoch) at the North Magnetic Pole is closer to ~55,000–60,000 nT. Key implication: the dome coefficient 62,376 nT may be above the entire observed range, strengthening the fitted-parameter argument. Requires factual verification against actual IGRF-13 tables before patching.",
-      "source": "curmudgeon",
-      "found_by": "curmudgeon",
-      "found_date": "2026-04-13",
-      "status": "assigned-analyst",
-      "review_file": "monitor/curmudgeon/reviews/SEC-6.1-post-EXP086.c3.json",
-      "section_key": "part6",
-      "fix_details": null,
-      "fix_date": null
+      "section_id": "SEC-2b.7",
+      "severity": "minor",
+      "category": "citation",
+      "status": "open",
+      "description": "SEC-2b.7 verbatim quote from dome wins.html: \"Instrument noise floor prevents measurement. Prediction remains structurally valid. Hardware limitation, not model failure.\" Raw-text snapshots have shorter formulations (02-wins.txt: \"W001 — Noise Floor Limit (instrument limitation, not model failure)\"\"5-model.txt). The full verbatim quote should include a citation noting where/when it was captured, or be paraphrased from raw-text.",
+      "found_by": "curmudgeon-cycle3",
+      "source_review": "monitor/curmudgeon/reviews/SEC-2b.7-post-EXP137.c3.json",
+      "found_at": "2026-04-13T18:12:45.725Z",
+      "created_at": "2026-04-13T18:12:45.725Z"
+    },
+    {
+      "id": "ISS-889",
+      "win_id": null,
+      "section_id": "SEC-6.1",
+      "severity": "minor",
+      "category": "missing_argument",
+      "status": "open",
+      "description": "SEC-6.1 WIN-013 argument could be sharper: misses a third possibility a defender would raise (gravity measurements are geometry-independent). Counter should be: \"reproducing an existing formula under a different label adds no predictive content.\" See SEC-6.1-post-EXP086.c3.json stronger_arguments.",
+      "found_by": "curmudgeon-cycle3",
+      "source_review": "monitor/curmudgeon/reviews/SEC-6.1-post-EXP086.c3.json",
+      "found_at": "2026-04-13T18:12:54.879Z",
+      "created_at": "2026-04-13T18:12:54.879Z"
     }
   ],
-  "next_id": 887
+  "next_id": 890
 }
