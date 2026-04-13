@@ -21,21 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 63,
-      "target_type": "section-new",
-      "target_id": "SEC-killshots-rating-key",
-      "reason": "EXP-084 integrated: our_strength tier definitions inserted into Kill Shots tab. Formal definitions added (decisive/major/supportive). Review for accuracy and completeness.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-12T21:11:18.668Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-084.json",
-        "related_issues": [
-          "ISS-753"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 66,
       "target_type": "prediction-batch",
       "target_id": "PRED-batch-EXP-085-2026-04-12",
@@ -211,17 +196,57 @@
         ],
         "human_note": null
       }
+    },
+    {
+      "queue_id": 80,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-5-post-ISS860-861-862",
+      "reason": "ISS-860/861/862 applied: fixed fabricated 30% threshold in verdict paragraph, deleted duplicate sentence, corrected dome-says-PASS opening. Re-attack with fresh eyes.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T03:13:18.523Z",
+      "context_hints": {
+        "source_file": "monitor/decisions/applied-patches/suggested-patches-2026-04-13T06-00.json",
+        "related_issues": [
+          "ISS-860",
+          "ISS-861",
+          "ISS-862"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 81,
+      "target_type": "win-detail-rewrite",
+      "target_id": "WIN-065-post-ISS863",
+      "reason": "ISS-863 applied: corrected n(r) formula from quadratic to correct dome exponential formula. Verify refraction argument still holds.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T03:13:27.578Z",
+      "context_hints": {
+        "source_file": null,
+        "related_issues": [
+          "ISS-863"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 82,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-1.8-post-ISS864",
+      "reason": "ISS-864 applied: softened AE projection comparison from exactly as to analogously to how. Verify argument still compelling.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T03:13:27.578Z",
+      "context_hints": {
+        "source_file": null,
+        "related_issues": [
+          "ISS-864"
+        ],
+        "human_note": null
+      }
     }
   ],
-  "next_id": 80,
+  "next_id": 83,
   "history": [
-    {
-      "queue_id": 18,
-      "target_id": "PRED-batch-2026-04-10-wave3",
-      "target_type": "prediction-batch",
-      "popped_at": "2026-04-11T07:09:10.532Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 19,
       "target_id": "part6",
@@ -579,6 +604,13 @@
       "target_id": "part1",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-13T02:37:16.721Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 63,
+      "target_id": "SEC-killshots-rating-key",
+      "target_type": "section-new",
+      "popped_at": "2026-04-13T03:13:10.167Z",
       "popped_by": "decider"
     }
   ],
