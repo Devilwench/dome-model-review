@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T16:21:47.366Z",
+  "last_updated": "2026-04-13T16:42:46Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -490,7 +490,93 @@
       "found_at": "2026-04-13T03:42:38.209Z",
       "created_at": "2026-04-13T03:42:38.209Z",
       "expansion_id": "EXP-149"
+    },
+    {
+      "id": "ISS-880",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "PRED-batch-EXP-085: Optics risk of 11 recycled verdicts in a single batch. A reader seeing 11 predictions labeled recycled without context may suspect dismissiveness. The per-prediction detail_reasoning panels exist and render, but the predictions section prose should explicitly acknowledge the thoroughness of per-prediction analysis. Add a brief prose note in the recycled/post-hoc section explaining that each entry was individually evaluated.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-13",
+      "status": "open",
+      "review_file": "monitor/curmudgeon/reviews/PRED-batch-EXP-085-2026-04-12.json",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-881",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "SEC-6.1 WIN-053 paragraph: IGRF-13 north polar field range may be imprecise. Current text says \"~58,000–62,000 nT at the north\" but IGRF-13 (2020 epoch) at the North Magnetic Pole is closer to ~55,000–60,000 nT. Key implication: the dome coefficient 62,376 nT may be above the entire observed range, strengthening the fitted-parameter argument. Requires factual verification against actual IGRF-13 tables before patching.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-13",
+      "status": "assigned-analyst",
+      "review_file": "monitor/curmudgeon/reviews/SEC-6.1-post-EXP086.c3.json",
+      "section_key": "part6",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-882",
+      "win_id": null,
+      "severity": "minor",
+      "category": "citation",
+      "description": "SEC-2b.7 W001 sign-flip paragraph: verbatim quote \"Instrument noise floor prevents measurement. Prediction remains structurally valid. Hardware limitation, not model failure.\" cites dome as source but no URL/commit/date footnote. Raw-text archive has shorter formulations that do not match verbatim. If dome updates wins.html, a defender could claim misquotation. Either add a capture-date footnote or replace with paraphrase from raw-text.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-13",
+      "status": "open",
+      "review_file": "monitor/curmudgeon/reviews/SEC-2b.7-post-EXP137.c3.json",
+      "section_key": "part2b",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-883",
+      "win_id": null,
+      "severity": "minor",
+      "category": "citation",
+      "description": "PRED-TESLA-002: Cross-reference to WIN-062 labeled as circularity finding is misleading. WIN-062 verdict is Misleading (relabeling globe circumference as disc diameter) — not a circularity argument. The circularity (VA = 1.574c hardcoded constant making ratio calculation tautological) is inherent to the prediction itself.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-13",
+      "status": "open",
+      "review_file": "monitor/curmudgeon/reviews/PRED-batch-EXP-085-2026-04-12.json",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-884",
+      "win_id": null,
+      "severity": "minor",
+      "category": "missing_argument",
+      "description": "PRED-TOROID-003: Reasoning does not explicitly state that even if 0.336 Hz falls near observed splitting ranges (0.1-0.3 Hz), the derivation is still invalid because the dome Schumann fundamental is ~22 Hz (not 7.83 Hz). Perturbation theory built on the wrong base mode produces splitting of the wrong fundamental. Closes a potential dome defender escape hatch.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-13",
+      "status": "open",
+      "review_file": "monitor/curmudgeon/reviews/PRED-batch-EXP-085-2026-04-12.json",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-885",
+      "win_id": null,
+      "severity": "minor",
+      "category": "missing_argument",
+      "description": "PRED-CURR-008: detail_reasoning establishes the partially-correct subset first (mid-latitude westerlies = standard physics), then states the contradicted part (single global rotation contradicted by trade winds). Leading with the falsification angle (multi-cell structure directly contradicts single-rotation claim) makes the standard_physics verdict clearer.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-13",
+      "status": "open",
+      "review_file": "monitor/curmudgeon/reviews/PRED-batch-EXP-085-2026-04-12.json",
+      "fix_details": null,
+      "fix_date": null
     }
   ],
-  "next_id": 880
+  "next_id": 886
 }
