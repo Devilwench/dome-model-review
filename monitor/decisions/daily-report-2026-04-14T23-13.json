@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-14T23:13:00Z",
+  "generated_at": "2026-04-13T23:47:55.166Z",
   "report_date": "2026-04-14",
   "curmudgeon_reviews_processed": [
     "SEC-overview-scorecard.c3",
@@ -78,7 +78,9 @@
       "id": "EXP-126",
       "status": "integrated",
       "action": "Antarctic circumnavigation paragraph (~1,615 chars) inserted into Section 7.1 after 3rd paragraph. Factor-of-8 discrepancy (13,700 km actual vs 112,000+ km dome prediction). Dome v22 admission quoted. Ship-based evidence (Soviet Ob expedition 1956-57) cited to avoid GPS circularity objection.",
-      "issues_closed": ["ISS-817"],
+      "issues_closed": [
+        "ISS-817"
+      ],
       "queued_for_curmudgeon": "SEC-7.1-antarctic"
     },
     {
@@ -95,7 +97,26 @@
   "curmudgeon_queue": {
     "mode": "bau",
     "depth": 18,
-    "items": ["WIN-065-post-ISS863", "SEC-1.8-post-ISS864", "SEC-2.4", "WIN-058b-post-EXP102", "SEC-8.11", "PRED-batch-2026-04-13", "EXP-062-batch", "part3-roadmap-EXP116", "part4-roadmap-EXP116", "part5-roadmap-EXP116", "eg-falsifiability-derives-fix", "eg-verdicts-passive-tldr-fix", "KILLSHOT-GAIA-table-citation-fix", "SEC-1.9", "SEC-2.3-post-EXP121", "part1-scorecard-sublabel-fix", "SEC-2.3", "SEC-7.1-antarctic"],
+    "items": [
+      "WIN-065-post-ISS863",
+      "SEC-1.8-post-ISS864",
+      "SEC-2.4",
+      "WIN-058b-post-EXP102",
+      "SEC-8.11",
+      "PRED-batch-2026-04-13",
+      "EXP-062-batch",
+      "part3-roadmap-EXP116",
+      "part4-roadmap-EXP116",
+      "part5-roadmap-EXP116",
+      "eg-falsifiability-derives-fix",
+      "eg-verdicts-passive-tldr-fix",
+      "KILLSHOT-GAIA-table-citation-fix",
+      "SEC-1.9",
+      "SEC-2.3-post-EXP121",
+      "part1-scorecard-sublabel-fix",
+      "SEC-2.3",
+      "SEC-7.1-antarctic"
+    ],
     "current_schedule_interval_minutes": 240,
     "action_taken": "none"
   },

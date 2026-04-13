@@ -21,21 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 81,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-065-post-ISS863",
-      "reason": "ISS-863 applied: corrected n(r) formula from quadratic to correct dome exponential formula. Verify refraction argument still holds.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T03:13:27.578Z",
-      "context_hints": {
-        "source_file": null,
-        "related_issues": [
-          "ISS-863"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 82,
       "target_type": "section-rewrite",
       "target_id": "SEC-1.8-post-ISS864",
@@ -336,43 +321,10 @@
         ],
         "human_note": null
       }
-    },
-    {
-      "queue_id": 107,
-      "target_type": "section-rewrite",
-      "target_id": "eg-verdicts",
-      "reason": "EXP-155 integrated — 4 patches applied to verdict assignment criteria (false-dilemma qualification, SC vs Misleading example, count-inflation transparency note, TLDR refinement)",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T23:44:56.893Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-155.json",
-        "related_issues": [
-          "ISS-894",
-          "ISS-902",
-          "ISS-903",
-          "ISS-904"
-        ],
-        "human_note": null
-      }
     }
   ],
   "next_id": 108,
   "history": [
-    {
-      "queue_id": 39,
-      "target_id": "HOL-NARRATIVE",
-      "target_type": "section-new",
-      "popped_at": "2026-04-12T14:14:30.462Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 40,
-      "target_id": "SEC-1.8-refraction-cascade",
-      "target_type": "section-new",
-      "popped_at": "2026-04-12T14:38:30.516Z",
-      "popped_by": "decider",
-      "note": "Popped manually — review file SEC-1.8.c1.json confirmed in FUSE workspace"
-    },
     {
       "queue_id": 41,
       "target_id": "SEC-2b.1",
@@ -709,6 +661,20 @@
       "target_id": "SEC-6.2",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-13T22:41:28.257Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 81,
+      "target_id": "WIN-065-post-ISS863",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-13T23:46:34.281Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 107,
+      "target_id": "eg-verdicts",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T23:46:34.281Z",
       "popped_by": "decider"
     }
   ],
