@@ -10824,6 +10824,40 @@
       "fixed_at": "2026-04-13T19:07:57.267Z",
       "fixed_by": "decider-self-apply",
       "fix_details": "EXP-114 patch applied: SEC-6.7 eclipse paragraph tightened to use cross-ref to Section 4.2 instead of re-deriving Chapman mechanism"
+    },
+    {
+      "id": "ISS-898",
+      "win_id": null,
+      "severity": "minor",
+      "category": "content-update",
+      "status": "wontfix",
+      "description": "eval-guide eg-verdicts: Hardcoded \"six\" count appears four times in the verdict section. Anti-hardcoding rule in principle applies, but the verdict count is an architectural constant unlikely to change without a full site restructure. The six categories are enumerated in the section itself, so computing the count programmatically would add complexity without benefit. Wontfix: if a seventh category is ever added, this is easy to grep.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/eval-guide-eg-verdicts.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-13T19:43:41.265Z",
+      "created_at": "2026-04-13T19:43:41.265Z",
+      "closed_at": "2026-04-13T19:43:41.265Z",
+      "fix_details": "Wontfix: structural constant, not a data-derived count.",
+      "fix_date": "2026-04-13"
+    },
+    {
+      "id": "ISS-774",
+      "win_id": null,
+      "severity": "major",
+      "category": "missing_argument",
+      "status": "fixed",
+      "description": "HOL-HIERARCHY cycle 1: No organizing principle for parts 3-5. Statistical analysis (Part 4.6) buried after all rebuttals. Kill-shots appear before predictions with no framing on why they represent higher-tier evidence. The hierarchical logic is never stated explicitly.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/HOLISTIC-HOL-HIERARCHY.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T14:13:05.021Z",
+      "created_at": "2026-04-12T14:13:05.021Z",
+      "assigned_exp": "EXP-091",
+      "expansion_id": "EXP-116",
+      "fixed_at": "2026-04-13T19:44:30.536Z",
+      "fixed_by": "expansion-integration",
+      "fix_details": "EXP-116 applied: roadmap box added to Part 3 opening, transition sentences added to Part 4 and Part 5 openings in data/sections.json"
     }
   ]
 }

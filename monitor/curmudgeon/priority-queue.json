@@ -264,9 +264,90 @@
         ],
         "human_note": null
       }
+    },
+    {
+      "queue_id": 93,
+      "target_type": "section-new",
+      "target_id": "part3-roadmap-EXP116",
+      "reason": "EXP-116 integrated — new roadmap/transition content added to part3 opening. Curmudgeon needs to verify the connective narrative is accurate and doesn't overclaim.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T19:44:08.379Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-116.json",
+        "related_issues": [
+          "ISS-774"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 94,
+      "target_type": "section-new",
+      "target_id": "part4-roadmap-EXP116",
+      "reason": "EXP-116 integrated — new roadmap/transition content added to part4 opening. Curmudgeon needs to verify the connective narrative is accurate and doesn't overclaim.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T19:44:08.379Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-116.json",
+        "related_issues": [
+          "ISS-774"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 95,
+      "target_type": "section-new",
+      "target_id": "part5-roadmap-EXP116",
+      "reason": "EXP-116 integrated — new roadmap/transition content added to part5 opening. Curmudgeon needs to verify the connective narrative is accurate and doesn't overclaim.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T19:44:08.379Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-116.json",
+        "related_issues": [
+          "ISS-774"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 96,
+      "target_type": "section-rewrite",
+      "target_id": "eg-falsifiability-derives-fix",
+      "reason": "eg-falsifiability: Fixed derives_from_dome count (4→2 WINs, removed WIN-020/WIN-058), corrected Schumann range (22Hz→22-35Hz), fixed missing </p> tag. Curmudgeon should verify count accuracy and confirm WIN-044/WIN-057 are correctly identified as the only derives_from_dome=true WINs.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T19:44:22.238Z",
+      "context_hints": {
+        "related_issues": [],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 97,
+      "target_type": "section-rewrite",
+      "target_id": "eg-verdicts-passive-tldr-fix",
+      "reason": "eg-verdicts: Fixed TLDR (\"most structurally damaging\" → \"the failure that would persist even if others were corrected\") and \"actively mishandle\" → passive voice. Verify the revised criteria are internally consistent and accurately describe the verdict assignment logic.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T19:44:22.238Z",
+      "context_hints": {
+        "related_issues": [],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 98,
+      "target_type": "killshot-rewrite",
+      "target_id": "KILLSHOT-GAIA-table-citation-fix",
+      "reason": "KILLSHOT-GAIA (part5): Fixed table header from \"Gaia observations\" to \"Observed parallax (Gaia DR3 / Hipparcos)\" noting that Sirius, Vega, Betelgeuse, Deneb values are from Hipparcos. Fixed \"Throop et al. 2020\" → \"Lauer et al. 2020\" (principal investigator correction). Verify accuracy of source attribution.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T19:44:22.238Z",
+      "context_hints": {
+        "related_issues": [],
+        "human_note": null
+      }
     }
   ],
-  "next_id": 93,
+  "next_id": 99,
   "history": [
     {
       "queue_id": 33,

@@ -2028,7 +2028,10 @@
       "notes": "No organizing principle for parts 3-5. Statistical analysis (Part 2) followed by per-WIN analysis (Part 3) followed by kill-shots (Part 5) with no connective narrative. Add a structural guide.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "completed_at": "2026-04-13T19:11:50.334Z",
-      "output_file": "monitor/analyst/expansions/EXP-116.json"
+      "output_file": "monitor/analyst/expansions/EXP-116.json",
+      "integrated": true,
+      "integrated_at": "2026-04-13T19:44:08.361Z",
+      "integration_note": "Roadmap box added to part3 opening; transition sentences added to part4 and part5 openings. Three patches applied to data/sections.json."
     },
     {
       "id": "EXP-117",
