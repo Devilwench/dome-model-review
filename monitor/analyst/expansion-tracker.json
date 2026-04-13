@@ -1919,10 +1919,14 @@
         "ISS-775"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Missing explicit error analysis. Section asserts dome fails but doesn't show the numeric chain: n(r) value → displacement angle → Gaia measurement precision → sigma count. Add to make argument airtight.",
-      "created_at": "2026-04-12T16:11:49.882Z"
+      "created_at": "2026-04-12T16:11:49.882Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T01:16:59.774Z",
+      "integration_mode": "section-insertion",
+      "integration_notes": "Inserted as Test 7 in part5 (Kill-Shot Binary Tests). Updated verdict table, intro paragraph, and conclusion. HTML length +8303 chars."
     },
     {
       "id": "EXP-118",

@@ -21,21 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 58,
-      "target_type": "section-rewrite",
-      "target_id": "part1",
-      "reason": "EXP-083 integrated — 0.20 coefficient section rewritten with coefficient change history and n=1.40 anomaly evidence. Needs fresh adversarial attack.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-12T19:07:14Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-083.json",
-        "related_issues": [
-          "ISS-750"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 61,
       "target_type": "section-rewrite",
       "target_id": "SEC-1.8-post-EXP129",
@@ -173,24 +158,26 @@
         ],
         "human_note": null
       }
+    },
+    {
+      "queue_id": 75,
+      "target_type": "killshot-new",
+      "target_id": "KILLSHOT-GAIA-v2",
+      "reason": "EXP-117 integrated as Test 7 in part5 — new Stellar Parallax / Gaia DR3 content needs fresh adversarial review after integration. Previous KILLSHOT-GAIA.json review led to EXP-117. New content now in sections.json part5. Check: (1) numeric chain; (2) refraction escape hatch; (3) adjacent-star argument; (4) WIN-017 cross-reference.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-13T01:18:00.920Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-117.json",
+        "related_issues": [
+          "ISS-775"
+        ],
+        "human_note": null,
+        "note": "KILLSHOT-GAIA review already exists (pre-integration). This v2 tag ensures curmudgeon re-reviews the integrated content."
+      }
     }
   ],
-  "next_id": 74,
+  "next_id": 76,
   "history": [
-    {
-      "queue_id": 12,
-      "target_id": "ISS-703-sha256-forensics",
-      "target_type": "research",
-      "popped_at": "2026-04-10T20:12:53.784Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 13,
-      "target_id": "part5",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-10T20:13:15.383Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 17,
       "target_id": "EXP-050",
@@ -541,6 +528,20 @@
       "target_id": "SEC-1.1-post-fix",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-13T00:12:24.920Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 58,
+      "target_id": "part1",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T01:17:27.236Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 74,
+      "target_id": "KILLSHOT-GAIA",
+      "target_type": "killshot-new",
+      "popped_at": "2026-04-13T01:17:27.236Z",
       "popped_by": "decider"
     }
   ],

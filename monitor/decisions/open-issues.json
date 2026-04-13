@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T00:14:07.655Z",
+  "last_updated": "2026-04-13T01:16:59.791Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -127,22 +127,6 @@
       "created_at": "2026-04-12T14:13:05.021Z",
       "assigned_exp": "EXP-091",
       "expansion_id": "EXP-116"
-    },
-    {
-      "id": "ISS-775",
-      "win_id": null,
-      "section_id": "KILLSHOT-GAIA",
-      "severity": "major",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "description": "KILLSHOT-GAIA cycle 1: Missing explicit error analysis. Section asserts dome fails Gaia parallax but does not compute expected dome parallax from its geometry and compare to Gaia catalog values. Also missing: why Gaia internal consistency is incompatible with flat-disc geometry (solar system parallax would be entirely wrong).",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T14:13:05.021Z",
-      "created_at": "2026-04-12T14:13:05.021Z",
-      "assigned_exp": "EXP-092",
-      "expansion_id": "EXP-117"
     },
     {
       "id": "ISS-776",

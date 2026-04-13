@@ -2604,7 +2604,7 @@ END OF REMOVED Section 4.5 -->
 
 <h1 id="part5">Part 5: Kill-Shot Binary Tests</h1>
 
-<p>The dome's kill-shot page presents six binary tests under a bold rule: "If any single test confirms, globe is falsified. If any single test fails, dome is falsified." Two are claimed as confirmed; three are pending; one (NMP drift rate) self-reports as failing by its own 39.9% error metric.</p>
+<p>The dome's kill-shot page presents six binary tests under a bold rule: "If any single test confirms, globe is falsified. If any single test fails, dome is falsified." Two are claimed as confirmed; three are pending; one (NMP drift rate) self-reports as failing by its own 39.9% error metric. We also add a seventh test — Stellar Parallax (Gaia DR3) — which the dome framework implies via WIN-017 but has never explicitly confronted against Gaia’s 1.8-billion-star catalog.</p>
 <div class="ks-summary" style="margin:1.5em 0;">
 <h2 style="margin-bottom:0.5em;">Kill-Shot Verdict Summary</h2>
 <table class="ks-verdict-table" style="width:100%;border-collapse:collapse;font-size:0.95em;">
@@ -2652,6 +2652,12 @@ END OF REMOVED Section 4.5 -->
 <td style="padding:6px 8px;"><span class="ks-status ks-claimed">PASS (39.9%)</span></td>
 <td style="padding:6px 8px;"><span class="verdict-badge" style="background:#FFCCCC;color:#B71C1C;padding:2px 8px;border-radius:3px;font-weight:600;">Refuted by Data</span></td>
 <td style="padding:6px 8px;">39.9% error on dome’s own metrics; tolerance widened post hoc</td>
+</tr>
+<tr style="border-bottom:1px solid #ddd;">
+<td style="padding:6px 8px;">7. Stellar Parallax (Gaia) <em style="font-size:0.85em;">(Our Addition)</em></td>
+<td style="padding:6px 8px;"><span class="ks-status ks-pending">Our Addition</span></td>
+<td style="padding:6px 8px;"><span class="verdict-badge" style="background:#FFCCCC;color:#B71C1C;padding:2px 8px;border-radius:3px;font-weight:600;">Refuted by Data</span></td>
+<td style="padding:6px 8px;">Dome predicts uniform 0.454 arcsec; Gaia observes 760× range across 1.8 billion stars. Rejected at 6,281σ for Proxima Centauri alone</td>
 </tr>
 </tbody>
 </table>
@@ -2748,6 +2754,47 @@ END OF REMOVED Section 4.5 -->
 
 <p><strong>Verdict:</strong> The NMP drift rate prediction (a) is currently failing at 39.9% error on the dome's own metrics, (b) exceeds the dome's own 30% falsification threshold, (c) is derived from curve-fitting to existing data rather than dome geometry, and (d) misrepresents the globe prediction as expecting no deceleration. This test currently favors falsification of the dome model on its own terms.</p>
 </div></details></div>
+<div class="ks-test"><details><summary class="ks-summary"><h2 style="display:inline;margin:0">Test 7 — Stellar Parallax (Gaia DR3) <span class="ks-status ks-pending">Our Addition</span> <span class="verdict-badge" style="background:#FFCCCC;color:#B71C1C;padding:2px 8px;border-radius:3px;font-weight:600;margin-left:8px;">Our Verdict: Refuted by Data</span></h2><p class="ks-tldr">The dome predicts every star should show the same parallax (0.454 arcsec from a 20 m firmament wobble). Gaia measured 1.8 billion stars and found parallax varies by a factor of 760 — exactly tracking distance, as heliocentric orbital geometry requires. The dome prediction is rejected at 6,281σ for Proxima Centauri alone.</p></summary><div class="ks-detail">
+
+<h3>The dome's claim</h3>
+
+<p>The dome attributes stellar parallax to a lateral wobble of the firmament (<a href="#win017" onclick="showTab('wins');return false;">WIN-017</a>). With a 20 m amplitude at firmament height H = 9,086 km, the predicted angular shift is arctan(20 / 9,086,000) ≈ 0.454 arcsec. Crucially, this value is the <strong>same for every star</strong> — the firmament is a rigid structure, so all objects attached to it shift by the same angle.</p>
+
+<h3>The numeric chain</h3>
+
+<p><strong>Step 1 — Dome prediction:</strong> 0.454 arcsec, identical for all stars.</p>
+
+<p><strong>Step 2 — Gaia observations:</strong> <a href="https://doi.org/10.1051/0004-6361/202243940" target="_blank">Gaia DR3</a> measured parallax for 1.8 billion stars. Five well-known examples:</p>
+
+<table style="width:100%;border-collapse:collapse;font-size:0.9em;margin:1em 0;">
+<thead><tr style="border-bottom:2px solid #333;"><th style="text-align:left;padding:4px 8px;">Star</th><th style="text-align:right;padding:4px 8px;">Observed (mas)</th><th style="text-align:right;padding:4px 8px;">Dome pred. (mas)</th><th style="text-align:right;padding:4px 8px;">Residual (mas)</th><th style="text-align:right;padding:4px 8px;">σ</th></tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid #ddd;"><td style="padding:4px 8px;">Proxima Centauri (4.2 ly)</td><td style="text-align:right;padding:4px 8px;">768.07 ± 0.05</td><td style="text-align:right;padding:4px 8px;">454</td><td style="text-align:right;padding:4px 8px;">+314</td><td style="text-align:right;padding:4px 8px;">6,281</td></tr>
+<tr style="border-bottom:1px solid #ddd;"><td style="padding:4px 8px;">Sirius (8.6 ly)</td><td style="text-align:right;padding:4px 8px;">379.21 ± 1.58</td><td style="text-align:right;padding:4px 8px;">454</td><td style="text-align:right;padding:4px 8px;">−75</td><td style="text-align:right;padding:4px 8px;">47</td></tr>
+<tr style="border-bottom:1px solid #ddd;"><td style="padding:4px 8px;">Vega (25 ly)</td><td style="text-align:right;padding:4px 8px;">130.23 ± 0.36</td><td style="text-align:right;padding:4px 8px;">454</td><td style="text-align:right;padding:4px 8px;">−324</td><td style="text-align:right;padding:4px 8px;">899</td></tr>
+<tr style="border-bottom:1px solid #ddd;"><td style="padding:4px 8px;">Betelgeuse (700 ly)</td><td style="text-align:right;padding:4px 8px;">4.51 ± 0.80</td><td style="text-align:right;padding:4px 8px;">454</td><td style="text-align:right;padding:4px 8px;">−449</td><td style="text-align:right;padding:4px 8px;">562</td></tr>
+<tr style="border-bottom:1px solid #ddd;"><td style="padding:4px 8px;">Deneb (2,600 ly)</td><td style="text-align:right;padding:4px 8px;">1.01 ± 0.22</td><td style="text-align:right;padding:4px 8px;">454</td><td style="text-align:right;padding:4px 8px;">−453</td><td style="text-align:right;padding:4px 8px;">2,059</td></tr>
+</tbody></table>
+
+<p>Every star in the table rejects the dome prediction. The minimum sigma is 47 (Sirius). The dome predicts all five should read ~454 mas — they range from 1 to 768 mas, a 760× variation that tracks distance exactly as heliocentric orbital parallax requires.</p>
+
+<p><strong>Step 3 — The structural failure:</strong> Under the dome, adjacent stars in the same patch of sky should show <em>identical</em> parallax (both are on the same firmament). In practice, two stars separated by less than 1° routinely show parallaxes differing by factors of 100–1,000 — a nearby foreground star at ~500 mas and a background star at ~0.5 mas. No rigid, flexible, or wobbling dome can produce per-star variation in the same direction. The 1/d pattern requires the parallactic baseline to be at the <em>observer</em> (Earth's orbit), not at the source (the firmament).</p>
+
+<h3>The aetheric refraction escape hatch</h3>
+
+<p>A dome defender might invoke the n(r) aetheric medium to bend starlight by different amounts. But refraction depends on the <em>observer's position</em> and the ray path through the medium — not on the star's distance. Two stars in the same direction follow nearly identical ray paths through n(r) and would be refracted by nearly identical amounts. Refraction cannot produce the star-by-star parallax variation that Gaia observes. Furthermore, at the equator n(r) = 1.44 (<a href="#section-1-8" onclick="showTab('model');return false;">Section 1.8</a>), making the dome's medium ~1,500× more refractive than Earth's atmosphere. The resulting angular displacements (~25° at mid-elevation) would be ~9 billion times Gaia's measurement precision of 10 microarcseconds. See <a href="#win016" onclick="showTab('wins');return false;">WIN-016</a> for the chromaticity argument: any real refractive medium is dispersive, producing wavelength-dependent displacements that Gaia's multi-band astrometry does not observe.</p>
+
+<h3>Independent confirmation: New Horizons</h3>
+
+<p>In April 2020, NASA's New Horizons spacecraft — 7 billion km from Earth — photographed Proxima Centauri and Wolf 359. The parallax shifts (32.4 and 15.7 arcsec respectively) were visible to the naked eye in before/after images and scaled precisely with each star's distance (<a href="https://www.nasa.gov/solar-system/nasas-new-horizons-conducts-the-first-interstellar-parallax-experiment/" target="_blank">Throop et al. 2020</a>). Under the dome model, New Horizons is ~770,000× further than the firmament height — it is above the dome, observing stars that supposedly sit on the dome's surface. This measurement is physically impossible in the dome framework.</p>
+
+<h3>The kernel of truth</h3>
+
+<p>Stellar parallax is genuinely tiny — the largest is 0.768 arcsec (1/4,700°). It was below detection threshold until 1838 (Bessel, 61 Cygni). The historical difficulty of measuring stellar parallax was a legitimate argument against heliocentrism for centuries. The dome's 20 m wobble → 0.454 arcsec lands plausibly near the observed range for <em>nearby</em> stars — making the claim sound reasonable to non-experts. But Gaia's 1.8-billion-star catalog, at microarcsecond precision, has resolved the question decisively: parallax is distance-dependent, exactly as orbital geometry requires.</p>
+
+<p><strong>Verdict:</strong> The dome predicts identical parallax for all stars. Gaia measures distance-dependent parallax across 1.8 billion stars, confirmed independently by spacecraft-based measurements from beyond any hypothetical dome. The dome's firmament wobble mechanism is rejected at thousands of sigma. This is not a marginal failure — it is the single most statistically devastating test in the entire review.</p>
+
+</div></details></div>
 <div class="ks-test" style="margin-top:2em;padding:1em;border-top:2px solid #333;">
 <h2>Summary: The Dome's Own Rule Applied to the Dome's Own Data</h2>
 <p>The dome's binary rule states: "If any single test fails, dome is falsified." Test 6 (NMP drift rate) currently shows 39.9% error on the dome's own dashboard — surviving only because the falsification threshold was widened to 50% after predictions missed. Of the six tests:</p>
@@ -2755,6 +2802,7 @@ END OF REMOVED Section 4.5 -->
 <li><strong>Two "confirmations"</strong> are calibration artifacts (Sydney–Perth: calibrated to a known railway distance) or within measurement noise (Polaris: claimed excess smaller than the star's own polar offset).</li>
 <li><strong>Three pending tests</strong> are non-discriminating — standard physics predicts the same outcomes from the same input data (JFK–LHR: jet stream; SAA: IGRF extrapolation; Eclipse: Chapman mechanism).</li>
 <li><strong>One test is failing</strong> by nearly 40% — passing only via a widened tolerance and a three-year consecutive requirement that allows single-year escapes.</li>
+<li><strong>One test we add</strong> (Stellar Parallax/Gaia DR3) rejects the dome prediction at 6,281σ — the most statistically devastating single test in this review.</li>
 </ul>
 <p>A framework that promises falsifiability but widens its own thresholds to avoid triggering it is not genuinely falsifiable. By any honest application of the dome's own binary rule, the kill-shot framework currently favors dome falsification, not globe falsification.</p>
 </div>
