@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T04:18:49.329Z",
+  "last_updated": "2026-04-13T18:37:56.307Z",
   "processed": [
     "WIN-033.json",
     "WIN-052.json",
@@ -228,7 +228,10 @@
     "SEC-5-post-EXP082.c3.json",
     "SEC-1.1-post-fix.c2.json",
     "SEC-killshots-rating-key.c1.json",
-    "part1-coeff-EXP083.c3.json"
+    "part1-coeff-EXP083.c3.json",
+    "PRED-batch-EXP-085-2026-04-12.json",
+    "SEC-2b.7-post-EXP137.c3.json",
+    "SEC-6.1-post-EXP086.c3.json"
   ],
   "section_reviews_processed": [
     "SEC-3.1.json",

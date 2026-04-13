@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T18:14:20.207Z",
+  "last_updated": "2026-04-13T18:40:13.935Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -476,32 +476,6 @@
       "found_at": "2026-04-13T03:42:38.209Z",
       "created_at": "2026-04-13T03:42:38.209Z",
       "expansion_id": "EXP-149"
-    },
-    {
-      "id": "ISS-888",
-      "win_id": null,
-      "section_id": "SEC-2b.7",
-      "severity": "minor",
-      "category": "citation",
-      "status": "open",
-      "description": "SEC-2b.7 verbatim quote from dome wins.html: \"Instrument noise floor prevents measurement. Prediction remains structurally valid. Hardware limitation, not model failure.\" Raw-text snapshots have shorter formulations (02-wins.txt: \"W001 — Noise Floor Limit (instrument limitation, not model failure)\"\"5-model.txt). The full verbatim quote should include a citation noting where/when it was captured, or be paraphrased from raw-text.",
-      "found_by": "curmudgeon-cycle3",
-      "source_review": "monitor/curmudgeon/reviews/SEC-2b.7-post-EXP137.c3.json",
-      "found_at": "2026-04-13T18:12:45.725Z",
-      "created_at": "2026-04-13T18:12:45.725Z"
-    },
-    {
-      "id": "ISS-889",
-      "win_id": null,
-      "section_id": "SEC-6.1",
-      "severity": "minor",
-      "category": "missing_argument",
-      "status": "open",
-      "description": "SEC-6.1 WIN-013 argument could be sharper: misses a third possibility a defender would raise (gravity measurements are geometry-independent). Counter should be: \"reproducing an existing formula under a different label adds no predictive content.\" See SEC-6.1-post-EXP086.c3.json stronger_arguments.",
-      "found_by": "curmudgeon-cycle3",
-      "source_review": "monitor/curmudgeon/reviews/SEC-6.1-post-EXP086.c3.json",
-      "found_at": "2026-04-13T18:12:54.879Z",
-      "created_at": "2026-04-13T18:12:54.879Z"
     }
   ],
   "next_id": 890
