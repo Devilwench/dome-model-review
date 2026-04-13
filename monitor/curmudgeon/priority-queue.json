@@ -21,38 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 75,
-      "target_type": "killshot-new",
-      "target_id": "KILLSHOT-GAIA-v2",
-      "reason": "EXP-117 integrated as Test 7 in part5 — new Stellar Parallax / Gaia DR3 content needs fresh adversarial review after integration. Previous KILLSHOT-GAIA.json review led to EXP-117. New content now in sections.json part5. Check: (1) numeric chain; (2) refraction escape hatch; (3) adjacent-star argument; (4) WIN-017 cross-reference.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T01:18:00.920Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-117.json",
-        "related_issues": [
-          "ISS-775"
-        ],
-        "human_note": null,
-        "note": "KILLSHOT-GAIA review already exists (pre-integration). This v2 tag ensures curmudgeon re-reviews the integrated content."
-      }
-    },
-    {
-      "queue_id": 76,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-2b.1-post-EXP089",
-      "reason": "EXP-089 integrated: SEC-2b.1 paragraph restructured to lead with unmonitored (58.6%) finding. ISS-830 also fixed (Twelve → {{TALLY_MISLEADING}}). Curmudgeon should verify new ordering is accurate and compelling.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T01:40:22.059Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-089.json",
-        "related_issues": [
-          "ISS-769",
-          "ISS-830"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 77,
       "target_type": "prediction-batch",
       "target_id": "PRED-batch-updates-2026-04-13",
@@ -349,31 +317,6 @@
   ],
   "next_id": 99,
   "history": [
-    {
-      "queue_id": 33,
-      "target_id": "SEC-6.8",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-12T10:15:35.703Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 28,
-      "target_type": "section-new",
-      "target_id": "SEC-6.11",
-      "reason": "EXP-073 integrated — Section 6.11 (Prospective Bucket analysis) added to Part 6. New content needs adversarial review.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-11T13:08:33.062Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-073.json",
-        "related_issues": [
-          "ISS-677"
-        ],
-        "human_note": null
-      },
-      "popped_at": "2026-04-12T10:16:13.434Z",
-      "popped_by": "decider-dedup",
-      "note": "Removed: section already reviewed in cycle 2 before this queue item could be processed. Replaced by section-rewrite item 34 post-patch."
-    },
     {
       "queue_id": 31,
       "target_id": "EXP-050-r2",
@@ -711,6 +654,20 @@
       "target_id": "SEC-6.7",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-13T19:10:52.505Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 75,
+      "target_id": "KILLSHOT-GAIA-v2",
+      "target_type": "killshot-new",
+      "popped_at": "2026-04-13T19:48:05.610Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 76,
+      "target_id": "SEC-2b.1-post-EXP089",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-13T19:48:05.610Z",
       "popped_by": "decider"
     }
   ],
