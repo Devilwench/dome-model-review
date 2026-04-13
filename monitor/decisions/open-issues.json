@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T19:44:30.536Z",
+  "last_updated": "2026-04-13T20:11:52.746Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -112,41 +112,6 @@
       "found_at": "2026-04-12T16:10:25.013Z",
       "created_at": "2026-04-12T16:10:25.013Z",
       "expansion_id": "EXP-123"
-    },
-    {
-      "id": "ISS-813",
-      "found_date": "2026-04-12",
-      "win_id": null,
-      "section_id": "SEC-4.8",
-      "severity": "major",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "description": "SEC-4.8 (KILLSHOT-GPS.json c1 + SEC-4.8.json c1) BATCH: (1) Self-contradictory numbers: section says sun appears ~50% larger at noon but also says variation is ~±1.7% (matching observations) — these cannot both be true for the same claim; (2) Aetheric refraction defense never addressed in Section 4.8 despite being the dome's standard escape hatch; (3) Heavy redundancy with Section 4.5.4 (Solar Diameter: 50% Variation) — sections are near-duplicate and should be merged or clearly differentiated. Needs major rewrite. Source: SEC-4.8.json cycle 1.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-4.8.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T16:42:32.083Z",
-      "created_at": "2026-04-12T16:42:32.083Z",
-      "assigned_to": "analyst",
-      "assigned_at": "2026-04-12T16:43:53.898Z",
-      "expansion_id": "EXP-124"
-    },
-    {
-      "id": "ISS-814",
-      "found_date": "2026-04-12",
-      "win_id": "WIN-002",
-      "section_id": null,
-      "severity": "major",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "description": "WIN-002.c2: The dome model explicitly addresses the WIN-002/WIN-029 tension in its evolution text (06-evolution.txt). WIN-002 claims 26% aetheric damping matches Schumann resonance. WIN-029 uses a different resonant cavity size. The dome's own evolution log explains this 'reconciliation' via the H(r) curve. Our review does not engage with this dome explanation — a defender who cites the evolution text can claim we ignored the dome's own documented reconciliation. Source: WIN-002.c2.json.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/WIN-002.c2.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T16:42:32.083Z",
-      "created_at": "2026-04-12T16:42:32.083Z",
-      "assigned_at": "2026-04-12T16:44:18.963Z",
-      "expansion_id": "EXP-125"
     },
     {
       "id": "ISS-815",
@@ -333,24 +298,6 @@
       "assigned_to": "EXP-153"
     },
     {
-      "id": "ISS-835",
-      "win_id": null,
-      "severity": "major",
-      "section": "part3",
-      "section_key": "SEC-3.5.1",
-      "category": "factual_error",
-      "status": "assigned-analyst",
-      "title": "SEC-3.5.1: B(r) formula uses single-variable r instead of r_N/r_S; κ coupling constant attributed to wrong storms",
-      "description": "Two major errors in Section 3.5.1: (1) B(r) formula written as 62,376×e^(−r/8619) + 64,852×e^(−r/8619) using single variable r for both terms, then incorrectly claims this simplifies to 127,228. The correct formula uses r_N and r_S (distance from North/South pole respectively) — these are not the same and do not sum to 127,228. (2) κ coupling constant 10.9 nT attributed to \"2003 Halloween storm\" but dome WIN-012 explicitly states this comes from BOU 2017 solar eclipse (10.9 nT) and 1997 Mohe eclipse (6.5 μGal) — different events, different physics. Both are factual errors requiring prose rewrite.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-3.5.1.c1.json",
-      "suggested_fix": "Analyst Mode 1: (a) Fix B(r) formula to use r_N and r_S, remove incorrect simplification claim, make correct argument about shared decay constants. (b) Fix κ attribution from Halloween storm to BOU 2017 + Mohe 1997 eclipses per WIN-012. Cross-check with sections 3.5.8 which already uses correct dual-variable formula.",
-      "found_by": "decider",
-      "found_at": "2026-04-12T19:09:01Z",
-      "created_at": "2026-04-12T19:09:01Z",
-      "assigned_exp": "EXP-128"
-    },
-    {
       "id": "ISS-838",
       "win_id": null,
       "section_id": "SEC-4.5.2",
@@ -399,34 +346,6 @@
       "found_by": "curmudgeon-c1-SEC-1.3",
       "found_at": "2026-04-12T23:43:17.745Z",
       "expansion_id": "EXP-142"
-    },
-    {
-      "id": "ISS-855",
-      "win_id": null,
-      "section_id": "EXP-127-pending",
-      "severity": "major",
-      "category": "factual_error",
-      "status": "assigned-analyst",
-      "description": "EXP-127 differential refraction content (pending re-integration): wrong n(r) values. Claims equatorial ring (r≈14,105km) n=1.40 and ice wall n=3.49. Correct values: equator (r≈10,008km) n=1.44, ice wall (r=20,015km) n=2.84. r=14,105km is the reflection parameter, not the equator. Must fix before re-integrating EXP-127 content as separate section.",
-      "source": "curmudgeon",
-      "found_by": "curmudgeon-c1-SEC-1.8.1-EXP127",
-      "found_at": "2026-04-12T23:43:17.745Z",
-      "assigned_exp": "EXP-144",
-      "assigned_at": "2026-04-13T00:14:07.655Z"
-    },
-    {
-      "id": "ISS-856",
-      "win_id": null,
-      "section_id": "EXP-127-pending",
-      "severity": "major",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "description": "EXP-127 content frames moon altitude argument as dome ADMISSION (via fabricated OPEN-007) rather than logical DEDUCTION from first principles. Must reframe: IF n(r) distorts sun apparent altitude, THEN Snell's law (which does not distinguish targets) also distorts moonlight, making physical moon altitude undetermined. Add preemptive counter to dome defense that refraction fix is scoped to sun only: the medium does not ask which object is the source.",
-      "source": "curmudgeon",
-      "found_by": "curmudgeon-c1-SEC-1.8.1-EXP127",
-      "found_at": "2026-04-12T23:43:17.745Z",
-      "assigned_exp": "EXP-144",
-      "assigned_at": "2026-04-13T00:14:07.655Z"
     },
     {
       "id": "ISS-867",
@@ -577,7 +496,21 @@
       "description": "PRED-093 (Schumann resonance drops >30% during G3+ magnetic storm): deadline April 8-9, 2026 EXPIRED per poller. A G3+ magnetic storm occurred around April 8-9, 2026 — dome site records no outcome for PRED-093. Current our_verdict is \"pending\" which should be updated. Poller: dome site has not recorded any result (no WIN count change, no accuracy shift). Decider should investigate whether the G3+ storm occurred and whether SR data shows the predicted suppression, then update our_verdict in predictions.json.",
       "source_review": "monitor/changes/latest-poll-summary.txt",
       "section": "part6"
+    },
+    {
+      "id": "ISS-899",
+      "win_id": null,
+      "section_id": "eval-guide-eg-verdicts",
+      "severity": "moderate",
+      "category": "content-update",
+      "status": "assigned-analyst",
+      "description": "eval-guide eg-verdicts: \"actively mishandle\" language implies intent. The Misleading/Std Model Explains boundary question is \"does the dome actively mishandle the evidence\" — but this implies deliberate intent, opening a \"honest mistakes aren't Misleading\" defense. Change to \"has the evidence been mishandled in the dome's presentation\" — structural, not intent-based.",
+      "found_by": "curmudgeon",
+      "found_at": "2026-04-13T20:11:52.746Z",
+      "source_review": "monitor/curmudgeon/reviews/eval-guide-eg-verdicts.c1.json",
+      "recommendation": "Change \"does the dome actively mishandle the evidence\" to \"has the evidence been mishandled in the dome's presentation\" — classify argument quality, not arguer intent. Content is in generate-html.js eg-verdicts section.",
+      "note": "Content is in generate-html.js (not sections.json) — analyst should update via template change"
     }
   ],
-  "next_id": 899
+  "next_id": 900
 }

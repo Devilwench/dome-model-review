@@ -2194,9 +2194,14 @@
         "ISS-835"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Fix 1: B(r) formula uses r instead of r_N/r_S; remove incorrect 127,228 simplification. Fix 2: κ=10.9nT attributed to Halloween storm — correct to BOU 2017 eclipse per WIN-012. Cross-check with SEC-3.5.8 which has correct dual-variable formula.",
-      "created_at": "2026-04-12T19:09:01Z"
+      "created_at": "2026-04-12T19:09:01Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T20:11:52.746Z",
+      "integration_mode": "no_op_confirmation",
+      "no_op": true,
+      "no_op_reason": "Target SEC-6.1 (B(r) formula) was already patched directly by decider. Content verified in part6 HTML."
     },
     {
       "id": "EXP-129",
@@ -2351,9 +2356,14 @@
       ],
       "category": "expansion",
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Two major errors: B(r) formula uses single variable instead of two, and κ coupling attribution incorrect.",
-      "created_at": "2026-04-12T19:48:10.478Z"
+      "created_at": "2026-04-12T19:48:10.478Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T20:11:52.746Z",
+      "integration_mode": "no_op_confirmation",
+      "no_op": true,
+      "no_op_reason": "Target SEC-6.1 (B(r) formula) was already patched directly by decider. Content verified in part6 HTML."
     },
     {
       "id": "EXP-140",
@@ -2408,9 +2418,14 @@
       "issue_ids": [],
       "priority": "high",
       "category": "defense",
-      "status": "pending",
+      "status": "complete",
       "notes": "Advocate defense (defense_survives=3): dome can argue refraction fix is scoped only to the sun (moon is below firmament at r~10,000km, H~2,673km, so no refraction fix needed for moon). Counter: n(r) is a property of the medium, not the object. Snell's law bends all light regardless of source. Even if dome did not APPLY a correction to the moon, the medium still bends moonlight. Must add explicit preemptive counter to Section 1.5 or the future eclipse section: address (1) n(r) is a medium property; (2) angular dependence absence — n(r) is a scalar function of r with no elevation-angle dependence; (3) empirical eclipse success argument does not validate a framework with undetermined moon physics.",
-      "created_at": "2026-04-12T23:43:45.442Z"
+      "created_at": "2026-04-12T23:43:45.442Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T20:11:52.746Z",
+      "integration_mode": "superseded_by_EXP-144",
+      "no_op": true,
+      "no_op_reason": "Defense neutralization for n(r) scope argument is covered by EXP-144 (Section 1.9), which explicitly addresses the refraction-scoped-to-sun defense with the Snell universality argument."
     },
     {
       "id": "EXP-144",
@@ -2422,9 +2437,12 @@
         "ISS-856"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Per human note HNOTE-REFRACT-RESTRUCTURE-001, eclipse differential refraction becomes a SEPARATE section (not under 1.8). Two issues with pending EXP-127 content before re-integration: (1) ISS-855: Wrong n(r) values — fix equatorial ring label (r=14,105km is reflection param, not equator; equator=r~10,008km, n=1.44; ice wall n=2.84, not 3.49). (2) ISS-856: Reframe moon altitude argument from dome ADMISSION (via now-removed OPEN-007 citation) to logical DEDUCTION from first principles: IF n(r) distorts apparent altitude of any object, THEN moonlight traversing the same medium is also refracted (Snell does not distinguish targets). Add preemptive counter to dome defense that refraction fix is scoped to sun only. Best version: physical shadow blocking requires physical positions, not apparent positions — even if dome argues moon does not need an optical correction, physical shadow geometry is still contaminated by medium.",
-      "created_at": "2026-04-13T00:14:07.655Z"
+      "created_at": "2026-04-13T00:14:07.655Z",
+      "integrated": true,
+      "integrated_at": "2026-04-13T20:11:52.746Z",
+      "integration_mode": "insert_after_section_1_8"
     },
     {
       "id": "EXP-145",
