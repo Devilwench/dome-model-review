@@ -177,3 +177,13 @@ All prose sections are wrapped in `<details>`/`<summary>` with 2–3 sentence TL
 - **ALWAYS validate any JSON file you write.** After `writeFileSync` on ANY output file in `monitor/analyst/expansions/`, `monitor/analyst/new-wins/`, `monitor/analyst/expansion-tracker.json`, or any other JSON target, immediately run `node -e "JSON.parse(require('fs').readFileSync('<path>','utf8'));console.log('valid')"` and fix any errors before continuing. **Prefer building objects in a `node -e` script and letting `JSON.stringify(obj, null, 2)` serialize them** — this eliminates entire classes of hand-writing errors (missing braces, trailing commas, unescaped quotes in string values). Invalid JSON from analyst crashes the decider and blocks the entire integration pipeline. EXP-051 shipped with a missing `}` after a nested objection/response object and wedged the pipeline — do not repeat this.
 - **Read `monitor/review-state.json` and check canary traps EVERY RUN.**
 - **Read `monitor/prompts/reference/analyst-infrastructure.md`** for dome monitoring script details (monitor.py, pull_data.py).
+
+## Cleanup (mandatory, run last)
+
+Before exiting, delete your clone directory to reclaim disk space. At churn-and-burn frequency these accumulate fast and can fill the disk.
+
+```bash
+rm -rf "${CLEAN_CLONE}"
+```
+
+**Only delete your own clone (`dome-review-clean`).** Never touch `dome-curmudgeon-clone` or `dome-sync-clone`.

@@ -228,3 +228,13 @@ mv /path/to/suggested-patches-YYYY-MM-DDTHH-MM.json monitor/decisions/applied-pa
 
 **Important:** Because you clone fresh each run, you always have the latest code. If `git push` is rejected, someone pushed while you were working — do ONE `git pull --rebase origin main` and retry. If that also fails, stop and leave for human.
 
+## Cleanup (mandatory, run last)
+
+Before exiting, delete your clone directory to reclaim disk space. At churn-and-burn frequency these accumulate fast and can fill the disk.
+
+```bash
+rm -rf "${CLONE}"
+```
+
+**Only delete your own clone (`dome-review-clean`).** Never touch `dome-curmudgeon-clone` or `dome-sync-clone`.
+

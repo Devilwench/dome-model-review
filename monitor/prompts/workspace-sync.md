@@ -280,10 +280,10 @@ Output a one-line summary: how many files were new, how many modified, or "Nothi
 
 ## Cleanup (mandatory, run last)
 
-Run git garbage collection to keep the clone lean. At 4h intervals this prevents slow growth from accumulating pack files.
+Delete your clone directory to reclaim disk space. Each session creates a fresh clone, and without cleanup these accumulate and fill the disk.
 
 ```bash
-cd "$CLONE" && git gc --auto --quiet 2>/dev/null
+rm -rf "${CLONE}"
 ```
 
-**Only touch `dome-sync-clone`.** Never delete or modify `dome-review-clean` (analyst/decider) or `dome-curmudgeon-clone` (curmudgeon).
+**Only delete `dome-sync-clone`.** Never touch `dome-review-clean` (analyst/decider) or `dome-curmudgeon-clone` (curmudgeon).

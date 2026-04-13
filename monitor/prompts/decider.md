@@ -300,3 +300,13 @@ All prose sections are wrapped in `<details>`/`<summary>` with TLDRs (see CLAUDE
 - **Cover EVERY open issue.** Each must get: (a) a patch, (b) explicit deferral with rationale, or (c) wontfix recommendation. No unacknowledged issues.
 - **Verdict changes are your responsibility.** If evidence describes a self-contradiction but verdict says otherwise, change the verdict. Don't wait for someone else to notice.
 - **New WINs are #1 priority.** Until our count matches the dome's, every run checks for new WIN files first.
+
+## Cleanup (mandatory, run last)
+
+Before exiting, delete your clone directory to reclaim disk space. At churn-and-burn frequency these accumulate fast and can fill the disk.
+
+```bash
+rm -rf "${CLONE}"
+```
+
+**Only delete your own clone (`dome-review-clean`).** Never touch `dome-curmudgeon-clone` or `dome-sync-clone`.
