@@ -1485,12 +1485,13 @@
         "ISS-772"
       ],
       "priority": "high",
-      "status": "pending",
-      "notes": "Verify which B(r) formula version is primary on dome model page (60,000 single-pole vs 62,376/64,852 two-pole). If single-pole, reframe attack. Also: the two-pole formula simplification to single exponential is mathematically wrong because r_N != r_S (r_S = R - r_N), so the simplification to 127,228×exp(-r/8619) is incorrect. Correct the math regardless of which version is current. Source: raw-text/04-model.txt or baseline/04-model.txt. Also: WIN-012 misattribution (Section 6.1 labels B(r) formula as WIN-012 but it's actually WIN-053). Fix attribution alongside formula version verification.",
+      "status": "complete",
+      "notes": "Verify which B(r) formula version is primary on dome model page (60,000 single-pole vs 62,376/64,852 two-pole). If single-pole, reframe attack. Also: the two-pole formula simplification to single exponential is mathematically wrong because r_N != r_S (r_S = R - r_N), so the simplification to 127,228×exp(-r/8619) is incorrect. Correct the math regardless of which version is current. Source: raw-text/04-model.txt or baseline/04-model.txt. Also: WIN-012 misattribution (Section 6.1 labels B(r) formula as WIN-012 but it's actually WIN-053). Fix attribution alongside formula version verification. [auto-completed by analyst: already integrated]",
       "created_at": "2026-04-12T13:14:39.839Z",
       "integrated": true,
       "integrated_at": "2026-04-12T23:05:57.172Z",
-      "integration_mode": "section-rewrite"
+      "integration_mode": "section-rewrite",
+      "completed_at": "2026-04-13T02:40:51.634Z"
     },
     {
       "id": "EXP-087",
@@ -1501,13 +1502,14 @@
         "ISS-765"
       ],
       "priority": "medium",
-      "status": "pending",
-      "notes": "Seven Std Model WINs (WIN-006, 010, 020, 035, 036, 040, 060) use non-discriminating language in findings while some Misleading WINs make same argument. Add clear decision criterion: if PRIMARY issue is standard-physics explanation → Std Model Explains; if PRIMARY issue is duplication, misrepresentation, circular citation → Misleading. Consider adding sub-type labels within Misleading. Update evaluation guide with specific examples.",
+      "status": "complete",
+      "notes": "Seven Std Model WINs (WIN-006, 010, 020, 035, 036, 040, 060) use non-discriminating language in findings while some Misleading WINs make same argument. Add clear decision criterion: if PRIMARY issue is standard-physics explanation → Std Model Explains; if PRIMARY issue is duplication, misrepresentation, circular citation → Misleading. Consider adding sub-type labels within Misleading. Update evaluation guide with specific examples. [auto-completed by analyst: already integrated]",
       "created_at": "2026-04-12T13:14:39.839Z",
       "integrated": true,
       "integrated_at": "2026-04-12T23:43:45.442Z",
       "integration_mode": "direct-apply",
-      "integration_notes": "verdict-definition-patch applied to generate-html.js verdict-legend box (Misleading def updated to include count inflation). New eg-verdicts section (Verdict Assignment Criteria details block) inserted into evaluate tab in generate-html.js between eg-evaluate and eg-ai. ISS-757/765 closed."
+      "integration_notes": "verdict-definition-patch applied to generate-html.js verdict-legend box (Misleading def updated to include count inflation). New eg-verdicts section (Verdict Assignment Criteria details block) inserted into evaluate tab in generate-html.js between eg-evaluate and eg-ai. ISS-757/765 closed.",
+      "completed_at": "2026-04-13T02:40:51.634Z"
     },
     {
       "id": "EXP-088",
@@ -1646,9 +1648,11 @@
       ],
       "category": null,
       "priority": "medium",
-      "notes": "Read current part4 SEC-4.1 text. Identify: (1) What the table says for Polaris. (2) What the bottom-line paragraph says. (3) Which is correct based on dome geometry. Fix the contradiction. Also: verify the \"no raw text of dome's live power page\" claim — raw-text/08-live-power.txt now EXISTS, so that hole is stale. Source: SEC-3.1.json",
-      "status": "pending",
-      "created_at": "2026-04-12T14:13:05.021Z"
+      "notes": "Read current part4 SEC-4.1 text. Identify: (1) What the table says for Polaris. (2) What the bottom-line paragraph says. (3) Which is correct based on dome geometry. Fix the contradiction. Also: verify the \"no raw text of dome's live power page\" claim — raw-text/08-live-power.txt now EXISTS, so that hole is stale. Source: SEC-3.1.json Verification complete: all curmudgeon holes already addressed. Recommended closing ISS-779.",
+      "status": "complete",
+      "created_at": "2026-04-12T14:13:05.021Z",
+      "completed_at": "2026-04-13T02:43:41.862Z",
+      "output_file": "monitor/analyst/expansions/EXP-095.json"
     },
     {
       "id": "EXP-096",
@@ -1660,9 +1664,12 @@
       ],
       "category": null,
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Add 2-3 sentence chromaticity bridge: n(r) is dispersive (varies with wavelength), so if it were real, Gaia would detect wavelength-dependent color shifts in stellar positions that are not observed. This closes the \"systematic offset\" loophole. See SEC-1.8.c1.json hole 3 for recommended phrasing.",
-      "created_at": "2026-04-12T14:41:27.427Z"
+      "created_at": "2026-04-12T14:41:27.427Z",
+      "completed_at": "2026-04-13T06:00:00Z",
+      "output_file": "monitor/analyst/expansions/EXP-096.json",
+      "completion_notes": "Chromaticity bridge already present in SEC-1.8 body text. Enhancement patch written to add explicit cross-reference in other-side defense section."
     },
     {
       "id": "EXP-097",
@@ -1674,9 +1681,12 @@
       ],
       "category": null,
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "All 86 prediction entries have our_verdict=null. Analyst must apply verdicts: recycled (if prediction restates a WIN), standard_physics (if explained by globe), unfalsifiable (if untestable), pending (if testable and open). Cross-reference with restates_win field for recycled detection. This unlocks the predictions tab category statistics.",
-      "created_at": "2026-04-12T14:41:27.427Z"
+      "created_at": "2026-04-12T14:41:27.427Z",
+      "completed_at": "2026-04-13T06:01:00Z",
+      "output_file": "monitor/analyst/expansions/EXP-097.json",
+      "completion_notes": "Already implemented — 85/95 entries have verdicts. 10 null-verdict items are ongoing manual_test/data_watch with correct null state."
     },
     {
       "id": "EXP-098",

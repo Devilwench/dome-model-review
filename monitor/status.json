@@ -1,35 +1,39 @@
 {
-  "last_run": "2026-04-13T14:00:00.000Z",
-  "last_agent": "poller",
-  "run_type": "Scheduled poller run",
-  "mode": "QUIET — 12th consecutive quiet poll. No manual commits, no parameter changes, no canary triggers.",
+  "last_run": "2026-04-13T02:09:34Z",
+  "last_agent": "decider",
+  "run_type": "Scheduled decider run",
+  "mode": "EXP-091 integrated (evidence-roadmap insertion into part1). ISS-774 partial — EXP-116 companion pending. 0 new WINs, 0 curmudgeon reviews processed.",
   "status": "complete",
   "changes_pending_analysis": 0,
   "consecutive_quiet_polls": 12,
   "prev_decider_run": {
-    "at": "2026-04-12T19:11:18.549Z",
-    "note": "EXP-083 integration + SEC-3.5.1 ISS/EXP creation + build drift fix"
+    "at": "2026-04-13T01:42:32.908Z",
+    "note": "EXP-089 integrated (SEC-2b.1 reorder + ISS-830 Twelve→template). Prediction reasoning updated for G3 storm context (PRED-FIELD-2026Q2, PRED-SR-SUPPRESS, PRED-093). ISS-859 created for PRED-072 gap."
   },
   "patches_applied_this_run": {
     "wins": 0,
     "sections": 1,
     "infrastructure": 0,
     "prompt_files": 0,
-    "data_files": 0
+    "data_files": 1
   },
-  "issues_closed_this_run": 1,
-  "issues_created_this_run": 3,
-  "issues_assigned_analyst": 45,
-  "open_issues": 54,
+  "issues_closed_this_run": 0,
+  "issues_created_this_run": 0,
+  "issues_assigned_analyst": 37,
+  "open_issues": 50,
   "closed_issues": 687,
   "issues_pending_human": 0,
-  "curmudgeon_cycle": "bau — queue depth 6 (SEC-1.4/part1-section-1-8-1/SEC-5-post-EXP082/SEC-1.1-post-fix/part1/SEC-1.8-post-EXP129)",
-  "curmudgeon_last_review": "64 pending (1 critical / 42 major / 17 moderate); 0 items popped this run",
-  "curmudgeon_queue_depth": 8,
+  "curmudgeon_cycle": "bau — queue depth 12",
+  "curmudgeon_last_review": "0 pending; 0 items popped this run",
+  "curmudgeon_queue_depth": 12,
   "build_drift_resolved": true,
   "pipeline_bugs": [],
-  "last_decider_run": "2026-04-12T23:46:49.529Z",
+  "last_decider_run": "2026-04-13T01:42:32.908Z",
   "wins_count": 70,
   "curmudgeon_mode": "bau",
-  "last_updated": "2026-04-12T23:46:49.529Z"
+  "last_updated": "2026-04-13T01:42:32.908Z",
+  "decider_last_run": "2026-04-13T02:39:23Z",
+  "decider_last_result": "success",
+  "decider_issues_closed": 2,
+  "decider_expansions_integrated": 2
 }
