@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T21:11:44.922Z",
+  "last_updated": "2026-04-13T21:43:58Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -44,23 +44,6 @@
       "found_at": "2026-04-12T16:10:25.013Z",
       "created_at": "2026-04-12T16:10:25.013Z",
       "expansion_id": "EXP-105"
-    },
-    {
-      "id": "ISS-806",
-      "found_date": "2026-04-12",
-      "win_id": null,
-      "section_id": "SEC-4.5.3",
-      "severity": "major",
-      "category": "factual_error",
-      "status": "assigned-analyst",
-      "title": "SEC-4.5.3: HTML/DOCX section numbering mismatch + HTML lacks key quantitative content",
-      "description": "SEC-4.5.3 (SEC-4.5.3.json): (1) HTML section 4.5.3 is 'Gravity at the Rim: 90% Drop' but DOCX section 4.5.3 is 'Solar Angular Diameter: 29x Too Much Variation' — same number, different content. Sections are misaligned between HTML and DOCX. (2) HTML section 4.5.3 lacks the H(r) quantitative calculation that the DOCX version includes (H(pole)=8537km, H(rim)=837km, 152x ratio). Source: SEC-4.5.3.json.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-4.5.3.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T16:10:25.013Z",
-      "created_at": "2026-04-12T16:10:25.013Z",
-      "expansion_id": "EXP-121"
     },
     {
       "id": "ISS-808",
@@ -311,22 +294,6 @@
       "expansion_id": "EXP-149"
     },
     {
-      "id": "ISS-890",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "missing_argument",
-      "status": "open",
-      "source": "curmudgeon",
-      "found_by": "decider",
-      "found_at": "2026-04-13T19:43:29.090Z",
-      "created_at": "2026-04-13T19:43:29.090Z",
-      "fix_details": null,
-      "fix_date": null,
-      "description": "SEC-overview (eg-falsifiability): Eclipse pre-commitment discrimination window is extremely narrow (~1 nT). The dome predicts -17 to -21 nT; Chapman predicts 5-20 nT. The discriminating sliver is only 20-21 nT. Curmudgeon (SEC-overview-scorecard.c3, 2026-04-13): \"A dome defender will argue this is a rigged test.\" Recommendation: add explicit acknowledgment that the overlap exists because the dome derived its values FROM Chapman data, turning the narrowness from weakness into evidence of non-independence.",
-      "source_review": "monitor/curmudgeon/reviews/SEC-overview-scorecard.c3.json",
-      "section": "eg-falsifiability"
-    },
-    {
       "id": "ISS-891",
       "win_id": null,
       "severity": "moderate",
@@ -570,51 +537,6 @@
       "found_by": "decider",
       "found_at": "2026-04-13T20:42:29.310Z",
       "created_at": "2026-04-13T20:42:29.310Z"
-    },
-    {
-      "id": "ISS-907",
-      "win_id": null,
-      "section_id": "eg-falsifiability",
-      "severity": "major",
-      "category": "factual_error",
-      "status": "open",
-      "title": "eg-falsifiability Condition 1: claims 4 WINs attempt dome derivation but data shows only 2",
-      "description": "The falsifiability section (eg-falsifiability Condition 1) claims \"only 4 of N claims even attempt a dome-geometry derivation (WIN-020, WIN-044, WIN-057, WIN-058).\" However, wins.json code_analysis tags show derives_from_dome=true for only WIN-044 and WIN-057. WIN-020 (Lunar 18.6-yr cycle) and WIN-058 (Unified angular coordinate) are tagged derives_from_dome=false. The prose says 4 but the data says 2. A dome defender who checks our data files will find this inconsistency and use it to undermine the falsifiability framework. Fix: either (a) update WIN-020 and WIN-058 code_analysis.derives_from_dome tags if they do attempt dome derivation, or (b) correct the text to say \"only 2 of N claims.\" Note: content is in generate-html.js (infrastructure), so this requires a human or analyst to update the template.",
-      "source": "curmudgeon",
-      "found_by": "decider",
-      "found_at": "2026-04-13T21:11:44.922Z",
-      "created_at": "2026-04-13T21:11:44.922Z",
-      "source_review": "monitor/curmudgeon/reviews/SEC-overview-scorecard.c3.json"
-    },
-    {
-      "id": "ISS-908",
-      "win_id": null,
-      "section_id": "KILLSHOT-GAIA-v2",
-      "severity": "moderate",
-      "category": "citation",
-      "status": "open",
-      "title": "KILLSHOT-GAIA: star table labeled \"Gaia observations\" but Sirius/Vega/Betelgeuse/Deneb values are Hipparcos",
-      "description": "The stellar parallax kill-shot table is labeled \"Gaia observations\" but at least 4 of 5 parallax values appear to be from Hipparcos (van Leeuwen 2007), not Gaia DR3. Sirius (379.21 ± 1.58 mas), Vega (130.23 ± 0.36 mas), Betelgeuse (4.51 ± 0.80 mas), and Deneb (1.01 ± 0.22 mas) are all in the bright-star regime where Gaia standard astrometric pipeline cannot measure reliably due to CCD saturation. These values match the Hipparcos new reduction catalog. Only Proxima Centauri (768.07 ± 0.05 mas) is clearly from Gaia DR3. Fix: either (a) change table header to \"Observed parallax (Gaia DR3 / Hipparcos)\" and note source per star, or (b) replace bright-star entries with fainter Gaia-only stars (Barnard's Star 546.98 mas, 61 Cygni A 287.18 mas, Ross 154 336.72 mas). Option (b) is stronger — eliminates the attack surface and gives even more extreme sigma values. Content is in sections.json part5.",
-      "source": "curmudgeon",
-      "found_by": "decider",
-      "found_at": "2026-04-13T21:11:44.922Z",
-      "created_at": "2026-04-13T21:11:44.922Z",
-      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA-v2.c2.json"
-    },
-    {
-      "id": "ISS-909",
-      "win_id": null,
-      "section_id": "KILLSHOT-GAIA-v2",
-      "severity": "minor",
-      "category": "citation",
-      "status": "open",
-      "title": "KILLSHOT-GAIA: \"Throop et al. 2020\" attribution incorrect — New Horizons parallax led by Tod Lauer",
-      "description": "The New Horizons parallax experiment citation is attributed to \"Throop et al. 2020\" but the experiment was led by Tod Lauer (NOIRLab/NSF), not Henry Throop. Throop was a team member. Fix: change to \"Lauer et al. 2020\" or \"NASA/New Horizons team (2020)\". Content is in sections.json part5.",
-      "source": "curmudgeon",
-      "found_by": "decider",
-      "found_at": "2026-04-13T21:11:44.922Z",
-      "created_at": "2026-04-13T21:11:44.922Z",
-      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GAIA-v2.c2.json"
     }
   ],
   "next_id": 910
