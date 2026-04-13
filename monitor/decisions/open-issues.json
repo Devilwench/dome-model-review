@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-13T20:43:37.545Z",
+  "last_updated": "2026-04-13T21:02:05.928Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -231,23 +231,6 @@
       "created_at": "2026-04-12T16:42:32.083Z",
       "assigned_exp": "EXP-132",
       "assigned_at": "2026-04-12T17:13:48.749Z"
-    },
-    {
-      "id": "ISS-825",
-      "found_date": "2026-04-12",
-      "win_id": "WIN-018",
-      "section_id": null,
-      "severity": "moderate",
-      "category": "verdict",
-      "status": "pending-human",
-      "description": "EXP-050-r2: The analyst's revision 2 for EXP-050 still proposes flipping WIN-018 from its current verdict, despite the cycle 1 curmudgeon review rejecting this flip. The argument about 'effective solar orbit radius' used to justify the flip is vague and could mislead section prose. Before accepting this modification, the WIN-018 flip must be explicitly gate-2 adjudicated. Source: EXP-050-r2.json cycle 2.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/EXP-050-r2.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T16:42:32.083Z",
-      "created_at": "2026-04-12T16:42:32.083Z",
-      "escalated_at": "2026-04-13T06:11:38.191Z",
-      "escalation_reason": "EXP-050-r2 proposes WIN-018 verdict flip. Curmudgeon c1 rejected this flip. Needs explicit human gate-2 adjudication before any verdict change is applied."
     },
     {
       "id": "ISS-826",
