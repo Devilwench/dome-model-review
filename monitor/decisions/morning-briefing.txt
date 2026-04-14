@@ -1,48 +1,52 @@
-MORNING BRIEFING — 2026-04-13
-Generated: 2026-04-13T22:45:00Z
-Decider run: 6 (automated)
-Previous run: 2026-04-13 run 5
+MORNING BRIEFING — 2026-04-14
+Generated: 2026-04-14T07:14:00Z
+Curmudgeon reviews processed this run: 4 (SEC-5.c4, part1-roadmap.c1, PRED-batch.c1, SEC-2b.1.c3)
+Previous decider run: 2026-04-13T19:45:00Z (approx — based on curmudgeon review timestamps)
 
-SITE HEALTH
-  Integrity agent: not run this cycle
-  Build status: ✅ 3311 tests passing
-  Last publish: pending this run
+SITE HEALTH (Integrity):
+  Status: FAIL — critical build drift (published site ~3654 diff-lines behind current build)
+  This has persisted since 2026-04-12. Run 'node build.js publish' immediately.
+  Test suite: 3313/3313 passed
+  Data files: clean
 
-EXTERNAL STATUS
-  Dome site changes: none detected
-  Threat level: none
+EXTERNAL STATUS (Dome Changes):
+  14th consecutive QUIET poll. No manual commits. All parameters stable.
+  Canary: NOT triggered — OTS wrong-side error still present, no methodology correction.
 
-EXPANSION INTEGRATION
-  EXP-123 (SEC-6.2 — disc diameter provenance) ✅ INTEGRATED
-    - Leads with 2πR relationship: 40,030 = 2π × 6,371.0 km to 170m (0.0004%)
-    - Algebraic tautology spelled out: v = D/T = 2πR/T = C/T
-    - Cummer 2000 DOI corrected: IET → IEEE TAP (10.1109/8.898776)
-    - Velocity rounding flagged: 1.5739c computed vs 1.574c claimed (0.13% inflation)
-    - ISS-810 closed. Pushed to curmudgeon queue for review.
+INTERNAL STATUS:
+  Issues created this run: 5 (ISS-931 through ISS-935)
+  Issues closed this run: 1 (ISS-838 — tidal section patches applied)
+  Open issues: 24 (0 critical, 5 major, 14 moderate, 2 minor [+ 3 minor])
+  Patches self-applied: 4 (all from EXP-152 tidal section)
+  Expansions integrated: 2 (EXP-124, EXP-152); EXP-155 requires human
 
-PATCHES SELF-APPLIED (2)
-  ISS-912: part7 Proxima parallax corrected ~31.5 → 32.4 arcsec (per NASA press release)
-  ISS-896: Refraction geometry specified — ~28° at 40° from zenith, TIR beyond 44°
+KEY FINDINGS FROM THIS RUN:
+  1. Most curmudgeon findings from the 4 pending reviews were ALREADY FIXED by prior
+     decider runs. The pipeline is working well — finding-to-fix latency is low.
+  2. EXP-152 (tidal section): Applied cleanly. SEC-2.2 now has gravitational vs tidal
+     force clarification, plus new Doodson timing argument and amphidromic points
+     argument. Both are structurally strong (use dome's own accepted periods against itself).
+  3. PRED-batch: Domain 9 (Schumann Suppression) shows "no G3+ storm observed" despite
+     NOAA-confirmed G3 March 20-22 (ISS-933). Either monitor bug or selective non-scoring.
+     Both are damaging to dome's automation narrative.
+  4. EXP-155 ready but cannot self-apply (targets generate-html.js). See EXP-155.json
+     for 5 specific patches. Human must apply manually.
 
-CURMUDGEON REVIEWS PROCESSED (4)
-  SEC-overview-scorecard.c3: Major stale (derives_from_dome count already fixed), ISS-900 tracked (eclipse window)
-  eval-guide-eg-verdicts.c1: ISS-902/903/904 existing; ISS-910 new (primary-issue rule gap); ISS-911 stale
-  KILLSHOT-GAIA-v2.c2: Table header stale, Throop stale, ISS-895/896 patched and closed
-  EXP-143-proposal.c2: Blocked pending proposal — no action
+TOP 3 PRIORITY ACTIONS:
+  1. [URGENT] Run 'node build.js publish' — published site is stale since Apr 12.
+  2. [HUMAN REQUIRED] Apply EXP-155 patches to generate-html.js (eval-guide verdicts section
+     improvements: false-dilemma qualification, count transparency, counterfactual test language).
+  3. [ANALYST] ISS-933 — Investigate and add Domain 9 G3 discrepancy to PRED-SR-SUPPRESS
+     and PRED-093 assessments.
 
-NEW ISSUES (net: +1 real after closures)
-  ISS-910: eval-guide missing Self-Contradicted vs Misleading primary-issue example (moderate)
-  ISS-912: part7 wrong NH Proxima value — SELF-APPLIED & CLOSED
-  ISS-911: eval-guide TLDR inconsistency — STALE, CLOSED
-  ISS-895, ISS-896: Gaia killshot holes — PATCHED & CLOSED
+CURMUDGEON PROGRESS:
+  Queue depth: 16 items | Mode: BAU (240-min interval)
+  EXP-050 pushed and immediately popped (reviews already exist from prior cycles)
+  Items awaiting review: SEC-2.4, WIN-058b, SEC-8.11, and 13 more
 
-OPEN ISSUES: 24 | CLOSED: 789
+CODE ANALYSIS TAG STATUS:
+  No new tag updates this run.
 
-TOP PRIORITY ACTIONS
-  1. EXP-133 (eval guide expansion) still pending — covers ISS-821/902/903/904/900/901 + new ISS-910
-  2. EXP-143 (n(r) scope defense neutralization) needs analyst write-up
-  3. ISS-897 (PRED-093 expired window — G3+ storm April 8-9) — analyst should check SR data
-
-CURMUDGEON QUEUE
-  Mode: BAU | Depth: 16 | Interval: 240 min
-  No schedule changes needed
+SCHEDULE STATE:
+  Mode: BAU | Curmudgeon: 240 min | All intervals at defaults.
+  No schedule changes needed.

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-13T23:34:07.278Z",
+  "generated_at": "2026-04-14T00:04:03.393Z",
   "total_reviews": 169,
   "already_processed": 235,
   "pending_count": 4,
@@ -3804,9 +3804,13 @@
     {
       "win_id": "WIN-054",
       "topic": "El Gordo cluster impossibility — non-discriminating cherry-picking",
-      "issues_created": 1,
+      "issues_created": 0,
       "holes_found": 9,
       "missing_holes": [
+        {
+          "severity": "critical",
+          "summary": "VERDICT CATEGORY MISMATCH: 'Not Demonstrated' is correct, but our finding understates the real problem. The finding says 'non-discriminating cherry-picking' — but that's a MISLEADING category judgment, not 'Not Demonstrated.' A 'Not Demonstrated' verdict should mean: 'The claim is not shown to be tr"
+        },
         {
           "severity": "critical",
           "summary": "MISSING RESEARCH FOUNDATION: Cycle 1 identified unverified Kim et al. 2022 citation. We cite Kim et al. (2023, ApJ 954?) as evidence that modern simulations accommodate massive clusters. But: (1) We never confirmed the exact title/doi. (2) We never read the paper to verify it addresses El Gordo. (3)"

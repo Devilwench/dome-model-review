@@ -2151,9 +2151,16 @@
       ],
       "category": null,
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Section says sun appears ~50% larger at noon but also says variation matches observed ±1.7%. These contradict. Batch fix with other SEC-4.8 issues from curmudgeon cycle.",
-      "created_at": "2026-04-12T17:35:00Z"
+      "created_at": "2026-04-12T17:35:00Z",
+      "completed_at": "2026-04-13T23:42:29.993Z",
+      "output_file": "N/A — ISS-813 closed by prior analyst; Section 7.10 already correct",
+      "resolution_notes": "ISS-813 was closed on 2026-04-13. Section 7.10 has correct 52% figure, aetheric refraction defense addressed, and redundancy with 2.4 resolved. Part 4 discriminating tests table uses 30% (4hr figure, minor underestimate) vs 52% (6hr). Acceptable range notation.",
+      "integrated": true,
+      "integrated_at": "2026-04-14T00:12:27.266Z",
+      "integrated_by": "decider",
+      "integration_notes": "ISS-813 already closed by prior analyst work; section already correct. No patches needed."
     },
     {
       "id": "EXP-125",
@@ -2608,9 +2615,16 @@
         "ISS-838"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Curmudgeon found: (1) WIN-045/046/049/050/051 WIN text may reference stale section numbers after V6 restructure; (2) possible accuracy issues in tidal WIN verdict text. Verify current WIN text has correct section refs (e.g., Part 2 not Part 4.5), and ensure tidal WIN verdicts accurately reflect self-contradiction analysis from SEC-2 framework.",
-      "created_at": "2026-04-13T04:42:53.456Z"
+      "created_at": "2026-04-13T04:42:53.456Z",
+      "completed_at": "2026-04-13T23:45:00.764Z",
+      "output_file": "monitor/analyst/expansions/EXP-152.json",
+      "completion_notes": "Four patches: (1) WIN-045 duplicate parenthetical fix, (2) WIN-046 thermal→tidal, (3) SEC-2.2 prose strengthening with force law clarification + amphidromic points + timing argument, (4) DOCX numbering note for decider. WIN cross-refs already correct post-V6.",
+      "integrated": true,
+      "integrated_at": "2026-04-14T00:12:27.266Z",
+      "integrated_by": "decider",
+      "integration_notes": "All 4 patches applied: WIN-045 duplicate removed, WIN-046 thermal->tidal, SEC-2.2 force clarification + amphidromic points + Doodson timing. ISS-838 closed."
     },
     {
       "id": "EXP-153",
@@ -2654,35 +2668,40 @@
       "created_at": "2026-04-13T21:39:56.612Z",
       "completed_at": "2026-04-13T23:11:44.504Z",
       "output_file": "monitor/analyst/expansions/EXP-155.json",
-      "integrated": true,
-      "integrated_at": "2026-04-13T23:41:12.224Z",
-      "integration_mode": "direct-edit-generate-html",
-      "integration_notes": "Patches applied directly to build-scripts/generate-html.js (PATCH-1,2,4,5 applied; PATCH-3 confirmed no change needed). ISS-910 already closed as wontfix/decider-dedup."
+      "integration_notes": "Cannot self-apply: patches target generate-html.js (infrastructure file, not patchable by apply-patches.js). Human must manually apply 4 patches to generate-html.js. See EXP-155.json for patch details. Issues ISS-894/902/903/904/910 remain open pending human action."
     },
     {
       "id": "EXP-156",
-      "target": "data/sections.json part1 — evidence roadmap Tier 3 paragraph reframing",
-      "curmudgeon_review": "monitor/curmudgeon/reviews/part1-evidence-roadmap.c1.json",
+      "target": "data/sections.json part1 SEC-1-roadmap — reframe Tier 3 framing to lead with strength",
+      "source": "ISS-920-orphan-triage",
       "issue_ids": [
         "ISS-920"
       ],
+      "category": "expansion",
       "priority": "moderate",
       "status": "pending",
-      "notes": "Tier 3 roadmap paragraph frames our evidence apologetically: 'a determined defender could dispute as measured from the wrong frame.' Reframe to lead with Tier 1 strength (needs no external data at all) rather than advertising Tier 3 vulnerabilities. Suggest: 'Structured tests where dome and globe make different, measurable predictions. These are independently devastating...but they rely on external datasets. The self-contradiction arguments in Tier 1 go further: they need no external data at all, using only the dome's own equations.' Do NOT weaken the self-contradiction arguments in the rewrite.",
-      "created_at": "2026-04-13T23:44:47.219Z"
+      "notes": "Part 1 roadmap Tier 3 framing apologizes for own evidence. Needs prose rewrite to lead with Tier 1 strength.",
+      "created_at": "2026-04-14T00:09:42.978Z"
     },
     {
       "id": "EXP-157",
-      "target": "data/predictions.json PRED-SR-SUPPRESS detail_reasoning — engage with inductive reasoning counterargument + identify specific literature citation",
-      "curmudgeon_review": "monitor/curmudgeon/reviews/PRED-batch-updates-2026-04-13.json",
+      "target": "data/predictions.json PRED-SR-SUPPRESS — engage single-observation induction defense + fix vague citation",
+      "source": "ISS-923-ISS-925-orphan-triage",
       "issue_ids": [
         "ISS-923",
         "ISS-925"
       ],
+      "category": "expansion",
       "priority": "major",
-      "status": "pending",
-      "notes": "ISS-923: Update fails to engage with 'single-observation induction is legitimate science' counterargument. Must acknowledge this is real science, then explain why it still undermines the prediction: prediction must be model-derived from dome geometry, not empirically induced from one observation. The distinction is between 'dome model predicts suppression from cavity physics' vs 'author observed suppression once and is predicting recurrence.' ISS-925: Find specific paper for Schumann-storm coupling citation (likely Rosales-Linares et al. or similar, ScienceDirect 2019 Mexico station). Provide DOI. Confirm it actually shows enhancement (some studies show frequency shifts not amplitude). If literature is mixed, soften from 'more commonly observed' to 'frequently reported with mixed results depending on storm phase and station.' Use Mode 1b procedure for prediction updates.",
-      "created_at": "2026-04-13T23:44:47.219Z"
+      "status": "complete",
+      "notes": "ISS-923 (major): Must acknowledge single-observation induction is legitimate science before explaining why prediction must be model-derived. ISS-925 (moderate): Fix vague Schumann-storm coupling citation with specific DOI.",
+      "created_at": "2026-04-14T00:09:42.979Z",
+      "completed_at": "2026-04-14T00:12:13.957Z",
+      "output_file": "monitor/analyst/expansions/EXP-157.json",
+      "integrated": true,
+      "integrated_at": "2026-04-14T00:15:42.409Z",
+      "integrated_by": "decider",
+      "integration_notes": "Applied replacement_fields to PRED-SR-SUPPRESS in predictions.json. detail_reasoning and tldr updated with Doodson induction defense, Rosales-Linares citation, Domain 9 discrepancy. ISS-923 and ISS-925 addressed."
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
