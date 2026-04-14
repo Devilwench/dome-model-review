@@ -1,10 +1,10 @@
 {
-  "description": "Tracks curmudgeon review history and holistic check progress. The points array records what has been reviewed and when \u2014 used by the change detection scan to compare fingerprints. Items are no longer ground through sequentially; the curmudgeon reviews content that has changed since its last pass.",
+  "description": "Tracks curmudgeon review history and holistic check progress. The points array records what has been reviewed and when — used by the change detection scan to compare fingerprints. Items are no longer ground through sequentially; the curmudgeon reviews content that has changed since its last pass.",
   "current_cycle": 3,
   "review_model": "change-driven",
   "review_model_description": "Priority queue > human notes > change-detected items > holistic reviews > spot-checks. Sequential Phase 1/2/3 grinding retired as of 2026-04-12.",
-  "last_reviewed": "2026-04-14T10:15:00Z",
-  "last_run": "2026-04-14T10:15:00Z",
+  "last_reviewed": "2026-04-14T10:45:00Z",
+  "last_run": "2026-04-14T10:45:00Z",
   "points": [
     {
       "id": "WIN-001",
@@ -576,7 +576,7 @@
       "id": "SEC-6.1",
       "type": "section",
       "section": "6.1",
-      "topic": "Zero fitted parameters \u2014 hidden parameters",
+      "topic": "Zero fitted parameters — hidden parameters",
       "status": "reviewed",
       "reviewed_at": "2026-04-13T14:30:00Z",
       "last_reviewed_cycle": 3
@@ -612,7 +612,7 @@
       "id": "SEC-6.5",
       "type": "section",
       "section": "6.5",
-      "topic": "4 refined predictions \u2014 hidden falsifications",
+      "topic": "4 refined predictions — hidden falsifications",
       "status": "reviewed",
       "reviewed_at": "2026-04-11T11:30:00Z",
       "last_reviewed_cycle": 2
@@ -630,7 +630,7 @@
       "id": "SEC-6.7",
       "type": "section",
       "section": "6.7",
-      "topic": "Eclipse prediction \u2014 genuine test or pre-fitted",
+      "topic": "Eclipse prediction — genuine test or pre-fitted",
       "status": "reviewed",
       "reviewed_at": "2026-04-11T23:45:00Z",
       "last_reviewed_cycle": 2
@@ -665,7 +665,15 @@
       "type": "section",
       "section": "2.3",
       "topic": "Gravity at rim self-contradiction",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T09:43:22Z",
+      "last_reviewed_cycle": 1,
+      "last_review_file": "SEC-2.3-post-EXP121.c1.json",
+      "text_fingerprint": {
+        "tldr_length": 335,
+        "detail_html_length": 3072,
+        "section_full_length": 3625
+      }
     },
     {
       "id": "SEC-2.4",
@@ -701,7 +709,7 @@
       "id": "SEC-5.14",
       "type": "section",
       "section": "5.14",
-      "topic": "Repository infrastructure \u2014 steering AI",
+      "topic": "Repository infrastructure — steering AI",
       "status": "pending"
     },
     {
@@ -729,7 +737,7 @@
       "id": "SEC-6.2",
       "type": "section",
       "section": "6.2",
-      "topic": "Eclipse test \u2014 not what it appears",
+      "topic": "Eclipse test — not what it appears",
       "status": "pending"
     },
     {
@@ -773,15 +781,15 @@
       "section": "4.3",
       "topic": "Gaia astrometry kill-shot",
       "status": "reviewed",
-      "reviewed_at": "2026-04-13T19:45:00Z",
-      "last_reviewed_cycle": 2,
-      "notes": "Cycle 2: post-EXP-117 integration. Major improvement from thin 100-word section to full numeric chain. Moderate: Hipparcos values mislabeled as Gaia. Minor: Throop citation, NH parallax values. Overall strong."
+      "reviewed_at": "2026-04-14T09:10:00Z",
+      "last_reviewed_cycle": 3,
+      "notes": "Cycle 3 (post-table-citation-fix, queue_id 98): patch correctly replaced 'Gaia observations' blanket label and corrected Throop->Lauer. Two moderate residuals: (a) Betelgeuse 4.51 mas is Harper et al. 2017 (VLA+Hipparcos), not van Leeuwen 2007 Hipparcos alone (which gives 6.55 mas, 2.6 sigma different); (b) 'Lauer et al. 2020' links to NASA press release -- peer-reviewed paper is Lauer et al. 2025, AJ 170, 22 (arXiv:2506.21666). Argument remains overwhelmingly correct (6,281 sigma for Proxima)."
     },
     {
       "id": "SEC-2b.1",
       "type": "section",
       "section": "2b.1",
-      "topic": "The Monitoring Illusion \u2014 hardcoded validation analysis",
+      "topic": "The Monitoring Illusion — hardcoded validation analysis",
       "status": "reviewed",
       "reviewed_at": "2026-04-13T19:45:00Z",
       "last_reviewed_cycle": 3
@@ -790,14 +798,14 @@
       "id": "SEC-2b.2",
       "type": "section",
       "section": "2b.2",
-      "topic": "Relabeling Standard Physics \u2014 vocabulary substitution pattern",
+      "topic": "Relabeling Standard Physics — vocabulary substitution pattern",
       "status": "pending"
     },
     {
       "id": "SEC-2b.3",
       "type": "section",
       "section": "2b.3",
-      "topic": "Post-Hoc Retrodiction \u2014 prediction vs retrodiction distinction",
+      "topic": "Post-Hoc Retrodiction — prediction vs retrodiction distinction",
       "status": "pending"
     },
     {
@@ -876,7 +884,7 @@
       "id": "SEC-1.1",
       "type": "section",
       "section": "1.1",
-      "topic": "Overview \u2014 model description and key parameters",
+      "topic": "Overview — model description and key parameters",
       "status": "reviewed",
       "reviewed_at": "2026-04-13T14:22:00Z",
       "last_reviewed_cycle": 2
@@ -915,7 +923,7 @@
       "id": "part1-coeff-EXP083",
       "type": "section-rewrite",
       "section": "1.5",
-      "topic": "0.20 coefficient subsection rewrite \u2014 EXP-083 integration",
+      "topic": "0.20 coefficient subsection rewrite — EXP-083 integration",
       "status": "reviewed",
       "reviewed_at": "2026-04-13T18:45:00Z",
       "last_reviewed_cycle": 3,
@@ -936,7 +944,7 @@
     },
     {
       "point_id": "SEC-1.8-post-EXP129",
-      "topic": "Section 1.8 \u2014 The Coordinate Collapse (EXP-129 rewrite)",
+      "topic": "Section 1.8 — The Coordinate Collapse (EXP-129 rewrite)",
       "status": "reviewed",
       "reviewed_at": "2026-04-13T15:20:00Z",
       "last_reviewed_cycle": 2,
@@ -953,7 +961,7 @@
     {
       "id": "PRED-batch-EXP-085-2026-04-12",
       "type": "prediction-batch",
-      "topic": "EXP-085 recycled verdict batch \u2014 11 predictions changed to recycled",
+      "topic": "EXP-085 recycled verdict batch — 11 predictions changed to recycled",
       "status": "reviewed",
       "reviewed_at": "2026-04-13T14:30:00.000Z",
       "last_reviewed_cycle": 3
@@ -962,7 +970,7 @@
       "id": "SEC-2b.7",
       "type": "section",
       "section": "2b.7",
-      "topic": "April 2026 Scoreboard Drift \u2014 results.json analysis, W001 sign-flip paragraph",
+      "topic": "April 2026 Scoreboard Drift — results.json analysis, W001 sign-flip paragraph",
       "status": "reviewed",
       "reviewed_at": "2026-04-13T08:45:00Z",
       "last_reviewed_cycle": 3
@@ -977,6 +985,16 @@
       "last_reviewed_cycle": 3
     },
     {
+      "id": "eg-verdicts-passive-tldr-fix",
+      "type": "section-rewrite",
+      "section": "evaluate-tab",
+      "topic": "Verdict Assignment Criteria — post-EXP-155 patch review (queue_id 97)",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T15:40:00Z",
+      "last_reviewed_cycle": 1,
+      "notes": "EXP-155 patch review: 4 of 5 c1 holes fully resolved. New findings: major range-notation error '(045–051)' (only 5 of 7 WINs in range are tidal), moderate false-dilemma subtype overlap ('lacking any dome-specific derivation' is both Misleading-additional and Not-Demonstrated-pure), moderate TLDR-body wording drift. Recommended minor_edit."
+    },
+    {
       "id": "SEC-overview-scorecard",
       "type": "section-rewrite",
       "reviewed_at": "2026-04-13T19:30:00Z",
@@ -988,7 +1006,7 @@
       "id": "WIN-058b",
       "type": "win",
       "section": "2.6",
-      "topic": "Bedrock Induction Ratio \u03ba = 1.677 (PRED-KAPPA-001)",
+      "topic": "Bedrock Induction Ratio κ = 1.677 (PRED-KAPPA-001)",
       "status": "reviewed",
       "reviewed_at": "2026-04-14T14:30:00Z",
       "last_reviewed_cycle": 2
@@ -1034,60 +1052,124 @@
       "status": "reviewed",
       "reviewed_at": "2026-04-14T10:15:00Z",
       "last_reviewed_cycle": 1
+    },
+    {
+      "id": "part5-roadmap-EXP116",
+      "type": "section-new",
+      "section": "part5 opening",
+      "topic": "Part 5 italic roadmap transition (EXP-116)",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T11:30:00Z",
+      "last_reviewed_cycle": 1
+    },
+    {
+      "point_id": "eg-falsifiability-derives-fix",
+      "topic": "Evaluation Guide § Falsifiability — post-fix review (derives_from_dome count, Schumann range, </p> tag)",
+      "type": "section-rewrite",
+      "reviewed_at": "2026-04-14T07:43:05Z",
+      "last_reviewed_cycle": 1,
+      "status": "reviewed",
+      "added_from": "priority-queue-96"
+    },
+    {
+      "id": "SEC-1.9",
+      "type": "section",
+      "section": "1.9",
+      "topic": "Differential Refraction: The Eclipse Geometry Trap",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T00:00:00.000Z",
+      "last_reviewed_cycle": 1,
+      "review_file": "SEC-1.9.c1.json",
+      "text_fingerprint": {
+        "section_html_length": 6481,
+        "tldr_length": 366
+      },
+      "last_review_file": "SEC-1.9.c1.json"
+    },
+    {
+      "point_id": "part1-scorecard-sublabel-fix",
+      "topic": "Part 1 scorecard — 0 Survive Scrutiny sublabel (24w)",
+      "type": "section",
+      "reviewed_at": "2026-04-14T10:45:00Z",
+      "last_reviewed_cycle": 1,
+      "status": "reviewed"
+    },
+    {
+      "id": "SEC-7.1-antarctic",
+      "kind": "section",
+      "title": "Section 7.1 — Antarctic rim circumnavigation paragraph (EXP-126)",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T10:40:54.612Z",
+      "last_reviewed_cycle": 1,
+      "source": "priority-queue/106",
+      "review_file": "monitor/curmudgeon/reviews/SEC-7.1-antarctic.c1.json"
+    },
+    {
+      "point_id": "PRED-SR-SUPPRESS-EXP157",
+      "target_type": "prediction-batch",
+      "target_id": "PRED-SR-SUPPRESS-EXP157",
+      "queue_id": 109,
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T12:30:00Z",
+      "last_reviewed_cycle": 1,
+      "review_file": "monitor/curmudgeon/reviews/PRED-SR-SUPPRESS-EXP157.json",
+      "severity_summary": "2 critical, 1 major, 2 moderate, 2 minor",
+      "recommended_action": "major_rewrite",
+      "notes": "Citation fabrication (Rosales-Linares et al. + wrong DOI). EXP-157 was supposed to fix a vague citation but introduced a harder error. Needs urgent patch."
     }
   ],
   "holistic_checks": [
     {
       "id": "HOL-NARRATIVE",
-      "topic": "Narrative arc \u2014 does the argument build persuasively from overview to conclusion?",
+      "topic": "Narrative arc — does the argument build persuasively from overview to conclusion?",
       "status": "pending"
     },
     {
       "id": "HOL-TAXONOMY",
-      "topic": "Verdict taxonomy \u2014 do the six categories still make sense? Any WINs that should move?",
+      "topic": "Verdict taxonomy — do the six categories still make sense? Any WINs that should move?",
       "status": "pending"
     },
     {
       "id": "HOL-CROSSREF",
-      "topic": "Cross-reference integrity \u2014 do all section cross-references still say what they claim?",
+      "topic": "Cross-reference integrity — do all section cross-references still say what they claim?",
       "status": "pending"
     },
     {
       "id": "HOL-HIERARCHY",
-      "topic": "Argument hierarchy \u2014 are the top kill-shots actually our strongest arguments?",
+      "topic": "Argument hierarchy — are the top kill-shots actually our strongest arguments?",
       "status": "pending"
     },
     {
       "id": "HOL-TONE",
-      "topic": "Consistency of tone \u2014 same rigor and charity throughout, or uneven?",
+      "topic": "Consistency of tone — same rigor and charity throughout, or uneven?",
       "status": "pending"
     },
     {
       "id": "HOL-COMPLETENESS",
-      "topic": "Structural completeness \u2014 does Part 4.6 use the strongest examples? Do counts match tags?",
+      "topic": "Structural completeness — does Part 4.6 use the strongest examples? Do counts match tags?",
       "status": "pending"
     },
     {
       "id": "HOL-STRESSTEST",
-      "topic": "Counter-narrative stress test \u2014 read as a dome defender, find the single best rebuttal",
+      "topic": "Counter-narrative stress test — read as a dome defender, find the single best rebuttal",
       "status": "pending"
     },
     {
       "id": "HOL-REDUNDANCY",
-      "topic": "Redundancy check \u2014 sections saying the same thing? Anything that can be tightened?",
+      "topic": "Redundancy check — sections saying the same thing? Anything that can be tightened?",
       "status": "pending"
     },
     {
       "id": "HOL-MISSING",
-      "topic": "Missing arguments \u2014 cross-cutting insights from Phase 1 that aren't captured anywhere",
+      "topic": "Missing arguments — cross-cutting insights from Phase 1 that aren't captured anywhere",
       "status": "pending"
     }
   ],
   "items_reviewed": 94,
   "total_items": 71,
   "cycle": 2,
-  "last_review_time": "2026-04-14T06:30:00Z",
-  "last_review_item": "part3-roadmap-EXP116",
-  "last_review_result": "minor_edit",
-  "last_item_reviewed": "part3-roadmap-EXP116"
+  "last_review_time": "2026-04-14T00:00:00.000Z",
+  "last_review_item": "SEC-1.9",
+  "last_review_result": "minor_edit (cycle 1) — content holds, 2 major holes (cross-section consistency with SEC-1.5; defender escape via apparent-magnitude inputs not preempted)",
+  "last_item_reviewed": "SEC-1.9"
 }

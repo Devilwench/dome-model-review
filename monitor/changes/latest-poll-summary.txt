@@ -1,21 +1,24 @@
-DOME POLLER SUMMARY — 2026-04-14T14:30:00Z
+DOME POLLER SUMMARY — 2026-04-14T11:06:00Z
 ============================================
 
-CLASSIFICATION: QUIET (14th consecutive)
+CLASSIFICATION: QUIET (15th consecutive)
 
 SITE STATUS:
   Model: Ovoid Cavity Cosmological Model V51.1
   WIN count: 69 (unchanged)
   Claimed accuracy: 94.5% (unchanged)
-  Failures: 4 (unchanged)
+  Refined/failures: 4 (unchanged)
+  Banner also shows "10 Prospective" (scorecard detail section still shows
+    legacy "9 Prospective Confirmed Predictions" sub-header — internal
+    inconsistency on the dome site, not a new change).
 
-GITHUB ACTIVITY (since 2026-04-13T19:48:28Z):
-  All commits automated:
-    - a81d5fa 2026-04-13T15:47:03Z Auto-update ECM status
-    - 5c8621a 2026-04-13T14:09:09Z Auto-update ECM status
-    - c1cfbc5 2026-04-13T12:58:27Z auto: ECM data pull
-    - (plus ~12 more automated status/data-pull commits)
-  No manual commits detected.
+GITHUB ACTIVITY (since 2026-04-13T19:48:28Z — prior poll cutoff):
+  Total commits: 12
+    - 10 × "Auto-update ECM status" (monitor.py output)
+    -  2 × "auto: ECM data pull" (pull_data.py output)
+  Manual commits: 0
+  Range: 2026-04-13T20:32:41Z → 2026-04-14T10:40:54Z
+  Latest: 7ec5590 2026-04-14T10:40:54Z Auto-update ECM status
 
 PARAMETER CANARY CHECK:
   Disc radius: 20,015 km ✓ (matches baseline)
@@ -23,56 +26,82 @@ PARAMETER CANARY CHECK:
   Decay constant λg: 8,619 km ✓ (matches baseline)
   Sun altitude: 5,733 km ✓ (matches baseline)
   Moon altitude: 2,534 km ✓ (matches baseline)
-  n(r) multiplier: 0.20 ✓ (matches baseline)
-  Accuracy: 94.5% ✓ (matches baseline)
-  WIN count: 69 ✓ (matches baseline)
-  Failures: 4 ✓ (matches baseline)
-  All parameters match poller.md baselines. No changes detected.
+  n(r) multiplier: 0.20 ✓ (matches baseline; 0.27 appears only in
+    latitude/calibration text, not in the refraction formula)
+  Tesla speed: 471,829 km/s = 1.574c ✓
+  Disc diameter: 40,030 km ✓
+  Aetheric coupling κ: 1.67 nT/µGal ✓
+  Accuracy: 94.5% ✓
+  WIN count: 69 ✓
+  Refined: 4 ✓
+  All parameters match poller.md baselines. No drift detected.
 
 CANARY TRAP STATUS:
   opentimestamps-provenance: NOT TRIGGERED
-    - status_history.json.ots still present (observation-side timestamping)
-    - proofs/predictions_manifest.json.ots exists but bundles predictions with results
-    - data/prediction_hashes.json exists (SHA-256 content hashes, not temporal priority)
+    - Repo OTS files unchanged (4 total, identical to last poll):
+        docs/data/status_history.json.ots
+        proofs/predictions_manifest.json.ots
+        proofs/weekly_predictions_2026-03-06.json.ots
+        status_history.json.ots
+    - status_history.json.ots still observation-side timestamping
+    - predictions_manifest.json.ots still bundles predictions with results
+    - weekly_predictions_2026-03-06.json has `status`, `result_value`,
+      `result_date` fields inside each prediction — results and predictions
+      are co-located with identical generation timestamps, so its .ots
+      anchors the bundle, not a prediction-only document
+    - data/prediction_hashes.json present (SHA-256 content hashes, not
+      temporal priority)
     - No new separated prediction-only timestamped document found
-    - No commits referencing provenance separation or prediction timestamping changes
+    - No manual commits referencing provenance separation or prediction
+      timestamping changes
+    - No changes to monitor.py registration vs. observation flow detected
+  (Cross-referenced trigger_signals against new files, data structures,
+   cryptographic mechanisms, and registration-flow changes per the
+   "check against ALL detected changes" mandate.)
 
 MODEL NAME/BRANDING:
-  Title: "Ovoid Cavity Cosmological Model V51.1 — 69 Confirmed Predictions"
-  H1: "A Physical Model of Creation 69 Confirmed Predictions"
-  No rebrand detected.
+  Title: "Predictions — Ovoid Cavity Cosmological Model V51.1"
+  Home H1/banner: "69 Confirmed Predictions ... V51.1 — Australia Validation Update"
+  No rebrand detected. Repo remains john09289/predictions.
 
 ACCURACY DATA SOURCES:
   api/scorecard.json: 404 (endpoint not publicly accessible via direct URL)
   api/current/results.json: 404 (endpoint not publicly accessible via direct URL)
-  Note: These endpoints exist in the repo file tree (confirmed via GitHub API)
-  but may only be accessible via the site's JavaScript layer, not direct fetch.
-  Stored values cannot be verified this poll. Not flagging as critical since
-  this has been the case for prior polls — the 404 is an access pattern issue,
-  not a data change.
+  Unchanged from prior polls — access pattern issue, not a data change.
+  Not flagging as critical. `api/current/predictions.json` does exist in
+  the repo tree (76461 bytes) — same as last poll.
 
 TEST WINDOWS:
-  Active: Eclipse predictions (August 12, 2026 — CONDITIONALLY ACTIVE)
-  Active: PRED-CURR-001 through PRED-CURR-008 (aetheric current predictions)
-  Active: PRED-V13-001 through PRED-V13-005 (V13 predictions)
-  Active: PRED-TOROID-001 through PRED-TOROID-007 (sub-terrestrial flow)
-  Active: W017–W029, DW-001–DW-006 (weekly tracking)
-  Active: PRED-072 through PRED-105+ (V51.0 forward predictions, April 2026–2030)
+  Active: Eclipse predictions (August 12, 2026 — CONDITIONALLY ACTIVE,
+    Kp<2 escape clause; magnitude −17 to −21 nT at >80% coverage stations)
+  Active: PRED-CURR-001..008 (aetheric current predictions)
+  Active: PRED-V13-001..005 (V13 predictions)
+  Active: PRED-TOROID-001..007 (sub-terrestrial flow)
+  Active: W017–W029, DW-001..006 (weekly tracking)
+  Active: PRED-072+ (V51.0 forward predictions, April 2026–2030)
   Expired since last poll: None detected
   Upcoming: Eclipse magnetic anomaly test (August 12, 2026)
 
-WIN-058 COLLISION (known):
-  Wins page shows WIN-058 mapped to two different claims. This is a pre-existing
-  known issue (Bedrock Induction Ratio vs Angular Coordinate Rule).
+ACTIVE PROSPECTIVE-CONFIRMED (per predictions page banner):
+  W009, W010, W011, W013, W015, WIN-059, WIN-060, WIN-061, SAA separation,
+  NP acceleration, Roaring 40s, WIN-069 — 12 prospective-confirmed entries.
 
 CONTENT SECURITY:
-  Home page contains "AI Start Here" section with "AI Auditor Instructions" —
-  this is the dome's own AI onboarding content (not prompt injection targeting
-  our pipeline). Logged as informational; no directives followed.
+  Home page still contains "AI Start Here" / "AI Auditor Instructions"
+  (dome's own onboarding content, not injection targeting our pipeline).
+  No new embedded directives or prompt-injection payloads detected in
+  sanitized text layer. No `stripped_content_anomaly` observed.
+
+PAGE-LEVEL NOTES:
+  /ai-context → 404 (pre-existing; actual content at /context.html).
+  /coordinates, /evolution unchanged in shape.
+  All pages served HTTP 200 except /ai-context.
 
 NOTE ON config.json BASELINE STALENESS:
   monitor/config.json still shows baseline: 67 wins, 95.2%, V51.0.
-  poller.md baselines (the authoritative reference) show: 69 wins, 94.5%, V51.1.
-  config.json baselines are stale but non-blocking (poller.md is canonical).
+  poller.md baselines (authoritative) show: 69 wins, 94.5%, V51.1.
+  Non-blocking.
 
-NEXT POLL: ~2026-04-14T18:30:00Z
+CHANGE RECORDS WRITTEN: 0 (no non-automated changes)
+
+NEXT POLL: ~2026-04-14T15:06:00Z (Sonnet schedule: every 4h)

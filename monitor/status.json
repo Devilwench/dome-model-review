@@ -5,7 +5,7 @@
   "mode": "BAU",
   "status": "complete",
   "changes_pending_analysis": 0,
-  "consecutive_quiet_polls": 14,
+  "consecutive_quiet_polls": 15,
   "prev_decider_run": {
     "at": "2026-04-14T09:30:33.825Z",
     "note": "9 stale digest reviews acknowledged. ISS-956 closed (SEC-8.11 -17→-21 nT removed). EXP-160 created (WIN-058b r=0.96/0.992 research). EXP-158 status fixed. Q98/Q99 popped. Queue 13→11."
@@ -28,7 +28,7 @@
   "curmudgeon_queue_depth": 11,
   "build_drift_resolved": true,
   "pipeline_bugs": [],
-  "last_poll": "2026-04-14T14:30:00Z",
+  "last_poll": "2026-04-14T11:06:00Z",
   "last_decider_run": "2026-04-14T02:44:04.754Z",
   "last_updated": "2026-04-14T02:44:04.754Z"
 }
