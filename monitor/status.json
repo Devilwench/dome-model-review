@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-04-14T07:30:00Z",
+  "last_run": "2026-04-14T09:30:33.825Z",
   "last_agent": "decider",
   "run_type": "Scheduled decider run",
   "mode": "BAU",
@@ -7,25 +7,25 @@
   "changes_pending_analysis": 0,
   "consecutive_quiet_polls": 14,
   "prev_decider_run": {
-    "at": "2026-04-14T07:30:00Z",
-    "note": "2 patches applied (EXP-153/156). 3 expansions integrated. 2 issues closed (ISS-832/920). 2 issues created (ISS-955 wontfix, ISS-956 moderate). 5 stale curmudgeon reviews acknowledged. 2 queue items popped."
+    "at": "2026-04-14T09:30:33.825Z",
+    "note": "9 stale digest reviews acknowledged. ISS-956 closed (SEC-8.11 -17→-21 nT removed). EXP-160 created (WIN-058b r=0.96/0.992 research). EXP-158 status fixed. Q98/Q99 popped. Queue 13→11."
   },
   "patches_applied_this_run": {
-    "wins": 1,
-    "sections": 1,
+    "wins": 0,
+    "sections": 0,
     "infrastructure": 0,
     "prompt_files": 0,
-    "data_files": 0
+    "data_files": 2
   },
-  "issues_closed_this_run": 2,
-  "issues_created_this_run": 2,
-  "issues_assigned_analyst": 0,
-  "open_issues": 8,
-  "closed_issues": 826,
+  "issues_closed_this_run": 1,
+  "issues_created_this_run": 1,
+  "issues_assigned_analyst": 1,
+  "open_issues": 4,
+  "closed_issues": 834,
   "issues_pending_human": 1,
-  "curmudgeon_cycle": "bau — queue depth 16",
+  "curmudgeon_cycle": "bau — queue depth 11",
   "curmudgeon_last_review": "5 stale reviews processed; 2 items popped from queue",
-  "curmudgeon_queue_depth": 16,
+  "curmudgeon_queue_depth": 11,
   "build_drift_resolved": true,
   "pipeline_bugs": [],
   "last_poll": "2026-04-14T14:30:00Z",

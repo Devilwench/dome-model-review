@@ -2812,7 +2812,7 @@
       "id": "EXP-158",
       "target": "data/sections.json — SEC-2b.1 hardcoded count words: Seven/Fifteen/Twelve/Three/Two",
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "category": "prose-improvement",
       "notes": "ISS-934: Replace hardcoded count words (Seven, Fifteen, Twelve, Three, Two) in SEC-2b.1 stratification paragraph with template variables OR add a point-in-time caveat. These counts depend on verdict distribution across the CA_NONE unmonitored WINs. Goal: counts should not become stale as WINs are added/verdicts change. Analyst should: (1) check current counts of CA_NONE WINs by verdict category in wins.json, (2) propose template variable names (e.g. {{CA_NONE_SELF_CONTRADICTED}}) and wiring them in generate-html.js, OR (3) simply add \"(at time of publication)\" caveat. Option 2 is preferred as it eliminates a class of staleness issues.",
       "issue_ids": [
@@ -2839,9 +2839,22 @@
       "integrated": true,
       "integrated_at": "2026-04-14T08:27:20.090Z",
       "integration_mode": "direct-patch"
+    },
+    {
+      "id": "EXP-160",
+      "target": "WIN-058b detail_evidence — r=0.96 vs r=0.992 inconsistency argument needs dome-source research",
+      "source": "curmudgeon-c2",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-058b-post-EXP102.c2.json",
+      "issue_ids": [
+        "ISS-965"
+      ],
+      "priority": "moderate",
+      "status": "pending",
+      "notes": "ISS-965: The inconsistency argument (PRED-KAPPA-001 claims r=0.96 for 1.67 slope; Exhibit A claims r=0.992 for the same 2003 Halloween storm data) has an unaddressed dome defender response. The dome could argue these are different statistical quantities (slope-fit R² vs temporal cross-correlation). Analyst must: (1) check dome source for whether both r-values are defined/labeled in dome raw-text, (2) if same statistic: rewrite inconsistency argument as \"dome provides two inconsistent r-values for identical data — same statistic cannot be both 0.96 and 0.992\", (3) if different statistics: acknowledge the distinction and pivot to a stronger argument about the lack of specification.",
+      "created_at": "2026-04-14T09:27:46.007Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 160,
+  "next_id": 161,
   "total_items": 153
 }

@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T08:27:52.234Z",
+  "last_updated": "2026-04-14T09:27:46.021Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -81,20 +81,6 @@
       "wontfix_at": "2026-04-14T06:28:51Z"
     },
     {
-      "id": "ISS-956",
-      "win_id": null,
-      "section_id": "SEC-8.11",
-      "severity": "moderate",
-      "category": "citation",
-      "status": "open",
-      "description": "SEC-8.11 eclipse prediction analysis cites dome homepage as source for -17 to -21 nT prediction range, but this claim does not appear in any raw-text archive file (checked 01-home.txt through 08-live-power). The claim is present in multiple sections (part5, part6, part8, part9, part10). Either add a direct URL citation and/or update raw-text/01-home.txt to include this homepage claim. Source: curmudgeon SEC-8.11.c1 review (cycle 1, moderate hole).",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/SEC-8.11.c1.json",
-      "found_by": "decider-digest",
-      "found_at": "2026-04-14T06:28:51Z",
-      "created_at": "2026-04-14T06:28:51Z"
-    },
-    {
       "id": "ISS-965",
       "win_id": "058b",
       "severity": "moderate",
@@ -102,7 +88,9 @@
       "description": "WIN-058b detail_evidence: r=0.96 vs r=0.992 inconsistency argument (PRED-KAPPA-001 vs Exhibit A) has an unaddressed dome defender response — defender can argue the two r-values measure different statistics. Text should clarify what each r-value measures or note that the dome provides no specification of what each measures (which is already present). Needs minor prose strengthening.",
       "found_by": "curmudgeon-WIN-058b-post-EXP102.c2",
       "found_at": "2026-04-14T08:27:52.234Z",
-      "status": "open"
+      "status": "assigned-analyst",
+      "assigned_exp": "EXP-160",
+      "assigned_at": "2026-04-14T09:27:46.021Z"
     }
   ],
   "next_id": 966
