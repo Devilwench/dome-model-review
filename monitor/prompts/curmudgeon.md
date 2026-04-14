@@ -92,9 +92,15 @@ Queue structure:
    - Challenge the `our_verdict`: Is `recycled` correct, or does this prediction add genuinely new content beyond the WIN it restates? Is `standard_physics` fair, or is the dome's derivation path non-trivial enough to count? Is `unfalsifiable` warranted, or is there a reasonable test we're overlooking?
    - Check for the other side: could a dome defender argue this prediction IS genuinely prospective? What's the strongest counterargument to our verdict?
    - Write your review to `monitor/curmudgeon/reviews/<target_id>.json` (e.g., `PRED-batch-2026-04-10.json`). Include per-prediction verdicts: `agree`, `challenge` (with reasoning), or `upgrade` (we were too harsh).
-5. Write the review to the normal `reviews/` location.
-6. **Do NOT modify `priority-queue.json`.** The decider is the single writer for this file. The decider will pop reviewed items and append history records when it processes your review files. Your review file IS the signal that the item is done.
-7. **STOP.** Do not pick up another queue item. Do not continue to normal cycle work this run. Save/commit and exit.
+5. **Pre-write staleness check.** Before writing the review, your clone may be 15-30 min old and the decider may have patched content in parallel. Run `git pull --rebase -q` in your clone, then re-read the target fields (e.g., wins.json for the WIN you reviewed, sections.json for the section). For each hole / finding in your draft review:
+   - If the specific text or condition you flagged **still exists** in the current content → keep the finding.
+   - If it has been **patched or removed** → drop the finding (or mark it `superseded_by_parallel_patch: true` with the commit SHA that fixed it, your call).
+
+   **If ALL your findings have been superseded** (i.e., everything you were going to flag is already fixed), do NOT write an empty or "nothing found" review file — that wastes the review slot. Instead: log "queue item <target_id> fully superseded by parallel patches — skipping" in your output, and **go back to Step 2 to pick the next un-reviewed queue item.** Repeat this whole procedure for that new item. A single curmudgeon run can legitimately process multiple items when earlier ones are fully superseded (to avoid burning Opus cycles on obsolete work). Cap this at 3 queue items per run to avoid runaway.
+
+6. Write the review to the normal `reviews/` location.
+7. **Do NOT modify `priority-queue.json`.** The decider is the single writer for this file. The decider will pop reviewed items and append history records when it processes your review files. Your review file IS the signal that the item is done.
+8. **STOP** (unless Step 5 sent you back for another item). Do not continue to normal cycle work this run. Save/commit and exit.
 
 If the queue had no items, continue to Step 0c.
 
