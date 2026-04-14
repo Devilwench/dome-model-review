@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T11:30:37.777Z",
+  "last_updated": "2026-04-14T12:26:53Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -64,30 +64,6 @@
       "wontfix_at": "2026-04-14T06:28:51Z"
     },
     {
-      "id": "ISS-971",
-      "win_id": null,
-      "severity": "major",
-      "category": "factual_error",
-      "description": "SEC-7.1 (part7) Antarctic rim-circumnavigation paragraph presents both 125,760 km (rim) and ~112,000 km (70°S) figures then asserts \"factor-of-eight discrepancy\" — ambiguous whether this refers to 125,760/13,700≈9.2 or 112,000/13,700≈8.2. Cleaner to pick one comparison. Also: ship list (Soviet Ob, HMS Endurance) weakly supports the circumnavigation claim with these sources; curmudgeon recommends more precise references.",
-      "found_by": "curmudgeon-SEC-7.1-antarctic.c1",
-      "found_at": "2026-04-14T11:40:00Z",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-974",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "citation",
-      "description": "KILLSHOT GAIA table Betelgeuse row: attributed to \"Hipparcos (van Leeuwen 2007)\" but the 4.51 ± 0.80 mas value is NOT van Leeuwen 2007 (which gives 6.55 ± 0.83 mas). Correct source is Harper et al. 2017 (VLA-Hipparcos combined). Also: Lauer et al. 2020 citation links to a NASA press release, not the peer-reviewed paper (Lauer et al. 2025, AJ 170, 22).",
-      "found_by": "curmudgeon-KILLSHOT-GAIA-table-citation-fix.c1",
-      "found_at": "2026-04-14T09:40:00Z",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
       "id": "ISS-975",
       "win_id": null,
       "severity": "moderate",
@@ -110,7 +86,20 @@
       "status": "open",
       "fix_details": null,
       "fix_date": null
+    },
+    {
+      "id": "ISS-977",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "SEC-7.1 Antarctic circumnavigation paragraph: (1) v22 quote over-loaded — dome v22 log says \"Southern arc distances 2x too long\" about cross-equatorial formulas not specifically circumnavigation; (2) refraction rebuttal misses AE projection assumption (not stated); (3) TLDR doesn’t mention rim-circumnavigation argument at all — focuses only on SYD-EZE and coordinates. Moderate-severity improvements needed.",
+      "source": "curmudgeon-SEC-7.1-antarctic.c1",
+      "found_by": "decider",
+      "found_at": "2026-04-14T12:26:53Z",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
     }
   ],
-  "next_id": 977
+  "next_id": 978
 }

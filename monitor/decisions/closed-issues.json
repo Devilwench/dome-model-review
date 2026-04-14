@@ -12326,6 +12326,34 @@
       "fix_date": null,
       "fixed_at": "2026-04-14T11:30:37.777Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-971",
+      "win_id": null,
+      "severity": "major",
+      "category": "factual_error",
+      "description": "SEC-7.1 (part7) Antarctic rim-circumnavigation paragraph presents both 125,760 km (rim) and ~112,000 km (70°S) figures then asserts \"factor-of-eight discrepancy\" — ambiguous whether this refers to 125,760/13,700≈9.2 or 112,000/13,700≈8.2. Cleaner to pick one comparison. Also: ship list (Soviet Ob, HMS Endurance) weakly supports the circumnavigation claim with these sources; curmudgeon recommends more precise references.",
+      "found_by": "curmudgeon-SEC-7.1-antarctic.c1",
+      "found_at": "2026-04-14T11:40:00Z",
+      "status": "fixed",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-14T12:26:53Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-974",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "citation",
+      "description": "KILLSHOT GAIA table Betelgeuse row: attributed to \"Hipparcos (van Leeuwen 2007)\" but the 4.51 ± 0.80 mas value is NOT van Leeuwen 2007 (which gives 6.55 ± 0.83 mas). Correct source is Harper et al. 2017 (VLA-Hipparcos combined). Also: Lauer et al. 2020 citation links to a NASA press release, not the peer-reviewed paper (Lauer et al. 2025, AJ 170, 22).",
+      "found_by": "curmudgeon-KILLSHOT-GAIA-table-citation-fix.c1",
+      "found_at": "2026-04-14T09:40:00Z",
+      "status": "fixed",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-14T12:26:53Z",
+      "fixed_by": "decider-self-apply"
     }
   ]
 }
