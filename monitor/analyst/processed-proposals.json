@@ -54,7 +54,8 @@
     "proposal-ISS-820-resolution.json",
     "proposal-ISS-821-resolution.json",
     "proposal-ISS-900-resolution.json",
-    "proposal-ISS-822-resolution.json"
+    "proposal-ISS-822-resolution.json",
+    "proposal-ISS-824-resolution.json"
   ],
   "note": "Seeded with already-processed proposals that are orphaned on FUSE (cannot unlink)",
   "last_updated": "2026-04-14T03:41:37.180Z",

@@ -2391,9 +2391,14 @@
       ],
       "category": "expansion",
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "Curmudgeon questions whether dome parallel-plate cavity geometry assertion is correctly characterized.",
-      "created_at": "2026-04-12T19:48:10.478Z"
+      "created_at": "2026-04-12T19:48:10.478Z",
+      "integrated": true,
+      "integrated_at": "2026-04-14T04:16:38.292Z",
+      "integrated_by": "decider",
+      "output_file": "monitor/analyst/expansions/EXP-135.json",
+      "completion_note": "Integrated into sections.json part6. SEC-6.3 renamed to Schumann Height Inconsistency with full derivation."
     },
     {
       "id": "EXP-136",

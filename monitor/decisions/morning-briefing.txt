@@ -1,65 +1,92 @@
-MORNING BRIEFING — 2026-04-14
-Generated: 2026-04-14T03:42:00Z
-Curmudgeon reviews processed this run: 5 (WIN-065 c3, SEC-2.4 c2, SEC-8.11 c1, WIN-058b c2, SEC-1.8 c3)
-Previous decider run: 2026-04-14T01:11:10Z
+DOME DECIDER MORNING BRIEFING — 2026-04-14
 
-━━━ SITE HEALTH ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Build: PASS (3315 tests, 0 failures)
-HTML: 1084.8 KB
+=== RUN SUMMARY ===
 
-━━━ EXTERNAL STATUS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Dome site changes: None detected
-Threat level: NONE
-Canary (OTS wrong-side error): No fix detected
+Mode: BAU | Queue depth: 16 | Schedule: 240min curmudgeon interval
 
-━━━ PATCHES THIS RUN ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-6 patches self-applied, 0 failed:
-✅ EXP-134: FAIL-004 paragraph replaced in part6
-   - Removed unjustified AAO σ↔500hPa% equivalence
-   - Added NOAA CPC citation with URL
-   - Noted 700hPa pressure-level mismatch (strengthens argument)
-   - ISS-822 and ISS-823 CLOSED
-✅ SEC-2.4: "mid-afternoon" → "late afternoon" (TLDR + body)
-   - 52% figure is 6 PM / 90° hour angle, not 2-4 PM
-✅ WIN-058b: Atmospheric forcing mechanism clarified
-   - "thermospheric" → "electromagnetic" (more accurate mechanism)
-✅ WIN-058b: κ = 1.672 → 1.677 in cross-reference
-✅ WIN-058b: code_analysis.reviewed = true
+Patches applied: 10 (all self-applied, 0 failed)
+Issues closed: 9 (ISS-824, ISS-943, ISS-944, ISS-945, ISS-946, ISS-947, ISS-948, ISS-949, ISS-950)
+Issues remaining: 10 (2 major, 4 moderate, 4 minor)
+New issues: 0
 
-━━━ ISSUES CLOSED (2) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ISS-822 (SEC-6.5-FAIL004: AAO sigma/500hPa equivalence)
-ISS-823 (SEC-6.5-FAIL004: AAO citation missing)
+=== WORK DONE ===
 
-━━━ ISSUES CREATED (8) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ISS-943 [minor]  SEC-2.4: Sun orbital radius unsourced in section
-ISS-944 [minor]  SEC-2.4: Section 7.10 cross-ref href points to wrong anchor
-ISS-945 [MODERATE] SEC-8.11: Homepage −17 to −21 nT claim unverifiable ← needs human check
-ISS-946 [minor]  SEC-8.11: Sign convention inconsistency (AFFECTS SUMMARY TABLE)
-ISS-947 [minor]  SEC-8.11: "Under identical conditions" oversells (AFFECTS SUMMARY TABLE)
-ISS-948 [MODERATE] WIN-058b: r=0.96 vs r=0.992 defense unaddressed
-ISS-949 [minor]  WIN-058b: SNR framing vulnerability
-ISS-950 [minor]  WIN-058b: detail_evidence opens with bookkeeping not science
+1. ANALYST PROPOSAL PROCESSED
+   - proposal-ISS-824-resolution.json: EXP-135 integrated into sections.json part6
+   - SEC-6.3 completely rewritten from "The Schumann Math Error" to "The Schumann Height 
+     Inconsistency" with three-height impossibility proof (9572 vs 9086 vs 8537 km), 
+     mathematical frequency bound (f_QW minimum 8.77 Hz > 7.83 Hz observed at any dome point), 
+     and kernel of truth (cavity resonance technique is legitimate physics)
+   - ISS-824 closed
 
-━━━ STALE REVIEW NOTED ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-WIN-065 c3 review: ALL holes reference text that no longer exists in wins.json.
-  - Dangling fragment: already fixed
-  - ~0.04° refraction: text now says ~0.02-0.03°
-  - "dome's own refractive index formula": text already says "implied by the dome's H(r) function"
-No issues created for WIN-065 this run. Should be re-queued for fresh review.
+2. CURMUDGEON REVIEWS PROCESSED (5 total)
 
-━━━ PRIORITY ACTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. [NEXT SESSION] Verify SEC-8.11 ISS-945: Does dome homepage actually say −17 to −21 nT?
-   If not → patch to remove unverifiable claim before it gets flagged in public.
-2. [NEXT SESSION] Patch ISS-946 + ISS-947: SEC-8.11 sign convention + "identical conditions"
-   Both affect summary table rendering.
-3. [BACKLOG] Re-queue WIN-065 for fresh curmudgeon review.
-4. [BACKLOG] Address ISS-948 (WIN-058b r-value inconsistency defense).
+   WIN-065-post-ISS863.c3.json — STALE REVIEW
+   Reviewed at 14:30 UTC; all 3 holes (dangling fragment, unit error, formula attribution) 
+   were already fixed in commit 656d48e at 02:43 UTC. No new issues needed.
+   
+   SEC-2.4.c2.json — 1 moderate + 3 minor
+   - "mid-afternoon" mislabeling already fixed in prior run (late afternoon ✓)
+   - ISS-943: Added Tropic of Cancer source for 7,400 km orbital radius (CLOSED)
+   - ISS-944: Fixed Section 7.10 anchor from #part7 to #p7-710-9 (CLOSED)
+   - Redundancy with Section 7.10 noted but no action needed (editorial concern only)
+   
+   SEC-8.11.c1.json — 1 moderate + 2 minor
+   - ISS-945: Removed unverifiable "-17 to -21 nT homepage" claim (not in any dome text) (CLOSED)
+   - ISS-947: "identical conditions" → "comparable eclipse conditions" for Chapman range (CLOSED)
+   - ISS-946: Added "in absolute terms" sign convention clarification (CLOSED)
+   
+   WIN-058b-post-EXP102.c2.json — 2 moderate + 4 minor
+   Already fixed in prior run: thermospheric expansion (→ ground-induced current), 1.672 (→ 1.677),
+   code_analysis.reviewed (→ true)
+   - ISS-948: Softened r=0.96 vs r=0.992 inconsistency claim (acknowledges differing stats) (CLOSED)
+   - ISS-949: Restructured SNR framing to lead with SNR=10, not SNR=5 (CLOSED)
+   - ISS-950: Moved numbering collision note from lead position to end of detail_evidence (CLOSED)
+   
+   SEC-1.8-post-ISS864.c3.json — recommended_action: no_change
+   Patch verified applied correctly. Two minor tensions noted (TLDR vs body precision) are within 
+   acceptable bounds. No action needed.
 
-━━━ CURMUDGEON QUEUE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Mode: BAU | Depth: 16 | Interval: 240 min
-1 item popped this run: SEC-8.11 (reviewed)
-No schedule action needed.
+3. EXTERNAL REPORTS
+   - report-1.json: Already logged as "logged_no_action" (positive feedback, no errors)
 
-━━━ OPEN ISSUES SUMMARY ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Total open: 19
-  Critical: 0  Major: 0  Moderate: 5  Minor: 14
+4. QUEUE MANAGEMENT
+   - Popped 3 reviewed items (PRED-batch-2026-04-13, SEC-8.11, SEC-6.3)
+   - Pushed SEC-6.3 (section-rewrite) for curmudgeon review of EXP-135 integration
+   - Queue: 19 → 16 items
+
+=== REMAINING OPEN ISSUES ===
+
+MAJOR (2):
+  ISS-802: SEC-2b.7 — assigned-analyst (science paragraph error + prose issues)
+  ISS-808: SEC-5.14-5.16 — DOCX builder missing these sections ⚠️ NEEDS HUMAN/TINKER ACTION
+           This is build infrastructure (build-doc-v4.js), not content analysis.
+           Analyst cannot own this. Requires human or tinker to add SEC-5.14/5.15/5.16 to DOCX.
+
+MODERATE (4):
+  ISS-826: PRED-TOROID-003 Schumann prediction analysis — assigned-analyst
+  ISS-832: WIN-058 taxonomy verdict — assigned-analyst
+  ISS-920: SEC-1-roadmap Part 1 framing — assigned-analyst
+  ISS-934: SEC-2b.1 hardcoded count words — assigned-analyst
+
+MINOR (4):
+  ISS-698: External report #1 — WONTFIX
+  ISS-708: EXP-060 PIPELINE generate-html.js kill-shot support — infrastructure
+  ISS-937: SEC-5 kill-shot strength rating key — assigned-analyst
+  ISS-941: SEC-5 Test 5 Eclipse stub — assigned-analyst
+
+=== ACTION NEEDED FROM HUMAN ===
+
+1. ISS-808: Add SEC-5.14, 5.15, 5.16 to build-doc-v4.js (DOCX builder). Third curmudgeon flag.
+   These sections cover AI-context engineering — some of our strongest original arguments.
+   The DOCX/PDF currently skips from 5.13 to Part 6.
+
+=== SCHEDULE STATUS ===
+  mode: bau
+  curmudgeon_current_interval_minutes: 240 (matches BAU default ✓)
+  schedule_action_needed: none
+
+=== CURMUDGEON QUEUE ===
+  mode: bau
+  depth: 16
+  action_taken: none (3 popped, 1 pushed)

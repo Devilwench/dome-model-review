@@ -21,67 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 90,
-      "target_type": "prediction-batch",
-      "target_id": "PRED-batch-2026-04-13",
-      "reason": "15 prediction verdicts updated from recycled/falsified to standard_physics or unfalsifiable. URGENT: W019 and W020 changed from falsified to standard_physics/unfalsifiable — check if these downgrades are justified. Also review PRED-NEW-002 (standard_physics→unfalsifiable) and TOROID batch. Are any genuinely testable predictions dismissed too aggressively?",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T06:07:34.043Z",
-      "context_hints": {
-        "prediction_ids": [
-          "PRED-091",
-          "PRED-CURR-004",
-          "PRED-CURR-008",
-          "PRED-NEW-002",
-          "PRED-R002",
-          "PRED-TESLA-002",
-          "PRED-TESLA-004",
-          "PRED-TOROID-002",
-          "PRED-TOROID-003",
-          "PRED-TOROID-004",
-          "PRED-TOROID-005",
-          "PRED-TOROID-007",
-          "PRED-V13-004",
-          "W019",
-          "W020"
-        ],
-        "assessment_files": [
-          "monitor/analyst/expansions/PRED-assessment-PRED-091.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-CURR-004.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-CURR-008.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-NEW-002.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-R002.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-TESLA-002.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-TESLA-004.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-TOROID-002.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-TOROID-003.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-TOROID-004.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-TOROID-005.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-TOROID-007.json",
-          "monitor/analyst/expansions/PRED-assessment-PRED-V13-004.json",
-          "monitor/analyst/expansions/PRED-assessment-W019.json",
-          "monitor/analyst/expansions/PRED-assessment-W020.json"
-        ],
-        "verdicts_set": {
-          "PRED-091": "standard_physics",
-          "PRED-CURR-004": "unfalsifiable",
-          "PRED-CURR-008": "standard_physics",
-          "PRED-NEW-002": "unfalsifiable",
-          "PRED-R002": "standard_physics",
-          "PRED-TESLA-002": "unfalsifiable",
-          "PRED-TESLA-004": "unfalsifiable",
-          "PRED-TOROID-002": "unfalsifiable",
-          "PRED-TOROID-003": "unfalsifiable",
-          "PRED-TOROID-004": "standard_physics",
-          "PRED-TOROID-005": "unfalsifiable",
-          "PRED-TOROID-007": "unfalsifiable",
-          "PRED-V13-004": "standard_physics",
-          "W019": "standard_physics",
-          "W020": "unfalsifiable"
-        }
-      }
-    },
-    {
       "queue_id": 91,
       "target_type": "win-detail-rewrite",
       "target_id": "EXP-062-batch",
@@ -325,46 +264,10 @@
         ],
         "source_file": "monitor/analyst/expansions/EXP-134.json"
       }
-    },
-    {
-      "queue_id": 116,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-8.11",
-      "reason": "After popping from queue (c1 review created ISS-945/946/947) — re-queue for c2 after ISS-945 is resolved",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-14T03:43:17.936Z",
-      "context_hints": {
-        "related_issues": [
-          "ISS-945",
-          "ISS-946",
-          "ISS-947"
-        ]
-      }
     }
   ],
-  "next_id": 117,
+  "next_id": 118,
   "history": [
-    {
-      "queue_id": 52,
-      "target_id": "WIN-068",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-12T18:15:11.279Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 54,
-      "target_id": "SEC-5",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-12T18:39:04.000Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 55,
-      "target_id": "SEC-1.1",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-12T18:39:04.000Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 48,
       "target_id": "SEC-1.2",
@@ -693,6 +596,27 @@
       "target_id": "SEC-8.11",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-14T03:41:53.552Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 90,
+      "target_id": "PRED-batch-2026-04-13",
+      "target_type": "prediction-batch",
+      "popped_at": "2026-04-14T04:17:18.226Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 116,
+      "target_id": "SEC-8.11",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-14T04:17:18.229Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 117,
+      "target_id": "SEC-6.3",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-14T04:17:18.229Z",
       "popped_by": "decider"
     }
   ],
