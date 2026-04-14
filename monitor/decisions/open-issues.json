@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T16:30:42.143Z",
+  "last_updated": "2026-04-14T17:05:11.920Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -164,6 +164,22 @@
       "staleness_note": "Re-opened: r=0.96 IS present in detail_verdict_text; the text reads: The claimed prospective prediction cites r = 0.96 while the same home page cites r = 0.992. Cannot verify source of r=0.96 in dome raw text - needs yeet to analyst.",
       "assigned_at": "2026-04-14T16:30:42.143Z",
       "expansion_id": "EXP-164"
+    },
+    {
+      "id": "ISS-996",
+      "win_id": null,
+      "severity": "major",
+      "category": "factual_error",
+      "description": "SEC-7.1 Antarctic paragraph cites Soviet Ob (1956-57), HMS Endurance, and modern Southern Ocean yacht races as confirming ~13,700 km figure via 70°S circumnavigation. None of these actually performed full 70°S circumnavigations: Soviet Ob did coastal work for Mirny resupply; HMS Endurance patrols South Georgia/Peninsula sector; modern yacht races (Vendée Globe, Volvo, Jules Verne) run at 40-55°S due to sea ice. The actual basis for the 13,700 km figure is coastline cartography + satellite altimetry, NOT vessel circumnavigation. Recommended fix: replace ship citations with SCAR ADD / IBCSO / Bellingshausen 1819-21 (canonical first Antarctic circumnavigation, at higher latitudes/non-continuous 70°S track). Out-of-scope from EXP-161 which limited itself to v22 quote and AE projection.",
+      "source": "curmudgeon-SEC-7.1-antarctic.c1",
+      "found_date": "2026-04-14",
+      "found_at": "2026-04-14T17:05:11.920Z",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null,
+      "related_review": "monitor/curmudgeon/reviews/SEC-7.1-antarctic.c1.json",
+      "related_exp": "EXP-161 (deferred)",
+      "notes": "Filed by human after noticing decider report flagged this for follow-up but never created an issue. The pipeline gap: \"out of scope, tracked for follow-up\" comments in decider reports do not actually create tracked work items."
     }
   ],
   "next_id": 996

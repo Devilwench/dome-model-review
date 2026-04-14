@@ -88,6 +88,8 @@ if(!existing){
 
 8. **Close related issues — do NOT skip.** For each issue ID in `issue_ids`, move from open-issues.json to closed-issues.json with `status: "fixed"`, `fixed_by: "expansion-integration"`. Verify removal. Unclosed issues become zombies.
 
+9. **Out-of-scope / deferred findings MUST be filed as new issues.** If you note in your report that something is "out of scope," "tracked for follow-up," "remaining for future EXP," or any similar phrasing, that finding MUST be filed as a new entry in `monitor/decisions/open-issues.json` BEFORE you finish the run. Narrative comments in daily reports do not survive — they scroll past with the next report and are forgotten. Either file an open issue (with the original review file as `related_review`) or push a new EXP item — never just leave the work as a sentence in your report. Auditing test: after writing your report, grep your own report text for "follow-up," "out of scope," "future," "tracked for," "remaining," "deferred." For each match, verify a corresponding open-issue or EXP exists.
+
 ## Step 2b: Yeet Scan (EVERY run)
 
 Scan ALL open issues for anything that can't be fixed with find/replace — prose rewrites, argument restructuring, 100+ words of new prose, dome source research needed. **Yeet ALL immediately.** Don't hold back because the analyst queue is deep.
