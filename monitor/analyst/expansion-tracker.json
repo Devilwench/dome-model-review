@@ -2874,7 +2874,7 @@
     },
     {
       "id": "EXP-162",
-      "target": "SEC-1.9 (part1b refractive index section) — add defender escape rebuttal + n(r) radial clarification",
+      "target": "SEC-1.9 (part1) — Differential Refraction: Eclipse Geometry Trap — defender escape + n(r) radial clarification",
       "source": "curmudgeon-SEC-1.9.c1",
       "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-1.9.c1.json",
       "issue_ids": [
@@ -2882,12 +2882,29 @@
         "ISS-985"
       ],
       "priority": "major",
+      "status": "complete",
+      "integrated": true,
+      "created_by": "analyst",
+      "created_at": "2026-04-14T14:30:47.594Z",
+      "notes": "Five patch-ready prose additions: P1=TLDR softened, P2=What-critique-does-not-claim paragraph, P3=Shadow-path-horizontal paragraph, P4=Angular-diameter reframe to historical constraint, P5=Bottom-line consolidated with WIN-039 + Aug2026 challenge.",
+      "integrated_at": "2026-04-14T15:30:03.396Z",
+      "integration_mode": "direct-patch"
+    },
+    {
+      "id": "EXP-163",
+      "target": "SEC-6.5-FAIL004 (part6) — retroactive-window critique + AAO proxy defense",
+      "source": "curmudgeon-SEC-6.5-FAIL004.c3",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-6.5-FAIL004.c3.json",
+      "issue_ids": [
+        "ISS-993"
+      ],
+      "priority": "moderate",
       "status": "pending",
-      "notes": "Two related improvements: (1) Address defender escape that apparent-path calculation suffices for ground-level effects — distinguish scaled-per-station vs threshold-binary vs whole-eclipse predictions. (2) Add paragraph acknowledging n(r) is radial (horizontal disc distance), not altitudinal — use this to strengthen eclipse shadow argument.",
-      "created_at": "2026-04-14T14:30:47.594Z"
+      "created_at": "2026-04-14T15:30:22.032Z",
+      "notes": "defense_survives=3. Two holes: (1) AAO 700hPa proxy for 500hPa prediction — possible symmetry argument from dome. (2) retroactively labeled \"refined\" citation needs dome primary source. Analyst should add named magnetic WINs with short test windows to counter the asymmetry claim, and cite dome label for \"refined\"."
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 163,
+  "next_id": 164,
   "total_items": 153
 }

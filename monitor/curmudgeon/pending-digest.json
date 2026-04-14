@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-04-14T12:19:11.075Z",
-  "total_reviews": 187,
+  "generated_at": "2026-04-14T15:19:03.052Z",
+  "total_reviews": 193,
   "already_processed": 239,
-  "pending_count": 18,
+  "pending_count": 24,
   "severity_breakdown": {
     "critical": 2,
-    "major": 7,
-    "moderate": 8,
+    "major": 8,
+    "moderate": 13,
     "minor": 1,
     "none": 0
   },
   "defense_survives_breakdown": {
     "high": 1,
-    "moderate": 0,
-    "total_vulnerable": 1
+    "moderate": 1,
+    "total_vulnerable": 2
   },
-  "needs_full_read_count": 12,
+  "needs_full_read_count": 16,
   "under_covered_processed": [
     {
       "win_id": "EVAL-GUIDE",
@@ -4064,17 +4064,9 @@
     {
       "win_id": "WIN-058b",
       "topic": "Bedrock Induction Ratio κ = 1.672 (PRED-KAPPA-001)",
-      "issues_created": 0,
+      "issues_created": 2,
       "holes_found": 6,
       "missing_holes": [
-        {
-          "severity": "major",
-          "summary": "TLDR-detail factual mismatch: tldr_evidence says 'the same-day data shows r = 0.91' but detail_evidence says 'Exhibit A on the same home page claims r = 0.992.' The TLDR introduces a third r-value (0.91) that appears nowhere in the detailed text. Readers who only see the collapsed TLDR get a differe"
-        },
-        {
-          "severity": "major",
-          "summary": "Monte Carlo claim 'r = 0.44–0.69' is unsupported and likely too low. Quantitative verification: with a shared storm-envelope driver (amplitude 10) and independent noise, the expected r depends strongly on SNR. At SNR=1.0, mean r ≈ 0.49; at SNR=2.0, r ≈ 0.80; at SNR=3.3, r ≈ 0.91. During a G5 storm ("
-        },
         {
           "severity": "moderate",
           "summary": "Forward reference to non-existent Section 1.6 (Dielectric Foundation): the detail_evidence says 'The full analysis of the dome's dielectric coupling claims... will appear in Section 1.6 (Dielectric Foundation) when completed.' No Part 1.6 or 'Dielectric Foundation' section exists in sections.json. T"
@@ -4693,6 +4685,58 @@
       "needs_full_read": true
     },
     {
+      "item_id": "SEC-6.5-FAIL004",
+      "win_id": "SEC-6.5-FAIL004",
+      "review_file": "monitor/curmudgeon/reviews/SEC-6.5-FAIL004.c3.json",
+      "reviewed_at": "2026-04-14T13:00:00Z",
+      "cycle": 3,
+      "topic": "FAIL-004 (W020 Roaring 40s 500hPa) EXP-134 rewrite — post-integration review",
+      "verdict_holds": true,
+      "confidence": 0.8,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "The claim 'The retroactive 3-month minimum window rule applies exclusively to atmospheric predictions — which happen to be the predictions that failed. Magnetic predictions with identically short test windows were counted as confirmed without any such requirement' is a strong structural argument but",
+          "recommendation": "Either (a) cite a specific dome source document (status_history.json entry, tracking page URL with archive date, or model.html section) where the 3-month rule is stated and scoped to atmospheric predictions, or (b) soften to 'the pattern of enforcement — atmospheric predictions were declared 'refine",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The paragraph rests its 'prediction failed' conclusion on a 700hPa AAO proxy for a 500hPa prediction, while in the same paragraph criticizing the dome for mixing metrics ('500hPa ≥3% above climatology' vs. Domain 10's 'AAO < 0σ while SAA decay >50 nT/yr'). A dome defender can invoke symmetry: 'You c",
+          "recommendation": "Add one sentence stating the AAO–500hPa correlation magnitude (literature value ~0.7–0.8 for SH mid-latitudes) and the implication that +0.78σ AAO rules out a 3% 500hPa extreme. Optional stronger move: cite the ERA5 500hPa anomaly for 40–60°S, March 12–19, 2026 directly (available from Copernicus Cl",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The 'retroactively labeled the original prediction \"refined\"' assertion cites no primary source either. Our uncounted-failures.json records dome_label='refined' for FAIL-004 (added 2026-04-09), but the paragraph does not point the reader to where the dome itself uses that word. A dome defender may c",
+          "recommendation": "Add a brief inline reference: '(dome's own tracking page labels this prediction \"refined\" rather than falsified — see monitor.py prediction registry or the dome's FAILURE ANALYSIS section as of 2026-04-05)' or cite status_history.json if it's available. If the word 'refined' is not verbatim from the",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The atmospheric-vs-magnetic window asymmetry argument would be substantially more persuasive with one or two named examples. Right now it says 'Magnetic predictions with identically short test windows were counted as confirmed' but names no specific magnetic prediction that had a 1-week window and w",
+          "recommendation": "Add a short parenthetical after 'without any such requirement': 'e.g., WIN-035 (African SAA cell ≤21,795 nT, registered 2026-03-06 and confirmed 2026-03-12 on a 6-day window) was counted as confirmed with a shorter window than FAIL-004.' This converts the asymmetry from rhetoric to a documented case",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The paragraph says 'the Live Power Dashboard Domain 10 tracks the same Southern Hemisphere atmospheric circulation using \"AAO < 0σ while SAA decay >50 nT/yr\"' but does not clarify that this Domain 10 criterion is a falsification condition, not a confirmation threshold (per raw-text/08-live-power.txt",
+          "recommendation": "Tweak the phrasing to: 'Domain 10's *falsification condition* for the same Southern Hemisphere atmospheric circulation is \"AAO < 0σ while SAA decay >50 nT/yr\" — a wholly different metric at a different pressure level. Whether a criterion is framed as a success threshold or a falsification trigger, a",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [],
+      "code_analysis_tags": null,
+      "argument_summary": "The dome predicted a ≥3% 500hPa geopotential height anomaly in 40–60°S for March 12–19, 2026 — equivalent to ~165m at climatological ~5500m. The AAO (a 700hPa proxy) averaged only +0.78σ during that w",
+      "stronger_arguments_count": 3,
+      "defense_survives": 3,
+      "best_defense": "A fair-minded dome defender would make three arguments: (1) 'You are judging our 500hPa prediction using a 700hPa AAO proxy, and in the same paragraph you criticize us for using different metrics for the same phenomenon. Which is it?' (2) 'You accuse us of applying a 3-month window rule only to atmo",
+      "preemptive_recommendation": "Address each defense in turn. (1) Add the AAO–500hPa correlation sentence (~0.7–0.8 correlation for SH mid-latitudes) to justify the proxy logic — or, better, cite direct ERA5 reanalysis. (2) Either produce a primary citation for the 3-month rule or soften the language to 'a pattern of enforcement' ",
+      "needs_full_read": true
+    },
+    {
       "item_id": "EXP-062-batch",
       "win_id": "EXP-062-batch",
       "review_file": "monitor/curmudgeon/reviews/EXP-062-batch.json",
@@ -4933,6 +4977,64 @@
       },
       "argument_summary": "The dome's firmament height H(r) = 8537·exp(−r/8619) drops by a factor of ~10.2 from North Pole (8,537 km) to Antarctic rim (837 km). If gravity arises from aetheric pressure columns (the dome's impli",
       "stronger_arguments_count": 3,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "SEC-4-intro",
+      "win_id": "SEC-4-intro",
+      "review_file": "monitor/curmudgeon/reviews/SEC-4-intro.c1.json",
+      "reviewed_at": "2026-04-14T16:40:00Z",
+      "cycle": 1,
+      "topic": "Part 4 opening italic transition — post-ISS-963 patch re-review",
+      "verdict_holds": true,
+      "confidence": 0.8,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "The new enumeration of Part 3 verdicts is INCOMPLETE and omits the largest category. The patched text says verdicts 'split between self-contradiction, refutation, standard-physics explanation, and unfalsifiable framing' — four categories. But the actual Part 3 verdict tally (computed from data/wins.",
+          "recommendation": "Option A (complete, preferred): 'the verdicts span self-contradiction, refutation, misleading framing, standard-physics duplication, unexamined claims, and unfalsifiable framing.' Option B (fuzzy signal): replace 'split between' with 'including' so the list reads as non-exhaustive. Option C (tighter",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "'None survive as an independent dome-only confirmation' uses the phrase 'dome-only' without definition at the point of first use. A reader arriving at Part 4 via direct link (the common case for a tab-based site) has not yet seen Part 2b (structural tags) or Part 3 intro (verdict categories). The ph",
+          "recommendation": "Insert a parenthetical definition on first use: 'none survive as an independent dome-only confirmation (i.e., a numerical match that requires dome geometry and is not already explained by standard physics)'. Alternatively, hyperlink 'dome-only confirmation' to the Part 2b/3.1a definition. Cheap; clo",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The body paragraph immediately below the patched italic intro is untouched and contains stale version claims that undermine the same argument. It begins 'V51.0 introduces several new site pages: a \"Live Power\" convergence dashboard, a \"Kill-Shot\" binary test page, an \"Audit Walkthrough\" for AI model",
+          "recommendation": "Change 'V51.0 introduces several new site pages' to 'The dome site's V51 series introduces several new pages' or 'The current V51.x dome site presents several new pages (Live Power: V51.0 title, V51.2 audit stats — the dome's own version marker is inconsistent)'. Or, tightest fix: drop the version l",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The revised sentence is long and contains three em-dashes in close succession: 'whether the model's aggregate framework—its statistical convergence dashboard and site architecture—compensates for those individual weaknesses — and, independently, whether the framework's own statistical claim holds up",
+          "recommendation": "Split into two sentences: 'This part tests whether the model's aggregate framework — its statistical convergence dashboard and site architecture — compensates for those individual weaknesses. Independently, it tests whether the framework's own statistical claim holds up when the shared inputs are au",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "minor",
+          "summary": "'Site architecture' vs 'site-page architecture' inconsistency (flagged in c1) was not addressed in the patch. The Part 3 roadmap box (SEC-1-roadmap territory) says Part 4 examines 'the Live Power dashboard, statistical convergence claims, and site-page architecture,' while the Part 4 intro still say",
+          "recommendation": "Change 'site architecture' to 'site-page architecture' in the italic intro. Matches Part 3 roadmap, matches Part 4's own section heading, and matches what Part 4 actually does. Truly trivial edit.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "The patched intro now reads: 'Part 3 evaluated every WIN individually and found that none survive as an independent dome-only confirmation — the verdicts split between self-contradiction, refutation, ",
+      "stronger_arguments_count": 2,
       "defense_survives": null,
       "best_defense": null,
       "preemptive_recommendation": null,
@@ -5226,6 +5328,160 @@
       "needs_full_read": true
     },
     {
+      "item_id": "PRED-TOROID-003",
+      "win_id": "PRED-TOROID-003",
+      "review_file": "monitor/curmudgeon/reviews/PRED-TOROID-003-EXP136.json",
+      "reviewed_at": "2026-04-14T08:30:00Z",
+      "cycle": 1,
+      "topic": "Prediction-batch review of PRED-TOROID-003 (Schumann mode splitting Δf ≈ 0.336 Hz) post-EXP-136 integration",
+      "verdict_holds": true,
+      "confidence": 0.82,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "The verdict 'standard_physics' may understate the problem. The dome does not merely restate a phenomenon already explained by standard physics — its stated derivation is internally inconsistent by a factor of 6.6×. A cleaner classification might be 'falsified' on the specific claim (a fixed geometri",
+          "recommendation": "Either (a) keep 'standard_physics' but add a sentence noting the fixed-vs-variable falsification test explicitly in the tldr, OR (b) consider reclassifying as 'falsified' with a note that the phenomenon it names is separately explained by standard physics. Decider call. If keeping 'standard_physics'",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Tension with c2 curmudgeon recommendation. In monitor/curmudgeon/reviews/ISS-703-sha256-forensics.c2.json, the curmudgeon explicitly said PRED-TOROID-003 is 'novel, testable, genuinely interesting — should be reclassified as genuinely prospective' and recommended 'Fair is fair. If a prediction is ge",
+          "recommendation": "Add a sentence to the detail_reasoning or notes field stating: 'An earlier curmudgeon review (c2) characterized this prediction as genuinely prospective. The newly-identified mathematical inconsistency (6.6× eccentricity-ratio error combined with use of the globe-observed fundamental frequency) is t",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Objection-handling on non-standard eccentricity definition is adequate but could be sharper. A defender could argue: 'the dome's ovoid geometry isn't an ellipse — eccentricity may refer to (a−b)/a rather than the standard sqrt(1−b²/a²).' The analyst's response is 'it must be defined.' But we can go ",
+          "recommendation": "Optional: strengthen the anticipated_objections response by noting that under ANY standard geometric convention (eccentricity, flattening, axial ratio), the stated e=0.66 cannot produce a ratio of 0.0215. This closes the 'maybe they meant a different definition' escape.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [],
+      "code_analysis_tags": null,
+      "argument_summary": "EXP-136 reclassifies PRED-TOROID-003 from unfalsifiable to standard_physics on the basis that (a) the dome's derivation of the 0.336 Hz splitting value contains two internal contradictions — a 6.6× ec",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": false
+    },
+    {
+      "item_id": "SEC-1-roadmap",
+      "win_id": "SEC-1-roadmap",
+      "review_file": "monitor/curmudgeon/reviews/SEC-1-roadmap.c2.json",
+      "reviewed_at": "2026-04-14T13:55:00Z",
+      "cycle": 2,
+      "topic": "Part 1 evidence-roadmap div — Tier 3 paragraph reframed per EXP-156/ISS-920 to lead with strength and drop apologetic framing",
+      "verdict_holds": true,
+      "confidence": 0.85,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "Factual imprecision inherited from Part 5: 'Gaia parallax of 1.8 billion stars.' Gaia DR3 catalogues ~1.811 billion sources, but only ~1.468 billion have published five-parameter astrometric (parallax) solutions. The remainder have two-parameter position-only solutions. A dome defender could pounce ",
+          "recommendation": "Either (a) replace '1.8 billion stars' with '~1.5 billion stars with measured parallax' in the roadmap AND in Part 5 and the Gaia kill-shot for consistency, or (b) keep '1.8 billion' but change 'parallax of' to 'astrometric survey of' — which is strictly accurate since Gaia's survey covers 1.8B sour",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The phrase 'measurements the dome did not choose' is rhetorically odd and epistemologically weak. It reads as if we're arguing that the dome's objection to external data would be 'I didn't pick those datasets' — which isn't actually the dome's objection. The actual dome objection, which EXP-091 ackn",
+          "recommendation": "Consider tightening the clause to something like 'These arguments rest on measurements that aren't derived from globe physics — they are raw angular shifts (Gaia), raw clock drift (GPS), and raw travel times (SH distances).' This directly addresses theory-ladenness without previewing the defender's ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The roadmap cites '(Parts 5 and 7)' for Tier 3, but EXP-156's own metadata notes that Southern Hemisphere great-circle distances are addressed in 'Part 5 Test 7 and Part 4.' Part 4 is not listed in the Tier 3 parenthetical. A careful reader looking for the SH-distance kill-shot in Parts 5 and 7 will",
+          "recommendation": "Either add 'and Part 4' to the parenthetical, or confirm that Part 4's SH-distance content is fully duplicated in Part 5 Test 7 (the kill-shot version). If Part 4 is the primary analytical treatment and Part 5 only references it, the roadmap should point readers to Part 4 too.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The new Tier 3 text uses straight ASCII apostrophes ('dome's', 'dome did not choose') whereas the rest of the roadmap (and the EXP-156 replacement_html block) uses curly apostrophes (dome's, dome's). sections.json already holds straight apostrophes throughout part1.html for the reviewed passage, but",
+          "recommendation": "Run a style sweep on part1.html to normalize apostrophe style across the entire evidence-roadmap div. Pick one convention (curly typographic or straight ASCII) and apply globally. Not urgent.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Logical tension noted in EXP-156's own anticipated objections: 'Tier 3 is independently decisive' AND 'Tier 1 goes one step further' is a defensible combined claim, but the roadmap compresses it into a single paragraph without signposting the epistemic-strength axis clearly. A reader could reasonabl",
+          "recommendation": "Consider adding one short clarifying clause, e.g., 'Tier 1 goes one step further by needing no external data at all — a strictly stronger epistemic position, which is why Parts 2 and 2b are placed before Parts 5 and 7.' This makes the hierarchy logic explicit for skeptical readers.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [
+        "Gaia DR3 parallax vs survey imprecision: 1.8 billion is the total source count; only ~1.468 billion have parallax solutions. This affects the roadmap, Part 5, and KILLSHOT-GAIA simultaneously. Not a DOI failure — a numerical-claim failure."
+      ],
+      "code_analysis_tags": null,
+      "argument_summary": "The evidence-roadmap div now presents a three-tier argument structure: Tier 1 (self-contradictions from dome's own equations — Schumann, two-bulge tides), Tier 2 (per-WIN evaluation), Tier 3 (kill-sho",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "SEC-1.8-EXP149",
+      "win_id": "SEC-1.8-EXP149",
+      "review_file": "monitor/curmudgeon/reviews/SEC-1.8-EXP149.c4.json",
+      "reviewed_at": "2026-04-14T12:30:00Z",
+      "cycle": 4,
+      "topic": "Coordinate Collapse — EXP-149 inserted empirical-fitting defense paragraph into Other Side section",
+      "verdict_holds": true,
+      "confidence": 0.82,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "Numerical inconsistency with the section it cross-references. The new paragraph ends with 'it fails by a factor of 5,200.' The cross-referenced Section 2.4 concludes 'The prediction fails by a factor of 5,000.' Both numbers are derivable from 52/0.01 = 5,200 (the new paragraph is more precise) but a",
+          "recommendation": "Harmonize the two sections. Preferred fix: update Section 2.4 from 'a factor of 5,000' to 'a factor of 5,200' (the exact ratio) and keep the new paragraph's 5,200. Alternative: soften the new paragraph to 'over 5,000×' or 'more than 5,000×' to match 2.4's rounded figure. Track as a small patch to se",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The punch line 'fails by a factor of 5,200' over-reaches relative to what the paragraph itself derives. Strictly: Section 2.4's 52% figure is the pure-geometric prediction with NO refraction compensation. The 52% is what you get when you ignore n(r) and just apply trigonometry to a local sun. The do",
+          "recommendation": "Add a half-sentence that makes the logical step explicit. E.g., change 'A local sun at 5,733 km observed through n(r) produces 52% angular diameter variation across the day' to 'A local sun at 5,733 km produces a geometric 52% angular diameter variation across the day; for n(r) to save this predicti",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The Newton-fitted-G analogy is not quite historically accurate. Newton did not fit G; the Principia does not contain a numerical value for G. G was first measured by Cavendish in 1798 (71 years after Newton's death). What Newton fitted was the FORM of the inverse-square law, calibrated via Kepler's ",
+          "recommendation": "Replace 'Newton fitted G to observations before predicting orbits' with 'Kepler fitted orbital parameters to observations before Newton derived the underlying law' or 'physical constants like G (Cavendish, 1798) are routinely fitted to observations before being used to predict other phenomena.' Mino",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Semi-technical misuse of 'overfitting'. In statistics, overfitting means fitting more parameters than the data-generating process warrants, such that the model captures noise. n(r) is a minimal, two-parameter exponential (coefficient 0.20, scale constant 8,537) — it is essentially the opposite of ov",
+          "recommendation": "Consider 'single-observable calibration' or 'underdetermined calibration' instead of 'overfitting' in one spot. Not critical — most readers won't notice. Keep if stylistic punch matters more than technical purity.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "TLDR drift check: the SEC-1.8 ps-tldr summary does not mention the solar-diameter / 52% failure at all — it focuses on the coordinate-contamination argument and the 300–6,000× refraction ratio. The EXP-149 paragraph introduces a NEW analytical beat (n(r) is an overfit, the solar diameter is the smok",
+          "recommendation": "Optional: add one sentence to the TLDR along the lines of 'Applying the same refraction fix to solar observations predicts 52% diurnal angular-diameter variation — falsified by 190 years of 0.01% constancy.' Two-sentence TLDR convention remains intact and the reader sees the self-consistency kill-sh",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [
+        "Section 2.4 states 'The prediction fails by a factor of 5,000' while EXP-149 paragraph states 'fails by a factor of 5,200' — both internally derivable from 52/0.01=5,200 but inconsistent with each other when quoted verbatim. This is not a fabricated citation but a numerical rounding divergence between cross-referenced sections."
+      ],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": true,
+        "reviewed": true
+      },
+      "argument_summary": "The new paragraph concedes that empirical fitting is legitimate science (citing Newton fitting G to observations), then argues that a fitted function is only valid if it predicts beyond its calibratio",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
       "item_id": "SEC-2.4",
       "win_id": "SEC-2.4",
       "review_file": "monitor/curmudgeon/reviews/SEC-2.4.c2.json",
@@ -5426,6 +5682,64 @@
       "code_analysis_tags": null,
       "argument_summary": "The Evaluation Guide's falsifiability section states four conditions any of which would upgrade a verdict. Condition 1 asks for a discriminating prediction derived from dome geometry; the section now ",
       "stronger_arguments_count": 3,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": false
+    },
+    {
+      "item_id": "eg-principles",
+      "win_id": "eg-principles",
+      "review_file": "monitor/curmudgeon/reviews/eg-principles.c1.json",
+      "reviewed_at": "2026-04-14T12:10:00Z",
+      "cycle": 1,
+      "topic": "Evaluation Guide Principle 3 rewording (ISS-821 via EXP-133 PATCH-1 + PATCH-1b)",
+      "verdict_holds": true,
+      "confidence": 0.86,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "Overclaim: 'the raw instrumental outputs are physical facts'. Magnetometer nT values, Gaia parallaxes, and GPS timing solutions are not 'raw' outputs — they are processed quantities produced by calibration pipelines that themselves embed spherical-Earth and general-relativistic assumptions. Gaia's a",
+          "recommendation": "Tighten the phrasing. Replace 'the raw instrumental outputs are physical facts' with something like 'these instruments produce reproducible, cross-checked numerical outputs' or 'the numerical outputs of these instruments are constrained by multiple independent calibration paths'. Alternatively: expl",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Overstatement: 'both models claim to be consistent with their readings.' The dome model uses NOAA/IGRF data in monitor.py (documented under the hardcoded/live_fetch tags in Part 2b) but it has NOT published a coherent account of what Gaia parallax measures under dome geometry, nor what GPS timing co",
+          "recommendation": "Soften to: 'both models treat these instrumental outputs as data any cosmology must explain' or 'the dome model's own automated monitoring treats these same instruments as authoritative (see Part 2b).' The latter is stronger because it anchors to a verifiable fact about the dome's repository rather ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Quotability risk: 'This is not cosmological neutrality' is a perfect out-of-context soundbite for a dome defender. The anticipated-objections section of EXP-133 acknowledges this and defends it (the full sentence continues '— it is empirical pragmatism...'), but a dome supporter clipping this onto T",
+          "recommendation": "No change now — the trade is defensible. But add a one-line internal note (perhaps a comment in generate-html.js) that this sentence is a known quotability risk so future editors don't accidentally expand it when revising. If the dome author quotes it in bad faith, we have pre-committed context to p",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "TLDR compression loses a key concession. Old TLDR fragment: 'we don't assume mainstream physics is correct by default' (overclaim). New TLDR fragment: 'claims are evaluated against measurement not theoretical authority' (accurate but vague). The new TLDR doesn't convey the Principle 3 body's most im",
+          "recommendation": "Optional follow-up: consider a TLDR like 'claims are evaluated against measurement not theoretical authority — though we note our reference instruments were themselves calibrated in a spherical-Earth framework, and defend using them on practical rather than neutrality grounds.' Slightly longer but r",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Internal consistency check: Principle 1 still lists 'NOAA WMM, INTERMAGNET, ESA Swarm, Gaia DR3' as examples of 'independently verifiable' data without flagging their spherical-Earth provenance. Principle 3 now does. This is not a contradiction (independent verifiability and calibration provenance a",
+          "recommendation": "No action required. If a future polish pass revisits the Evaluation Guide, a single sentence in Principle 1 ('these datasets are cosmologically non-neutral in their calibration but cosmologically neutral in their reproducibility, see Principle 3') would tighten the internal logic.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "Principle 3 now concedes that the review is not cosmologically neutral and defends that asymmetry on instrumental grounds: NOAA/Gaia/IGRF/GPS outputs are characterized as 'raw instrumental outputs' th",
+      "stronger_arguments_count": 2,
       "defense_survives": null,
       "best_defense": null,
       "preemptive_recommendation": null,
