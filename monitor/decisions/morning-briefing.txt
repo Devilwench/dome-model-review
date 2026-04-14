@@ -1,72 +1,62 @@
 MORNING BRIEFING — 2026-04-14
-Generated: 2026-04-14T19:28:00Z
-Previous decider run: 2026-04-14T18:35:08Z (01dc72c)
-This run: 2026-04-14T19:27:28Z (6568b82)
+Generated: 2026-04-14T19:35:00Z
+Curmudgeon reviews processed this run: 4 (WIN-010.c4, WIN-029.c3, SEC-1.9-post-EXP162.c1, HOLISTIC-HOL-COMPLETENESS.c2)
+Previous decider run: 2026-04-14T18:30:54Z
 
-══════════════════════════════════════════════
-SUMMARY
-══════════════════════════════════════════════
-Integrated EXP-163 (SEC-6.5-FAIL004 paragraph expansion). Closed ISS-993.
-0 new WIN files. 1 new proposal processed (ISS-993 resolution). 0 digest reviews pending.
-
-══════════════════════════════════════════════
 SITE HEALTH
-══════════════════════════════════════════════
-Tests: 3316 passed, 0 failed ✅
-Last integrity report (2026-04-14T08:14): WARN — external link redirects (NASA SSDC, Earth Observatory), win-number collision on WIN-057 (known), workspace-only files (3 curmudgeon reviews + EXP-158.json await workspace-sync), digest coverage gap (16 unprocessed reviews).
+-----------
+Integrity: WARN (0 critical, 0 major, 7 moderate, 1 minor)
+Build: 3323 tests passing, 0 failed
+External status: QUIET (15th consecutive no-change poll)
+Canary: NOT TRIGGERED
 
-══════════════════════════════════════════════
 EXTERNAL STATUS
-══════════════════════════════════════════════
-Dome site changes: Not checked this run — poller handles monitoring.
-Threat level: None assessed.
+---------------
+Dome site: No changes. WIN count 69, accuracy 94.5%, V51.1 stable.
+Canary trap: OTS provenance methodology unchanged. predictions_manifest.json.ots still bundles
+  predictions with results. No separated prediction-only timestamped document found.
+Last dome commit: 2026-04-14T10:40:54Z (auto-update ECM status)
+Eclipse test: August 12, 2026 — ACTIVE (Kp<2 escape clause in effect)
 
-══════════════════════════════════════════════
-INTERNAL STATUS
-══════════════════════════════════════════════
-Open issues: 7 (2 wontfix, 5 open)
-  - ISS-808 [MAJOR]: SEC-5.14/5.15/5.16 absent from DOCX builder — needs tinker/human
-  - ISS-975 [MODERATE]: EG eg-verdicts false-dilemma list item (3) overlap — needs human
-  - ISS-976 [MODERATE]: EG eg-falsifiability WIN-044 mischaracterized — needs human
-  - ISS-708 [MINOR]: generate-html.js kill-shots count injection — needs tinker/human
-  - ISS-997 [MINOR]: Inline italic styles need CSS class migration — needs tinker/human
-All remaining open issues target infrastructure files (generate-html.js, build-doc-v4.js).
-No self-applicable patches remain in the queue.
+INTERNAL STATUS — THIS RUN
+---------------------------
+Patches applied: 18 (all self-applied, 3323 tests pass)
+Issues created: 17 (ISS-998 through ISS-1014)
+Issues closed: 15 (ISS-998 through ISS-1013)
+Issues remaining open: 6 (ISS-708, ISS-997, ISS-1009, ISS-1014, + 2 wontfix)
 
-Closed this run: ISS-993 (EXP-163 integration)
-Total closed issues: 865
+CRITICAL FIX THIS RUN:
+Part 2b "These four are: WIN-020/044/057/058" — self-contradicted our own {{CA_DOME}}=2
+claim. HOL-COMPLETENESS.c2 holistic review caught it at 18:50 UTC today. Fixed: text now
+says "These {{CA_DOME}} are: WIN-044 and WIN-057." WIN-044's description also updated
+from "pending Aug 2026" to "self-contradicted by coordinate collapse."
 
-══════════════════════════════════════════════
-CURMUDGEON STATUS
-══════════════════════════════════════════════
-Mode: BAU | Schedule: 240 min
-Digest: 0 pending (193 total reviews tracked, 0 needing processing)
-Queue depth: 0 (SEC-6.5 pushed + immediately auto-popped — c3 review file exists)
-No schedule mismatch.
+WIN-010: Triple-counting context added (WIN-010/025/068 all cite same Chapman mechanism).
+WIN-029: area-weighted→linear radial (correct method), symmetry defense preempted,
+  Q>>100→Q>1000, algebraically inverts clarification, tldr_evidence de-conflated.
+SEC-1.9: 2 HTML hygiene fixes, n-range corrected, class (iii) examples added.
+Part 2b counts: 43→47 quadruple-failure, 19→18 triple-failure, 67→69 dome claim,
+  63 of 67 → template vars.
 
-══════════════════════════════════════════════
-TOP 3 PRIORITY ACTIONS FOR HUMAN
-══════════════════════════════════════════════
-1. FIX ISS-975/976 in generate-html.js (Evaluation Guide errors):
-   - ISS-976 (moderate): Line ~1418 says WIN-044 "produces values that match standard
-     physics or contradict measurement". WIN-044 is Self-Contradicted (dome's own equations
-     conflict). Fix to: "WIN-044 self-contradicts (dome's own geometry yields incompatible
-     values), WIN-057 produces a value matching standard physics."
-   - ISS-975 (moderate): Verify whether false-dilemma subtype list item (3) in the
-     count-inflation preemption paragraph has logical overlap and remove if so.
-2. FIX ISS-808 in build-doc-v4.js (DOCX builder missing SEC-5.14/5.15/5.16).
-   Third curmudgeon flag on this gap.
-3. Review workspace-sync agent to ensure EXP-158.json and 3 curmudgeon review files
-   (eg-falsifiability-derives-fix.c1.json, eg-verdicts-passive-tldr-fix.c1.json,
-   part5-roadmap-EXP116.c1.json) get synced to git. Now partially resolved: EXP-163
-   and EXP-164 manually added to git this run.
+TOP 3 PRIORITY ACTIONS
+-----------------------
+1. [HUMAN NEEDED] Add {{CA_QUAD_FAIL}}, {{CA_TRIPLE_FAIL}}, {{CA_LOW_FAIL}} template
+   vars to generate-html.js (ISS-1014). Stopgap hardcoded numbers will drift again on
+   next WIN addition. Infrastructure change requires human approval.
 
-══════════════════════════════════════════════
-REVIEW COVERAGE
-══════════════════════════════════════════════
-Total WINs covered: 70
-Verdict breakdown:
-  Misleading: 22 | Std Model Explains: 17 | Self-Contradicted: 14
-  Refuted by Data: 9 | Unfalsifiable: 4 | Not Demonstrated: 4
+2. [ANALYST] ISS-1009: Pull FSF definition from dome repo (raw-text/monitor.py or model
+   page) and quote it verbatim in SEC-1.9. Before Aug 2026 eclipse test, we need to show
+   what geometric inputs the FSF actually consumes.
 
-No code analysis tag updates this run.
+3. [CURMUDGEON] SEC-2b.3 in priority queue (depth=1, BAU mode). Fresh attack on the
+   rewritten derives-from-dome passage needed.
+
+CURMUDGEON PROGRESS
+-------------------
+Mode: BAU (4h interval)
+Queue depth: 1 (SEC-2b.3 — needs fresh review of fixed derives-from-dome section)
+Reviews processed today: 4 (WIN-010.c4, WIN-029.c3, SEC-1.9.c1+EXP162, HOL-COMPLETENESS.c2)
+
+CODE ANALYSIS TAG STATUS
+------------------------
+No new tags to sync this run. All tags current per last run.

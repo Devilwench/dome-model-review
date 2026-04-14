@@ -29,6 +29,8 @@
   "build_drift_resolved": true,
   "pipeline_bugs": [],
   "last_poll": "2026-04-14T11:06:00Z",
-  "last_decider_run": "2026-04-14T17:34:58Z",
-  "last_updated": "2026-04-14T17:34:58Z"
+  "last_decider_run": "2026-04-14T19:36:21.067Z",
+  "last_updated": "2026-04-14T17:34:58Z",
+  "last_decider_summary": "18 patches applied (WIN-010/029/SEC-1.9/Part-2b), 16 new issues created, 15 closed. Critical HOL-COMPLETENESS fix: Part 2b These-four-are contradiction resolved.",
+  "open_issue_count": 6
 }
