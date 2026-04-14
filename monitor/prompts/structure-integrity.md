@@ -96,6 +96,33 @@ All prose sections should be wrapped in `<details>`/`<summary>` with TLDRs. Spot
 - Prediction panels in `predictions.json`: check that genuinely prospective predictions have a `tldr` field.
 - Severity: Missing TLDR structure = **moderate** (content works but UX regresses). Empty/broken TLDR = **major**.
 
+### 5d. Hardcoded Theme Colors / Inline Style Drift
+
+The site uses a dark theme with CSS variables (`var(--card-bg)`, `var(--border)`, `var(--text)`, `var(--accent)`, `var(--heading)`). Hardcoded color literals in `sections.json` inline styles — especially light-theme values like `#f8f9fa`, `#fff`, `#ffffff`, or named colors like `white` — break the theme and produce jarring white panels against the dark background.
+
+**Check:** Scan `data/sections.json` for inline `style="..."` attributes containing hardcoded light-theme colors in `background:` or `border:` declarations. Also flag hardcoded greys in text color (`color:#555`, `color:#666`, `color:#888`) where a theme variable would be more appropriate.
+
+```bash
+# Light backgrounds (most serious)
+node -e "
+const s = JSON.parse(require('fs').readFileSync('data/sections.json','utf8'));
+const bad = /#(fff|ffffff|f8f9fa|fafafa|f5f5f5|eeeeee|e0e0e0)\b|background:\s*white\b/i;
+const matches = [];
+const walk = (obj, path='') => {
+  if (typeof obj === 'string' && bad.test(obj)) {
+    const m = obj.match(bad);
+    matches.push({path, color: m[0], snippet: obj.slice(Math.max(0, obj.indexOf(m[0])-40), obj.indexOf(m[0])+80)});
+  } else if (Array.isArray(obj)) obj.forEach((v,i)=>walk(v, path+'['+i+']'));
+  else if (obj && typeof obj === 'object') Object.keys(obj).forEach(k => walk(obj[k], path ? path+'.'+k : k));
+};
+walk(s);
+console.log('Hardcoded light colors in sections.json:', matches.length);
+matches.forEach(m => console.log(' ', m.path, '|', m.color, '|', m.snippet));
+"
+```
+
+**Severity:** Any hardcoded light background (`#fff`, `#f8f9fa`, etc.) in a `background:` declaration = **moderate** (visibly breaks dark theme). Hardcoded greys in `color:` declarations (`#555`, `#888`) where `var(--text)` or `#888` could be used = **minor** (usually fine but worth flagging on repeat offenders). Track repeat offenders — if the same class (e.g., `.roadmap-box`, `.ks-rating-key`) keeps appearing with hardcoded inline styles, that signals a missing utility class in the stylesheet.
+
 ### 6. Discoverability Infrastructure
 
 Verify that our AI/search discoverability files exist and are well-formed:
