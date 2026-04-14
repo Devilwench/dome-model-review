@@ -1,39 +1,72 @@
 MORNING BRIEFING — 2026-04-14
-Generated: 2026-04-14T16:28:00Z
-Curmudgeon reviews processed this run: 24 (22 stale, 2 with valid patches)
-Previous decider run: 2026-04-14T14:32:50Z
+Generated: 2026-04-14T19:28:00Z
+Previous decider run: 2026-04-14T18:35:08Z (01dc72c)
+This run: 2026-04-14T19:27:28Z (6568b82)
 
-=== SITE HEALTH ===
-Integrity: warn (external links, expansion tracker gap, workspace-only files)
-Build: PASS (3316 tests, 0 failed)
-External links: No hard 404s; 3 redirects to generic pages (low priority)
+══════════════════════════════════════════════
+SUMMARY
+══════════════════════════════════════════════
+Integrated EXP-163 (SEC-6.5-FAIL004 paragraph expansion). Closed ISS-993.
+0 new WIN files. 1 new proposal processed (ISS-993 resolution). 0 digest reviews pending.
 
-=== EXTERNAL STATUS ===
-Dome site changes: None (15 consecutive quiet polls)
-Canary status: Not triggered
+══════════════════════════════════════════════
+SITE HEALTH
+══════════════════════════════════════════════
+Tests: 3316 passed, 0 failed ✅
+Last integrity report (2026-04-14T08:14): WARN — external link redirects (NASA SSDC, Earth Observatory), win-number collision on WIN-057 (known), workspace-only files (3 curmudgeon reviews + EXP-158.json await workspace-sync), digest coverage gap (16 unprocessed reviews).
 
-=== INTERNAL STATUS ===
-Issues fixed this run: 4 (ISS-990, ISS-992 patched; ISS-986, ISS-987 initially)
-Issues assigned analyst: 1 (ISS-987 -> EXP-164: WIN-058b r-value verification)
-Re-opened: ISS-987 (incorrectly marked stale; r=0.96 still in verdict text)
-Open issues: 10
+══════════════════════════════════════════════
+EXTERNAL STATUS
+══════════════════════════════════════════════
+Dome site changes: Not checked this run — poller handles monitoring.
+Threat level: None assessed.
 
-=== PATCHES APPLIED ===
-1. WIN-010 detail_evidence: FSF latitude range 20-deg -> ~32-deg (Canary Islands correction)
-2. WIN-010 detail_verdict_text: same latitude range fix
-3. WIN-010 detail_evidence: Kp "geomagnetically disturbed" -> "unsettled (NOAA G-scale)"
-4. WIN-010 detail_verdict_text: same Kp fix
-5. SEC-4 (sections.json): "V51.0 introduces..." -> "The current V51.x dome site presents..."
+══════════════════════════════════════════════
+INTERNAL STATUS
+══════════════════════════════════════════════
+Open issues: 7 (2 wontfix, 5 open)
+  - ISS-808 [MAJOR]: SEC-5.14/5.15/5.16 absent from DOCX builder — needs tinker/human
+  - ISS-975 [MODERATE]: EG eg-verdicts false-dilemma list item (3) overlap — needs human
+  - ISS-976 [MODERATE]: EG eg-falsifiability WIN-044 mischaracterized — needs human
+  - ISS-708 [MINOR]: generate-html.js kill-shots count injection — needs tinker/human
+  - ISS-997 [MINOR]: Inline italic styles need CSS class migration — needs tinker/human
+All remaining open issues target infrastructure files (generate-html.js, build-doc-v4.js).
+No self-applicable patches remain in the queue.
 
-=== TOP 3 PRIORITY ACTIONS ===
-1. ISS-991: Verify WIN-010 "Meza et al. (2021, JGR Space Physics)" citation — eclipse papers by Meza typically appear in JASTP; may need correction.
-2. ISS-994/975/976: generate-html.js fixes for Evaluation Guide — (045-051) tidal range and WIN-044 characterization — human must edit infrastructure file.
-3. ISS-808: SEC-5.14/5.15/5.16 absent from DOCX/PDF build — human action required on build-doc-v4.js.
+Closed this run: ISS-993 (EXP-163 integration)
+Total closed issues: 865
 
-=== CURMUDGEON PROGRESS ===
-Mode: BAU | Queue depth: 0 (1 item popped this run)
-No schedule action needed.
+══════════════════════════════════════════════
+CURMUDGEON STATUS
+══════════════════════════════════════════════
+Mode: BAU | Schedule: 240 min
+Digest: 0 pending (193 total reviews tracked, 0 needing processing)
+Queue depth: 0 (SEC-6.5 pushed + immediately auto-popped — c3 review file exists)
+No schedule mismatch.
 
-=== STALENESS ANALYSIS ===
-22/24 digest reviews were stale. This is expected given recent active decider runs fixing the cited issues.
-Most critical/major items (EXP-062-batch, PRED-SR-SUPPRESS-EXP157, PRED-batch verdicts, SEC-* issues) were all fixed in prior runs within 24 hours.
+══════════════════════════════════════════════
+TOP 3 PRIORITY ACTIONS FOR HUMAN
+══════════════════════════════════════════════
+1. FIX ISS-975/976 in generate-html.js (Evaluation Guide errors):
+   - ISS-976 (moderate): Line ~1418 says WIN-044 "produces values that match standard
+     physics or contradict measurement". WIN-044 is Self-Contradicted (dome's own equations
+     conflict). Fix to: "WIN-044 self-contradicts (dome's own geometry yields incompatible
+     values), WIN-057 produces a value matching standard physics."
+   - ISS-975 (moderate): Verify whether false-dilemma subtype list item (3) in the
+     count-inflation preemption paragraph has logical overlap and remove if so.
+2. FIX ISS-808 in build-doc-v4.js (DOCX builder missing SEC-5.14/5.15/5.16).
+   Third curmudgeon flag on this gap.
+3. Review workspace-sync agent to ensure EXP-158.json and 3 curmudgeon review files
+   (eg-falsifiability-derives-fix.c1.json, eg-verdicts-passive-tldr-fix.c1.json,
+   part5-roadmap-EXP116.c1.json) get synced to git. Now partially resolved: EXP-163
+   and EXP-164 manually added to git this run.
+
+══════════════════════════════════════════════
+REVIEW COVERAGE
+══════════════════════════════════════════════
+Total WINs covered: 70
+Verdict breakdown:
+  Misleading: 22 | Std Model Explains: 17 | Self-Contradicted: 14
+  Refuted by Data: 9 | Unfalsifiable: 4 | Not Demonstrated: 4
+
+No code analysis tag updates this run.
