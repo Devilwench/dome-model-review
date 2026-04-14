@@ -12534,6 +12534,55 @@
       "fixed_at": "2026-04-14T16:20:54.061Z",
       "fixed_by": "human-self-apply",
       "resolution_note": "Changed (045–051) range to explicit list (045, 046, 049, 050, 051) to exclude WIN-047 (Hubble) and WIN-048 (CMB) which are not tidal."
+    },
+    {
+      "id": "ISS-990",
+      "win_id": "010",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "WIN-010: \"3.2× spread within 20° of European latitude\" conflates two measurements. Full 0.642–2.075 range materializes when Canary Islands (28.3°N) is included; without SNK, spread within 20° (UK stations) is ~2×. Reframe to honest \"3.2× spread across ~32° European latitude (Canary Islands through Shetland)\".",
+      "source": "curmudgeon",
+      "found_date": "2026-04-14",
+      "status": "fixed",
+      "fix_details": "Patches applied: ISS-990 WIN-010 text fixes",
+      "fix_date": null,
+      "related_review": "WIN-010.c4",
+      "found_at": "2026-04-14T15:29:48.173Z",
+      "fixed_at": "2026-04-14T16:29:31.545Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-992",
+      "win_id": "010",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "WIN-010: \"recorded at Kp = 3–4 (geomagnetically disturbed)\" overstates — NOAA G-scale disturbance starts at Kp 5. Quote exact NOAA/GFZ Kp value for 2017-08-21 17:20 UTC precisely, or soften to \"Kp = 3 (unsettled)\".",
+      "source": "curmudgeon",
+      "found_date": "2026-04-14",
+      "status": "fixed",
+      "fix_details": "Patches applied: ISS-992 WIN-010 text fixes",
+      "fix_date": null,
+      "related_review": "WIN-010.c4",
+      "found_at": "2026-04-14T15:29:48.173Z",
+      "fixed_at": "2026-04-14T16:29:31.545Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-986",
+      "win_id": "058b",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "WIN-058b detail_evidence: \"thermospheric expansion drives both SG loading and Schumann amplitude variations\" is imprecise — thermospheric changes affect ionospheric conductivity for Schumann but affect Earth solid-body loading via atmospheric mass redistribution. These are two different physical pathways, not one.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-058b-post-EXP102.c2.json",
+      "found_by": "decider-from-curmudgeon",
+      "found_at": "2026-04-14T14:30:03.995Z",
+      "found_date": "2026-04-14",
+      "status": "fixed",
+      "fix_details": "Text these issues describe (thermospheric claim, r=0.96) no longer exists in WIN-058b after EXP-102 rewrite. Issues are stale.",
+      "fix_date": null,
+      "fixed_at": "2026-04-14T16:29:31.545Z",
+      "fixed_by": "decider-staleness-gate"
     }
   ]
 }

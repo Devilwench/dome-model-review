@@ -342,5 +342,18 @@
       "ISS-991",
       "ISS-992"
     ]
+  },
+  {
+    "id": "ATT-2026-04-14T16:31:34.981Z",
+    "status": "pending",
+    "target_type": "win",
+    "target_id": "WIN-010",
+    "reason": "Decider patched detail_evidence and detail_verdict_text: (1) FSF latitude range corrected from 20 degrees to 32 degrees (Canary Islands at 28.3N is the station driving the spread), (2) Kp characterization corrected from geomagnetically disturbed to unsettled. Analyst should verify these factual corrections are consistent with the full WIN-010 analysis.",
+    "pushed_by": "decider",
+    "pushed_at": "2026-04-14T16:31:34.981Z",
+    "related_issues": [
+      "ISS-990",
+      "ISS-992"
+    ]
   }
 ]

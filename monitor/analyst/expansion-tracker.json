@@ -2902,9 +2902,22 @@
       "status": "pending",
       "created_at": "2026-04-14T15:30:22.032Z",
       "notes": "defense_survives=3. Two holes: (1) AAO 700hPa proxy for 500hPa prediction — possible symmetry argument from dome. (2) retroactively labeled \"refined\" citation needs dome primary source. Analyst should add named magnetic WINs with short test windows to counter the asymmetry claim, and cite dome label for \"refined\"."
+    },
+    {
+      "id": "EXP-164",
+      "status": "pending",
+      "category": "verification",
+      "target": "WIN-058b detail_verdict_text: r=0.96 vs r=0.992 source verification",
+      "issue_ids": [
+        "ISS-987"
+      ],
+      "assigned_at": "2026-04-14T16:30:37.895Z",
+      "assigned_by": "decider",
+      "description": "Verify source of r=0.96 claim in WIN-058b detail_verdict_text: The claimed prospective prediction cites r = 0.96 while the same home page cites r = 0.992. The dome raw text (raw-text/03-predictions.txt, raw-text/08-live-power.txt, raw-text/01-home.txt) does not explicitly show r=0.96 for PRED-KAPPA-001. Analyst should: (1) locate the exact source of r=0.96 in dome materials, (2) verify whether r=0.96 and r=0.992 refer to the same data or different measurements, (3) if different, update text to clarify. If r=0.96 cannot be sourced, remove it and use only r=0.992. ISS-987: defend against dome argument that these are different data windows.",
+      "output_file": "N/A -- verification task"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 164,
+  "next_id": 165,
   "total_items": 153
 }

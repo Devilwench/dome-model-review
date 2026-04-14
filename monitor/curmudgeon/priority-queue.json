@@ -19,33 +19,9 @@
     "decider",
     "tinker"
   ],
-  "queue": [
-    {
-      "queue_id": 131,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-1.9-post-EXP162",
-      "reason": "EXP-162 integrated — 5 new paragraphs added to Section 1.9 differential refraction eclipse trap. Fresh adversarial review needed on new content (esp. P2 concession on WIN-010 single-obs case, P3 shadow-path argument, P5 Aug 2026 challenge).",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-14T15:33:52.108Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-162.json",
-        "related_issues": [
-          "ISS-983",
-          "ISS-985"
-        ],
-        "human_note": null
-      }
-    }
-  ],
+  "queue": [],
   "next_id": 132,
   "history": [
-    {
-      "queue_id": 75,
-      "target_id": "KILLSHOT-GAIA-v2",
-      "target_type": "killshot-new",
-      "popped_at": "2026-04-13T19:48:05.610Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 76,
       "target_id": "SEC-2b.1-post-EXP089",
@@ -387,6 +363,13 @@
       "target_id": "SEC-1.9",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-14T15:33:34.395Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 131,
+      "target_id": "SEC-1.9-post-EXP162",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-14T16:31:50.950Z",
       "popped_by": "decider"
     }
   ],

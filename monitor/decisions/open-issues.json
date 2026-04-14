@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T15:31:15.994Z",
+  "last_updated": "2026-04-14T16:30:42.143Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -88,36 +88,6 @@
       "fix_date": null
     },
     {
-      "id": "ISS-986",
-      "win_id": "058b",
-      "severity": "moderate",
-      "category": "factual_error",
-      "description": "WIN-058b detail_evidence: \"thermospheric expansion drives both SG loading and Schumann amplitude variations\" is imprecise — thermospheric changes affect ionospheric conductivity for Schumann but affect Earth solid-body loading via atmospheric mass redistribution. These are two different physical pathways, not one.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/WIN-058b-post-EXP102.c2.json",
-      "found_by": "decider-from-curmudgeon",
-      "found_at": "2026-04-14T14:30:03.995Z",
-      "found_date": "2026-04-14",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-987",
-      "win_id": "058b",
-      "severity": "moderate",
-      "category": "missing_argument",
-      "description": "WIN-058b: r=0.96 vs r=0.992 correlation inconsistency has an unaddressed defender escape. The dome could argue these represent different data windows, calibration epochs, or baseline-subtraction choices. Section should either (a) verify both r-values from same methodology or (b) use only the lower r-value and acknowledge the range.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/WIN-058b-post-EXP102.c2.json",
-      "found_by": "decider-from-curmudgeon",
-      "found_at": "2026-04-14T14:30:03.995Z",
-      "found_date": "2026-04-14",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
       "id": "ISS-988",
       "win_id": null,
       "severity": "major",
@@ -146,39 +116,11 @@
       "found_at": "2026-04-14T15:29:20.175Z"
     },
     {
-      "id": "ISS-990",
-      "win_id": "010",
-      "severity": "moderate",
-      "category": "factual_error",
-      "description": "WIN-010: \"3.2× spread within 20° of European latitude\" conflates two measurements. Full 0.642–2.075 range materializes when Canary Islands (28.3°N) is included; without SNK, spread within 20° (UK stations) is ~2×. Reframe to honest \"3.2× spread across ~32° European latitude (Canary Islands through Shetland)\".",
-      "source": "curmudgeon",
-      "found_date": "2026-04-14",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null,
-      "related_review": "WIN-010.c4",
-      "found_at": "2026-04-14T15:29:48.173Z"
-    },
-    {
       "id": "ISS-991",
       "win_id": "010",
       "severity": "moderate",
       "category": "citation",
       "description": "WIN-010 detail_verdict_text: \"Meza et al. (2021, JGR Space Physics)\" citation unverified — Meza eclipse papers typically appear in JASTP, not JGR Space Physics. Needs end-to-end verification (full authors, year, journal, DOI) or replacement with a verifiable citation.",
-      "source": "curmudgeon",
-      "found_date": "2026-04-14",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null,
-      "related_review": "WIN-010.c4",
-      "found_at": "2026-04-14T15:29:48.173Z"
-    },
-    {
-      "id": "ISS-992",
-      "win_id": "010",
-      "severity": "moderate",
-      "category": "factual_error",
-      "description": "WIN-010: \"recorded at Kp = 3–4 (geomagnetically disturbed)\" overstates — NOAA G-scale disturbance starts at Kp 5. Quote exact NOAA/GFZ Kp value for 2017-08-21 17:20 UTC precisely, or soften to \"Kp = 3 (unsettled)\".",
       "source": "curmudgeon",
       "found_date": "2026-04-14",
       "status": "open",
@@ -202,6 +144,26 @@
       "found_at": "2026-04-14T15:29:48.173Z",
       "assigned_to": "EXP-163",
       "assigned_at": "2026-04-14T15:30:22.032Z"
+    },
+    {
+      "id": "ISS-987",
+      "win_id": "058b",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "WIN-058b: r=0.96 vs r=0.992 correlation inconsistency has an unaddressed defender escape. The dome could argue these represent different data windows, calibration epochs, or baseline-subtraction choices. Section should either (a) verify both r-values from same methodology or (b) use only the lower r-value and acknowledge the range.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-058b-post-EXP102.c2.json",
+      "found_by": "decider-from-curmudgeon",
+      "found_at": "2026-04-14T14:30:03.995Z",
+      "found_date": "2026-04-14",
+      "status": "assigned-analyst",
+      "fix_details": "Text these issues describe (thermospheric claim, r=0.96) no longer exists in WIN-058b after EXP-102 rewrite. Issues are stale.",
+      "fix_date": null,
+      "fixed_at": "2026-04-14T16:29:31.545Z",
+      "fixed_by": "decider-staleness-gate",
+      "staleness_note": "Re-opened: r=0.96 IS present in detail_verdict_text; the text reads: The claimed prospective prediction cites r = 0.96 while the same home page cites r = 0.992. Cannot verify source of r=0.96 in dome raw text - needs yeet to analyst.",
+      "assigned_at": "2026-04-14T16:30:42.143Z",
+      "expansion_id": "EXP-164"
     }
   ],
   "next_id": 996
