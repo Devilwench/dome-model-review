@@ -1842,13 +1842,15 @@
         "ISS-805"
       ],
       "priority": "major",
-      "status": "pending",
+      "status": "complete",
       "notes": "Both sections critique eclipse predictions without mentioning dome's four model-discriminating tests (E-PRED-A through E-PRED-D). E-PRED-B predicts north vs south station asymmetry based on toroidal field — the only internally coherent discriminating test. Also: verify -17 to -21 nT range against dome raw text (may be oversimplified). Fix WIN-025/WIN-010 removal characterization. Source: curmudgeon SEC-3.2.json + SEC-3.5.7.json.",
       "created_at": "2026-04-12T15:44:26.444Z",
       "integrated": true,
       "integrated_at": "2026-04-13T05:11:36.022Z",
       "integration_mode": "integration",
-      "integration_note": "Applied PATCH-1 and PATCH-2 to part8 SEC-8.11. PATCH-3 already applied."
+      "integration_note": "Applied PATCH-1 and PATCH-2 to part8 SEC-8.11. PATCH-3 already applied.",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Already integrated (patches applied to SEC-8.11), all 3 issues closed. Marking complete."
     },
     {
       "id": "EXP-105",
@@ -1859,12 +1861,14 @@
         "ISS-802"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "notes": "The '7-sigma wrong sign' argument needs strengthening: (1) acknowledge below-threshold direction discard is standard practice, (2) argue specifically why dome's use is illegitimate (threshold calibration issue), (3) add the actual noise floor value, (4) clarify whether direction_correct is formally overridden or simply unchecked when below_detection_threshold. Source: curmudgeon part2b-W001-signflip.c2.json.",
       "created_at": "2026-04-12T15:44:26.444Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-106",
@@ -1873,13 +1877,15 @@
         "ISS-748"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "12 WINs tagged post_hoc=false but none have post_hoc_evidence fields. Analyst must (a) add post_hoc_evidence where applicable or (b) change post_hoc=true for WINs that ARE post-hoc. dome's own prospective classification in predictions.json should be consulted.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-107",
@@ -1888,13 +1894,15 @@
         "ISS-749"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Kill-shots text says dome predicts ~22.8 km/yr for 2026 NMP drift but actual observed rate from NOAA is different. Verify the actual NOAA figure and fix the claim. Also check dome prediction vs. actual for the prediction window.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-108",
@@ -1903,13 +1911,15 @@
         "ISS-750"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "category": "defense",
       "notes": "Defense_survives=3. Part 1 presents n(r) formula with coefficient 0.20 then cites table values inconsistent with it. Analyst Mode 3 defense neutralization needed. Source: ISS-672-nr-coefficient.c2.json.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-109",
@@ -1919,13 +1929,15 @@
         "ISS-772"
       ],
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "(1) SEC-6.1 presents B(r) with same r variable in both terms, which collapses to single-pole. Fix to use r_N/r_S. (2) κ coupling constant attributed to 2003 Halloween storm but correct source is BOU 2017 + Mohe 1997. Both are factual errors in the section.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-110",
@@ -1950,13 +1962,15 @@
         "ISS-767"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Overview scorecard declares 0 Actual Wins before presenting any evidence. Reframe as summary of findings. Also address tabbed architecture navigation issue for linear readers.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-112",
@@ -1965,13 +1979,15 @@
         "ISS-768"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "The review defines what disqualifies a WIN but never operationalizes what would count as a genuine one. Add a paragraph: What would change our verdict? Give specific criteria.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-113",
@@ -1980,13 +1996,15 @@
         "ISS-769"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Part 4.6 (SEC-2b) presents aggregate code analysis stats but names zero specific WINs. Add 2-3 concrete examples to each subsection (e.g., Schumann hardcode, SAA Decay hardcode).",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Integrated as no_op_confirmation by decider. Marking complete."
     },
     {
       "id": "EXP-114",
@@ -1995,13 +2013,15 @@
         "ISS-770"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Eclipse/Chapman restated in 6+ locations; aetheric refraction in 5+ locations. Designate canonical sections and add cross-references. Currently creates inconsistency risk.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "patch_applied"
+      "integration_mode": "patch_applied",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-115",
@@ -2010,13 +2030,15 @@
         "ISS-771"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Std Model Explains (24%) conflates (a) dome and globe make identical predictions vs (b) dome prediction matches obs but globe also predicts it. Consider splitting or adding clarifying prose.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-116",
@@ -2058,13 +2080,15 @@
         "ISS-776"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Overview declares 0 Actual Wins upfront with no preemption of the obvious counterargument: \"You decided the verdict before the trial.\" Add a one-liner that explains why this is a conclusion, not a prejudgment.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Integrated as no_op_confirmation by decider. Marking complete."
     },
     {
       "id": "EXP-119",
@@ -2073,13 +2097,15 @@
         "ISS-800"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "SEC-6.4 uses different latitude range for SAA southern boundary than WIN-024 detail_evidence. Align the SEC-6.4 WIN-024 paragraph with the WIN-024 approach (geographic vs geomagnetic latitude distinction).",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-120",
@@ -2088,13 +2114,15 @@
         "ISS-804"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "category": "expansion",
       "notes": "Rule 15 cited as \"Say aetheric slipstreams NOT jet streams\" but V50.6 raw-text extraction may list it differently. Verify and update citation.",
       "created_at": "2026-04-12T16:11:49.882Z",
       "integrated": true,
       "integrated_at": "2026-04-13T20:36:35.705Z",
-      "integration_mode": "direct-patch"
+      "integration_mode": "direct-patch",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-121",
@@ -2300,9 +2328,15 @@
       ],
       "category": "expansion",
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "Batch audit V-template not properly applied to unfalsifiable WINs.",
-      "created_at": "2026-04-12T19:48:10.478Z"
+      "created_at": "2026-04-12T19:48:10.478Z",
+      "completed_at": "2026-04-14T16:15:00Z",
+      "output_file": "monitor/analyst/expansions/EXP-132.json",
+      "completion_note": "Already fixed in wins.json. U-category text present for all 3 unfalsifiable WINs. ISS-820 resolution proposal written.",
+      "integrated": true,
+      "integrated_at": "2026-04-14T03:05:34.339Z",
+      "integrated_by": "decider"
     },
     {
       "id": "EXP-133",
@@ -2318,9 +2352,15 @@
       ],
       "category": "expansion",
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "Evaluation Guide Principle 3 claims mainstream physics not assumed correct by default, but practice may differ. Additional holes from eval-guide-eg-verdicts.c1.json: ISS-902 (false-dilemma vs WIN-054), ISS-903 (count inflation asymmetry), ISS-904 (actively mishandle implies intent). ISS-900 (eclipse discrimination window, 1 nT narrow window), ISS-901 (verbose sublabel in part1).",
-      "created_at": "2026-04-12T19:48:10.478Z"
+      "created_at": "2026-04-12T19:48:10.478Z",
+      "completed_at": "2026-04-14T16:30:00Z",
+      "output_file": "monitor/analyst/expansions/EXP-133.json",
+      "completion_note": "3 patches: Principle 3 rewording (ISS-821), TLDR update, eclipse discrimination window (ISS-900). 4 of 6 issues already closed. Proposals written for ISS-821 and ISS-900.",
+      "integrated": true,
+      "integrated_at": "2026-04-14T03:05:34.339Z",
+      "integrated_by": "decider"
     },
     {
       "id": "EXP-134",
@@ -2332,9 +2372,11 @@
       ],
       "category": "expansion",
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "FAIL-004 conflates AAO index σ with % anomaly, and lacks citation for +0.78σ value.",
-      "created_at": "2026-04-12T19:48:10.478Z"
+      "created_at": "2026-04-12T19:48:10.478Z",
+      "completed_at": "2026-04-14T03:11:22.341Z",
+      "output_file": "monitor/analyst/expansions/EXP-134.json"
     },
     {
       "id": "EXP-135",
@@ -2387,12 +2429,14 @@
       ],
       "category": "expansion",
       "priority": "major",
-      "status": "pending",
+      "status": "complete",
       "notes": "Section claims need verification. Major severity, staleness-uncertain.",
       "created_at": "2026-04-12T19:48:10.478Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-139",
@@ -2423,12 +2467,14 @@
       ],
       "category": "defense",
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Surviving defense (3/5): dome defender argues eclipse predictions use APPARENT geometry (observed shadow position) not physical sun altitude, so n(r) indeterminacy doesn't matter. Curmudgeon preemption recommendation: show FSF calibration against V12 dome geometry explicitly requires physical sun altitude, not apparent altitude. Also needed: full WIN-010 text rewrite to fix verdict-text mismatch (verdict=Self-Contradicted but all prose says Non-discriminating).",
       "created_at": "2026-04-12T20:09:48.990Z",
       "integrated": true,
       "integrated_at": "2026-04-13T21:11:44.922Z",
-      "integration_mode": "direct-patch"
+      "integration_mode": "direct-patch",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-141",
@@ -2440,12 +2486,14 @@
       ],
       "category": "factual_error",
       "priority": "high",
-      "status": "pending",
+      "status": "complete",
       "notes": "Section 1.7 hardcodes 67 WINs (now 69-70) and 49% gravity fraction (33/67). Must recount gravity WINs including new ones and update.",
       "created_at": "2026-04-12T20:40:33.197Z",
       "integrated": true,
       "integrated_at": "2026-04-13T19:07:47.658Z",
-      "integration_mode": "no_op_confirmation"
+      "integration_mode": "no_op_confirmation",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-142",
@@ -2597,13 +2645,15 @@
         "ISS-869"
       ],
       "priority": "low",
-      "status": "pending",
+      "status": "complete",
       "notes": "Add parenthetical noting when B(r) two-pole formula was introduced (V51.0). Cross-check raw-text/ archives for V50.6 vs V51.0 content.",
       "created_at": "2026-04-13T04:20:24.222Z",
       "integrated": true,
       "integrated_at": "2026-04-13T05:11:36.022Z",
       "integration_mode": "integration",
-      "integration_note": "Applied B(r) formula version attribution to part1 (ISS-869)"
+      "integration_note": "Applied B(r) formula version attribution to part1 (ISS-869)",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-151",
@@ -2614,13 +2664,15 @@
         "ISS-871"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "notes": "ISS-870: Verify \"V13 optimization\" claim against dome site and raw-text/ archives. ISS-871: Verify \"6.2% RMSE on cross-equatorial routes\" — dome V12 page shows 25-78%, V13 may have improved but needs confirmation. If unverifiable, soften claim to \"reportedly\" or note limitation.",
       "created_at": "2026-04-13T04:20:24.222Z",
       "integrated": true,
       "integrated_at": "2026-04-13T05:11:36.022Z",
       "integration_mode": "integration",
-      "integration_note": "Applied achieves->reports wording fix to part1 (ISS-871); ISS-870 closed wontfix"
+      "integration_note": "Applied achieves->reports wording fix to part1 (ISS-871); ISS-870 closed wontfix",
+      "completed_at": "2026-04-14T16:00:00Z",
+      "completion_note": "Batch cleanup: already integrated with output file. Marking complete."
     },
     {
       "id": "EXP-152",
@@ -2728,9 +2780,36 @@
       "integrated_at": "2026-04-14T00:15:42.409Z",
       "integrated_by": "decider",
       "integration_notes": "Applied replacement_fields to PRED-SR-SUPPRESS in predictions.json. detail_reasoning and tldr updated with Doodson induction defense, Rosales-Linares citation, Domain 9 discrepancy. ISS-923 and ISS-925 addressed."
+    },
+    {
+      "id": "EXP-158",
+      "target": "data/sections.json — SEC-2b.1 hardcoded count words: Seven/Fifteen/Twelve/Three/Two",
+      "priority": "moderate",
+      "status": "pending",
+      "category": "prose-improvement",
+      "notes": "ISS-934: Replace hardcoded count words (Seven, Fifteen, Twelve, Three, Two) in SEC-2b.1 stratification paragraph with template variables OR add a point-in-time caveat. These counts depend on verdict distribution across the CA_NONE unmonitored WINs. Goal: counts should not become stale as WINs are added/verdicts change. Analyst should: (1) check current counts of CA_NONE WINs by verdict category in wins.json, (2) propose template variable names (e.g. {{CA_NONE_SELF_CONTRADICTED}}) and wiring them in generate-html.js, OR (3) simply add \"(at time of publication)\" caveat. Option 2 is preferred as it eliminates a class of staleness issues.",
+      "issue_ids": [
+        "ISS-934"
+      ],
+      "created_at": "2026-04-14T03:09:22.841Z",
+      "integrated": false
+    },
+    {
+      "id": "EXP-159",
+      "target": "data/sections.json — SEC-5 Kill-Shot Binary Tests: strength rating key + Test 5 Eclipse stub",
+      "priority": "minor",
+      "status": "pending",
+      "category": "prose-improvement",
+      "notes": "Two issues batched: (1) ISS-937: Kill-Shot strength rating key says \"3 decisive, 2 major, 2 supportive\" but no rating badges are shown on individual test headers. Fix: either add strength rating badges to each test details header (e.g. <span class=\"ks-rating\">Decisive</span>) so the reader can verify the counts, OR remove the unsupported aggregate assertion. (2) ISS-941: Test 5 (Eclipse 2026) is a single-paragraph stub that just defers to Section 4.2. Add at least one substantive paragraph on why the dome cannot account for eclipse geometry: specifically, the eclipse path requires JPL DE440/441 ephemeris — calculations that assume spherical Earth geometry and produce a 3-dimensional shadow cone. Dome geometry predicts a fundamentally different path because the sun is at 5,733 km altitude over a flat disc. The stub should give a self-contained kill-shot argument without duplicating Section 4.2 in full.",
+      "issue_ids": [
+        "ISS-937",
+        "ISS-941"
+      ],
+      "created_at": "2026-04-14T03:09:22.841Z",
+      "integrated": false
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 158,
+  "next_id": 160,
   "total_items": 153
 }

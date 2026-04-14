@@ -3,8 +3,8 @@
   "current_cycle": 3,
   "review_model": "change-driven",
   "review_model_description": "Priority queue > human notes > change-detected items > holistic reviews > spot-checks. Sequential Phase 1/2/3 grinding retired as of 2026-04-12.",
-  "last_reviewed": "SEC-5-post-ISS860-861-862",
-  "last_run": "2026-04-13T22:30:00Z",
+  "last_reviewed": "SEC-8.11",
+  "last_run": "2026-04-14T10:30:00Z",
   "points": [
     {
       "id": "WIN-001",
@@ -526,7 +526,8 @@
       "section": "2.2",
       "topic": "Polaris systematic excess",
       "status": "reviewed",
-      "last_reviewed_cycle": 2
+      "last_reviewed_cycle": 3,
+      "reviewed_at": "2026-04-14T14:30:00Z"
     },
     {
       "id": "WIN-066",
@@ -671,7 +672,9 @@
       "type": "section",
       "section": "2.4",
       "topic": "Solar diameter self-contradiction",
-      "status": "pending"
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T08:30:00Z",
+      "last_reviewed_cycle": 2
     },
     {
       "id": "SEC-2.9",
@@ -832,15 +835,16 @@
       "section": "1.8",
       "topic": "The Refraction Cascade: When One Fix Breaks Everything",
       "status": "reviewed",
-      "reviewed_at": "2026-04-12T22:15:00Z",
-      "last_reviewed_cycle": 1,
+      "reviewed_at": "2026-04-14T12:30:00Z",
+      "last_reviewed_cycle": 3,
       "review_file": "SEC-1.8.c1.json",
       "text_fingerprint": {
         "section_html_length": 5951,
         "tldr_length": 316,
         "table_rows": 8,
         "verdict_changes_claimed": 3
-      }
+      },
+      "last_review_file": "SEC-1.8-post-ISS864.c3.json"
     },
     {
       "point_id": "WIN-058b",
@@ -979,6 +983,24 @@
       "last_reviewed_cycle": 3,
       "status": "reviewed",
       "notes": "EXP-088 integration review. Found derives_from_dome count mismatch, narrow eclipse discrimination window, verbose scorecard sublabel. Recommended minor_edit."
+    },
+    {
+      "id": "WIN-058b",
+      "type": "win",
+      "section": "2.6",
+      "topic": "Bedrock Induction Ratio κ = 1.677 (PRED-KAPPA-001)",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T14:30:00Z",
+      "last_reviewed_cycle": 2
+    },
+    {
+      "id": "SEC-8.11",
+      "type": "section",
+      "section": "8.11",
+      "topic": "Directive #10: Eclipse Will Falsify the Globe",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T10:30:00Z",
+      "last_reviewed_cycle": 1
     }
   ],
   "holistic_checks": [

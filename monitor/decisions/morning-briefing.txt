@@ -1,65 +1,48 @@
-DOME MODEL REVIEW — DECIDER BRIEFING
-Date: 2026-04-14
-Run: Current (post-15:30 run)
+MORNING BRIEFING — 2026-04-14
+Generated: 2026-04-14T04:11:00Z
+Previous decider run: 2026-04-14T02:44:04Z
+This run: 2026-04-14T04:11:00Z
 
-═══════════════════════════════════════════════════════
-WORK COMPLETED THIS RUN
-═══════════════════════════════════════════════════════
+SITE HEALTH: ✅ BUILD DRIFT RESOLVED
+  Build drift that persisted since 2026-04-12 is now cleared.
+  HTML rebuilt, pushed to GitHub (commit 809c3ed), workspace synced.
+  Test suite: 3309/3309 passing (integrity report 2026-04-13).
 
-EXPANSIONS INTEGRATED (1):
-  EXP-142 → SEC-1.3 "How It Differs from the Globe Model" — FULL SECTION REPLACEMENT
-    - TLDR updated: Keplerian→orbital mechanics w/ relativistic corrections, ionosphere 60km
-    - Body: added dome vs globe comparison paragraph
-    - Body: added dependency argument grounded in OPEN-001 and Polaris-as-latitude identity
-    - Proposal-ISS-850-resolution.json processed; ISS-850 closed
+EXTERNAL STATUS: QUIET (14th consecutive)
+  WIN count: 69 (unchanged). Parameters stable. No canary trigger.
+  OTS provenance still wrong-sided — prediction documents not separately timestamped.
 
-SELF-APPLIED PATCHES (2):
-  WIN-065: Deleted orphaned sentence fragment ("The dome's PRED-NEW-001, registered 2026-03-12,")
-    - ISS-939 closed
-  WIN-065: Fixed formula attribution + refraction unit error
-    - Removed "~0.04° of refraction at Oslo" (likely unit error: 0.0436 radians ≠ 0.04 degrees)
-    - Changed "The dome's own refractive index formula" → "The refractive index implied by the dome's H(r) function"
-    - Replaced refraction sentence with Section 1.8 cascade dilemma argument (stronger, model-independent)
-    - ISS-940 closed
+ISSUES THIS RUN:
+  Closed: 4 (ISS-820, ISS-821, ISS-900, ISS-942)
+  Assigned to analyst: 3 (ISS-934 → EXP-158, ISS-937/ISS-941 → EXP-159)
+  Open / unresolved: 12 total (2 major, 7 moderate, 3 minor)
 
-═══════════════════════════════════════════════════════
-NEW ISSUES CREATED (4):
-═══════════════════════════════════════════════════════
-  ISS-939 (major, WIN-065) — Dangling fragment [CLOSED this run]
-  ISS-940 (major, WIN-065) — Refraction unit error + formula attribution [CLOSED this run]
-  ISS-941 (minor, SEC-5 Test 5) — Eclipse stub needs JPL dependency paragraph
-  ISS-942 (minor, SEC-5 Test 6) — Historical deceleration: Livermore 60 vs 55 km/yr
+PATCHES APPLIED (4):
+  1. Evaluation Guide Principle 3: rewording to "Claims evaluated against measurement,
+     not theoretical authority" + infrastructure acknowledgment (ISS-821)
+  2. Eclipse pre-commitment: added ~1 nT discrimination window acknowledgment (ISS-900)
+  3. NMP Test 6 TLDR: corrected peak drift rate from ~55 to ~60 km/yr (Livermore 2020) (ISS-942)
 
-═══════════════════════════════════════════════════════
-OPEN ISSUES REQUIRING ATTENTION
-═══════════════════════════════════════════════════════
+CURMUDGEON PROGRESS:
+  Mode: BAU | Queue depth: 17 | Interval: 240 min
+  Popped: SEC-1.3, WIN-065 (reviews found)
+  Added: eg-principles (Principle 3 rewrite — review recommended before next analyst work)
 
-OPEN (4 non-analyst-assigned):
-  ISS-708 (minor) — EXP-060: kill-shots.json data file in generate-html.js [PIPELINE]
-  ISS-808 (major) — SEC-5.14-5.16 content issues [needs analyst or direct patch]
-  ISS-934 (moderate) — SEC-2b.1 hardcoded "Seven"/"Fifteen" count words
-  ISS-937 (minor) — SEC-5 strength rating key unsupported count
+TOP 3 PRIORITY ACTIONS FOR HUMAN:
+  1. URGENT: Fix ISS-808 — add SEC-5.14/5.15/5.16 to build-doc-v4.js (DOCX builder).
+     Three curmudgeon flags. Our strongest AI-directives arguments missing from PDF.
+  2. MODERATE: Watch for EXP-158 (ISS-934 — hardcoded count words in SEC-2b.1).
+     We mock the dome for manual statistics; we have the same problem.
+  3. MONITOR: Eclipse August 12, 2026 — PRED-095 magnetic prediction window active.
+     Discrimination window is only ~1 nT (now documented on site).
 
-ASSIGNED-ANALYST (11) — no change this run
+PROPOSAL PIPELINE:
+  3 analyst proposals consumed and processed.
+  EXP-158 (SEC-2b.1 template vars), EXP-159 (Kill-Shot ratings + Eclipse stub) created.
 
-═══════════════════════════════════════════════════════
-PIPELINE STATUS
-═══════════════════════════════════════════════════════
-  Curmudgeon: BAU mode, queue depth 18 (was 17, +2 new pushes for SEC-1.3 and WIN-065, -1 popped)
-  Analyst: 1 expansion complete/integrated (EXP-142), all others pending
-  Poller: 14 consecutive quiet polls, no dome site changes
-  Integrity: No recent alerts
-  Build: 3315 tests passing
+SCHEDULE NOTES:
+  No schedule changes needed. BAU mode, 240-min curmudgeon interval appropriate.
 
-═══════════════════════════════════════════════════════
-SCHEDULE ACTIONS NEEDED: NONE
-═══════════════════════════════════════════════════════
-
-═══════════════════════════════════════════════════════
-NOTABLE: DIGEST "UNDER-COVERED" WARNING
-═══════════════════════════════════════════════════════
-digest-reviews.js reports 157 under-covered processed reviews with 834 missing issues.
-This is a structural tracking artifact — reviews are marked processed but their hole
-counts don't match open issues. Not actioning in this run (would generate hundreds of
-issues from potentially-stale reviews). Recommend tinker audit this tracking gap.
-
+INTEGRITY NOTE:
+  Previous integrity report (2026-04-13) flagged build drift — now resolved.
+  Next integrity run should clear the CRITICAL and report PASS.
