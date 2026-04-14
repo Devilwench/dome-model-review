@@ -21,46 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 115,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-6.5-FAIL004",
-      "reason": "EXP-134 paragraph replacement applied to FAIL-004 — curmudgeon should review new text for accuracy and arguments",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-14T03:43:17.936Z",
-      "context_hints": {
-        "related_issues": [
-          "ISS-822",
-          "ISS-823"
-        ],
-        "source_file": "monitor/analyst/expansions/EXP-134.json"
-      }
-    },
-    {
-      "queue_id": 118,
-      "target_type": "prediction-batch",
-      "target_id": "PRED-TOROID-003-EXP136",
-      "reason": "EXP-136 integrated: PRED-TOROID-003 detail_reasoning rewritten with internal contradiction analysis (eccentricity 6.6× error, wrong base frequency). our_verdict pending-human (unfalsifiable→standard_physics). Review reasoning for accuracy before human approves.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-14T05:13:43.054Z",
-      "context_hints": {
-        "prediction_ids": [
-          "PRED-TOROID-003"
-        ],
-        "assessment_files": [
-          "monitor/analyst/expansions/EXP-136.json"
-        ],
-        "verdicts_set": {
-          "proposed": "standard_physics",
-          "current": "unfalsifiable",
-          "status": "pending-human"
-        },
-        "related_issues": [
-          "ISS-826",
-          "ISS-954"
-        ]
-      }
-    },
-    {
       "queue_id": 120,
       "target_type": "section-rewrite",
       "target_id": "SEC-1-roadmap",
@@ -93,20 +53,6 @@
   ],
   "next_id": 130,
   "history": [
-    {
-      "queue_id": 90,
-      "target_id": "SEC-1.8",
-      "target_type": "section-new",
-      "popped_at": "2026-04-13T16:25:03.592Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 71,
-      "target_id": "eval-guide-eg-verdicts",
-      "target_type": "section-new",
-      "popped_at": "2026-04-13T17:39:15.226Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 72,
       "target_id": "EXP-143",
@@ -441,6 +387,20 @@
       "target_id": "eg-principles",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-14T12:27:41.016Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 115,
+      "target_id": "SEC-6.5-FAIL004",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-14T13:26:03.638Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 118,
+      "target_id": "PRED-TOROID-003-EXP136",
+      "target_type": "prediction-batch",
+      "popped_at": "2026-04-14T13:26:03.638Z",
       "popped_by": "decider"
     }
   ],

@@ -1,6 +1,6 @@
 {
   "description": "Archived closed issues. Decider does not need to read this file.",
-  "last_updated": "2026-04-13T23:47:16.155Z",
+  "last_updated": "2026-04-14T13:24:58.493Z",
   "issues": [
     {
       "id": "ISS-001",
@@ -12353,6 +12353,21 @@
       "fix_details": null,
       "fix_date": null,
       "fixed_at": "2026-04-14T12:26:53Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-977",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "SEC-7.1 Antarctic circumnavigation paragraph: (1) v22 quote over-loaded — dome v22 log says \"Southern arc distances 2x too long\" about cross-equatorial formulas not specifically circumnavigation; (2) refraction rebuttal misses AE projection assumption (not stated). TLDR now patched (2026-04-14) to include circumnavigation argument. Remaining: verify v22 quote applicability and AE projection note.",
+      "source": "curmudgeon-SEC-7.1-antarctic.c1",
+      "found_by": "decider",
+      "found_at": "2026-04-14T12:26:53Z",
+      "status": "fixed",
+      "fix_details": "EXP-161 integrated: paragraph 4 of SEC-7.1 replaced. v22 quote scoped to cross-equatorial coord-formula errors; AE projection derivation r=20,015×160/180=17,791 km shown inline; Finsler-metric defense pre-empted.",
+      "fix_date": null,
+      "fixed_at": "2026-04-14T13:24:58.493Z",
       "fixed_by": "decider-self-apply"
     }
   ]

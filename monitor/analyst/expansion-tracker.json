@@ -2868,7 +2868,9 @@
       "status": "pending",
       "notes": "Two moderate holes remaining after decider patched major issues: (1) v22 quote \"Southern arc distances 2x too long — FAILS. Globe wins cross-equator\" is from dome v22 evolution log about cross-equatorial coordinate-formula errors, not specifically about Antarctic circumnavigation. Verify whether this quote is appropriate in the circumnavigation context or needs qualifying. (2) AE projection assumption: paragraph assumes standard azimuthal-equidistant mapping for r≈17,800 km at 70°S but does not state this derivation explicitly. TLDR was also updated (decider, 2026-04-14). Remaining: prose accuracy improvements only.",
       "created_at": "2026-04-14T12:29:19Z",
-      "integrated": false
+      "integrated": true,
+      "integrated_at": "2026-04-14T13:24:58.493Z",
+      "integrated_by": "decider"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",

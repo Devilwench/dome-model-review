@@ -1,66 +1,92 @@
 MORNING BRIEFING — 2026-04-14
-Generated: 2026-04-14T12:55:00Z
-Curmudgeon reviews processed this run: 18 acknowledged (all from previous run; 8 stale, 10 active — addressed in prior commits)
-Previous decider run: 2026-04-14T11:32:00Z (commit e26931f)
+Generated: 2026-04-14T13:27:35.662Z
+Curmudgeon reviews processed this run: 18 (EXP-062-batch through SEC-1.8-post-ISS864)
+Previous decider run: (prior session)
 
-SITE HEALTH: CLEAR
-  Tests: 3316 passed, 0 failed (both commits this run). Build clean.
-  Overall integrity: minor/moderate issues persist (ISS-808, ISS-975, ISS-976) — all require human infrastructure edits.
+════════════════════════════════════════
+SITE HEALTH
+════════════════════════════════════════
+HTML Build: PASS (3316 tests, 0 failures)
+Open Issues: 10 (was 7 before this run)
+Pending-human verdict changes: 3
 
-EXTERNAL STATUS: Dome site — QUIET (15th consecutive)
-  No parameter changes, no manual commits, WIN count 69, V51.1.
-  Canary NOT triggered — dome author has not separated prediction documents from
-  status_history.json in OTS workflow. We continue to wait.
+════════════════════════════════════════
+EXTERNAL STATUS
+════════════════════════════════════════
+Dome site changes: None detected
+Threat level: None
 
-PATCHES THIS RUN (4 total — all self-applied and pushed):
-  1. SEC-7.1 Antarctic ship references (ISS-971 FIXED):
-     - Replaced "Soviet Ob expedition 1956–1957; HMS Endurance patrols" (citation
-       failures — neither circumnavigated Antarctica) with Jules Verne Trophy and
-       Vendée Globe routes (satellite-tracked, accurate).
-     - Clarified factor-of-eight (8.2× at 70°S) vs nine (9.2× at rim): body and
-       conclusion now internally consistent ("eight to nine times").
-  2. GAIA kill-shot Betelgeuse attribution (ISS-974 FIXED):
-     - Changed "Hipparcos (van Leeuwen 2007)" → "Harper et al. 2017 (AJ 154, 11),
-       combined VLA + Hipparcos" for the 4.51 ± 0.80 mas Betelgeuse row.
-       van Leeuwen 2007 alone gives 6.55 ± 0.83 mas — we had the wrong citation.
-  3. SEC-7.1 TLDR (ISS-977 partial FIXED):
-     - TLDR now opens with Antarctic circumnavigation argument (8× discrepancy,
-       ship vs dome prediction). Previously TLDR focused entirely on SYD-EZE,
-       ignoring the section's strongest and most accessible argument.
-  4. EXP-161 created (ISS-977 remaining):
-     - v22 quote over-loading and AE projection assumption note assigned to analyst.
+════════════════════════════════════════
+THIS RUN SUMMARY
+════════════════════════════════════════
 
-HUMAN ACTIONS NEEDED:
-  1. [ISS-975] generate-html.js: find "Five tidal WINs (045–051)" →
-     replace "Five tidal WINs (045, 046, 049, 050, 051)" in eg-verdicts.
-     (Range spans 7 IDs, only 5 are tidal — 047, 048 are not tidal.)
+INTEGRATION COMPLETE:
+  ✅ EXP-161 integrated → SEC-7.1 paragraph 4 replaced
+     - v22 quote now correctly scoped (2× coord-formula error, not the 8-9× rim problem)
+     - AE projection derivation shown inline (r=17,791 km at 70°S)
+     - Finsler-metric defense pre-empted in-section
+     - ISS-977 CLOSED
 
-  2. [ISS-976] generate-html.js: fix WIN-044 characterization in eg-falsifiability.
-     Currently: "both produce values that either match standard physics or contradict measurement"
-     WIN-044's verdict is Self-Contradicted, not standard_physics or contradiction.
-     Verify exact string, then patch. Moderate severity.
+PROPOSAL PROCESSED:
+  ✅ proposal-ISS-977-resolution.json → ISS-977 closed, EXP-161 marked integrated
 
-  3. [ISS-808] build-doc-v4.js: sections 5.14, 5.15, 5.16 absent from PDF/DOCX.
-     Major issue — kill-shot sections missing from the downloadable document.
-     Infrastructure edit needed.
+MANY CURMUDGEON FINDINGS ALREADY FIXED:
+  The 18 pending reviews included 2 "critical" findings that were already fixed in current data:
+  - PRED-SR-SUPPRESS fabricated citation → already fixed (Pazos et al. 2019, correct DOI)
+  - EXP-062-batch wrong registration date → already fixed (6 March 2026, retrodiction language)
+  Also already fixed: SEC-2.3 fabricated quote, WIN-065 dangling fragment, SEC-1.5 stale formula
 
-OPEN ISSUES SUMMARY: 7 total
-  [major]    ISS-808 — PDF/DOCX missing sections 5.14-5.16 (infrastructure edit needed)
-  [major]    ISS-971 — FIXED this run (ship citations + factor inconsistency)
-  [moderate] ISS-974 — FIXED this run (Betelgeuse attribution)
-  [moderate] ISS-975 — generate-html.js tidal WIN range (human only)
-  [moderate] ISS-976 — generate-html.js WIN-044 characterization (human only)
-  [moderate] ISS-977 — SEC-7.1 remaining (assigned EXP-161, TLDR already patched)
-  [minor]    ISS-708 — pipeline: kill-shots template placeholder support (backlog)
-  [minor/wontfix] ISS-698 — positive external report, no action
+NEW ISSUES CREATED:
+  ISS-978 [major/pending-human] W019 verdict: standard_physics → falsified
+  ISS-979 [major/pending-human] W020 verdict: unfalsifiable → falsified
+  ISS-980 [moderate/pending-human] PRED-NEW-002 verdict: unfalsifiable → standard_physics
+  ISS-981 [major/open] Part 1 scorecard sublabel criterion mismatch
 
-CURMUDGEON QUEUE: mode=bau, depth=4
-  Active: SEC-6.5-FAIL004, PRED-TOROID-003-EXP136, SEC-1-roadmap, SEC-4-intro
-  2 items popped this run (SEC-7.1-antarctic, EXP-062-batch — reviewed by curmudgeon).
-  No schedule mismatch. BAU at 240min intervals.
+════════════════════════════════════════
+TOP 3 PRIORITY ACTIONS FOR HUMAN
+════════════════════════════════════════
 
-ANALYST WORK: EXP-161 (SEC-7.1 v22 quote + AE projection, ISS-977) — low priority.
-  Attention inbox: 2 pending items (SEC-6.1, SEC-1.8) — carry-over from prior runs.
+1. [NEXT SESSION] Review verdict-change patches:
+   File: monitor/decisions/suggested-patches-2026-04-14T13-25.json
+   - ISS-978: W019 → falsified (dome author's own REFINED concession supports this)
+   - ISS-979: W020 → falsified (≥3% threshold not met, author conceded)
+   - ISS-980: PRED-NEW-002 → standard_physics (9.2 km/s is in P-wave range, IS testable)
+   All three are well-supported. W019 and W020 in particular are clear: when the dome
+   author marks his own prediction REFINED, calling it anything but falsified is too charitable.
 
-WINS COUNT: dome claims 69; we track 70 (including WIN-037b).
-  Verdict distribution stable. No new WINs from dome site this run.
+2. [NEXT SESSION] Fix ISS-975 (infrastructure):
+   generate-html.js: Change "(045–051)" to "(045, 046, 049, 050, 051)"
+   The range (045–051) spans 7 WINs but only 5 are tidal — a dome defender can spot this.
+
+3. [BACKLOG] ISS-981 (part1-scorecard sublabel):
+   Curmudgeon-suggested rewrite: "None produces a dome-derived prediction that both
+   (a) can be independently verified and (b) contradicts standard-model expectations."
+
+════════════════════════════════════════
+CURMUDGEON QUEUE STATUS
+════════════════════════════════════════
+Mode: BAU
+Queue depth: 2 items (SEC-1-roadmap, SEC-4-intro)
+Popped this run: 2 items (had been reviewed)
+Schedule: 240 min intervals — no mismatch
+
+════════════════════════════════════════
+OPEN ISSUES BREAKDOWN (10 total)
+════════════════════════════════════════
+ISS-708   [open]          generate-html.js kill-shots support
+ISS-808   [open]          SEC-5.14/5.15/5.16 missing sections
+ISS-975   [open]          eg-verdicts (045–051) range notation (infra file)
+ISS-976   [open]          eg-falsifiability WIN-044 mischaracterized
+ISS-978   [pending-human] W019 verdict change
+ISS-979   [pending-human] W020 verdict change
+ISS-980   [pending-human] PRED-NEW-002 verdict change
+ISS-981   [open]          Part 1 scorecard sublabel
+
+(ISS-698, ISS-955: wontfix, positive-feedback-only external reports)
+
+════════════════════════════════════════
+UNDER-COVERED WINS
+════════════════════════════════════════
+Digest reports 157 "under-covered processed" WINs (marked processed but missing
+corresponding open-issues entries). This is a long-standing structural gap that the
+decider will address incrementally. No immediate action required this run.
