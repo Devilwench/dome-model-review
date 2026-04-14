@@ -314,5 +314,33 @@
       "ISS-983",
       "ISS-985"
     ]
+  },
+  {
+    "id": "ATT-2026-04-14T15:33:20.011Z",
+    "status": "pending",
+    "target_type": "section",
+    "target_id": "SEC-1.9",
+    "reason": "EXP-162 integrated: 5 new paragraphs added to Section 1.9. TLDR changed, new paragraph concedes single-observatory case (WIN-010 BOU) and anchors critique onto WIN-025/044/068. Analyst should verify the concession framing is scientifically accurate and the new multi-station scaling argument is well-grounded.",
+    "pushed_by": "decider",
+    "pushed_at": "2026-04-14T15:33:20.011Z",
+    "related_issues": [
+      "ISS-983",
+      "ISS-985"
+    ]
+  },
+  {
+    "id": "ATT-2026-04-14T15:33:20.012Z",
+    "status": "pending",
+    "target_type": "win",
+    "target_id": "WIN-010",
+    "reason": "Formula typo fixed (ISS-989). Open moderate issues remain: ISS-990 (FSF 3.2× spread characterization conflates European range), ISS-991 (Meza citation unverified), ISS-992 (Kp=3-4 \"disturbed\" overstates). Analyst should batch-verify these in a single pass — ISS-991 requires web search for correct Meza et al. citation.",
+    "pushed_by": "decider",
+    "pushed_at": "2026-04-14T15:33:20.012Z",
+    "related_issues": [
+      "ISS-989",
+      "ISS-990",
+      "ISS-991",
+      "ISS-992"
+    ]
   }
 ]

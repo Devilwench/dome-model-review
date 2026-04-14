@@ -1,45 +1,65 @@
-MORNING BRIEFING — 2026-04-14 (Late)
-Generated: 2026-04-14T~23:15Z
-Curmudgeon reviews processed this run: 18 (all from digest — 13 stale, 5 new)
-Previous decider run: 2026-04-14T14:28Z (EXP-161 integration)
+MORNING BRIEFING — 2026-04-14
+Generated: 2026-04-14T15:35:07Z
+Curmudgeon reviews processed this run: 3 (SEC-1.9, WIN-010.c4, SEC-4-intro.c1 actionable; 18 stale; 3 verdict-change reviews confirmed already applied)
+Previous decider run: 2026-04-14T15:33:38Z
 
-SITE HEALTH: WARN
-  - Integrity: WARN (0 critical, 0 major, 7 moderate, 1 minor)
-  - Build: PASS (3316 tests, 0 failures)
-  - 3 external link redirects to generic pages (nssdc.gsfc.nasa.gov, earthobservatory, heartmath)
-  - ISS-808 still open: DOCX builder missing SEC-5.14/5.15/5.16 (tinker/human needed)
+──────────────────────────────────────────────────────────
+SITE HEALTH
+──────────────────────────────────────────────────────────
+Build: PASS (3316 tests passed, 0 failed)
+HTML generation: PASS (1099.2 KB)
+Integrity: No report since last run
 
-EXTERNAL STATUS: Dome quiet (15th consecutive quiet poll)
-  - WIN count: 69 (unchanged)
-  - Parameters: all match baselines
-  - Canary: NOT TRIGGERED
+──────────────────────────────────────────────────────────
+EXTERNAL STATUS
+──────────────────────────────────────────────────────────
+Dome site: No changes detected (14th consecutive quiet poll)
+Canary trap: NOT triggered
+Threat level: NONE
 
-PATCHES APPLIED THIS RUN: 2
-  - WIN-039 detail_evidence: removed speculative "without understanding the oscillating nature" — replaced with factual sign-discrepancy description (ISS-982 FIXED)
-  - PROS-005/007 registration_date: corrected from placeholder 2026-01-01 to dome source 2026-03-06 in predictions.json (ISS-984 FIXED)
+──────────────────────────────────────────────────────────
+INTERNAL STATUS — THIS RUN
+──────────────────────────────────────────────────────────
+Patches applied: 7 (all successful, 0 failed)
+Issues closed: ISS-983, ISS-985 (EXP-162), ISS-988, ISS-989 (patched), ISS-995 (stale)
+Issues created: ISS-988, ISS-989, ISS-990, ISS-991, ISS-992, ISS-993, ISS-994
 
-ISSUES CLOSED: 4
-  - ISS-978, ISS-979, ISS-980: W019/W020/PRED-NEW-002 verdicts already applied by human approvals
-  - ISS-981: Part1 scorecard sublabel already fixed in prior run
+KEY CHANGE: EXP-162 integrated into Section 1.9 (Eclipse Geometry Trap)
+  - Now explicitly concedes single-observatory eclipse case (WIN-010 BOU on Chapman grounds)
+  - Anchors differential-refraction critique onto multi-station scaling: WIN-025 (9 stations
+    April 2024), WIN-044 (FSF 9 station-specific Aug 2026 amplitudes), WIN-068 (39-eclipse ensemble)
+  - New paragraph: shadow path is horizontal, not vertical — radial n(r) bends most
+    for oblique long-distance rays, which IS eclipse geometry
+  - Issues Aug 2026 falsification challenge: dome must disclose FSF methodology before Aug 12
+  - defense_survives reduced from 4 to ~2
 
-NEW ISSUES CREATED: 6
-  - ISS-982 (major): WIN-039 evidence — FIXED this run
-  - ISS-983 (major): SEC-1.9 defender escape → assigned to EXP-162
-  - ISS-984 (moderate): PROS-005/007 date — FIXED this run
-  - ISS-985 (moderate): SEC-1.9 n(r) radial clarification → assigned to EXP-162
-  - ISS-986 (moderate): WIN-058b thermospheric pathway precision
-  - ISS-987 (moderate): WIN-058b r-value unaddressed defense
+──────────────────────────────────────────────────────────
+TOP 3 PRIORITY ACTIONS
+──────────────────────────────────────────────────────────
+1. HUMAN [NEXT SESSION]: Fix generate-html.js ISS-994 — '(045-051)' tidal range
+   incorrectly spans 7 WINs; WIN-047 (Low-z Hubble) and WIN-048 (CMB) are inside
+   the range but are NOT tidal. Change to explicit list '(045, 046, 049, 050, 051)'.
 
-OPEN ISSUES: 12 (down from 10 before this run, net +2 new open from 6 created minus 4 closed)
-CURMUDGEON QUEUE: depth=0, mode=BAU, interval=240min
+2. ANALYST [NEXT SESSION]: Batch-verify WIN-010 ISS-990/991/992 — FSF spread
+   characterization, Meza et al. citation (possibly wrong journal), Kp value.
+   ISS-991 requires web search.
 
-TOP 3 PRIORITIES:
-1. EXP-162 (analyst): SEC-1.9 defender escape + n(r) radial clarification
-2. ISS-808 (tinker/human): DOCX builder missing 3 sections
-3. ISS-975/976 (human): EG guide fixes in generate-html.js (infrastructure file)
+3. ANALYST [BACKLOG]: EXP-163 — SEC-6.5-FAIL004 defense_survives=3. Add named
+   magnetic WINs with short test windows; cite dome primary source for 'refined' label.
 
-STALE DIGEST NOTE:
-  This run's digest was highly stale — the previous decider runs (esp. the 12:32 run)
-  applied many patches that resolved issues before this digest was generated. Curmudgeon
-  reviews are arriving after fixes are already committed. This is expected — the pipeline
-  is functioning normally; reviews lag patches by a few hours.
+──────────────────────────────────────────────────────────
+CURMUDGEON PROGRESS
+──────────────────────────────────────────────────────────
+Queue mode: BAU (240min interval)
+Queue depth: 1 (SEC-1.9-post-EXP162 queued for fresh review of new EXP-162 content)
+Reviews processed today: 24 total (3 actionable, 18 stale, 3 verdict-change confirmed)
+Under-covered processed reviews: 157 (long-standing backlog — digest flag)
+
+──────────────────────────────────────────────────────────
+BREAKING NEWS CANDIDATE
+──────────────────────────────────────────────────────────
+"Eclipse critique hardened: dome's Aug 2026 FSF test now has a pre-test transparency challenge"
+Section 1.9 now explicitly asks: did you compute FSF amplitudes with straight-line or bent-ray
+shadow geometry? Either answer damages the model. Deadline: before August 12, 2026.
+Section also now honestly concedes the single-observatory eclipse case (WIN-010 BOU).
+→ Human decision whether to add to Latest Findings on overview page.
