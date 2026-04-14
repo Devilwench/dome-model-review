@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T00:40:34.030Z",
+  "last_updated": "2026-04-14T01:11:03.836Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -61,23 +61,6 @@
       "found_at": "2026-04-12T16:10:25.013Z",
       "created_at": "2026-04-12T16:10:25.013Z",
       "expansion_id": "EXP-122"
-    },
-    {
-      "id": "ISS-815",
-      "found_date": "2026-04-12",
-      "win_id": null,
-      "section_id": "KILLSHOT-GPS",
-      "severity": "moderate",
-      "category": "citation",
-      "status": "assigned-analyst",
-      "description": "KILLSHOT-GPS (GPS kill-shot section): The +38.3 μs/day figure (gravitational + velocity relativistic correction combined) needs explicit sourcing. Text says this comes from GR predictions but does not cite the primary source (e.g., GPS ICD or Ashby 2002 Liv. Rev. Rel.). A hostile reader can claim this is a round number or approximation and demand the calculation. Source: KILLSHOT-GPS.json cycle 1.",
-      "source": "curmudgeon",
-      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GPS.json",
-      "found_by": "decider",
-      "found_at": "2026-04-12T16:42:32.083Z",
-      "created_at": "2026-04-12T16:42:32.083Z",
-      "assigned_exp": "EXP-127",
-      "assigned_at": "2026-04-12T17:13:48.749Z"
     },
     {
       "id": "ISS-816",
@@ -303,20 +286,6 @@
       "fix_date": null
     },
     {
-      "id": "ISS-933",
-      "win_id": null,
-      "severity": "major",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "description": "PRED-SR-SUPPRESS and PRED-093 assessment updates fail to note that the dome's own monitoring Dashboard (Domain 9: Schumann Amplitude Suppression) reports \"Unscored — no G3+ storm observed\" during the March 20-22 period, despite NOAA SWPC confirming G3 levels (Kp reached 7). Either a monitor bug or selective non-scoring. Both are significant: a monitor that misses G3 storms undermines the automation narrative; selective non-scoring raises scoring integrity questions. This observation should be added to both prediction assessments.",
-      "source": "curmudgeon",
-      "found_by": "curmudgeon",
-      "found_date": "2026-04-14",
-      "review_file": "monitor/curmudgeon/reviews/PRED-batch-updates-2026-04-13.json",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
       "id": "ISS-934",
       "win_id": null,
       "severity": "moderate",
@@ -343,7 +312,35 @@
       "review_file": "monitor/curmudgeon/reviews/SEC-2b.1-post-EXP089.c3.json",
       "fix_details": null,
       "fix_date": null
+    },
+    {
+      "id": "ISS-937",
+      "win_id": null,
+      "section_id": "part5",
+      "severity": "minor",
+      "category": "content-update",
+      "status": "open",
+      "description": "SEC-5 Kill-Shot Binary Tests: Strength rating key states \"Current ratings: 3 decisive, 2 major, 2 supportive\" but individual test ratings are not visible in the text — the reader cannot verify which tests received which rating, making the count an unsupported assertion. Either add rating badges to individual test headers or remove the assertion.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-14",
+      "source_review": "monitor/curmudgeon/reviews/SEC-5-post-ISS860-861-862.c4.json",
+      "created_at": "2026-04-14T01:11:03.836Z"
+    },
+    {
+      "id": "ISS-938",
+      "win_id": null,
+      "section_id": "part1",
+      "severity": "minor",
+      "category": "content-update",
+      "status": "open",
+      "description": "Part 1 evidence-roadmap div: Schumann frequency stated as \"22–35 Hz\" (the dome model range) but Section 2.1 heading reads \"~22 Hz\". A reader clicking through from the roadmap sees a different number. Either use ~22 Hz (matching the section heading, linear average) or update Section 2.1 heading to show the full range 22–35 Hz.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-14",
+      "source_review": "monitor/curmudgeon/reviews/part1-evidence-roadmap.c1.json",
+      "created_at": "2026-04-14T01:11:03.836Z"
     }
   ],
-  "next_id": 937
+  "next_id": 939
 }

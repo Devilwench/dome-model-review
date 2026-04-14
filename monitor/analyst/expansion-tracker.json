@@ -2266,9 +2266,13 @@
       ],
       "category": "expansion",
       "priority": "moderate",
-      "status": "pending",
-      "notes": "GPS kill-shot section uses combined +38.3 μs/day relativistic correction. Curmudgeon wants the derivation shown explicitly (gravitational + velocity components).",
-      "created_at": "2026-04-12T19:48:10.477Z"
+      "status": "complete",
+      "notes": "GPS kill-shot section uses combined +38.3 μs/day relativistic correction. Curmudgeon wants the derivation shown explicitly (gravitational + velocity components). | Directly patched by decider 2026-04-14: GPS row 19 in part4 updated with +38.7 μs/day, GR/SR breakdown, Ashby (2003) citation, Section 7.2 cross-ref. ISS-815 closed.",
+      "created_at": "2026-04-12T19:48:10.477Z",
+      "integrated": true,
+      "integrated_at": "2026-04-14T01:11:10.176Z",
+      "integration_mode": "direct-patch",
+      "output_file": "monitor/analyst/expansions/EXP-130.json"
     },
     {
       "id": "EXP-131",

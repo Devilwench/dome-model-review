@@ -11788,6 +11788,42 @@
       "found_at": "2026-04-14T00:39:27.636Z",
       "fixed_at": "2026-04-14T00:40:34.030Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-815",
+      "found_date": "2026-04-12",
+      "win_id": null,
+      "section_id": "KILLSHOT-GPS",
+      "severity": "moderate",
+      "category": "citation",
+      "status": "fixed",
+      "description": "KILLSHOT-GPS (GPS kill-shot section): The +38.3 μs/day figure (gravitational + velocity relativistic correction combined) needs explicit sourcing. Text says this comes from GR predictions but does not cite the primary source (e.g., GPS ICD or Ashby 2002 Liv. Rev. Rel.). A hostile reader can claim this is a round number or approximation and demand the calculation. Source: KILLSHOT-GPS.json cycle 1.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/KILLSHOT-GPS.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T16:42:32.083Z",
+      "created_at": "2026-04-12T16:42:32.083Z",
+      "assigned_exp": "EXP-127",
+      "assigned_at": "2026-04-12T17:13:48.749Z",
+      "fixed_at": "2026-04-14T01:11:03.836Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Patch applied: +38.3 -> +38.7 with GR/SR breakdown, Ashby (2003) citation, Section 7.2 cross-reference. Per EXP-130 analyst output."
+    },
+    {
+      "id": "ISS-933",
+      "win_id": null,
+      "severity": "major",
+      "category": "missing_argument",
+      "status": "fixed",
+      "description": "PRED-SR-SUPPRESS and PRED-093 assessment updates fail to note that the dome's own monitoring Dashboard (Domain 9: Schumann Amplitude Suppression) reports \"Unscored — no G3+ storm observed\" during the March 20-22 period, despite NOAA SWPC confirming G3 levels (Kp reached 7). Either a monitor bug or selective non-scoring. Both are significant: a monitor that misses G3 storms undermines the automation narrative; selective non-scoring raises scoring integrity questions. This observation should be added to both prediction assessments.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon",
+      "found_date": "2026-04-14",
+      "review_file": "monitor/curmudgeon/reviews/PRED-batch-updates-2026-04-13.json",
+      "fix_details": "Domain 9 discrepancy already resolved in PRED-SR-SUPPRESS and PRED-093 detail_reasoning (updated 2026-04-14). Per proposal-ISS-933-resolution.json.",
+      "fix_date": null,
+      "fixed_at": "2026-04-14T01:11:03.836Z",
+      "fixed_by": "analyst-direct"
     }
   ]
 }

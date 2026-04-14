@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-13T23:15:02.097Z",
+  "last_updated": "2026-04-14T01:12:00.636Z",
   "processed": [
     "WIN-033.json",
     "WIN-052.json",
@@ -235,7 +235,11 @@
     "SEC-overview-scorecard.c3.json",
     "eval-guide-eg-verdicts.c1.json",
     "KILLSHOT-GAIA-v2.c2.json",
-    "EXP-143-proposal.c2.json"
+    "EXP-143-proposal.c2.json",
+    "SEC-5-post-ISS860-861-862.c4.json",
+    "part1-evidence-roadmap.c1.json",
+    "PRED-batch-updates-2026-04-13.json",
+    "SEC-2b.1-post-EXP089.c3.json"
   ],
   "section_reviews_processed": [
     "SEC-3.1.json",

@@ -44,10 +44,12 @@
     "proposal-EXP-155-resolution.json",
     "proposal-ISS-838-resolution.json",
     "proposal-ISS-923-resolution.json",
-    "proposal-ISS-925-resolution.json"
+    "proposal-ISS-925-resolution.json",
+    "proposal-ISS-815-resolution.json",
+    "proposal-ISS-933-resolution.json"
   ],
   "note": "Seeded with already-processed proposals that are orphaned on FUSE (cannot unlink)",
-  "last_updated": "2026-04-14T00:12:37.624Z",
+  "last_updated": "2026-04-14T01:11:16.559Z",
   "last_processed_at": "2026-04-13T20:11:52.746Z",
   "processed_at": {
     "proposal-ISS-841-resolution.json": "2026-04-13T21:11:44.922Z"
@@ -57,6 +59,16 @@
       "file": "proposal-ISS-817-resolution.json",
       "processed_at": "2026-04-13T23:13:33.580Z",
       "action": "EXP-126 integrated directly. ISS-817 closed. Antarctic circumnavigation paragraph inserted into Section 7.1."
+    },
+    {
+      "file": "proposal-ISS-815-resolution.json",
+      "processed_at": "2026-04-14T01:11:16.559Z",
+      "action": "Applied EXP-130 output as direct patch to part4 GPS row 19. Changed +38.3 to +38.7, added GR/SR breakdown, Ashby (2003) citation, Section 7.2 cross-ref. ISS-815 closed. EXP-130 marked integrated."
+    },
+    {
+      "file": "proposal-ISS-933-resolution.json",
+      "processed_at": "2026-04-14T01:11:16.559Z",
+      "action": "ISS-933 closed. Domain 9 discrepancy already present in PRED-SR-SUPPRESS and PRED-093 detail_reasoning as of 2026-04-14 update. No further action needed."
     }
   ]
 }
