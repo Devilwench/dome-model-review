@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T04:41:35.725Z",
+  "last_updated": "2026-04-14T05:13:24.921Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -69,14 +69,16 @@
       "id": "ISS-826",
       "severity": "moderate",
       "category": "completeness",
-      "status": "assigned-analyst",
+      "status": "pending-human",
       "title": "PRED-TOROID-003 (Schumann Δf ≈ 0.336 Hz) is unclassified but appears genuinely testable — should get our_verdict",
       "description": "From ISS-703-sha256-forensics.c2.json: PRED-TOROID-003 (Schumann mode splitting Δf ≈ 0.336 Hz) is currently unclassified (our_verdict=null). The curmudgeon notes this is genuinely novel — the toroidal cavity geometry implies different mode structure from a spherical cavity, and the predicted frequency split is quantitatively specific and testable. It should be reclassified as testable_prediction or similar, not left null alongside retrospective citations.",
       "source": "curmudgeon",
       "source_review": "monitor/curmudgeon/reviews/ISS-703-sha256-forensics.c2.json",
       "found_by": "decider",
       "found_at": "2026-04-12T17:44:01.141Z",
-      "created_at": "2026-04-12T17:44:01.141Z"
+      "created_at": "2026-04-12T17:44:01.141Z",
+      "pending_note": "EXP-136 complete. detail_reasoning and tldr applied. our_verdict change ISS-954 awaits human approval.",
+      "updated_at": "2026-04-14T05:13:24.921Z"
     },
     {
       "id": "ISS-832",
@@ -211,7 +213,29 @@
       "found_date": "2026-04-14",
       "created_at": "2026-04-14T04:41:35.725Z",
       "notes": "Verdict change requires human approval. If 9.2 km/s = P-wave speed, correct verdict is standard_physics (dome unwittingly predicts observed seismology)."
+    },
+    {
+      "id": "ISS-954",
+      "win_id": "PRED-TOROID-003",
+      "severity": "moderate",
+      "category": "verdict",
+      "status": "pending-human",
+      "description": "PRED-TOROID-003 our_verdict should change from unfalsifiable to standard_physics. Analyst EXP-136 confirmed: prediction IS testable (curmudgeon correct) but dome derivation has two fatal internal contradictions: (1) stated eccentricity e=0.66 gives ratio 0.142, not the claimed 0.0215 (6.6× error); (2) derivation uses globe 7.83 Hz not dome own ~22 Hz. data_predates_registration already changed to true. Verdict change requires human approval.",
+      "found_by": "analyst-EXP-136",
+      "found_at": "2026-04-14T05:13:24.921Z",
+      "source": "analyst",
+      "related_issues": [
+        "ISS-826"
+      ],
+      "patch_file": null,
+      "suggested_patch": {
+        "file": "data/predictions.json",
+        "field": "our_verdict",
+        "find": "unfalsifiable",
+        "replace": "standard_physics",
+        "target_id": "PRED-TOROID-003"
+      }
     }
   ],
-  "next_id": 954
+  "next_id": 955
 }

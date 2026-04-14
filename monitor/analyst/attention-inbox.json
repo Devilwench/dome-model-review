@@ -288,5 +288,18 @@
     "related_issues": [
       "ISS-810"
     ]
+  },
+  {
+    "id": "ATT-2026-04-14T05:14:28.630Z",
+    "status": "pending",
+    "target_type": "prediction",
+    "target_id": "PRED-TOROID-003",
+    "reason": "EXP-136 integration: PRED-TOROID-003 detail_reasoning and tldr rewritten with internal contradiction analysis (eccentricity 6.6× error, wrong base frequency). our_verdict change unfalsifiable→standard_physics pending human approval (ISS-954). Verify reasoning is accurate and complete.",
+    "pushed_by": "decider",
+    "pushed_at": "2026-04-14T05:14:28.630Z",
+    "related_issues": [
+      "ISS-826",
+      "ISS-954"
+    ]
   }
 ]

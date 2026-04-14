@@ -1,47 +1,51 @@
 MORNING BRIEFING — 2026-04-14
-Generated: 2026-04-14T16:39:00Z
-Curmudgeon reviews processed this run: 5 (all stale — issues already fixed in earlier decider runs today)
-Previous decider run: 2026-04-14T04:11:00Z
+Generated: 2026-04-14T05:15:16.700Z
+Curmudgeon reviews processed this run: 5 (all stale — see FUSE staleness note below)
+Previous decider run: 2026-04-14T05:43:38+0100
 
-SITE HEALTH: OK
-  Build: Current (tests: 3316/3316 passed)
-  Integrity last run 2026-04-13: FAIL on build drift — resolved in earlier run today.
-  Tabs: 11 tabs, all valid. No broken links detected this run.
+=== SITE HEALTH ===
+Integrity: No new alerts (last check from integrity agent)
+Dome site: QUIET (14th consecutive). WIN count: 69, V51.1. Canary OTS not triggered.
+Build: OK — 3316 tests pass after this run's patches.
 
-EXTERNAL STATUS: QUIET (14th consecutive)
-  Dome WIN count: 69 (unchanged)
-  Canary trap: NOT triggered
-  No manual dome commits detected
+=== EXTERNAL STATUS ===
+Dome changes: None. No manual commits detected.
+Canary status: NOT triggered. OTS still timestamps observation side.
 
-INTERNAL STATUS:
-  Open issues: 13 (3 new this run: ISS-951/952/953)
-  Issues pending human review: 4 (ISS-808 build infra, ISS-832 WIN-058 verdict, ISS-951/952/953 prediction verdicts)
-  Patch applied this run: 1 (SEC-2.4 typo fix: "7,400 k (...)"  → "7,400 km (...)")
-  Prediction verdict changes flagged for human: 3 (W019, W020, PRED-NEW-002)
+=== THIS RUN'S WORK ===
+1. EXP-136 integrated (PRED-TOROID-003 Schumann mode splitting reclassification):
+   - detail_reasoning rewritten: dome derivation has two fatal internal contradictions:
+     (1) stated eccentricity e=0.66 gives ratio 0.142, not claimed 0.0215 (6.6× error)
+     (2) uses globe 7.83 Hz not dome own ~22 Hz
+   - data_predates_registration changed: false → true (Sentman 1987, Nickolaenko 2002)
+   - our_verdict NOT changed (unfalsifiable → standard_physics needs your approval — see ISS-954)
+   - ISS-826 now pending-human; ISS-954 created
+   
+2. Minor fix: part7 Section 7.10 — mid-afternoon → late afternoon (90° = 6 PM, not 3 PM).
+   Matches existing fix in SEC-2.4.
 
-TOP 3 PRIORITY ACTIONS:
-1. [HUMAN REQUIRED] ISS-951/ISS-952: W019 and W020 prediction verdicts need adjustment.
-   - W019 (NMP poleward drift): dome author himself marked it REFINED (conceding failure).
-     Our verdict "standard_physics" is more charitable than the dome author's own assessment.
-     Curmudgeon recommends "falsified".
-   - W020 (Roaring 40s ≥3%): Prediction had a concrete quantitative threshold (≥3%).
-     Author conceded threshold was not met. Our detail_reasoning says "no clear test criterion"
-     but ≥3% IS the criterion — our text is internally inconsistent.
-     Curmudgeon recommends "falsified".
+3. Processed proposal-ISS-826-resolution.json from analyst.
 
-2. [HUMAN REQUIRED] ISS-953: PRED-NEW-002 (aetheric gravity wave 9.2 km/s) classified as
-   "unfalsifiable" but 9.2 km/s falls within P-wave range (8–13 km/s). Calling it unfalsifiable
-   gives the dome an unearned grievance. Curmudgeon recommends "standard_physics".
+=== FUSE STALENESS ALERT ===
+All 5 curmudgeon pending reviews had stale holes. The curmudgeon is reading workspace
+versions of wins.json/sections.json that are 4-25 hours behind committed code. Recent
+decider commits patched these issues, but FUSE is serving old versions.
+ACTION NEEDED: Verify that build.js publish is properly syncing git-owned files
+(wins.json, sections.json) back to the workspace. A manual cp may be needed.
+If not fixed, curmudgeon will keep reviewing already-patched content → wasted Opus tokens.
 
-3. [TINKER/HUMAN] ISS-808: SEC-5.14/5.15/5.16 entirely absent from DOCX/PDF build. These
-   sections contain analysis of dome AI context engineering. Third flag on this gap.
+=== PENDING HUMAN REVIEW ===
+- ISS-954 (NEW): PRED-TOROID-003 our_verdict: unfalsifiable → standard_physics
+  See EXP-136 for full analysis. Curmudgeon review queued (PRED-TOROID-003-EXP136).
+- ISS-951: W019 our_verdict change
+- ISS-952: W020 our_verdict change
+- ISS-953: PRED-NEW-002 our_verdict change
 
-CURMUDGEON PROGRESS:
-  Mode: BAU | Queue depth: 16 items
-  Latest review cycle: Prediction-batch review challenged 3 verdicts (ISS-951/952/953)
-  All 5 pending digest reviews were stale — earlier decider runs had already fixed the issues
+=== CURMUDGEON QUEUE ===
+Mode: BAU | Depth: 16 | Interval: 240 min | Schedule: OK
+1 item popped this run (had a review file).
 
-CODE ANALYSIS TAG STATUS:
-  WIN-058b: tags validated by curmudgeon and confirmed this run (reviewed=true in wins.json)
-  WIN-065: tags validated (reviewed=true confirmed in wins.json)
-  No unsynced tags detected this run
+=== TOP 3 PRIORITY ACTIONS ===
+1. Approve ISS-954 (PRED-TOROID-003 verdict) — EXP-136 analysis is thorough
+2. Fix FUSE staleness — curmudgeon is wasting Opus reviews on already-patched content
+3. Review 3 other pending-human verdicts (ISS-951/952/953)

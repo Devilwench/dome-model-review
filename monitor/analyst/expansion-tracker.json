@@ -2409,9 +2409,13 @@
       ],
       "category": "expansion",
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "Prediction currently unclassified. Needs assessment of Δf ≈ 0.336 Hz claim.",
-      "created_at": "2026-04-12T19:48:10.478Z"
+      "created_at": "2026-04-12T19:48:10.478Z",
+      "integrated": true,
+      "integrated_at": "2026-04-14T05:13:43.054Z",
+      "integration_mode": "partial-verdict-pending-human",
+      "integration_notes": "detail_reasoning, tldr, data_predates_registration applied. our_verdict change (unfalsifiable→standard_physics) in ISS-954 pending human approval."
     },
     {
       "id": "EXP-137",

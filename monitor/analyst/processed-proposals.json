@@ -55,13 +55,15 @@
     "proposal-ISS-821-resolution.json",
     "proposal-ISS-900-resolution.json",
     "proposal-ISS-822-resolution.json",
-    "proposal-ISS-824-resolution.json"
+    "proposal-ISS-824-resolution.json",
+    "proposal-ISS-826-resolution.json"
   ],
   "note": "Seeded with already-processed proposals that are orphaned on FUSE (cannot unlink)",
-  "last_updated": "2026-04-14T03:41:37.180Z",
+  "last_updated": "2026-04-14T05:13:30.886Z",
   "last_processed_at": "2026-04-13T20:11:52.746Z",
   "processed_at": {
-    "proposal-ISS-841-resolution.json": "2026-04-13T21:11:44.922Z"
+    "proposal-ISS-841-resolution.json": "2026-04-13T21:11:44.922Z",
+    "proposal-ISS-826-resolution.json": "2026-04-14T05:13:30.886Z"
   },
   "processing_notes": [
     {
@@ -78,6 +80,11 @@
       "file": "proposal-ISS-933-resolution.json",
       "processed_at": "2026-04-14T01:11:16.559Z",
       "action": "ISS-933 closed. Domain 9 discrepancy already present in PRED-SR-SUPPRESS and PRED-093 detail_reasoning as of 2026-04-14 update. No further action needed."
+    },
+    {
+      "file": "proposal-ISS-826-resolution.json",
+      "processed_at": "2026-04-14T05:13:30.886Z",
+      "action": "EXP-136 detail_reasoning/tldr/data_predates_registration applied to predictions.json. our_verdict change (unfalsifiable→standard_physics) requires human approval — created ISS-954 pending-human. ISS-826 updated to pending-human."
     }
   ]
 }
