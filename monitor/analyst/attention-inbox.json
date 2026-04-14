@@ -301,5 +301,18 @@
       "ISS-826",
       "ISS-954"
     ]
+  },
+  {
+    "id": "ATT-2026-04-14T14:33:03.388Z",
+    "status": "pending",
+    "target_type": "section",
+    "target_id": "SEC-1.9",
+    "reason": "EXP-162 created: SEC-1.9 needs two analyst additions — (1) defender escape rebuttal (apparent-path sufficiency for ground effects), (2) n(r) radial vs altitudinal clarification. See curmudgeon review SEC-1.9.c1.json for specific recommendations.",
+    "pushed_by": "decider",
+    "pushed_at": "2026-04-14T14:33:03.388Z",
+    "related_issues": [
+      "ISS-983",
+      "ISS-985"
+    ]
   }
 ]

@@ -1989,7 +1989,7 @@
       "entry_type": "prospective",
       "claim": "SAA African Cell Intensity Below 21,795 nT",
       "category": "geomagnetic",
-      "registration_date": "2026-01-01",
+      "registration_date": "2026-03-06",
       "test_window": null,
       "test_window_closes": null,
       "author_status": "promoted",
@@ -2029,7 +2029,7 @@
       "entry_type": "prospective",
       "claim": "Field Decay >=28 nT Since March 2025",
       "category": "geomagnetic",
-      "registration_date": "2026-01-01",
+      "registration_date": "2026-03-06",
       "test_window": "2025-03",
       "test_window_closes": "2026-12-31",
       "author_status": "promoted",
@@ -2089,5 +2089,5 @@
       "dome_silent_on_expiry": true
     }
   ],
-  "last_updated": "2026-04-14T05:31:57.174Z"
+  "last_updated": "2026-04-14T14:30:35.532Z"
 }

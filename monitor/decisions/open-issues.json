@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T13:25:26.315Z",
+  "last_updated": "2026-04-14T14:32:56.712Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -88,57 +88,68 @@
       "fix_date": null
     },
     {
-      "id": "ISS-978",
-      "win_id": "W019",
-      "severity": "major",
-      "category": "verdict",
-      "description": "W019 (NMP poleward drift) verdict should be \"falsified\" not \"standard_physics\". The dome made a specific directional claim (poleward drift DOMINATES), observations show lateral drift is 5.5x poleward, and the dome author himself marked it REFINED (concession of failure). Standard_physics is too charitable — it implies the phenomenon is already explained by standard physics without capturing that the dome's specific directional prediction failed on its own terms.",
-      "source": "curmudgeon-PRED-batch-2026-04-13",
-      "found_by": "curmudgeon",
-      "found_at": "2026-04-14T13:25:26.315Z",
-      "status": "pending-human",
-      "fix_details": "Change verdict from standard_physics to falsified. Human approval required.",
-      "fix_date": null
-    },
-    {
-      "id": "ISS-979",
-      "win_id": "W020",
-      "severity": "major",
-      "category": "verdict",
-      "description": "W020 (SAA-Roaring40s anomaly ≥3%) verdict should be \"falsified\" not \"unfalsifiable\". The prediction specified a concrete ≥3% geopotential height anomaly threshold. The author marked it REFINED and conceded the effect is smaller than predicted. A specific quantitative prediction that fails its own threshold IS falsified. The detail_reasoning says \"no clear test criterion\" which contradicts the ≥3% criterion in the prediction itself.",
-      "source": "curmudgeon-PRED-batch-2026-04-13",
-      "found_by": "curmudgeon",
-      "found_at": "2026-04-14T13:25:26.315Z",
-      "status": "pending-human",
-      "fix_details": "Change verdict from unfalsifiable to falsified. Fix detail_reasoning to acknowledge ≥3% threshold. Human approval required.",
-      "fix_date": null
-    },
-    {
-      "id": "ISS-980",
-      "win_id": "PRED-NEW-002",
-      "severity": "moderate",
-      "category": "verdict",
-      "description": "PRED-NEW-002 (aetheric gravity wave 9.2 km/s) verdict should be \"standard_physics\" not \"unfalsifiable\". The value 9.2 km/s falls within the observed P-wave velocity range in the upper mantle (8-13 km/s). The claim IS testable and matches standard seismology. Calling it unfalsifiable gives the dome an unearned rhetorical advantage — they can say \"you admit it can't be tested!\" when reality is worse for them (it CAN be tested and IS just relabeled seismology).",
-      "source": "curmudgeon-PRED-batch-2026-04-13",
-      "found_by": "curmudgeon",
-      "found_at": "2026-04-14T13:25:26.315Z",
-      "status": "pending-human",
-      "fix_details": "Change verdict from unfalsifiable to standard_physics. Human approval required.",
-      "fix_date": null
-    },
-    {
-      "id": "ISS-981",
+      "id": "ISS-983",
       "win_id": null,
+      "section_id": "SEC-1.9",
       "severity": "major",
+      "category": "missing_argument",
+      "description": "SEC-1.9 (part1b) does not address the defender escape that apparent-path calculation may be sufficient for ground-level effects like magnetic/ionospheric predictions (WIN-010, WIN-025, WIN-068) even without physical shadow geometry. Section needs to distinguish (a) scaled-per-station predictions vs (b) threshold binary predictions vs (c) whole-eclipse predictions.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/SEC-1.9.c1.json",
+      "found_by": "decider-from-curmudgeon",
+      "found_at": "2026-04-14T14:30:03.995Z",
+      "found_date": "2026-04-14",
+      "status": "assigned-analyst",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-985",
+      "win_id": null,
+      "section_id": "SEC-1.9",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "SEC-1.9: n(r) function is radial (disc position), not altitudinal. Section says \"moon orbits at roughly r ≈ 10,000 km, where n ≈ 1.44\" but r is horizontal radial position, not altitude. Should acknowledge this to strengthen argument: radial n(r) produces refraction primarily for oblique rays with large horizontal displacement — eclipse shadow paths uniquely satisfy this.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/SEC-1.9.c1.json",
+      "found_by": "decider-from-curmudgeon",
+      "found_at": "2026-04-14T14:30:03.995Z",
+      "found_date": "2026-04-14",
+      "status": "assigned-analyst",
+      "fix_details": null,
+      "fix_date": null,
+      "assigned_to": "EXP-162"
+    },
+    {
+      "id": "ISS-986",
+      "win_id": "058b",
+      "severity": "moderate",
       "category": "factual_error",
-      "description": "Part 1 scorecard sublabel says \"None produces a prediction that both derives from dome geometry AND differs from standard physics\" but this criterion should match the hardcoded count 0. The sublabel's strict reading (must BOTH derive from dome geometry AND differ from standard physics simultaneously) may contradict our own code_analysis data. Curmudgeon recommends rewriting to: \"None produces a dome-derived prediction that both (a) can be independently verified and (b) contradicts standard-model expectations.\" — making the zero count defensible and the criterion precise.",
-      "source": "curmudgeon-part1-scorecard-sublabel-fix.c1",
-      "found_by": "curmudgeon",
-      "found_at": "2026-04-14T13:25:26.315Z",
+      "description": "WIN-058b detail_evidence: \"thermospheric expansion drives both SG loading and Schumann amplitude variations\" is imprecise — thermospheric changes affect ionospheric conductivity for Schumann but affect Earth solid-body loading via atmospheric mass redistribution. These are two different physical pathways, not one.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-058b-post-EXP102.c2.json",
+      "found_by": "decider-from-curmudgeon",
+      "found_at": "2026-04-14T14:30:03.995Z",
+      "found_date": "2026-04-14",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-987",
+      "win_id": "058b",
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "WIN-058b: r=0.96 vs r=0.992 correlation inconsistency has an unaddressed defender escape. The dome could argue these represent different data windows, calibration epochs, or baseline-subtraction choices. Section should either (a) verify both r-values from same methodology or (b) use only the lower r-value and acknowledge the range.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-058b-post-EXP102.c2.json",
+      "found_by": "decider-from-curmudgeon",
+      "found_at": "2026-04-14T14:30:03.995Z",
+      "found_date": "2026-04-14",
       "status": "open",
       "fix_details": null,
       "fix_date": null
     }
   ],
-  "next_id": 982
+  "next_id": 988
 }

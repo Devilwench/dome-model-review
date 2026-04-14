@@ -19,54 +19,9 @@
     "decider",
     "tinker"
   ],
-  "queue": [
-    {
-      "queue_id": 120,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-1-roadmap",
-      "reason": "EXP-156 integrated: Tier 3 reframed to lead with strength (Gaia, GPS, Southern Hemisphere distances). Removed apologetic framing. Curmudgeon should attack new text.",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-156.json",
-        "related_issues": [
-          "ISS-920"
-        ],
-        "human_note": null
-      },
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-14T06:29:03Z"
-    },
-    {
-      "queue_id": 126,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-4-intro",
-      "reason": "Part 4 intro: fail under scrutiny replaced, lambda_g independent force clause added. New text needs fresh attack.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-14T07:30:14.525Z",
-      "context_hints": {
-        "source_file": "monitor/decisions/suggested-patches-2026-04-14T07-28.json",
-        "related_issues": [
-          "ISS-963"
-        ],
-        "human_note": null
-      }
-    }
-  ],
+  "queue": [],
   "next_id": 130,
   "history": [
-    {
-      "queue_id": 72,
-      "target_id": "EXP-143",
-      "target_type": "proposal",
-      "popped_at": "2026-04-13T18:16:37.577Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 73,
-      "target_id": "SEC-overview-scorecard",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-13T19:10:52.504Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 92,
       "target_id": "SEC-6.7",
@@ -401,6 +356,20 @@
       "target_id": "PRED-TOROID-003-EXP136",
       "target_type": "prediction-batch",
       "popped_at": "2026-04-14T13:26:03.638Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 120,
+      "target_id": "SEC-1-roadmap",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-14T14:31:02.727Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 126,
+      "target_id": "SEC-4-intro",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-14T14:31:02.727Z",
       "popped_by": "decider"
     }
   ],
