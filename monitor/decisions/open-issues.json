@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T19:08:30.205Z",
+  "last_updated": "2026-04-14T19:33:15.860Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -57,7 +57,40 @@
       "fix_date": null,
       "related_review": "monitor/curmudgeon/reviews/part4-roadmap-EXP116.c1.json + part5-roadmap-EXP116.c1.json",
       "notes": "Filed during human-requested audit of old reports for deferred-but-untracked work. The two curmudgeon reviews flagged this as out-of-scope for their respective EXPs but never resulted in a tracked work item."
+    },
+    {
+      "id": "ISS-1009",
+      "win_id": null,
+      "section_id": "SEC-1.9",
+      "severity": "moderate",
+      "category": "citation",
+      "description": "SEC-1.9 asserts FSF-input \"scaling formula itself consumes shadow geometry\" without quoting the actual FSF definition from dome repo. Before Aug 2026 test, should pull definition from raw-text/monitor.py or model page. Requires dome source research — assign to analyst.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon-SEC-1.9-post-EXP162.c1",
+      "found_date": "2026-04-14",
+      "found_at": "2026-04-14T19:30:16.227Z",
+      "status": "assigned-analyst",
+      "fix_details": null,
+      "fix_date": null,
+      "related_review": "monitor/curmudgeon/reviews/SEC-1.9-post-EXP162.c1.json"
+    },
+    {
+      "id": "ISS-1014",
+      "win_id": null,
+      "section_id": "SEC-2b.3",
+      "severity": "moderate",
+      "category": "infrastructure",
+      "description": "Part 2b uses hardcoded quadruple/triple failure counts (now patched to 47/18 but will drift again). Long-term fix: add {{CA_QUAD_FAIL}}, {{CA_TRIPLE_FAIL}}, {{CA_LOW_FAIL}} template variables to generate-html.js, computed from code_analysis cross-tabulation in build context. Template vars self-correct on future WIN additions. Infrastructure change requires human approval.",
+      "source": "curmudgeon",
+      "found_by": "decider-HOL-COMPLETENESS.c2",
+      "found_date": "2026-04-14",
+      "found_at": "2026-04-14T19:33:15.860Z",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null,
+      "notes": "Stopgap applied (47/18 hardcoded). Proper fix deferred to human: add template vars to generate-html.js and build.js context. ISS-1013 closed with stopgap.",
+      "related_review": "monitor/curmudgeon/reviews/HOLISTIC-HOL-COMPLETENESS.json"
     }
   ],
-  "next_id": 998
+  "next_id": 1015
 }

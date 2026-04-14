@@ -19,8 +19,80 @@
     "decider",
     "tinker"
   ],
-  "queue": [],
-  "next_id": 134,
+  "queue": [
+    {
+      "queue_id": 134,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-1.9",
+      "reason": "SEC-1.9 HTML fixes, n-range correction, class (iii) concrete example added. Fresh attack needed on corrected text.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-14T19:33:37.999Z",
+      "context_hints": {
+        "source_file": "monitor/curmudgeon/reviews/SEC-1.9-post-EXP162.c1.json",
+        "related_issues": [
+          "ISS-1006",
+          "ISS-1007",
+          "ISS-1008"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 135,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-2b.3",
+      "reason": "Part 2b derives-from-dome section rewritten: These four are → These two are, WIN-044 description updated, WIN-020 description corrected, counts 43→47 and 19→18 updated, 67→template vars.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-14T19:33:37.999Z",
+      "context_hints": {
+        "source_file": "monitor/curmudgeon/reviews/HOLISTIC-HOL-COMPLETENESS.json",
+        "related_issues": [
+          "ISS-1010",
+          "ISS-1011",
+          "ISS-1012",
+          "ISS-1013"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 136,
+      "target_type": "win-detail-rewrite",
+      "target_id": "WIN-029",
+      "reason": "WIN-029 patched: area-weighted→linear radial, symmetry defense added, Q>>100→Q>1000, algebraically equivalent→inverts, tldr_evidence expanded. Fresh attack needed.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-14T19:33:37.999Z",
+      "context_hints": {
+        "source_file": "monitor/curmudgeon/reviews/WIN-029.c3.json",
+        "related_issues": [
+          "ISS-1001",
+          "ISS-1002",
+          "ISS-1003",
+          "ISS-1004",
+          "ISS-1005"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 137,
+      "target_type": "win-detail-rewrite",
+      "target_id": "WIN-010",
+      "reason": "WIN-010 patched: triple-counting cross-ref added, detail_claim temporal anchor added, tldr_verdict training-data phrasing. Fresh attack needed.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-14T19:33:37.999Z",
+      "context_hints": {
+        "source_file": "monitor/curmudgeon/reviews/WIN-010.c4.json",
+        "related_issues": [
+          "ISS-998",
+          "ISS-999",
+          "ISS-1000"
+        ],
+        "human_note": null
+      }
+    }
+  ],
+  "next_id": 138,
   "history": [
     {
       "queue_id": 78,
