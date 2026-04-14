@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T10:31:03.691Z",
+  "last_updated": "2026-04-14T11:30:37.777Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -64,17 +64,53 @@
       "wontfix_at": "2026-04-14T06:28:51Z"
     },
     {
-      "id": "ISS-965",
-      "win_id": "058b",
+      "id": "ISS-971",
+      "win_id": null,
+      "severity": "major",
+      "category": "factual_error",
+      "description": "SEC-7.1 (part7) Antarctic rim-circumnavigation paragraph presents both 125,760 km (rim) and ~112,000 km (70°S) figures then asserts \"factor-of-eight discrepancy\" — ambiguous whether this refers to 125,760/13,700≈9.2 or 112,000/13,700≈8.2. Cleaner to pick one comparison. Also: ship list (Soviet Ob, HMS Endurance) weakly supports the circumnavigation claim with these sources; curmudgeon recommends more precise references.",
+      "found_by": "curmudgeon-SEC-7.1-antarctic.c1",
+      "found_at": "2026-04-14T11:40:00Z",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-974",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "citation",
+      "description": "KILLSHOT GAIA table Betelgeuse row: attributed to \"Hipparcos (van Leeuwen 2007)\" but the 4.51 ± 0.80 mas value is NOT van Leeuwen 2007 (which gives 6.55 ± 0.83 mas). Correct source is Harper et al. 2017 (VLA-Hipparcos combined). Also: Lauer et al. 2020 citation links to a NASA press release, not the peer-reviewed paper (Lauer et al. 2025, AJ 170, 22).",
+      "found_by": "curmudgeon-KILLSHOT-GAIA-table-citation-fix.c1",
+      "found_at": "2026-04-14T09:40:00Z",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-975",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "Evaluation Guide eg-verdicts section (in generate-html.js): count-inflation preemption paragraph uses \"(045–051)\" range which spans SEVEN WIN IDs but only five tidal WINs exist (045, 046, 049, 050, 051). Also: logical overlap in false-dilemma subtype list item (3) should be dropped. Cannot be self-applied (generate-html.js is infrastructure). Needs human patch.",
+      "found_by": "curmudgeon-eg-verdicts-passive-tldr-fix.c1",
+      "found_at": "2026-04-14T09:10:00Z",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-976",
+      "win_id": null,
       "severity": "moderate",
       "category": "missing_argument",
-      "description": "WIN-058b detail_evidence: r=0.96 vs r=0.992 inconsistency argument (PRED-KAPPA-001 vs Exhibit A) has an unaddressed dome defender response — defender can argue the two r-values measure different statistics. Text should clarify what each r-value measures or note that the dome provides no specification of what each measures (which is already present). Needs minor prose strengthening.",
-      "found_by": "curmudgeon-WIN-058b-post-EXP102.c2",
-      "found_at": "2026-04-14T08:27:52.234Z",
-      "status": "assigned-analyst",
-      "assigned_exp": "EXP-160",
-      "assigned_at": "2026-04-14T09:27:46.021Z"
+      "description": "Evaluation Guide eg-falsifiability section (in generate-html.js): WIN-044 mischaracterized as \"produces value that matches standard physics or contradicts measurement\" — WIN-044 actually has verdict Self-Contradicted (dome derives a value that conflicts with its own other equations), not a standard-physics or measurement contradiction. Also \"only 2 of 69 claims even attempt a dome-geometry derivation\" is contestable — \"attempt\" is ambiguous. Cannot be self-applied (generate-html.js is infrastructure).",
+      "found_by": "curmudgeon-eg-falsifiability-derives-fix.c1",
+      "found_at": "2026-04-14T08:42:00Z",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
     }
   ],
-  "next_id": 968
+  "next_id": 977
 }

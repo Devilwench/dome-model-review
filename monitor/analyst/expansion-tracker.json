@@ -2849,9 +2849,12 @@
         "ISS-965"
       ],
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "notes": "ISS-965: The inconsistency argument (PRED-KAPPA-001 claims r=0.96 for 1.67 slope; Exhibit A claims r=0.992 for the same 2003 Halloween storm data) has an unaddressed dome defender response. The dome could argue these are different statistical quantities (slope-fit R² vs temporal cross-correlation). Analyst must: (1) check dome source for whether both r-values are defined/labeled in dome raw-text, (2) if same statistic: rewrite inconsistency argument as \"dome provides two inconsistent r-values for identical data — same statistic cannot be both 0.96 and 0.992\", (3) if different statistics: acknowledge the distinction and pivot to a stronger argument about the lack of specification.",
-      "created_at": "2026-04-14T09:27:46.007Z"
+      "created_at": "2026-04-14T09:27:46.007Z",
+      "integrated": true,
+      "integrated_at": "2026-04-14T11:30:37.777Z",
+      "integration_mode": "partial-fields"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",

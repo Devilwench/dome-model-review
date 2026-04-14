@@ -21,42 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 106,
-      "target_type": "section-new",
-      "target_id": "SEC-7.1-antarctic",
-      "reason": "EXP-126 integrated: Antarctic circumnavigation (factor-of-8 discrepancy) paragraph inserted into Section 7.1. New argument needs adversarial review — especially the pre-GPS expedition evidence and dome v22 quote.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T23:13:45.147Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-126.json",
-        "related_issues": [
-          "ISS-817"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 109,
-      "target_type": "prediction-batch",
-      "target_id": "PRED-SR-SUPPRESS-EXP157",
-      "reason": "EXP-157 integrated: PRED-SR-SUPPRESS detail_reasoning rewritten. Spot-check: (1) Is Rosales-Linares citation correct? (2) Does the inductive-reasoning counterargument framing hold? (3) Does Domain 9 discrepancy claim accurately represent the dome dashboard text?",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-14T00:15:56.829Z",
-      "context_hints": {
-        "prediction_ids": [
-          "PRED-SR-SUPPRESS"
-        ],
-        "assessment_files": [
-          "monitor/analyst/expansions/EXP-157.json"
-        ],
-        "related_issues": [
-          "ISS-923",
-          "ISS-925",
-          "ISS-933"
-        ]
-      }
-    },
-    {
       "queue_id": 110,
       "target_type": "section-new",
       "target_id": "SEC-1.8-EXP149",
@@ -157,29 +121,8 @@
       }
     }
   ],
-  "next_id": 129,
+  "next_id": 130,
   "history": [
-    {
-      "queue_id": 85,
-      "target_id": "WIN-058b",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-13T04:19:22.359Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 87,
-      "target_id": "part2b",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-13T04:39:09.262Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 68,
-      "target_id": "SEC-2b.7-post-EXP137",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-13T05:12:09.494Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 89,
       "target_id": "SEC-1.1",
@@ -507,6 +450,27 @@
       "target_id": "SEC-2.3",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-14T10:31:16.080Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 106,
+      "target_id": "SEC-7.1-antarctic",
+      "target_type": "section-new",
+      "popped_at": "2026-04-14T11:30:48.660Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 109,
+      "target_id": "PRED-SR-SUPPRESS-EXP157",
+      "target_type": "prediction-batch",
+      "popped_at": "2026-04-14T11:30:48.661Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 129,
+      "target_id": "WIN-058b",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-14T11:30:48.661Z",
       "popped_by": "decider"
     }
   ],

@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-04-14T10:19:30.901Z",
-  "total_reviews": 178,
+  "generated_at": "2026-04-14T11:19:06.531Z",
+  "total_reviews": 187,
   "already_processed": 239,
-  "pending_count": 9,
+  "pending_count": 18,
   "severity_breakdown": {
-    "critical": 1,
-    "major": 2,
-    "moderate": 5,
+    "critical": 2,
+    "major": 7,
+    "moderate": 8,
     "minor": 1,
     "none": 0
   },
   "defense_survives_breakdown": {
-    "high": 0,
+    "high": 1,
     "moderate": 0,
-    "total_vulnerable": 0
+    "total_vulnerable": 1
   },
-  "needs_full_read_count": 5,
+  "needs_full_read_count": 12,
   "under_covered_processed": [
     {
       "win_id": "EVAL-GUIDE",
@@ -4613,6 +4613,82 @@
   "under_covered_count": 157,
   "pending_reviews": [
     {
+      "item_id": "SEC-1.9",
+      "win_id": "SEC-1.9",
+      "review_file": "monitor/curmudgeon/reviews/SEC-1.9.c1.json",
+      "reviewed_at": "2026-04-14T00:00:00.000Z",
+      "cycle": 1,
+      "topic": "Section 1.9: Differential Refraction — The Eclipse Geometry Trap (EXP-144 integration)",
+      "verdict_holds": true,
+      "confidence": 0.78,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "CROSS-SECTION INCONSISTENCY (Section 1.5 vs 1.9 vs 1.8): Section 1.9 says \"At the equator (r ≈ 10,008 km), n = 1.44.\" Section 1.8 also says \"1.44 at the equator.\" But Section 1.5 STILL says \"at the equatorial ring (r = 14,105 km), n ≈ 1.83\" — the OLD value that ISS-855 was supposed to retire. Sectio",
+          "recommendation": "File a follow-up issue: patch Section 1.5 to remove the stale \"r = 14,105 km, n ≈ 1.83\" sentence and replace with the corrected equator value (r ≈ 10,008 km, n = 1.44). Alternative: keep the r=14,105 figure but relabel it accurately (e.g., \"the southern reflection radius\" or whatever it actually rep",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "major",
+          "summary": "DEFENDER ESCAPE NOT ADDRESSED — APPARENT-PATH SUFFICIENCY FOR GROUND EFFECTS: The section's central claim is that eclipse magnetic/gravity/ionospheric effects (WIN-010, WIN-025, WIN-068) require knowing the *physical* shadow path, not the *apparent* alignment. But these effects are caused by photon ",
+          "recommendation": "Strengthen the argument by distinguishing two cases: (a) WINs whose predictions are scaled *across stations* using the FSF-style station-distance formula — these DO require the shadow-cone geometry (axis, width, ground intersection path) to scale per-station amplitudes correctly. WIN-025 (9-station)",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "n(r) IS RADIAL (DISC POSITION), NOT ALTITUDINAL: The section states \"the moon orbits at roughly r ≈ 10,000 km, where n ≈ 1.44.\" Here r is the moon's *radial position over the disc* (its horizontal distance from the pole). The dome's n(r) formula gives the refractive index *at every point in the cavi",
+          "recommendation": "Add a paragraph acknowledging that n(r) as a radial-only function produces refraction primarily for oblique/grazing rays — but use this to STRENGTHEN the eclipse argument: eclipse paths cross thousands of km of horizontal n(r) variation, so per-station refraction differences along a transcontinental",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "ANGULAR-DIAMETER ARGUMENT IS DIRECTIONALLY UNCONSTRAINED: The section says \"If differential refraction shrinks the moon's apparent size relative to the sun's, total eclipses become impossible.\" The argument is hedged with \"If\" but its rhetorical force depends on the shrinking direction. Refraction t",
+          "recommendation": "Reframe as: \"Without computation, the dome cannot say whether n(r) preserves, enlarges, or shrinks the angular-diameter ratio. The fact that we observe both annular and total eclipses tightly constrains the moon-sun apparent-diameter ratio to ≈ 1.0, with millisecond-precision agreement of predicted ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "OVERSTATED \"DOMINATES ALL LIGHT PROPAGATION\" CLAIM: The section's bottom line says n ranges \"1.08 to 2.84\" and concludes the medium \"dominates all light propagation in the cavity.\" The 1.08 floor at r ≈ 3,000 km is correct, but for the broad pole-proximate region (r < 3,000 km, covering most of the ",
+          "recommendation": "Add a sentence acknowledging that n grows with r — northern observatories see modest refraction, but the SHADOW PATH crosses the entire range of n values as it transits across the disc. The per-station scaling problem (hole #2) holds even when individual stations see modest local n, because the ray ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "WIN-039 LISTED IN AFFECTED_WINS BUT NOT REFERENCED IN PROSE: EXP-144 lists WIN-039 (Lunar magnetic 1-2 nT) among affected_wins (\"coupling strength depends on physical moon distance\"), but the integrated section text never names WIN-039. The lunar-magnetic argument is a strong addition to the differe",
+          "recommendation": "Add a one-sentence reference to WIN-039 in the \"Why this matters for eclipses\" or \"bottom line\" paragraph: \"The same problem affects WIN-039 (lunar magnetic 1–2 nT coupling) — any distance-dependent coupling formula requires the moon's PHYSICAL distance, which is unknown under n(r).\"",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "INTERNAL JUSTIFICATION ERROR IN EXP-144 (NOT PUBLISHED): EXP-144's anticipated_objections response #3 says \"At the moon's orbit, n=1.44 — 4,800× Earth's atmospheric refraction (n=1.0003).\" Recompute: (1.44 − 1)/(1.0003 − 1) = 0.44/0.0003 = 1,467×. The 4,800× figure is wrong by a factor of ~3.3. Note",
+          "recommendation": "Correct future EXP packages: (n − 1)/(n_atm − 1) is the correct refraction-strength ratio, not n_dome/n_atm or any other naive ratio. Internal review materials should be numerically clean even when not destined for publication.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "TLDR SLIGHTLY OVERSTATES CERTAINTY: TLDR says \"eclipse alignment — which requires physical overlap, not just optical coincidence — becomes indeterminate.\" The \"which requires physical overlap\" clause is the disputed premise (see hole #2). A dome defender will say \"actually, ground magnetic effects d",
+          "recommendation": "Consider softening to: \"Eclipse magnetic and gravity predictions depend on shadow geometry the dome cannot compute under its own refraction model.\" This is true regardless of whether per-station effects could be predicted from observed eclipse magnitudes (because shadow scaling formulas — see WIN-02",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": true,
+        "reviewed": true
+      },
+      "argument_summary": "Section 1.9 argues that the dome's aetheric refraction fix (introduced for the sun in Section 1.5/1.8) creates an unresolved differential-refraction problem for the moon, making eclipse geometry incom",
+      "stronger_arguments_count": 3,
+      "defense_survives": 4,
+      "best_defense": "A fair-minded dome defender would mount three lines of defense: (1) The eclipse magnetic predictions (WIN-010, WIN-025, WIN-068) take observed per-station eclipse magnitudes from NASA catalogs as inputs and predict the resulting magnetic responses — they do not REQUIRE knowing the moon's physical al",
+      "preemptive_recommendation": "The section preempts (3) of these — defense line that 'refraction is sun-only' — but not (1) and (2). The decider should consider sharpening the section to address (1) by distinguishing single-station from multi-station WINs (only multi-station scaling formally requires shadow-cone geometry), and (2",
+      "needs_full_read": true
+    },
+    {
       "item_id": "EXP-062-batch",
       "win_id": "EXP-062-batch",
       "review_file": "monitor/curmudgeon/reviews/EXP-062-batch.json",
@@ -4660,6 +4736,74 @@
       ],
       "code_analysis_tags": null,
       "argument_summary": null,
+      "stronger_arguments_count": 3,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "PRED-SR-SUPPRESS-EXP157",
+      "win_id": "PRED-SR-SUPPRESS-EXP157",
+      "review_file": "monitor/curmudgeon/reviews/PRED-SR-SUPPRESS-EXP157.json",
+      "reviewed_at": "2026-04-14T12:30:00Z",
+      "cycle": 1,
+      "topic": "Review of EXP-157 rewrite of PRED-SR-SUPPRESS detail_reasoning + tldr (inductive defense, Rosales-Linares citation, Domain 9 discrepancy)",
+      "verdict_holds": true,
+      "confidence": 0.92,
+      "recommended_action": "major_rewrite",
+      "holes": [
+        {
+          "severity": "critical",
+          "summary": "FABRICATED AUTHOR CITATION. The text cites 'Rosales-Linares et al. (2019)' for a Schumann-resonance-during-geomagnetic-storms paper at a Mexican station. A Google Scholar / web search for 'Rosales-Linares Schumann' returns ZERO papers by anyone of that name. The actual paper at the Mexican station (",
+          "recommendation": "Immediate patch required. Replace 'Rosales-Linares et al. (2019)' with 'Pazos et al. (2019)' throughout detail_reasoning. Replace DOI 10.1016/j.jastp.2018.08.006 with 10.1016/j.jastp.2019.105091. Update tldr similarly. This is URGENT — a visible, reproducible fabrication in our review text undermine",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "critical",
+          "summary": "WRONG DOI. The cited DOI is 10.1016/j.jastp.2018.08.006. The correct DOI for the Pazos et al. paper described (Mexico SR station, 5 storm events 2015-2017) is 10.1016/j.jastp.2019.105091 (Vol. 193, 2019). The 2018.08.006 DOI resolves to a different article entirely. A dome defender can verify this i",
+          "recommendation": "Patch with correct DOI 10.1016/j.jastp.2019.105091 in the same edit as the author name fix.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "major",
+          "summary": "MISCHARACTERIZED FINDING. We write 'found statistically significant amplitude enhancement across all five G2-G4 events studied.' The Pazos et al. paper actually reports a statistically significant increase (>1σ) in the AVERAGED amplitude of the first three SR modes of horizontal magnetic field compo",
+          "recommendation": "Rewrite as: 'found a statistically significant increase (>1σ) in the averaged amplitude of the first three SR modes across five 14-day periods covering moderate-to-severe geomagnetic storms (Dst < ~-70 nT).' Drop the 'G2-G4' shorthand.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "INDUCTIVE-REASONING COUNTERARGUMENT IS FRAGILE UNDER PUSHBACK. The text concedes induction is legitimate ('Kepler observed orbital paths before formulating laws that predicted future positions') but then pivots to 'however, for PRED-SR-SUPPRESS to count as evidence for the dome model specifically, t",
+          "recommendation": "Strengthen by adding one sentence that cites the dome's own language: 'The dome home page states it derives predictions from first principles and tests them against independent data (raw-text/01-home.txt line 10). If PRED-SR-SUPPRESS is in fact inductive rather than first-principles-derived, the dom",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "'Either bug or cherry-pick' is a false dichotomy. We write: 'Either the dome's Kp-detection code has a bug, or the author chose not to score this event.' A third possibility exists: the Domain 9 status text on the home page could simply be a stale cached display (the dome site is a static GitHub Pag",
+          "recommendation": "Broaden to a trichotomy: 'Either the Kp-detection logic missed the event, the author chose not to score it, or the dashboard caches stale text despite the live-data claim. All three undermine the automated no-cherry-picking narrative.'",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "minor",
+          "summary": "TLDR accuracy: The tldr inherits the same fabricated citation ('Rosales-Linares et al. 2019'). TLDRs are what readers see first — a fabricated author name in the TLDR is a major-severity TLDR error per our own review guidelines.",
+          "recommendation": "Fix in tldr simultaneously with detail_reasoning fix.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "'Mexican station' is generic. The paper is specifically about the Coeneo, Michoacán station (geographic 19°48'N, 101°42'W; magnetic 29°N, 174°W; 1964 m asl). A one-word location specificity ('Coeneo') would make the citation harder to dispute and show we actually read the paper.",
+          "recommendation": "Add 'at the Coeneo, Michoacán station' when the fix is applied.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "critical",
+      "citation_failures": [
+        "CITATION FABRICATED: 'Rosales-Linares et al. (2019)' — no such author publishes on Schumann resonance. Actual authors: Pazos, M., Mendoza, B., Sierra, P., Andrade, E., Rodríguez, D., Mendoza, V., Garduño, R.",
+        "WRONG DOI: 10.1016/j.jastp.2018.08.006 does not point to the described paper. Correct DOI: 10.1016/j.jastp.2019.105091 (J. Atmos. Sol.-Terr. Phys. Vol. 193, 2019).",
+        "MISCHARACTERIZED FINDING: We claim 'statistically significant amplitude enhancement across all five G2-G4 events.' Paper reports increase in AVERAGED amplitude across 5 periods with Dst < ~-70 nT (moderate-to-severe storms, not G2-G4 specifically)."
+      ],
+      "code_analysis_tags": null,
+      "argument_summary": "The rewritten detail_reasoning makes three main moves: (1) concedes that single-observation induction is legitimate science but argues PRED-SR-SUPPRESS cannot count as evidence for the dome MODEL unle",
       "stronger_arguments_count": 3,
       "defense_survives": null,
       "best_defense": null,
@@ -4719,6 +4863,152 @@
       "needs_full_read": true
     },
     {
+      "item_id": "SEC-2.3-post-EXP121",
+      "win_id": "SEC-2.3-post-EXP121",
+      "review_file": "monitor/curmudgeon/reviews/SEC-2.3-post-EXP121.c1.json",
+      "reviewed_at": "2026-04-14T10:30:00Z",
+      "cycle": 1,
+      "topic": "Section 2.3 — Gravity at the Rim: 90% Drop (post-EXP-121 rewrite)",
+      "verdict_holds": true,
+      "confidence": 0.82,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "Fabricated/inaccurate quoted attribution. The section puts 'unidirectional dielectric acceleration' in quotation marks attributing the phrase to the dome model: \"The dome describes gravity as 'unidirectional dielectric acceleration' arising from aetheric pressure between the firmament and the surfac",
+          "recommendation": "Replace the fabricated quote with the actual dome phrasing. Suggested revision: 'The dome describes gravity as \"dielectric pressure with aetheric density variation\" (Domain 4, live-power dashboard) — a mechanism in which aetheric medium between the firmament and the surface produces the observed dow",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Equator distance r ≈ 10,008 km is a linear-interpolation estimate that contradicts the dome's own published city coordinates. The dome's V13 system gives Cairo (lat +30°) r = 8,194 km and Perth (lat −32°) r = 8,727 km (raw-text/04-coordinates.txt). Extrapolating to lat 0° gives r ≈ 8,000–8,500 km, n",
+          "recommendation": "Either (a) compute H(r) at the dome's actual equator-like radius (~8,500 km, giving H ≈ 3,184 km, a factor ~2.7 from pole) and drop the 10,008 km claim, or (b) explicitly flag the simplification: 'r ≈ 10,008 km under linear mapping; the V13 Finsler metric gives somewhat smaller r at low latitudes — ",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "moderate",
+          "summary": "Overstated pressure-column premise. The sentence 'In any pressure-column model, gravitational acceleration should scale roughly with the height of the column above you' is too strong. In incompressible fluid columns, pressure scales with h but g is external (independent of h). In atmospheric physics",
+          "recommendation": "Soften to: 'If aetheric pressure columns cause gravitational acceleration (the dome's stated mechanism), g should scale with column properties — primarily column height or mass — absent fine-tuned cancellation.' Or flip the framing: 'The dome offers no independent parameter that could cancel the 10×",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Redundancy with Section 2.8 (Gravity Gradient with Latitude). Both sections argue the dome's exponential profile predicts a large gravity variation that isn't observed. Section 2.8 uses essentially the same g(r) and same λ_g = 8,619 km, and cites the same ~0.5% observed variation. The new Section 2.",
+          "recommendation": "Suggested differentiation: 2.3 leads with the H(r)↔g(r) STRUCTURAL contradiction (shared scale length, incompatible physics — the 'dilemma' framing is unique to 2.3). 2.8 focuses on LATITUDE-DEPENDENCE (where does gravity actually vary vs predicted), ideally citing specific surveyed gravity values a",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "WGS84 flattening-constant attribution imprecise. The section says '0.005307 is approximately the WGS84 gravity flattening constant (the standard lists 0.00530)'. The precise WGS84 gravity flattening is f* = (g_p − g_e)/g_e = 0.005302 (not 0.00530), and this quantity is a DERIVED parameter, not a raw",
+          "recommendation": "Reframe as: 'The coefficient 0.005307 closely tracks the International Gravity Formula 1967 value 0.0052884 and the WGS84 gravity-flattening f* ≈ 0.005302 — standard geodesy constants established decades before the dome model.' This is harder to attack on specifics.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "TLDR phrasing: 'drops by a factor of 10 from pole to rim, which should produce dramatic gravity variation if gravity arises from aetheric pressure. The dome's actual gravity formula produces only 0.5% variation — because it's the WGS84 standard in disguise.' A non-science reader parsing the heading ",
+          "recommendation": "Consider: 'The dome's firmament height H(r) drops 10× from pole to rim. If gravity arises from aetheric pressure (as the dome claims), this should produce ~90% gravity variation. The dome's actual published g(r) formula gives only 0.5% — because it's really the WGS84 globe standard in disguise. The ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Pole-to-pole symmetry argument would be stronger with a specific measurement citation. The section says 'North Pole and South Pole gravity are nearly identical (~9.832 m/s² each)' — true, but a dome defender could ask 'source?' Amundsen-Scott South Pole Station gravity measurements are publicly avai",
+          "recommendation": "Append to the globe-comparison paragraph: 'At Amundsen-Scott Station (geodetic South Pole), gravity measures g ≈ 9.832 m/s² (sea-level reduced; Scripps Antarctic Geophysics Database). The dome's g(r=20,015) = 9.7854 m/s². This is a direct ~0.5% discrepancy at a specific coordinate — 10× larger than ",
+          "affects_summary_table": true
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [
+        "Dome quote 'unidirectional dielectric acceleration' — NOT FOUND in any raw-text file. Actual text: 'Dielectric pressure with aetheric density variation' (08-live-power.txt). This is a fabricated/paraphrased quotation. MAJOR."
+      ],
+      "code_analysis_tags": {
+        "monitoring": "n/a",
+        "relabels_standard": "n/a",
+        "post_hoc": "n/a",
+        "derives_from_dome": "n/a",
+        "reviewed": true
+      },
+      "argument_summary": "The dome's firmament height H(r) = 8537·exp(−r/8619) drops by a factor of ~10.2 from North Pole (8,537 km) to Antarctic rim (837 km). If gravity arises from aetheric pressure columns (the dome's impli",
+      "stronger_arguments_count": 3,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "SEC-7.1-antarctic",
+      "win_id": "SEC-7.1-antarctic",
+      "review_file": "monitor/curmudgeon/reviews/SEC-7.1-antarctic.c1.json",
+      "reviewed_at": "2026-04-14T10:50:00Z",
+      "cycle": 1,
+      "topic": "Section 7.1 Southern Hemisphere Distances — Antarctic rim circumnavigation paragraph (EXP-126 integration)",
+      "verdict_holds": true,
+      "confidence": 0.82,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "Ship-reference accuracy is weaker than the paragraph implies. The paragraph cites the Soviet Ob (1956-1957), HMS Endurance, and 'modern Southern Ocean yacht races' as having confirmed the ~13,700 km figure by circumnavigating at ~70°S. In reality: (a) The Soviet Ob's First Soviet Antarctic Expeditio",
+          "recommendation": "Replace the ship list with references that actually support the measurement. Options: (a) cite the SCAR Antarctic Digital Database / BEDMAP / IBCSO coastline datasets, which aggregate hundreds of surveys; (b) reference Operation Deep Freeze or the International Polar Year coastal surveys; (c) cite c",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "major",
+          "summary": "Internal numerical inconsistency: the paragraph asserts 'a factor-of-eight discrepancy' (correct: 111,785 km dome-at-70°S / 13,691 km globe-at-70°S = 8.16) and then closes with 'sailing around it should take nine times longer than it does' (that ratio uses the FULL rim of 125,760 km ÷ 13,691 = 9.19)",
+          "recommendation": "Pick one comparison and stick with it. Cleanest version: 'The dome's rim has circumference ~125,760 km and even at Antarctica's ~70°S coast (dome radius ~17,800 km) the circumference would be ~112,000 km — a factor of 8-9 larger than the measured ~13,700 km. No coordinate formula can absorb an 8x di",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The v22 quote is slightly over-loaded. The v22 log says 'Southern arc distances 2x too long — FAILS. Globe wins cross-equator.' This is a 2x admission about COORDINATE FORMULA errors on cross-equatorial CITY PAIRS in the V9/V11 era — it is NOT an admission about the 8-9x rim circumnavigation problem",
+          "recommendation": "Either (a) tighten the framing: 'The dome's author has publicly conceded partial failure of the southern coordinate system (v22 log: ...), but even V13's claimed improvement does not touch the more basic 8x rim-circumference problem,' which makes clear the quote is about a smaller version of the pro",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The paragraph assumes a simple linear azimuthal-equidistant mapping when it places the 70°S coast at r ≈ 17,800 km on the dome (r = 20,015 × 160/180). This is the standard flat-earth AE projection, but the dome model explicitly uses non-linear mappings in V12/V13 — H(r) = 8537·exp(-r/8619), elliptic",
+          "recommendation": "Pre-empt the defense with one sentence: 'This does not depend on which flat-disc projection is used: any monotonic latitude→radius mapping that places Antarctica along the rim yields a rim circumference 2π × 20,015 ≈ 125,760 km, and any placement of the 70°S coast at radius r ≥ 13,700 km/(2π) ≈ 2,18",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The paragraph's refraction rebuttal ('refraction bends light, but ships move through water. A vessel's hull displacement, fuel burn, and elapsed time are physical measurements immune to optical effects') is good but does not address the strongest version of the dome defense. A sophisticated dome def",
+          "recommendation": "Insert one sentence after 'immune to optical effects': 'A dome defender might instead argue that the Finsler metric compresses physical space itself near the rim. But a flat-disc metric that compresses distances by exactly the factor needed to match a sphere IS a sphere in disguise — the dome has lo",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The paragraph says '(~70°S on the globe, roughly r ≈ 17,800 km on the dome)' — the parenthetical gives the projection assumption but doesn't show the derivation. A reader who is checking math needs one line: 'r = 20,015 × (90+70)/180 = 17,791 km.' Without it, the number looks cherry-picked.",
+          "recommendation": "Add 'assuming the standard 90°N=r=0, 90°S=r=20,015 mapping' or inline the calculation.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "TLDR for Section 7.1 does not mention the new rim-circumnavigation argument. The TLDR focuses entirely on SYD-EZE and coordinate-formula errors. This is arguably the strongest argument in the section now — putting it nowhere in the TLDR means readers who only read summaries won't see it. Not technic",
+          "recommendation": "Consider a three-sentence TLDR that adds: 'And the simplest test — sailing around Antarctica — takes ~13,700 km versus the dome's required ~125,760 km rim, a factor-of-9 geometric impossibility that no coordinate formula can absorb.' Keep the SYD-EZE content; just add the rim sentence.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Typographical — the paragraph uses 'factor-of-eight discrepancy' (written-out number) and '~13,700 km', '2π × 20,015 ≈ 125,760 km' (numerals elsewhere). Style inconsistency. Also the paragraph contains one curly-quote / apostrophe style inconsistency if rendered on older browsers (the 'Version 22 co",
+          "recommendation": "Optional: normalize to 'factor of 8'. Leave the typography alone unless an integrity run flags it.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [
+        "Soviet Ob expedition 1956-1957 as circumnavigator — FAILS factual test. The Ob participated in Soviet Antarctic Expeditions including the first SAE (1955-57), but it did not perform a full Antarctic circumnavigation at 70°S. Canonical first Antarctic circumnavigation is Bellingshausen 1819-21 at various latitudes.",
+        "HMS Endurance patrols as circumnavigators — FAILS. HMS Endurance (I and II) are Royal Navy Antarctic ice patrol vessels whose operational area is the South Georgia / Antarctic Peninsula sector, not the full 70°S coast.",
+        "'Modern Southern Ocean yacht races' at 70°S — FAILS. The Vendée Globe, The Ocean Race, and Jules Verne Trophy run at ~40-55°S to avoid ice. No major yacht race routes through 70°S."
+      ],
+      "code_analysis_tags": null,
+      "argument_summary": "Section 7.1 now carries four paragraphs: (1) the dome's V13 Finsler system with n(r), (2) the SYD-EZE critical test (V12 -73-78% error), (3) the calibration/pattern paragraph (460 km scaffold-formula ",
+      "stronger_arguments_count": 4,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
       "item_id": "WIN-065",
       "win_id": "WIN-065",
       "review_file": "monitor/curmudgeon/reviews/WIN-065-post-ISS863.c3.json",
@@ -4765,6 +5055,167 @@
       },
       "argument_summary": "WIN-065 argues the dome's claimed +0.27° Polaris elevation excess at Chapel Hill is within the combined error budget (Polaris 0.74° offset, atmospheric refraction, measurement uncertainty). The text n",
       "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "eg-verdicts-passive-tldr-fix",
+      "win_id": "eg-verdicts-passive-tldr-fix",
+      "review_file": "monitor/curmudgeon/reviews/eg-verdicts-passive-tldr-fix.c1.json",
+      "reviewed_at": "2026-04-14T15:40:00Z",
+      "cycle": 1,
+      "topic": "Verdict Assignment Criteria — post-patch review of TLDR, passive-voice, false-dilemma, and counting-methodology fixes (EXP-155 applied)",
+      "verdict_holds": true,
+      "confidence": 0.8,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "The count-inflation preemption paragraph uses the range notation '(045–051)' for the five tidal WINs but that range spans SEVEN WIN IDs (045, 046, 047, 048, 049, 050, 051), only five of which are tidal. WIN-047 (Low-z Hubble Law aetheric) and WIN-048 (CMB Axis of Evil) are inside that range but are ",
+          "recommendation": "Replace '(045–051)' with an explicit list: 'Five tidal WINs (045, 046, 049, 050, 051)'. Alternative: 'five tidal WINs in the 045–051 range'. The explicit-list form is preferred because it doubles as a citation and prevents further drift if the numbering changes.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Logical overlap in the qualified false-dilemma subtype. The patched text lists three 'additional mishandling' items that keep false-dilemma Misleading rather than Not Demonstrated: '(1) misrepresenting significance, (2) contradicting other dome claims, or (3) lacking any dome-specific derivation.' B",
+          "recommendation": "Drop item (3) from the 'additional mishandling' list, leaving (1) misrepresenting significance and (2) contradicting other dome claims — both of which are genuinely ADDITIONAL to the bare false-dilemma pattern. If a third compounding factor is desired, consider 'post-hoc adoption of a published valu",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Counterfactual wording drift between TLDR and body paragraph. TLDR: 'the failure that would persist even if the others were corrected takes priority'. Body: 'the verdict that captures the primary structural failure — the one that, if corrected, would still leave the claim unsupported.' The TLDR form",
+          "recommendation": "Align body with TLDR: 'the primary structural failure — the one that would persist even if the other failures were corrected.' This matches the TLDR and the worked example's implicit criterion. Minor wording change but removes a logical ambiguity that AI reviewers will flag.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The preemption paragraph's scope is narrower than the defender's strongest version of the hypocrisy objection. It addresses tidal WINs (5 verdicts from 1 argument) but the dome site's count-inflation pattern is broader: the eclipse WINs (17+ claimed confirmations all resting on the same local-moon +",
+          "recommendation": "Extend the preemption sentence slightly: 'Five tidal WINs (045, 046, 049, 050, 051) each receive Self-Contradicted because the dome's local moon geometry fails independently for each constituent's period; similarly, the eclipse-geometry WINs share the refraction-indeterminacy argument developed in S",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Hardcoded 'six' still appears four times in the body text. Carried over from c1 review (flagged minor, not patched). If a Confirmed category is ever added, all four references plus the verdict-legend require simultaneous update. Not worth a patch cycle in isolation; noting for completeness in case o",
+          "recommendation": "Defer. Current build does not compute verdict category count from verdict-legend metadata. Mark as 'not worth a patch cycle' in tracker.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [
+        "'Five tidal WINs (045–051)' — range spans 7 IDs, only 5 are tidal (045, 046, 049, 050, 051)"
+      ],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "The patched section defines six verdict categories, articulates a counterfactual primary-issue rule, distinguishes Misleading from Std Model Explains via passive-voice structural-mishandling framing, ",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "part1-scorecard-sublabel-fix",
+      "win_id": "part1-scorecard-sublabel-fix",
+      "review_file": "monitor/curmudgeon/reviews/part1-scorecard-sublabel-fix.c1.json",
+      "reviewed_at": "2026-04-14T10:45:00Z",
+      "cycle": 1,
+      "topic": "Part 1 scorecard — '0 Survive Scrutiny' sublabel (ISS-901 tightening, 81→24 words)",
+      "verdict_holds": true,
+      "confidence": 0.72,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "The sublabel 'None produces a prediction that both derives from dome geometry AND differs from standard physics' contradicts our own review data. Under the most natural reading (matching the code_analysis tags in data/wins.json), TWO claims satisfy both conditions: WIN-044 (Firmament Scaling Functio",
+          "recommendation": "Rewrite the sublabel so the criterion matches the hardcoded '0'. Options (ordered by preference): (a) 'None produces a dome-derived prediction that both differs from standard physics and is confirmed by measurement.' (27 words with link); (b) 'No dome-derived prediction is both discriminating and co",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The tightening removed the sentence 'This review does not assume globe geometry is correct — the strongest arguments (Parts 2 and 2b) use only the dome's own stated parameters and equations to show internal contradictions that require no external frame of reference.' This removal is defensible on pu",
+          "recommendation": "Either (a) add a single clause to the Part 1 scorecard-framing paragraph above the scorecard — not to the sublabel itself — stating 'This review uses the dome's own parameters and equations to evaluate its own claims,' or (b) add a visible assurance as a short framing line BELOW the scorecard (e.g.,",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The removed caveat 'Many referenced observations are real — the verdicts address interpretation, not the data' was a genuine fairness concession. Its removal from the scorecard is fine (it is not the scorecard's job), but the concession is not reliably re-surfaced elsewhere in Part 1. The evidence-r",
+          "recommendation": "Add one sentence to the evidence-roadmap explicitly: 'Many of the underlying observations the dome cites (magnetic anomalies, neutrino flux, seismic timing, etc.) are real measurements we accept — our verdicts challenge the dome's interpretation and derivation, not the underlying data.' This is a on",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "n/a",
+        "relabels_standard": "n/a",
+        "post_hoc": "n/a",
+        "derives_from_dome": "n/a",
+        "reviewed": true
+      },
+      "argument_summary": "The 0 Survive Scrutiny scorecard card now carries a 24-word sublabel defining the survival criterion as 'derives from dome geometry AND differs from standard physics', linked to the falsifiability cri",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "KILLSHOT-GAIA-table-citation-fix",
+      "win_id": "KILLSHOT-GAIA-table-citation-fix",
+      "review_file": "monitor/curmudgeon/reviews/KILLSHOT-GAIA-table-citation-fix.c1.json",
+      "reviewed_at": "2026-04-14T09:10:00Z",
+      "cycle": 1,
+      "topic": "Post-patch review of Test 7 (Stellar Parallax / Gaia kill-shot) after table source attribution and Throop→Lauer fix",
+      "verdict_holds": true,
+      "confidence": 0.9,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "Betelgeuse row is attributed to 'Hipparcos (van Leeuwen 2007)'. The value 4.51 ± 0.80 mas is NOT van Leeuwen 2007's Hipparcos-only reduction (which gives 6.55 ± 0.83 mas), but rather Harper et al. 2017 (AJ 154, 11), which combined VLA + e-MERLIN + ALMA radio astrometry with the 2007 Hipparcos Interm",
+          "recommendation": "Split the attribution. Option A: change the Betelgeuse row to cite 'Harper et al. 2017 (combined VLA-Hipparcos)' specifically. Option B: replace the Betelgeuse value with van Leeuwen 2007's 6.55 ± 0.83 mas and recompute sigma (residual = 454 − 6.55 ≈ 447.5; σ = 447.5/0.83 ≈ 539 — still devastating, ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "'Lauer et al. 2020' is cited with a link to a NASA press release (nasa.gov/solar-system/nasas-new-horizons-conducts-the-first-interstellar-parallax-experiment/), not a scientific paper. The peer-reviewed paper is now Lauer et al. 2025, 'A Demonstration of Interstellar Navigation Using New Horizons,'",
+          "recommendation": "Update citation to 'Lauer et al. 2025, AJ 170, 22' and link to the arXiv preprint (2506.21666) or the AJ DOI. Keep the NASA press release as a secondary plain-English reference if desired. Optionally add a parenthetical '(observations taken 2020 April 23; peer-reviewed 2025)' so the date in the narr",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Column header of the results table is still 'Observed (mas)', not 'Observed parallax (Gaia DR3 / Hipparcos)' as the decider's queue reason suggested. The Gaia DR3 / Hipparcos attribution appears only in the introductory paragraph. This is not wrong, but it means the table row itself does not indicat",
+          "recommendation": "Either update the column header as originally described, add a 'Source' column, or tag each star row with '(Gaia)' or '(Hipparcos)' inline. Lowest-touch fix: change column header to 'Observed (mas, Gaia DR3 / Hipparcos)'.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Deneb's parallax of 1.01 ± 0.22 mas is attributed to 'Hipparcos (van Leeuwen 2007)'. Deneb's distance is genuinely uncertain and different Hipparcos reductions/analyses give different values (original Hipparcos ~1.01 mas with large error; van Leeuwen 2007 new reduction ~2.29 mas). If 1.01 mas is spe",
+          "recommendation": "Verify the specific source of 1.01 ± 0.22 mas for Deneb. If it's van Leeuwen 2007, cite accordingly; if it's the original 1997 Hipparcos, say so; if it's another method (e.g., spectrophotometric), attribute that. Consider updating the distance label to the range (~1,400–3,200 ly) or to the value imp",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [
+        "Betelgeuse 4.51 ± 0.80 mas attributed to 'Hipparcos (van Leeuwen 2007)' — actually from Harper et al. 2017 (AJ 154, 11), a combined VLA+Hipparcos solution. van Leeuwen 2007 alone gives 6.55 ± 0.83 mas.",
+        "'Lauer et al. 2020' with NASA press-release link — no 2020 peer-reviewed paper exists. The formal publication is Lauer et al. 2025, AJ 170, 22 (arXiv:2506.21666)."
+      ],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "The dome predicts 0.454 arcsec parallax identical for all stars (from a 20 m firmament wobble at H=9,086 km). Gaia DR3 + Hipparcos data for five exemplar stars shows parallax varying by 760×, tracking",
+      "stronger_arguments_count": 3,
       "defense_survives": null,
       "best_defense": null,
       "preemptive_recommendation": null,
@@ -4925,6 +5376,58 @@
       "needs_full_read": true
     },
     {
+      "item_id": "eg-falsifiability-derives-fix",
+      "win_id": "eg-falsifiability-derives-fix",
+      "review_file": "monitor/curmudgeon/reviews/eg-falsifiability-derives-fix.c1.json",
+      "reviewed_at": "2026-04-14T00:00:00Z",
+      "cycle": 1,
+      "topic": "Evaluation Guide § Falsifiability — post-fix review (derives_from_dome count, Schumann range, </p> tag)",
+      "verdict_holds": true,
+      "confidence": 0.78,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "WIN-044 is mischaracterized in the justifying clause. The body says '... (WIN-044, WIN-057), and both produce values that either match standard physics or contradict measurement.' WIN-057 fits that description — its verdict is 'Misleading' and it is ~600× worse than standard geodesy (6.2% RMSE vs. V",
+          "recommendation": "Change the tail clause from 'and both produce values that either match standard physics or contradict measurement' to something that handles the two WINs separately. Suggested: '... (WIN-044, WIN-057). WIN-057's derived value is ~600× worse than standard geodesy; WIN-044 is an internal-consistency d",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "'Attempt' is doing too much work. The section says 'only 2 of 69 claims even attempt a dome-geometry derivation.' A charitable dome defender would read 'attempt' as 'try to derive,' and point to WIN-012 ('Mag-gravity coupling 1.67' — explicitly presents κ derivation), WIN-056 ('Solar elevation from ",
+          "recommendation": "Tighten the language from 'even attempt' to something like 'successfully derive from dome geometry' or 'produce a value traceable to dome geometry without borrowing globe inputs.' Or keep 'attempt' and add a one-line footnote: 'Several additional WINs (e.g., WIN-012, WIN-056, WIN-058b) claim dome-de",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "minor",
+          "summary": "The literal '2' is hardcoded. The body uses ${counts.total} (good — computed) for 69, but still writes a hardcoded '2' in 'only 2 of ${counts.total} claims' and in the TLDR's 'only 2 even attempt condition 1.' Our project explicitly criticizes the dome for hardcoding counts that can be derived from ",
+          "recommendation": "In generate-html.js, add a computed count: const derivesCount = wins.filter(w => w.code_analysis && w.code_analysis.derives_from_dome === true).length; and interpolate it. Then also emit a computed list for the named examples: const derivesIds = wins.filter(...).map(w => 'WIN-' + w.id).join(', ') — ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Internal inconsistency of Schumann phrasing across the site. The falsifiability section now says '22–35 Hz.' WIN-029's finding still says '~22 Hz, not 7.83,' WIN-038's finding says '~22 Hz baseline,' WIN-061's verdict_text says '~22 Hz baseline, not 7.83 Hz,' and WIN-002's finding says '~22 Hz' in t",
+          "recommendation": "Non-blocking cleanup. In a future analyst pass, update the short finding/verdict fields in WIN-002, WIN-029, WIN-038, WIN-061 to use the 22–35 Hz range (or add 'at minimum ~22 Hz' / 'range 22–35 Hz depending on spatial average'). Not required for this priority-queue item to close.",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "minor",
+          "summary": "Condition 4 micro-claim 'V12/V13 coordinate system claims impressive accuracy' is an aside that's half-complimentary and half-unsourced in-section. The qualifier 'impressive' is the dome's framing, not ours; here it is presented in our own voice. Elsewhere (e.g., WIN-057 finding) we show the accurac",
+          "recommendation": "Soften to 'claims improved accuracy' or 'claims sub-7% RMSE (still ~600× worse than standard geodesy, see WIN-057),' with the cross-reference. One-word change, low risk of regression.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [],
+      "code_analysis_tags": null,
+      "argument_summary": "The Evaluation Guide's falsifiability section states four conditions any of which would upgrade a verdict. Condition 1 asks for a discriminating prediction derived from dome geometry; the section now ",
+      "stronger_arguments_count": 3,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": false
+    },
+    {
       "item_id": "part3-roadmap-EXP116",
       "win_id": "part3-roadmap-EXP116",
       "review_file": "monitor/curmudgeon/reviews/part3-roadmap-EXP116.c1.json",
@@ -5035,6 +5538,70 @@
       },
       "argument_summary": "The new Part 4 intro reads: 'Part 3 showed that individual claims fail under scrutiny. This part tests whether the model’s aggregate framework—its statistical convergence dashboard and site architectu",
       "stronger_arguments_count": 1,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": false
+    },
+    {
+      "item_id": "part5-roadmap-EXP116",
+      "win_id": "part5-roadmap-EXP116",
+      "review_file": "monitor/curmudgeon/reviews/part5-roadmap-EXP116.c1.json",
+      "reviewed_at": "2026-04-14T11:30:00Z",
+      "cycle": 1,
+      "topic": "Part 5 opening italic transition paragraph (EXP-116 integration)",
+      "verdict_holds": true,
+      "confidence": 0.75,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "'six binary tests' is inaccurate to Part 5's actual content. The Verdict Summary table that immediately follows the transition contains SEVEN rows — six dome-declared tests (Sydney-Perth, Polaris, JFK-LHR, SAA, Eclipse 2026, NMP Drift) plus Gaia/Stellar Parallax, which we added. The paragraph immedi",
+          "recommendation": "Either (a) drop the count: 'This part uses the dome's own: binary tests where failure of any single test falsifies the model.' Or (b) acknowledge the addition: 'This part uses the dome's own stated rule — failure of any single binary test falsifies the model — applied to the six tests the dome decla",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "The binary framing 'our analytical standards' (Parts 3-4) vs 'the dome's own' (Part 5) erases Part 2's role. Part 2 (Self-Contradictions) uses the DOME'S own geometry to refute DOME claims — that is already 'the dome's own' standard, not ours. The transition makes it sound as if Part 2 didn't exist,",
+          "recommendation": "Reframe to distinguish internal-geometric (Part 2) from self-imposed-falsification (Part 5). For example: 'Part 2 used the dome's own geometry; Parts 3 and 4 used external data and analytical standards; this part now applies the dome's own stated falsification rule — any single binary test failing i",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Voice inconsistency with the sibling Part 4 italic transition. The Part 4 transition is judgmental — 'Part 3 showed that individual claims fail under scrutiny.' The Part 5 transition is neutral — 'Parts 3 and 4 evaluated the dome's claims and meta-framework.' If a reader scrolls top-down through the",
+          "recommendation": "Cosmetic harmonization. If the Part 4 fix already under review ('individual claims do not, on their own terms, survive scrutiny') is adopted, the Part 5 'evaluated' would sit more comfortably alongside it. No independent change required here.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Inline CSS styles duplicate the Part 4 italic transition pattern (font-style:italic; color:#555; margin-bottom:0.8em). Same integrity concern flagged in the Part 4 review — both transitions should migrate to a shared CSS class (e.g., '.section-transition') in a future cleanup pass. Not a content iss",
+          "recommendation": "Out of scope for this EXP. Tracker item for future structural tidy-up — likely handled by the integrity agent or a dedicated CSS refactor EXP.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Mild redundancy with the Part 3 roadmap box inserted by the same EXP, which already says Part 5 'applies the dome's own proposed binary tests under its own stated rule: \"If any single test fails, dome is falsified.\"' The Part 5 italic essentially paraphrases that same line in weaker form. A deep-lin",
+          "recommendation": "Defensible as-is for navigability. If tightened, the Part 5 italic could carry a different value proposition than the Part 3 box — e.g., emphasize that Part 5 is a DOME-DECLARED falsification criterion, not one we imposed: 'Unlike Parts 3-4, the falsification rule applied here was written by the dom",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Structural observation (flag only): Part 5 contains 7 `<details>` elements but ZERO `<summary>` elements (verified by counting tags in the live sections.json html). Per the curmudgeon prompt's TLDR rules, every section should have a 2-3 sentence TLDR in the `<summary>` tag. The italic transition par",
+          "recommendation": "Out of scope for this review. Forward to integrity agent (structural-integrity.md) as a separate finding: Part 5 `<details>` blocks missing `<summary>` tags.",
+          "affects_summary_table": true
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "The new Part 5 intro reads: 'Parts 3 and 4 evaluated the dome's claims and meta-framework using our analytical standards. This part uses the dome's own: six binary tests with the dome's stated rule th",
+      "stronger_arguments_count": 2,
       "defense_survives": null,
       "best_defense": null,
       "preemptive_recommendation": null,

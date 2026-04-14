@@ -1,51 +1,52 @@
 MORNING BRIEFING — 2026-04-14
-Generated: 2026-04-14T10:33:19.730Z
-Curmudgeon reviews processed this run: 9 (7 stale, 2 active)
-Previous decider run: 2026-04-14T09:28 UTC (commit adb79e3)
+Generated: 2026-04-14T13:05:00Z
+Curmudgeon reviews processed this run: 18 (8 stale, 10 active)
+Previous decider run: 2026-04-14T02:44:04Z
 
-SITE HEALTH
-  Integrity: WARN (7 moderate, 1 minor — no critical or major)
-  Test suite: 3316 passed, 0 failed
-  Build: PASS (reproducible from origin data)
+SITE HEALTH: CLEAR (integrity: no critical issues)
+  Previous build-drift critical from 2026-04-13 resolved.
+  Overall status WARN: 7 moderate + 1 minor from integrity (ongoing; not new).
 
-EXTERNAL STATUS
-  Dome site: QUIET (14th consecutive quiet period)
-  WIN count: 69 (unchanged)
-  Canary trap: NOT TRIGGERED (OTS still timestamping status_history.json with bundled observations)
-  Dome activity: Automated commits only, no manual changes
+EXTERNAL STATUS: Dome site — QUIET (15th consecutive)
+  No parameter changes, no manual commits, WIN count 69, V51.1.
+  Canary NOT triggered (OTS methodology error still unpatched by dome author).
 
-INTERNAL STATUS
-  Issues closed this run: 3 (ISS-802, ISS-966, ISS-967)
-  Issues created this run: 2 (ISS-966, ISS-967, both immediately self-patched)
-  Open issues: 5 (ISS-698 wontfix, ISS-708 open, ISS-808 open, ISS-955 wontfix, ISS-965 assigned-analyst)
-  Patches self-applied: 2 (SEC-2.4 mid-afternoon fix, SEC-8.11 -17 to -21 nT citation)
+CRITICAL PATCHES THIS RUN:
+  1. PRED-SR-SUPPRESS: Fabricated citation "Rosales-Linares et al. (2019)" FIXED.
+     Replaced with Pazos et al. (2019), DOI 10.1016/j.jastp.2019.105091.
+     Also fixed: mischaracterized finding (averaged amplitude, not per-event) and
+     false dichotomy (bug/cherry-pick) → trichotomy (bug, cherry-pick, or stale cache).
+     URGENCY: This was the highest-risk open defect — a verifiable fabrication visible
+     to any dome defender who checked the DOI.
 
-STALENESS NOTE (7 stale reviews in digest)
-  The curmudgeon runs from FUSE workspace which can serve stale content.
-  EXP-062-batch, PRED-batch-2026-04-13, WIN-065, WIN-058b, part3/4-roadmap-EXP116
-  all had findings that are already resolved in the current git clone.
-  These reviews will remain in the digest until the curmudgeon re-reviews
-  the current versions. No action needed.
+  2. EXP-160 integrated: WIN-058b (ISS-965 resolved).
+     Pivoted from "mutually inconsistent r-values" (contestable — dome now labels Exhibit A
+     as 'Raw L1A residuals', acknowledging it IS a temporal correlation) to "labeled temporal
+     correlation + uncomputed" (uncontestable). Analyst confirmed r=0.96 not in current V51.1.
 
-TOP 3 PRIORITY ACTIONS
-  1. ISS-808 (MAJOR): SEC-5.14/5.15/5.16 absent from DOCX/PDF build (build-doc-v4.js).
-     Third curmudgeon flag. Reassigned from analyst to tinker/human (build infrastructure).
-     Requires adding these sections to the DOCX builder.
-  
-  2. ISS-965 / EXP-160 (MODERATE): WIN-058b r=0.96 vs r=0.992 assigned to analyst.
-     Current prose may already adequately address the defense; analyst may find
-     minimal work needed. Low priority to re-evaluate.
-  
-  3. Queue depth 8 (BAU mode): Items SEC-7.1-antarctic, SEC-1.8-EXP149, eg-principles,
-     SEC-6.5-FAIL004, SEC-1-roadmap, SEC-4-intro all awaiting curmudgeon review.
-     Normal BAU throughput expected.
+MAJOR PATCHES:
+  • SEC-1.5: Stale r=14,105 km equatorial value fixed to r≈10,008 km (n=1.44).
+    Harmonizes with Sections 1.8 and 1.9 — removes internal contradiction.
+  • SEC-2.3: Fabricated quoted attribution "unidirectional dielectric acceleration"
+    replaced with actual dome phrasing "dielectric pressure with aetheric density variation".
+  • Part 5 intro: Dropped hardcoded "six" from "six binary tests" (Verdict Summary has 7 rows).
+  • Part 1 scorecard sublabel: Added "confirmed by measurement" as third condition
+    so the zero count is accurate (WIN-044/057 have derives_from_dome:true but fail measurement).
 
-CURMUDGEON PROGRESS
-  Queue: 8 items, BAU mode (240 min interval)
-  Popped this run: 3 (SEC-2.3-post-EXP121, part1-scorecard-sublabel-fix, SEC-2.3)
-  schedule_action_needed: none
+STALE REVIEWS (no action needed — previously fixed):
+  EXP-062-batch, PRED-batch-2026-04-13, WIN-065.c3, SEC-2.4, SEC-8.11, part3/4-roadmap.
+  8 of 18 reviews were stale. This is a normal pattern — the pipeline is moving faster than
+  the digest refresh cycle.
 
-NEXT DECIDER RUN
-  Priority 1: Check for new WINs (dome site at 69 WINs, our count should match)
-  Priority 1b: No new unprocessed proposals expected
-  Priority 3: Process curmudgeon reviews for current 8 queue items
+HUMAN ACTIONS NEEDED:
+  1. [ISS-975] Patch generate-html.js: fix "(045–051)" range → explicit list "(045, 046, 049, 050, 051)".
+  2. [ISS-976] Patch generate-html.js: fix WIN-044 mischaracterization in eg-falsifiability.
+  3. [ISS-974] Verify Betelgeuse parallax: confirm Harper et al. 2017 gives 4.51 ± 0.80 mas,
+     then patch KILLSHOT GAIA table Betelgeuse row and Lauer et al. 2020 → 2025 citation.
+  4. [ISS-971] SEC-7.1 factor ambiguity: yeet to analyst or patch to pick one comparison.
+
+CURMUDGEON QUEUE: mode=bau, depth=7 (3 items popped this run)
+  Newly queued: WIN-058b (fresh attack after EXP-160 integration)
+
+OPEN ISSUES: 8 total (2 major, 4 moderate, 2 others/pre-existing)
+CLOSED THIS RUN: 6 (ISS-965, ISS-968, ISS-969, ISS-970, ISS-972, ISS-973)
