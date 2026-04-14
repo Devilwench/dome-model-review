@@ -11658,6 +11658,46 @@
       "resolution": "Applied direct patch to sections.json part5: updated peak NMP drift rate from ~55 km/yr to ~60 km/yr (Livermore et al. 2020, 2003-2005 peak) with citation added inline.",
       "resolved_by": "decider",
       "archived_at": "2026-04-14T03:13:00.442Z"
+    },
+    {
+      "id": "ISS-822",
+      "found_date": "2026-04-12",
+      "win_id": null,
+      "section_id": "SEC-6.5-FAIL004",
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "FAIL-004 (SEC-6.x): The equivalence claim '≥+1.5σ threshold that would correspond to a ≥3% anomaly' conflates AAO index sigma (standardized anomaly) with the Roaring Forties wind percentage. The AAO index σ unit is not directly proportional to a percentage wind anomaly. The cited ≥3% threshold for the dome's prediction applies to wind speed/pressure, not to AAO index units. Either show the conversion explicitly or remove the threshold equivalence. Source: part6-FAIL-004.c2.json.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/part6-FAIL-004.c2.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T16:42:32.083Z",
+      "created_at": "2026-04-12T16:42:32.083Z",
+      "assigned_exp": "EXP-130",
+      "assigned_at": "2026-04-12T17:13:48.749Z",
+      "fixed_at": "2026-04-14T03:41:28.128Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "EXP-134 paragraph replacement applied to part6 FAIL-004: removed unjustified AAO σ↔500hPa% equivalence, added NOAA CPC citation, noted pressure-level mismatch."
+    },
+    {
+      "id": "ISS-823",
+      "found_date": "2026-04-12",
+      "win_id": null,
+      "section_id": "SEC-6.5-FAIL004",
+      "severity": "moderate",
+      "category": "citation",
+      "status": "fixed",
+      "description": "FAIL-004 (SEC-6.x): No citation for the +0.78σ AAO value stated as the outcome during the prediction window. The text mentions 'NCEP AAO data' but the specific +0.78σ value lacks a DOI, dataset URL, or data archive reference. Should cite the NOAA Climate Prediction Center AAO data archive with the specific file/date range used. Source: part6-FAIL-004.c2.json.",
+      "source": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/part6-FAIL-004.c2.json",
+      "found_by": "decider",
+      "found_at": "2026-04-12T16:42:32.083Z",
+      "created_at": "2026-04-12T16:42:32.083Z",
+      "assigned_exp": "EXP-131",
+      "assigned_at": "2026-04-12T17:13:48.749Z",
+      "fixed_at": "2026-04-14T03:41:28.128Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "EXP-134 paragraph replacement applied to part6 FAIL-004: removed unjustified AAO σ↔500hPa% equivalence, added NOAA CPC citation, noted pressure-level mismatch."
     }
   ]
 }

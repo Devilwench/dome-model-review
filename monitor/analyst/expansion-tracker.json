@@ -2376,7 +2376,11 @@
       "notes": "FAIL-004 conflates AAO index σ with % anomaly, and lacks citation for +0.78σ value.",
       "created_at": "2026-04-12T19:48:10.478Z",
       "completed_at": "2026-04-14T03:11:22.341Z",
-      "output_file": "monitor/analyst/expansions/EXP-134.json"
+      "output_file": "monitor/analyst/expansions/EXP-134.json",
+      "integrated": true,
+      "integrated_at": "2026-04-14T03:41:37.180Z",
+      "integration_mode": "direct-patch",
+      "integration_notes": "FAIL-004 paragraph replaced in part6 per EXP-134 spec: removed AAO σ↔500hPa% equivalence, added NOAA CPC citation, noted 700hPa pressure-level mismatch. ISS-822 and ISS-823 closed."
     },
     {
       "id": "EXP-135",

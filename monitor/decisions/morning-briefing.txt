@@ -1,48 +1,65 @@
 MORNING BRIEFING — 2026-04-14
-Generated: 2026-04-14T04:11:00Z
-Previous decider run: 2026-04-14T02:44:04Z
-This run: 2026-04-14T04:11:00Z
+Generated: 2026-04-14T03:42:00Z
+Curmudgeon reviews processed this run: 5 (WIN-065 c3, SEC-2.4 c2, SEC-8.11 c1, WIN-058b c2, SEC-1.8 c3)
+Previous decider run: 2026-04-14T01:11:10Z
 
-SITE HEALTH: ✅ BUILD DRIFT RESOLVED
-  Build drift that persisted since 2026-04-12 is now cleared.
-  HTML rebuilt, pushed to GitHub (commit 809c3ed), workspace synced.
-  Test suite: 3309/3309 passing (integrity report 2026-04-13).
+━━━ SITE HEALTH ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Build: PASS (3315 tests, 0 failures)
+HTML: 1084.8 KB
 
-EXTERNAL STATUS: QUIET (14th consecutive)
-  WIN count: 69 (unchanged). Parameters stable. No canary trigger.
-  OTS provenance still wrong-sided — prediction documents not separately timestamped.
+━━━ EXTERNAL STATUS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Dome site changes: None detected
+Threat level: NONE
+Canary (OTS wrong-side error): No fix detected
 
-ISSUES THIS RUN:
-  Closed: 4 (ISS-820, ISS-821, ISS-900, ISS-942)
-  Assigned to analyst: 3 (ISS-934 → EXP-158, ISS-937/ISS-941 → EXP-159)
-  Open / unresolved: 12 total (2 major, 7 moderate, 3 minor)
+━━━ PATCHES THIS RUN ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6 patches self-applied, 0 failed:
+✅ EXP-134: FAIL-004 paragraph replaced in part6
+   - Removed unjustified AAO σ↔500hPa% equivalence
+   - Added NOAA CPC citation with URL
+   - Noted 700hPa pressure-level mismatch (strengthens argument)
+   - ISS-822 and ISS-823 CLOSED
+✅ SEC-2.4: "mid-afternoon" → "late afternoon" (TLDR + body)
+   - 52% figure is 6 PM / 90° hour angle, not 2-4 PM
+✅ WIN-058b: Atmospheric forcing mechanism clarified
+   - "thermospheric" → "electromagnetic" (more accurate mechanism)
+✅ WIN-058b: κ = 1.672 → 1.677 in cross-reference
+✅ WIN-058b: code_analysis.reviewed = true
 
-PATCHES APPLIED (4):
-  1. Evaluation Guide Principle 3: rewording to "Claims evaluated against measurement,
-     not theoretical authority" + infrastructure acknowledgment (ISS-821)
-  2. Eclipse pre-commitment: added ~1 nT discrimination window acknowledgment (ISS-900)
-  3. NMP Test 6 TLDR: corrected peak drift rate from ~55 to ~60 km/yr (Livermore 2020) (ISS-942)
+━━━ ISSUES CLOSED (2) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISS-822 (SEC-6.5-FAIL004: AAO sigma/500hPa equivalence)
+ISS-823 (SEC-6.5-FAIL004: AAO citation missing)
 
-CURMUDGEON PROGRESS:
-  Mode: BAU | Queue depth: 17 | Interval: 240 min
-  Popped: SEC-1.3, WIN-065 (reviews found)
-  Added: eg-principles (Principle 3 rewrite — review recommended before next analyst work)
+━━━ ISSUES CREATED (8) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ISS-943 [minor]  SEC-2.4: Sun orbital radius unsourced in section
+ISS-944 [minor]  SEC-2.4: Section 7.10 cross-ref href points to wrong anchor
+ISS-945 [MODERATE] SEC-8.11: Homepage −17 to −21 nT claim unverifiable ← needs human check
+ISS-946 [minor]  SEC-8.11: Sign convention inconsistency (AFFECTS SUMMARY TABLE)
+ISS-947 [minor]  SEC-8.11: "Under identical conditions" oversells (AFFECTS SUMMARY TABLE)
+ISS-948 [MODERATE] WIN-058b: r=0.96 vs r=0.992 defense unaddressed
+ISS-949 [minor]  WIN-058b: SNR framing vulnerability
+ISS-950 [minor]  WIN-058b: detail_evidence opens with bookkeeping not science
 
-TOP 3 PRIORITY ACTIONS FOR HUMAN:
-  1. URGENT: Fix ISS-808 — add SEC-5.14/5.15/5.16 to build-doc-v4.js (DOCX builder).
-     Three curmudgeon flags. Our strongest AI-directives arguments missing from PDF.
-  2. MODERATE: Watch for EXP-158 (ISS-934 — hardcoded count words in SEC-2b.1).
-     We mock the dome for manual statistics; we have the same problem.
-  3. MONITOR: Eclipse August 12, 2026 — PRED-095 magnetic prediction window active.
-     Discrimination window is only ~1 nT (now documented on site).
+━━━ STALE REVIEW NOTED ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WIN-065 c3 review: ALL holes reference text that no longer exists in wins.json.
+  - Dangling fragment: already fixed
+  - ~0.04° refraction: text now says ~0.02-0.03°
+  - "dome's own refractive index formula": text already says "implied by the dome's H(r) function"
+No issues created for WIN-065 this run. Should be re-queued for fresh review.
 
-PROPOSAL PIPELINE:
-  3 analyst proposals consumed and processed.
-  EXP-158 (SEC-2b.1 template vars), EXP-159 (Kill-Shot ratings + Eclipse stub) created.
+━━━ PRIORITY ACTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. [NEXT SESSION] Verify SEC-8.11 ISS-945: Does dome homepage actually say −17 to −21 nT?
+   If not → patch to remove unverifiable claim before it gets flagged in public.
+2. [NEXT SESSION] Patch ISS-946 + ISS-947: SEC-8.11 sign convention + "identical conditions"
+   Both affect summary table rendering.
+3. [BACKLOG] Re-queue WIN-065 for fresh curmudgeon review.
+4. [BACKLOG] Address ISS-948 (WIN-058b r-value inconsistency defense).
 
-SCHEDULE NOTES:
-  No schedule changes needed. BAU mode, 240-min curmudgeon interval appropriate.
+━━━ CURMUDGEON QUEUE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Mode: BAU | Depth: 16 | Interval: 240 min
+1 item popped this run: SEC-8.11 (reviewed)
+No schedule action needed.
 
-INTEGRITY NOTE:
-  Previous integrity report (2026-04-13) flagged build drift — now resolved.
-  Next integrity run should clear the CRITICAL and report PASS.
+━━━ OPEN ISSUES SUMMARY ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total open: 19
+  Critical: 0  Major: 0  Moderate: 5  Minor: 14

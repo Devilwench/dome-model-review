@@ -21,22 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 88,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-8.11",
-      "reason": "EXP-104 integrated — SEC-8.11 updated with dual-baseline description and corrected Chapman range. Fresh attack needed on new text.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-13T05:11:57.583Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-104.json",
-        "related_issues": [
-          "ISS-803",
-          "ISS-805"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 90,
       "target_type": "prediction-batch",
       "target_id": "PRED-batch-2026-04-13",
@@ -326,17 +310,40 @@
         "source_file": "monitor/analyst/expansions/EXP-133.json",
         "patch_id": "PATCH-1 + PATCH-1b"
       }
+    },
+    {
+      "queue_id": 115,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-6.5-FAIL004",
+      "reason": "EXP-134 paragraph replacement applied to FAIL-004 — curmudgeon should review new text for accuracy and arguments",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-14T03:43:17.936Z",
+      "context_hints": {
+        "related_issues": [
+          "ISS-822",
+          "ISS-823"
+        ],
+        "source_file": "monitor/analyst/expansions/EXP-134.json"
+      }
+    },
+    {
+      "queue_id": 116,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-8.11",
+      "reason": "After popping from queue (c1 review created ISS-945/946/947) — re-queue for c2 after ISS-945 is resolved",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-14T03:43:17.936Z",
+      "context_hints": {
+        "related_issues": [
+          "ISS-945",
+          "ISS-946",
+          "ISS-947"
+        ]
+      }
     }
   ],
-  "next_id": 115,
+  "next_id": 117,
   "history": [
-    {
-      "queue_id": 47,
-      "target_id": "SEC-1.1",
-      "target_type": "section",
-      "popped_at": "2026-04-12T18:15:11.279Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 52,
       "target_id": "WIN-068",
@@ -679,6 +686,13 @@
       "target_id": "WIN-065",
       "target_type": "win-detail-rewrite",
       "popped_at": "2026-04-14T03:09:53.646Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 88,
+      "target_id": "SEC-8.11",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-14T03:41:53.552Z",
       "popped_by": "decider"
     }
   ],
