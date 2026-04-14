@@ -685,9 +685,9 @@
     {
       "id": "SEC-6.7",
       "claim": "Eclipse prediction — genuine test or pre-fitted",
-      "status": "pending",
-      "reviewed_at": null,
-      "findings": null
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T12:13:43.886Z",
+      "findings": "3 fingerprints (additive to SEC-4.2): (1) Eclipse date/path/coverage are NASA ephemeris inputs — no flat-disc umbra derivation in repo; dome adds only multiplicative FSF to globe-computed magnitudes. (2) Kp<2 escape clause depends on globe-defined planetary K-index (13-observatory WGS84/IGRF-weighted); no dome-native activity index exists. (3) Decay length λ=8,619 km is reused identically between H(r) eclipse-FSF function and WIN-053 two-pole geomagnetic formula — parameter migration across unrelated physical domains. See monitor/analyst/globe-fingerprints/SEC-6.7.json with suggested prose additions."
     },
     {
       "id": "SEC-6.8",

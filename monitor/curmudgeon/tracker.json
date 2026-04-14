@@ -3,8 +3,8 @@
   "current_cycle": 3,
   "review_model": "change-driven",
   "review_model_description": "Priority queue > human notes > change-detected items > holistic reviews > spot-checks. Sequential Phase 1/2/3 grinding retired as of 2026-04-12.",
-  "last_reviewed": "2026-04-14T10:45:00Z",
-  "last_run": "2026-04-14T10:45:00Z",
+  "last_reviewed": "2026-04-14T13:10:19.203Z",
+  "last_run": "2026-04-14T13:10:19.203Z",
   "points": [
     {
       "id": "WIN-001",
@@ -1116,6 +1116,57 @@
       "severity_summary": "2 critical, 1 major, 2 moderate, 2 minor",
       "recommended_action": "major_rewrite",
       "notes": "Citation fabrication (Rosales-Linares et al. + wrong DOI). EXP-157 was supposed to fix a vague citation but introduced a harder error. Needs urgent patch."
+    },
+    {
+      "point_id": "SEC-1.8-EXP149",
+      "topic": "Section 1.8 — Coordinate Collapse: EXP-149 empirical-fitting defense paragraph",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T12:30:00Z",
+      "last_reviewed_cycle": 4,
+      "review_file": "SEC-1.8-EXP149.c4.json"
+    },
+    {
+      "id": "eg-principles",
+      "type": "prose",
+      "section": "evaluate",
+      "topic": "Evaluation Guide — Principles of This Review",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T12:09:23Z",
+      "last_reviewed_cycle": 1
+    },
+    {
+      "id": "SEC-6.5-FAIL004",
+      "type": "section-subsection",
+      "section": "6.5",
+      "topic": "FAIL-004 (W020 Roaring 40s 500hPa anomaly) paragraph within Section 6.5",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T13:00:00Z",
+      "last_reviewed_cycle": 3
+    },
+    {
+      "id": "PRED-TOROID-003-EXP136",
+      "type": "prediction-batch",
+      "topic": "PRED-TOROID-003 (Schumann mode splitting Δf≈0.336 Hz) — EXP-136 verdict change unfalsifiable→standard_physics",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T13:10:19.203Z",
+      "last_reviewed_cycle": 1,
+      "review_file": "PRED-TOROID-003-EXP136.json"
+    },
+    {
+      "point_id": "SEC-1-roadmap",
+      "topic": "Part 1 evidence-roadmap div (Tier 3 reframe per EXP-156/ISS-920)",
+      "reviewed_at": "2026-04-14T13:39:17.514Z",
+      "last_reviewed_cycle": 2,
+      "status": "reviewed"
+    },
+    {
+      "id": "SEC-4-intro",
+      "type": "section",
+      "section": "4",
+      "topic": "Part 4 opening italic transition (post-ISS-963 patch re-review)",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-14T16:40:00Z",
+      "last_reviewed_cycle": 1
     }
   ],
   "holistic_checks": [
@@ -1168,8 +1219,8 @@
   "items_reviewed": 94,
   "total_items": 71,
   "cycle": 2,
-  "last_review_time": "2026-04-14T00:00:00.000Z",
-  "last_review_item": "SEC-1.9",
-  "last_review_result": "minor_edit (cycle 1) — content holds, 2 major holes (cross-section consistency with SEC-1.5; defender escape via apparent-magnitude inputs not preempted)",
-  "last_item_reviewed": "SEC-1.9"
+  "last_review_time": "2026-04-14T13:10:19.203Z",
+  "last_review_item": "PRED-TOROID-003-EXP136",
+  "last_review_result": "minor_edit — verdict holds, math independently verified, flagged two moderate issues (verdict category choice; unaddressed prior c2 recommendation)",
+  "last_item_reviewed": "PRED-TOROID-003-EXP136"
 }

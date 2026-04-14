@@ -1,92 +1,45 @@
-MORNING BRIEFING — 2026-04-14
-Generated: 2026-04-14T13:27:35.662Z
-Curmudgeon reviews processed this run: 18 (EXP-062-batch through SEC-1.8-post-ISS864)
-Previous decider run: (prior session)
+MORNING BRIEFING — 2026-04-14 (Late)
+Generated: 2026-04-14T~23:15Z
+Curmudgeon reviews processed this run: 18 (all from digest — 13 stale, 5 new)
+Previous decider run: 2026-04-14T14:28Z (EXP-161 integration)
 
-════════════════════════════════════════
-SITE HEALTH
-════════════════════════════════════════
-HTML Build: PASS (3316 tests, 0 failures)
-Open Issues: 10 (was 7 before this run)
-Pending-human verdict changes: 3
+SITE HEALTH: WARN
+  - Integrity: WARN (0 critical, 0 major, 7 moderate, 1 minor)
+  - Build: PASS (3316 tests, 0 failures)
+  - 3 external link redirects to generic pages (nssdc.gsfc.nasa.gov, earthobservatory, heartmath)
+  - ISS-808 still open: DOCX builder missing SEC-5.14/5.15/5.16 (tinker/human needed)
 
-════════════════════════════════════════
-EXTERNAL STATUS
-════════════════════════════════════════
-Dome site changes: None detected
-Threat level: None
+EXTERNAL STATUS: Dome quiet (15th consecutive quiet poll)
+  - WIN count: 69 (unchanged)
+  - Parameters: all match baselines
+  - Canary: NOT TRIGGERED
 
-════════════════════════════════════════
-THIS RUN SUMMARY
-════════════════════════════════════════
+PATCHES APPLIED THIS RUN: 2
+  - WIN-039 detail_evidence: removed speculative "without understanding the oscillating nature" — replaced with factual sign-discrepancy description (ISS-982 FIXED)
+  - PROS-005/007 registration_date: corrected from placeholder 2026-01-01 to dome source 2026-03-06 in predictions.json (ISS-984 FIXED)
 
-INTEGRATION COMPLETE:
-  ✅ EXP-161 integrated → SEC-7.1 paragraph 4 replaced
-     - v22 quote now correctly scoped (2× coord-formula error, not the 8-9× rim problem)
-     - AE projection derivation shown inline (r=17,791 km at 70°S)
-     - Finsler-metric defense pre-empted in-section
-     - ISS-977 CLOSED
+ISSUES CLOSED: 4
+  - ISS-978, ISS-979, ISS-980: W019/W020/PRED-NEW-002 verdicts already applied by human approvals
+  - ISS-981: Part1 scorecard sublabel already fixed in prior run
 
-PROPOSAL PROCESSED:
-  ✅ proposal-ISS-977-resolution.json → ISS-977 closed, EXP-161 marked integrated
+NEW ISSUES CREATED: 6
+  - ISS-982 (major): WIN-039 evidence — FIXED this run
+  - ISS-983 (major): SEC-1.9 defender escape → assigned to EXP-162
+  - ISS-984 (moderate): PROS-005/007 date — FIXED this run
+  - ISS-985 (moderate): SEC-1.9 n(r) radial clarification → assigned to EXP-162
+  - ISS-986 (moderate): WIN-058b thermospheric pathway precision
+  - ISS-987 (moderate): WIN-058b r-value unaddressed defense
 
-MANY CURMUDGEON FINDINGS ALREADY FIXED:
-  The 18 pending reviews included 2 "critical" findings that were already fixed in current data:
-  - PRED-SR-SUPPRESS fabricated citation → already fixed (Pazos et al. 2019, correct DOI)
-  - EXP-062-batch wrong registration date → already fixed (6 March 2026, retrodiction language)
-  Also already fixed: SEC-2.3 fabricated quote, WIN-065 dangling fragment, SEC-1.5 stale formula
+OPEN ISSUES: 12 (down from 10 before this run, net +2 new open from 6 created minus 4 closed)
+CURMUDGEON QUEUE: depth=0, mode=BAU, interval=240min
 
-NEW ISSUES CREATED:
-  ISS-978 [major/pending-human] W019 verdict: standard_physics → falsified
-  ISS-979 [major/pending-human] W020 verdict: unfalsifiable → falsified
-  ISS-980 [moderate/pending-human] PRED-NEW-002 verdict: unfalsifiable → standard_physics
-  ISS-981 [major/open] Part 1 scorecard sublabel criterion mismatch
+TOP 3 PRIORITIES:
+1. EXP-162 (analyst): SEC-1.9 defender escape + n(r) radial clarification
+2. ISS-808 (tinker/human): DOCX builder missing 3 sections
+3. ISS-975/976 (human): EG guide fixes in generate-html.js (infrastructure file)
 
-════════════════════════════════════════
-TOP 3 PRIORITY ACTIONS FOR HUMAN
-════════════════════════════════════════
-
-1. [NEXT SESSION] Review verdict-change patches:
-   File: monitor/decisions/suggested-patches-2026-04-14T13-25.json
-   - ISS-978: W019 → falsified (dome author's own REFINED concession supports this)
-   - ISS-979: W020 → falsified (≥3% threshold not met, author conceded)
-   - ISS-980: PRED-NEW-002 → standard_physics (9.2 km/s is in P-wave range, IS testable)
-   All three are well-supported. W019 and W020 in particular are clear: when the dome
-   author marks his own prediction REFINED, calling it anything but falsified is too charitable.
-
-2. [NEXT SESSION] Fix ISS-975 (infrastructure):
-   generate-html.js: Change "(045–051)" to "(045, 046, 049, 050, 051)"
-   The range (045–051) spans 7 WINs but only 5 are tidal — a dome defender can spot this.
-
-3. [BACKLOG] ISS-981 (part1-scorecard sublabel):
-   Curmudgeon-suggested rewrite: "None produces a dome-derived prediction that both
-   (a) can be independently verified and (b) contradicts standard-model expectations."
-
-════════════════════════════════════════
-CURMUDGEON QUEUE STATUS
-════════════════════════════════════════
-Mode: BAU
-Queue depth: 2 items (SEC-1-roadmap, SEC-4-intro)
-Popped this run: 2 items (had been reviewed)
-Schedule: 240 min intervals — no mismatch
-
-════════════════════════════════════════
-OPEN ISSUES BREAKDOWN (10 total)
-════════════════════════════════════════
-ISS-708   [open]          generate-html.js kill-shots support
-ISS-808   [open]          SEC-5.14/5.15/5.16 missing sections
-ISS-975   [open]          eg-verdicts (045–051) range notation (infra file)
-ISS-976   [open]          eg-falsifiability WIN-044 mischaracterized
-ISS-978   [pending-human] W019 verdict change
-ISS-979   [pending-human] W020 verdict change
-ISS-980   [pending-human] PRED-NEW-002 verdict change
-ISS-981   [open]          Part 1 scorecard sublabel
-
-(ISS-698, ISS-955: wontfix, positive-feedback-only external reports)
-
-════════════════════════════════════════
-UNDER-COVERED WINS
-════════════════════════════════════════
-Digest reports 157 "under-covered processed" WINs (marked processed but missing
-corresponding open-issues entries). This is a long-standing structural gap that the
-decider will address incrementally. No immediate action required this run.
+STALE DIGEST NOTE:
+  This run's digest was highly stale — the previous decider runs (esp. the 12:32 run)
+  applied many patches that resolved issues before this digest was generated. Curmudgeon
+  reviews are arriving after fixes are already committed. This is expected — the pipeline
+  is functioning normally; reviews lag patches by a few hours.
