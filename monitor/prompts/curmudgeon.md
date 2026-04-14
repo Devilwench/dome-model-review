@@ -106,6 +106,13 @@ If the queue had no items, continue to Step 0c.
 
 **Step 0c: Check human notes** (`${WORKSPACE}/monitor/curmudgeon/human-notes.json`). If any notes have `status: "pending"`, they take priority over change-driven and holistic reviews. Review the item specified in the note, focusing on the questions asked. Mark the note as `"consumed"` after completing the review. Then stop.
 
+**Coverage-already-exists exception (Step 0c):** Before writing a fresh review for a pending note, check whether existing reviews under `${WORKSPACE}/monitor/curmudgeon/reviews/` already cover the note's questions. To use this exception ALL of the following must hold:
+1. The covering review's `reviewed_at` post-dates the note's creation timestamp (so it reflects the post-note state of the content).
+2. You can enumerate, in your output, which specific review file addresses each question raised in the note (one-to-one mapping required — vague gestures don't count).
+3. The covering reviews collectively address every question in the note, not just some.
+
+When this exception applies, write a short consolidation file `monitor/curmudgeon/reviews/<NOTE-ID>-consolidation.json` with the question-to-review mapping and your reasoning, then mark the note `"consumed"` with `consumed_via: "consolidation"`. Do NOT write a redundant full review. If even one question lacks dedicated coverage, write the full review for that question and consolidate the rest. Err on the side of writing the review when in doubt — consolidation is for clearly-redundant cases, not for skipping work.
+
 **Step 0d: Change-driven / holistic / spot-check.** If no priority queue items and no human notes:
 → Read `monitor/prompts/reference/curmudgeon-change-and-holistic.md` and execute the first applicable procedure (change detection → holistic review → spot-check).
 
