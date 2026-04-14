@@ -71,6 +71,12 @@ Read `monitor/decisions/open-issues.json`:
 - **Failed runs.** Gaps in output timestamps = missed runs.
 - **Overlapping runs.** Runtime > interval = potential state corruption.
 - **Wasted runs.** Agent running at high frequency with nothing to process = recommend frequency reduction.
+- **Metadata-vs-reality check.** Compare `priority-queue.json` `schedule_state.<agent>_current_interval_minutes` against actual cron for analyst/decider/curmudgeon. If they differ from `_default`, check for an explanatory override field BEFORE flagging:
+  - `schedule_state.<agent>_override_reason` — short reason code (e.g., `fingerprint-backlog`, `churn-and-burn`, `catchup`)
+  - `schedule_state.<agent>_override_clear_when` — condition under which the override should be lifted
+  - `schedule_state.note` — human-readable explanation
+
+  If an override field exists: verify the clear-when condition is still active (e.g., if it says "pending count = 0" and the count IS 0, the override is stale and should be flagged for revert). **Do not flag a current-vs-default mismatch as drift if there's a valid, still-active override documented.** Only flag as anomaly when: (a) current ≠ default AND (b) no override documented, OR (c) override exists but the clear-when condition is already met.
 
 ## Step 7: Cross-Check Agent Understanding (spot check 2-3 per run, rotate)
 
