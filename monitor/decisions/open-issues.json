@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-14T17:30:00Z",
+  "last_updated": "2026-04-14T18:23:03.328Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -13,7 +13,7 @@
       "found_date": "2026-04-07",
       "found_at": "2026-04-07T20:47:06Z",
       "status": "wontfix",
-      "fix_details": "Not a problem report \u2014 positive feedback only. Analyst logged as reader engagement data point.",
+      "fix_details": "Not a problem report — positive feedback only. Analyst logged as reader engagement data point.",
       "fix_date": "2026-04-09T22:01:18.740Z"
     },
     {
@@ -26,7 +26,7 @@
       "found_by": "decider-expansion-integration",
       "found_at": "2026-04-10T19:10:17.202Z",
       "source": "EXP-060 integration",
-      "notes": "Not urgent \u2014 existing Part 5 HTML is complete and correct via EXP-057. This is a refactoring to data-driven counts. Lower priority than content work."
+      "notes": "Not urgent — existing Part 5 HTML is complete and correct via EXP-057. This is a refactoring to data-driven counts. Lower priority than content work."
     },
     {
       "id": "ISS-808",
@@ -60,7 +60,7 @@
       "found_by": "analyst-external-report",
       "found_at": "2026-04-08T12:00:00Z",
       "source_ref": "monitor/external-reports/report-1.json",
-      "wontfix_reason": "Not a problem report \u2014 reader expressing support. No kernel of truth or correction to evaluate.",
+      "wontfix_reason": "Not a problem report — reader expressing support. No kernel of truth or correction to evaluate.",
       "wontfix_at": "2026-04-14T06:28:51Z"
     },
     {
@@ -68,7 +68,7 @@
       "win_id": null,
       "severity": "moderate",
       "category": "factual_error",
-      "description": "Evaluation Guide eg-verdicts section (in generate-html.js): count-inflation preemption paragraph uses \"(045\u2013051)\" range which spans SEVEN WIN IDs but only five tidal WINs exist (045, 046, 049, 050, 051). Also: logical overlap in false-dilemma subtype list item (3) should be dropped. Cannot be self-applied (generate-html.js is infrastructure). Needs human patch.",
+      "description": "Evaluation Guide eg-verdicts section (in generate-html.js): count-inflation preemption paragraph uses \"(045–051)\" range which spans SEVEN WIN IDs but only five tidal WINs exist (045, 046, 049, 050, 051). Also: logical overlap in false-dilemma subtype list item (3) should be dropped. Cannot be self-applied (generate-html.js is infrastructure). Needs human patch.",
       "found_by": "curmudgeon-eg-verdicts-passive-tldr-fix.c1",
       "found_at": "2026-04-14T09:10:00Z",
       "status": "open",
@@ -80,28 +80,12 @@
       "win_id": null,
       "severity": "moderate",
       "category": "missing_argument",
-      "description": "Evaluation Guide eg-falsifiability section (in generate-html.js): WIN-044 mischaracterized as \"produces value that matches standard physics or contradicts measurement\" \u2014 WIN-044 actually has verdict Self-Contradicted (dome derives a value that conflicts with its own other equations), not a standard-physics or measurement contradiction. Also \"only 2 of 69 claims even attempt a dome-geometry derivation\" is contestable \u2014 \"attempt\" is ambiguous. Cannot be self-applied (generate-html.js is infrastructure).",
+      "description": "Evaluation Guide eg-falsifiability section (in generate-html.js): WIN-044 mischaracterized as \"produces value that matches standard physics or contradicts measurement\" — WIN-044 actually has verdict Self-Contradicted (dome derives a value that conflicts with its own other equations), not a standard-physics or measurement contradiction. Also \"only 2 of 69 claims even attempt a dome-geometry derivation\" is contestable — \"attempt\" is ambiguous. Cannot be self-applied (generate-html.js is infrastructure).",
       "found_by": "curmudgeon-eg-falsifiability-derives-fix.c1",
       "found_at": "2026-04-14T08:42:00Z",
       "status": "open",
       "fix_details": null,
       "fix_date": null
-    },
-    {
-      "id": "ISS-993",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "missing_argument",
-      "description": "SEC-6.5-FAIL004: defense_survives=3. (1) AAO proxy for 500hPa prediction: section critiques dome for mixing metrics but uses 700hPa as proxy for 500hPa prediction \u2014 needs either defense of the proxy or correction. (2) \"Retroactively labeled refined\" needs primary source citation (dome_label in failures.json is internal, not public-facing citation).",
-      "source": "curmudgeon",
-      "found_date": "2026-04-14",
-      "status": "assigned-analyst",
-      "fix_details": null,
-      "fix_date": null,
-      "related_review": "SEC-6.5-FAIL004.c3",
-      "found_at": "2026-04-14T15:29:48.173Z",
-      "assigned_to": "EXP-163",
-      "assigned_at": "2026-04-14T15:30:22.032Z"
     },
     {
       "id": "ISS-997",

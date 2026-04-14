@@ -12667,6 +12667,24 @@
       "related_review": "WIN-010.c4",
       "found_at": "2026-04-14T15:29:20.175Z",
       "fixed_at": "2026-04-14T17:29:45Z"
+    },
+    {
+      "id": "ISS-993",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "description": "SEC-6.5-FAIL004: defense_survives=3. (1) AAO proxy for 500hPa prediction: section critiques dome for mixing metrics but uses 700hPa as proxy for 500hPa prediction — needs either defense of the proxy or correction. (2) \"Retroactively labeled refined\" needs primary source citation (dome_label in failures.json is internal, not public-facing citation).",
+      "source": "curmudgeon",
+      "found_date": "2026-04-14",
+      "status": "fixed",
+      "fix_details": "EXP-163 integrated: SEC-6.5-FAIL004 paragraph expanded from 412 to 615 words, closing c3 AAO-proxy and retroactive-window-sourcing holes.",
+      "fix_date": null,
+      "related_review": "SEC-6.5-FAIL004.c3",
+      "found_at": "2026-04-14T15:29:48.173Z",
+      "assigned_to": "EXP-163",
+      "assigned_at": "2026-04-14T15:30:22.032Z",
+      "fixed_at": "2026-04-14T18:23:03.328Z",
+      "fixed_by": "expansion-integration"
     }
   ]
 }

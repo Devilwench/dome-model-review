@@ -2899,9 +2899,14 @@
         "ISS-993"
       ],
       "priority": "moderate",
-      "status": "pending",
+      "status": "complete",
       "created_at": "2026-04-14T15:30:22.032Z",
-      "notes": "defense_survives=3. Two holes: (1) AAO 700hPa proxy for 500hPa prediction — possible symmetry argument from dome. (2) retroactively labeled \"refined\" citation needs dome primary source. Analyst should add named magnetic WINs with short test windows to counter the asymmetry claim, and cite dome label for \"refined\"."
+      "notes": "defense_survives=3. Two holes: (1) AAO 700hPa proxy for 500hPa prediction — possible symmetry argument from dome. (2) retroactively labeled \"refined\" citation needs dome primary source. Analyst should add named magnetic WINs with short test windows to counter the asymmetry claim, and cite dome label for \"refined\".",
+      "integrated": true,
+      "integrated_at": "2026-04-14T18:23:03.328Z",
+      "integration_mode": "section_paragraph_replacement",
+      "output_file": "monitor/analyst/expansions/EXP-163.json",
+      "completed_at": "2026-04-14T18:23:03.328Z"
     },
     {
       "id": "EXP-164",

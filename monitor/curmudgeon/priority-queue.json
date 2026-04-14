@@ -20,15 +20,8 @@
     "tinker"
   ],
   "queue": [],
-  "next_id": 133,
+  "next_id": 134,
   "history": [
-    {
-      "queue_id": 77,
-      "target_id": "PRED-batch-updates-2026-04-13",
-      "target_type": "prediction-batch",
-      "popped_at": "2026-04-13T20:13:12.604Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 78,
       "target_id": "part1-evidence-roadmap",
@@ -370,6 +363,13 @@
       "target_id": "WIN-058b",
       "target_type": "win-detail-rewrite",
       "popped_at": "2026-04-14T17:33:18.637Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 133,
+      "target_id": "SEC-6.5",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-14T18:25:39.729Z",
       "popped_by": "decider"
     }
   ],
