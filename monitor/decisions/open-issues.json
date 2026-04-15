@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-15T03:41:45.190Z",
+  "last_updated": "2026-04-15T07:45:14.285Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -92,7 +92,45 @@
       "found_by": "integrity-2026-04-14",
       "found_at": "2026-04-14T21:24:12Z",
       "notes": "Analyst should decide: (a) add WIN-057b for SAA Simultaneous Acceleration (mirrors 058/058b pattern), or (b) add a note in WIN-057 prose about the numbering collision. Not urgent — the SAA claim is prospective with no current test window closure."
+    },
+    {
+      "id": "ISS-1033",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "description": "SEC-6.6: accuracy argument leads with \"manually entered HTML\" point which dome defender can defuse (\"every journal hardcodes stats\"). Should lead with the fact that dome's own data produces 4+ different accuracy figures, none matching headline. Needs prose restructure.",
+      "found_by": "curmudgeon-c2",
+      "found_date": "2026-04-11",
+      "fix_details": null,
+      "fix_date": null,
+      "assigned_exp": "EXP-165"
+    },
+    {
+      "id": "ISS-1034",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "assigned-analyst",
+      "description": "SEC-6.6: denominator exclusion not preempted. Dome defender: \"CERN excludes preliminary runs; excluding low-confidence predictions is standard.\" Needs a sentence explaining the dome's excluded items were initially tracked as active predictions and reclassified retroactively after failure — analogous to protocol deviation after unblinding.",
+      "found_by": "curmudgeon-c2",
+      "found_date": "2026-04-11",
+      "fix_details": null,
+      "fix_date": null,
+      "assigned_exp": "EXP-165"
+    },
+    {
+      "id": "ISS-1035",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "open",
+      "description": "SEC-6.6 dedup: WIN-068 (eclipse magnetic ensemble, 39 eclipses) shares eclipse magnetometer data with cluster [WIN-010, WIN-025] but is not in that cluster. Adding WIN-068 to the eclipse cluster requires updating both generate-html.js dedupClusters array and the table HTML. Needs human review before executing (would change cluster 2→1 to 3→1, reducing unclustered from 32 to 31, INDEPENDENT_CLAIMS 42→41).",
+      "found_by": "curmudgeon-c2",
+      "found_date": "2026-04-11",
+      "fix_details": null,
+      "fix_date": null
     }
   ],
-  "next_id": 1027
+  "next_id": 1036
 }
