@@ -13103,6 +13103,48 @@
       "fix_date": null,
       "fixed_at": "2026-04-14T23:38:22.837Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1023",
+      "win_id": "044",
+      "severity": "major",
+      "category": "content-update",
+      "status": "fixed",
+      "description": "WIN-044 finding/detail_verdict_text/tldr_evidence/tldr_verdict all carry Misleading framing (\"tests consistency, not truth\") under Self-Contradicted verdict label. Curmudgeon c3 review flagged as major (x3). Rewrite to invoke version-instability (HAD FSF 1.47 V51 vs 1.89 V50.6; BOU radius 5715→9983) and coordinate-collapse (Section 1.8).",
+      "found_by": "curmudgeon-c3",
+      "found_at": "2026-04-15T03:40:49.854Z",
+      "fix_details": "Applied this run: WIN-044 framing rewritten to Self-Contradicted (version-instability+coord-collapse); post_hoc_evidence updated; Part 2b FSF formula corrected.",
+      "fix_date": null,
+      "fixed_at": "2026-04-15T03:41:45.190Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1024",
+      "win_id": "044",
+      "severity": "moderate",
+      "category": "code_analysis",
+      "status": "fixed",
+      "description": "WIN-044 code_analysis.post_hoc_evidence says \"Genuine dome-derived prediction with future empirical test\" — contradicts Self-Contradicted verdict. Should reflect version-instability and that derivation claim is undermined.",
+      "found_by": "curmudgeon-c3",
+      "found_at": "2026-04-15T03:40:49.854Z",
+      "fix_details": "Applied this run: WIN-044 framing rewritten to Self-Contradicted (version-instability+coord-collapse); post_hoc_evidence updated; Part 2b FSF formula corrected.",
+      "fix_date": null,
+      "fixed_at": "2026-04-15T03:41:45.190Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1025",
+      "win_id": null,
+      "severity": "major",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "Part 2b WIN-044 paragraph uses wrong FSF formula: \"FSF(r) = exp(−r/λg)\" — missing 1/r factor and BOU normalization. Correct formula is FSF(r) = (H(r)/r) / (H(r_BOU)/r_BOU) where H(r) = 8537·exp(−r/8619). Source: curmudgeon c3 cross-section consistency check.",
+      "found_by": "curmudgeon-c3-cross-section",
+      "found_at": "2026-04-15T03:40:49.854Z",
+      "fix_details": "Applied this run: WIN-044 framing rewritten to Self-Contradicted (version-instability+coord-collapse); post_hoc_evidence updated; Part 2b FSF formula corrected.",
+      "fix_date": null,
+      "fixed_at": "2026-04-15T03:41:45.190Z",
+      "fixed_by": "decider-self-apply"
     }
   ]
 }
