@@ -329,7 +329,15 @@ This check exists because `digest-reviews.js` historically filtered on `WIN-*` p
 
 The digest pipeline's `errors[]` array records review files that fail JSON parsing. Their findings are silently dropped — the file is neither "pending" nor "processed," it's in error limbo. Historically these could sit broken for 9+ days before being noticed.
 
-**Check:** Read `monitor/curmudgeon/pending-digest.json`'s `errors` field and fail any non-empty list.
+**MANDATORY: regenerate the digest before reading it.** The digest can lag the actual file state by hours (it's only refreshed when the decider runs). Reading a stale digest will produce false positives that contradict reality. Always do this first:
+
+```bash
+node build-scripts/digest-reviews.js --workspace . > /tmp/digest-out.txt 2>&1
+DIGEST_EXIT=$?
+# Exit code 2 = parse errors present. Exit 0 = clean. Either way, the JSON is current.
+```
+
+Then read the freshly-written digest:
 
 ```bash
 node -e "
@@ -344,9 +352,9 @@ process.exit(1);
 "
 ```
 
-Also spot-check that the digest file itself isn't stale. If `pending-digest.json` is older than the most recent review file, the digest needs regeneration (`node build-scripts/digest-reviews.js --workspace .`) before this check can be trusted.
-
 **Severity:** Any parse-errored review file is **major** — findings are invisible to the decider. Always include the auto-recovery command in the integrity report so it's one copy-paste to fix.
+
+**Bug history:** On 2026-04-15T08:17, integrity flagged 4 broken review files that had actually been recovered at 06:12 (commit bfbf663). The digest hadn't been regenerated since 21:26 the previous day, so integrity was reading a stale errors array. The mandatory regeneration above prevents that class of false positive.
 
 ### 8. Project Documentation — Mechanical Checks
 
