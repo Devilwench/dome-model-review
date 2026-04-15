@@ -19,32 +19,9 @@
     "decider",
     "tinker"
   ],
-  "queue": [
-    {
-      "queue_id": 138,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-044",
-      "reason": "Framing rewrite this run (ISS-1023/1024): finding/verdict_text/TLDRs/post_hoc_evidence all updated to Self-Contradicted version-instability narrative. Fresh adversarial review needed to verify the new framing is consistent and defensible. Cross-check: does detail_evidence still lead with consistency-not-truth? If so, rewrite lead to match new framing.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-15T03:44:01.773Z",
-      "context_hints": {
-        "related_issues": [
-          "ISS-1023",
-          "ISS-1024"
-        ],
-        "human_note": null
-      }
-    }
-  ],
+  "queue": [],
   "next_id": 139,
   "history": [
-    {
-      "queue_id": 104,
-      "target_id": "SEC-6.2",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-13T22:41:28.257Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 81,
       "target_id": "WIN-065-post-ISS863",
@@ -386,6 +363,13 @@
       "target_id": "SEC-2b.3",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-14T23:40:28.505Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 138,
+      "target_id": "WIN-044",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-15T07:46:31.639Z",
       "popped_by": "decider"
     }
   ],
