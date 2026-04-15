@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-15T07:45:14.285Z",
+  "last_updated": "2026-04-15T16:37:51.581Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -57,17 +57,6 @@
       "fix_date": null,
       "related_review": "monitor/curmudgeon/reviews/part4-roadmap-EXP116.c1.json + part5-roadmap-EXP116.c1.json",
       "notes": "Filed during human-requested audit of old reports for deferred-but-untracked work. The two curmudgeon reviews flagged this as out-of-scope for their respective EXPs but never resulted in a tracked work item."
-    },
-    {
-      "id": "ISS-1015",
-      "win_id": "WIN-056",
-      "severity": "minor",
-      "category": "citation",
-      "status": "open",
-      "description": "External link to nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html (NASA planetary fact sheet, 23.45 axial tilt) redirects to SSDC status page. Also: earthobservatory.nasa.gov/images/51173/crepuscular-rays (WIN-026, crepuscular rays) redirects to Earth Observatory homepage; heartmath.org/research/global-coherence/gcms/ (WIN-007 verdict_text, Schumann HeartMath GCI) redirects to generic research page. All three cited resources are effectively inaccessible. Integrity agent has flagged this on 2026-04-14.",
-      "found_by": "integrity-2026-04-14",
-      "found_at": "2026-04-14T21:24:12Z",
-      "notes": "Suggested fixes: (1) WIN-056: replace nssdc URL with archive.org mirror or use Wikipedia axial tilt article. (2) WIN-026: remove NASA EO link (atoptics.co.uk already cited and adequate) or find new URL. (3) WIN-007 verdict_text: find current HeartMath GCI URL (likely https://www.heartmath.org/gci/gcms-network/). Low urgency."
     },
     {
       "id": "ISS-1016",

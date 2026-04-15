@@ -13264,6 +13264,20 @@
       "fix_date": "2026-04-15",
       "fixed_by": "decider-self-apply",
       "fixed_at": "2026-04-15T07:45:14.285Z"
+    },
+    {
+      "id": "ISS-1015",
+      "win_id": "WIN-056",
+      "severity": "minor",
+      "category": "citation",
+      "status": "fixed",
+      "description": "External link to nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html (NASA planetary fact sheet, 23.45 axial tilt) redirects to SSDC status page. Also: earthobservatory.nasa.gov/images/51173/crepuscular-rays (WIN-026, crepuscular rays) redirects to Earth Observatory homepage; heartmath.org/research/global-coherence/gcms/ (WIN-007 verdict_text, Schumann HeartMath GCI) redirects to generic research page. All three cited resources are effectively inaccessible. Integrity agent has flagged this on 2026-04-14.",
+      "found_by": "integrity-2026-04-14",
+      "found_at": "2026-04-14T21:24:12Z",
+      "notes": "Suggested fixes: (1) WIN-056: replace nssdc URL with archive.org mirror or use Wikipedia axial tilt article. (2) WIN-026: remove NASA EO link (atoptics.co.uk already cited and adequate) or find new URL. (3) WIN-007 verdict_text: find current HeartMath GCI URL (likely https://www.heartmath.org/gci/gcms-network/). Low urgency.",
+      "fixed_at": "2026-04-15T16:37:51.581Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Replaced 3 broken links: WIN-056 axial tilt NASA factsheet → science.nasa.gov/earth/facts/, WIN-026 crepuscular rays earthobservatory → atoptics.co.uk/blog/crepuscular-rays/, WIN-038 heartmath GCMS → www.heartmath.org/gci-research/."
     }
   ]
 }
