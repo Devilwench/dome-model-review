@@ -1,69 +1,51 @@
 MORNING BRIEFING — 2026-04-15
-Generated: 2026-04-15T19:40:00Z
-Curmudgeon reviews processed this run: 3 (WIN-027.c3, WIN-068.c4, WIN-044.c4)
-Previous decider run: ~2026-04-15T03:44Z
+Generated: 2026-04-15T23:43:18Z
+Curmudgeon reviews processed this run: 2 (WIN-024 c3, WIN-027 c4)
+Previous decider run: 2026-04-15T23:10:00Z (approx)
 
-═══════════════════════════════════════════
-SITE HEALTH
-═══════════════════════════════════════════
-Integrity: PASS (3328 tests, 0 failures)
-Build: Clean
+─── SITE HEALTH ───────────────────────────────────────
+Integrity: WARN
+  - Test suite: PASS (3328/3328 tests)
+  - 4 broken curmudgeon review files fixed this run (HOLISTIC-HOL-TONE, SEC-4.6.2, SEC-6.6.c2, WIN-068.c3)
+  - External links: podaac.jpl.nasa.gov timing out (3 citations); NASA/HeartMath redirects to generic pages
+  - Digest: 0 pending after this run
 
-═══════════════════════════════════════════
-EXTERNAL STATUS
-═══════════════════════════════════════════
-Dome changes: NO (17th consecutive quiet poll)
-Canary: COLD (OTS still timestamps wrong side)
-Model: V51.1, 69 WINs, 94.5% accuracy (all unchanged)
+─── EXTERNAL STATUS ────────────────────────────────────
+Dome changes: NONE — 18th consecutive quiet cycle
+Model: V51.1, 69 WINs, 94.5% claimed accuracy (all unchanged)
+Threat level: None
 
-═══════════════════════════════════════════
-INTERNAL STATUS — THIS RUN
-═══════════════════════════════════════════
-Major fixes applied this run (defense_survives=4 in all three):
+─── INTERNAL STATUS ────────────────────────────────────
+Issues processed: 11 (all fixed via self-apply)
+  - WIN-027: 7 patches (ISS-1036,1037,1038,1039,1044,1045,1046)
+  - WIN-024: 4 patches (ISS-1047,1048,1049,1050)
+Open issues remaining: 10
 
-1. WIN-027 — Arithmetic error FIXED
-   "5.2% mean error (≈520 m per km)" → "(≈52 m per km, or ~520 km over trans-hemispheric route)"
-   Also fixed: TLDR now correctly distinguishes V50.4 quadratic (superseded) from V50.6 H(r);
-   Vincenty accuracy description changed to absolute-error framing.
+NOTABLE FIXES:
+  [MAJOR] WIN-024 tldr_verdict said "latitude band" — the entire kill-shot is about LONGITUDE
+          mismatch (SAA ≈130° vs winds at all 360°). This was visible to any reader of the
+          collapsed summary. Now fixed: "longitude band — about 130 degrees..."
+  [MAJOR] WIN-024 code_analysis.monitoring was "live_fetch" despite 2/3 domains hardcoded.
+          Fixed to "hardcoded" — Part 2b counts now accurate.
+  [MOD]   WIN-027 parameter list had wrong 4th param (ellipse axis ratio vs r_eq=14,105 km).
+          WIN-057 already had the correct list; WIN-027 now aligned.
+  [MOD]   WIN-027 Sydney/Santiago geometry rewritten — flat disc has ONE rim, not two.
+          Both cities sit at r≈16,000 km, 138° apart. "Opposing rim" was factually wrong.
 
-2. WIN-068 — Cascade hedge REMOVED
-   Three Self-Contradicted-grade paragraphs removed from Std Model Explains verdict panel.
-   Replaced with Section 1.8 cross-reference. Verdict and evidence now aligned.
+─── TOP 3 PRIORITY ACTIONS ─────────────────────────────
+1. WIN-068 open issues (ISS-1040, 1041, 1042): WIN-068.c3.json now fixed. Process its
+   findings on next run — moderate issues about eclipse data framing and shared-anchor
+   conflict with WIN-010/WIN-025.
+2. WIN-044 (ISS-1043): code_analysis.monitoring tagged "none" but monitor.py shows live
+   fetch. Quick code_analysis patch.
+3. WIN-027 and WIN-024 queued for curmudgeon re-review after today's patches.
 
-3. WIN-044 — Evidence rewritten
-   detail_evidence lead changed from Misleading-era consistency-not-truth framing to
-   version-instability lead (HAD 1.47 vs 1.89, BOU radius 5715→9983). Section 1.8 cross-ref added.
+─── CURMUDGEON PROGRESS ──────────────────────────────────
+Mode: BAU (240 min interval)
+Queue: 2 items (WIN-027, WIN-024 — queued for re-attack post-patch)
+All pending reviews: 0
 
-4. SEC-6.6 — Accuracy argument restructured (EXP-165/166)
-   New lead: internal data incoherence (4 accuracy variants, none matching headline).
-   Manual-entry demoted to corroborating evidence.
-   CERN preemption paragraph added for denominator-exclusion defense.
-   ISS-1033 and ISS-1034 CLOSED.
-
-═══════════════════════════════════════════
-OPEN ISSUES (14 total)
-═══════════════════════════════════════════
-New moderate this run:
-  ISS-1036: WIN-027 × WIN-057 parameter count inconsistency (V50.6 H(r) parameter lists differ)
-  ISS-1040: WIN-068 E001-E009 paragraph off-topic for historical ensemble WIN
-  ISS-1042: WIN-010 and WIN-025 lack Section 1.8 cross-reference that WIN-068 now has
-  ISS-1043: WIN-044 code_analysis.monitoring tag needs updating post-eclipse (defer)
-
-New minor this run:
-  ISS-1037: WIN-027 QF27/QF28 framing fragility
-  ISS-1038: WIN-027 circular opening phrasing
-  ISS-1039: WIN-027 redundant post-hoc boilerplate in verdict
-
-═══════════════════════════════════════════
-TOP 3 PRIORITY ACTIONS
-═══════════════════════════════════════════
-1. Curmudgeon: review WIN-027, WIN-044, WIN-068, SEC-6.6 (all 4 in queue)
-   Mode: BAU, queue depth 4, interval 240 min
-2. Fix WIN-027 × WIN-057 parameter count inconsistency (ISS-1036) — needs both WINs patched together
-3. Move WIN-068 E001-E009 paragraph to predictions catalog (ISS-1040)
-
-═══════════════════════════════════════════
-CODE ANALYSIS TAGS
-═══════════════════════════════════════════
-WIN-044 monitoring tag: currently 'none' — should be 'hardcoded' post-eclipse. ISS-1043 created.
-No other tag issues detected this run.
+─── CODE ANALYSIS TAG STATUS ─────────────────────────────
+WIN-024: live_fetch → hardcoded (applied this run)
+WIN-044: ISS-1043 open — needs next_session attention
+Other tags from recent reviews: validated and in sync

@@ -815,23 +815,24 @@
     {
       "id": "SEC-2b.1",
       "claim": "The Monitoring Illusion — hardcoded validation analysis",
-      "status": "pending",
-      "reviewed_at": null,
-      "findings": null
+      "status": "reviewed",
+      "reviewed_at": "2026-04-16T01:13:20.192Z",
+      "findings": "Globe fingerprint: monitor.pys Tesla domain formula VA/(2*DISC_R) reduces algebraically to c/(4*R_Earth) because DISC_R = pi*R_Earth (by construction) and VA ~ (pi/2)*c. Both sides of every hardcoded `pred==obs` check in the monitoring script are globe-derived quantities: Schumann 7.83 Hz is Schumanns 1952 spherical-cavity eigenfrequency; Tesla 11.79 Hz is the same spherical Earth-ionosphere waveguide measured differently; SAA 77.0 nT/yr traces to IGRF/WGS84 processing. Sharpens 2b.1 from `tautology of fixed number equaling itself` to `tautology of globe equaling itself`. Suggested text and defender rebuttals in SEC-2b.1.json. Confidence 0.9."
     },
     {
       "id": "SEC-2b.2",
       "claim": "Relabeling Standard Physics — vocabulary substitution pattern",
-      "status": "pending",
-      "reviewed_at": null,
-      "findings": null
+      "status": "reviewed",
+      "reviewed_at": "2026-04-16T00:13:48.375Z",
+      "findings": "Globe fingerprints found (2). Fingerprint 1: The relabeled values (7.83 Hz Schumann, M2=12.4206 h, S2=12.000 h, K1=23.93 h, Hubble H₀) are theory-internal predictions, not raw measurements — each requires globe geometry in its derivation chain (angular Laplacian on a sphere, sidereal Earth/Moon periods, Keplerian lunar orbit at 60 R_Earth, FLRW spherical 3D space). The dome inherits the entire validation chain, not just observations. Fingerprint 2: The section's 'derives from dome parameters' count statistic overstates dome independence — the few WINs that pass the filter use dome parameters that are themselves globe constants in disguise (DISC_R = π·R_Earth at 4 ppm, VA = (π/2)c at 0.2%, sun/moon/firmament altitudes fitted to WGS84 via find_curve.py). Wrote monitor/analyst/globe-fingerprints/SEC-2b.2.json with two suggested patch paragraphs and defender-rebuttal counters. Confidence 0.92 / 0.91. Cross-references: SEC-2b.1, SEC-2.1, WIN-001, WIN-002, WIN-045, WIN-062, WIN-067."
     },
     {
       "id": "SEC-2b.3",
       "claim": "Post-Hoc Retrodiction — prediction vs retrodiction distinction",
-      "status": "pending",
-      "reviewed_at": null,
-      "findings": null
+      "status": "reviewed",
+      "reviewed_at": "2026-04-16T02:16:10.786Z",
+      "findings": "Two globe fingerprints: (1) 18.6-year lunar nodal regression period is itself a spherical-geometry quantity — derivable only from Keplerian orbital mechanics around spherical Earth, not from flat-disc physics. Dome repo has no code computing 18.6 y from dome params (0 hits for nodal/gear/epicyclic in repo). WIN-020 gears are free params fitting a globe eigen-quantity. (2) All four 'dome-derived' WINs (020/044/057/058) use dome parameters that were reverse-engineered from WGS84 via find_curve.py (verified: WGS84 city distances, AE formula r=(90-lat)*111.1). Effective globe-free derivation count is zero. Wrote SEC-2b.3.json with suggested text and defender rebuttals.",
+      "output_file": "monitor/analyst/globe-fingerprints/SEC-2b.3.json"
     },
     {
       "id": "WIN-068",
