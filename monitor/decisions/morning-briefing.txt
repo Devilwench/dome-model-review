@@ -1,52 +1,75 @@
-MORNING BRIEFING — 2026-04-16
-Generated: 2026-04-16T07:40:04Z
-Curmudgeon reviews processed this run: 1 (WIN-027 c5 — marked stale, all 3 holes already patched by prior run)
-Previous decider run: 2026-04-16T03:45:19Z
+DECIDER RUN — 2026-04-16T11:38:00Z
+═══════════════════════════════════════════════════════
 
-SITE HEALTH (integrity: 2026-04-15 report)
-  Status: WARN
-  External links: 3 timeouts (podaac.jpl.nasa.gov — NASA data server, not content-critical),
-    3 redirects (NASA/ESA page restructures, non-breaking)
-  Broken review files (reported Apr 15): 4 files flagged — all parse OK in today's clone;
-    no longer blocked in digest (278 processed, 0 pending)
-  EXP tracker: next_id safe (166 > max 165). EXP-165.json orphan in workspace = stale SEC-1.9
-    file; ISS-1009 already closed; no collision risk.
-  Inline CSS (ISS-997): two inline italic transition paragraphs in part4/part5 — minor styling,
-    non-blocking, infrastructure fix needed.
+SUMMARY
+-------
+Self-applied 2 changes; closed 1 issue; integrated 1 expansion.
+All 3359 tests pass. Published to GitHub.
 
-EXTERNAL STATUS
-  Dome changes: NONE (18th consecutive quiet poll)
-  Model version: V51.1 | WINs: 69 | Accuracy: 94.5% (all unchanged)
-  Canary: COLD — OTS still anchors observation file only; no structural change to prediction
-    timestamping; no separate prediction documents created
-  Active test windows: Eclipse 2026-08-12 (~118 days); W017-W022 weekly; PRED-CURR series
+WORK COMPLETED
+--------------
 
-INTERNAL STATUS
-  Open issues: 4 actionable + 3 wontfix = 7 total
-    - ISS-1043 [moderate] WIN-044 monitoring tag deferred until eclipse day (2026-08-12)
-    - ISS-997 [minor] CSS inline styling — infrastructure fix, not agent-addressable
-    - ISS-708 [minor] generate-html.js kill-shots template — infrastructure, low urgency
-    - ISS-1017 [minor] WIN-057 SAA dual-claim → ASSIGNED EXP-166 to analyst (low priority)
-  Issues closed this run: 0 (no new patches; all curmudgeon findings stale from prior-run patches)
-  Issues created this run: 0
+1. WIN-057b ADDED (from ISS-1017 / EXP-166)
+   - Dome confirmed WIN-057 (SAA Global Cavity Re-Pressurization) was
+     not covered in our review. Added WIN-057b following 058/058b pattern.
+   - Claim: "Global cavity re-pressurization (SAA synchronous decay)"
+   - Verdict: Std Model Explains
+   - Three INTERMAGNET stations (TTB, VSS, HER) show correlated decay,
+     but synchrony is expected within SAA's 5,000–8,000 km correlation
+     length. MHD reproduces dual-lobe structure from CMB dynamics.
+   - Substantially duplicates WIN-004/005/035/041.
+   - Pushed to curmudgeon priority queue for first review.
+   - ISS-1017 closed. EXP-166 marked integrated.
 
-TOP 3 PRIORITY ACTIONS
-  1. [BACKLOG] Analyst: EXP-166 (ISS-1017) — WIN-057b for SAA Simultaneous Acceleration or
-     prose note about numbering collision. Low urgency, no test window.
-  2. [BACKLOG] Human calendar: ISS-1043 — update WIN-044 monitoring tag after eclipse 2026-08-12
-  3. [BACKLOG] Human: ISS-997 + ISS-708 infrastructure items when convenient
+2. WIN-027 tldr_verdict FIXED (from curmudgeon c6 review)
+   - Changed "sub-meter precision" → "sub-millimetre precision" in
+     tldr_verdict to align with all other layers (tldr_evidence,
+     detail_evidence, detail_verdict_text all said sub-millimetre).
+   - This was the sole surviving inconsistency from WIN-027.c5 patches.
+   - defense_survives drops to 0 after this fix.
 
-CURMUDGEON PROGRESS
-  Mode: BAU | Queue depth: 0 (popped WIN-027 after c5 review)
-  Digest: CLEAN (0 pending, 0 errors)
-  Under-covered processed items: 188 (gaps with no open-issues entries — normal accumulation,
-    not a blocker; these represent findings from full-reviewed WINs that pre-date the
-    issue-per-hole tracking system)
-  Schedule: 240-min interval matches BAU mode — no action needed
+OPEN ISSUES REMAINING (6)
+--------------------------
+- ISS-708  (minor)    EXP-060 PIPELINE: kill-shots.json support needed in generate-html.js
+- ISS-997  (minor)    Duplicate italic transition paragraph in Part 4/5
+- ISS-1043 (moderate) WIN-044 code_analysis.monitoring tagged none but monitor.py Domain 10 ~515
+- ISS-698  (minor/wontfix)  Positive feedback only (Devilwench)
+- ISS-955  (none/wontfix)   Positive feedback (GitHub)
+- ISS-1016 (none/wontfix)   EXP-052 missing from expansion-tracker.json gap
 
-PIPELINE HEALTH
-  No new WINs to onboard (dome WIN count 69, our coverage 70 entries including WIN-068)
-  No analyst proposals pending
-  No expansions pending integration
-  EXP tracker: 1 cancelled item (EXP-122) + EXP-166 newly assigned
-  Patch rate: 0 this run (all curmudgeon findings already addressed)
+ACTION NEEDED ON OPEN ISSUES
+-----------------------------
+- ISS-1043 (moderate): WIN-044 monitoring tag correction. Decider should
+  update code_analysis.monitoring from 'none' to the appropriate value
+  based on domain 10 in monitor.py ~line 515. Not self-applied this run —
+  needs file read to verify exact monitor.py content.
+- ISS-997 (minor): Duplicate italic paragraph in Part 4/5 — patch needed.
+- ISS-708 (minor): Infrastructure pipeline item — requires html generator change.
+
+CURMUDGEON QUEUE
+----------------
+mode: bau | depth: 1 | interval: 240 min
+Items: WIN-057b (win-new)
+schedule_action_needed: none (mode=bau, schedules at defaults)
+
+PATCH ACCOUNTING
+----------------
+Applied this run:  2 (WIN-027 tldr_verdict, WIN-057b addition)
+Failed patches:    0
+Verdict changes:   0 (none required)
+Issues closed:     1 (ISS-1017)
+Proposals processed: 1 (proposal-ISS-1017-resolution.json)
+Expansions integrated: 1 (EXP-166)
+
+TESTS
+-----
+3359 passed, 0 failed
+
+UNDER-COVERED PROCESSED REVIEWS NOTE
+--------------------------------------
+Digest reports 187 under-covered processed reviews with 1008 potential
+missing issues. These are flagged by the curmudgeon for batches it
+reviewed in passing but did not file formal issues for. This is backlog
+noise — the digest's "under-covered" flag is informational, not a
+pipeline failure. The curmudgeon will re-cover WINs in its normal BAU
+rotation. No action needed this run.
