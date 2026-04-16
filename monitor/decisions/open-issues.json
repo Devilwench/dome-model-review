@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-15T23:39:53.270Z",
+  "last_updated": "2026-04-16T03:40:19.515Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -83,18 +83,6 @@
       "notes": "Analyst should decide: (a) add WIN-057b for SAA Simultaneous Acceleration (mirrors 058/058b pattern), or (b) add a note in WIN-057 prose about the numbering collision. Not urgent — the SAA claim is prospective with no current test window closure."
     },
     {
-      "id": "ISS-1040",
-      "win_id": "WIN-068",
-      "severity": "moderate",
-      "category": "content-improvement",
-      "description": "WIN-068 detail_evidence P3 discusses E001-E009 2026 eclipse predictions. WIN-068 is about the historical 1991-2016 Kim & Chang ensemble, not future predictions. Move the E001-E009/FSF cascade content to Section 1.8 or predictions catalog for E001-E009.",
-      "found_by": "curmudgeon-c4",
-      "found_date": "2026-04-15",
-      "status": "open",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
       "id": "ISS-1041",
       "win_id": "WIN-068",
       "severity": "minor",
@@ -129,7 +117,29 @@
       "status": "open",
       "fix_details": null,
       "fix_date": null
+    },
+    {
+      "id": "ISS-1051",
+      "win_id": "WIN-027",
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "open",
+      "description": "WIN-027 Scale comparison paragraph still says \"an ellipse axis ratio\" instead of r_eq = 14,105 km. The V50.6 paragraph was fixed in a prior cycle but the Scale comparison paragraph two paragraphs later still uses the old vague term. Creates internal self-contradiction within one WIN: one paragraph names r_eq correctly, the next calls it \"ellipse axis ratio\". Also the parameter list (\"a base disc radius, an exponential height function, an ellipse axis ratio, and a longitude scale factor\") mixes raw parameters and mathematical constructs inconsistently.",
+      "found_by": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-027.c5.json",
+      "created_at": "2026-04-16T03:40:19.515Z"
+    },
+    {
+      "id": "ISS-1052",
+      "win_id": "WIN-027",
+      "severity": "minor",
+      "category": "factual_error",
+      "status": "open",
+      "description": "WIN-027 has three inconsistent precision claims: finding says \"globe great-circle achieves <0.5% error\"; tldr_evidence says \"sub-meter precision globally\"; detail_evidence says \"sub-millimetre algorithmic accuracy\" (Karney 2013). These describe different things and the inconsistency weakens the argument. The strongest honest claim is sub-millimetre algorithmic accuracy per Karney (2013). Fix: align finding and tldr_evidence to sub-millimetre.",
+      "found_by": "curmudgeon",
+      "source_review": "monitor/curmudgeon/reviews/WIN-027.c5.json",
+      "created_at": "2026-04-16T03:40:19.515Z"
     }
   ],
-  "next_id": 1051
+  "next_id": 1053
 }

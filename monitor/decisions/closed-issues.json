@@ -13477,6 +13477,21 @@
       "fix_date": null,
       "fixed_at": "2026-04-15T23:39:53.270Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1040",
+      "win_id": "WIN-068",
+      "severity": "moderate",
+      "category": "content-improvement",
+      "description": "WIN-068 detail_evidence P3 discusses E001-E009 2026 eclipse predictions. WIN-068 is about the historical 1991-2016 Kim & Chang ensemble, not future predictions. Move the E001-E009/FSF cascade content to Section 1.8 or predictions catalog for E001-E009.",
+      "found_by": "curmudgeon-c4",
+      "found_date": "2026-04-15",
+      "status": "fixed",
+      "fix_details": null,
+      "fix_date": null,
+      "fixed_at": "2026-04-16T03:40:19.515Z",
+      "fixed_by": "decider-self-apply",
+      "fix_note": "WIN-068 detail_evidence no longer contains E001-E009 2026 eclipse predictions — content was removed in a prior patch cycle. Issue state was stale."
     }
   ]
 }
