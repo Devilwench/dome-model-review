@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-16T03:34:06.769Z",
+  "generated_at": "2026-04-16T07:37:00.199Z",
   "total_reviews": 195,
-  "already_processed": 277,
+  "already_processed": 278,
   "pending_count": 0,
   "severity_breakdown": {
     "critical": 0,
@@ -3907,37 +3907,21 @@
     },
     {
       "win_id": "WIN-027",
-      "topic": "Southern Distance Quadratic — post-queue_140 fix-pass review",
+      "topic": "Southern Distance Quadratic — post-queue_144 patch review",
       "issues_created": 0,
-      "holes_found": 7,
+      "holes_found": 3,
       "missing_holes": [
         {
           "severity": "moderate",
-          "summary": "Parameter-list factual error inside WIN-027. The text states the V50.6 distance mechanism uses 'two fitted parameters (amplitude 8,537 and scale length 8,619), plus an east–west angular scale factor of 0.9941, plus an ellipse axis ratio (WIN-030) — four free parameters tuned against 19 city pairs.' "
-        },
-        {
-          "severity": "moderate",
-          "summary": "Geometric sloppiness in the Sydney–Santiago kill-shot: 'Sydney sits on the ~20,015 km southern rim and Santiago on the opposing rim.' The flat-disc AE projection has only one outer rim (the disc's perimeter at r ≈ 20,015 km) — there is no 'opposing rim.' Under linear colat mapping with r_eq = 14,105"
+          "summary": "Internal self-contradiction in parameter enumeration within detail_evidence. The V50.6 paragraph (patched in this cycle) correctly names the four distance parameters as (H_0, lambda, EW scale 0.9941, r_eq = 14,105 km). Two paragraphs later, the Scale comparison paragraph still reads: \"The dome needs"
         },
         {
           "severity": "minor",
-          "summary": "The Karney/Vincenty sentence now has doubled phrasing: 'achieves sub-millimeter absolute accuracy on WGS84 (sub-millimetre absolute error on the full WGS84 ellipsoid, per Karney 2013 — accuracy does not degrade with distance)'. The parenthetical restates the main clause, and 'sub-millimeter' (Americ"
+          "summary": "Three-layer precision inconsistency. The finding (summary table) says \"globe great-circle achieves <0.5% error.\" The tldr_evidence says \"sub-meter precision globally.\" The detail_evidence and detail_verdict_text say \"sub-millimetre absolute accuracy.\" These are three different precision claims, each"
         },
         {
           "severity": "minor",
-          "summary": "Cross-WIN parameter-count inconsistency with WIN-057 remains unresolved. WIN-027 says the four V50.6 parameters are (H₀, λ, EW scale, ellipse axis ratio). WIN-057 says (H₀, λ, EW scale, equatorial ring radius). Both can't be right. Per hole #1, the WIN-057 list is the correct distance-computation li"
-        },
-        {
-          "severity": "minor",
-          "summary": "detail_verdict_text still opens with 'R-sq 0.79 = 21% unexplained; globe great-circle achieves <0.5% error' framing (from the summary-table finding). In the detail_evidence we now cite sub-millimetre absolute accuracy on WGS84 — essentially zero error. The <0.5% bound in the verdict text and the 'ac"
-        },
-        {
-          "severity": "minor",
-          "summary": "The generic post-hoc boilerplate paragraph in detail_verdict_text ('Independent of the scientific critique above, this claim also fails our post-hoc test...') is redundant here. The detail_evidence already names the exact post-hoc mechanism (v22 failure → quadratic patch → 20-route regression claim "
-        },
-        {
-          "severity": "minor",
-          "summary": "The QF27/QF28 'nonstop' framing flagged in c3 is still present. Depending on the current schedule, QF27/QF28 sometimes operates via Auckland. The kill-shot argument is unaffected by stop structure (30,000 km disc chord can't be flown in ~13 h of air time whether with or without an AKL stop), but the"
+          "summary": "The Scale comparison paragraph counts \"a base disc radius\" as a free parameter alongside \"an exponential height function\" (which contains H_0 and lambda). If counting free parameters, the disc radius (20,015 km) is arguably not independently fitted — it is pi times Earth radius, fixed by the AE proj"
         }
       ]
     },
@@ -5068,9 +5052,21 @@
     {
       "win_id": "WIN-068",
       "topic": "Eclipse magnetic ensemble (39 eclipses) — Kim & Chang (2018)",
-      "issues_created": 3,
+      "issues_created": 0,
       "holes_found": 7,
       "missing_holes": [
+        {
+          "severity": "major",
+          "summary": "Verdict–text incoherence: the verdict is 'Std Model Explains' but detail_evidence paragraph 2 leads with 'Self-contradiction: the dome's own refraction fix breaks this prediction' and paragraph 4 argues the dome's own mechanism requires a definite physical sun altitude that is now indeterminate. The"
+        },
+        {
+          "severity": "major",
+          "summary": "Cross-WIN inconsistency in cascade presentation: WIN-010 (BOU 2017) and WIN-025 (2024 9-station) both have 'Std Model Explains' verdicts and do NOT include the refraction-cascade self-contradiction paragraph. Only WIN-068 carries the cascade narrative. All three WINs describe the same physical pheno"
+        },
+        {
+          "severity": "moderate",
+          "summary": "Triple-counting phrasing is self-referential and slightly confusing: 'triple-counts the same phenomenon as WIN-010, WIN-025, and WIN-068'. WIN-068 IS the WIN being read; the list includes itself as one of the three. Logically fine (WIN-068 + WIN-010 + WIN-025 = three entries for one phenomenon) but "
+        },
         {
           "severity": "moderate",
           "summary": "Paragraph 3 of detail_evidence ('The dome's own 2026 eclipse predictions (E001–E009) use the formula ΔZ = baseline × coverage × FSF…') is off-topic for this WIN. WIN-068 is about the historical 1991–2016 ensemble, not the 2026 predictions. Arguing that FSF-based future predictions share the same ref"

@@ -2956,9 +2956,21 @@
       "integrated": true,
       "integrated_at": "2026-04-15T19:41:38.459Z",
       "integration_notes": "Integrated via EXP-166.json output file. SEC-6.6 (part6.html, p6-66-5 details block) restructured: new lead on internal data incoherence (4 accuracy variants), manual-entry demoted, CERN preemption added. ISS-1033 and ISS-1034 closed."
+    },
+    {
+      "id": "EXP-166",
+      "target": "WIN-057 dual-claim coverage gap — SAA Simultaneous Acceleration uncovered",
+      "source": "decider-yeet",
+      "issue_ids": [
+        "ISS-1017"
+      ],
+      "priority": "low",
+      "status": "pending",
+      "notes": "Dome site reuses WIN-057 for two distinct claims: Two-Zone Disc Topology (covered) and SAA Simultaneous Acceleration (uncovered prospective). Analyst should decide: (a) add WIN-057b entry for SAA Simultaneous Acceleration following the 058/058b pattern, or (b) add a note in WIN-057 prose about the numbering collision and coverage gap. SAA claim is prospective with no current test window closure — low urgency.",
+      "created_at": "2026-04-16T07:38:40.000Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 166,
+  "next_id": 167,
   "total_items": 153
 }

@@ -19,33 +19,9 @@
     "decider",
     "tinker"
   ],
-  "queue": [
-    {
-      "queue_id": 146,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-027",
-      "reason": "Decider self-applied 3 patches from c5 review: (1) Scale comparison paragraph parameter list rewritten to enumerate 4 free params with values; (2) finding updated to sub-millimetre algorithmic precision; (3) tldr_evidence aligned to sub-millimetre. Verify fixes are accurate and no new issues introduced.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-16T03:43:50.352Z",
-      "context_hints": {
-        "source_review": "monitor/curmudgeon/reviews/WIN-027.c5.json",
-        "related_issues": [
-          "ISS-1051",
-          "ISS-1052"
-        ],
-        "human_note": null
-      }
-    }
-  ],
+  "queue": [],
   "next_id": 147,
   "history": [
-    {
-      "queue_id": 112,
-      "target_id": "SEC-1.3",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-14T03:09:53.644Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 113,
       "target_id": "WIN-065",
@@ -387,6 +363,13 @@
       "target_id": "WIN-024",
       "target_type": "win-detail-rewrite",
       "popped_at": "2026-04-16T03:43:37.653Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 146,
+      "target_id": "WIN-027",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-16T07:38:54.566Z",
       "popped_by": "decider"
     }
   ],
