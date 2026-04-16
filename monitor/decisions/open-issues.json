@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-16T11:36:25.305Z",
+  "last_updated": "2026-04-16T15:38:01.184Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -84,5 +84,5 @@
       "fix_date": null
     }
   ],
-  "next_id": 1053
+  "next_id": 1057
 }
