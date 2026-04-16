@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-04-16T07:37:00.199Z",
+  "generated_at": "2026-04-16T11:33:51.833Z",
   "total_reviews": 195,
   "already_processed": 278,
-  "pending_count": 0,
+  "pending_count": 1,
   "severity_breakdown": {
     "critical": 0,
     "major": 0,
     "moderate": 0,
-    "minor": 0,
+    "minor": 1,
     "none": 0
   },
   "defense_survives_breakdown": {
@@ -3906,26 +3906,6 @@
       ]
     },
     {
-      "win_id": "WIN-027",
-      "topic": "Southern Distance Quadratic — post-queue_144 patch review",
-      "issues_created": 0,
-      "holes_found": 3,
-      "missing_holes": [
-        {
-          "severity": "moderate",
-          "summary": "Internal self-contradiction in parameter enumeration within detail_evidence. The V50.6 paragraph (patched in this cycle) correctly names the four distance parameters as (H_0, lambda, EW scale 0.9941, r_eq = 14,105 km). Two paragraphs later, the Scale comparison paragraph still reads: \"The dome needs"
-        },
-        {
-          "severity": "minor",
-          "summary": "Three-layer precision inconsistency. The finding (summary table) says \"globe great-circle achieves <0.5% error.\" The tldr_evidence says \"sub-meter precision globally.\" The detail_evidence and detail_verdict_text say \"sub-millimetre absolute accuracy.\" These are three different precision claims, each"
-        },
-        {
-          "severity": "minor",
-          "summary": "The Scale comparison paragraph counts \"a base disc radius\" as a free parameter alongside \"an exponential height function\" (which contains H_0 and lambda). If counting free parameters, the disc radius (20,015 km) is arguably not independently fitted — it is pi times Earth radius, fixed by the AE proj"
-        }
-      ]
-    },
-    {
       "win_id": "WIN-028",
       "topic": "Bermuda Triangle / East Japan Geometric Symmetry",
       "issues_created": 0,
@@ -5566,6 +5546,41 @@
       ]
     }
   ],
-  "under_covered_count": 188,
-  "pending_reviews": []
+  "under_covered_count": 187,
+  "pending_reviews": [
+    {
+      "item_id": "WIN-027",
+      "win_id": "WIN-027",
+      "review_file": "monitor/curmudgeon/reviews/WIN-027.c6.json",
+      "reviewed_at": "2026-04-16T07:09:28.027Z",
+      "cycle": 6,
+      "topic": "Southern Distance Quadratic — post-queue_146 patch verification (3 c5 patches)",
+      "verdict_holds": true,
+      "confidence": 0.95,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "minor",
+          "summary": "tldr_verdict precision inconsistency: sole surviving sub-meter claim. Finding says sub-millimetre, tldr_evidence says sub-millimetre algorithmic precision, detail_evidence says sub-millimetre absolute accuracy, detail_verdict_text says sub-millimetre absolute accuracy. But tldr_verdict still reads: ",
+          "recommendation": "In tldr_verdict, change \"sub-meter precision\" to \"sub-millimetre precision\" to match all other layers. This completes the precision alignment that c5 identified and the decider partially executed.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "minor",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "hardcoded",
+        "relabels_standard": true,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "All three c5 patches land cleanly. The moderate c5 hole (Scale comparison paragraph listing ellipse axis ratio as fourth parameter, creating internal self-contradiction) is fully resolved — both the V",
+      "stronger_arguments_count": 2,
+      "defense_survives": 1,
+      "best_defense": "Post-patch, the internal self-contradiction attack is fully dead — the parameter list is now consistent throughout. The strongest remaining line for a dome defender is the single tldr_verdict sub-meter claim: \"Your own summary says sub-meter but your detail says sub-millimetre. You cannot even state",
+      "preemptive_recommendation": "Fix tldr_verdict sub-meter → sub-millimetre. After that fix, defense_survives drops to 0 for credibility attacks. The remaining substantive defenses (contesting benchmark fairness, disputing flight data) are weak and do not require text changes.",
+      "needs_full_read": false
+    }
+  ]
 }

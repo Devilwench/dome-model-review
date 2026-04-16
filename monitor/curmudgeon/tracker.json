@@ -1205,6 +1205,14 @@
         "body_length": 4675,
         "total_section_length": 5292
       }
+    },
+    {
+      "id": "WIN-057b",
+      "type": "win",
+      "section": "3",
+      "topic": "SAA Global Cavity Re-Pressurization — MHD explains synchronous decay",
+      "status": "pending",
+      "added_at": "2026-04-16T11:36:17.305Z"
     }
   ],
   "holistic_checks": [
@@ -1257,7 +1265,7 @@
     }
   ],
   "items_reviewed": 94,
-  "total_items": 71,
+  "total_items": 72,
   "cycle": 2,
   "last_review_time": "2026-04-15T19:11:10.314Z",
   "last_review_item": "WIN-024",

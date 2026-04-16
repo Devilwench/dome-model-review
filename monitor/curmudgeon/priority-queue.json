@@ -19,8 +19,24 @@
     "decider",
     "tinker"
   ],
-  "queue": [],
-  "next_id": 147,
+  "queue": [
+    {
+      "queue_id": 147,
+      "target_type": "win-new",
+      "target_id": "WIN-057b",
+      "reason": "New WIN onboarded from analyst EXP-166: SAA Global Cavity Re-Pressurization / SAA Dual-Lobe Synchronous Decay",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-16T11:36:17.320Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-166.json",
+        "related_issues": [
+          "ISS-1017"
+        ],
+        "human_note": null
+      }
+    }
+  ],
+  "next_id": 148,
   "history": [
     {
       "queue_id": 113,

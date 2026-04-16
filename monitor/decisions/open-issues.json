@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-16T07:38:40.000Z",
+  "last_updated": "2026-04-16T11:36:25.305Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -70,19 +70,6 @@
       "wontfix_reason": "Gap is benign — no content lost. EXP IDs are not referenced by any build process. Logging for auditability only.",
       "wontfix_at": "2026-04-14T21:24:12Z",
       "notes": "Filed and immediately wontfix to clear from integrity backlog."
-    },
-    {
-      "id": "ISS-1017",
-      "win_id": "057",
-      "severity": "minor",
-      "category": "coverage",
-      "status": "assigned-analyst",
-      "description": "Dome site reuses WIN-057 for two distinct claims: \"Two-Zone Disc Topology\" (our coverage, Prospective Weekly) and \"SAA Simultaneous Acceleration\" (Prospective list, uncovered by our review). The SAA Simultaneous Acceleration claim is a separate prospective claim that our wins.json does not evaluate. The dome number collision is itself evidence of numbering instability we critique, but the content divergence is an analytical coverage gap.",
-      "found_by": "integrity-2026-04-14",
-      "found_at": "2026-04-14T21:24:12Z",
-      "notes": "Analyst should decide: (a) add WIN-057b for SAA Simultaneous Acceleration (mirrors 058/058b pattern), or (b) add a note in WIN-057 prose about the numbering collision. Not urgent — the SAA claim is prospective with no current test window closure.",
-      "assigned_at": "2026-04-16T07:38:40.000Z",
-      "assigned_to_exp": "EXP-166"
     },
     {
       "id": "ISS-1043",

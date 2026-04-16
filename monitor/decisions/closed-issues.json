@@ -13546,6 +13546,22 @@
       "created_at": "2026-04-16T03:40:19.515Z",
       "fixed_at": "2026-04-16T03:42:40.519Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1017",
+      "win_id": "057",
+      "severity": "minor",
+      "category": "coverage",
+      "status": "fixed",
+      "description": "Dome site reuses WIN-057 for two distinct claims: \"Two-Zone Disc Topology\" (our coverage, Prospective Weekly) and \"SAA Simultaneous Acceleration\" (Prospective list, uncovered by our review). The SAA Simultaneous Acceleration claim is a separate prospective claim that our wins.json does not evaluate. The dome number collision is itself evidence of numbering instability we critique, but the content divergence is an analytical coverage gap.",
+      "found_by": "integrity-2026-04-14",
+      "found_at": "2026-04-14T21:24:12Z",
+      "notes": "Analyst should decide: (a) add WIN-057b for SAA Simultaneous Acceleration (mirrors 058/058b pattern), or (b) add a note in WIN-057 prose about the numbering collision. Not urgent — the SAA claim is prospective with no current test window closure.",
+      "assigned_at": "2026-04-16T07:38:40.000Z",
+      "assigned_to_exp": "EXP-166",
+      "fixed_at": "2026-04-16T11:36:25.305Z",
+      "fixed_by": "decider-self-apply",
+      "resolution": "WIN-057b added to wins.json via EXP-166 integration. SAA Global Cavity Re-Pressurization claim evaluated as Std Model Explains."
     }
   ]
 }
