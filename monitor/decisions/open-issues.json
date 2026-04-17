@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-17T18:24:28.952Z",
+  "last_updated": "2026-04-17T18:26:25.231Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -126,7 +126,20 @@
       "found_at": "2026-04-17T16:40:15.685Z",
       "fix_details": null,
       "fix_date": null
+    },
+    {
+      "id": "ISS-1078",
+      "win_id": null,
+      "severity": "minor",
+      "category": "styling",
+      "status": "open",
+      "description": "Hardcoded light-theme backgrounds in sections.json inline styles: part1.html (background:#f5f5f5 on monospace code block) and part6.html (background:#fff wrapping patent image). Should use var(--card-bg) or shared CSS utility class for theme consistency.",
+      "found_by": "integrity-2026-04-17",
+      "found_at": "2026-04-17T18:26:11.014Z",
+      "source": "monitor/integrity/report-2026-04-17T09-00.json",
+      "fix_details": null,
+      "fix_date": null
     }
   ],
-  "next_id": 1078
+  "next_id": 1080
 }

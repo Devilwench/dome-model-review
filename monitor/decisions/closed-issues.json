@@ -13926,6 +13926,21 @@
       "fix_date": null,
       "fixed_at": "2026-04-17T18:24:28.952Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1079",
+      "win_id": null,
+      "severity": "minor",
+      "category": "content-improvement",
+      "status": "fixed",
+      "description": "Prediction MT-003 (Schumann suppression G3 storm test) has is_genuinely_prospective=true but no tldr field. Every other genuinely-prospective prediction has one. Add a 2-3 sentence tldr to data/predictions.json MT-003 entry.",
+      "found_by": "integrity-2026-04-17",
+      "found_at": "2026-04-17T18:26:11.014Z",
+      "source": "monitor/integrity/report-2026-04-17T09-00.json",
+      "fix_details": "MT-003 already has tldr in predictions.json. Integrity report was from 09:00Z before tldr was added. No action needed.",
+      "fix_date": null,
+      "fixed_at": "2026-04-17T18:26:25.231Z",
+      "fixed_by": "decider-self-verify"
     }
   ]
 }
