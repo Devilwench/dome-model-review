@@ -1,48 +1,62 @@
 MORNING BRIEFING — 2026-04-17
-Generated: 2026-04-17T19:30:00Z
-Curmudgeon reviews processed this run: 3 (WIN-032.c3, SEC-timestamp-error-tab-apr2026.c1, WIN-015.c4)
-Previous decider run: 2026-04-17T18:24:26Z
+Generated: 2026-04-17T19:38:00Z
+Previous decider run: 2026-04-17T18:27:58Z
+Curmudgeon reviews processed this run: 0 (queue management only)
 
-SITE HEALTH
-  Integrity: PASS (3372 tests, 0 failed — up from 3359 at last integrity run)
-  Build: Clean — node build.js html produced valid index.html
+═══ SITE HEALTH ═══
+Integrity (2026-04-17T09:00Z): PASS
+Tests: 3372 passed, 0 failed (after this run's integrations)
+Build: Clean — 1149.5 KB HTML
 
-EXTERNAL STATUS
-  Dome site: Active — 5 change records since last poller run (2026-04-17T16:20Z)
-    - methodology.json: OTS scope narrowed + 5-class claim taxonomy (KEY: canary status moved to partial-rhetorical-adoption)
-    - review-response.html: Strawman control page (ANALYZED by EXP-171 — no genuine weaknesses found)
-    - claim_index.json: WIN-058/062 collision notes added (our critique absorbed as concession)
-    - ai_manifest/llms.txt: agent_rules rewrites (instructs AI to separate claim classes)
-    - daily-ai-review.yml: Groq AI pipeline added (first run expected 2026-04-18 05:15 UTC)
-  Canary: PARTIAL-RHETORICAL-ADOPTION — structural fix (predictions-only OTS file) still missing
+═══ EXTERNAL STATUS ═══
+Dome changes: YES — THREE COMMITS 2026-04-17 (critical)
+  6e06efb: methodology.json claim taxonomy + OTS scope language
+  5021eec: review-response.html "Strawman Control" page (5 critique patterns)
+  a57e731: daily AI review pipeline + live accuracy panel
+Canary: SOFT-TRIGGER — OTS scope acknowledged in methodology.json but no
+  predictions-only anchor file created. The vocabulary of our critique is
+  absorbed; the proof structure is unchanged.
 
-INTERNAL STATUS
-  Issues created this run: 7 (ISS-1080, ISS-1084 through ISS-1090, ISS-1092)
-  Issues closed this run: 8 (ISS-1073, ISS-1081–1083, ISS-1085–1086, ISS-1090–1091)
-  Net open issues: 15 (was 10 start of run)
-  Self-applied patches: 7 (WIN-032 ×3, timestamp tab ×3, WIN-015 ×1)
-  All 3372 tests pass
+═══ WORK DONE THIS RUN ═══
+1. Integrated NEW Section 2b.5: "The 100% Dashboard: One Ruler, Twenty-Eight Rooms"
+   Using dome's own formula_runtime.json, audits all 28 scored domains:
+   14 STATIC re-refs, 5 BORROWED standard-model values, 2 TAUTOLOGY,
+   2 THEORY-FRAMEWORK, 3 LOOSE, ~2 DISCRIMINATING.
+   Cites dome's own "bookkeeping not substitute for claim-by-claim audit."
 
-TOP 3 PRIORITY ACTIONS FOR HUMAN
-  1. SCHEDULE: Restore curmudgeon interval to 240 min (currently 30 min but mode=BAU — mismatch)
-  2. BREAKING NEWS CANDIDATE: Dome author publishes strawman page, simultaneously reclassifies WINs in our direction (EXP-171 finding). Suggest adding to "Latest Findings" section.
-  3. BREAKING NEWS CANDIDATE: Dome's own taxonomy lands zero of six classified WINs in "prospective_confirmed" column (taxonomy analysis). Strong candidate for headline.
+2. Integrated NEW Section 8.17: "From Misleading AI to Managing AI"
+   Four April-2026 AI-perception-management moves: review-response.html
+   strawman control, ai_manifest.json agent_rules (soft prompt injection),
+   context.html archival relabel (tacit concession), daily_review.json pipeline.
 
-CURMUDGEON STATUS
-  Queue depth: 2 (WIN-032 re-review after patches; timestamp-error-tab re-review after major edits)
-  Mode: BAU | Interval: 30 min (should be 240 — action needed)
-  3 reviews processed this run
+3. Marked EXP-171 integrated (analysis-only, ISS-1073 already closed)
+4. Updated expansion tracker: EXP-174 (new 2b.5), EXP-175 (new 8.17) created
+5. Pushed SEC-2b.5 and SEC-8.17 to curmudgeon priority queue
+6. Processed 2 analyst proposals; ledger now 82 processed
+7. Popped 1 reviewed item from queue (timestamp-error-tab)
 
-PENDING ANALYST WORK
-  EXP-172: WIN-032 defense neutralization (advocate defense_survives=3 from c3 review)
-  EXP-173: Timestamp tab citation verification (methodology.json + claim_index.json live URLs)
+═══ ISSUES ═══
+Open: 12 total (1 major, 5 moderate, 6 minor)
+  Major: ISS-1084 (WIN-032 defense survives — needs EXP-172 analyst work)
+  Moderate: ISS-1074 (daily AI pipeline — now covered by SEC-8.17)
+            ISS-1087, ISS-1088, ISS-1089 (Timestamp Error tab refinements)
+            ISS-1043 (WIN-044 code_analysis)
 
-KEY DEFERRED ISSUES
-  ISS-1087/1088: Moderate precision improvements to timestamp tab ("rhetorical"→"documentary"; registry_counts caveat)
-  ISS-1043: WIN-044 monitoring tag (pre-existing, moderate)
-  ISS-1074: Dome daily AI review pipeline code_analysis entry (moderate, pre-existing)
+═══ TOP 3 ACTIONS ═══
+1. SCHEDULE: Restore BAU intervals (240/120/240 min). Currently at 30/30/60.
+   Mode=bau but schedules are fast. No pipeline changes needed, just scheduler.
 
-PREDICTION WATCH
-  PRED-105 window closes 2026-04-18 — watch for result
-  End-of-April: several "April 2026" windows close — expect batch new WINs or "refined" labels
-  PRED-TIER-3 (August 2026 eclipse, SG gravimeter) — verified timing matches tab
+2. CURMUDGEON: Review SEC-2b.5 and SEC-8.17 — two new sections queued.
+   These are the most consequential new content additions of this cycle.
+
+3. ANALYST: When free, pick up EXP-172 (tracker) for WIN-032 defense text,
+   and EXP-173 (tracker) for Timestamp Error tab verbatim verification.
+
+═══ BREAKING NEWS CANDIDATES ═══
+★★★ "Dome's Own Math: 100%/28 of 28 Collapses to 2 Real Tests" — new Sec 2b.5
+★★  "Dome Now Ships AI Steering Layer" — new Sec 8.17
+★★  "Dome Reclassifies WINs-013/014/058 While Calling Same Critique a Strawman"
+
+═══ CURMUDGEON QUEUE ═══
+Mode: BAU | Depth: 3 | Schedule: 30min (should be 240min)
+Items: timestamp-error-tab-apr2026-update, SEC-2b.5, SEC-8.17

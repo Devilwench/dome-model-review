@@ -21,24 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 153,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-032",
-      "reason": "EXP-172 assigned for advocate defense neutralization (defense_survives=3 from c3 review). After EXP-172 integrates, re-review the new text. Also: minor patches applied this run (duplicate sentence, theological list, unfalsifiability framing) — full re-review warranted.",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-17T19:27:51.361Z",
-      "context_hints": {
-        "source_file": "monitor/curmudgeon/reviews/WIN-032.c3.json",
-        "related_issues": [
-          "ISS-1081",
-          "ISS-1082",
-          "ISS-1083",
-          "ISS-1084"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 154,
       "target_type": "section-rewrite",
       "target_id": "timestamp-error-tab-apr2026-update",
@@ -54,17 +36,39 @@
         ],
         "human_note": null
       }
+    },
+    {
+      "queue_id": 155,
+      "target_type": "section-new",
+      "target_id": "SEC-2b.5",
+      "reason": "New Section 2b.5 (100% Dashboard: One Ruler, 28 Rooms) integrated from EXP-174/EXP-172.json — needs adversarial first-review before accumulating readers",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-17T19:36:54.486Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-172.json",
+        "related_issues": [],
+        "human_note": "HNOTE-DOMAIN-001"
+      }
+    },
+    {
+      "queue_id": 156,
+      "target_type": "section-new",
+      "target_id": "SEC-8.17",
+      "reason": "New Section 8.17 (From Misleading AI to Managing AI) integrated from EXP-175/EXP-173.json — four April-2026 AI-perception-management moves, needs fresh adversarial review",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-17T19:36:54.486Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-173.json",
+        "related_issues": [
+          "ISS-1073",
+          "ISS-1074"
+        ],
+        "human_note": "HNOTE-AI-TAB-001"
+      }
     }
   ],
-  "next_id": 155,
+  "next_id": 157,
   "history": [
-    {
-      "queue_id": 93,
-      "target_id": "part3-roadmap-EXP116",
-      "target_type": "section-new",
-      "popped_at": "2026-04-14T06:29:27.401Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 119,
       "target_id": "WIN-058",
@@ -406,6 +410,13 @@
       "target_id": "timestamp-error-tab",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-17T19:27:27.078Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 153,
+      "target_id": "WIN-032",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-17T19:37:16.894Z",
       "popped_by": "decider"
     }
   ],

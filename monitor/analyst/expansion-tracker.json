@@ -3062,7 +3062,11 @@
       "notes": "ISS-1073 (major): Dome author added docs/review-response.html (2026-04-17, commit 5021eec \"Harden site against strawman critiques\"). This is the most direct acknowledgement-of-critics signal to date. Analyst must: (1) fetch and read review-response.html in full; (2) identify which of our arguments the dome characterizes as strawmen; (3) assess whether any labeled arguments are ACTUALLY weaker than we claim (genuine holes to fix) vs. deliberate misrepresentation; (4) flag any new rebuttals that introduce arguments not covered in our existing review sections; (5) if genuine weaknesses found, file sub-issues or expansion items. Output: analysis in an expansions/EXP-NNN.json file; no prose replacement_html needed unless genuine weakness found.",
       "created_at": "2026-04-17T17:41:07.570Z",
       "completed_at": "2026-04-17T18:24:11.875Z",
-      "output_file": "monitor/analyst/expansions/EXP-171.json"
+      "output_file": "monitor/analyst/expansions/EXP-171.json",
+      "integrated": true,
+      "integrated_at": "2026-04-17T19:35:40.397Z",
+      "integration_mode": "no_op_confirmation",
+      "integration_note": "No prose replacement_html (analysis-only). ISS-1073 closed by prior decider run. EXP-171 analysis findings confirmed: all five dome strawman labels mischaracterize our positions. No prose changes needed."
     },
     {
       "id": "EXP-172",
@@ -3091,9 +3095,46 @@
       "status": "pending",
       "notes": "Fetch live methodology.json and claim_index.json from john09289.github.io. Diff verbatim quotes (what_ots_proves, what_ots_does_not_prove, claim_level_rule, agent_rules[0]) and WIN-level classifications against what the ts-april-2026-update block states. If any mismatch, generate a patch. If all match, close ISS-1089. No section rewrite needed — this is just a verification + possible targeted correction.",
       "created_at": "2026-04-17T19:24:33.368Z"
+    },
+    {
+      "id": "EXP-174",
+      "target": "NEW Section 2b.5: The 100% Dashboard: One Ruler, Twenty-Eight Rooms (from expansions/EXP-172.json output)",
+      "source": "HNOTE-DOMAIN-001 (human editor) + analyst Mode 4",
+      "curmudgeon_review": null,
+      "issue_ids": [],
+      "category": "code-analysis",
+      "priority": "high",
+      "status": "complete",
+      "notes": "Integrated 2026-04-17 as new Section 2b.5. Audits all 28 scored domains against formula_runtime.json. Classifies: 14 STATIC, 5 BORROWED, 2 TAUTOLOGY, 2 THEORY, 3 LOOSE, ~2 DISCRIMINATING. Expansion output file was named EXP-172.json (naming conflict with EXP-172 WIN-032 defense task — tracker entries are different items).",
+      "created_at": "2026-04-17T19:36:43.335Z",
+      "completed_at": "2026-04-17T19:36:43.335Z",
+      "integrated": true,
+      "integrated_at": "2026-04-17T19:36:43.335Z",
+      "integration_mode": "section-new",
+      "output_file": "monitor/analyst/expansions/EXP-172.json"
+    },
+    {
+      "id": "EXP-175",
+      "target": "NEW Section 8.17: From Misleading AI to Managing AI — The April 2026 Escalation (from expansions/EXP-173.json output)",
+      "source": "HNOTE-AI-TAB-001 (human editor) + analyst Mode 4 companion to EXP-171",
+      "curmudgeon_review": null,
+      "issue_ids": [
+        "ISS-1073",
+        "ISS-1074"
+      ],
+      "category": "content-update",
+      "priority": "high",
+      "status": "complete",
+      "notes": "Integrated 2026-04-17 as new Section 8.17 in Part 8 (AI tab). Covers four April-2026 AI-perception-management moves: review-response.html, ai_manifest.json agent_rules, context.html archival relabel, daily_review.json pipeline. Companion to EXP-171 ISS-1073 resolution. Expansion output file was named EXP-173.json (naming conflict with EXP-173 Timestamp verification task — tracker entries are different items).",
+      "created_at": "2026-04-17T19:36:43.335Z",
+      "completed_at": "2026-04-17T19:36:43.335Z",
+      "integrated": true,
+      "integrated_at": "2026-04-17T19:36:43.335Z",
+      "integration_mode": "section-new",
+      "output_file": "monitor/analyst/expansions/EXP-173.json"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 174,
+  "next_id": 176,
   "total_items": 153
 }
