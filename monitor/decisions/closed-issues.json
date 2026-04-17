@@ -13896,6 +13896,36 @@
       "fix_date": "2026-04-17",
       "fixed_at": "2026-04-17T18:06:56.981Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1076",
+      "win_id": "WIN-032",
+      "severity": "major",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "WIN-032 detail_evidence contains hardcoded stale numbers: (1) \"4 theological claims in the 67\" — wins.json now has 71 WINs (not 67); (2) \"95.2% accuracy figure\" — dome_claimed_accuracy is 94.5% (not 95.2%). CLAUDE.md forbids hardcoded numbers that can be derived from data. Fix: use version-neutral phrasing \"in the current WIN count\" and \"dome's claimed accuracy figure\".",
+      "found_by": "curmudgeon-c3",
+      "found_at": "2026-04-17T18:23:30.890Z",
+      "source": "monitor/curmudgeon/reviews/WIN-032.c3.json (workspace)",
+      "fix_details": "WIN-032 detail_evidence patched: removed stale version-specific numbers (39-domain→live monitoring, 67/95.2%→version-neutral). Commit 09a4086.",
+      "fix_date": null,
+      "fixed_at": "2026-04-17T18:24:28.952Z",
+      "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1077",
+      "win_id": "WIN-032",
+      "severity": "moderate",
+      "category": "factual_error",
+      "status": "fixed",
+      "description": "WIN-032 detail_evidence says \"does not include WIN-032 in its 39-domain audit engine\" — 39-domain is V50.6 era. V51.0 live dashboard is a \"20-Domain Convergence Dashboard\" (raw-text/08-live-power.txt). Fix: version-neutral phrasing such as \"live monitoring audit engine\" or \"monitoring audit engine\".",
+      "found_by": "curmudgeon-c3",
+      "found_at": "2026-04-17T18:23:30.890Z",
+      "source": "monitor/curmudgeon/reviews/WIN-032.c3.json (workspace)",
+      "fix_details": "WIN-032 detail_evidence patched: removed stale version-specific numbers (39-domain→live monitoring, 67/95.2%→version-neutral). Commit 09a4086.",
+      "fix_date": null,
+      "fixed_at": "2026-04-17T18:24:28.952Z",
+      "fixed_by": "decider-self-apply"
     }
   ]
 }
