@@ -1,64 +1,45 @@
-MORNING BRIEFING — 2026-04-16
-Generated: 2026-04-16T15:40:23Z
-Curmudgeon reviews processed this run: 2 (WIN-068 c5, WIN-027 c6)
-Previous decider run: 2026-04-16T10:00Z (daily-report-2026-04-16T10-00.json)
+MORNING BRIEFING — 2026-04-17
+Generated: 2026-04-17T05:30:00Z
+Curmudgeon reviews processed this run: 1 (WIN-057b.c1)
+Previous decider run: 2026-04-16T15:40
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SITE HEALTH
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Integrity: 3359 tests pass — no failures.
-Build: HTML generated clean (1114 KB).
+SITE HEALTH (Integrity):
+  Build drift RESOLVED — ran build.js publish; HTML now matches source data.
+  Remaining integrity items (not new, not escalated):
+    - WIN-027.c6.json workspace-only (workspace-sync will handle)
+    - 92 orphaned expansion files + 5 phantom tracker entries (known backlog)
+    - Hardcoded colors in sections.json (part1, part6 — benign)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EXTERNAL STATUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Dome site: QUIET (19th consecutive quiet poll).
-WIN count: 69 (unchanged). V51.1 stable.
-Ongoing banner inconsistency (10 vs 9 Prospective) and accuracy rate
-inconsistency (93.3% vs 94.5%) unchanged — pre-existing issues.
+EXTERNAL STATUS:
+  Dome site: QUIET (19th consecutive). 69 WINs, 94.5%, V51.1. Unchanged.
+  No parameter changes. No canary trigger (OTS wrong-side error not fixed).
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-INTERNAL STATUS — THIS RUN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Reviews processed: 2
-  WIN-068 c5: 4 moderate/minor patches applied and self-committed.
-  WIN-027 c6: STALE — fix already applied by prior commit a40e223. Marked processed.
+INTERNAL STATUS:
+  ✅ PATCH APPLIED: WIN-057b — broken Alken 2020 DOI (10.1029/2020GL087323,
+     returns 404) replaced with verified Alken et al. (2021) IGRF-13 DOI
+     (10.1186/s40623-021-01569-z). ISS-1057 created and closed.
+     All 3359 tests pass. Published to GitHub.
 
-Patches self-applied: 4 (all for WIN-068)
-Issues created: 4 (ISS-1053–1056)
-Issues closed:  4 (ISS-1053–1056, immediately by self-apply)
-EXPs created:   1 (EXP-167: WIN-068 defense neutralization, priority moderate)
-Open issues:    6 (ISS-708, ISS-997, ISS-1043 are actionable; others wontfix/none)
+  Open issues: 6
+    ISS-708  minor   infrastructure: kill-shots.json pipeline support
+    ISS-997  minor   styling: inline italic transitions (Part 4/5)
+    ISS-1043 moderate WIN-044 monitoring tag — deferred to eclipse day 2026-08-12
+    ISS-698  minor   wontfix (external positive feedback)
+    ISS-955  none    wontfix (external positive feedback)
+    ISS-1016 none    wontfix (EXP-052 ID gap — known, benign)
 
-Curmudgeon queue: depth 1 (WIN-068 pushed for c6 review), mode BAU (480min).
+CURMUDGEON QUEUE:
+  Mode: BAU | Depth: 0 (WIN-068 popped — review exists)
+  Schedule: 8h quiet-period defaults (human-set 2026-04-16)
+  Action needed: none
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TOP 3 PRIORITY ACTIONS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. [NEXT SESSION] Analyst Mode 3: EXP-167 — WIN-068 defense neutralization.
-   Surviving defense (3/5): defender argues both Sq models and dome FSF use
-   empirical parameters. Add sentence: "FSF fitted circularly to eclipse data;
-   Sq parameters measured independently by ionosondes/satellites."
+TOP 3 PRIORITIES:
+  1. No urgent actions. Review is current, tests pass, build is published.
+  2. Next curmudgeon cycle: queue is empty. Consider pushing Part 5 (kill-shots)
+     or the ISS-997 styling area for review.
+  3. Eclipse PRED-095 (Aug 12, 2026) — WIN-044 tag fix blocked until then.
+     Flag for Q3 review cycle.
 
-2. [BACKLOG] ISS-1043: WIN-044 code_analysis.monitoring tagged 'none' but 
-   monitor.py may actually track it. Verify and correct tag.
-
-3. [BACKLOG] ISS-997: Part 4/Part 5 inline italic transition sentence — minor
-   prose fix, self-applicable.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CURMUDGEON PROGRESS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Mode: BAU (480min interval)
-Queue depth: 1 (WIN-068)
-History: WIN-068 c5 (change-triggered, reviewed today); WIN-027 c6 (priority-
-queue, also reviewed today — patch was already applied before review written).
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-CODE ANALYSIS TAG STATUS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-WIN-068 tags: monitoring=none, relabels_standard=true, post_hoc=true,
-  derives_from_dome=false — confirmed by c5 review. No sync needed.
-WIN-027 tags: monitoring=hardcoded, relabels_standard=true, post_hoc=true,
-  derives_from_dome=false — confirmed by c6 review. No sync needed.
-ISS-1043: WIN-044 monitoring tag may be wrong — pending investigation.
+PREDICTIONS:
+  95 total predictions tracked. 0 active test windows. Next notable:
+  PRED-095 (eclipse 2026-08-12, -17.8 nT ±2 nT) — ~4 months out.
