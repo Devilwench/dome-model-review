@@ -567,5 +567,32 @@
       "ISS-1070",
       "ISS-1071"
     ]
+  },
+  {
+    "id": "ATT-2026-04-17T19:26:28.767Z",
+    "status": "pending",
+    "target_type": "win",
+    "target_id": "WIN-032",
+    "reason": "Patched detail_evidence (\"doubly unfalsifiable\" → two-layer framing; enumerated 4 theological WINs) and detail_verdict_text (removed duplicate monitoring sentence). Analyst should verify the updated text does not undermine prior analysis, especially the Scorecard-Inflation argument. Also: EXP-172 queued for defense neutralization (advocate_mode defense_survives=3).",
+    "pushed_by": "decider",
+    "pushed_at": "2026-04-17T19:26:28.767Z",
+    "related_issues": [
+      "ISS-1081",
+      "ISS-1082",
+      "ISS-1083",
+      "ISS-1084"
+    ]
+  },
+  {
+    "id": "ATT-2026-04-17T19:26:28.769Z",
+    "status": "pending",
+    "target_type": "win",
+    "target_id": "WIN-015",
+    "reason": "Dropped Kuhlke (2010) citation from detail_verdict_text (JSE fringe venue). Analyst should confirm Bruhn (2006) alone remains sufficient citation support for the invalidity argument.",
+    "pushed_by": "decider",
+    "pushed_at": "2026-04-17T19:26:28.767Z",
+    "related_issues": [
+      "ISS-1091"
+    ]
   }
 ]

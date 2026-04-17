@@ -3063,9 +3063,37 @@
       "created_at": "2026-04-17T17:41:07.570Z",
       "completed_at": "2026-04-17T18:24:11.875Z",
       "output_file": "monitor/analyst/expansions/EXP-171.json"
+    },
+    {
+      "id": "EXP-172",
+      "target": "WIN-032 defense neutralization — asymmetric unfalsifiability argument (rated 3/5)",
+      "source": "curmudgeon-cycle3-advocate",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-032.c3.json",
+      "issue_ids": [
+        "ISS-1084"
+      ],
+      "category": "defense",
+      "priority": "high",
+      "status": "pending",
+      "notes": "Surviving defense (3/5): dome advocate argues review exempts standard physics from unfalsifiability test while applying it to theological claims. Add preemptive text: \"The dome cannot use a looser definition of CONFIRMED for claims it cannot measure and still put them in the same scorecard as empirical measurements with falsification thresholds. Either CONFIRMED has one meaning across all WINs — in which case WIN-032 does not qualify — or the dome must separate scorecards. Our Scorecard-Inflation / Pattern 6 argument depends on holding this line.\" Full preemptive text in curmudgeon c3 review advocate_mode.preemptive_recommendation.",
+      "created_at": "2026-04-17T19:24:21.765Z"
+    },
+    {
+      "id": "EXP-173",
+      "target": "Timestamp Error tab ts-april-2026-update block: verify verbatim quotes from methodology.json and classification tags from claim_index.json",
+      "source": "curmudgeon-cycle1-review",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-timestamp-error-tab-apr2026.c1.json",
+      "issue_ids": [
+        "ISS-1089"
+      ],
+      "category": "citation",
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Fetch live methodology.json and claim_index.json from john09289.github.io. Diff verbatim quotes (what_ots_proves, what_ots_does_not_prove, claim_level_rule, agent_rules[0]) and WIN-level classifications against what the ts-april-2026-update block states. If any mismatch, generate a patch. If all match, close ISS-1089. No section rewrite needed — this is just a verification + possible targeted correction.",
+      "created_at": "2026-04-17T19:24:33.368Z"
     }
   ],
   "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 172,
+  "next_id": 174,
   "total_items": 153
 }
