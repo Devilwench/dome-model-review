@@ -1,65 +1,41 @@
 MORNING BRIEFING — 2026-04-17
-Generated: 2026-04-17T20:29:09.000Z
-Curmudgeon reviews processed this run: 0
-Previous decider run: 2026-04-17T19:37Z (approximate)
+Generated: 2026-04-17T21:32:48.835Z
+Curmudgeon reviews processed this run: 4 (SEC-2b.5.c1, SEC-timestamp-error-tab.c2, WIN-032.c4, WIN-051.c3)
+Previous decider run: 2026-04-17T19:29:06.858Z
 
-SITE HEALTH
-  Integrity: PASS (last report 2026-04-17T09:00Z)
-  Build: 3372 tests passed, 0 failed
-  HTML generated: 1151.2 KB
+SITE HEALTH (integrity: PASS)
+  All 3373 tests pass. No critical integrity issues.
+  No broken anchors, no build drift.
 
 EXTERNAL STATUS
-  Dome site: Medium threat. April 2026 commit batch active (5 changes from 2026-04-17T16:20Z poll):
-    - methodology.json OTS scope narrowing (soft canary trigger — structural fix still absent)
-    - review-response.html strawman hardening (5 labels, all mischaracterize our positions)
-    - GitHub Actions daily AI review pipeline added (.github/workflows/daily-ai-review.yml)
-    - claim_index WIN-058/WIN-062 collision disambiguation
-    - ai_manifest/llms.txt agent_rules rewrites
+  Dome changes: QUIET (1 consecutive quiet poll after CRITICAL on 2026-04-17T16:21:52Z)
+  OTS canary: soft-trigger inherited, analyst adjudicated as partial-rhetorical-adoption
+  WIN count: 69 (unchanged, matches our 71 tracked)
+  Canary status: soft-trigger only, no structural fix by dome author
 
-THIS RUN — WHAT WAS DONE
-  Priority 1b: 3 analyst proposals processed
-    - proposal-ISS-1084-resolution.json → EXP-174 integrated, ISS-1084 closed
-    - proposal-collision-fix-EXP-172-173.json → housekeeping acknowledged
-    - proposal-ISS-1089-resolution.json → EXP-175 integrated (pending-human)
-  
-  Priority 4: 5 expansions marked integrated
-    - EXP-171: no-op confirmed (ISS-1073 already closed)
-    - EXP-172: confirmed already in sections.json (Section 2b.5)
-    - EXP-173: confirmed already in sections.json (Section 8.17)
-    - EXP-174: WIN-032 patch applied → 3372/3372 tests pass → ISS-1084 closed
-    - EXP-175: pending-human (4 citation patches for generate-html.js)
+INTERNAL STATUS
+  Open issues: 17 | Closed: 963
+  Severity breakdown: critical=0, major=0, moderate=7, minor=8
+  Issues created this run: 12 (9 patched+closed, 3 remain open)
+  Issues closed this run: 9
 
-OPEN ISSUES (14 total)
-  moderate: ISS-1043, ISS-1074, ISS-1087, ISS-1088
-  minor: ISS-708, ISS-997, ISS-1062, ISS-1078, ISS-1080, ISS-1092
-  pending-human: ISS-1089 (EXP-175 patches ready for generate-html.js)
-  wontfix: ISS-698, ISS-955, ISS-1016
+PATCHES APPLIED (9 total, commit e51b1c5)
+  [1] MAJOR fixed: SEC-2b.5 kappa BOU2017 attribution error (ISS-1094)
+  [2-8] Moderate/minor SEC-2b.5 holes (ISS-1095..1101)
+  [9] EXP-176 integrated: Part 4.1 rewritten for 28-domain dashboard (ISS-1102)
 
-TOP 3 PRIORITY ACTIONS FOR HUMAN
-  1. [NEXT SESSION] Apply EXP-175 patches P1-P4 to build-scripts/generate-html.js
-     - File: monitor/analyst/expansions/EXP-175.json, see patches[] array
-     - Fixes 7 misquotes of methodology.json agent_rules inside quote marks
-     - Line 1610 (P1), Line 1614 (P2+P4), Line 1616 (P3)
-     - Run: node build.js html && node test.js after applying
+EXPANSIONS
+  EXP-176 integrated (Part 4.1 28-domain rewrite). Expansion-tracker updated.
+  Proposal HNOTE-PART4-DOMAINS-001-completion.json processed and added to ledger.
 
-  2. [NEXT SESSION] Restore BAU schedules
-     - Mode=BAU but curmudgeon at 30min (default 240), analyst at 30min (default 120), decider at 60min (default 240)
-     - Queue depth=3 (timestamp-error-tab, SEC-2b.5, SEC-8.17)
-     - No active churn-and-burn work; schedules should return to BAU intervals
+CURMUDGEON QUEUE
+  Mode: BAU | Depth: 3
+  Items: timestamp-error-tab (q154), SEC-8.17 (q156), SEC-4.1-new (q158)
+  SEC-2b.5 (q155) popped after cycle 1 review confirmed.
+  ⚠ SCHEDULE MISMATCH: mode=bau but interval=30min (expected 240min)
+    schedule_action_needed: restore_to_bau
 
-  3. [BACKLOG] pred-solar-009=open_refinement in claim_index.json
-     - Author publicly classified his cleanest adverse result
-     - Consider noting in predictions tab or adding to newsworthy section
-
-CURMUDGEON PROGRESS
-  Queue depth: 3 items
-    - timestamp-error-tab-apr2026-update (section-rewrite, from EXP-170)
-    - SEC-2b.5 (section-new, from EXP-172)
-    - SEC-8.17 (section-new, from EXP-173)
-  Mode: BAU (schedules still fast from churn-and-burn — human should restore)
-  WIN-032 requeue popped: WIN-032.c3.json exists, curmudgeon will detect patch via change-detection on next cycle
-
-UPCOMING ATTENTION
-  - PRED-105 window closes 2026-04-18 — watch for dome verdict
-  - End-of-April: several PRED "April 2026" windows closing
-  - EXP-175 flagged pred-solar-009 now classified in claim_index.json = open_refinement
+TOP 3 ACTIONS
+  1. [NEXT SESSION] Restore curmudgeon schedule to BAU intervals (30min->240min)
+  2. [IMMEDIATE] PRED-105 copper-coil cucumber test closes <24h; watch next poll
+  3. [NEXT SESSION] ISS-1104: route dome-WIN- prefix clarification to analyst (SEC-2b.5)

@@ -3162,6 +3162,22 @@
       "integrated_at": "2026-04-17T21:31:32.905Z",
       "integration_mode": "sections-html-replace",
       "integration_issue_id": "ISS-1102"
+    },
+    {
+      "id": "EXP-177",
+      "target": "SEC-2b.5: disambiguate dome-side WIN-NNN labels in Domain-by-domain audit from our review's WIN namespace",
+      "source": "curmudgeon-SEC-2b5-c1",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.5.c1.json",
+      "issue_ids": [
+        "ISS-1104"
+      ],
+      "category": "citation",
+      "priority": "medium",
+      "status": "complete",
+      "notes": "SEC-2b.5's Domain-by-domain audit uses bare 'WIN-NNN' labels from the dome's status_history.json source strings that collide with our own WIN namespace used elsewhere in the review (300+ occurrences in data/sections.json). Two concrete collisions: our WIN-015 (Meyl scalar Faraday) vs dome's WIN-015 (SAA Decay Rate); dome's WIN-075/WIN-076 lie past our last primary WIN id (069). Two surgical patches: P1 adds a one-sentence 'Notation' paragraph at the top of the Domain-by-domain audit explaining these are dome-side labels, naming the two concrete collisions. P2 tweaks the closing inflation sentence ('Critically, WIN-024 appears twice ...') to prefix 'the dome's' four times, closing the same ambiguity at the rhetorical crescendo. Also adds a minor strengthening: notes that WIN-024's boundary is counted separately from the wind speed that defines it — sharpens the double-count argument at no extra cost. Does not rewrite the section — preserves verbatim the dome's source-string quotations.",
+      "created_at": "2026-04-17T22:21:38.097Z",
+      "output_file": "monitor/analyst/expansions/EXP-177.json",
+      "completed_at": "2026-04-17T22:21:38.097Z"
     }
   ],
   "last_updated": "2026-04-17T20:51:24.354Z",
