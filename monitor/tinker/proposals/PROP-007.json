@@ -1,7 +1,10 @@
 {
   "id": "PROP-007",
   "created_at": "2026-04-15T09:55:00Z",
-  "status": "proposed",
+  "status": "implemented",
+  "implemented_at": "2026-04-16T17:02:03Z",
+  "implemented_by": "auto-detected by tinker 2026-04-17T09:39Z",
+  "actual_result": "Commit 'PROP-007: Add build.js and build-scripts utilities to OWNERSHIP table' on 2026-04-16T17:02:03Z added the following to build.js OWNERSHIP: 'build-scripts/digest-reviews.js', 'build-scripts/fix-json-quotes.js', 'build-scripts/archive-old-reports.js', and 'build.js' itself. The implementation used a narrower subset than the proposal suggested (the proposal listed 6 build-scripts; the implementation added only the 3 actively-used ones plus build.js self-sync). Verification pattern returns FIXED. FUSE staleness cascade from yesterday's report has collapsed — all 5 files in the quick-check md5 loop now match main.",
   "category": "workflow_redesign",
   "target": "build.js OWNERSHIP table + CLAUDE.md File Ownership Rules",
   "title": "Classify build.js and all build-scripts/*.js as git-owned so publish keeps workspace in sync",
