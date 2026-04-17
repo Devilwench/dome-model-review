@@ -13630,6 +13630,21 @@
       "fix_date": null,
       "fixed_at": "2026-04-16T15:38:01.184Z",
       "fixed_by": "decider-self-apply"
+    },
+    {
+      "id": "ISS-1057",
+      "win_id": "WIN-057b",
+      "severity": "critical",
+      "category": "citation",
+      "status": "fixed",
+      "description": "Broken DOI: Alken et al. (2020), DOI 10.1029/2020GL087323 returns 404 from CrossRef. Citation supports claim that SAA second minimum near 20S 10E is a natural consequence of reverse-flux patch migration. Replacement: Alken et al. (2021, IGRF-13), DOI: 10.1186/s40623-021-01569-z, verified resolves.",
+      "source": "curmudgeon",
+      "found_by": "curmudgeon-WIN-057b.c1",
+      "found_date": "2026-04-16",
+      "found_at": "2026-04-17T05:24:14.120Z",
+      "fixed_at": "2026-04-17T05:25:37.601Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Replaced broken DOI 10.1029/2020GL087323 with verified Alken et al. (2021) IGRF-13 DOI 10.1186/s40623-021-01569-z in WIN-057b detail_evidence"
     }
   ]
 }
