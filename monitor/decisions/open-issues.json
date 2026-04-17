@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-17T21:31:32.905Z",
+  "last_updated": "2026-04-17T23:25:40.451Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -103,13 +103,14 @@
       "severity": "moderate",
       "category": "infrastructure",
       "status": "open",
-      "description": "Dome author added .github/workflows/daily-ai-review.yml (commit a57e731 \"Add daily AI review pipeline and live accuracy panel\", 2026-04-17). Runs daily at 05:15 UTC using Groq llama-3.3-70b-versatile. A dome-side AI review pipeline is now running. Monitor daily_review.json output for dome-authored AI commentary that may mischaracterize our review or produce AI-generated rebuttals we should address. Poller should track daily_review.json for changes.",
+      "description": "Dome author added .github/workflows/daily-ai-review.yml (commit a57e731, 2026-04-17). Initially ran Groq llama-3.3-70b-versatile; current daily_review.json shows provider=local, model=deterministic-summary (pipeline replaced). Monitor daily_review.json for dome-authored AI commentary that may mischaracterize our review or produce AI-generated rebuttals. Poller should track daily_review.json for changes. Note: SEC-8.17 section updated to reflect Groq→local transition.",
       "source": "poller",
       "found_by": "poller-summary-triage",
       "found_date": "2026-04-17",
       "found_at": "2026-04-17T16:40:15.685Z",
       "fix_details": null,
-      "fix_date": null
+      "fix_date": null,
+      "last_updated": "2026-04-17T23:27:40.462Z"
     },
     {
       "id": "ISS-1078",
@@ -215,18 +216,6 @@
       "category": "missing_argument",
       "status": "open",
       "description": "SEC-2b.5: H(r) parameters (8537, 8619) presented without caveat; dome author claims these are aetheric pressure/scale derivations from first principles rather than fitted constants. Section should soften \"two numerical parameters\" framing and link to Section 1.8 analysis showing post-hoc calibration.",
-      "source": "curmudgeon-SEC-2b5-c1",
-      "found_by": "curmudgeon-SEC-2b5-c1",
-      "found_date": "2026-04-17",
-      "found_at": "2026-04-17T21:31:32.905Z"
-    },
-    {
-      "id": "ISS-1104",
-      "win_id": null,
-      "severity": "moderate",
-      "category": "citation",
-      "status": "assigned-analyst",
-      "description": "SEC-2b.5: WIN labels in the domain audit table use the same WIN-NNN format as our review's WIN namespace, but these refer to the dome site's internal status_history.json source strings. Add \"dome-WIN-\" prefix or parenthetical at list start to disambiguate.",
       "source": "curmudgeon-SEC-2b5-c1",
       "found_by": "curmudgeon-SEC-2b5-c1",
       "found_date": "2026-04-17",

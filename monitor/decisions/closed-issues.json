@@ -14237,6 +14237,21 @@
       "found_at": "2026-04-17T21:31:32.905Z",
       "fixed_at": "2026-04-17T21:31:32.905Z",
       "fixed_by": "expansion-integration-EXP-176"
+    },
+    {
+      "id": "ISS-1104",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "citation",
+      "status": "fixed",
+      "description": "SEC-2b.5: WIN labels in the domain audit table use the same WIN-NNN format as our review's WIN namespace, but these refer to the dome site's internal status_history.json source strings. Add \"dome-WIN-\" prefix or parenthetical at list start to disambiguate.",
+      "source": "curmudgeon-SEC-2b5-c1",
+      "found_by": "curmudgeon-SEC-2b5-c1",
+      "found_date": "2026-04-17",
+      "found_at": "2026-04-17T21:31:32.905Z",
+      "fixed_at": "2026-04-17T23:25:40.451Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "EXP-177 patches applied: P1 notation paragraph + P2 dome-prefix disambiguation in SEC-2b.5"
     }
   ]
 }

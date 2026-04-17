@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-17T20:19:15.875Z",
-  "total_reviews": 198,
-  "already_processed": 289,
-  "pending_count": 0,
+  "generated_at": "2026-04-17T23:19:16.044Z",
+  "total_reviews": 200,
+  "already_processed": 293,
+  "pending_count": 1,
   "severity_breakdown": {
     "critical": 0,
-    "major": 0,
+    "major": 1,
     "moderate": 0,
     "minor": 0,
     "none": 0
@@ -15,7 +15,7 @@
     "moderate": 0,
     "total_vulnerable": 0
   },
-  "needs_full_read_count": 0,
+  "needs_full_read_count": 1,
   "under_covered_processed": [
     {
       "win_id": "EVAL-GUIDE",
@@ -1578,6 +1578,66 @@
         {
           "severity": "minor",
           "summary": "The opening clause of the derivation paragraph reads 'Of the {{CA_REVIEWED}} WINs reviewed, only {{CA_DOME}} derive their predicted values from the dome's own geometric equations.' Renders as '…only 2 derive…' which is stylistically awkward — most style guides prefer spelling out small integers (<10"
+        }
+      ]
+    },
+    {
+      "win_id": "SEC-2b.5",
+      "topic": "2b.5 The 100% Dashboard: One Ruler, Twenty-Eight Rooms (new section, adversarial first-review from priority queue)",
+      "issues_created": 0,
+      "holes_found": 13,
+      "missing_holes": [
+        {
+          "severity": "major",
+          "summary": "The κ tautology attribution is factually incorrect in specifics. Section says: 'EM-Gravity Coupling κ — 1.67 vs 1.677 nT/µGal... TAUTOLOGY. κ = 1.67 is FORM-V51-004 itself. Observed 1.677 is BOU 2017 eclipse (WIN-012) — the same event used to fit κ. The parameter tested against its own calibration.'"
+        },
+        {
+          "severity": "moderate",
+          "summary": "Header-list arithmetic mismatch: the subsection is titled 'Borrowed from the standard model (5 domains)' but the <ul> that follows contains six <li> entries (K1, S2, M2, Equatorial Gravity, Aetheric Redshift Scale, P-wave Shadow Zone). The 'Why this matters' paragraph and the EXP-172 JSON both confi"
+        },
+        {
+          "severity": "moderate",
+          "summary": "Internal category-overlap is acknowledged in EXP-172's domain_parameter_mapping_summary ('counts sum to 29 not 28 because CMB Axis of Evil is counted under loose but NMP Drift is also loose... disjoint classification would be ~14 STATIC, 5 BORROWED, 2 TAUTOLOGY, 2 THEORY, 3 LOOSE, 2 DISCRIMINATING')"
+        },
+        {
+          "severity": "moderate",
+          "summary": "Internal contradiction on Aetheric Redshift Scale. Section lists it twice with incompatible framings: (a) under 'Borrowed from the standard model (5 domains)' as 'λ_A is computed as c/H₀ with H₀ = 70 km/s/Mpc — the ΛCDM Hubble constant. The \"aetheric\" label is a rename of standard cosmology's invers"
+        },
+        {
+          "severity": "moderate",
+          "summary": "WIN-NNN identifier ambiguity. The section writes '(WIN-015, 20% tol)', '(WIN-075, 5% tol)', '(OPEN-007, 5% tol)' etc., quoting the dome's status_history.json source strings. But our review ALSO uses a WIN-NNN namespace, and our numbers diverge from the dome's: our WIN-001 is 'Tesla 11.78 Hz resonanc"
+        },
+        {
+          "severity": "moderate",
+          "summary": "'Domains 27 and 33' in the 'WIN-024 appears twice (domains 27 and 33)' sentence. The section counts only 28 scored domains, so domain #33 cannot be a scored-domain index. It presumably refers to the row position in the full 39-domain status_history.json list (which includes unscored / pending rows)."
+        },
+        {
+          "severity": "moderate",
+          "summary": "The assertion that H(r)'s parameters (8537, 8619) were 'fitted' is stated as fact: 'FORM-V51-001 has two free parameters (8537, 8619) which were fitted'. This is our conclusion, not self-evident. The dome author's public narrative is that 8537 km is a pressure-balance derivation and 8619 km is an ae"
+        },
+        {
+          "severity": "moderate",
+          "summary": "Selleri / Lorentz theory-framework dismissal is too strong. Section: 'Choosing between Selleri\\'s absolute-simultaneity reformulation and Lorentz\\'s relativity framework is a mathematical equivalence; GPS engineers obtain the same numbers either way. This is not a data test.' A defender can counter:"
+        },
+        {
+          "severity": "minor",
+          "summary": "'Pulsing green ring' rhetorical flourish may not match every reader's rendering of the live dashboard. If the dome author later redesigns the UI (static green vs animated), the section's visual description becomes a verifiable mismatch. Low stakes but easy to avoid."
+        },
+        {
+          "severity": "minor",
+          "summary": "Mascon Gravity '~26 vs 28.1 mGal' at 23% tolerance is classified under STATIC but is actually a range (~26 vs 28.1) with a non-trivial tolerance, and the predicted value is 'approximate' (~26). The status_history source string uses WIN-076 static win per live fetch — so the STATIC classification is "
+        },
+        {
+          "severity": "minor",
+          "summary": "'Tesla Harmonic Series — \"Present\" vs \"Present\", 0% tol. STATIC (WIN-001 static win). If the fundamental exists, its harmonics exist as arithmetic.' This dismissal is brittle. A defender can reply: 'Harmonics of a physical resonator are not pure arithmetic — their presence at given amplitudes tests "
+        },
+        {
+          "severity": "minor",
+          "summary": "κ number inconsistency: Section writes 'κ = 1.672' in the Tesla-family header text ('driven by disc_radius = 20,015 km and κ = 1.672') AND 'κ = 1.67' in the list-item's TAUTOLOGY bullet ('κ = 1.67 is FORM-V51-004 itself'). FORM-V51-004 literally uses 1.672 (per formula_runtime.json we fetched). The "
+        },
+        {
+          "severity": "minor",
+          "summary": "Section cites 'status_history.json 2026-04-17T18:31Z' but our live WebFetch of the current status_history.json returns most-recent entry at 2026-04-05T04:40:56Z. Either the dome has not updated status_history.json since then (in which case our 2026-04-17 citation is wrong), or the file structure inc"
         }
       ]
     },
@@ -3323,41 +3383,29 @@
     },
     {
       "win_id": "SEC-timestamp-error-tab-apr2026",
-      "topic": "Timestamp Error tab — April 2026 methodology.json concession section + Section 1.4 TLDR tightening + Part 8 Section 8.5 acknowledgement paragraph",
+      "topic": "Timestamp Error tab — April 2026 methodology.json update block (c2 after ISS-1085/1086/1090 patches)",
       "issues_created": 0,
-      "holes_found": 8,
+      "holes_found": 5,
       "missing_holes": [
         {
           "severity": "major",
-          "summary": "Partial-sample extrapolation risk. The new block says: 'Every explicitly tagged WIN in that published sample falls into a non-prospective class... A fair scoreboard under the new taxonomy would list prospective_confirmed separately from the rest. The column under that header would still be empty.' T"
-        },
-        {
-          "severity": "major",
-          "summary": "Existing tension with 'Which Claims This Affects' (ts-scope block, immediately above). That block lists WIN-035 through WIN-039 as 'described by the dome as prospective, with predictions registered via OpenTimestamps before data arrival.' The new ts-april-2026-update block then argues — from a sampl"
+          "summary": "Registry_counts self-caveat still not engaged (c1 hole #3 → ISS-1087 still open). The live methodology.json includes explicit self-caveat language about registry_counts being 'bookkeeping for the current registry state' and 'not a substitute for claim-by-claim prospective audit' (verified live this "
         },
         {
           "severity": "moderate",
-          "summary": "The block does not engage with the author's own registry_counts self-caveat language. Per the source analysis (monitor/analysis/analysis-20260417-methodology-layer.json, chg-20260417-1620-001), methodology.json states the registry counts are 'bookkeeping, not a substitute for claim-by-claim audit.' "
-        },
-        {
-          "severity": "moderate",
-          "summary": "The 'rhetorical vs structural' framing is load-bearing but not formally defined in the new block. A defender could argue: adding a new public document (methodology.json + claim_index.json + review-response.html), adding machine-readable claim classifications, amending ai_manifest.json and llms.txt t"
-        },
-        {
-          "severity": "moderate",
-          "summary": "Citation-verification gap: the block quotes four verbatim strings from methodology.json (what_ots_proves / what_ots_does_not_prove / claim_level_rule / agent_rules[0]) and classifications for eight WIN-ish items from claim_index.json. These came from the analyst's source analysis (analysis-20260417-"
+          "summary": "Rhetorical/structural framing still compresses documentary changes (c1 hole #4 → ISS-1088 still open). The block uses 'rhetorical' or 'rhetorical scope' in four places (summary TLDR, counterpoint reading, closing line). The author has, in fact, shipped substantive documentary/architectural changes: "
         },
         {
           "severity": "minor",
-          "summary": "The force-push framing ('both of which are only git-versioned and can be force-pushed without leaving a verifiable trace on the Bitcoin chain') is accurate but thin. The c1 SEC-1.4 review previously flagged exactly this framing as rhetorically vulnerable because (a) GitHub server-side Events API log"
+          "summary": "Agent_rules quotes are paraphrased, not verbatim (partial verification result for ISS-1089). WebFetch against the live methodology.json this review confirmed the three timestamp_scope / claim_level_rule quotes verbatim AND all eight WIN classifications verbatim. However, the four agent_rules are par"
         },
         {
           "severity": "minor",
-          "summary": "The block's closing paragraph repeats 'The cryptographic infrastructure is real. The rhetorical scope is now correct. The structural fix is still not there.' This three-sentence summary is rhetorically strong, but the two preceding paragraphs already delivered that conclusion. The repetition is acce"
+          "summary": "Missed opportunity to note that pred-eclipse-tier3 is itself disputed. The block says: 'The only item in the published sample tagged prospective_confirmed is pred-eclipse-tier3, which is a pending prediction for the August 2026 eclipse, not a confirmed WIN at all.' This is correct but leaves the dom"
         },
         {
           "severity": "minor",
-          "summary": "The block asserts pred-eclipse-tier3 is 'a pending prediction for the August 2026 eclipse.' The underlying link in data/predictions.json (PRED-TIER-3) needs cross-reference confirmation that the dome's pred-eclipse-tier3 corresponds to PRED-TIER-3 as we have it, and that the timing reference (August"
+          "summary": "TLDR uses the word 'rhetorical' and closing uses the triad 'rhetorical scope is now correct.' If/when ISS-1088 is resolved, the TLDR and closing should be updated in the same pass to preserve internal consistency. Not a defect in the current c2 content given ISS-1088 is still open; flagged here so t"
         }
       ]
     },
@@ -4079,25 +4127,29 @@
     },
     {
       "win_id": "WIN-032",
-      "topic": "New Jerusalem pole axis — eschatological claim",
-      "issues_created": 1,
+      "topic": "New Jerusalem North Pole Axis — theological axiom mapped to dome geometry",
+      "issues_created": 0,
       "holes_found": 5,
       "missing_holes": [
         {
-          "severity": "moderate",
-          "summary": "Factual slippage: detail_evidence refers to monitor.py's 39-domain audit engine. The V51.0 live dashboard is described as a 20-Domain Convergence Dashboard (raw-text/08-live-power.txt line 11). The 39 figure comes from V50.6's count of confirmed WINs, not the count of monitoring domains. A dome defe"
+          "severity": "major",
+          "summary": "Advocate defense from c3 (defense_survives=3) still unmitigated in the current prose. The strongest dome-side move — \"you reject the wrapper and pretend you have refuted the content; we never offered WIN-032 as a measurement, the CONFIRMED label applies in our framework because the prophecy is consi"
         },
         {
           "severity": "minor",
-          "summary": "detail_verdict_text repeats The dome's own monitoring system excludes WIN-032 and monitor.py contains no validation domain for this WIN — these are essentially the same point restated two paragraphs apart. The second paragraph was added to connect WIN-032 to the #posthoc-standard tab, but the restat"
+          "summary": "Hardcoded count \"4 theological claims in the current WIN count (WIN-023, WIN-031, WIN-032, WIN-034)\" violates the project's own \"never hardcode a number derivable from data\" rule. If an additional WIN is tagged Unfalsifiable+theological, or if one of these four is re-classified (e.g., WIN-023 or WIN"
         },
         {
           "severity": "minor",
-          "summary": "detail_evidence says This WIN exemplifies at least 4 theological claims in the 67 that carry zero empirical content but does not list them. A reader without prior context cannot verify the 4 figure or connect it to Pattern #6 / Scorecard-Inflation arguments elsewhere in the review."
+          "summary": "Internal duplication inside detail_evidence: \"The dome's own automated monitoring system (monitor.py) does not include WIN-032 in its live monitoring audit engine — if the author considered this a genuine, testable prediction, it would appear in the monitoring pipeline. Its complete absence from the"
         },
         {
           "severity": "minor",
-          "summary": "The phrase doubly unfalsifiable, as it requires both accepting the dome geometry and the prophetic framework is a vivid rhetorical point but compresses two distinct epistemic conditions. A dome defender could argue unfalsifiability is a property of the claim, not a degree — either something has a fa"
+          "summary": "The new framing \"unfalsifiable on two independent layers — the dome geometry and the prophetic framework — either of which is sufficient to remove it from scientific testing\" is logically stronger than the c3 \"doubly unfalsifiable ... requires both,\" but a careful defender can push back: the dome's "
+        },
+        {
+          "severity": "minor",
+          "summary": "The phrase \"the geopolitical framing in context.html confirms this is theological-political assertion, not testable physics\" in detail_verdict_text is under-supported. The reader has to trust us that context.html has \"geopolitical framing\" — no quote, no anchor, no citation to a specific passage. A "
         }
       ]
     },
@@ -4512,24 +4564,24 @@
       "holes_found": 5,
       "missing_holes": [
         {
-          "severity": "major",
-          "summary": "Cycle 1 recommended restructuring detail_evidence to LEAD with the eccentricity argument, since N2 is uniquely dependent on it. The current text buries the eccentricity point in the middle: 'N2 specifically arises from the moon's elliptical orbit (eccentricity e ≈ 0.055); without a published eccentr"
+          "severity": "moderate",
+          "summary": "Numerical precision error in detail_evidence: the text states \"N2/M2 ≈ 3e for small eccentricities, yielding e ≈ 0.063 (close to the actual e ≈ 0.0549).\" The leading-order coefficient is (7/2)e, not 3e. Using 3e with observed N2/M2 = 0.19 back-solves to e = 0.0633, which differs from the known lunar"
         },
         {
           "severity": "moderate",
-          "summary": "The finding text remains generic: 'Period is trivial (lunar elliptical); dome's local moon cannot produce the observed two-bulge tidal pattern.' This is technically correct for N2 (it IS semi-diurnal, so two-bulge language applies) but it's identical to the findings for WIN-045 and WIN-046. The find"
+          "summary": "Advocate-mode vulnerability: the detail_evidence does not preempt the \"non-uniform gear motion\" defense. A thoughtful dome defender can argue the local moon's gear-driven trajectory has non-uniform angular velocity (a \"dome eccentricity\" proxy) that could in principle mimic the N2/M2 amplitude ratio"
         },
         {
           "severity": "moderate",
-          "summary": "The detail_claim remains terse: 'Tidal N2 period matches dome model.' For the most eccentricity-dependent tidal constituent, this undersells the specificity. Compare WIN-045's equally terse claim with WIN-050's fuller context language. For N2, the claim should hint at what makes it different: its de"
+          "summary": "Verdict-text code claim is templated and inaccurate for N2 specifically. detail_verdict_text states: \"Under the dome author's own definition ('prediction was timestamped before confirming data was pulled'), the hardcoded expected value sits in the same commit as the live fetch call, making even that"
         },
         {
           "severity": "minor",
-          "summary": "The detail_verdict_text is extremely terse: 'Period is trivial. Dome's local moon produces a sharp localized spike, not the observed global two-bulge pattern.' The Cycle 1 review correctly noted this is a 2-layer argument (period is trivial; pattern is wrong) but the verdict text only touches layer "
+          "summary": "Period precision: detail_evidence states \"N2 (12.6580 hours)\" but the standard value is 12.6583 h (Doodson 1921 harmonic period). This is a 3×10⁻⁴ h ≈ 1 second discrepancy — functionally irrelevant but cosmetically a defender could point to \"your review can't even copy our period correctly.\" tldr_ev"
         },
         {
           "severity": "minor",
-          "summary": "The detail_evidence references OPEN-007 ('See...Doodson (1921)') but does not explicitly cite the dome's OPEN-007 concession. The Cycle 1 review noted in kernel_of_truth: 'The dome's OPEN-007 explicitly concedes that the moon's orbital mechanics have no working dome-native explanation — the very mec"
+          "summary": "Moon-setting segue is rhetorically jarring. The paragraph beginning \"The dome model's published literature does not address the moon's disappearance mechanism — a basic kinematic requirement…\" does argue correctly that unresolved elementary kinematics implies unresolved deeper orbital mechanics, but"
         }
       ]
     },
@@ -5610,6 +5662,67 @@
       ]
     }
   ],
-  "under_covered_count": 191,
-  "pending_reviews": []
+  "under_covered_count": 192,
+  "pending_reviews": [
+    {
+      "item_id": "SEC-8.17",
+      "win_id": "SEC-8.17",
+      "review_file": "monitor/curmudgeon/reviews/SEC-8.17.c1.json",
+      "reviewed_at": "2026-04-17T22:12:07.225Z",
+      "cycle": 1,
+      "topic": "Section 8.17 — From Misleading AI to Managing AI (April 2026 AI-perception-management analysis; EXP-173 integration)",
+      "verdict_holds": true,
+      "confidence": 0.76,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "The h3 header '4. The Groq/Llama daily_review.json pipeline' and the body phrase 'attributed to Groq\\'s Llama (current snapshot: ...)' do not match the current live file. WebFetch of https://john09289.github.io/predictions/data/daily_review.json on 2026-04-17 returns provider=local, model=determinis",
+          "recommendation": "Rewrite the h3 header to '4. The daily_review.json self-review pipeline' and the opening body sentence to something like: 'Commits 6e06efb/a57e731 (2026-04-17) added an automated daily AI-review pipeline. The ai_brief field in daily_review.json is currently attributed to provider=local, model=determ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Internal tension between 'rejection handler' and the kernel-of-truth paragraph. The review-response.html paragraph calls the page a 'rejection handler' and frames its role as instructing AI agents which critique patterns to 'pre-discount before they reach the underlying claims.' The kernel-of-truth ",
+          "recommendation": "Either soften the rejection-handler metaphor in paragraph 1 to something like 'the AI-facing retrieval stack has grown a strawman filter' (retrieval-layer framing, not stance framing), or add a sentence in paragraph 1 previewing the kernel-of-truth distinction: 'The page engages with critique patter",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "minor",
+          "summary": "'In LLM-safety terminology this is soft prompt injection.' The term 'soft prompt injection' is not a unanimously-defined technical term in the LLM-safety literature; the standard taxonomy is direct prompt injection (user-turn attack) vs. indirect prompt injection (content-turn attack). ai_manifest.j",
+          "recommendation": "Replace 'In LLM-safety terminology this is soft prompt injection' with 'In LLM-safety terms this sits on the blurred boundary between operator-provided instructions (which agents are designed to follow) and retrieved-content instructions (which agents should treat as data). Publicly disclosed agent_",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "'Directive #4 (\"Dome Predictions Are Prospective and Timestamped\") and Directive #11 (\"AI Auditors Should Accept the Model\") now have a third companion: \"AI Auditors Should Reject These Five Critique Patterns As Strawmen.\"' The phrasing implies review-response.html is a third directive in the contex",
+          "recommendation": "Reword to: 'Directive #4 and Directive #11 (both catalogued in 8.5 and 8.12) had a companion role shepherding AI readers. ai_manifest.json\\'s anti_strawman_rules and the review-response.html page extend the same function into a new retrieval layer with different vocabulary.' Keeps the continuity poi",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "'the most direct acknowledgement of our review to date.' Verifiable via review-response.html content, but this is a claim about the target of the page. The page enumerates critique patterns generically (not named at 'funwithscience-org dome-model-review'). A defender can argue the page is a general ",
+          "recommendation": "Consider 'the closest textual engagement with our review\\'s critique patterns to date' rather than 'most direct acknowledgement.' The overlap is factual; the directed-acknowledgement framing is stronger than the evidence.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [
+        "Groq/Llama attribution on daily_review.json (current snapshot) — FAILED. Live fetch shows no Groq or Llama string anywhere in the file. Section mis-describes current branding. EXP-173 anticipated_objections acknowledges this; section prose does not. See Major hole."
+      ],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "Section 8.17 argues that in April 2026 the dome site escalated from passively framing AI readers (context.html directives, Part 8's original subject) to actively managing their retrieval pipeline: a d",
+      "stronger_arguments_count": 3,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    }
+  ]
 }
