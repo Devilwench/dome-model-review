@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-17T20:26:55.000Z",
+  "last_updated": "2026-04-17T21:31:32.905Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -207,7 +207,43 @@
       "fix_details": null,
       "fix_date": null,
       "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-015.c4.json"
+    },
+    {
+      "id": "ISS-1103",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "open",
+      "description": "SEC-2b.5: H(r) parameters (8537, 8619) presented without caveat; dome author claims these are aetheric pressure/scale derivations from first principles rather than fitted constants. Section should soften \"two numerical parameters\" framing and link to Section 1.8 analysis showing post-hoc calibration.",
+      "source": "curmudgeon-SEC-2b5-c1",
+      "found_by": "curmudgeon-SEC-2b5-c1",
+      "found_date": "2026-04-17",
+      "found_at": "2026-04-17T21:31:32.905Z"
+    },
+    {
+      "id": "ISS-1104",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "citation",
+      "status": "assigned-analyst",
+      "description": "SEC-2b.5: WIN labels in the domain audit table use the same WIN-NNN format as our review's WIN namespace, but these refer to the dome site's internal status_history.json source strings. Add \"dome-WIN-\" prefix or parenthetical at list start to disambiguate.",
+      "source": "curmudgeon-SEC-2b5-c1",
+      "found_by": "curmudgeon-SEC-2b5-c1",
+      "found_date": "2026-04-17",
+      "found_at": "2026-04-17T21:31:32.905Z"
+    },
+    {
+      "id": "ISS-1105",
+      "win_id": null,
+      "severity": "minor",
+      "category": "missing_argument",
+      "status": "open",
+      "description": "SEC-2b.5: dashboard-inflation ratio (28 domain labels / 10 independent knobs = 2.8x inflation factor) is a quotable one-liner left on the table. \"At 28 scored domains for 10 independent numerical knobs, the dashboard has a 2.8x domain-inflation factor relative to its underlying parameter count.\" Travels well on social.",
+      "source": "curmudgeon-SEC-2b5-c1",
+      "found_by": "curmudgeon-SEC-2b5-c1",
+      "found_date": "2026-04-17",
+      "found_at": "2026-04-17T21:31:32.905Z"
     }
   ],
-  "next_id": 1094
+  "next_id": 1106
 }

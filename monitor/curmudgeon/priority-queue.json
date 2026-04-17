@@ -38,19 +38,6 @@
       }
     },
     {
-      "queue_id": 155,
-      "target_type": "section-new",
-      "target_id": "SEC-2b.5",
-      "reason": "New Section 2b.5 (100% Dashboard: One Ruler, 28 Rooms) integrated from EXP-174/EXP-172.json — needs adversarial first-review before accumulating readers",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-17T19:36:54.486Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-172.json",
-        "related_issues": [],
-        "human_note": "HNOTE-DOMAIN-001"
-      }
-    },
-    {
       "queue_id": 156,
       "target_type": "section-new",
       "target_id": "SEC-8.17",
@@ -65,17 +52,25 @@
         ],
         "human_note": "HNOTE-AI-TAB-001"
       }
+    },
+    {
+      "queue_id": 158,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-4.1",
+      "reason": "EXP-176 integrated — Part 4.1 fully rewritten for 28-domain expansion. New Groups B/C/D/E. Fresh adversarial review needed.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-17T21:31:32.905Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-176.json",
+        "related_issues": [
+          "ISS-1102"
+        ],
+        "human_note": "HNOTE-PART4-DOMAINS-001"
+      }
     }
   ],
-  "next_id": 158,
+  "next_id": 159,
   "history": [
-    {
-      "queue_id": 94,
-      "target_id": "part4-roadmap-EXP116",
-      "target_type": "section-new",
-      "popped_at": "2026-04-14T07:29:57.958Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 95,
       "target_id": "part5-roadmap-EXP116",
@@ -417,6 +412,13 @@
       "target_id": "WIN-032",
       "target_type": "win-detail-rewrite",
       "popped_at": "2026-04-17T20:27:11.624Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 155,
+      "target_id": "SEC-2b.5",
+      "target_type": "section-new",
+      "popped_at": "2026-04-17T21:31:32.905Z",
       "popped_by": "decider"
     }
   ],

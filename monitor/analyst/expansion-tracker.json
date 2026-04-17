@@ -3144,9 +3144,27 @@
       "integrated": true,
       "integrated_at": "2026-04-17T20:26:55.000Z",
       "integration_mode": "pending-human-generate-html-patch"
+    },
+    {
+      "id": "EXP-176",
+      "category": "expansion",
+      "status": "complete",
+      "priority": "high",
+      "target": "Part 4.1 update for 20→28 domains dashboard expansion",
+      "target_section_id": "p4-41-0",
+      "human_note_source": "HNOTE-PART4-DOMAINS-001",
+      "summary": "Rewrite Part 4.1 to cover the 28-domain dashboard (up from 20), cross-referencing SEC-2b.5 and updating the 'one ruler, N rooms' independence argument. New Group B catalogues 14 static re-references; Groups C/D/E catalogue standard-model imports, framework recastings, and loose directional checks.",
+      "output_file": "monitor/analyst/expansions/EXP-176.json",
+      "created_at": "2026-04-17T20:51:24.354Z",
+      "completed_at": "2026-04-17T20:51:24.354Z",
+      "issue_ids": [],
+      "integrated": true,
+      "integrated_at": "2026-04-17T21:31:32.905Z",
+      "integration_mode": "sections-html-replace",
+      "integration_issue_id": "ISS-1102"
     }
   ],
-  "last_updated": "2026-04-09T06:30:00Z",
-  "next_id": 176,
+  "last_updated": "2026-04-17T20:51:24.354Z",
+  "next_id": 177,
   "total_items": 153
 }
