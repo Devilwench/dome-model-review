@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-17T16:40:29.201Z",
+  "last_updated": "2026-04-17T17:41:36.962Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -98,62 +98,36 @@
       "fix_date": null
     },
     {
-      "id": "ISS-1068",
-      "win_id": "WIN-015",
-      "severity": "moderate",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "description": "WIN-015 defense_survives=3 in curmudgeon cycle 3 review. Best surviving defense: our refutation is theoretical (Bruhn attacks equations); Jackson §9.1 defines near-field zone but does not compute expected coupling magnitude for Meyl-class geometry. Need defense neutralization: add a quantitative back-of-envelope near-field coupling calculation (M = µ₀·N₁N₂A₁A₂/(4πd³)) to detail_evidence showing expected induced voltage at Meyl coil dimensions/frequencies.",
-      "found_by": "curmudgeon-cycle3",
-      "found_at": "2026-04-17T15:39:06.676Z",
-      "source": "curmudgeon",
-      "found_date": "2026-04-17",
-      "related_review": "monitor/curmudgeon/reviews/WIN-015.c3.json",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
-      "id": "ISS-1069",
-      "win_id": "WIN-015",
-      "severity": "minor",
-      "category": "missing_argument",
-      "status": "assigned-analyst",
-      "description": "WIN-015 detail_evidence argues near-field coupling is expected at Meyl coil geometry/frequencies, but never computes the expected coupling magnitude. Adding a representative M ≈ µ₀·(A·B)/(4πd³) calculation would shift burden of proof: we have quantified the near-field coupling, Meyl has not. See curmudgeon preemptive_recommendation in WIN-015.c3.json. Routed to analyst EXP-169.",
-      "found_by": "curmudgeon-cycle3",
-      "found_at": "2026-04-17T15:39:06.676Z",
-      "source": "curmudgeon",
-      "found_date": "2026-04-17",
-      "related_review": "monitor/curmudgeon/reviews/WIN-015.c3.json",
-      "fix_details": null,
-      "fix_date": null
-    },
-    {
       "id": "ISS-1072",
       "win_id": null,
       "severity": "major",
       "category": "canary",
-      "status": "open",
+      "status": "assigned-analyst",
       "description": "Dome author added docs/api/current/methodology.json (commit 6e06efb, 2026-04-17) which adopts our OTS critique rhetorically — explicitly scoping \"what_ots_proves\" vs \"what_ots_does_not_prove\" in near-verbatim alignment with our Timestamp Error tab. This is a SOFT CANARY TRIGGER. The strict canary condition (separate predictions-only file with its own OTS anchor + per-claim temporal proof mechanism) is NOT yet met. Our Timestamp Error tab needs an update to address the new rhetorical position without conceding the underlying data-structure critique is resolved.",
       "source": "poller",
       "found_by": "poller-summary-triage",
       "found_date": "2026-04-17",
       "found_at": "2026-04-17T16:40:15.685Z",
       "fix_details": null,
-      "fix_date": null
+      "fix_date": null,
+      "assigned_at": "2026-04-17T17:41:36.962Z",
+      "assigned_exp": "EXP-170"
     },
     {
       "id": "ISS-1073",
       "win_id": null,
       "severity": "major",
       "category": "content-update",
-      "status": "open",
+      "status": "assigned-analyst",
       "description": "Dome author added docs/review-response.html (commit 5021eec \"Harden site against strawman critiques\", 2026-04-17) — most direct acknowledgement-of-critics signal to date. Our review should be aware of the arguments being deflected and should proactively address them. Analyst should read review-response.html and check whether any of our arguments are being mislabeled as strawmen, and whether the dome's rebuttals expose any genuine weaknesses.",
       "source": "poller",
       "found_by": "poller-summary-triage",
       "found_date": "2026-04-17",
       "found_at": "2026-04-17T16:40:15.685Z",
       "fix_details": null,
-      "fix_date": null
+      "fix_date": null,
+      "assigned_at": "2026-04-17T17:41:36.962Z",
+      "assigned_exp": "EXP-171"
     },
     {
       "id": "ISS-1074",

@@ -73,7 +73,9 @@
     "proposal-ISS-1034-resolution.json",
     "proposal-tracker-dedup-2026-04-15.json",
     "proposal-ISS-1017-resolution.json",
-    "proposal-ISS-1063-resolution.json"
+    "proposal-ISS-1063-resolution.json",
+    "proposal-ISS-1068-resolution.json",
+    "proposal-ISS-1069-resolution.json"
   ],
   "note": "Seeded with already-processed proposals that are orphaned on FUSE (cannot unlink)",
   "last_updated": "2026-04-16T11:36:30.104Z",
