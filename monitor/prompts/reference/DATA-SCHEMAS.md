@@ -103,3 +103,12 @@ Array of six kill-shot test entries. Each entry has:
 - section_anchor: HTML anchor ID for deep linking
 
 Build computes from this file: {{KS_TOTAL}}, {{KS_DECISIVE}}, {{KS_MAJOR}}, {{KS_SUPPORTIVE}}, {{KS_STRAW_MAN_COUNT}}, {{KS_WAIT_AND_SEE_COUNT}}.
+
+## priority-queue.json Schema
+
+Array-of-objects queue file at `monitor/curmudgeon/priority-queue.json`. Decider is the primary writer; operator may push directly via a git clone. History is capped at a rolling window (currently 200 entries per PROP-009r2; was 50).
+
+**PROP-009+ history fields** (decider writes these on every pop starting with PROP-009 enforce):
+- `pop_reason` (string): one of `strict_queue_id`, `soft_reviewed_at_after_pushed_at`, `operator_bypass`, `shadow_legacy_substring`. Identifies how the decider's Step E2 filter matched this history entry.
+- `claimed_review_file` (string|null): basename of the curmudgeon review file this pop claimed, or null for operator bypass / shadow-mode legacy pops.
+- `operator_bypass_reason` (string|null): non-empty reason string when pop_reason is `operator_bypass`; null otherwise.

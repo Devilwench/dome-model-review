@@ -182,28 +182,179 @@ The curmudgeon does NOT modify `priority-queue.json` (single-writer rule). Inste
 
 ```bash
 node -e "
+// PROP-009 precondition: pop ONLY if a review file has matching queue_id (strict)
+// OR its target_id substring-matches AND reviewed_at > pushed_at (soft fallback).
+// Neither? Leave item in place (under enforcement) or pop-with-log (during shadow).
+// Dual-reads reviews/ from FUSE workspace AND clone and union-merges the listing,
+// so a freshly-written review that hasn't propagated through workspace-sync yet
+// is still visible. Writes popped_by_queue_id onto the matched review file at
+// pop-time to prevent one review file from claiming multiple pushes.
+// Enforcement toggle is the presence of monitor/decisions/prop-009-enforce.flag
+// in the clone (touch=enforce, git rm=shadow). No shell env-var plumbing.
+//
+// PROP-009r2 INVARIANT — DO NOT UNDO:
+// The realMatch (strictRev || softRev) path MUST always flush popped_by_queue_id
+// regardless of enforce/shadow mode. This is how one review cannot claim multiple
+// pushes. If you ever wrap the 'if(shouldPop){ claimsToWrite.push... }' block in
+// an 'if(enforce)' gate, you will reintroduce the soft-fallback-reuse bug that
+// C3 was supposed to fix. The only enforce-gated branch in this filter is the
+// legacyRev branch (no queue_id, reviewed_at NOT > pushed_at) — and that path
+// DELIBERATELY writes claimed_review_file:null because binding popped_by_queue_id
+// to a pre-push review would be a false claim.
 const fs=require('fs');
+const path=require('path');
 const CLONE='${CLEAN_CLONE}';
 const WORKSPACE=process.cwd(); // FUSE workspace — where curmudgeon writes reviews
 const pq=JSON.parse(fs.readFileSync(CLONE+'/monitor/curmudgeon/priority-queue.json','utf8'));
-// Read reviews from FUSE workspace (curmudgeon writes here; clone may lag behind workspace-sync)
-const reviews=fs.readdirSync(WORKSPACE+'/monitor/curmudgeon/reviews/');
+// Union review listing across FUSE and clone (handles FUSE staleness on both sides).
+function unionReviewFiles(){
+  const results=new Map(); // basename -> {path, source}
+  for(const base of [WORKSPACE, CLONE]){
+    const dir=base+'/monitor/curmudgeon/reviews/';
+    try{
+      const files=fs.readdirSync(dir).filter(f=>f.endsWith('.json'));
+      for(const f of files){
+        if(!results.has(f)) results.set(f,{path:dir+f, source:base===WORKSPACE?'fuse':'clone'});
+      }
+    }catch(e){/* dir missing on one side is fine */}
+  }
+  return [...results.entries()].map(([file,v])=>({file, path:v.path, source:v.source}));
+}
+const reviewFilesUnion=unionReviewFiles();
+const sourceCounts={fuse:0, clone:0};
+const reviewsMeta=reviewFilesUnion.map(({file,path:p,source})=>{
+  sourceCounts[source]++;
+  try{
+    const d=JSON.parse(fs.readFileSync(p,'utf8'));
+    return {file, path:p, parsed:d, queue_id:Number.isInteger(d.queue_id)?d.queue_id:null, reviewed_at:d.reviewed_at||null, popped_by_queue_id:Number.isInteger(d.popped_by_queue_id)?d.popped_by_queue_id:null, read_from:source};
+  }catch(e){return {file, path:p, parsed:null, queue_id:null, reviewed_at:null, popped_by_queue_id:null, read_from:source};}
+});
+const enforceFlagPath=CLONE+'/monitor/decisions/prop-009-enforce.flag';
+const enforce=fs.existsSync(enforceFlagPath);
+const shadowLogPath=CLONE+'/monitor/integrity/prop-009-shadow.jsonl';
+// Pre-load existing shadow-log tuples (queue_id, pushed_at) for Mj-2 dedupe.
+// Only scan the tail 500 lines to keep this cheap; older-than-500 dedupe drift
+// is acceptable (stuck items would already have triggered the tinker alert).
+const shadowSeen=new Set();
+try{
+  const log=fs.readFileSync(shadowLogPath,'utf8').split('\n');
+  const tail=log.slice(Math.max(0,log.length-500));
+  for(const line of tail){
+    if(!line.trim()) continue;
+    try{
+      const e=JSON.parse(line);
+      if(Number.isInteger(e.queue_id)&&e.pushed_at){
+        shadowSeen.add(e.queue_id+'|'+e.pushed_at);
+      }
+    }catch(_){}
+  }
+}catch(e){/* missing log is fine */}
+const shadow=[]; // would-have-blocked items for migration audit
+const claimsToWrite=[]; // {file, qid, paths:[...]} — flush after filter
 const before=pq.queue.length;
 if(!pq.history) pq.history=[];
-// Check each queue item — if a review file exists for it, pop it
 pq.queue=pq.queue.filter(item=>{
   const tid=item.target_id;
   const secMatch=tid.match(/^part(\d+[a-z]?)-(.+)$/);
-  const searchTerms=[tid];
-  if(secMatch) searchTerms.push('SEC-'+secMatch[2]);
-  const hasReview=reviews.some(f=>searchTerms.some(t=>f.includes(t)));
-  if(hasReview){
-    pq.history.push({queue_id:item.queue_id,target_id:tid,target_type:item.target_type,popped_at:new Date().toISOString(),popped_by:'decider'});
+  const searchTerms=[tid]; if(secMatch) searchTerms.push('SEC-'+secMatch[2]);
+  const pushedAt=item.pushed_at?new Date(item.pushed_at).getTime():0;
+  // A review is available for this item iff not already consumed by a different qid.
+  const available=reviewsMeta.filter(r=>{
+    return r.popped_by_queue_id==null || r.popped_by_queue_id===item.queue_id;
+  });
+  const strictRev=available.find(r=>r.queue_id===item.queue_id);
+  const softRev=!strictRev ? available.find(r=>{
+    if(!r.reviewed_at) return false;
+    if(!searchTerms.some(t=>r.file.includes(t))) return false;
+    return new Date(r.reviewed_at).getTime()>pushedAt;
+  }) : null;
+  const legacyRev=(!strictRev&&!softRev) ? available.find(r=>searchTerms.some(t=>r.file.includes(t))) : null;
+  // Narrow operator bypass: requires pushed_by containing 'operator' AND explicit opt-out AND a non-empty reason string.
+  const operatorBypass=(item.require_matching_review_file===false) &&
+    typeof item.pushed_by==='string' && item.pushed_by.includes('operator') &&
+    typeof item.operator_bypass_reason==='string' && item.operator_bypass_reason.length>0;
+  const realMatch=strictRev||softRev;
+  const shouldPop=!!realMatch||operatorBypass;
+  if(shouldPop){
+    const claimedFile=realMatch?realMatch.file:null;
+    if(claimedFile){
+      // PROP-009r2: unconditional regardless of enforce/shadow — see invariant above.
+      claimsToWrite.push({file:claimedFile, qid:item.queue_id});
+      // Mark consumed in-memory so a second item this run cannot also claim it.
+      for(const r of reviewsMeta){ if(r.file===claimedFile) r.popped_by_queue_id=item.queue_id; }
+    }
+    pq.history.push({
+      queue_id:item.queue_id, target_id:tid, target_type:item.target_type,
+      popped_at:new Date().toISOString(), popped_by:'decider',
+      pop_reason: strictRev?'strict_queue_id':softRev?'soft_reviewed_at_after_pushed_at':'operator_bypass',
+      claimed_review_file: claimedFile,
+      operator_bypass_reason: operatorBypass?item.operator_bypass_reason:null
+    });
     return false;
+  }
+  if(legacyRev){
+    // PROP-009r2: dedupe shadow log by (queue_id, pushed_at) so a stuck item
+    // under enforcement does not generate one entry per decider run.
+    const tupleKey=item.queue_id+'|'+(item.pushed_at||'');
+    if(!shadowSeen.has(tupleKey)){
+      shadowSeen.add(tupleKey);
+      shadow.push({
+        queue_id:item.queue_id, target_id:tid, pushed_at:item.pushed_at,
+        would_have_popped_via:'legacy_substring', legacy_review_file:legacyRev.file,
+        legacy_review_read_from:legacyRev.read_from,
+        filesystem_read_counts:{fuse:sourceCounts.fuse, clone:sourceCounts.clone, union:reviewFilesUnion.length},
+        blocked_because:'no_strict_or_soft_match_or_already_consumed'
+      });
+    }
+    if(!enforce){
+      // Shadow mode: still pop to avoid backlog, but do NOT claim the review file.
+      // Deliberately claim-less — the review was written before the push, so it
+      // cannot service that push. Binding popped_by_queue_id here would be a lie.
+      pq.history.push({
+        queue_id:item.queue_id, target_id:tid, target_type:item.target_type,
+        popped_at:new Date().toISOString(), popped_by:'decider',
+        pop_reason:'shadow_legacy_substring', claimed_review_file:null
+      });
+      return false;
+    }
+    return true; // enforced: leave in queue for curmudgeon
+  }
+  // Stale-item log-only (attention-inbox write deferred to future PROP).
+  if(enforce && item.pushed_at){
+    const ageDays=(Date.now()-new Date(item.pushed_at).getTime())/86400000;
+    if(ageDays>7){
+      console.log('PROP-009 STALE_QUEUE_ITEM: '+tid+' (qid '+item.queue_id+') unreviewed for '+ageDays.toFixed(1)+'d — log only, no auto-pop, no inbox write (deferred to future PROP).');
+    }
   }
   return true;
 });
-if(pq.history.length>50) pq.history=pq.history.slice(-50);
+// Flush claims onto review files (dual-write: workspace AND clone, additive only).
+for(const c of claimsToWrite){
+  for(const base of [WORKSPACE, CLONE]){
+    const p=base+'/monitor/curmudgeon/reviews/'+c.file;
+    try{
+      const d=JSON.parse(fs.readFileSync(p,'utf8'));
+      if(d.popped_by_queue_id==null){
+        d.popped_by_queue_id=c.qid;
+        d.popped_by_queue_id_at=new Date().toISOString();
+        fs.writeFileSync(p,JSON.stringify(d,null,2));
+      }
+    }catch(e){/* absent on one side is fine */}
+  }
+}
+// Shadow log write (clone-side, git-owned). Dedupe already applied above.
+if(shadow.length){
+  fs.mkdirSync(path.dirname(shadowLogPath),{recursive:true});
+  for(const s of shadow){
+    s.logged_at=new Date().toISOString();
+    s.enforce_mode=enforce;
+    fs.appendFileSync(shadowLogPath,JSON.stringify(s)+'\n');
+  }
+  console.log('PROP-009 shadow: '+shadow.length+' NEW item(s) '+(enforce?'BLOCKED (kept in queue)':'logged (shadow mode — popped anyway)')+' (dedupe skipped prior same-tuple entries)');
+}
+console.log('PROP-009 review read: fuse='+sourceCounts.fuse+' clone='+sourceCounts.clone+' union='+reviewFilesUnion.length+' enforce='+enforce);
+// PROP-009r2: bumped history cap 50 -> 200 so 3-day rolling audit window always fits.
+if(pq.history.length>200) pq.history=pq.history.slice(-200);
 const after=pq.queue.length;
 fs.writeFileSync(CLONE+'/monitor/curmudgeon/priority-queue.json',JSON.stringify(pq,null,2));
 if(before!==after){
@@ -213,6 +364,19 @@ if(before!==after){
 }
 "
 ```
+
+**Step E2 precondition (PROP-009, enforced default).** The pop filter requires a matching review file. "Matching" is strict queue_id OR (soft) substring + `reviewed_at > pushed_at`. This precondition is ALWAYS ON — including for operator-pushed items. Substring alone never pops.
+
+**Narrow operator bypass.** An operator push may bypass only by setting ALL THREE of the following on the queue item JSON at push time:
+1. `pushed_by` contains the string `"operator"`.
+2. `require_matching_review_file: false` (explicit opt-out — must be literal boolean false, not missing).
+3. `operator_bypass_reason: "<non-empty string explaining why>"` (auditable justification; appears in shadow log and in history `pop_reason`).
+
+All three missing? Precondition applies normally. Any one missing? Precondition applies normally — the bypass is all-or-nothing and requires the explicit reason field. Bypasses are logged to `monitor/integrity/prop-009-shadow.jsonl` with `pop_reason: "operator_bypass"` so tinker can audit frequency.
+
+The operator MUST NOT use bypass to push items faster than curmudgeon can review. Bypass is for emergency cleanup (e.g., queue entry whose target was deleted and cannot be reviewed); it is not a throughput tool. More than 3 `operator_bypass` pops in 24h is flagged by tinker's daily Mode 2 run.
+
+**Enforcement toggle.** Presence of `monitor/decisions/prop-009-enforce.flag` (clone-side) = enforced. Absence = shadow. Flip with `touch monitor/decisions/prop-009-enforce.flag && git add monitor/decisions/prop-009-enforce.flag && git commit -m 'PROP-009: enforce'`. Roll back with `git rm monitor/decisions/prop-009-enforce.flag && git commit -m 'PROP-009: back to shadow'`.
 
 ### Step E3: Read current state and apply mode rules
 

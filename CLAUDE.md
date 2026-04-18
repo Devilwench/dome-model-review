@@ -60,6 +60,8 @@ The workspace mount (`/mnt/dome-model-review/`) uses a FUSE filesystem that **do
 
 ### File Ownership Rules (Phase 1)
 
+**PROP-009 additive-edit exception:** The decider may write `popped_by_queue_id` (integer) and `popped_by_queue_id_at` (ISO timestamp) onto an existing curmudgeon review file at pop-time. This is an additive edit — the new fields replace no existing fields and the write is idempotent (guarded by `if(d.popped_by_queue_id==null)`). This is the only permitted exception to the append-only-directory rule for `monitor/curmudgeon/reviews/`. No other field may be mutated.
+
 Every file that crosses the workspace↔git boundary has exactly one authoritative side. The table below is the canonical reference; it is duplicated in code in `build.js` (the `OWNERSHIP` object, Change 1.1) and `monitor/prompts/workspace-sync.md` (the `OWNED_BY_GIT` array, Change 1.2). If you edit one, edit all three.
 
 **git-owned** — `build.js publish` copies git → workspace. `workspace-sync` must NEVER push these; its `smart_copy` helper short-circuits if the destination is in the list.
