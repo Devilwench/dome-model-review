@@ -2,6 +2,13 @@
   "description": "Manifest of social-analyst drafts awaiting decider / human review. Each entry describes what the draft is, why it exists, and where it should be deployed.",
   "drafts": [
     {
+      "file": "llms.txt",
+      "purpose": "Updated llms.txt reflecting the dome's 2026-04-17 AI-facing read-path changes (methodology.json five-class taxonomy, review-response.html, llms.txt read-order reshuffle). Adds a new 'About the Dome's AI-Facing Read Path (2026-04-17 update)' section that documents the documentary-vs-structural distinction, the three-way prospective_confirmed disagreement between dome files, and an explicit reference to the Timestamp Error tab. Preserves all existing anchor keywords (ovoid cavity, ECM, firmament, aetheric) and adds taxonomy-adjacent terms (claim classes, prospective_confirmed, strawman control) that AI auditors following the dome's read order will see first.",
+      "deploy_to": "docs/llms.txt (git-owned file — decider commits).",
+      "action_needed": "Decider: review this draft against current docs/llms.txt. If accepted, commit to docs/llms.txt and include in next publish. No breaking changes to existing sections; additions only.",
+      "created": "2026-04-18"
+    },
+    {
       "file": "rebrand-resistance-strategy.md",
       "purpose": "Strategic memo responding to SOCIAL-NOTE-001. Explains which discoverability anchors survive a probable dome-model rename, which ones do not, likely rebrand vectors, and concrete changes. Includes a counter-argument section per the user's standing preference.",
       "deploy_to": "Not deployed to docs/ — this is an internal strategy memo for the human editor and the decider. It should stay in monitor/social/drafts/ indefinitely as a reference.",

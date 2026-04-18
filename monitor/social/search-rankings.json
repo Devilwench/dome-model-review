@@ -429,6 +429,66 @@
         }
       ],
       "trend": "No change. Day 5 of monitoring. Both sites completely absent from all search engine indices. Indexing strategy awaiting human action."
+    },
+    {
+      "date": "2026-04-18",
+      "queries": [
+        {
+          "query": "\"ovoid cavity cosmological model\" OR \"ECM dome model\" 2026 review",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "Day 11. Generic 2026 cosmology results (arXiv, Euclid, ESO). Zero exact phrase matches for 'ovoid cavity cosmological model'."
+        },
+        {
+          "query": "site:john09289.github.io OR site:funwithscience-org.github.io",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "Day 11. Neither site indexed. GSC verification at day 6 post (2026-04-12); expected first indexing 2026-04-19 to 2026-04-26."
+        },
+        {
+          "query": "\"john09289\" \"predictions\" flat earth dome firmament",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "Generic firmament + fact-check content. john09289 invisible."
+        },
+        {
+          "query": "\"firmament resonance\" OR \"aetheric refraction\" dome cosmology 2026",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "Parallel frameworks (ANIMA, Journal of Geocentric Cosmology) continue to own the keyword neighborhood. ECM absent."
+        },
+        {
+          "query": "\"disc radius\" \"20,015 km\" OR \"20015 km\" firmament dome",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "Flat Earth University cites ~20,008 km (within 0.04% of ECM 20,015 km = pi*R_earth). Mathematically forced, not derivative. ECM exact string zero results."
+        },
+        {
+          "query": "\"prediction_hashes\" dome model firmament OR \"prospective_confirmed\" registry",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "NEW. Dome's just-released vocabulary (2026-04-17). Both terms zero indexed results. Another near-perfect anchor once indexing begins, if we expand keywords."
+        },
+        {
+          "query": "\"Nicholas Hughes\" flat earth dome firmament predictions 2026",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "Author identity invisible. Mike Hughes (deceased rocketeer) is the only Hughes that surfaces for flat-earth queries."
+        },
+        {
+          "query": "\"ovoid cavity\" OR \"firmament resonance\" reddit 2026",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "NEW. Zero reddit hits either term. Dome has not spread to reddit via discoverable discussion."
+        },
+        {
+          "query": "\"dome model review\" OR \"dome model critique\" funwithscience 2026",
+          "dome_position": null,
+          "our_position": null,
+          "notes": "Our review invisible. Generic 'DOME' acronym space dominated by unrelated research."
+        }
+      ],
+      "trend": "Day 11 of search vacuum. No search-index movement. One new attribution anchor surfaced: dome's 2026-04-17 vocabulary ('prospective_confirmed', 'prediction_hashes') — unique to ECM, zero search results today, so another high-value anchor if we expand keywords meta to include them (see ISS-SOCIAL-META-KEYWORDS-CLAIMCLASSES). Dome's 2026-04-17 AI-discoverability expansion does not move indexing today but likely accelerates crawl interest in dome site."
     }
   ]
 }

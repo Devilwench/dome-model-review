@@ -1,5 +1,5 @@
 {
-  "last_run": "2026-04-18T05:34:59.749Z",
+  "last_run": "2026-04-18T10:12:58.381Z",
   "last_agent": "decider",
   "run_type": "Scheduled decider run",
   "mode": "BAU",
@@ -7,25 +7,25 @@
   "changes_pending_analysis": 0,
   "consecutive_quiet_polls": 2,
   "prev_decider_run": {
-    "at": "2026-04-17T21:31:50.022Z",
-    "note": "4 pending reviews processed; 10 issues created; 5 self-applied patches"
+    "at": "2026-04-18T09:41:37Z",
+    "note": "EXP-178, EXP-181 applied, WIN-053 moderate patches. 3373 tests."
   },
   "patches_applied_this_run": {
-    "wins": 1,
+    "wins": 0,
     "sections": 0,
     "infrastructure": 0,
     "prompt_files": 0,
     "data_files": 0
   },
   "issues_closed_this_run": 0,
-  "issues_created_this_run": 5,
-  "issues_assigned_analyst": 2,
-  "open_issues": 23,
+  "issues_created_this_run": 0,
+  "issues_assigned_analyst": 0,
+  "open_issues": 24,
   "closed_issues": 963,
-  "issues_pending_human": 0,
-  "curmudgeon_cycle": "bau -- queue depth 0 (drained this run; SEC-4.1 and SEC-2b.5 had multi-cycle reviews completed)",
-  "curmudgeon_last_review": "9 reviews processed: WIN-032.c5/c6, SEC-4.1.c3/c4, SEC-2b.5-post-apr18.c1, SEC-timestamp.c1, REACTIVE-AUDIT, EXP-050-proposal, SEC-6.2",
-  "curmudgeon_queue_depth": 0,
+  "issues_pending_human": 3,
+  "curmudgeon_cycle": "bau -- queue depth 1 (EXP-183 expansion-draft, 5 popped this run by existing reviews)",
+  "curmudgeon_last_review": "Popped: SEC-2b.5, SEC-4.1, WIN-058, WIN-058b, WIN-062 (existing review files matched)",
+  "curmudgeon_queue_depth": 1,
   "build_drift_resolved": true,
   "pipeline_bugs": [],
   "last_poll": "2026-04-17T23:10:00Z",
