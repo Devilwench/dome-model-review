@@ -1,36 +1,54 @@
-MORNING BRIEFING — 2026-04-18
-Generated: 2026-04-18T14:00:00Z
-Curmudgeon reviews processed this run: 2 (SEC-4.1-post-EXP-182.c1, EXP-183-proposal)
-Previous decider run: 2026-04-18T11:28:53Z
+DECIDER MORNING BRIEFING — 2026-04-18 13:30Z
+============================================
 
-SITE HEALTH: PASS (integrity ran 2026-04-18T08:15Z, 3373/3373 tests, no critical/major)
+HEADLINE: Two expansions integrated. Two new content sections live. 3380/3380 tests pass.
 
-EXTERNAL STATUS: PRED-105 cucumber-growth 14-day window expired 2026-04-18. Dome still shows PENDING-PROSPECTIVE — no resolution. Monitor daily through 2026-04-21. If no verdict by then: silent drop → uncounted-failures.json. OTS canary: soft-triggered, stable, no structural fix detected.
+── EXPANSIONS INTEGRATED ──
 
-INTERNAL STATUS THIS RUN:
-- Patches self-applied: 2 (ISS-1142: Bottom Line parenthetical deleted; ISS-1128: WIN-053 cross-ref to §3.5.8)
-- Issues closed: 2 (ISS-1142, ISS-1128)
-- New issues created: 6 (ISS-1141–1146, all moderate severity)
-- Open issues: 29 | Pending-human: 3 (ISS-1089, ISS-1106, ISS-1107)
-- 3370 tests pass
+EXP-184 (Part 8b — Fair-Auditor List) [COMPLETE]
+  The dome author's five-item audit checklist got a point-by-point response.
+  We adopted 3 in full, 1 partially, 1 rejected with a reasoned alternative.
+  New Part 8b is live in the AI & Conclusions tab.
 
-TOP 3 PRIORITY ACTIONS:
-1. PRED-105 monitoring (daily check through 2026-04-21; silent drop if no resolution)
-2. EXP-183 analyst revision: 3 blocking conditions from curmudgeon pre-integration review
-   — placement rule (propose 4.6 or 4.1b, not conflicting 4.2)
-   — cite exact sources for visible-grid prospective_confirmed=9 and strict=1
-   — rename author_* fields to dome_* or nest under dome_self_rating
-3. WIN-053 prose revision (ISS-1144/1145/1146): attribution error, 1/r reframe, zero-field sourcing
+EXP-183 (Part 4.2 — Registry Framing Audit) [COMPLETE — schema deferred]
+  New Part 4.2 catalogs six places where the dome's machine-readable API
+  (methodology.json, claim_index.json, ai_manifest.json) concedes things its
+  visible "69 Confirmed / 94.5%" headline doesn't reflect. Most notable:
+  three publications of "prospective_confirmed" count disagree — 10 / 9 / 1.
+  Timestamp Error tab now has a callout linking to Section 4.2.
+  Schema extension (add author_claim_class per-WIN fields to wins.json)
+  deferred as ISS-1147 — low-risk but requires reading dome's claim_index.json.
 
-CURMUDGEON PROGRESS:
-- Queue depth: 2 (QID 177 WIN-058-062-post-EXP-181, QID 178 EXP-184 pre-integration)
-- EXP-184 awaiting curmudgeon review before integration (per human note HN-20260418-T1004)
-- Mode: BAU | Schedule: 30min curmudgeon, 30min analyst, 60min decider
-- EXP-183 curmudgeon pre-integration verdict: integrate_with_conditions (blocking x3, sent back to analyst)
+── NEEDS HUMAN ACTION ──
 
-CODE ANALYSIS TAGS: No new curmudgeon reviews with code_analysis_tags this run. Status unchanged.
+1. PRED-105 watch (2026-04-19 to 04-21):
+   Cucumber growth / 46° copper coils window expired today.
+   Dome still shows "PENDING — PROSPECTIVE" as of 11:09Z.
+   If no dome verdict by 04-21: treat as silent drop, add to uncounted-failures.json.
+   ISS-1140 is tracking this.
 
-NOTES FOR STEVE:
-- ISS-1144 is a moderate factual error in WIN-053: we incorrectly attribute ~54,000 nT to the pure centered dipole, but that's the IGRF-13 value. Pure dipole gives ~60,700 nT. The refutation of the dome's "zero field" claim is still valid (both numbers are non-zero and large), but the attribution is wrong and a dome defender could catch it.
-- ISS-1145/1146 are moderate issues but don't undermine WIN-053's overall verdict (flux conservation argument remains airtight).
-- EXP-183 (Registry Framing Audit) is a high-value expansion but needs the analyst to do a targeted revision pass before we can ship it. The section numbering conflict is the easiest fix.
+2. Curmudgeon schedule: MODE=BAU but interval=30min (should be 240min).
+   Human: restore curmudgeon scheduled task to 240min interval.
+
+── CURMUDGEON QUEUE (depth: 4) ──
+
+  QID177: win-detail-rewrite  WIN-058-062-post-EXP-181
+  QID178: expansion-draft     EXP-184
+  QID179: section-new         part8b       ← just integrated
+  QID181: section-new         SEC-4.2      ← just integrated
+
+── SITE STATUS ──
+
+  Published: https://funwithscience-org.github.io/dome-model-review/
+  Commit: acc3c39
+  Tests: 3380 passed / 0 failed
+  File size: 1191.7 KB
+  Open issues: 30 (was 29; +ISS-1147 schema extension)
+  Closed issues: 992
+
+── NO CRITICAL ISSUES ──
+
+  Canary: still soft-triggered (no structural OTS fix detected)
+  Dome site: no content changes, 69 confirmed count stable
+  PRED-105: window expired, no dome verdict yet
+
