@@ -3,8 +3,8 @@
   "current_cycle": 3,
   "review_model": "change-driven",
   "review_model_description": "Priority queue > human notes > change-detected items > holistic reviews > spot-checks. Sequential Phase 1/2/3 grinding retired as of 2026-04-12.",
-  "last_reviewed": "2026-04-18T08:54:00.144Z",
-  "last_run": "2026-04-18T08:54:00.144Z",
+  "last_reviewed": "2026-04-18T13:59:59.666Z",
+  "last_run": "2026-04-18T13:59:59.666Z",
   "points": [
     {
       "id": "WIN-001",
@@ -1308,6 +1308,58 @@
       "reviewed_at": "2026-04-18T05:13:13.308Z",
       "status": "reviewed",
       "notes": "c4 verifies ISS-1110 patch (Group C count 5 -> 6). 4 pre-existing holes persist (1 pending EXP-178; 3 out-of-scope for this patch); no new issues introduced."
+    },
+    {
+      "point_id": "EXP-183",
+      "topic": "Pre-integration review of Registry Framing Audit (three-part placement)",
+      "last_reviewed_cycle": 1,
+      "reviewed_at": "2026-04-18T11:36:40.050Z",
+      "status": "reviewed",
+      "notes": "queue_id 175. Integrate_with_conditions: 1 critical (section numbering collision at 4.2), 3 major (10/9/1 unverified citations, live.html 67 footer render-lag not closed, author_* schema naming ambiguity). 12 holes total. Architecture (schema extension + Part 4.2 subsection + Timestamp callout) is sound."
+    },
+    {
+      "point_id": "SEC-4.1-post-EXP-182",
+      "topic": "Post-integration review of SEC-4.1 EXP-182 fold-in (28-domain / 47.69σ / 12-knob rewrite)",
+      "last_reviewed_cycle": 1,
+      "reviewed_at": "2026-04-18T12:38:37.583Z",
+      "status": "reviewed",
+      "notes": "c1 post-EXP-182 integration review. Central arithmetic (Fisher σ bracketing at p=0.1 / p=0.05, 12-knob recount, 28-row non-overlap tally) verified. 3 moderate + 4 minor presentation-level holes; current_verdict_holds = true. recommended_action = minor_edit."
+    },
+    {
+      "id": "WIN-058-062-post-EXP-181",
+      "type": "win-batch",
+      "topic": "Batch post-integration review of WIN-058/058b/059/060/061/062 after EXP-181 (registry_integrity_notes)",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-18T13:34:04.809Z",
+      "last_reviewed_cycle": 1,
+      "review_file": "WIN-058-062-post-EXP-181.json",
+      "expansion_package": "EXP-181",
+      "parent_points": [
+        "WIN-058",
+        "WIN-058b",
+        "WIN-059",
+        "WIN-060",
+        "WIN-061",
+        "WIN-062"
+      ],
+      "queue_id": 177,
+      "recommended_action": "minor_edit",
+      "holes_found": {
+        "major": 1,
+        "moderate": 3,
+        "minor": 2
+      },
+      "verdict_changes": 0,
+      "last_review_file": "WIN-058-062-post-EXP-181.json"
+    },
+    {
+      "point_id": "EXP-184",
+      "type": "expansion-draft",
+      "topic": "Part 8b — Dome Author's Fair-Auditor List (pre-integration review)",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-18T13:59:59.666Z",
+      "last_reviewed_cycle": 1,
+      "priority_queue_id": 178
     }
   ],
   "holistic_checks": [
@@ -1362,8 +1414,8 @@
   "items_reviewed": 94,
   "total_items": 72,
   "cycle": 2,
-  "last_review_time": "2026-04-18T08:12:18.550Z",
-  "last_review_item": "WIN-020",
-  "last_review_result": "minor_edit (1 major, 1 moderate, 2 minor)",
-  "last_item_reviewed": "WIN-020"
+  "last_review_time": "2026-04-18T13:59:59.666Z",
+  "last_review_item": "EXP-184",
+  "last_review_result": "minor_edit — 1 critical, 3 major, 3 moderate, 4 minor holes; kill-shot #1 label + Part 4.2 stale + L3 PRED muddle need fixing before this section ships cleanly",
+  "last_item_reviewed": "EXP-184"
 }

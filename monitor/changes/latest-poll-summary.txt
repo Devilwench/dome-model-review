@@ -1,131 +1,101 @@
-DOME POLLER SUMMARY — 2026-04-17T23:10:00Z
+DOME POLLER SUMMARY — 2026-04-18T11:09:38Z
 ============================================
 
-CLASSIFICATION: QUIET (consecutive_quiet_polls: 2)
-  Second consecutive QUIET poll after 2026-04-17T16:21:52Z CRITICAL
-  poll (methodology.json / claim_index.json / ai_manifest.json
-  manual commits). Analyst adjudicated soft canary trigger at
-  2026-04-17T18:53Z as partial-rhetorical-adoption. This poll,
-  ~4.3h after the prior QUIET poll, finds only automated pipeline
-  noise. No manual commits by Nhughes09 in the last ~11h (last
-  was a57e731 "Add daily AI review pipeline and live accuracy
-  panel" at 2026-04-17T12:02:38Z — already covered by the 16:21
-  CRITICAL poll).
+CLASSIFICATION: SUBSTANTIVE (PRED-105 window expiry today)
+analyst_priority: HIGH (Step 10: window expires today)
+consecutive_quiet_polls: RESET from 2 -> 0 (PRED-105 window closure is substantive per Step 10 / Step 5 hard rule)
 
-SITE STATUS (all unchanged vs. prior poll):
-  Model:            Ovoid Cavity Cosmological Model V51.1
-  WIN count:        69 (max WIN-069 in wins.html)
-  Claimed accuracy: 94.5% (69/(69+4), Registry Ratio)
-  Refined/failures: 4
-  Prospective:      10
-  Version:          V51.1
-  Repo:             john09289/predictions
-  Home H1:          "A Physical Model of Creation / 69 Confirmed
-                    Predictions"
-  Home <title>:     "Ovoid Cavity Cosmological Model V51.1 — 69
-                    Confirmed Registry Items"
+HEADLINE: PRED-105 (46° copper coils / cucumber growth) test window closes today, 2026-04-18. Dome site still shows "PENDING -- PROSPECTIVE" at poll time. This is a rare genuinely prospective prediction with a pre-registered SHA256 hash. Watch for dome's label of the outcome (PASS / refined / suspended / silently removed) in the next 24–48h.
 
-GITHUB ACTIVITY (since prior poll 2026-04-17T20:51:29Z):
-  Total new commits: 4
-    - 4 x Auto-update ECM status (GitHub Action / monitor.py)
-      at 20:30, 21:24, 22:07, 23:01 UTC -- each modifies only
-      status_history.json, latest_hash.txt, monitor_log.txt
-      (noise).
-  Manual commits by Nhughes09: 0
-  No new workflows, no new top-level files, no monitor.py source
-  edits, no ECM Auto Data Pull commits this window (pull_data.py
-  runs every ~6h; next due ~02:41 UTC).
+SITE VALUES — all match baseline (no drift):
+  DOME_VERSION                V51.1                   ✓
+  Model name                  Ovoid Cavity Cosmological Model  ✓
+  Confirmed WINs              69                      ✓
+  Claimed accuracy            94.5%                   ✓
+  Refined (acknowledged fails) 4                      ✓
+  Prospective predictions     10                      ✓
 
-PARAMETER CANARY CHECK (live home + model + predictions pages):
-  Disc radius a:        20,015 km OK
-  Firmament H(0):       8,537 km OK
-  Decay constant lambda_g: 8,619 km OK  (H(r) = 8537 * exp(-r/8619))
-  Sun altitude:         5,733 km OK
-  Moon altitude:        2,534 km OK
-  n(r) multiplier:      0.20 OK  (model page; 0.27 absent)
-  Accuracy formula:     69 / (69 + 4) = 94.5% OK
-  WIN count:            69 OK
-  Claimed failures:     4 OK
-  DOME_VERSION:         V51.1 OK
-  Model name:           "Ovoid Cavity Cosmological Model" OK
-  All baseline parameters match. No numerical drift.
+PARAMETER CANARY CHECK — all 6 match baseline:
+  disc_radius (a)             20,015 km               ✓
+  H(0) (firmament pole)       8,537 km                ✓
+  lambda_g (H(r) decay)       8,619 km                ✓
+  sun_altitude                5,733 km                ✓
+  moon_altitude               2,534 km                ✓
+  refraction coefficient      0.20 in n(r)=1+0.20·(8537/H(r)−1)  ✓
 
-CANARY STATUS -- opentimestamps-provenance:
-  STATE: soft-trigger (inherited from 2026-04-17T16:21:52Z poll;
-  unchanged this poll; adjudicated by analyst at 2026-04-17T18:53Z
-  as partial-rhetorical-adoption without structural fix).
-  No new structural fix detected. Live methodology.json
-  last_updated still 2026-04-17 and contains timestamp_scope with
-  "what_ots_proves" / "what_ots_does_not_prove" language
-  (rhetorical acknowledgement of the wrong-side critique) BUT
-  monitor.py still anchors predictions and observations together
-  under status_history.json.ots. No predictions-only file
-  appeared. No new commits referencing "provenance", "separate
-  predictions", "separating predictions from observations", or
-  similar. SHA-256 per-prediction hashes remain post-hoc
-  (generated 2026-03-22 for predictions registered earlier or
-  same-day; not an independent temporal anchor) -- do not conflate
-  with the OTS canary.
-
-ACCURACY DATA SOURCES (spot-check vs. uncounted-failures.json):
-  api/scorecard.json:        {"confirmed":26,"falsified":1,
-                              "pending":20,"last_updated":
-                              "2026-03-06"} -- UNCHANGED
-                              (matches stored 26/27 = 96.3%)
-  api/current/results.json:  35 entries, UNCHANGED (matches
-                              stored 35/35 = 100%)
-  docs/api/current/claim_index.json:   last_updated 2026-04-17
-                              (unchanged from prior poll)
-  docs/api/current/methodology.json:   last_updated 2026-04-17
-                              (unchanged from prior poll)
-  docs/ai_manifest.json:     last_updated 2026-04-17 (unchanged)
-  daily_review.json:         still 404 at docs/api/current/
-                              (not yet generated -- first daily
-                              pipeline run scheduled 05:15 UTC
-                              2026-04-18).
-  No drift detected in stored dome_accuracy_variants. No update
-  needed to data/uncounted-failures.json.
+GITHUB ACTIVITY (since 2026-04-17T23:10Z): 11 commits, ALL automated.
+  - 8× GitHub Action (monitor.py auto-update)
+  - 2× ECM Auto-Pipeline (data pull)
+  - 1× ECM Daily Review (d02377c @ 06:19Z) — see chg-002, routine only
+  - 0 manual commits by Nhughes09 in 23.5h window
 
 TEST WINDOWS:
-  Active (watching closure):
-    PRED-105 "46 deg Copper Coils Increase Cucumber Growth 15%
-      Over 14 Days" -- registered 2026-04-04, test window
-      "April 18, 2026 (14-day window)", still marked
-      PENDING -- PROSPECTIVE on predictions.html.
-      Current UTC 2026-04-17T23:10Z; window ends today.
-      <24h remaining if interpreted as end-of-day 2026-04-18;
-      already effectively closed if interpreted as start-of-day.
-      Watch this carefully -- next poll should detect the
-      resolution (PASS, dome-labeled "refined", silently dropped,
-      or left pending past deadline). If it becomes a failure,
-      analyst should evaluate for data/uncounted-failures.json.
-    PRED-106 "16 Hz Aetheric Field Increases Ca2+ Signaling
-      >20%" -- registered 2026-04-04, test window "April 2026",
-      still PENDING. Window close date less precise.
-  Expired since last poll:
-    None that the dome has resolved.
-  Upcoming (genuinely prospective):
-    PRED-CURR-001..008 ocean flight-time asymmetry -- ongoing
-    PRED-R001..R005 long-term tests (2028..2031)
-    PRED-TESLA-001..004, PRED-TOROID-001..007 -- 2026+
-    2026-08-12 solar eclipse live test battery
-    PRED-072 through PRED-112 -- most pending across April..May
-    2026 with various domain-specific windows.
+  Expired today (HIGH priority):
+    PRED-105  46° copper coils / cucumber growth 15% over 14 days
+              Registered 2026-04-04, window ended 2026-04-18.
+              Current site label: PENDING — PROSPECTIVE (no resolution yet).
+              SHA256: 3c427a83edaeaf33c884264dedffbedece14378fc766bdffeeac0b4d4d517490
+  Active:
+    PRED-001..008  Aug 12 2026 eclipse battery (5 prediction group at ~16–20Z)
+    PRED-009..012  Annual SAA/NMP tracking
+    PRED-013       Decadal reversal watch
+    PRED-072       TTB fluctuation ±15 nT at midnight (April 2026 window)
+    PRED-095       Aug 12 eclipse magnetic −17.8 nT
+    PRED-106..109  Biology/D-layer/ionosphere prospective (mostly April–May 2026)
+  Upcoming closures to watch:
+    PRED-106       16 Hz aetheric Ca²⁺ signaling >20% (April 2026 window)
+    PRED-072       TTB midnight fluctuation (April 2026)
+    PRED-095       Aug 12 2026 (eclipse-day cluster)
 
-MODEL NAME / BRANDING:
-  No change. Page title, H1, ai_manifest.model_name, and repo
-  description all still reference "Ovoid Cavity Cosmological
-  Model" / "ECM". No rebrand detected.
+ACCURACY DATA SOURCES (spot-check):
+  docs/data/daily_review.json: registry.confirmed=69, prospective=10, refined=4, ratio=94.5% — unchanged.
+  docs/data/status_history.json: 279 snapshots, latest 2026-04-18T10:23:28Z,
+    wins_confirmed=67 (monitor), overall_score=100%, passed=28/28, pending_domains=11.
+  api/scorecard.json (docs/api/current/scorecard.json): 404 at public URL (endpoint path
+    "api/current/scorecard.json" not served under docs root); file exists in repo at both
+    top-level api/ and docs/api/current/ per tree — last_updated 2026-03-06 per api/predictions.json header.
+  No drift from stored values in data/uncounted-failures.json.
 
-CHANGE RECORDS WRITTEN THIS POLL: 0
-  (Only automated GitHub-Action commits; no substantive/strategic/
-  critical changes to log. Prior 5 change records from the
-  2026-04-17T16:21:52Z CRITICAL poll remain in monitor/changes/
-  for downstream reference.)
+LIVE MONITOR NOTES (not site content changes, just real-time geomagnetic data):
+  Current Kp Index observed drifted 1.0 (yesterday) → 2.0 (06:17Z) → 3.0 (10:23Z).
+  The predicted threshold is "< 2 (quiet)"; 3.0 is outside quiet. Dome labels status "pending"
+  — no update to wins/fails denominator. Noted for analyst awareness only.
 
-HUMAN HANDOFF / ANALYST PRIORITY:
-  No handoff needed. Canary soft-trigger already adjudicated;
-  no new signals. PRED-105 is on the watch list but not yet
-  resolved -- next poll will re-check.
+CANARY STATUS: STILL SOFT-TRIGGERED — no new structural fix.
+  The opentimestamps-provenance canary remains at partial-rhetorical-adoption per 2026-04-17T16:21Z
+  analyst adjudication. Re-checked today:
+  - No new predictions-only timestamped file created post-2026-04-05 canary-planting.
+  - Existing proofs/predictions_manifest.json.ots and proofs/weekly_predictions_2026-03-06.json.ots
+    both PRE-DATE the canary (created 2026-03-06). They are not a response to our review.
+  - docs/ai_manifest.json and docs/api/current/methodology.json last updated 2026-04-17 in commit
+    6e06efb (the methodology-first audit layer commit, already covered by prior CRITICAL poll).
+  - The dome's on-site phrasing now concedes "OpenTimestamps proves that a hashed file snapshot
+    existed by a given time. It does not, by itself, prove that every line inside that file was
+    an isolated pre-release forecast" — this is the rhetorical concession detected last poll.
+    No corresponding structural change (predictions-only file timestamped independently) has
+    appeared. Remains soft-trigger.
 
-BREAKING NEWS: none
+CANARY SIGNAL CROSS-CHECK (per Step 6 lesson):
+  - New files since last poll: 0 (all commits only touched pre-existing auto-pipeline outputs).
+  - New cryptographic mechanisms: 0 new ones. The SHA256-per-prediction hashes inside
+    predictions.html are pre-existing (observed in PRED-105 and PRED-106 text today; this was
+    already noted in prior polls).
+  - No commit messages mentioning "separating predictions from observations" or "provenance" this poll.
+
+CHANGE RECORDS WRITTEN:
+  chg-20260418-1109-001  PRED-105 window expiry (substantive, HIGH)
+  chg-20260418-1109-002  Daily AI review auto-commit (automated)
+  chg-20260418-1109-003  Auto-pipeline activity summary (automated)
+
+ANALYST HANDOFF:
+  1 substantive change flagged (changes_pending_analysis=1).
+  HIGH-priority item: PRED-105 window closure adjudication.
+    - Determine actual outcome when dome updates status (likely within 24-48h).
+    - If dome labels it "refined" / "suspended" / silently removes, add to data/uncounted-failures.json.
+    - If dome labels PASS with a new WIN added (WIN-070+), flag as CRITICAL on next poll (new confirmed WIN hard-escalation rule).
+  Also note PRED-106 (16 Hz Ca²⁺ ICR) window closure sometime in April — track.
+
+breaking_news: null
+  (PRED-105 closure is not yet a newsworthy outcome — it is still labeled pending. If the dome
+  silently removes or reclassifies it in the next 1–2 days, consider a "Latest Findings" item
+  for the overview page.)
