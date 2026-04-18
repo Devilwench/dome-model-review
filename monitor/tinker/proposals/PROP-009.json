@@ -1,7 +1,10 @@
 {
   "id": "PROP-009",
   "created_at": "2026-04-18T10:13:49Z",
-  "status": "proposed",
+  "status": "superseded",
+  "superseded_by": "PROP-009r2",
+  "superseded_at": "2026-04-18T14:45:00Z",
+  "superseded_reason": "Hostile review #1 found 3 critical + 4 major + 3 moderate issues (patch byte-exactness, broken env-var toggle, soft-fallback reuse, operator-push enforcement inversion, curmudgeon-side queue_id write-through, retroactive audit rigor, FUSE/clone race). PROP-009r addressed most and was itself superseded by PROP-009r2 after hostile review #2 found a shell-quote bug, missing ownership-triad entries, and a mtime factual error. Applied via commits 314904e (step 1) and 0f2dc79 (step 3).",
   "category": "prompt_diet",
   "target": "monitor/prompts/decider.md (Step E2) and monitor/prompts/curmudgeon.md (Step 0b Procedure line 2)",
   "operator_directive": "DIRECTIVE-20260418-002 — Diagnose decider draining post-integration re-review queue items without curmudgeon review files",
