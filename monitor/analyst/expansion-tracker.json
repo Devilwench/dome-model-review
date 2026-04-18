@@ -3204,9 +3204,11 @@
         "ISS-1113"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "superseded",
       "notes": "Distinct numerical inputs to dome machinery: FORM-V51-001 (8537, 8619), FORM-V51-002 (0.20), FORM-V51-003 (14105), FORM-V51-004 (1.672), FORM-V51-005 (0.19550, 0.1640, 32.974), FORM-V51-006 (20015, 0.66), master constants (5733, 2534 — 20015 already counted). Total = 12. Current prose says \"ten\" and 2.8x = 28/10. Correct count is 12, making inflation factor 28/12 = 2.33x. Analyst should recount independently and update prose. NOTE: ISS-1114 (parameter/constant terminology) is patchable and will be handled separately by decider.",
-      "created_at": "2026-04-18T03:28:32.172Z"
+      "created_at": "2026-04-18T03:28:32.172Z",
+      "superseded_by": "EXP-182",
+      "superseded_at": "2026-04-18T07:27:58.096Z"
     },
     {
       "id": "EXP-180",
@@ -3217,9 +3219,11 @@
         "ISS-1116"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "superseded",
       "notes": "Two interrelated issues: (1) NMP Longitude is in the LOOSE list but described as discriminating — it should be moved to DISCRIMINATING, changing tally to \"2 LOOSE + 2 DISCRIMINATING = 28\". (2) Schumann Frequency is labeled BORROWED in the Tesla-family section but not counted in the \"6 BORROWED\" tally — either reclassify Schumann or move Equatorial Gravity (both BORROWED and TAUTOLOGY) to TAUTOLOGY-only to keep the count at 28. These require careful rewrite of the domain audit and tally paragraph.",
-      "created_at": "2026-04-18T03:28:32.172Z"
+      "created_at": "2026-04-18T03:28:32.172Z",
+      "superseded_by": "EXP-182",
+      "superseded_at": "2026-04-18T07:27:58.096Z"
     },
     {
       "id": "EXP-181",
@@ -3236,10 +3240,72 @@
       "output_file": "monitor/analyst/expansions/EXP-181.json",
       "completed_by": "analyst",
       "integrated": true,
-      "integrated_at": "2026-04-18T07:26:48.946Z"
+      "integrated_at": "2026-04-18T09:33:30.940Z",
+      "integration_mode": "wins_json_append_replace",
+      "integration_note": "WIN-058, WIN-058b, WIN-062 detail_evidence patches applied by prior decider run 2fa4b57. Tracker was not updated. Marking integrated now."
+    },
+    {
+      "id": "EXP-182",
+      "target": "Restructure per HNOTE-P4-LIVE-DASHBOARD-RELOCATE-001: reduce 2b.5 to stub, relocate 28-domain audit to Part 4.1 as table, update scorecard to 47.69σ/12 knobs/~1, add R²/r wedge + Fisher independence critique",
+      "category": "section-restructure",
+      "human_note_source": "HNOTE-P4-LIVE-DASHBOARD-RELOCATE-001",
+      "supersedes": [
+        "EXP-178",
+        "EXP-179",
+        "EXP-180"
+      ],
+      "source_issues": [
+        "ISS-1109",
+        "ISS-1113",
+        "ISS-1115",
+        "ISS-1116",
+        "ISS-1118",
+        "ISS-1119"
+      ],
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.5-post-apr18.c1.json",
+      "priority": "high",
+      "status": "complete",
+      "output_file": "monitor/analyst/expansions/EXP-182.json",
+      "completed_at": "2026-04-18T07:27:58.096Z",
+      "created_at": "2026-04-18T07:27:58.096Z",
+      "integrated": true,
+      "integrated_at": "2026-04-18T09:33:59.538Z",
+      "integration_mode": "sections_json_replace_block_find_replace",
+      "integration_note": "Three patches: P1 2b.5 stub reduce, P2 part4 scorecard update, P3 part4 4.1 full restructure. 3370 tests pass."
+    },
+    {
+      "id": "EXP-183",
+      "target": "Structural framing for HNOTE-API-HUMAN-GAPS-001 — REVISED per user feedback: (a) wins.json schema extension for per-WIN gaps, (b) new Part 4.2 Registry Framing Audit for registry-level aggregate gaps, (c) short taxonomy callout+link in Timestamp Error tab. Six registry-level gaps catalogued including newly-discovered prospective_confirmed count drift (10/9/1).",
+      "category": "structural-framing",
+      "human_note_source": "HNOTE-API-HUMAN-GAPS-001",
+      "source_issues": [
+        "ISS-1087",
+        "ISS-1088",
+        "ISS-1089",
+        "ISS-1117",
+        "ISS-1074"
+      ],
+      "cross_references": [
+        "EXP-181",
+        "EXP-182",
+        "HNOTE-PART-8B-FAIR-AUDITOR-001"
+      ],
+      "curmudgeon_review": null,
+      "priority": "high",
+      "status": "revised",
+      "output_file": "monitor/analyst/expansions/EXP-183.json",
+      "completion_signal": "structural_framing_revised",
+      "decider_action_required": "Integrate three-part placement: schema extension (ship first — low risk additive), Part 4.2 subsection (ship second — coordinate with EXP-182 Part 4.1), Timestamp callout-only (ship last — 2–3 sentence cross-link).",
+      "completed_at": "2026-04-18T08:40:40.501Z",
+      "created_at": "2026-04-18T08:40:40.501Z",
+      "revised_at": "2026-04-18T08:56:06.328Z",
+      "revision_notes": "User feedback 2026-04-18: original Option B (generalize Timestamp Error tab) overloaded the OTS canary scope. Revised to three-part placement: (E) extend data/wins.json schema with author_* fields + Author's Self-Rating block on WIN detail cards [primary], (F) new Part 4.2 Registry Framing Audit subsection for registry-level aggregate gaps [primary companion], (G) short taxonomy callout+link in Timestamp Error tab [scope-preserving]. Schema extension has natural-expansion property — new author classifications land in existing slots.",
+      "routed_to_curmudgeon": true,
+      "routed_at": "2026-04-18T09:36:55.758Z",
+      "routing_note": "Per HN-20260418-T0824-pre-integration-curmudgeon: route to curmudgeon as expansion-draft before integrating. Also has section numbering conflict (proposed 4.2, existing 4.2 is Eclipse). See ISS-1129."
     }
   ],
-  "last_updated": "2026-04-17T20:51:24.354Z",
-  "next_id": 182,
-  "total_items": 153
+  "last_updated": "2026-04-18T08:56:06.328Z",
+  "next_id": 184,
+  "total_items": 182
 }

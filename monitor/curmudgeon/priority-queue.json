@@ -19,8 +19,105 @@
     "decider",
     "tinker"
   ],
-  "queue": [],
-  "next_id": 170,
+  "queue": [
+    {
+      "queue_id": 170,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-2b.5",
+      "reason": "EXP-182 integrated: 2b.5 reduced to pointer-stub (significant restructure)",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-18T09:34:14.533Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-182.json",
+        "related_issues": [
+          "ISS-1113",
+          "ISS-1115",
+          "ISS-1116"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 171,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-4.1",
+      "reason": "EXP-182 integrated: 4.1 fully restructured — 28-domain table, 47.69σ/12 knobs/R² wedge, Fisher independence critique",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-18T09:34:14.533Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-182.json",
+        "related_issues": [
+          "ISS-1118",
+          "ISS-1119"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 172,
+      "target_type": "win-detail-rewrite",
+      "target_id": "WIN-058",
+      "reason": "EXP-181 integrated: registry_integrity_notes documentary acknowledgement added",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-18T09:34:14.533Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-181.json",
+        "related_issues": [
+          "ISS-1117"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 173,
+      "target_type": "win-detail-rewrite",
+      "target_id": "WIN-058b",
+      "reason": "EXP-181 integrated: registry_integrity_notes documentary acknowledgement added",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-18T09:34:14.533Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-181.json",
+        "related_issues": [
+          "ISS-1117"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 174,
+      "target_type": "win-detail-rewrite",
+      "target_id": "WIN-062",
+      "reason": "EXP-181 integrated: registry_integrity_notes documentary acknowledgement added",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-18T09:34:14.533Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-181.json",
+        "related_issues": [
+          "ISS-1117"
+        ],
+        "human_note": null
+      }
+    },
+    {
+      "queue_id": 175,
+      "target_type": "expansion-draft",
+      "target_id": "EXP-183",
+      "reason": "Pre-integration adversarial review per HN-20260418-T0824-pre-integration-curmudgeon. EXP-183 is a structurally important expansion (Registry Framing Audit section + wins.json schema extension). Steve wants curmudgeon review before integration. Also has section numbering conflict (would be 4.2 but 4.2 exists already).",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-18T09:36:38.427Z",
+      "context_hints": {
+        "source_file": "monitor/analyst/expansions/EXP-183.json",
+        "related_issues": [
+          "ISS-1129",
+          "ISS-1130",
+          "ISS-1131",
+          "ISS-1132"
+        ],
+        "human_note": "HN-20260418-T0824-pre-integration-curmudgeon"
+      }
+    }
+  ],
+  "next_id": 176,
   "history": [
     {
       "queue_id": 105,

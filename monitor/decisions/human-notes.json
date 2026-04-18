@@ -87,6 +87,20 @@
       "consumed_at": "2026-04-11T10:46:44.735Z",
       "consumed_by": "decider",
       "consumed_action": "Verified SEC-6.5 already correctly implements Steve's intent per ISS-713 fix (applied 2026-04-11T07:10): section keeps \"0 Falsified\" from summary stats, adds internal contradiction (dome detail labels W024 FALSIFIED), lists W021 as 5th uncounted failure. Curmudgeon critical #1 (W021→W024 swap) already applied. Curmudgeon critical #2 (soften 0 Falsified) correctly rejected per human note — section already strengthened with internal contradiction evidence. No further patching needed."
+    },
+    {
+      "id": "HN-20260418-T0824-pre-integration-curmudgeon",
+      "status": "consumed",
+      "consumed_at": "2026-04-18T09:36:55.775Z",
+      "consumed_by": "decider",
+      "consumed_note": "EXP-183 routed to curmudgeon expansion-draft queue. EXP-182 integrated normally (different HNOTE scope)."
+    },
+    {
+      "id": "HN-20260418-T0826-tinker-directive-relay",
+      "status": "consumed",
+      "consumed_at": "2026-04-18T09:36:55.775Z",
+      "consumed_by": "decider",
+      "consumed_note": "Tinker directive relayed in morning briefing. See monitor/tinker/operator-directives/DIRECTIVE-20260418-001-change-detection-cooldown.json"
     }
   ]
 }
