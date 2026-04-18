@@ -3320,9 +3320,53 @@
       "routing_note": "Per human note HN-20260418-T1004: pre-integration curmudgeon review required before integration. Queued as expansion-draft QID:178 with require_matching_review_file=true. integrate after curmudgeon reviews.",
       "curmudgeon_review": null,
       "integrated": false
+    },
+    {
+      "id": "EXP-185",
+      "target": "WIN-019 defense neutralization — two wrong citations exploitable by dome defender (rating 4/5)",
+      "source": "curmudgeon-cycle3-advocate",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-019.c3.json",
+      "issue_ids": [
+        "ISS-1133",
+        "ISS-1134"
+      ],
+      "category": "defense",
+      "priority": "high",
+      "status": "pending",
+      "notes": "Surviving defense rated 4/5: dome defender can cite the wrong arXiv (1302.7179) and wrong Bulletin (70) as evidence the review is sloppy. Analyst Mode 3: find additional analemma geometry sources or verify exact Holbrow arXiv identifier independently. After citation corrections are applied (ISS-1133 direct patch), write a fortified evidence paragraph that would survive scrutiny even if someone verifies every link.",
+      "created_at": "2026-04-18T11:24:54.000Z"
+    },
+    {
+      "id": "EXP-186",
+      "target": "WIN-020 defense neutralization — standard-model maturity bar argument (rating 3/5)",
+      "source": "curmudgeon-cycle3-advocate",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-020.c3.json",
+      "issue_ids": [
+        "ISS-1135"
+      ],
+      "category": "defense",
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Surviving defense rated 3/5: comparing dome framework against LLR mm-precision is unfair given dome is young. Analyst Mode 3: clarify that we are judging by dome author's own CONFIRMED label, not by our standard, and add explicit carve-out: we would not call this confirmed under a reasonable preliminary-result label either.",
+      "created_at": "2026-04-18T11:24:54.000Z"
+    },
+    {
+      "id": "EXP-187",
+      "target": "WIN-058 defense neutralization — model-consistency test framing (rating 3/5)",
+      "source": "curmudgeon-cycle3-advocate",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-058.c3.json",
+      "issue_ids": [
+        "ISS-1136",
+        "ISS-1137"
+      ],
+      "category": "defense",
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Surviving defense rated 3/5: dome defender argues WIN-058 is a model-consistency test (does the dome's coordinate projection recover geographic longitude?), not a claim of novel prediction. Analyst Mode 3: add explicit sentence to verdict or finding clarifying that even read charitably as a consistency test, the identity only distinguishes the polar-azimuthal projection class — a class the dome committed to by its disc-centered geometry — so it cannot discriminate dome from any globe-based polar-cylindrical projection.",
+      "created_at": "2026-04-18T11:24:54.000Z"
     }
   ],
   "last_updated": "2026-04-18T08:56:06.328Z",
-  "next_id": 185,
+  "next_id": 188,
   "total_items": 182
 }
