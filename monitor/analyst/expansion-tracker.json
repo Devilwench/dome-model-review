@@ -3181,9 +3181,58 @@
       "integrated": true,
       "integrated_at": "2026-04-17T23:25:34.343Z",
       "integration_mode": "decider-self-apply"
+    },
+    {
+      "id": "EXP-178",
+      "target": "SEC-4.1 Group B table: annotate WIN-073, WIN-075, WIN-076 as pending-analysis or stub them",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-4.1.c3.json",
+      "issue_ids": [
+        "ISS-1109"
+      ],
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Group B table references WIN-073, WIN-075, WIN-076 in Prior WIN column but none exist in wins.json. Analyst should add a note to each row (e.g., \"(pending analysis)\") or file as placeholder WIN entries. This prevents broken internal cross-references.",
+      "created_at": "2026-04-18T03:28:32.172Z"
+    },
+    {
+      "id": "EXP-179",
+      "target": "SEC-2b.5 parameter count: recount and correct \"ten independent numerical knobs\" to \"twelve\" and update 2.8x inflation factor",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.5-post-apr18.c1.json",
+      "issue_ids": [
+        "ISS-1113"
+      ],
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Distinct numerical inputs to dome machinery: FORM-V51-001 (8537, 8619), FORM-V51-002 (0.20), FORM-V51-003 (14105), FORM-V51-004 (1.672), FORM-V51-005 (0.19550, 0.1640, 32.974), FORM-V51-006 (20015, 0.66), master constants (5733, 2534 — 20015 already counted). Total = 12. Current prose says \"ten\" and 2.8x = 28/10. Correct count is 12, making inflation factor 28/12 = 2.33x. Analyst should recount independently and update prose. NOTE: ISS-1114 (parameter/constant terminology) is patchable and will be handled separately by decider.",
+      "created_at": "2026-04-18T03:28:32.172Z"
+    },
+    {
+      "id": "EXP-180",
+      "target": "SEC-2b.5 domain classification: fix NMP Longitude LOOSE vs DISCRIMINATING contradiction and BORROWED count tally (6 vs 7)",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-2b.5-post-apr18.c1.json",
+      "issue_ids": [
+        "ISS-1115",
+        "ISS-1116"
+      ],
+      "priority": "medium",
+      "status": "pending",
+      "notes": "Two interrelated issues: (1) NMP Longitude is in the LOOSE list but described as discriminating — it should be moved to DISCRIMINATING, changing tally to \"2 LOOSE + 2 DISCRIMINATING = 28\". (2) Schumann Frequency is labeled BORROWED in the Tesla-family section but not counted in the \"6 BORROWED\" tally — either reclassify Schumann or move Equatorial Gravity (both BORROWED and TAUTOLOGY) to TAUTOLOGY-only to keep the count at 28. These require careful rewrite of the domain audit and tally paragraph.",
+      "created_at": "2026-04-18T03:28:32.172Z"
+    },
+    {
+      "id": "EXP-181",
+      "target": "WIN-058, WIN-058b, WIN-062: add registry_integrity_notes paragraph crediting dome author claim_index.json disambiguation",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/REACTIVE-AUDIT-2026-04-17.json",
+      "issue_ids": [
+        "ISS-1117"
+      ],
+      "priority": "high",
+      "status": "pending",
+      "notes": "Dome author added registry_integrity_notes to claim_index.json (2026-04-17) with slugs win-058-bedrock-kappa, win-058-theta-rule, win-062-tesla-wave-speed. Our prose still presents the duplicate WIN numbering as unacknowledged. Add ~1 paragraph each: (a) credit the API-layer disambiguation as a documentary acknowledgement; (b) note visible-prose collision in wins.html persists; (c) catalogue as acknowledge-without-fix pattern alongside methodology.json ISS-1087. Cross-reference to ISS-1088 rhetorical-vs-documentary framing. Source: REACTIVE-AUDIT-2026-04-17.json.",
+      "created_at": "2026-04-18T03:28:32.172Z"
     }
   ],
   "last_updated": "2026-04-17T20:51:24.354Z",
-  "next_id": 178,
+  "next_id": 182,
   "total_items": 153
 }

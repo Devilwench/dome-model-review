@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-04-18T01:19:20.254Z",
-  "total_reviews": 200,
+  "generated_at": "2026-04-18T03:19:19.769Z",
+  "total_reviews": 202,
   "already_processed": 294,
-  "pending_count": 0,
+  "pending_count": 4,
   "severity_breakdown": {
     "critical": 0,
-    "major": 0,
-    "moderate": 0,
+    "major": 3,
+    "moderate": 1,
     "minor": 0,
     "none": 0
   },
@@ -15,7 +15,7 @@
     "moderate": 0,
     "total_vulnerable": 0
   },
-  "needs_full_read_count": 0,
+  "needs_full_read_count": 4,
   "under_covered_processed": [
     {
       "win_id": "EVAL-GUIDE",
@@ -2182,38 +2182,6 @@
       ]
     },
     {
-      "win_id": "SEC-4.1",
-      "topic": "9.2-Sigma Dashboard — One Constant, Not Twenty Tests",
-      "issues_created": 0,
-      "holes_found": 6,
-      "missing_holes": [
-        {
-          "severity": "major",
-          "summary": "UNRESOLVED FROM CYCLE 1: The verifiability footnote still cites 'raw-text/08-live-power.txt' as preserving the dome's Live Power page, but that file does not exist in the repository. `ls raw-text/` shows only 01-home through 07-ai-context. The Cycle 1 review flagged this exact problem and EXP-014 wa"
-        },
-        {
-          "severity": "moderate",
-          "summary": "UNRESOLVED FROM CYCLE 1: The '12 of 14 cases' count in the 'Key column' paragraph is inconsistent with the Group A table itself. The table's 'Globe Predicts Same?' column shows YES for 13 of 14 rows (only #8 Telluric Cutoff shows 'N/A' — dome contradicts data). The prose says '12 of 14 both predict "
-        },
-        {
-          "severity": "moderate",
-          "summary": "Cross-WIN refraction inconsistency with WIN-065. SEC-4.1 argues Polaris's +0.27° excess falls within a budget that includes 'atmospheric refraction (~0.5° near the horizon, ~0.1° at high elevation).' WIN-065's detail_evidence, by contrast, states '~0.02–0.03° at typical Polaris elevations' and expli"
-        },
-        {
-          "severity": "moderate",
-          "summary": "The section never explains HOW 9.2σ is computed. We assert '14 of 20 share a constant, therefore the 9.2σ is meaningless,' but the dome's aggregation method could be Fisher's combined-p, Stouffer's Z, a chi-square of residuals, or a weighted Bayesian update. Each has different sensitivity to non-ind"
-        },
-        {
-          "severity": "minor",
-          "summary": "The 'one ruler in 30 rooms' analogy shifts to '30 rooms' while the actual count is 14 rooms. The mismatch is small but noticeable: '14 of 20 domains... imagine measuring your height in 30 rooms' is an arithmetic jolt. A careful reader stops to work out whether 30 is a typo."
-        },
-        {
-          "severity": "minor",
-          "summary": "The κ (EM-gravity coupling) row in Group A says 'Globe Predicts Same? YES (null: expects 0.0)' — this is clearer than Cycle 1 but is still slightly odd phrasing. The globe does not 'predict' zero; it is silent on aetheric coupling, which is a non-standard concept. 'Null hypothesis (zero coupling) is"
-        }
-      ]
-    },
-    {
       "win_id": "SEC-4.2",
       "topic": "Eclipse prediction misrepresentation (August 2026 eclipse analysis)",
       "issues_created": 0,
@@ -4154,34 +4122,6 @@
       ]
     },
     {
-      "win_id": "WIN-032",
-      "topic": "New Jerusalem North Pole Axis — theological axiom mapped to dome geometry",
-      "issues_created": 0,
-      "holes_found": 5,
-      "missing_holes": [
-        {
-          "severity": "major",
-          "summary": "Advocate defense from c3 (defense_survives=3) still unmitigated in the current prose. The strongest dome-side move — \"you reject the wrapper and pretend you have refuted the content; we never offered WIN-032 as a measurement, the CONFIRMED label applies in our framework because the prophecy is consi"
-        },
-        {
-          "severity": "minor",
-          "summary": "Hardcoded count \"4 theological claims in the current WIN count (WIN-023, WIN-031, WIN-032, WIN-034)\" violates the project's own \"never hardcode a number derivable from data\" rule. If an additional WIN is tagged Unfalsifiable+theological, or if one of these four is re-classified (e.g., WIN-023 or WIN"
-        },
-        {
-          "severity": "minor",
-          "summary": "Internal duplication inside detail_evidence: \"The dome's own automated monitoring system (monitor.py) does not include WIN-032 in its live monitoring audit engine — if the author considered this a genuine, testable prediction, it would appear in the monitoring pipeline. Its complete absence from the"
-        },
-        {
-          "severity": "minor",
-          "summary": "The new framing \"unfalsifiable on two independent layers — the dome geometry and the prophetic framework — either of which is sufficient to remove it from scientific testing\" is logically stronger than the c3 \"doubly unfalsifiable ... requires both,\" but a careful defender can push back: the dome's "
-        },
-        {
-          "severity": "minor",
-          "summary": "The phrase \"the geopolitical framing in context.html confirms this is theological-political assertion, not testable physics\" in detail_verdict_text is under-supported. The reader has to trust us that context.html has \"geopolitical framing\" — no quote, no anchor, no citation to a specific passage. A "
-        }
-      ]
-    },
-    {
       "win_id": "WIN-033",
       "topic": "Sigma Octantis dimness asymmetry",
       "issues_created": 0,
@@ -5690,6 +5630,278 @@
       ]
     }
   ],
-  "under_covered_count": 193,
-  "pending_reviews": []
+  "under_covered_count": 191,
+  "pending_reviews": [
+    {
+      "item_id": "REACTIVE-AUDIT-2026-04-17",
+      "win_id": "REACTIVE-AUDIT-2026-04-17",
+      "review_file": "monitor/curmudgeon/reviews/REACTIVE-AUDIT-2026-04-17.json",
+      "reviewed_at": "2026-04-18T00:15:05.256Z",
+      "cycle": 1,
+      "topic": "Gap analysis of dome author reactive changes 2026-04-17 (chg-20260417-1620-001..005) triggered by CNOTE-REACTIVE-001",
+      "verdict_holds": true,
+      "confidence": 0.82,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "Gap: WIN-058, WIN-058b, and WIN-062 detail_evidence prose contains zero references to registry_integrity_notes, claim_key, or the author-side disambiguation slugs (win-058-bedrock-kappa, win-058-theta-rule, win-062-tesla-wave-speed) introduced in claim_index.json on 2026-04-17 (chg-20260417-1620-004",
+          "recommendation": "File a new decider issue (proposed id ISS-REACTIVE-WIN-COLLISION or similar): ask the analyst to add a short paragraph (or detail_extra block) to WIN-058, WIN-058b, and WIN-062 that (a) credits the registry_integrity_notes disambiguation as a documentary acknowledgement dated 2026-04-17 commit touch",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Gap (flag): ai_manifest.json registry_semantics self-caveat is a parallel structure to methodology.json registry_counts (already tracked in ISS-1087). Our Part 2b.5 Live Dashboard Audit and Timestamp Error tab April 2026 update block could cite both source files together; currently they cite only me",
+          "recommendation": "When the analyst or decider resolves ISS-1087, use language that covers both methodology.json registry_counts AND ai_manifest.json registry_semantics. No new issue required — just a note on ISS-1087.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Meta-observation: No single document in our review currently catalogs the April 2026 reactive-change set as a whole. The coverage is distributed across EXP-170 (Timestamp tab), EXP-171 (strawman audit), EXP-172 (dashboard), EXP-173 (AI tab), EXP-176 (Part 4.1). A future holistic reviewer may benefit",
+          "recommendation": "Optional: consider a single paragraph in the Overview tab (or in Section 8.17 if it grows further) summarizing the April 2026 reactive-update wave as a documentary/architectural cluster. Low priority.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "This is a meta-audit, not a WIN or section review. The five 2026-04-17 dome-author commits collectively represent a documentary/architectural response to the pattern of critiques our review has pursue",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "SEC-4.1",
+      "win_id": "SEC-4.1",
+      "review_file": "monitor/curmudgeon/reviews/SEC-4.1.c3.json",
+      "reviewed_at": "2026-04-18T07:42:00Z",
+      "cycle": 3,
+      "topic": "Section 4.1 — The 28-Domain / 100% Dashboard: One Ruler, Many Rooms (EXP-176 integration, 28-domain rewrite)",
+      "verdict_holds": true,
+      "confidence": 0.72,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "Group B WIN-id citations don't resolve in our own wins.json. The Group B table lists 'Prior WIN' column entries for WIN-073 (row 28, GPS Clock Offset Lorentz), WIN-075 (row 18, Ionospheric D-layer live), WIN-076 (row 20, Mascon Gravity Anomaly live), and OPEN-007 (row 26, Moon Angular Diameter Varia",
+          "recommendation": "Two clean fixes: (1) Add one clarifying sentence above the Group B table: 'Prior-WIN column values are the monitor.py source-field labels the dome author uses internally to mark each cell as a static re-reference; WIN-NNN numbers above WIN-069 correspond to dome-side domains we have not yet onboarde",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Group count arithmetic does not add up. The section claims 'Group A (14 of 28) + Group B (14 of 28) = 28', then introduces 'Of the remaining cells: Group C (5 standard-model imports), Group D (2 framework recastings), Group E (3 loose checks)' = 10 more. 14+14+5+2+3 = 38, but there are 28 dashboard ",
+          "recommendation": "Pick one framing and commit. Cleanest option: reframe the groups as overlapping classifications rather than a partition. Replace 'Group A (14 of 28)' headers with 'Group A: 14 cells whose predictions share the λg=8,619 km / H₀=8,537 km fit.' Replace Bottom Line claim 'Of the remaining cells' with 'O",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "moderate",
+          "summary": "The 'one ruler' analogy understates the number of fitted constants. Row 2 of Group A (Tesla Longitudinal Freq) lists shared constants as 'λg, va'. va = 1.574c = πc/2 is an independent constant derived from Tesla's 0.08484 s spherical-cavity measurement, NOT from the λg fit. So the 14 λg-dependent do",
+          "recommendation": "Rephrase the Bottom Line analogy to 'The dome's handful of fitted constants — λg = 8,619 km, H₀ = 8,537 km, va = 1.574c, κ = 1.67 — each get re-used across many dashboard cells; λg alone appears in 13 of the 14 Group A domains, va in Tesla's frequency row, and so on. Fourteen labels cannot carry mor",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Group C table has 6 rows but the Bottom Line and TLDR both say '5 import standard-model or globe-model values.' Group C rows: K1 Tidal (Sidereal Day), S2 Solar Tidal, M2 Tidal, Equatorial Gravity, Aetheric Redshift Scale λA, P-wave Shadow Zone. The off-by-one is likely because Equatorial Gravity is ",
+          "recommendation": "Consistency fix: either drop the Equatorial Gravity row from Group C (cross-reference to Group A row 4 suffices) and keep the '5' label, or change TLDR/Bottom Line to '6' and mark Equatorial Gravity in Group C as '(also Group A #4)'. The clean fix is the former — drop the row with a one-line cross-r",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Tesla Longitudinal Frequency explanation (Group A row 2) says '~1.57c, a known superluminal phase velocity in the Earth-ionosphere waveguide.' The dome cavity waveguide model (Schumann TM0 mode) actually has phase velocity slightly below c, not above. The πc/2 ≈ 1.57c phase velocity comes from Tesla",
+          "recommendation": "Replace 'a known superluminal phase velocity in the Earth-ionosphere waveguide' with 'the phase velocity πc/2 of the fundamental mode of a spherical cavity resonator with Earth's radius — a standard RF textbook result, not a dome-specific phenomenon' (matching WIN-001's framing). Low-effort one-sent",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "formula_runtime.json 'exactly six formulas (FORM-V51-001 through FORM-V51-006)' was not re-verified live this review. The raw-text archives (2026-04-07 and earlier) list constants and formulas by narrative but do not enumerate FORM-V51-00N identifiers. Live fetch would resolve; the c2 SEC-timestamp ",
+          "recommendation": "Low-priority verification task: next curmudgeon run or analyst Mode-4 verify the six-formula enumeration via WebFetch against https://john09289.github.io/predictions/api/current/formula_runtime.json . If not exactly six, update the section. If exactly six, add a '(verified 2026-04-NN)' footnote.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [
+        "WIN-073 (Group B row 28, 'GPS Clock Offset (Lorentz)') — NOT present in data/wins.json; our registry tops out at WIN-069 with 71 entries total. Likely dome-side monitor.py source marker.",
+        "WIN-075 (Group B row 18, 'Ionospheric D-layer (live)') — NOT present in data/wins.json. Likely dome-side monitor.py source marker.",
+        "WIN-076 (Group B row 20, 'Mascon Gravity Anomaly (live)') — NOT present in data/wins.json. Likely dome-side monitor.py source marker."
+      ],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "The section audits the dome's April 2026 dashboard expansion from 20 to 28 scored domains at a claimed '100% / 9.2σ aggregate significance.' The core argument: 14 cells are λg-dependent (share a singl",
+      "stronger_arguments_count": 3,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    },
+    {
+      "item_id": "WIN-032",
+      "win_id": "WIN-032",
+      "review_file": "monitor/curmudgeon/reviews/WIN-032.c5.json",
+      "reviewed_at": "2026-04-18T01:15:11.216Z",
+      "cycle": 5,
+      "topic": "New Jerusalem pole axis — c5 post EXP-174 integration (asymmetric-unfalsifiability defense neutralization)",
+      "verdict_holds": true,
+      "confidence": 0.9,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "major",
+          "summary": "Broken cross-reference in the new EXP-174 paragraph. The new detail_verdict_text concludes: \"...the fix is not to relitigate the theology but to insist on a single definition of confirmation — which is what our Scorecard-Inflation argument (Part 3.1b, Pattern 6) already does.\" Neither name exists at",
+          "recommendation": "Fix the reference. Options: (a) drop the specific named citation — the paragraph stands on its own without needing to point to \"Part 3.1b, Pattern 6\"; (b) point to the actually-relevant section (Part 2's V51.0 scorecard-expansion argument, or Part 6's asymmetric scorecard-pattern section); (c) add a",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "c4 hole #1 persists: detail_evidence still hardcodes \"4 theological claims in the current WIN count (WIN-023, WIN-031, WIN-032, WIN-034).\" Violates the \"never hardcode a count derivable from data\" rule. If a fifth Unfalsifiable WIN is added (or one of the four is re-classified), the prose silently g",
+          "recommendation": "Replace with a build-time template ({{UNFALSIFIABLE_WIN_COUNT}} theological claims) or a rendering hook that enumerates Unfalsifiable-verdict WINs from wins.json. Carried forward from c4 holes_found[1].",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "c4 hole #2 persists: detail_evidence phrasing \"unfalsifiable on two independent layers — the dome geometry and the prophetic framework\" still concedes that the dome geometry is itself unfalsifiable. This is in tension with the rest of our review, which argues the dome geometry IS falsifiable (and fa",
+          "recommendation": "Replace with: \"unfalsifiable on two independent layers — the prophetic framework (no measurable consequence, no timeline) and the pole-axis mapping (not present in the source text, added by the dome author).\" Carried forward from c4 holes_found[3].",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "c4 hole #3 persists: detail_verdict_text still says \"the geopolitical framing in context.html confirms this is theological-political assertion, not testable physics\" with no quote, no anchor, no specific passage. A dome defender can and will ask which framing, what page, what sentence.",
+          "recommendation": "Either cite a specific sentence from raw-text/07-ai-context.txt with anchor, or drop the clause — the theological/unfalsifiability basis is already sufficient. Carried forward from c4 holes_found[4].",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "c4 hole #4 persists: internal duplication inside detail_evidence — monitor.py-excludes-WIN-032 is stated twice (once early: \"The dome's own automated monitoring system (monitor.py) does not include WIN-032...\"; once late: \"The model's own monitoring system (monitor.py) contains no validation domain ",
+          "recommendation": "Delete the second sentence or merge. Carried forward from c4 holes_found[2].",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "In the new EXP-174 paragraph, the example \"pre-CMB cosmology, black-hole interiors, or string-theoretic vacua, all of which are currently untestable\" bundles three items with very different scientific statuses. Pre-CMB cosmology has measurable signatures (e.g., baryon asymmetry, primordial gravitati",
+          "recommendation": "Either narrow to the cleanest example (black-hole interiors — they are the only one that is both a derived consequence AND genuinely inaccessible to observation) or prefix with \"examples of varying strength — e.g., black-hole interiors, string-theoretic vacua, certain inflation parameter ranges.\" Mi",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "major",
+      "citation_failures": [
+        "\"our Scorecard-Inflation argument (Part 3.1b, Pattern 6)\" — Part 3.1b is id=posthoc-standard and covers post-hoc/prospective standard, not scorecard inflation. Pattern 6 in Part 9.1 is \"Inconvenient Data Discarded.\" Neither location matches the named argument. This is a cross-reference failure introduced by the EXP-174 integration."
+      ],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "Three-paragraph verdict: (1) original scorecard-inflation framing (Eschatological prophecy mapped to axis, no falsification criteria, pole-axis absent from Revelation 21, dome monitoring excludes it);",
+      "stronger_arguments_count": 2,
+      "defense_survives": 1,
+      "best_defense": "You have now explicitly named and refused the \"two definitions of CONFIRMED\" move, which was our strongest position. The remaining angle is narrower: even if we accept that mixing CONFIRMED-as-measurement with CONFIRMED-as-theologically-consistent is a category error in the scorecard, you have not s",
+      "preemptive_recommendation": "The defense is thin — it relies on re-framing a scriptural assertion about Revelation 21 as a geometric theorem, which does not survive inspection of the Revelation 21 text (no axis, no pole, no coordinates — confirmed in c4 Lens C). The current prose already addresses this in paragraph 1: \"the pole",
+      "needs_full_read": true
+    },
+    {
+      "item_id": "SEC-2b.5",
+      "win_id": "SEC-2b.5",
+      "review_file": "monitor/curmudgeon/reviews/SEC-2b.5-post-apr18.c1.json",
+      "reviewed_at": "2026-04-18T02:16:59.099Z",
+      "cycle": 1,
+      "topic": "2b.5 The 100% Dashboard — post-apr18 patches review (ISS-1103, ISS-1105 applied); first c1 against updated live-dashboard-bookkeeping block",
+      "verdict_holds": true,
+      "confidence": 0.75,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "New: the Section 1.8 crossref is imprecise. The patched text says Section 1.8 'shows them as post-hoc calibrations against observational data,' but Section 1.8 (Coordinate Collapse) does NOT contain the literal numbers 8537 or 8619, does NOT use the term 'post-hoc,' and does NOT use the word 'reconc",
+          "recommendation": "Replace the crossref with language that either (a) points to the actual admission: 'the dome author's own V12 log notes H(r) reconciles three previously contradictory H measurements (Schumann ~9,500 km, Polaris 4,750 km, model 9,086 km) — a two-parameter exponential fit through three observations is",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "New: the phrase 'aetheric pressure-scale values from first principles' is not the dome author's actual framing. Raw-text search across 01-home.txt, 05-model.txt, 07-ai-context.txt, 08-live-power.txt finds the single phrase 'from first principles' only on the site home page as a general site-level cl",
+          "recommendation": "Replace 'the dome author derives these as aetheric pressure-scale values from first principles' with something like 'the dome author's V12 discovery log presents H(r) = 8537 exp(-r/8619) as a function that reconciles three previously contradictory H measurements (Schumann resonance near the pole, Po",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "New: the '2.8x domain-inflation factor' depends on the precise count '10 independent numerical knobs,' but an honest count of formula_runtime.json gives 12, not 10. Counting distinct numerical values: FORM-V51-001 contributes 8537, 8619 (2); FORM-V51-002 contributes 0.20 (1; 8537 is reused); FORM-V5",
+          "recommendation": "Two paths: (a) State the count precisely as 12 (or more carefully, '~12 independent numerical knobs including master constants') and report 28/12 ~= 2.3x. This concedes the smaller ratio but is defensible on recount. (b) Keep 'roughly ten' and 'roughly 2.8x' consistently, and add a footnote: 'Counti",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "New: internal inconsistency on 'parameter' vs 'constant' after the ISS-1103 lexical change. H(r) is now described as having 'two numerical constants (8537, 8619)' while the remaining five formulas are still described with 'one new parameter (0.20),' 'one parameter (14105),' 'one parameter (1.672),' ",
+          "recommendation": "Either (a) apply 'numerical constants' consistently to all six formulas (since from the dome author's perspective, all are published as derived), with the first-principles-vs-fit caveat applied to the two that our review actually contests (H(r) and n(r)'s 0.20); or (b) revert ISS-1103's 'constants' ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "NMP Longitude category self-contradiction (was not in c1, or not sharpened in c1). NMP Longitude is listed as the third LOOSE item ('Loose / directional (3 domains)') with the bullet text 'Actually within 1% of observed. This is one of the few cells with real empirical content.' Then the next subsec",
+          "recommendation": "Move NMP Longitude out of the LOOSE list into a new 'Discriminating (1 domain)' bullet list preceding the 'The remaining genuinely-discriminating cell' prose section (or fold the 'discriminating' subsection into a bullet list). Update the LOOSE header to '(2 domains)': CMB Axis of Evil and NMP Drift",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "Non-overlap category-arithmetic mismatch on BORROWED. The tally sentence says '14 STATIC + 6 BORROWED + 2 THEORY-FRAMEWORK + 3 LOOSE + 2 TAUTOLOGY-only + 1 DISCRIMINATING = 28.' But Schumann Frequency is listed under Tesla-family and is explicitly labeled BORROWED in its bullet text. If Schumann is ",
+          "recommendation": "Update the non-overlap tally to 14 STATIC + 7 BORROWED + 2 THEORY-FRAMEWORK + 2 LOOSE + 2 TAUTOLOGY-only + 1 DISCRIMINATING = 28. Also update the 'Borrowed from the standard model' header to '(6 domains)' if Schumann stays under Tesla-family, OR move Schumann to the Borrowed section and change its h",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Inherited from c1 hole 9: Mascon Gravity STATIC entry still lacks the range/point caveat. The list shows 'Mascon Gravity ~26=28.1 mGal (WIN-076, 23% tol)' where predicted is a range ('~26') and observed is a point (28.1 mGal), with a 23% tolerance that is unusually wide for the STATIC bucket (most S",
+          "recommendation": "Add parenthetical: '(Mascon Gravity is the outlier in the STATIC bucket — predicted is a range, observed is a point, and 23% tolerance is atypical; still classified STATIC because the source string is (WIN-076 static win) and no fresh data is fetched.)'",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "Inherited from c1 hole 10: Tesla Harmonic Series dismissal is still 'If the fundamental exists, its harmonics exist as arithmetic' — attackable. Physical-harmonic content is not pure arithmetic; each harmonic requires independent excitation and detection conditions.",
+          "recommendation": "Tighten to: 'STATIC (WIN-001 static win). The monitor test records Present vs Present with 0% tolerance — a binary existence check, not a frequency-or-amplitude measurement. In physical resonance, harmonics are not automatic arithmetic consequences of the fundamental; they require independent excita",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The new 2.8x sentence says 'its underlying parameter count,' using 'parameter' — but the adjacent H(r) line, after ISS-1103, uses 'constants.' Minor terminology drift that a careful reader will notice. See hole 4 for the broader issue.",
+          "recommendation": "Once hole 4 is resolved (unified 'parameters' or 'constants' throughout), this is naturally fixed. If keeping mixed usage, change '2.8x domain-inflation factor relative to its underlying parameter count' to '2.8x domain-inflation factor relative to its underlying knob count' (matches 'ten independen",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "The citation '2.8x' is written as literal '2.8x' (with the times sign character) in the HTML. Fine for readers, but when quoted on social (SEC-1105 fix_details called it 'travels well on social'), the raw multiplication symbol U+00D7 may not render in some clients. Low risk, easy to pre-empt.",
+          "recommendation": "Consider writing 'approximately 2.8-fold' or 'roughly 2.8 times' in the main prose; keep '2.8x' only in places safe from client-encoding issues. Lowest-priority suggestion.",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [
+        "'Section 1.8 shows them as post-hoc calibrations against observational data' — Section 1.8 does NOT contain '8537,' '8619,' 'post-hoc,' or 'reconcile.' It makes the adjacent argument that n(r) contaminates angular measurements used to back-solve r. The claimed argument (H(r) parameters are post-hoc fits) is in the dome author's raw-text/05-model.txt V12 KEY DISCOVERY log, not in our Section 1.8. This is the hole-1 citation issue.",
+        "'the dome author derives these as aetheric pressure-scale values from first principles' — no raw-text instance of 'aetheric pressure-scale' or 'pressure scale' tied to H(r). The only 'first principles' usage is a site-level home-page sentence, not specifically about H(r). This is the hole-2 citation issue."
+      ],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": false,
+        "post_hoc": false,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "The post-patch SEC-2b.5 argues that the dome's public '100.0% / 28 of 28' live dashboard is label-inflation on top of six formulas and roughly ten independent numerical knobs — taking the dome author'",
+      "stronger_arguments_count": 2,
+      "defense_survives": null,
+      "best_defense": null,
+      "preemptive_recommendation": null,
+      "needs_full_read": true
+    }
+  ]
 }
