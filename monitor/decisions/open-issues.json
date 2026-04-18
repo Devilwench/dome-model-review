@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-18T11:27:07.000Z",
+  "last_updated": "2026-04-18T12:51:26.662Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -378,7 +378,85 @@
         "silent_drop": "log in uncounted-failures.json as FAIL-NNN",
         "null_result": "record as falsified"
       }
+    },
+    {
+      "id": "ISS-1141",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "scientific_completeness",
+      "description": "SEC-4.1 (part4): lambda_g-linking paragraph asserts lambda_g is the primary shared constant linking three rows, but the 28-row table has no per-row shared-constant markers. Defender can ask which rows are lambda_g-dependent. Fix: add shared-constant column or enumeration paragraph. Source: SEC-4.1-post-EXP-182.c1 HOLE-1.",
+      "source": "curmudgeon-SEC-4.1-post-EXP-182.c1",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null,
+      "found_at": "2026-04-18T12:51:26.662Z"
+    },
+    {
+      "id": "ISS-1142",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "content_improvement",
+      "description": "SEC-4.1 (part4): Bottom Line parenthetical (lambda_A excluded because substitutes H0) is redundant with lambda_A BORROWED row-10 classification. Reads as legacy text. Fix: delete parenthetical. Source: SEC-4.1-post-EXP-182.c1 HOLE-2.",
+      "source": "curmudgeon-SEC-4.1-post-EXP-182.c1",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null,
+      "found_at": "2026-04-18T12:51:26.662Z"
+    },
+    {
+      "id": "ISS-1143",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "scientific_completeness",
+      "description": "SEC-4.1 (part4): 12-knob denominator for 2.33x ratio uses full formula-pack budget; effective knobs-used-by-scored-domains is ~9-10. 2.33x is a LOWER BOUND. Fix: add footnote noting this; keep 2.33x headline. Source: SEC-4.1-post-EXP-182.c1 HOLE-3.",
+      "source": "curmudgeon-SEC-4.1-post-EXP-182.c1",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null,
+      "found_at": "2026-04-18T12:51:26.662Z"
+    },
+    {
+      "id": "ISS-1144",
+      "win_id": "053",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "WIN-053: Attribution error. Text says \"standard centered dipole gives ~54,000 nT at geographic south pole\" but pure centered dipole gives ~60,700 nT; ~54,000-55,000 nT is the IGRF-13 measured value. Text conflates the two. Rewrite: pure dipole gives ~60,700 nT; IGRF-13 gives ~55,000 nT. Either way globe predicts strong field, not zero. Source: WIN-053.c3 HOLE-1.",
+      "source": "curmudgeon-WIN-053.c3",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null,
+      "found_at": "2026-04-18T12:51:26.662Z"
+    },
+    {
+      "id": "ISS-1145",
+      "win_id": "053",
+      "severity": "moderate",
+      "category": "scientific_completeness",
+      "description": "WIN-053: 1/r claim vs Griffiths §5.3.3 is over-specific. Griffiths §5.3.3 covers toroidal coils (dense uniform winding), not dome aetheric flow. Flux conservation argument is airtight and stands alone. Reframe: lead with flux conservation bound; present 1/r as subordinate observation. Source: WIN-053.c3 HOLE-2.",
+      "source": "curmudgeon-WIN-053.c3",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null,
+      "found_at": "2026-04-18T12:51:26.662Z"
+    },
+    {
+      "id": "ISS-1146",
+      "win_id": "053",
+      "severity": "moderate",
+      "category": "citation",
+      "description": "WIN-053: Dome-side \"zero field\" claim is paraphrased, not sourced. Text says dome wins.html claims globe predicts zero field at south pole — but no direct quote or URL given. Risk of strawmanning. Fix: either add direct verbatim quote with anchor/URL, or soften to characterize dome argument rather than claim. Source: WIN-053.c3 HOLE-3.",
+      "source": "curmudgeon-WIN-053.c3",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null,
+      "found_at": "2026-04-18T12:51:26.662Z"
     }
   ],
-  "next_id": 1141
+  "next_id": 1147
 }
