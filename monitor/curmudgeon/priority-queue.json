@@ -21,84 +21,6 @@
   ],
   "queue": [
     {
-      "queue_id": 170,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-2b.5",
-      "reason": "EXP-182 integrated: 2b.5 reduced to pointer-stub (significant restructure)",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-18T09:34:14.533Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-182.json",
-        "related_issues": [
-          "ISS-1113",
-          "ISS-1115",
-          "ISS-1116"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 171,
-      "target_type": "section-rewrite",
-      "target_id": "SEC-4.1",
-      "reason": "EXP-182 integrated: 4.1 fully restructured — 28-domain table, 47.69σ/12 knobs/R² wedge, Fisher independence critique",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-18T09:34:14.533Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-182.json",
-        "related_issues": [
-          "ISS-1118",
-          "ISS-1119"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 172,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-058",
-      "reason": "EXP-181 integrated: registry_integrity_notes documentary acknowledgement added",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-18T09:34:14.533Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-181.json",
-        "related_issues": [
-          "ISS-1117"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 173,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-058b",
-      "reason": "EXP-181 integrated: registry_integrity_notes documentary acknowledgement added",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-18T09:34:14.533Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-181.json",
-        "related_issues": [
-          "ISS-1117"
-        ],
-        "human_note": null
-      }
-    },
-    {
-      "queue_id": 174,
-      "target_type": "win-detail-rewrite",
-      "target_id": "WIN-062",
-      "reason": "EXP-181 integrated: registry_integrity_notes documentary acknowledgement added",
-      "pushed_by": "decider",
-      "pushed_at": "2026-04-18T09:34:14.533Z",
-      "context_hints": {
-        "source_file": "monitor/analyst/expansions/EXP-181.json",
-        "related_issues": [
-          "ISS-1117"
-        ],
-        "human_note": null
-      }
-    },
-    {
       "queue_id": 175,
       "target_type": "expansion-draft",
       "target_id": "EXP-183",
@@ -119,41 +41,6 @@
   ],
   "next_id": 176,
   "history": [
-    {
-      "queue_id": 105,
-      "target_id": "SEC-2.3",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-14T10:31:16.080Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 106,
-      "target_id": "SEC-7.1-antarctic",
-      "target_type": "section-new",
-      "popped_at": "2026-04-14T11:30:48.660Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 109,
-      "target_id": "PRED-SR-SUPPRESS-EXP157",
-      "target_type": "prediction-batch",
-      "popped_at": "2026-04-14T11:30:48.661Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 129,
-      "target_id": "WIN-058b",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-14T11:30:48.661Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 110,
-      "target_id": "SEC-1.8-EXP149",
-      "target_type": "section-new",
-      "popped_at": "2026-04-14T12:27:41.016Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 114,
       "target_id": "eg-principles",
@@ -467,6 +354,41 @@
       "target_id": "WIN-053",
       "target_type": "win-detail-rewrite",
       "popped_at": "2026-04-18T07:27:23.393Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 170,
+      "target_id": "SEC-2b.5",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-18T09:41:02.982Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 171,
+      "target_id": "SEC-4.1",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-18T09:41:02.983Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 172,
+      "target_id": "WIN-058",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-18T09:41:02.983Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 173,
+      "target_id": "WIN-058b",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-18T09:41:02.983Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 174,
+      "target_id": "WIN-062",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-18T09:41:02.983Z",
       "popped_by": "decider"
     }
   ],
