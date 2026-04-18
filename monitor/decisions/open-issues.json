@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-17T23:25:40.451Z",
+  "last_updated": "2026-04-18T01:26:45Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -210,29 +210,37 @@
       "curmudgeon_review": "monitor/curmudgeon/reviews/WIN-015.c4.json"
     },
     {
-      "id": "ISS-1103",
+      "id": "ISS-1106",
       "win_id": null,
-      "severity": "moderate",
-      "category": "missing_argument",
+      "severity": "major",
+      "category": "content-update",
       "status": "open",
-      "description": "SEC-2b.5: H(r) parameters (8537, 8619) presented without caveat; dome author claims these are aetheric pressure/scale derivations from first principles rather than fitted constants. Section should soften \"two numerical parameters\" framing and link to Section 1.8 analysis showing post-hoc calibration.",
-      "source": "curmudgeon-SEC-2b5-c1",
-      "found_by": "curmudgeon-SEC-2b5-c1",
+      "description": "Timestamp Error tab (ts-april-2026-update block, generate-html.js): partial-sample extrapolation risk. The closing sentence \"The column under that header would still be empty\" draws a full-universe conclusion from a partial classified sample (~7 WINs in strongest_current_targets). A dome defender will say WIN-035–WIN-039 (the author's self-declared prospective set) are not yet classified in claim_index.json and may be tagged prospective_confirmed when they are. Fix: replace \"would still be empty\" with a falsifiable claim framing: \"As of 2026-04-17, the prospective_confirmed column contains no confirmed WINs — only one pending prediction (pred-eclipse-tier3). A test of good faith: whether WIN-035–WIN-039 will be tagged prospective_confirmed when classification is extended.\"",
+      "found_by": "curmudgeon-SEC-timestamp-error-tab-apr2026-c1",
       "found_date": "2026-04-17",
-      "found_at": "2026-04-17T21:31:32.905Z"
+      "found_at": "2026-04-17T18:42:03.661Z",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-timestamp-error-tab-apr2026.c1.json",
+      "fix_details": null,
+      "fix_date": null,
+      "note": "This change is in generate-html.js (ts-april-2026-update block), not sections.json — requires human edit."
     },
     {
-      "id": "ISS-1105",
+      "id": "ISS-1107",
       "win_id": null,
-      "severity": "minor",
-      "category": "missing_argument",
+      "severity": "major",
+      "category": "content-update",
       "status": "open",
-      "description": "SEC-2b.5: dashboard-inflation ratio (28 domain labels / 10 independent knobs = 2.8x inflation factor) is a quotable one-liner left on the table. \"At 28 scored domains for 10 independent numerical knobs, the dashboard has a 2.8x domain-inflation factor relative to its underlying parameter count.\" Travels well on social.",
-      "source": "curmudgeon-SEC-2b5-c1",
-      "found_by": "curmudgeon-SEC-2b5-c1",
+      "description": "Timestamp Error tab (ts-april-2026-update block, generate-html.js): unreconciled tension between ts-scope block (which lists WIN-035–WIN-039 as dome's self-declared prospective set) and ts-april-2026-update block (which concludes prospective_confirmed column is empty from a sample that does not include WIN-035–WIN-039). Fix: add one sentence near start of taxonomy paragraph: \"The dome author's earlier self-declared prospective set (WIN-035 through WIN-039) has not yet been classified in claim_index.json as of this writing; the sample below is the author's curated strongest_current_targets set, not his prospective subset.\"",
+      "found_by": "curmudgeon-SEC-timestamp-error-tab-apr2026-c1",
       "found_date": "2026-04-17",
-      "found_at": "2026-04-17T21:31:32.905Z"
+      "found_at": "2026-04-17T18:42:03.661Z",
+      "source": "curmudgeon",
+      "curmudgeon_review": "monitor/curmudgeon/reviews/SEC-timestamp-error-tab-apr2026.c1.json",
+      "fix_details": null,
+      "fix_date": null,
+      "note": "This change is in generate-html.js (ts-april-2026-update block), not sections.json — requires human edit."
     }
   ],
-  "next_id": 1106
+  "next_id": 1108
 }

@@ -1079,14 +1079,14 @@ details{display:block}details .ks-summary::after,details .ps-summary::after{disp
 <h3>What actually drives the 28 passes</h3>
 <p>The dome's entire formula layer is published in <a href="https://john09289.github.io/predictions/api/current/formula_runtime.json"><code>formula_runtime.json</code></a>. It contains exactly <strong>six formulas</strong>, identified FORM-V51-001 through FORM-V51-006:</p>
 <ol>
-<li><strong>Firmament Height</strong> H(r) = 8537·exp(−r/8619) — two numerical parameters (8537, 8619).</li>
+<li><strong>Firmament Height</strong> H(r) = 8537·exp(−r/8619) — two numerical constants (8537, 8619; the dome author derives these as aetheric pressure-scale values from first principles, but <a href="#section-1-8" onclick="showTab('model');return false">Section 1.8</a> shows them as post-hoc calibrations against observational data).</li>
 <li><strong>Aetheric Refraction</strong> n(r) = 1 + 0.20·(8537/H(r) − 1) — one new parameter (0.20).</li>
 <li><strong>Southern Reflection</strong> r_SH = 2·14105 − r_NH — one parameter (14105).</li>
 <li><strong>Eclipse κ Coupling</strong> Δg = ΔB / 1.672 — one parameter (1.672).</li>
 <li><strong>FSF Station Scaling</strong> FSF(lat) = 0.19550 / sin(lat)^0.1640 × 32.974^(lat/90) — three parameters (0.19550, 0.1640, 32.974).</li>
 <li><strong>V13 Ovoid Arc</strong> using a=20015, e=0.66, r_avg=14105 — one new parameter (0.66).</li>
 </ol>
-<p>Adding the site's three master geometric constants that these formulas reference (disc_radius 20,015 km, sun_altitude 5,733 km, moon_altitude 2,534 km), the entire scored machinery runs on roughly <strong>ten independent numerical knobs</strong>. The dashboard labels twenty-eight "domains" passing — but the dome author's own formula pack shows those twenty-eight outputs trace back to those ten inputs. Adding labels does not add independent evidence.</p>
+<p>Adding the site's three master geometric constants that these formulas reference (disc_radius 20,015 km, sun_altitude 5,733 km, moon_altitude 2,534 km), the entire scored machinery runs on roughly <strong>ten independent numerical knobs</strong>. The dashboard labels twenty-eight "domains" passing — but the dome author's own formula pack shows those twenty-eight outputs trace back to those ten inputs. Adding labels does not add independent evidence. At 28 scored domains for 10 independent numerical knobs, the dashboard has a 2.8× domain-inflation factor relative to its underlying parameter count.</p>
 
 <p><em>Note on category overlap:</em> Some domains span more than one category. Tesla Harmonic Series and Telluric Resonance Cutoff are STATIC re-references to prior Tesla-family WINs and also classifiable as TAUTOLOGY; Equatorial Gravity is both BORROWED (WGS84 coefficients) and TAUTOLOGY (H(r) calibrated to reproduce them). A non-overlapping unique count: 14 STATIC + 6 BORROWED + 2 THEORY-FRAMEWORK + 3 LOOSE + 2 TAUTOLOGY-only + 1 DISCRIMINATING = 28.</p>
 

@@ -14252,6 +14252,36 @@
       "fixed_at": "2026-04-17T23:25:40.451Z",
       "fixed_by": "decider-self-apply",
       "fix_details": "EXP-177 patches applied: P1 notation paragraph + P2 dome-prefix disambiguation in SEC-2b.5"
+    },
+    {
+      "id": "ISS-1103",
+      "win_id": null,
+      "severity": "moderate",
+      "category": "missing_argument",
+      "status": "fixed",
+      "description": "SEC-2b.5: H(r) parameters (8537, 8619) presented without caveat; dome author claims these are aetheric pressure/scale derivations from first principles rather than fitted constants. Section should soften \"two numerical parameters\" framing and link to Section 1.8 analysis showing post-hoc calibration.",
+      "source": "curmudgeon-SEC-2b5-c1",
+      "found_by": "curmudgeon-SEC-2b5-c1",
+      "found_date": "2026-04-17",
+      "found_at": "2026-04-17T21:31:32.905Z",
+      "fixed_at": "2026-04-18T01:26:45Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Added first-principles caveat and Section 1.8 cross-reference to H(r) formula line in SEC-2b.5. Softened \"two numerical parameters\" to \"two numerical constants\"."
+    },
+    {
+      "id": "ISS-1105",
+      "win_id": null,
+      "severity": "minor",
+      "category": "missing_argument",
+      "status": "fixed",
+      "description": "SEC-2b.5: dashboard-inflation ratio (28 domain labels / 10 independent knobs = 2.8x inflation factor) is a quotable one-liner left on the table. \"At 28 scored domains for 10 independent numerical knobs, the dashboard has a 2.8x domain-inflation factor relative to its underlying parameter count.\" Travels well on social.",
+      "source": "curmudgeon-SEC-2b5-c1",
+      "found_by": "curmudgeon-SEC-2b5-c1",
+      "found_date": "2026-04-17",
+      "found_at": "2026-04-17T21:31:32.905Z",
+      "fixed_at": "2026-04-18T01:26:45Z",
+      "fixed_by": "decider-self-apply",
+      "fix_details": "Added 2.8x domain-inflation factor sentence to SEC-2b.5 (28 domains / 10 independent knobs)."
     }
   ]
 }

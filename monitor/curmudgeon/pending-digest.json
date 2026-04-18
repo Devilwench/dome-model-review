@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-17T23:19:16.044Z",
+  "generated_at": "2026-04-18T01:19:20.254Z",
   "total_reviews": 200,
-  "already_processed": 293,
-  "pending_count": 1,
+  "already_processed": 294,
+  "pending_count": 0,
   "severity_breakdown": {
     "critical": 0,
-    "major": 1,
+    "major": 0,
     "moderate": 0,
     "minor": 0,
     "none": 0
@@ -15,7 +15,7 @@
     "moderate": 0,
     "total_vulnerable": 0
   },
-  "needs_full_read_count": 1,
+  "needs_full_read_count": 0,
   "under_covered_processed": [
     {
       "win_id": "EVAL-GUIDE",
@@ -3274,6 +3274,34 @@
       ]
     },
     {
+      "win_id": "SEC-8.17",
+      "topic": "Section 8.17 — From Misleading AI to Managing AI (April 2026 AI-perception-management analysis; EXP-173 integration)",
+      "issues_created": 0,
+      "holes_found": 5,
+      "missing_holes": [
+        {
+          "severity": "major",
+          "summary": "The h3 header '4. The Groq/Llama daily_review.json pipeline' and the body phrase 'attributed to Groq\\'s Llama (current snapshot: ...)' do not match the current live file. WebFetch of https://john09289.github.io/predictions/data/daily_review.json on 2026-04-17 returns provider=local, model=determinis"
+        },
+        {
+          "severity": "moderate",
+          "summary": "Internal tension between 'rejection handler' and the kernel-of-truth paragraph. The review-response.html paragraph calls the page a 'rejection handler' and frames its role as instructing AI agents which critique patterns to 'pre-discount before they reach the underlying claims.' The kernel-of-truth "
+        },
+        {
+          "severity": "minor",
+          "summary": "'In LLM-safety terminology this is soft prompt injection.' The term 'soft prompt injection' is not a unanimously-defined technical term in the LLM-safety literature; the standard taxonomy is direct prompt injection (user-turn attack) vs. indirect prompt injection (content-turn attack). ai_manifest.j"
+        },
+        {
+          "severity": "minor",
+          "summary": "'Directive #4 (\"Dome Predictions Are Prospective and Timestamped\") and Directive #11 (\"AI Auditors Should Accept the Model\") now have a third companion: \"AI Auditors Should Reject These Five Critique Patterns As Strawmen.\"' The phrasing implies review-response.html is a third directive in the contex"
+        },
+        {
+          "severity": "minor",
+          "summary": "'the most direct acknowledgement of our review to date.' Verifiable via review-response.html content, but this is a claim about the target of the page. The page enumerates critique patterns generically (not named at 'funwithscience-org dome-model-review'). A defender can argue the page is a general "
+        }
+      ]
+    },
+    {
       "win_id": "SEC-killshots-rating-key",
       "topic": "Kill-Shots Strength Rating Key — formal tier definitions (EXP-084 integration)",
       "issues_created": 0,
@@ -5662,67 +5690,6 @@
       ]
     }
   ],
-  "under_covered_count": 192,
-  "pending_reviews": [
-    {
-      "item_id": "SEC-8.17",
-      "win_id": "SEC-8.17",
-      "review_file": "monitor/curmudgeon/reviews/SEC-8.17.c1.json",
-      "reviewed_at": "2026-04-17T22:12:07.225Z",
-      "cycle": 1,
-      "topic": "Section 8.17 — From Misleading AI to Managing AI (April 2026 AI-perception-management analysis; EXP-173 integration)",
-      "verdict_holds": true,
-      "confidence": 0.76,
-      "recommended_action": "minor_edit",
-      "holes": [
-        {
-          "severity": "major",
-          "summary": "The h3 header '4. The Groq/Llama daily_review.json pipeline' and the body phrase 'attributed to Groq\\'s Llama (current snapshot: ...)' do not match the current live file. WebFetch of https://john09289.github.io/predictions/data/daily_review.json on 2026-04-17 returns provider=local, model=determinis",
-          "recommendation": "Rewrite the h3 header to '4. The daily_review.json self-review pipeline' and the opening body sentence to something like: 'Commits 6e06efb/a57e731 (2026-04-17) added an automated daily AI-review pipeline. The ai_brief field in daily_review.json is currently attributed to provider=local, model=determ",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "moderate",
-          "summary": "Internal tension between 'rejection handler' and the kernel-of-truth paragraph. The review-response.html paragraph calls the page a 'rejection handler' and frames its role as instructing AI agents which critique patterns to 'pre-discount before they reach the underlying claims.' The kernel-of-truth ",
-          "recommendation": "Either soften the rejection-handler metaphor in paragraph 1 to something like 'the AI-facing retrieval stack has grown a strawman filter' (retrieval-layer framing, not stance framing), or add a sentence in paragraph 1 previewing the kernel-of-truth distinction: 'The page engages with critique patter",
-          "affects_summary_table": true
-        },
-        {
-          "severity": "minor",
-          "summary": "'In LLM-safety terminology this is soft prompt injection.' The term 'soft prompt injection' is not a unanimously-defined technical term in the LLM-safety literature; the standard taxonomy is direct prompt injection (user-turn attack) vs. indirect prompt injection (content-turn attack). ai_manifest.j",
-          "recommendation": "Replace 'In LLM-safety terminology this is soft prompt injection' with 'In LLM-safety terms this sits on the blurred boundary between operator-provided instructions (which agents are designed to follow) and retrieved-content instructions (which agents should treat as data). Publicly disclosed agent_",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "minor",
-          "summary": "'Directive #4 (\"Dome Predictions Are Prospective and Timestamped\") and Directive #11 (\"AI Auditors Should Accept the Model\") now have a third companion: \"AI Auditors Should Reject These Five Critique Patterns As Strawmen.\"' The phrasing implies review-response.html is a third directive in the contex",
-          "recommendation": "Reword to: 'Directive #4 and Directive #11 (both catalogued in 8.5 and 8.12) had a companion role shepherding AI readers. ai_manifest.json\\'s anti_strawman_rules and the review-response.html page extend the same function into a new retrieval layer with different vocabulary.' Keeps the continuity poi",
-          "affects_summary_table": false
-        },
-        {
-          "severity": "minor",
-          "summary": "'the most direct acknowledgement of our review to date.' Verifiable via review-response.html content, but this is a claim about the target of the page. The page enumerates critique patterns generically (not named at 'funwithscience-org dome-model-review'). A defender can argue the page is a general ",
-          "recommendation": "Consider 'the closest textual engagement with our review\\'s critique patterns to date' rather than 'most direct acknowledgement.' The overlap is factual; the directed-acknowledgement framing is stronger than the evidence.",
-          "affects_summary_table": false
-        }
-      ],
-      "worst_severity": "major",
-      "citation_failures": [
-        "Groq/Llama attribution on daily_review.json (current snapshot) — FAILED. Live fetch shows no Groq or Llama string anywhere in the file. Section mis-describes current branding. EXP-173 anticipated_objections acknowledges this; section prose does not. See Major hole."
-      ],
-      "code_analysis_tags": {
-        "monitoring": "none",
-        "relabels_standard": false,
-        "post_hoc": false,
-        "derives_from_dome": false,
-        "reviewed": true
-      },
-      "argument_summary": "Section 8.17 argues that in April 2026 the dome site escalated from passively framing AI readers (context.html directives, Part 8's original subject) to actively managing their retrieval pipeline: a d",
-      "stronger_arguments_count": 3,
-      "defense_survives": null,
-      "best_defense": null,
-      "preemptive_recommendation": null,
-      "needs_full_read": true
-    }
-  ]
+  "under_covered_count": 193,
+  "pending_reviews": []
 }

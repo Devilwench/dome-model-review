@@ -36,17 +36,27 @@
         ],
         "human_note": null
       }
+    },
+    {
+      "queue_id": 161,
+      "target_type": "section-rewrite",
+      "target_id": "SEC-2b.5-post-apr18",
+      "reason": "Post-patch c2 review needed: ISS-1103 and ISS-1105 applied to SEC-2b.5 on 2026-04-18. Added H(r) first-principles caveat with Section 1.8 crossref, and 2.8x inflation-factor sentence. The old SEC-2b.5.c1.json review is stale for this new text.",
+      "pushed_by": "decider",
+      "pushed_at": "2026-04-18T01:27:47Z",
+      "context_hints": {
+        "source_file": "monitor/decisions/suggested-patches-2026-04-18T01-26.json",
+        "related_issues": [
+          "ISS-1103",
+          "ISS-1105"
+        ],
+        "human_note": null,
+        "note": "Write a new review file named SEC-2b.5-post-apr18.c1.json to avoid matching the stale SEC-2b.5.c1.json."
+      }
     }
   ],
-  "next_id": 160,
+  "next_id": 162,
   "history": [
-    {
-      "queue_id": 121,
-      "target_id": "WIN-035",
-      "target_type": "win-detail-rewrite",
-      "popped_at": "2026-04-14T08:27:38.408Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 122,
       "target_id": "WIN-037",
@@ -388,6 +398,13 @@
       "target_id": "SEC-2b.5",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-17T23:26:14.640Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 160,
+      "target_id": "SEC-2b.5",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-18T01:27:08.038Z",
       "popped_by": "decider"
     }
   ],

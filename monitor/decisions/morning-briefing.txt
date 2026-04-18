@@ -1,41 +1,48 @@
-MORNING BRIEFING — 2026-04-17
-Generated: 2026-04-17T21:32:48.835Z
-Curmudgeon reviews processed this run: 4 (SEC-2b.5.c1, SEC-timestamp-error-tab.c2, WIN-032.c4, WIN-051.c3)
-Previous decider run: 2026-04-17T19:29:06.858Z
+MORNING BRIEFING — 2026-04-18
+Generated: 2026-04-18T01:28:52Z
+Curmudgeon reviews processed this run: 0 (digest pending_count=0)
+Previous decider run: 2026-04-18T00:29Z (commit d3030bb)
 
-SITE HEALTH (integrity: PASS)
-  All 3373 tests pass. No critical integrity issues.
-  No broken anchors, no build drift.
+SITE HEALTH: PASS (integrity report 2026-04-17T09:00 — only warnings: hardcoded theme colors [ISS-1078], workspace-only files [expected])
 
-EXTERNAL STATUS
-  Dome changes: QUIET (1 consecutive quiet poll after CRITICAL on 2026-04-17T16:21:52Z)
-  OTS canary: soft-trigger inherited, analyst adjudicated as partial-rhetorical-adoption
-  WIN count: 69 (unchanged, matches our 71 tracked)
-  Canary status: soft-trigger only, no structural fix by dome author
+EXTERNAL STATUS:
+  Dome changes: No manual commits in last ~11h. Automated noise only.
+  Canary: soft-trigger state (methodology.json rhetoric update, partial adoption only; structural OTS fix not implemented)
+  WIN count: 69 (stable)
+  All baseline parameters verified OK
 
-INTERNAL STATUS
-  Open issues: 17 | Closed: 963
-  Severity breakdown: critical=0, major=0, moderate=7, minor=8
-  Issues created this run: 12 (9 patched+closed, 3 remain open)
-  Issues closed this run: 9
+INTERNAL STATUS:
+  Open issues: 16 (was 16; closed 2, created 2)
+  Severity: 2 major, 4 moderate, 7 minor, 3 wontfix
+  Self-applied patches this run: 2 (ISS-1103, ISS-1105 — both in SEC-2b.5 parts2b)
+    - ISS-1103: H(r) first-principles caveat + Section 1.8 crossref (CLOSED)
+    - ISS-1105: 2.8x domain-inflation ratio sentence (CLOSED)
+  New issues filed: 2 (ISS-1106, ISS-1107 — major timestamp error tab holes requiring human generate-html.js edit)
+  Tests: 3373 passed, 0 failed
 
-PATCHES APPLIED (9 total, commit e51b1c5)
-  [1] MAJOR fixed: SEC-2b.5 kappa BOU2017 attribution error (ISS-1094)
-  [2-8] Moderate/minor SEC-2b.5 holes (ISS-1095..1101)
-  [9] EXP-176 integrated: Part 4.1 rewritten for 28-domain dashboard (ISS-1102)
+TOP 3 PRIORITY ACTIONS:
+  1. [HUMAN REQUIRED] Fix ISS-1106 + ISS-1107 in generate-html.js (ts-april-2026-update block):
+     - ISS-1106: Replace "The column under that header would still be empty" with falsifiable 
+       framing that acknowledges partial sample (WIN-035–WIN-039 unclassified)
+     - ISS-1107: Add one sentence reconciling WIN-035–WIN-039 tension between ts-scope and 
+       ts-april-2026-update blocks
+     See curmudgeon review: monitor/curmudgeon/reviews/SEC-timestamp-error-tab-apr2026.c1.json
+     
+  2. [HUMAN REQUIRED] Schedule mismatch: mode=bau but curmudgeon running at 30min (should be 
+     240min BAU). Please restore intervals in scheduled-task settings.
+     
+  3. [HUMAN REQUIRED] ISS-1087 + ISS-1088 (moderate): Timestamp Error tab generate-html.js edits
+     - ISS-1087: Add registry_counts bookkeeping caveat clause
+     - ISS-1088: Replace "rhetorical" with "documentary" in 3-4 key sentences
 
-EXPANSIONS
-  EXP-176 integrated (Part 4.1 28-domain rewrite). Expansion-tracker updated.
-  Proposal HNOTE-PART4-DOMAINS-001-completion.json processed and added to ledger.
+CURMUDGEON PROGRESS:
+  Queue depth: 2 items (timestamp-error-tab-apr2026-update, SEC-2b.5-post-apr18)
+  Mode: bau (but running at 30min — schedule mismatch flagged)
+  Tracker: 72 wins tracked, ongoing review cycle
 
-CURMUDGEON QUEUE
-  Mode: BAU | Depth: 3
-  Items: timestamp-error-tab (q154), SEC-8.17 (q156), SEC-4.1-new (q158)
-  SEC-2b.5 (q155) popped after cycle 1 review confirmed.
-  ⚠ SCHEDULE MISMATCH: mode=bau but interval=30min (expected 240min)
-    schedule_action_needed: restore_to_bau
+GENERATE-HTML.JS ISSUES SUMMARY (4 total, all require human):
+  - ISS-1106 (major): partial-sample extrapolation in ts-april-2026-update block
+  - ISS-1107 (major): WIN-035–WIN-039 tension unreconciled
+  - ISS-1087 (moderate): registry_counts caveat missing
+  - ISS-1088 (moderate): "rhetorical" framing undercounts documentary changes
 
-TOP 3 ACTIONS
-  1. [NEXT SESSION] Restore curmudgeon schedule to BAU intervals (30min->240min)
-  2. [IMMEDIATE] PRED-105 copper-coil cucumber test closes <24h; watch next poll
-  3. [NEXT SESSION] ISS-1104: route dome-WIN- prefix clarification to analyst (SEC-2b.5)
