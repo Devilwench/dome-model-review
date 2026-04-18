@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-18T03:30:19.074Z",
+  "last_updated": "2026-04-18T05:30:41.555Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -325,7 +325,87 @@
       "fix_details": null,
       "fix_date": null,
       "assigned_at": "2026-04-18T03:28:32.200Z"
+    },
+    {
+      "id": "ISS-1118",
+      "win_id": null,
+      "section_id": "SEC-4.1",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "SEC-4.1 Bottom Line paragraph says \"Of the remaining cells, 6 import standard-model or globe-model values, 2 are Selleri / Lorentz framework recastings, and 3 are loose directional checks\" but Group A (14) + Group B (14) = 28 with no remaining cells. Groups C, D, E overlap with A/B rather than being additional cells. The Bottom Line language implies extra cells beyond 28, which is wrong. Fix: change \"Of the remaining cells\" to language acknowledging Groups C/D/E are overlapping cross-cutting classifications within the 28.",
+      "source": "curmudgeon",
+      "review_file": "monitor/curmudgeon/reviews/SEC-4.1.c3.json",
+      "found_by": "decider",
+      "found_at": "2026-04-18T05:30:41.555Z",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-1119",
+      "win_id": null,
+      "section_id": "SEC-4.1",
+      "severity": "moderate",
+      "category": "factual_error",
+      "description": "SEC-4.1 Bottom Line says \"The dome model's λg = 8,619 km is the ruler\" but Group A row 2 (Tesla Longitudinal Freq) lists shared constants as \"λg, va\" — va is an independent fitted parameter not derivable from λg. The one-ruler framing is therefore incomplete; there are at least two distinct fitted constants driving Group A domains. Fix: update the ruler sentence to acknowledge both λg and va (and H₀).",
+      "source": "curmudgeon",
+      "review_file": "monitor/curmudgeon/reviews/SEC-4.1.c3.json",
+      "found_by": "decider",
+      "found_at": "2026-04-18T05:30:41.555Z",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-1120",
+      "win_id": null,
+      "section_id": "SEC-4.1",
+      "severity": "minor",
+      "category": "missing_argument",
+      "description": "SEC-4.1 does not disclose that Equatorial Gravity is double-classified (Group A lambda_g-dependent AND Group C BORROWED/standard-model). A defender could cite this undisclosed double-count as evidence of our table being misleading. Fix: add a note in the Group C table row for Equatorial Gravity acknowledging it also appears in Group A (double-classified), or in the Note on category overlap at the Bottom Line.",
+      "source": "curmudgeon",
+      "review_file": "monitor/curmudgeon/reviews/SEC-4.1.c4.json",
+      "found_by": "decider",
+      "found_at": "2026-04-18T05:30:41.555Z",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-1121",
+      "win_id": null,
+      "section_id": "SEC-2b.5",
+      "severity": "moderate",
+      "category": "citation",
+      "description": "SEC-2b.5 H(r) description says \"Section 1.8 shows they reproduce globe-model coordinate geometry, consistent with fitting to observational data rather than derivation from first principles.\" Section 1.8 (Coordinate Collapse) does not literally show H(r) fitting — it shows coordinate system dependence on globe geometry. The stronger and more accurate citation is the dome author's own V12 model log: H(r) \"reconciles three previously contradictory H measurements\" (Schumann ~9,500 km, Polaris 4,750 km, model 9,086 km) — a two-parameter fit through 3 points is definitionally post-hoc calibration. Fix: cite the V12 model log directly instead of claiming Section 1.8 shows this.",
+      "source": "curmudgeon",
+      "review_file": "monitor/curmudgeon/reviews/SEC-2b.5-post-apr18.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-18T05:30:41.555Z",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
+    },
+    {
+      "id": "ISS-1122",
+      "win_id": null,
+      "section_id": "SEC-timestamp",
+      "severity": "minor",
+      "category": "content-update",
+      "description": "Latest Findings banner (hardcoded in generate-html.js) for #ts-april-2026-update says \"His own new claim taxonomy leaves the prospective confirmed column empty for every WIN classified so far\" but the ts-april-2026-update block now uses the more precise framing (\"no WIN tagged prospective_confirmed / only one pending\"). The banner should match the block's updated language. Fix requires editing generate-html.js (infrastructure file — cannot self-apply).",
+      "source": "curmudgeon",
+      "review_file": "monitor/curmudgeon/reviews/SEC-timestamp-error-tab-apr2026-update.c1.json",
+      "found_by": "decider",
+      "found_at": "2026-04-18T05:30:41.555Z",
+      "found_date": "2026-04-18",
+      "status": "open",
+      "fix_details": null,
+      "fix_date": null
     }
   ],
-  "next_id": 1118
+  "next_id": 1123
 }
