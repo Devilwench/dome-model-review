@@ -86,10 +86,12 @@
     "proposal-collision-fix-EXP-172-173.json",
     "proposal-ISS-1089-resolution.json",
     "proposal-HNOTE-PART4-DOMAINS-001-completion.json",
-    "proposal-ISS-1104-resolution.json"
+    "proposal-ISS-1104-resolution.json",
+    "proposal-ISS-1109-resolution.json",
+    "proposal-ISS-1117-resolution.json"
   ],
   "note": "Seeded with already-processed proposals that are orphaned on FUSE (cannot unlink)",
-  "last_updated": "2026-04-17T23:25:53.556Z",
+  "last_updated": "2026-04-18T07:27:04.404Z",
   "last_processed_at": "2026-04-15T19:41:52.370Z",
   "processed_at": {
     "proposal-ISS-841-resolution.json": "2026-04-13T21:11:44.922Z",

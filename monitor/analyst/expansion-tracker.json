@@ -3190,9 +3190,11 @@
         "ISS-1109"
       ],
       "priority": "medium",
-      "status": "pending",
+      "status": "complete",
       "notes": "Group B table references WIN-073, WIN-075, WIN-076 in Prior WIN column but none exist in wins.json. Analyst should add a note to each row (e.g., \"(pending analysis)\") or file as placeholder WIN entries. This prevents broken internal cross-references.",
-      "created_at": "2026-04-18T03:28:32.172Z"
+      "created_at": "2026-04-18T03:28:32.172Z",
+      "integrated": true,
+      "integrated_at": "2026-04-18T07:26:48.946Z"
     },
     {
       "id": "EXP-179",
@@ -3232,7 +3234,9 @@
       "created_at": "2026-04-18T03:28:32.172Z",
       "completed_at": "2026-04-18T06:23:26.787Z",
       "output_file": "monitor/analyst/expansions/EXP-181.json",
-      "completed_by": "analyst"
+      "completed_by": "analyst",
+      "integrated": true,
+      "integrated_at": "2026-04-18T07:26:48.946Z"
     }
   ],
   "last_updated": "2026-04-17T20:51:24.354Z",

@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-18T05:33:38.344Z",
+  "last_updated": "2026-04-18T07:26:43.014Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -242,23 +242,6 @@
       "note": "This change is in generate-html.js (ts-april-2026-update block), not sections.json — requires human edit."
     },
     {
-      "id": "ISS-1109",
-      "win_id": null,
-      "section_id": "SEC-4.1",
-      "severity": "major",
-      "category": "citation",
-      "description": "SEC-4.1 Group B table cites WIN-073, WIN-075, WIN-076 as \"Prior WIN\" column entries, but none of these WINs exist in wins.json. They are pending dome WINs not yet analyzed. Readers following cross-references find empty space. Either add placeholder WIN stubs or annotate these rows with \"(pending analysis)\".",
-      "source": "curmudgeon",
-      "review_file": "monitor/curmudgeon/reviews/SEC-4.1.c3.json",
-      "found_by": "decider",
-      "found_at": "2026-04-18T03:28:03.264Z",
-      "found_date": "2026-04-18",
-      "status": "assigned-analyst",
-      "fix_details": null,
-      "fix_date": null,
-      "assigned_at": "2026-04-18T03:28:32.200Z"
-    },
-    {
       "id": "ISS-1113",
       "win_id": null,
       "section_id": "SEC-2b.5",
@@ -301,23 +284,6 @@
       "description": "SEC-2b.5 BORROWED count arithmetic mismatch: the tally says \"6 BORROWED\" and the \"Borrowed from the standard model\" subsection lists 6 items (K1, S2, M2, Equatorial Gravity, Aetheric Redshift, P-wave Shadow Zone). However, the domain-by-domain audit also labels Schumann Frequency (in the Tesla-family section) as BORROWED. If Schumann is BORROWED, total BORROWED = 7, and the tally (14+7+2+3+2+1=29≠28) is wrong. Either Schumann must be reclassified or Equatorial Gravity (which is both BORROWED and TAUTOLOGY per the overlap note) must be moved to TAUTOLOGY-only to keep total at 28.",
       "source": "curmudgeon",
       "review_file": "monitor/curmudgeon/reviews/SEC-2b.5-post-apr18.c1.json",
-      "found_by": "decider",
-      "found_at": "2026-04-18T03:28:03.264Z",
-      "found_date": "2026-04-18",
-      "status": "assigned-analyst",
-      "fix_details": null,
-      "fix_date": null,
-      "assigned_at": "2026-04-18T03:28:32.200Z"
-    },
-    {
-      "id": "ISS-1117",
-      "win_id": null,
-      "section_id": "SEC-WIN-058-060-062",
-      "severity": "major",
-      "category": "missing_argument",
-      "description": "WIN-058, WIN-058b, and WIN-062 detail_evidence contains zero references to dome author's registry_integrity_notes disambiguation introduced in claim_index.json on 2026-04-17. Dome added claim_key slugs (win-058-bedrock-kappa, win-058-theta-rule, win-062-tesla-wave-speed) to machine-disambiguate the visible-prose WIN-number collision. Our prose still presents the collision as unacknowledged. A dome defender can cite the API disambiguation. Fix: add ~1 paragraph per WIN crediting the registry_integrity_notes as a documentary acknowledgement (April 17), noting visible-prose collision still unfixed in wins.html, and categorizing this as acknowledge-without-fix consistent with methodology.json ISS-1087 pattern. (Source: REACTIVE-AUDIT-2026-04-17.json curmudgeon meta-audit.)",
-      "source": "curmudgeon",
-      "review_file": "monitor/curmudgeon/reviews/REACTIVE-AUDIT-2026-04-17.json",
       "found_by": "decider",
       "found_at": "2026-04-18T03:28:03.264Z",
       "found_date": "2026-04-18",
@@ -409,7 +375,43 @@
       "status": "open",
       "fix_details": null,
       "fix_date": null
+    },
+    {
+      "id": "ISS-1126",
+      "win_id": "053",
+      "severity": "minor",
+      "category": "scientific_completeness",
+      "description": "WIN-053 aperture sensitivity: add 3,000 km sensitivity point to bound B_south even at far-larger-than-described aperture. Curmudgeon c3 requests additional data point beyond existing 1,000 km case.",
+      "source": "curmudgeon",
+      "review_file": "monitor/curmudgeon/reviews/WIN-053.c3.json",
+      "found_by": "decider",
+      "found_at": "2026-04-18T07:26:43.014Z",
+      "status": "open"
+    },
+    {
+      "id": "ISS-1127",
+      "win_id": "053",
+      "severity": "minor",
+      "category": "scientific_completeness",
+      "description": "WIN-053 flux direction not discussed: the dome circuit has north as source and south as sink; flux conservation additionally requires the two peaks to be oppositely directed. Optional sentence noting this constraint in detail_evidence.",
+      "source": "curmudgeon",
+      "review_file": "monitor/curmudgeon/reviews/WIN-053.c3.json",
+      "found_by": "decider",
+      "found_at": "2026-04-18T07:26:43.014Z",
+      "status": "open"
+    },
+    {
+      "id": "ISS-1128",
+      "win_id": "053",
+      "severity": "minor",
+      "category": "cross_reference",
+      "description": "WIN-053 missing cross-reference to §6.8 (WIN-012 single-pole collapse and κ coupling constant parallel). Curmudgeon flagged in c2 (open from c2). Add one-line cross-reference in detail_evidence or detail_extra.",
+      "source": "curmudgeon",
+      "review_file": "monitor/curmudgeon/reviews/WIN-053.c3.json",
+      "found_by": "decider",
+      "found_at": "2026-04-18T07:26:43.014Z",
+      "status": "open"
     }
   ],
-  "next_id": 1123
+  "next_id": 1129
 }

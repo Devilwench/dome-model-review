@@ -20,43 +20,8 @@
     "tinker"
   ],
   "queue": [],
-  "next_id": 165,
+  "next_id": 170,
   "history": [
-    {
-      "queue_id": 128,
-      "target_id": "SEC-5",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-14T08:27:38.408Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 98,
-      "target_id": "KILLSHOT-GAIA-table-citation-fix",
-      "target_type": "killshot-rewrite",
-      "popped_at": "2026-04-14T09:28:43.029Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 99,
-      "target_id": "SEC-1.9",
-      "target_type": "section-new",
-      "popped_at": "2026-04-14T09:28:43.029Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 102,
-      "target_id": "SEC-2.3-post-EXP121",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-14T10:31:16.078Z",
-      "popped_by": "decider"
-    },
-    {
-      "queue_id": 103,
-      "target_id": "part1-scorecard-sublabel-fix",
-      "target_type": "section-rewrite",
-      "popped_at": "2026-04-14T10:31:16.080Z",
-      "popped_by": "decider"
-    },
     {
       "queue_id": 105,
       "target_id": "SEC-2.3",
@@ -370,6 +335,41 @@
       "target_id": "SEC-2b.5",
       "target_type": "section-rewrite",
       "popped_at": "2026-04-18T05:32:54.625Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 165,
+      "target_id": "SEC-4.1",
+      "target_type": "section-rewrite",
+      "popped_at": "2026-04-18T07:27:23.393Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 166,
+      "target_id": "WIN-058",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-18T07:27:23.393Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 167,
+      "target_id": "WIN-058b",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-18T07:27:23.393Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 168,
+      "target_id": "WIN-062",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-18T07:27:23.393Z",
+      "popped_by": "decider"
+    },
+    {
+      "queue_id": 169,
+      "target_id": "WIN-053",
+      "target_type": "win-detail-rewrite",
+      "popped_at": "2026-04-18T07:27:23.393Z",
       "popped_by": "decider"
     }
   ],

@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-04-18T05:30:55.177Z",
-  "total_reviews": 202,
+  "generated_at": "2026-04-18T07:19:53.831Z",
+  "total_reviews": 203,
   "already_processed": 303,
-  "pending_count": 0,
+  "pending_count": 1,
   "severity_breakdown": {
     "critical": 0,
     "major": 0,
-    "moderate": 0,
+    "moderate": 1,
     "minor": 0,
     "none": 0
   },
   "defense_survives_breakdown": {
     "high": 0,
-    "moderate": 0,
-    "total_vulnerable": 0
+    "moderate": 1,
+    "total_vulnerable": 1
   },
-  "needs_full_read_count": 0,
+  "needs_full_read_count": 1,
   "under_covered_processed": [
     {
       "win_id": "EVAL-GUIDE",
@@ -2251,33 +2251,29 @@
     },
     {
       "win_id": "SEC-4.1",
-      "topic": "Section 4.1 — The 28-Domain / 100% Dashboard: One Ruler, Many Rooms (EXP-176 integration, 28-domain rewrite)",
+      "topic": "Section 4.1 — Part 4.1 post-ISS-1110 patch: Group C count 5 -> 6 standard-model imports (body + TLDR)",
       "issues_created": 0,
-      "holes_found": 6,
+      "holes_found": 5,
       "missing_holes": [
         {
-          "severity": "major",
-          "summary": "Group B WIN-id citations don't resolve in our own wins.json. The Group B table lists 'Prior WIN' column entries for WIN-073 (row 28, GPS Clock Offset Lorentz), WIN-075 (row 18, Ionospheric D-layer live), WIN-076 (row 20, Mascon Gravity Anomaly live), and OPEN-007 (row 26, Moon Angular Diameter Varia"
+          "severity": "moderate",
+          "summary": "The ISS-1110 patch achieves surface-level numerical consistency (6 vs 6 vs 6) but does not disclose that Equatorial Gravity is double-classified (Group A row 4 AND Group C row 4). A dome defender can still charge: \"Your own audit counts Equatorial Gravity twice — once as a lambda_g-dependent domain "
         },
         {
           "severity": "moderate",
-          "summary": "Group count arithmetic does not add up. The section claims 'Group A (14 of 28) + Group B (14 of 28) = 28', then introduces 'Of the remaining cells: Group C (5 standard-model imports), Group D (2 framework recastings), Group E (3 loose checks)' = 10 more. 14+14+5+2+3 = 38, but there are 28 dashboard "
+          "summary": "Group-count arithmetic is still internally inconsistent after the patch. Text explicitly claims Group A (14) + Group B (14) = 28 dashboard cells. Then \"Of the remaining cells, 6 import... 2 are Selleri/Lorentz... 3 are loose directional checks\" — that is 11 additional cells, for a total of 39, not 2"
         },
         {
           "severity": "moderate",
-          "summary": "The 'one ruler' analogy understates the number of fitted constants. Row 2 of Group A (Tesla Longitudinal Freq) lists shared constants as 'λg, va'. va = 1.574c = πc/2 is an independent constant derived from Tesla's 0.08484 s spherical-cavity measurement, NOT from the λg fit. So the 14 λg-dependent do"
+          "summary": "\"One ruler\" overstatement survives the patch. The Bottom Line still reads \"The dome model\\u2019s lambda_g = 8,619 km is the ruler\". Group A row 2 (Tesla Longitudinal Freq) shared constant column reads \"lambda_g, v_a\" — v_a = pi*c/2 is an independent fitted constant (derived from Tesla\\u2019s 0.08484"
         },
         {
           "severity": "minor",
-          "summary": "Group C table has 6 rows but the Bottom Line and TLDR both say '5 import standard-model or globe-model values.' Group C rows: K1 Tidal (Sidereal Day), S2 Solar Tidal, M2 Tidal, Equatorial Gravity, Aetheric Redshift Scale λA, P-wave Shadow Zone. The off-by-one is likely because Equatorial Gravity is "
+          "summary": "Tesla Longitudinal Frequency explanation (Group A row 2) still says \"~1.57c, a known superluminal phase velocity in the Earth-ionosphere waveguide.\" WIN-001 uses \"spherical cavity resonator\" phrasing. The Earth-ionosphere waveguide (TM0 between conducting Earth and ionospheric D-layer) is a differen"
         },
         {
           "severity": "minor",
-          "summary": "Tesla Longitudinal Frequency explanation (Group A row 2) says '~1.57c, a known superluminal phase velocity in the Earth-ionosphere waveguide.' The dome cavity waveguide model (Schumann TM0 mode) actually has phase velocity slightly below c, not above. The πc/2 ≈ 1.57c phase velocity comes from Tesla"
-        },
-        {
-          "severity": "minor",
-          "summary": "formula_runtime.json 'exactly six formulas (FORM-V51-001 through FORM-V51-006)' was not re-verified live this review. The raw-text archives (2026-04-07 and earlier) list constants and formulas by narrative but do not enumerate FORM-V51-00N identifiers. Live fetch would resolve; the c2 SEC-timestamp "
+          "summary": "formula_runtime.json \"exactly six formulas (FORM-V51-001 through FORM-V51-006)\" claim in the body paragraph is still unverified live in this review. The raw-text archives enumerate formulas narratively but do not list FORM-V51-00N identifiers. Next curmudgeon run or analyst Mode-4 could verify via W"
         }
       ]
     },
@@ -3478,6 +3474,34 @@
       ]
     },
     {
+      "win_id": "SEC-timestamp-error-tab-apr2026-update",
+      "topic": "Timestamp Error tab — April 2026 update block (c1 review filed under queue_id 154 target_id)",
+      "issues_created": 0,
+      "holes_found": 5,
+      "missing_holes": [
+        {
+          "severity": "moderate",
+          "summary": "Cross-reference drift at the 'Latest Findings' banner (line 1271). The banner teasing #ts-april-2026-update says: 'His own new claim taxonomy leaves the \"prospective confirmed\" column empty for every WIN classified so far.' This is factually accurate as of 2026-04-18 (no WIN in claim_index.json is t"
+        },
+        {
+          "severity": "major",
+          "summary": "c2 ISS-1087 residual — registry_counts self-caveat still not engaged. The block's closing line reads: 'the site's 94.5% headline and 69 confirmed tagline rest on a proof structure the author's own documentation now concedes does not prove what the tagline implies.' Substantively correct. But the liv"
+        },
+        {
+          "severity": "moderate",
+          "summary": "c2 ISS-1088 residual — 'rhetorical' framing compresses documentary changes. The block uses 'rhetorical' or 'rhetorical scope' in four load-bearing places (TLDR final clause, counterpoint paragraph, closing triad, opening of the 'What he has not done' paragraph). The author has shipped substantive do"
+        },
+        {
+          "severity": "minor",
+          "summary": "c2 ISS-1089 residual — agent_rules paraphrased rather than verbatim. c2's WebFetch comparison against live methodology.json confirmed all four agent_rules as lightly edited: (1) 'Do not assume OpenTimestamps proof alone makes every registry claim prospective' vs live 'Do not assume that an OpenTimes"
+        },
+        {
+          "severity": "minor",
+          "summary": "Missed opportunity — pred-eclipse-tier3 tag not itself contested. c2 flagged this as minor and it remains valid: our own data/predictions.json has PRED-TIER-3 with is_genuinely_prospective:false and crypto_hash:null, meaning by the dome author's own published claim_level_rule (numerical threshold th"
+        }
+      ]
+    },
+    {
       "win_id": "SEC-timestamp-error-tab-apr2026",
       "topic": "Timestamp Error tab — April 2026 methodology.json update block (c2 after ISS-1085/1086/1090 patches)",
       "issues_created": 0,
@@ -4223,33 +4247,37 @@
     },
     {
       "win_id": "WIN-032",
-      "topic": "New Jerusalem pole axis — c5 post EXP-174 integration (asymmetric-unfalsifiability defense neutralization)",
+      "topic": "New Jerusalem pole axis — verify simplified Part 3.1b cross-reference carries the scorecard-inflation argument",
       "issues_created": 0,
-      "holes_found": 6,
+      "holes_found": 7,
       "missing_holes": [
         {
-          "severity": "major",
-          "summary": "Broken cross-reference in the new EXP-174 paragraph. The new detail_verdict_text concludes: \"...the fix is not to relitigate the theology but to insist on a single definition of confirmation — which is what our Scorecard-Inflation argument (Part 3.1b, Pattern 6) already does.\" Neither name exists at"
+          "severity": "minor",
+          "summary": "The patched reference \"our post-hoc standard in Part 3.1b\" is partially off-target for the specific claim being made. The surrounding sentence argues that the fix is \"a single definition of confirmation\" across empirical and theological WINs — a scorecard-composition argument. Part 3.1b, however, is"
         },
         {
           "severity": "minor",
-          "summary": "c4 hole #1 persists: detail_evidence still hardcodes \"4 theological claims in the current WIN count (WIN-023, WIN-031, WIN-032, WIN-034).\" Violates the \"never hardcode a count derivable from data\" rule. If a fifth Unfalsifiable WIN is added (or one of the four is re-classified), the prose silently g"
+          "summary": "detail_verdict_text now references Part 3.1b twice (once in the patched sentence, once in the final post-hoc paragraph), both linking to the same #posthoc-standard anchor. The two references carry different logical loads — the first leans on \"single definition of confirmation,\" the second on \"no obs"
         },
         {
           "severity": "minor",
-          "summary": "c4 hole #2 persists: detail_evidence phrasing \"unfalsifiable on two independent layers — the dome geometry and the prophetic framework\" still concedes that the dome geometry is itself unfalsifiable. This is in tension with the rest of our review, which argues the dome geometry IS falsifiable (and fa"
+          "summary": "c5 hole #2 persists: detail_evidence still hardcodes \"4 theological claims in the current WIN count (WIN-023, WIN-031, WIN-032, WIN-034).\" This violates the project rule against hardcoded counts derivable from data/wins.json. If a fifth Unfalsifiable WIN is added or one of the four is reclassified, "
         },
         {
           "severity": "minor",
-          "summary": "c4 hole #3 persists: detail_verdict_text still says \"the geopolitical framing in context.html confirms this is theological-political assertion, not testable physics\" with no quote, no anchor, no specific passage. A dome defender can and will ask which framing, what page, what sentence."
+          "summary": "c5 hole #3 persists: detail_evidence phrase \"unfalsifiable on two independent layers — the dome geometry and the prophetic framework\" still concedes that the dome geometry is itself unfalsifiable. This is in tension with the rest of the review, which argues the dome geometry IS falsifiable (and fals"
         },
         {
           "severity": "minor",
-          "summary": "c4 hole #4 persists: internal duplication inside detail_evidence — monitor.py-excludes-WIN-032 is stated twice (once early: \"The dome's own automated monitoring system (monitor.py) does not include WIN-032...\"; once late: \"The model's own monitoring system (monitor.py) contains no validation domain "
+          "summary": "c5 hole #4 persists: detail_verdict_text still asserts \"the geopolitical framing in context.html confirms this is theological-political assertion, not testable physics\" without quoting the specific passage or anchoring the claim. The passage does exist in raw-text/07-ai-context.txt under the GEOPOLI"
         },
         {
           "severity": "minor",
-          "summary": "In the new EXP-174 paragraph, the example \"pre-CMB cosmology, black-hole interiors, or string-theoretic vacua, all of which are currently untestable\" bundles three items with very different scientific statuses. Pre-CMB cosmology has measurable signatures (e.g., baryon asymmetry, primordial gravitati"
+          "summary": "c5 hole #5 persists: detail_evidence states the monitor.py-excludes-WIN-032 point twice — once early (\"The dome's own automated monitoring system (monitor.py) does not include WIN-032...\") and once late (\"The model's own monitoring system (monitor.py) contains no validation domain for WIN-032...\"). "
+        },
+        {
+          "severity": "minor",
+          "summary": "c5 hole #6 persists: the EXP-174 paragraph bundles \"pre-CMB cosmology, black-hole interiors, or string-theoretic vacua\" as examples of \"currently untestable\" mainstream claims. These have very different scientific statuses — pre-CMB cosmology has measurable indirect signatures (baryon asymmetry, pri"
         }
       ]
     },
@@ -4722,34 +4750,6 @@
         {
           "severity": "minor",
           "summary": "The detail_claim could be more precise. 'Radial Acceleration Relation (RAR) extends from kinematic to weak-lensing scales with near-zero scatter' is accurate but 'near-zero scatter' should be quantified to match the data. McGaugh et al. (2016) reported 0.13 dex observed scatter with 0.057 dex intrin"
-        }
-      ]
-    },
-    {
-      "win_id": "WIN-053",
-      "topic": "Two-pole geomagnetic model — toroidal architecture with B(r) equation, flux conservation failure",
-      "issues_created": 0,
-      "holes_found": 5,
-      "missing_holes": [
-        {
-          "severity": "moderate",
-          "summary": "AREA RATIO DERIVATION USES ARBITRARY POLE APERTURE RADIUS. The detail_evidence now includes the 1,600:1 derivation (treating north pole source as circular aperture of radius ~500 km). However, the choice of 500 km is not justified by any dome parameter. The dome's Axis Mundi is not given a specific "
-        },
-        {
-          "severity": "moderate",
-          "summary": "MISSING CROSS-REFERENCE TO SECTION 3.5.8. The detail_evidence for WIN-053 makes several arguments (fitted coefficients, single-pole collapse) that overlap substantially with Section 3.5.8 ('WIN-012 single-pole collapse'). Neither references the other. A reader encountering WIN-053 first may miss the"
-        },
-        {
-          "severity": "moderate",
-          "summary": "V50.6→V51.0 TRANSITION ARGUMENT STILL SOMEWHAT WEAK. The current text says 'the change was not motivated by any failed prediction or new observation; it is asserted rather than derived from a detected flaw in V50.6.' While this is an improvement over the Cycle 1 framing (which penalized model evolut"
-        },
-        {
-          "severity": "minor",
-          "summary": "THE 1/r VS EXPONENTIAL ARGUMENT CITATION IS IMPRECISE. The text references 'standard EM theory' for the 1/r prediction inside a toroidal solenoid but doesn't cite a specific source. The Cycle 1 review recommended citing Griffiths §5.3.3. While not strictly required for a general physics principle, a"
-        },
-        {
-          "severity": "minor",
-          "summary": "DETAIL_CLAIM IS SLIGHTLY MISLEADING. It says 'Same scale length (λ = 8,619 km) governs both magnetic poles.' This is our characterization of the dome's claim. But looking at the B(r) equation, the two terms do use the same λ=8,619 — so this is accurate. However, it implies we're criticizing the shar"
         }
       ]
     },
@@ -5763,5 +5763,72 @@
     }
   ],
   "under_covered_count": 195,
-  "pending_reviews": []
+  "pending_reviews": [
+    {
+      "item_id": "WIN-053",
+      "win_id": "WIN-053",
+      "review_file": "monitor/curmudgeon/reviews/WIN-053.c3.json",
+      "reviewed_at": "2026-04-18T06:13:49.900Z",
+      "cycle": 3,
+      "topic": "Two-pole geomagnetic model — toroidal architecture with B(r) equation, flux conservation failure (change-driven re-review)",
+      "verdict_holds": true,
+      "confidence": 0.88,
+      "recommended_action": "minor_edit",
+      "holes": [
+        {
+          "severity": "moderate",
+          "summary": "ATTRIBUTION ERROR: \"standard centered dipole gives ~54,000 nT at the geographic south pole.\" A pure centered-dipole calculation with Earth’s dipole moment m ≈ 7.94×10^22 A·m² and R = 6,371 km gives B_eq = μ₀m/(4πR³) ≈ 30,700 nT, hence B(θ≈170°) ≈ 30,700 × √(1+3·cos²170°) ≈ 60,700 nT. The ~54,000–55,",
+          "recommendation": "Fix the attribution. Example rewrite: ‘A pure centered-dipole calculation with Earth’s dipole moment gives B(θ≈170°) ≈ 60,700 nT, while IGRF-13 — which includes higher-order multipoles — reports ~55,000 nT at the geographic south pole. Either way, the globe predicts a STRONG field there, not zero.’ ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "moderate",
+          "summary": "OVER-SPECIFIC 1/r CLAIM VS GRIFFITHS §5.3.3. Griffiths §5.3.3 (Example 5.12) gives B = μ₀NI/(2πs) inside a tightly wound toroidal coil — a very specific geometry (dense uniform winding around a donut). The dome’s ‘Closed Toroidal Ovoid’ is not a wound solenoid; it is a single aetheric flow from an a",
+          "recommendation": "Reframe so flux conservation stands alone and the 1/r point is presented as a subordinate observation, not as the Griffiths-backed claim that the dome’s exponential ‘contradicts standard EM.’ Example: ‘Whatever the field geometry, ∇·B = 0 alone requires B_return × A_return = B_source × A_source. Giv",
+          "affects_summary_table": true
+        },
+        {
+          "severity": "moderate",
+          "summary": "THE DOME-SIDE ‘ZERO FIELD’ QUOTE IS PARAPHRASED, NOT SOURCED. Our text asserts: ‘The dome’s wins.html claims globe dipole theory predicts zero field at geographic South Pole.’ The raw-text/ archive available in this clone contains the V50.6 dump only; the V51.0 wins.html text for WIN-053 is not capt",
+          "recommendation": "Either (a) add a direct verbatim quote with anchor/URL (e.g., ‘https://john09289.github.io/predictions/wins.html#WIN-053’) plus an archive.org snapshot, or (b) downgrade the sentence to characterize what the dome argues rather than what it ‘claims,’ e.g., ‘The dome frames the globe dipole as unable ",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "APERTURE VALUE STILL UNTETHERED TO A DOME PARAMETER. The 500 km ‘pole aperture’ is described as ‘estimated from model geometry,’ but the dome site does not publish an Axis Mundi source radius. The cycle-2 recommendation asked for an explicit sensitivity note; the current text DOES include a 1,000 km",
+          "recommendation": "Add one more sensitivity point, e.g., ‘Even at a 3,000 km aperture — far larger than anything the dome describes for the Axis Mundi — the ratio is still ~45:1, bounding B_south ≤ ~1,400 nT, ~46× below the fitted value.’",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "DIRECTION OF FLUX NOT DISCUSSED. Flux conservation constrains both magnitude and direction. In the dome’s claimed toroidal circuit, the north pole is a SOURCE (field lines emerging vertically from Axis Mundi) and the south/return is a SINK (field lines converging into the Sump). The fitted B(r) give",
+          "recommendation": "Optional addition to detail_evidence: one sentence noting that flux conservation additionally requires the two peaks to be oppositely directed with respect to the return surface, which the dome’s B(r) does not enforce.",
+          "affects_summary_table": false
+        },
+        {
+          "severity": "minor",
+          "summary": "MISSING CROSS-REFERENCE TO SECTION 3.5.8 (still open from cycle 2). The cycle-2 review flagged this and the recommendation was not applied. Section 3.5.8 (‘WIN-012 single-pole collapse’) overlaps substantially with the WIN-053 argument about fitted coefficients and the shared λ. Readers landing on e",
+          "recommendation": "Add a one-line cross-reference in detail_evidence or detail_extra: ‘See §3.5.8 for the parallel single-pole collapse affecting WIN-012 and the κ coupling constant.’",
+          "affects_summary_table": false
+        }
+      ],
+      "worst_severity": "moderate",
+      "citation_failures": [
+        "Dome-side quote ‘globe dipole theory predicts zero field at geographic South Pole’ attributed to wins.html — no URL, anchor, or archive link provided; not verifiable from the V50.6 raw-text dump (which only captures 39 WINs, not WIN-053)."
+      ],
+      "code_analysis_tags": {
+        "monitoring": "none",
+        "relabels_standard": true,
+        "post_hoc": true,
+        "derives_from_dome": false,
+        "reviewed": true
+      },
+      "argument_summary": "WIN-053: Dome claims Closed Toroidal Ovoid geometry produces dipole-like field via sub-terrestrial return path. Verdict Self-Contradicted. Core argument: flux conservation within the dome’s own geomet",
+      "stronger_arguments_count": 3,
+      "defense_survives": 3,
+      "best_defense": "A charitable dome defender would argue the 64,852 nT at the ‘southern pole’ term refers to the sub-terrestrial return flux density in the Sump, not the surface field. ‘Flux conservation is preserved because the return flow is in a narrower sub-terrestrial channel whose cross-section is much smaller ",
+      "preemptive_recommendation": "Add one paragraph to detail_evidence that closes this escape hatch explicitly: ‘The dome computes its 20% RMS improvement against surface-observatory measurements (INTERMAGNET/CHAOS-7 validation stations), so the 64,852 nT at the southern pole is being proposed as a SURFACE value. Reinterpreting it ",
+      "needs_full_read": true
+    }
+  ]
 }
