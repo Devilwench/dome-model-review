@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T17:19:06.123Z",
+  "generated_at": "2026-04-19T10:58:51.076Z",
   "total_reviews": 207,
   "already_processed": 311,
   "pending_count": 0,
@@ -4904,9 +4904,21 @@
     {
       "win_id": "WIN-053",
       "topic": "Two-pole geomagnetic model — toroidal architecture with B(r) equation, flux conservation failure (change-driven re-review)",
-      "issues_created": 5,
+      "issues_created": 2,
       "holes_found": 6,
       "missing_holes": [
+        {
+          "severity": "moderate",
+          "summary": "THE DOME-SIDE ‘ZERO FIELD’ QUOTE IS PARAPHRASED, NOT SOURCED. Our text asserts: ‘The dome’s wins.html claims globe dipole theory predicts zero field at geographic South Pole.’ The raw-text/ archive available in this clone contains the V50.6 dump only; the V51.0 wins.html text for WIN-053 is not capt"
+        },
+        {
+          "severity": "minor",
+          "summary": "APERTURE VALUE STILL UNTETHERED TO A DOME PARAMETER. The 500 km ‘pole aperture’ is described as ‘estimated from model geometry,’ but the dome site does not publish an Axis Mundi source radius. The cycle-2 recommendation asked for an explicit sensitivity note; the current text DOES include a 1,000 km"
+        },
+        {
+          "severity": "minor",
+          "summary": "DIRECTION OF FLUX NOT DISCUSSED. Flux conservation constrains both magnitude and direction. In the dome’s claimed toroidal circuit, the north pole is a SOURCE (field lines emerging vertically from Axis Mundi) and the south/return is a SINK (field lines converging into the Sump). The fitted B(r) give"
+        },
         {
           "severity": "minor",
           "summary": "MISSING CROSS-REFERENCE TO SECTION 3.5.8 (still open from cycle 2). The cycle-2 review flagged this and the recommendation was not applied. Section 3.5.8 (‘WIN-012 single-pole collapse’) overlaps substantially with the WIN-053 argument about fitted coefficients and the shared λ. Readers landing on e"
@@ -5100,9 +5112,21 @@
     {
       "win_id": "WIN-058",
       "topic": "Unified angular coordinate θ = −lonE — V13 coordinate identity (cycle 3)",
-      "issues_created": 3,
+      "issues_created": 0,
       "holes_found": 9,
       "missing_holes": [
+        {
+          "severity": "major",
+          "summary": "Self-contradiction between detail_evidence and detail_verdict_text. The detail_evidence says plainly: 'The identity θ = −lonE is not derived from dome geometry. It is derived from the definition of longitude. No dome-specific physics (disc radius, firmament height, aetheric wave speed) enters the de"
+        },
+        {
+          "severity": "major",
+          "summary": "Finding line mis-attributes the solar-noon-UTC proxy to V12. The current finding reads: 'V13 merely dropped V12's unnecessary solar-noon-UTC indirection.' Raw-text/04-coordinates.txt (V50.6) labels 'theta = (solar_noon_utc − 12.0) × 15 deg' under the V9 REFERENCE (Superseded by V12) header, and labe"
+        },
+        {
+          "severity": "major",
+          "summary": "The FINDING says 'V13 merely dropped V12's... indirection' — but the detail_evidence itself documents that 0.9941 persists in distance_analysis.py and that 'The V13 angular identity and the V12 scaling factor coexist in the codebase without reconciliation.' If the V13 identity and the 0.9941 factor "
+        },
         {
           "severity": "moderate",
           "summary": "Sydney 183° error claim uses linear arithmetic instead of minimum angular distance. We state: '(Sydney: +32.5° instead of the correct −151.2°, a 183° error)'. Angles wrap: min(|32.5 − (−151.2)|, 360 − |32.5 − (−151.2)|) = min(183.7°, 176.3°) = 176.3°. The error is 176°, not 183°. The qualitative poi"

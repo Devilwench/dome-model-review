@@ -1,6 +1,6 @@
 {
   "description": "Persistent issue tracker. Decider appends new issues from Curmudgeon reviews, marks resolved when wins.json no longer contains the flagged text.",
-  "last_updated": "2026-04-18T17:28:07.557Z",
+  "last_updated": "2026-04-19T11:14:21.701Z",
   "issues": [
     {
       "id": "ISS-698",
@@ -376,36 +376,6 @@
       "found_date": "2026-04-18",
       "status": "open",
       "related_review": "monitor/curmudgeon/reviews/EXP-184-proposal.json"
-    },
-    {
-      "id": "ISS-1155",
-      "win_id": null,
-      "section_id": "part6",
-      "severity": "major",
-      "category": "dome_change",
-      "description": "Dome author demoted two Kill-Shot badges on killshot.html (commit 5021eec, 2026-04-17): Sydney-Perth rail CONFIRMED→STRUCTURAL SUPPORT; Polaris CONFIRMED→SUPPORTIVE ONLY. Falsification rule rewritten from binary knockout language to qualified framing. Part 6 (Kill Shots tab) needs dated before/after block with commit hash. CSS class status-confirmed (green) still applied to both demoted rows despite text demotion — presentation/wording mismatch. Charitable framing required: author updated labels in direction of accuracy.",
-      "source": "human-note HNOTE-KILLSHOT-STATUS-DEMOTION-001",
-      "found_by": "poller+human",
-      "found_at": "2026-04-18T14:23:12.499Z",
-      "found_date": "2026-04-18",
-      "status": "assigned-analyst",
-      "related_expansion": "EXP-188",
-      "human_note_id": "HNOTE-KILLSHOT-STATUS-DEMOTION-001"
-    },
-    {
-      "id": "ISS-1156",
-      "win_id": null,
-      "section_id": "timestamp-error-tab",
-      "severity": "moderate",
-      "category": "dome_change",
-      "description": "Dome author added OTS canary-adjacent prose concession (commit 6e06efb, 2026-04-17): \"OpenTimestamps proves snapshot existence by time; claim-level prospectivity still needs item-by-item audit.\" This is partial acknowledgement of our Timestamp Error tab critique — NOT the full canary fix (which requires separate prediction docs timestamped before data). Timestamp Error tab needs update noting partial acknowledgement while explaining why it does not close the methodological gap.",
-      "source": "human-note HNOTE-KILLSHOT-STATUS-DEMOTION-001",
-      "found_by": "poller+human",
-      "found_at": "2026-04-18T14:23:12.499Z",
-      "found_date": "2026-04-18",
-      "status": "assigned-analyst",
-      "related_expansion": "EXP-189",
-      "human_note_id": "HNOTE-KILLSHOT-STATUS-DEMOTION-001"
     },
     {
       "id": "ISS-1161",
