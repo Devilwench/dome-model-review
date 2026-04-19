@@ -3,8 +3,8 @@
   "current_cycle": 3,
   "review_model": "change-driven",
   "review_model_description": "Priority queue > human notes > change-detected items > holistic reviews > spot-checks. Sequential Phase 1/2/3 grinding retired as of 2026-04-12.",
-  "last_reviewed": "2026-04-18T13:59:59.666Z",
-  "last_run": "2026-04-18T13:59:59.666Z",
+  "last_reviewed": "2026-04-19T11:15:17.273Z",
+  "last_run": "2026-04-19T11:32:24.162Z",
   "points": [
     {
       "id": "WIN-001",
@@ -103,7 +103,8 @@
       "section": "2.5",
       "topic": "Mag-gravity coupling 1.67",
       "status": "reviewed",
-      "reviewed_at": "2026-04-08T01:15:00Z"
+      "reviewed_at": "2026-04-18T15:33:32.721Z",
+      "last_reviewed_cycle": 3
     },
     {
       "id": "WIN-013",
@@ -484,8 +485,8 @@
       "section": "2.6",
       "topic": "Unified angular coordinate",
       "status": "reviewed",
-      "reviewed_at": "2026-04-18T08:54:00.144Z",
-      "last_reviewed_cycle": 3
+      "reviewed_at": "2026-04-18T16:31:38.666Z",
+      "last_reviewed_cycle": 4
     },
     {
       "id": "WIN-059",
@@ -517,7 +518,10 @@
       "section": "2.6",
       "topic": "Tesla longitudinal wave 1.574c",
       "status": "reviewed",
-      "reviewed_at": "2026-04-08T23:45:00Z"
+      "reviewed_at": "2026-04-19T11:15:17.273Z",
+      "last_reviewed_cycle": 3,
+      "last_review_file": "WIN-062.c3.json",
+      "priority_queue_id": 184
     },
     {
       "id": "WIN-063",
@@ -874,8 +878,8 @@
       "point_id": "WIN-058b",
       "type": "win",
       "status": "reviewed",
-      "reviewed_at": "2026-04-12T16:30:00Z",
-      "last_reviewed_cycle": 1,
+      "reviewed_at": "2026-04-18T17:15:14.148Z",
+      "last_reviewed_cycle": 3,
       "review_file": "WIN-058b.c1.json"
     },
     {
@@ -1360,6 +1364,22 @@
       "reviewed_at": "2026-04-18T13:59:59.666Z",
       "last_reviewed_cycle": 1,
       "priority_queue_id": 178
+    },
+    {
+      "id": "SEC-8b",
+      "kind": "section",
+      "target": "part8b",
+      "title": "Part 8b: The Dome Author Fair-Auditor List",
+      "first_reviewed_at": "2026-04-18T15:06:30.737Z",
+      "reviewed_at": "2026-04-18T15:06:30.737Z",
+      "last_reviewed_cycle": 1
+    },
+    {
+      "point_id": "PRED-batch-2026-04-18",
+      "topic": "Prediction-batch re-review: PRED-NEW-002, PRED-TOROID-003, W019, W020 — verdict regression from 209fda5 silently reverted 2026-04-14 human approvals",
+      "status": "reviewed",
+      "reviewed_at": "2026-04-19T11:32:24.162Z",
+      "last_reviewed_cycle": 1
     }
   ],
   "holistic_checks": [
@@ -1414,8 +1434,8 @@
   "items_reviewed": 94,
   "total_items": 72,
   "cycle": 2,
-  "last_review_time": "2026-04-18T13:59:59.666Z",
-  "last_review_item": "EXP-184",
-  "last_review_result": "minor_edit — 1 critical, 3 major, 3 moderate, 4 minor holes; kill-shot #1 label + Part 4.2 stale + L3 PRED muddle need fixing before this section ships cleanly",
-  "last_item_reviewed": "EXP-184"
+  "last_review_time": "2026-04-19T11:32:24.162Z",
+  "last_review_item": "PRED-batch-2026-04-18",
+  "last_review_result": "verdict_change (critical regression: four silent verdict reverts of human-approved values)",
+  "last_item_reviewed": "PRED-batch-2026-04-18"
 }
